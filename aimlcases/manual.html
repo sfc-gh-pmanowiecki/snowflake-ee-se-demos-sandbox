@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — Podręcznik użytkownika Cortex Code w Snowsight</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+
+    .hero { background: linear-gradient(135deg, #003545, #11567F); color: #fff; padding: 32px 48px 36px; }
+    .hero-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .logo-snowflake { display: flex; align-items: center; gap: 7px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .hero-title { font-size: 38px; font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
+    .hero-subtitle { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.85); max-width: 700px; line-height: 1.65; }
+
+    .content { max-width: 820px; margin: 0 auto; padding: 40px 24px 64px; }
+
+    .toc { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 36px; border: 1px solid #e8e8e8; }
+    .toc h2 { font-size: 16px; font-weight: 700; color: #11567F; margin-bottom: 14px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { font-size: 14px; color: #29B5E8; text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    .section { background: #fff; border-radius: 12px; padding: 32px 36px; margin-bottom: 28px; border: 1px solid #e8e8e8; }
+    .section h2 { font-size: 22px; font-weight: 700; color: #11567F; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+    .section h2 .step-num { background: #29B5E8; color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; }
+    .section h3 { font-size: 16px; font-weight: 700; color: #333; margin: 20px 0 8px; }
+    .section p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 12px; }
+    .section ul, .section ol { padding-left: 22px; margin-bottom: 14px; }
+    .section li { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 4px; }
+
+    .callout { background: #E0F4FD; border-left: 4px solid #29B5E8; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .callout p { color: #11567F; margin: 0; font-size: 13px; }
+    .callout strong { color: #003545; }
+
+    .callout-warn { background: #FFF8E1; border-left: 4px solid #FF9F36; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .callout-warn p { color: #6D4C00; margin: 0; font-size: 13px; }
+
+    .callout-success { background: #E8F5E9; border-left: 4px solid #2E7D32; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .callout-success p { color: #1B5E20; margin: 0; font-size: 13px; }
+
+    .screenshot-placeholder { background: #f0f0f0; border: 2px dashed #ccc; border-radius: 10px; padding: 40px 24px; text-align: center; color: #999; font-size: 13px; margin: 16px 0; }
+
+    .code-block { background: #003545; color: #e0e0e0; border-radius: 8px; padding: 16px 18px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 13px; line-height: 1.65; white-space: pre-wrap; word-break: break-word; margin: 12px 0; position: relative; overflow-x: auto; }
+    .code-block .lang-tag { position: absolute; top: 8px; right: 12px; font-size: 10px; color: #29B5E8; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+    .steps-visual { display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap; }
+    .step-card { flex: 1; min-width: 140px; background: #f8f9fa; border: 1px solid #e8e8e8; border-radius: 10px; padding: 16px; text-align: center; }
+    .step-card .sc-num { font-size: 24px; font-weight: 700; color: #29B5E8; }
+    .step-card .sc-label { font-size: 12px; color: #666; margin-top: 4px; }
+
+    .faq-item { border-bottom: 1px solid #eee; padding: 14px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 14px; font-weight: 700; color: #11567F; margin-bottom: 6px; }
+    .faq-a { font-size: 13px; color: #555; line-height: 1.65; }
+
+    .footer { background: #003545; color: rgba(255,255,255,0.4); text-align: center; padding: 32px 24px; font-size: 12px; line-height: 1.8; }
+    .footer a { color: #29B5E8; text-decoration: none; }
+
+    @media (max-width: 700px) {
+      .hero { padding: 24px 20px; }
+      .hero-title { font-size: 28px; }
+      .content { padding: 24px 16px 48px; }
+      .section { padding: 24px 20px; }
+      .steps-visual { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-top">
+    <div class="logo-snowflake"><img src="bug-white.png" alt="Snowflake" width="32" height="32" /> Snowflake</div>
+  </div>
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Powrót do indeksu branż</a>
+  <p class="hero-eyebrow">Instrukcja obsługi</p>
+  <h1 class="hero-title">Jak używać Cortex Code w Snowsight</h1>
+  <p class="hero-subtitle">Krok po kroku przewodnik po uruchamianiu Cortex Code Prompts dla każdego przypadku użycia bezpośrednio w Snowsight. Od otwarcia panelu po wdrożenie dashboardów Streamlit w produkcji.</p>
+</header>
+
+<div class="content">
+
+  <!-- TABLE OF CONTENTS -->
+  <nav class="toc">
+    <h2>Contenido</h2>
+    <ol>
+      <li><a href="#que-es">Co to jest Cortex Code?</a></li>
+      <li><a href="#requisitos">Wymagania wstępne</a></li>
+      <li><a href="#abrir">Otwieranie Cortex Code w Snowsight</a></li>
+      <li><a href="#skill">Dodaj umiejętność najlepszych praktyk</a></li>
+      <li><a href="#flujo">Przepływ pracy z monitami</a></li>
+      <li><a href="#ejecutar">Wykonanie Przypadku Użytkowania Krok po Kroku</a></li>
+      <li><a href="#revisar">Przegląd i walidacja wygenerowanego kodu</a></li>
+      <li><a href="#streamlit">Wdrażanie pulpitów nawigacyjnych Streamlit</a></li>
+      <li><a href="#tasks">Automatyzacja za pomocą zadań i potoków</a></li>
+      <li><a href="#costes">Sprawdź wykorzystane wydatki</a></li>
+      <li><a href="#tips">Porady i dobre praktyki</a></li>
+      <li><a href="#faq">Często zadawane pytania</a></li>
+    </ol>
+  </nav>
+
+  <!-- SECTION 1 -->
+  <div class="section" id="que-es">
+    <h2><span class="step-num">1</span> Co to jest Cortex Code?</h2>
+    <p>"Cortex Code to asystent programowania z wbudowaną sztuczną inteligencją w Snowsight, środowisku internetowym Snowflake. Umożliwia generowanie kodu SQL, Python i Streamlit bezpośrednio z języka naturalnego, przyspieszając rozwój rozwiązań analitycznych."</p>
+
+    <h3>Kluczowe zdolności</h3>
+    <ul>
+      <li><strong>Generowanie kodu SQL</strong> "— CREATE TABLE, INSERT, widoki, procedury, funkcje"</li>
+      <li><strong>Cortex AI/ML</strong> &mdash; ML.CLASSIFICATION, ML.FORECAST, CORTEX.COMPLETE, CORTEX.SENTIMENT, Cortex Search</li>
+      <li><strong>Feature Store</strong> "— Entity, FeatureView, get_features()"</li>
+      <li><strong>Model Registry</strong> "— log_model(), get_model(), wersjonowanie"</li>
+      <li><strong>Streamlit</strong> &mdash; Generowanie interaktywnych pulpitów nawigacyjnych</li>
+      <li><strong>Zadania i potoki</strong> &mdash; Automatyzacja i orkiestracja</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Ważne:</strong> "Cortex Code generuje kod, który jest uruchamiany w Twoim koncie Snowflake. Wszystko pozostaje w Twoim środowisku — bez zewnętrznych zależności, bez wysyłania danych na zewnątrz."</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="requisitos">
+    <h2><span class="step-num">2</span> Wymagania wstępne</h2>
+    <p>"Przed rozpoczęciem upewnij się, że masz skonfigurowane następujące elementy:"</p>
+
+    <h3>Konto Snowflake</h3>
+    <div class="callout">
+      <p><strong>Ważne:</strong> Solicita a tu representante de Snowflake la creaci&oacute;n de las cuentas necesarias para tu equipo. De esta forma aseguramos que est&aacute;n soportadas todas las funciones de Cortex Code y Cortex AI: ML.CLASSIFICATION, ML.FORECAST, CORTEX.COMPLETE, CORTEX.SENTIMENT, Cortex Search y Feature Store.</p>
+    </div>
+
+    <h3>Dostęp do Cortex Code w Snowsight</h3>
+    <p>"Po zalogowaniu się do swojego konta, po prawej stronie ekranu pojawi się panel kreatora" <strong>Cortex Code</strong>. Jest to Twój programista AI do uruchamiania wszystkich monity z tego katalogu:</p>
+    <img src="trialCoco.jpg" alt="Panel de Cortex Code en Snowsight" style="display:block;max-width:800px;width:100%;margin:16px auto;border-radius:12px;border:1px solid #e0e0e0;box-shadow:0 4px 20px rgba(0,0,0,0.1);" />
+    <div class="callout-success">
+      <p><strong>Gotowy:</strong> "Jeśli zobaczysz panel Cortex Code z komunikatem „Jak mogę pomóc?” po prawej stronie, możesz zacząć kopiować i wklejać monity z dowolnego przypadku użycia."</p>
+    </div>
+
+    <h3>Konto i uprawnienia</h3>
+    <ul>
+      <li>Konto Snowflake z dostępem do Snowsight</li>
+      <li>"Rola z uprawnieniami CREATE DATABASE, CREATE SCHEMA, CREATE TABLE"</li>
+      <li>"Warehouse aktywny (zalecany: rozmiar S dla rozwoju, M dla produkcji)"</li>
+      <li>Kod Cortex włączony na koncie (dostępny we wszystkich edycjach)</li>
+    </ul>
+
+    <h3>Dla funkcji zaawansowanych</h3>
+    <ul>
+      <li><strong>Cortex AI/ML:</strong> "Wymaga, aby region obsługiwał funkcje Cortex (AWS us-west-2, us-east-1, eu-west-1 itd.)"</li>
+      <li><strong>Sklep z funkcjami:</strong> Paquete <code>snowflake-ml-python</code> disponible</li>
+      <li><strong>Rejestr modeli:</strong> Uprawnienia do tworzenia modeli w schemacie</li>
+      <li><strong>Streamlit:</strong> Uprawnienie CREATE STREAMLIT w schemacie</li>
+    </ul>
+
+    <div class="callout-warn">
+      <p><strong>Uwaga dotycząca regionów:</strong> Algunas funciones de Cortex AI (como ML.CLASSIFICATION o CORTEX.COMPLETE) requieren regiones espec&iacute;ficas. Consulta la <a href="https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions#availability" target="_blank" style="color:#6D4C00;">dokumentacja dostępności</a> aby sprawdzić swój region.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="abrir">
+    <h2><span class="step-num">3</span> Otwieranie Cortex Code w Snowsight</h2>
+    <p>Cortex Code jest zintegrowany z wieloma powierzchniami Snowsight. Oto sposoby dostępu:</p>
+
+    <h3>Opcja A — z Workspaces</h3>
+    <ol>
+      <li>Wejdź do <strong>Snowsight</strong> → <strong>Projects</strong> → <strong>Workspaces</strong></li>
+      <li>Utwórz lub otwórz istniejące miejsce robocze</li>
+      <li>Kliknij ikonę <strong>Cortex</strong> (&#10024;) w prawym pasku bocznym lub użyj skrótu <kbd>Cmd+Shift+Spacja</kbd> (Mac) / <kbd>Ctrl+Shift+Spacja</kbd> Windows</li>
+      <li>Zostanie otwarty panel Cortex Code po prawej stronie edytora</li>
+    </ol>
+
+    <div class="callout">
+      <p><strong>Tip:</strong> "Panel Cortex Code utrzymuje kontekst Twojego obszaru roboczego. Jeśli masz w edytorze odwołania do tabel, Cortex Code będzie je używał jako kontekstu do generowania bardziej precyzyjnego kodu."</p>
+    </div>
+
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="skill">
+    <h2><span class="step-num">4</span> Dodaj umiejętność Best-Practices do Cortex Code</h2>
+    <p>"Aby poprawić wydajność i obniżyć koszty wygenerowanego kodu, możesz dodać skill de" <strong>best-practices</strong> a Cortex Code. Po załadowaniu będzie dostępny przed każdym monit i poprowadzi asystenta do generowania kodu bardziej wydajnego i zoptymalizowanego dla Snowflake.</p>
+
+    <h3>4.1 &mdash; Pobieranie umiejętności</h3>
+    <p>Pobierz skompresowany plik ze skillami najlepszych praktyk i zapisz go na swoim komputerze:</p>
+    <p style="margin:20px 0;"><a href="best-practices.zip" download style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;background:linear-gradient(135deg,#29B5E8,#11567F);color:#fff;font-weight:700;font-size:15px;border-radius:80px;text-decoration:none;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 16px rgba(41,181,232,0.3);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(41,181,232,0.45)'" onmouseout="this.style.transform='none';this.style.boxShadow='0 4px 16px rgba(41,181,232,0.3)'"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Pobierz best-practices.zip</a></p>
+
+    <h3>4.2 &mdash; Rozpakuj lokalnie</h3>
+    <p>"Rozpakuj plik, który pobrałeś na swój komputer. Otrzymasz folder o nazwie" <strong>best-practices</strong> z plikami umiejętności gotowymi do przesłania.</p>
+    <div class="callout">
+      <p><strong>Tip:</strong> "Rozpakuj plik w łatwym do znalezienia miejscu (np. na pulpicie lub w folderze pobieranych plików), ponieważ w kolejnym kroku będziesz musiał wybrać go w Snowsight."</p>
+    </div>
+
+    <h3>4.3 &mdash; Podnieś umiejętność Cortex Code w Snowsight</h3>
+    <p>"W Snowsight, w panelu" <strong>Cortex Code</strong>", kliknij przycisk" <strong>+</strong>", wybierz opcję" <strong>&laquo;Upload Skill Folder(s)&raquo;</strong> i wybierz folder <strong>best-practices</strong> które właśnie rozpakowałeś lokalnie:</p>
+    <img src="uploadskill.jpg" alt="Bot&oacute;n + en Cortex Code para subir una skill" style="display:block;max-width:700px;width:100%;margin:16px auto;border-radius:12px;border:1px solid #e0e0e0;box-shadow:0 4px 20px rgba(0,0,0,0.1);" />
+    <div class="callout">
+      <p><strong>Uwaga:</strong> Przycisk <strong>+</strong> "znajduje się w górnej części panelu Cortex Code, obok selektora kontekstu. Po kliknięciu pojawi się menu — wybierz" <strong>&laquo;Upload Skill Folder(s)&raquo;</strong> "i przejdź do folderu, w którym rozpakowałeś skill."</p>
+    </div>
+
+    <h3>4.4 – Użyj umiejętności przed każdym poleceniem</h3>
+    <p>Po przesłaniu umiejętność będzie dostępna w Twojej sesji Cortex Code. Wpisz polecenie <code>/best-practices</code> "przed każdym poleceniem, aby ją włączyć i uzyskać bardziej efektywny kod:"</p>
+    <img src="useskill.jpg" alt="Comando /best-practices disponible en Cortex Code" style="display:block;max-width:700px;width:100%;margin:16px auto;border-radius:12px;border:1px solid #e0e0e0;box-shadow:0 4px 20px rgba(0,0,0,0.1);" />
+    <div class="callout-success">
+      <p><strong>Gotowy:</strong> "Dzięki aktywnej umiejętności Cortex Code automatycznie zastosuje dobre praktyki Snowflake w całym generowanym kodzie: efektywne wykorzystanie magazynów, kluczy grupowania, optymalizacja zapytań i redukcja kosztów kredytów."</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="flujo">
+    <h2><span class="step-num">5</span> Przepływ pracy z monitami</h2>
+    <p>Każdy przypadek użycia w tym katalogu obejmuje od 8 do 11 sekwencyjnych monity. Zalecany przepływ to:</p>
+
+    <div class="steps-visual">
+      <div class="step-card"><div class="sc-num">1</div><div class="sc-label">Elegir<br/>Przypadek użycia</div></div>
+      <div class="step-card"><div class="sc-num">2</div><div class="sc-label">Ver<br/>Przewodnik</div></div>
+      <div class="step-card"><div class="sc-num">3</div><div class="sc-label">Abrir<br/>Cortex Code</div></div>
+      <div class="step-card"><div class="sc-num">4</div><div class="sc-label">Kopiuj/wklej<br/>prompt</div></div>
+      <div class="step-card"><div class="sc-num">5</div><div class="sc-label">Przegląd i<br/>ejecutar</div></div>
+    </div>
+
+    <h3>Struktura każdego przypadku użycia</h3>
+    <p>Kliknij <strong>„Zobacz monity”</strong> na każdej karcie przypadku użycia zobaczysz:</p>
+    <ul>
+      <li><strong>Krok 1 — Konfiguracja środowiska:</strong> "Utwórz bazę danych, schemat i magazyn.Zawsze jest to pierwszy monit."</li>
+      <li><strong>Krok 2-4 — Tworzenie danych:</strong> Generuje tabele z syntetycznymi danymi reprezentującymi domenę.</li>
+      <li><strong>Krok 5-7 — Analiza i modelowanie:</strong> "Funkcje, modele ML, funkcje Cortex AI, Feature Store lub Model Registry."</li>
+      <li><strong>Krok 8-9 — Dashboard:</strong> Kod Streamlit do interaktywnej wizualizacji.</li>
+      <li><strong>Ostatni krok — Pipeline:</strong> Zadania do automatyzacji i ciągłej operacji.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Kolejność:</strong> Prompty są zaprojektowane do uruchamiania w kolejności. Każdy krok zależy od obiektów utworzonych w poprzednich krokach. Nie pomijaj kroków.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="ejecutar">
+    <h2><span class="step-num">6</span> Wykonanie Przypadku Użytkowania Krok po Kroku</h2>
+    <p>Zobaczmy cały proces na przykładzie praktycznym:</p>
+
+    <h3>6.1 &mdash; Wybór branży i przypadku użycia</h3>
+    <ol>
+      <li>Idź do <a href="index.html" style="color:#29B5E8;">katalog branż</a></li>
+      <li>Wybierz branżę (np. <strong>Banca</strong>)</li>
+      <li>"Przeglądaj karty lub użyj wyszukiwania, aby znaleźć przypadek użycia"</li>
+      <li>Przeczytaj sekcję <strong>Problem</strong> aby zrozumieć ból biznesu</li>
+    </ol>
+
+    <h3>6.2 &mdash; Przeczytaj Poradnik</h3>
+    <ol>
+      <li>Kliknij <strong>«Zobacz przewodnik»</strong></li>
+      <li>Przeczytaj: <em>"Kontekst, Skupienie, Wyzwanie, Cele, Funkcjonalności, Dane, Stratyfikacja i Jak Używać"</em></li>
+      <li>To da ci ramy koncepcyjne przed wygenerowaniem kodu</li>
+    </ol>
+
+    <h3>6.3 — Wykonaj monity</h3>
+    <ol>
+      <li>Kliknij <strong>„Zobacz monity”</strong></li>
+      <li>W Snowsight otwórz <strong>workspace</strong> i aktywne <strong>Cortex Code</strong></li>
+      <li>Para cada paso:
+        <ul>
+          <li>Kliknij <strong>Kopiuj</strong> w monicie</li>
+          <li>Przyklej go do panelu Cortex Code</li>
+          <li>Cortex Code wygeneruje odpowiedni kod SQL/Python</li>
+          <li><strong>Sprawdź to.</strong> przed wykonaniem (patrz sekcja 7)</li>
+          <li>Kliknij <strong>Run</strong> o <strong>Apply</strong></li>
+          <li>"Sprawdź, czy został poprawnie wykonany"</li>
+          <li>Przejdź do następnego monitu</li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="code-block"><span class="lang-tag">Ejemplo</span>-- Prompt copiado del catálogo (Paso 1):
+"Crea la base de datos BANCA_FRAUDE_DB con esquema ANALYTICS
+y warehouse BANCA_WH (size S). Incluye comentarios del proyecto
+de detección de fraude transaccional."
+
+-- Cortex Code genera:
+CREATE DATABASE IF NOT EXISTS BANCA_FRAUDE_DB
+  COMMENT = 'Proyecto de detección de fraude transaccional con Cortex AI/ML';
+
+CREATE SCHEMA IF NOT EXISTS BANCA_FRAUDE_DB.ANALYTICS
+  COMMENT = 'Schema principal para analytics de fraude';
+
+CREATE WAREHOUSE IF NOT EXISTS BANCA_WH
+  WAREHOUSE_SIZE = 'SMALL'
+  AUTO_SUSPEND = 300
+  AUTO_RESUME = TRUE
+  COMMENT = 'Warehouse para proyecto de fraude bancario';
+
+USE DATABASE BANCA_FRAUDE_DB;
+USE SCHEMA ANALYTICS;
+USE WAREHOUSE BANCA_WH;</div>
+
+    <div class="callout-success">
+      <p><strong>Oczekiwany rezultat:</strong> "Na koniec będziesz miał: bazę danych z tabelami danych syntetycznych, wytrenowane modele ML, skonfigurowane funkcje Cortex AI i działający pulpit nawigacyjny Streamlit."</p>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="revisar">
+    <h2><span class="step-num">7</span> Przegląd i walidacja wygenerowanego kodu</h2>
+    <p>"Cortex Code generuje wysokiej jakości kod, ale" <strong>zawsze musisz to sprawdzić</strong> przed wykonaniem. Najważniejsze informacje:</p>
+
+    <h3>Lista kontrolna</h3>
+    <ul>
+      <li><strong>Nazwy przedmiotów:</strong> "Sprawdź, czy baza danych, schemat i magazyn są zgodne z Twoim środowiskiem"</li>
+      <li><strong>Wielkość magazynu:</strong> "Dostosuj rozmiar do swojego obciążenia (S dla rozwoju, M-L dla produkcji)"</li>
+      <li><strong>Ilość danych syntetycznych:</strong> Podpowiadane są reprezentatywne wolumeny; dostosuj je do potrzeb</li>
+      <li><strong>Modele LLM:</strong> "Sprawdź, czy model odniesienia (np." <code>llama3.1-70b</code>, <code>mistral-large2</code>) jest dostępny w Twoim regionie</li>
+      <li><strong>Funkcje ML:</strong> Confirma que ML.CLASSIFICATION, ML.FORECAST est&eacute;n disponibles</li>
+      <li><strong>Uprawnienia:</strong> Twoja rola musi mieć wymagane uprawnienia do obiektów</li>
+    </ul>
+
+    <h3>Dostosowanie do rzeczywistych danych</h3>
+    <p>Wskazówki generują syntetyczne dane do demonstracji. Aby wprowadzić do produkcji:</p>
+    <ol>
+      <li>zastępuje <code>CREATE TABLE ... INSERT</code> syntetyczne <code>CREATE VIEW</code> o <code>SELECT</code> do twoich rzeczywistych tabel</li>
+      <li>Dostosuj nazwy kolumn do swojego modelu danych</li>
+      <li>Zmiana progów i parametrów biznesowych</li>
+      <li>"Utrzymuj strukturę funkcji, modeli i pulpitów nawigacyjnych"</li>
+    </ol>
+
+    <div class="callout-warn">
+      <p><strong>Dane syntetyczne:</strong> Wygenerowane dane są fikcyjne i reprezentatywne. Nie używać w rzeczywistych raportach biznesowych. Służą do walidacji potoku end-to-end przed podłączeniem rzeczywistych danych.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section" id="streamlit">
+    <h2><span class="step-num">8</span> Wdrażanie pulpitów nawigacyjnych Streamlit</h2>
+    <p>Prawie wszystkie przypadki użycia obejmują monit do generowania pulpitu nawigacyjnego Streamlit. Rozkłada się w następujący sposób:</p>
+
+    <h3>8.1 — Generowanie aplikacji Streamlit</h3>
+    <ol>
+      <li>Uruchom monit &laquo;Dashboard&raquo; (zwykle przedostatni krok)</li>
+      <li>Cortex Code wygeneruje kod Pythona ze Streamlit</li>
+      <li>Wejdź do <strong>Snowsight</strong> → <strong>Projects</strong> → <strong>Streamlit</strong></li>
+    </ol>
+
+
+    <h3>8.3 &mdash; Weryfikacja i udostępnianie</h3>
+    <ol>
+      <li>"Sprawdź, czy wszystkie wykresy i tabele są poprawnie załadowane"</li>
+      <li>"Jeśli wystąpią błędy, sprawdź, czy tabele i widoki istnieją (utworzono je w poprzednich krokach)"</li>
+      <li>Udostępnij aplikację innym użytkownikom za pomocą <strong>Share</strong></li>
+    </ol>
+
+    <div class="code-block"><span class="lang-tag">Typowa struktura</span># Streamlit generado por Cortex Code
+import streamlit as st
+from snowflake.snowpark.context import get_active_session
+
+session = get_active_session()
+st.set_page_config(page_title="Dashboard", layout="wide")
+
+# KPIs principales
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.metric("Métrica 1", valor1)
+# ... gráficos, tablas, filtros interactivos</div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section" id="tasks">
+    <h2><span class="step-num">9</span> Automatyzacja za pomocą zadań i potoków</h2>
+    <p>Ostatni monit w każdym przypadku użycia tworzy zadania Snowflake w celu zautomatyzowania potoku:</p>
+
+    <h3>Co się automatyzuje</h3>
+    <ul>
+      <li><strong>Przyjmowanie danych:</strong> "Okresowe pobieranie danych ze źródeł (codziennie, co tydzień)"</li>
+      <li><strong>Aktualizacja funkcji:</strong> Ponowne obliczenie wskaźników i mierników</li>
+      <li><strong>Scoring ML:</strong> Uruchomienie modeli na nowych danych</li>
+      <li><strong>Ostrzeżenia:</strong> Powiadomienia o przekroczeniu progów</li>
+      <li><strong>Przeszkolenie:</strong> Aktualizacja modeli okresowa</li>
+    </ul>
+
+    <h3>Typowa struktura zadań</h3>
+    <div class="code-block"><span class="lang-tag">SQL</span>-- Task de scoring semanal
+CREATE OR REPLACE TASK scoring_semanal
+  WAREHOUSE = MI_WH
+  SCHEDULE = 'USING CRON 0 6 * * 1 Europe/Madrid'
+  COMMENT = 'Scoring ML semanal sobre datos activos'
+AS
+  CALL ejecutar_scoring();
+
+-- Activar
+ALTER TASK scoring_semanal RESUME;</div>
+
+    <div class="callout">
+      <p><strong>DAG zadań:</strong> "Zaawansowane przypadki użycia tworzą DAG (Directed Acyclic Graphs), gdzie Tasks zależą od innych. Cortex Code generuje zależności automatycznie z" <code>AFTER</code>.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section" id="costes">
+    <h2><span class="step-num">10</span> Sprawdź wykorzystane wydatki</h2>
+    <p>"Po uruchomieniu jednego lub kilku przypadków użycia użyj tego polecenia w Cortex Code, aby uzyskać skonsolidowane podsumowanie wszystkich kredytów i tokenów zużytych w bieżącym dniu: magazyny, funkcje Cortex AI, modele ML i Cortex Code w Snowsight."</p>
+
+    <h3>Prompt &mdash; Podsumowanie kosztów dnia</h3>
+    <p>"Skopiuj i wklej ten prompt bezpośrednio do Cortex Code (pamiętaj, aby aktywować" <code>/best-practices</code> wcześniej):</p>
+
+    <div class="code-block"><span class="lang-tag">Prompt</span>Genera una consulta SQL que muestre un resumen consolidado de todos los costes y consumo
+de la cuenta Snowflake del d&iacute;a actual (CURRENT_DATE). Incluye las siguientes secciones:
+
+1. CR&Eacute;DITOS DE WAREHOUSE
+   - Fuente: SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_METERING_HISTORY
+   - Columnas: warehouse_name, SUM(credits_used) AS creditos_warehouse
+   - Filtra por: DATE(start_time) = CURRENT_DATE()
+
+2. FUNCIONES CORTEX AI (tokens y cr&eacute;ditos)
+   - Fuente: SNOWFLAKE.ACCOUNT_USAGE.CORTEX_FUNCTIONS_USAGE_HISTORY
+   - Columnas: function_name, SUM(tokens_used) AS tokens_usados,
+     SUM(credits_used) AS creditos_cortex
+   - Filtra por: DATE(start_time) = CURRENT_DATE()
+
+3. FUNCIONES ML SERVERLESS (ML.CLASSIFICATION, ML.FORECAST, etc.)
+   - Fuente: SNOWFLAKE.ACCOUNT_USAGE.METERING_DAILY_HISTORY
+   - Filtra por: service_type IN ('ML_FUNCTIONS','SNOWPARK_ML')
+     AND DATE(usage_date) = CURRENT_DATE()
+   - Columnas: service_type, credits_used_compute AS creditos_ml
+
+4. CORTEX CODE EN SNOWSIGHT
+   - Fuente: SNOWFLAKE.ACCOUNT_USAGE.METERING_DAILY_HISTORY
+   - Filtra por: service_type = 'CORTEX_CODE'
+     AND DATE(usage_date) = CURRENT_DATE()
+   - Columnas: service_type, credits_used_compute AS creditos_cortex_code
+
+5. RESUMEN TOTAL POR TIPO DE SERVICIO
+   - Une todos los resultados anteriores con UNION ALL
+   - Columnas finales: tipo_servicio, nombre, tokens_usados, creditos_gastados
+   - Ordena por creditos_gastados DESC
+   - A&ntilde;ade una fila TOTAL al final con SUM de todos los cr&eacute;ditos
+
+Usa CTEs para cada secci&oacute;n. Si alguna vista no existe en la cuenta, sust&iacute;tuyela por
+SNOWFLAKE.ACCOUNT_USAGE.METERING_DAILY_HISTORY filtrando por el service_type equivalente.
+A&ntilde;ade comentarios explicando cada CTE.</div>
+
+    <div class="callout-warn">
+      <p><strong>Uwaga:</strong> Dane dotyczące <code>ACCOUNT_USAGE</code> mają opóźnienie do <strong>45 minut</strong>". Jeśli właśnie uruchomiłeś przypadek użycia i nie pojawiają się dane, poczekaj kilka minut i uruchom zapytanie ponownie."</p>
+    </div>
+
+    <div class="callout">
+      <p><strong>Alternatywa:</strong> Si <code>CORTEX_FUNCTIONS_USAGE_HISTORY</code> "nie jest dostępny na Twoim koncie, Cortex Code automatycznie zastąpi tę sekcję przez" <code>METERING_DAILY_HISTORY</code> con <code>service_type = 'AI_SERVICES'</code>.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="section" id="tips">
+    <h2><span class="step-num">11</span> Porady i dobre praktyki</h2>
+
+    <h3>Desarrollo</h3>
+    <ul>
+      <li><strong>Zawsze używaj <code>/best-practices</code> przed każdym poleceniem</strong> "— Aktywuj umiejętność, aby Cortex Code generował kod zoptymalizowany pod kątem wydajności i kosztów od pierwszego kroku"</li>
+      <li><strong>Wykonaj monity</strong> Nie próbuj wykonać wszystkich monity naraz; każdy krok weryfikuje poprzedni</li>
+      <li><strong>Nazwij swoje obiekty w sposób spójny</strong> — monity sugerują opisowe nazwy takie jak <code>BANCA_FRAUDE_DB</code></li>
+      <li><strong>Zapisz arkusz</strong> — Każdy przypadek użycia generuje sporo kodu; często zapisuje</li>
+    </ul>
+
+    <h3>Cortex Code</h3>
+    <ul>
+      <li><strong>Bądź konkretny w monity</strong> "— Wskazówki katalogu są już szczegółowe, ale możesz dodać kontekst swojej firmy"</li>
+      <li><strong>Iteruj po kodzie</strong> "Jeśli wygenerowany kod nie jest dokładnie tym, czego potrzebujesz, poproś Cortex Code, aby go dostosował"</li>
+      <li><strong>Użyj kontekstu arkusza</strong> "— Jeśli w edytorze są już tabele, Cortex Code automatycznie je zreferuje"</li>
+      <li><strong>"Połącz monity, jeśli potrzebujesz"</strong> "— dla zaawansowanych użytkowników, możesz połączyć 2-3 kroki w jednym dłuższym poleceniu"</li>
+    </ul>
+
+    <h3>Produkcja</h3>
+    <ul>
+      <li><strong>Zastępuje syntetyczne dane rzeczywistymi</strong> "— Potok działa tak samo, zmieniasz tylko źródło danych"</li>
+      <li><strong>Konfiguracja monitorów zasobów</strong> — Kontroluje zużycie kredytów magazynu</li>
+      <li><strong>Sprawdź pozwolenia</strong> "— Używaj określonych ról dla każdego projektu (data_scientist, analyst, itp.)"</li>
+      <li><strong>Monitoruj Zadania</strong> — Przejrzyj historię wykonania w <em>Aktywność &rarr; Historia zadań</em></li>
+      <li><strong>Wersjonuje modele</strong> Przypadki z Model Registry już zawierają wersjonowanie; użyj go do testów A/B</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="section" id="faq">
+    <h2><span class="step-num">12</span> Często zadawane pytania</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Czy do korzystania z monitów potrzebna jest znajomość SQL?</div>
+      <div class="faq-a">"Nie jest to konieczne, ale pomaga. Cortex Code generuje SQL za Ciebie, ale zrozumienie podstawowych pojęć (CREATE TABLE, SELECT, JOIN) pozwoli Ci z pewnością przeglądać i dostosowywać kod."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Czy syntetyczne dane zużywają dużo kredytów?</div>
+      <div class="faq-a">"Minimum. Generowanie danych syntetycznych za pomocą INSERT zużywa bardzo mało kredytów (sekund magazynu S). Największe zużycie pochodzi z treningu ML i funkcji Cortex, które zależą od objętości danych."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Czy mogę używać monity z moimi prawdziwymi danymi od początku?</div>
+      <div class="faq-a">"Tak. Zastąp kroki „Tworzenie danych” odniesieniami do istniejących tabel. Upewnij się, że nazwy kolumn są zgodne z tym, czego oczekują kolejne kroki, lub poproś Cortex Code o dostosowanie kodu."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">"Co zrobić, jeśli monit wygeneruje błąd?"</div>
+      <div class="faq-a">"Najczęstsze: (1) brak wykonania poprzedniego kroku, który tworzy odwoływaną tabelę, (2) magazyn nie jest aktywny, (3) funkcja Cortex nie jest dostępna w Twoim regionie. Sprawdź komunikat o błędzie i poproś Cortex Code, aby go poprawił: „Ten kod powoduje błąd X, popraw go”."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Ile czasu zajmuje ukończenie przypadku użycia?</div>
+      <div class="faq-a">"Od 8 do 15 minut na wykonanie wszystkich wywołań z syntetycznymi danymi. Czas podany na każdej karcie jest realistyczną oceną, w tym przegląd kodu."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Czy mogę łączyć przypadki użycia z różnych branż?</div>
+      <div class="faq-a">"Absolutnie. Wiele wzorców jest przekrojowych: sklep z funkcjami klienta działa tak samo w bankowości, handlu detalicznym czy telekomunikacji. Dostosuj nazwy kolumn i logikę biznesową."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Czy Cortex Code zapamiętuje poprzednie kroki?</div>
+      <div class="faq-a">"W ramach tej samej sesji arkusza kalkulacyjnego, tak. Jeśli zamkniesz i ponownie otworzysz, musisz nadać mu kontekst. Dlatego zalecamy wykonanie wszystkich kroków przypadku użycia w jednej ciągłej sesji."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Czy mogę zmienić monity?</div>
+      <div class="faq-a">"Tak, i jest to zalecane. Monity są zaprojektowane jako punkt wyjścia. Dodaj szczegóły dotyczące swojej firmy, dostosuj wolumeny danych, zmień progi lub dodaj kolumny specyficzne dla Twojej domeny, aby uzyskać bardziej precyzyjne wyniki."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Jaka jest różnica między „Zobacz przewodnik” a „Zobacz monity”?</div>
+      <div class="faq-a"><strong>Zobacz przewodnik</strong> "przedstawia ramy koncepcyjne: kontekst problemu, cele, dane, których potrzeba, oraz strategię wdrożenia." <strong>Zobacz monity</strong> "zawiera monity krok po kroku, które kopiujesz i wklejasz bezpośrednio do Cortex Code, aby wygenerować kod."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Czy muszę coś zainstalować?</div>
+      <div class="faq-a">"Prawie nic. Cały kod jest wykonywany w Snowsight w przeglądarce, bez środowisk Python ani narzędzi zewnętrznych. Jedynym krokiem wstępnym jest" <strong>pobierz umiejętność najlepszych praktyk</strong> plik <code>best-practices.zip</code>"), rozpakuj go na swoim komputerze i załaduj folder do Cortex Code z przycisku" <strong>+</strong> w Snowsight. Po przesłaniu będzie dostępny za pomocą polecenia <code>/best-practices</code> i nie będziesz musiał tego robić ponownie.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  Opracowane przez <a href="https://www.snowflake.com/en/data-cloud/cortex/" target="_blank">Snowflake Cortex AI</a> · Kod Cortex · Streamlit<br/>
+  Datos 100% sint&eacute;ticos · Sin dependencias externas · Listo para personalizar
+</footer>
+
+</body>
+</html>
