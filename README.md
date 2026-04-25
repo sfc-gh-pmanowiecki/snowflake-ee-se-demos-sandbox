@@ -6,15 +6,15 @@ Multi-language demo portal showcasing Snowflake AI/ML use cases across 16 indust
 
 | Language | Completed | Total | Status |
 |----------|-----------|-------|--------|
-| English (EN) | 8 | 17 | :hourglass: In Progress |
-| Polish (PL) | 6 | 17 | :hourglass: In Progress |
-| Spanish (ES) | 7 | 17 | :hourglass: In Progress |
-| German (DE) | 5 | 17 | :hourglass: In Progress |
-| French (FR) | 8 | 17 | :hourglass: In Progress |
+| English (EN) | 10 | 17 | :hourglass: In Progress |
+| Polish (PL) | 11 | 17 | :hourglass: In Progress |
+| Spanish (ES) | 11 | 17 | :hourglass: In Progress |
+| German (DE) | 11 | 17 | :hourglass: In Progress |
+| French (FR) | 11 | 17 | :hourglass: In Progress |
 | Landing Page | 1 | 1 | :white_check_mark: Done |
-| **Total** | **35** | **86** | **40%** |
+| **Total** | **55** | **86** | **63%** |
 
-_Last updated: 2026-04-25 11:00 UTC_
+_Last updated: 2026-04-25 11:30 UTC_
 
 ## Structure
 
