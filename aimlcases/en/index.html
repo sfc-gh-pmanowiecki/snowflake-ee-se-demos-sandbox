@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — AI/ML Solutions by Industry</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background: #003545;
+      color: #fff;
+      padding: 48px 48px 56px;
+      text-align: center;
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .hackathon-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 20px; background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.35); border-radius: 80px;
+      color: #fff; font-size: 12px; font-weight: 600; text-decoration: none;
+      transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .hackathon-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.6); }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      max-width: 640px;
+      margin: 0 auto 8px;
+      line-height: 1.6;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 32px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: #29B5E8;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+
+    .section-title {
+      text-align: center;
+      padding: 48px 24px 12px;
+    }
+
+    .section-title h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .section-title p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      padding: 32px 48px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-banner {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-banner .card-icon {
+      font-size: 52px;
+      z-index: 1;
+    }
+
+    .card-banner .card-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image: radial-gradient(circle at 20% 50%, #fff 1px, transparent 1px),
+                         radial-gradient(circle at 80% 30%, #fff 1px, transparent 1px),
+                         radial-gradient(circle at 50% 80%, #fff 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .card-body {
+      padding: 20px 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 16px;
+    }
+
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 80px;
+      transition: all 0.15s;
+      width: fit-content;
+    }
+
+    .card-link svg {
+      transition: transform 0.15s;
+    }
+
+    .card-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .card-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #aaa;
+      padding: 10px 0;
+    }
+
+    .footer {
+      background: #003545;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .footer a {
+      color: #29B5E8;
+      text-decoration: none;
+    }
+
+    .global-search {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .global-search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 80px;
+      padding: 12px 20px;
+      gap: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .global-search-box:focus-within {
+      border-color: #29B5E8;
+      box-shadow: 0 0 0 3px rgba(41,181,232,0.15);
+    }
+    .global-search-box input {
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      color: #1a1a1a;
+      width: 100%;
+      background: transparent;
+    }
+    .global-search-box input::placeholder { color: #aaa; }
+    .search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0; right: 0;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      max-height: 420px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    .search-results.active { display: block; }
+    .sr-header {
+      padding: 14px 20px 8px;
+      font-size: 12px;
+      color: #888;
+      font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .sr-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #1a1a1a;
+      transition: background 0.1s;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .sr-item:last-child { border-bottom: none; }
+    .sr-item:hover { background: #f0f9ff; }
+    .sr-icon { font-size: 22px; flex-shrink: 0; width: 32px; text-align: center; }
+    .sr-text { flex: 1; min-width: 0; }
+    .sr-title { font-size: 14px; font-weight: 600; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sr-meta { font-size: 11px; color: #888; margin-top: 2px; }
+    .sr-meta .sr-id { color: #29B5E8; font-weight: 700; margin-right: 6px; }
+    .sr-arrow { color: #ccc; flex-shrink: 0; }
+    .sr-empty { padding: 24px 20px; text-align: center; color: #999; font-size: 14px; }
+    .search-results::-webkit-scrollbar { width: 6px; }
+    .search-results::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 32px 20px 40px; }
+      .hero-title { font-size: 32px; }
+      .stats-row { gap: 24px; }
+      .stat-num { font-size: 28px; }
+      .grid { padding: 24px 16px 48px; grid-template-columns: 1fr; }
+      .global-search-box { padding: 10px 16px; }
+      .global-search-box input { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="logos">
+    <div class="logo-snowflake">
+      <img src="../bug-white.png" width="28" height="28" alt="Snowflake" />
+      Snowflake
+    </div>
+    <a href="hackathon.html" class="hackathon-btn">
+      &#127942; Organize a CoCothon with your team
+      <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+    </a>
+  </div>
+  <p class="hero-eyebrow">AI/ML Solutions by Industry</p>
+  <h1 class="hero-title">Artificial Intelligence Accelerators</h1>
+  <p class="hero-subtitle">Step-by-step guides and Cortex Code prompts ready to deploy. Each industry includes use cases with detailed guides, Cortex Code prompts, and Streamlit dashboards — all within Snowflake.</p>
+  <p class="hero-tagline">Snowflake Cortex AI · Cortex ML · Cortex Search · Streamlit</p>
+  <a href="guide.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 24px;background:rgba(41,181,232,0.15);border:1.5px solid rgba(41,181,232,0.4);border-radius:80px;color:#29B5E8;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(41,181,232,0.25)';this.style.borderColor='#29B5E8'" onmouseout="this.style.background='rgba(41,181,232,0.15)';this.style.borderColor='rgba(41,181,232,0.4)'">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 1.5 17V3A2.5 2.5 0 0 1 4 .5h8.5L17.5 5.5v11.5a2.5 2.5 0 0 1-2.5 2.5H4z"/><polyline points="12.5 0.5 12.5 6 18 6"/><line x1="5.5" y1="10" x2="14.5" y2="10"/><line x1="5.5" y1="13" x2="14.5" y2="13"/><line x1="5.5" y1="16" x2="10" y2="16"/></svg>
+    User Guide — Cortex Code in Snowsight
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+  </a>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">14</div>
+      <div class="stat-lbl">Industries</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">288</div>
+      <div class="stat-lbl">Use Cases</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-lbl">Native Snowflake</div>
+    </div>
+  </div>
+</header>
+
+<div class="section-title">
+  <h2>Choose your industry</h2>
+  <p>Each industry includes detailed guides, step-by-step Cortex Code instructions, and interactive Streamlit dashboards.</p>
+  <div class="global-search" style="margin-top:24px;">
+    <div class="global-search-box">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/></svg>
+      <input id="globalSearch" type="text" placeholder="Search across 288 use cases…" autocomplete="off" />
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<main class="grid">
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#D45B90,#B03A6B);">
+      <span class="card-icon">🏦</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FDE8F0;color:#D45B90;">Available</span>
+      <h3>Insurance</h3>
+      <p>Fraud detection, risk scoring, NLP claims analysis, AI call center, AI assistants, pricing, and operations with Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 36 use cases</span>
+      </div>
+      <a class="card-link" href="insurance.html" style="background:#D45B90;color:#fff;">
+        Explore Insurance
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#71D3DC,#4DBDCA);">
+      <span class="card-icon">💊</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#11567F;">Available</span>
+      <h3>Pharma</h3>
+      <p>Patient adherence, competitive intelligence, sentiment analysis, clinical trials, demand forecasting, compliance, and patient journeys with Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 27 use cases</span>
+      </div>
+      <a class="card-link" href="pharma.html" style="background:#71D3DC;color:#003545;">
+        Explore Pharma
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#29B5E8,#11567F);">
+      <span class="card-icon">🏦</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F4FD;color:#11567F;">Available</span>
+      <h3>Banking & Financial Services</h3>
+      <p>Fraud detection, credit scoring, AML, stress testing, regulatory compliance, churn, NBO, LTV segmentation, and regulatory RAG assistant with Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+      </div>
+      <a class="card-link" href="banking.html" style="background:#29B5E8;color:#fff;">
+        Explore Banking
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#7D44CF,#5E2FA8);">
+      <span class="card-icon">🛒</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#EDE6FF;color:#7D44CF;">Available</span>
+      <h3><a href="retail.html" style="color:inherit;text-decoration:none;">Retail & E-Commerce</a></h3>
+      <p>Dynamic pricing, personalized recommendations, demand prediction, Customer 360 Feature Store, RAG chatbot, fraud detection, and fashion trend analysis with Cortex AI/ML and Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+      </div>
+      <a href="retail.html" class="card-link" style="background:#7D44CF;color:#fff;">Explore Retail
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#FF9F36,#E08520);">
+      <span class="card-icon">🏭</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF5E6;color:#E08520;">Available</span>
+      <h3><a href="manufacturing.html" style="color:inherit;text-decoration:none;">Manufacturing & Industry</a></h3>
+      <p>Predictive maintenance, AI quality control, supply chain optimization, production planning, and RAG assistant for plant operators.</p>
+      <div class="card-meta">
+        <span>📋 15 use cases</span>
+      </div>
+      <a class="card-link" href="manufacturing.html" style="background:#FF9F36;color:#fff;">
+        Explore Manufacturing
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#E65100,#BF360C);">
+      <span class="card-icon">🏨</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF3E0;color:#E65100;">Available</span>
+      <h3><a href="hospitality.html" style="color:inherit;text-decoration:none;">Hospitality & Tourism</a></h3>
+      <p>Dynamic pricing, demand prediction, Guest Feature Store, B2B distribution, RAG concierge chatbot, fraud detection, and GDPR compliance with Cortex AI/ML and Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+      </div>
+      <a href="hospitality.html" class="card-link" style="background:#E65100;color:#fff;">Explore Hospitality
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#0288D1,#01579B);">
+      <span class="card-icon">💧</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E3F2FD;color:#0288D1;">Available</span>
+      <h3>Water Management</h3>
+      <p>Talk to your Plant: conversational assistant, turbidity prediction, reagent dosing, predictive maintenance, leak detection, and energy optimization with Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 10 use cases</span>
+      </div>
+      <a class="card-link" href="water.html" style="background:#0288D1;color:#fff;">
+        Explore Water Management
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#4DBDCA,#399AA6);">
+      <span class="card-icon">🚛</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#399AA6;">Available</span>
+      <h3><a href="logistics.html" style="color:inherit;text-decoration:none;">Logistics & Transportation</a></h3>
+      <p>ETA prediction, route and last-mile optimization, predictive fleet maintenance, Shipment 360 Feature Store, logistics RAG chatbot, delivery fraud detection, and regulatory compliance with Cortex AI/ML and Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+      </div>
+      <a href="logistics.html" class="card-link" style="background:#399AA6;color:#fff;">Explore Logistics
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#E91E63,#C2185B);">
+      <span class="card-icon">🎬</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FCE4EC;color:#C2185B;">Available</span>
+      <h3><a href="media.html" style="color:inherit;text-decoration:none;">Audiovisual Media</a></h3>
+      <p>Content recommendation, viewership prediction, ad yield, Viewer 360 Feature Store, piracy detection, digital rights management, and regulatory compliance with Cortex AI/ML and Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+      </div>
+      <a href="media.html" class="card-link" style="background:#E91E63;color:#fff;">Explore Media
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#29B5E8,#1199CC);">
+      <span class="card-icon">📡</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#0097A7;">Available</span>
+      <h3><a href="telecom.html" style="color:inherit;text-decoration:none;">Telecommunications</a></h3>
+      <p>Churn prediction, 5G network optimization, SIM fraud detection, Customer 360 Feature Store, cybersecurity, revenue assurance, and GDPR compliance with Cortex AI/ML and Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+      </div>
+      <a href="telecom.html" class="card-link" style="background:#0097A7;color:#fff;">Explore Telecom
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#FFB836,#E09E1C);">
+      <span class="card-icon">⚡</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF3E0;color:#F57C00;">Available</span>
+      <h3>Energy & Utilities</h3>
+      <p>Demand prediction, renewable generation (solar/wind), BESS optimization, loss and fraud detection, smart grids, energy communities, and OT cybersecurity.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+        <span>⏱ 10-15 min</span>
+      </div>
+      <a href="energy.html" class="card-link" style="background:#F57C00;color:#fff;">Explore Energy
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#8A999E,#546E7A);">
+      <span class="card-icon">🏛️</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#ECEFF1;color:#546E7A;">Available</span>
+      <h3>Public Sector</h3>
+      <p>Grant fraud detection, citizen service with RAG, European funds control, Citizen 360 Feature Store, and public infrastructure cybersecurity.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+        <span>⏱️ 11-15 min</span>
+      </div>
+      <a href="public-sector.html" class="card-link" style="background:#546E7A;color:#fff;">Explore Public Sector
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#11567F,#0A3D5C);">
+      <span class="card-icon">🏥</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F4FD;color:#0D7C8F;">Available</span>
+      <h3>Healthcare & Hospitals</h3>
+      <p>Readmission prediction, NLP on medical documentation, adverse event detection, Patient 360 Feature Store, and Model Registry for production.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+        <span>⏱️ 8-15 min</span>
+      </div>
+      <a href="healthcare.html" class="card-link" style="background:#0D7C8F;color:#fff;">Explore Healthcare
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#9B6FE0,#7D44CF);">
+      <span class="card-icon">🎓</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E8F5E9;color:#2E7D32;">Available</span>
+      <h3>Education</h3>
+      <p>Dropout prediction, content personalization, outcome analysis, AI plagiarism detection, and teaching resource optimization.</p>
+      <div class="card-meta">
+        <span>📋 20 use cases</span>
+        <span>⏱ 8-15 min</span>
+      </div>
+      <a href="education.html" class="card-link" style="background:#7D44CF;color:#fff;">Explore Education
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+
+</main>
+
+<footer class="footer">
+  Built with <a href="https://www.snowflake.com/en/data-cloud/cortex/" target="_blank">Snowflake Cortex AI</a> · Cortex Code · Streamlit<br/>
+  100% synthetic data · No external dependencies · Ready to customize
+</footer>
+
+<script>
+var UC_CATALOG = [{"id": "UC01", "t": "Claims Fraud Scoring", "c": "Fraud Detection", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC02", "t": "Staged Accident Detection", "c": "Fraud Detection", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC03", "t": "Application & Identity Fraud", "c": "Fraud Detection", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC04", "t": "Dynamic Auto Insurance Risk Scoring", "c": "Risk & Underwriting", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC05", "t": "Catastrophe Exposure Analytics", "c": "Risk & Underwriting", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC06", "t": "Renewal Lapse Prediction", "c": "Risk & Underwriting", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC07", "t": "Telematics Risk Segmentation", "c": "Risk & Underwriting", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC08", "t": "AI Document Extraction in Claims", "c": "AI & Natural Language", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC09", "t": "Intelligent Customer Complaint Analysis", "c": "AI & Natural Language", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC10", "t": "Intelligent Policy Inquiry Assistant", "c": "AI & Natural Language", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC11", "t": "Motor Claims Severity Prediction", "c": "Claims Management", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC12", "t": "Subrogation Opportunity Identifier", "c": "Claims Management", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC13", "t": "Automatic Call Classification", "c": "AI Call Center", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC14", "t": "Automatic Agent Evaluation (QA)", "c": "AI Call Center", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC15", "t": "Automatic Summary Generation", "c": "AI Call Center", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC16", "t": "Real-Time CX Improvement", "c": "AI Call Center", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC17", "t": "Regulatory Compliance in Calls", "c": "AI Call Center", "i": "Insurance", "k": "🏦", "f": "insurance.html"}, {"id": "UC01", "t": "Patient Adherence Risk Prediction", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC02", "t": "Campaign Performance Optimizer", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC03", "t": "Consumer Sentiment Analysis", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC04", "t": "Loss of Exclusivity Prediction", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC05", "t": "HCP Engagement Optimizer", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC06", "t": "Commercial Intelligence Chatbot", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC07", "t": "Consumer Segmentation & LTV", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC08", "t": "Content Effectiveness Analyzer", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC09", "t": "Real-World Evidence (RWE) Generator", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC10", "t": "Competitive Intelligence Monitor", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC11", "t": "Omnichannel Customer Journey Mapper", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC12", "t": "Pricing & Discount Optimizer", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC13", "t": "Clinical Trial Site Selector", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC14", "t": "Product Launch Demand Forecasting", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC15", "t": "Claims Compliance Manager", "c": "Machine Learning", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC16", "t": "Social Media Crisis Detection", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC17", "t": "Competitor Messaging Analysis", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC18", "t": "Global Media Sentiment Tracker", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC19", "t": "Launch Reception Predictor", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC20", "t": "KOL & Influencer Sentiment Network", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC21", "t": "Competitive Product Perception", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC22", "t": "Executive Communication Optimizer", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC23", "t": "Automated Competitive Intelligence", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC24", "t": "Global Multilingual Sentiment", "c": "AI & Natural Language", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC25", "t": "Patient Treatment Journey Experience", "c": "Patient Journey", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC26", "t": "Treatment Adherence Journey Intelligence", "c": "Patient Journey", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC27", "t": "HCP Engagement Insights Analyzer", "c": "Patient Journey", "i": "Pharma", "k": "💊", "f": "pharma.html"}, {"id": "UC01", "t": "Real-Time Transaction Fraud Detection", "c": "Risk & Compliance", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC02", "t": "Dynamic Credit Risk Scoring", "c": "Risk & Compliance", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC03", "t": "Anti-Money Laundering (AML) Detection", "c": "Risk & Compliance", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC04", "t": "Stress Testing & Scenario Simulation", "c": "Risk & Compliance", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC05", "t": "Regulatory Compliance Monitoring", "c": "Risk & Compliance", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC06", "t": "Credit Application Fraud Detection", "c": "Risk & Compliance", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC07", "t": "Customer Churn Prediction", "c": "Customer & Business", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC08", "t": "Hyper-Personalized Next-Best-Offer Engine", "c": "Customer & Business", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC09", "t": "Advanced Segmentation & Customer LTV", "c": "Customer & Business", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC10", "t": "Complaint Sentiment Analysis", "c": "Customer & Business", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC11", "t": "Financial Intelligence Chatbot", "c": "Customer & Business", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC12", "t": "Product Demand Prediction", "c": "Customer & Business", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC13", "t": "Loan Pricing Optimizer", "c": "Customer & Business", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC14", "t": "Early Payment Delinquency Prediction", "c": "Operations & Markets", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC15", "t": "Market Operations Anomaly Detection", "c": "Operations & Markets", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC16", "t": "Branch Network Optimization", "c": "Operations & Markets", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC17", "t": "Document Analysis Automation", "c": "Operations & Markets", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC18", "t": "Reputational Risk Monitor", "c": "Advanced Intelligence", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC19", "t": "Banking Competition Analysis", "c": "Advanced Intelligence", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC20", "t": "Banking Regulations RAG Assistant", "c": "Advanced Intelligence", "i": "Banking", "k": "🏦", "f": "banking.html"}, {"id": "UC01", "t": "Omnichannel Dynamic Pricing with Model Registry", "c": "Pricing & Revenue", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC02", "t": "Real-Time Product Recommendations", "c": "Personalization & CX", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC03", "t": "Multi-SKU Demand Prediction with Model Registry", "c": "Supply Chain", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC04", "t": "Customer Segmentation with Predictive CLV", "c": "Personalization & CX", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC05", "t": "Inventory Optimization & Auto-Replenishment", "c": "Supply Chain", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC06", "t": "Product Review Sentiment Analysis", "c": "Personalization & CX", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC07", "t": "Customer Service RAG Chatbot", "c": "Personalization & CX", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC08", "t": "Customer 360 Feature Store", "c": "Personalization & CX", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC09", "t": "Promotion & Markdown Optimization", "c": "Pricing & Revenue", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC10", "t": "Markdown Prediction & Inventory Liquidation", "c": "Pricing & Revenue", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC11", "t": "Fashion Trend Detection with NLP", "c": "Supply Chain", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC12", "t": "Store Inventory Allocation Optimization", "c": "Supply Chain", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC13", "t": "Churn Prediction & Customer Retention", "c": "Marketing & Loyalty", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC14", "t": "Product Feature Store for Merchandising", "c": "Marketing & Loyalty", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC15", "t": "Personalized NBO with AI", "c": "Marketing & Loyalty", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC16", "t": "Market Basket Analysis & Cross-Selling", "c": "Marketing & Loyalty", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC17", "t": "Competitor Price Monitoring", "c": "Pricing & Revenue", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC18", "t": "E-Commerce & Payment Fraud Detection", "c": "Fraud & Security", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC19", "t": "Returns Fraud & Policy Abuse Detection", "c": "Fraud & Security", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC20", "t": "Inventory Anomaly & Shrinkage Detection", "c": "Fraud & Security", "i": "Retail", "k": "🛒", "f": "retail.html"}, {"id": "UC01", "t": "AI Visual Quality Inspection", "c": "Quality & Production", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC02", "t": "Assembly Line Defect Prediction", "c": "Quality & Production", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC03", "t": "OEE Optimization — Overall Equipment Effectiveness", "c": "Quality & Production", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC04", "t": "Root Cause Analysis with NLP in Quality Reports", "c": "Quality & Production", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC05", "t": "Predictive CNC Equipment Maintenance", "c": "Predictive Maintenance", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC06", "t": "Plant IoT Sensor Anomaly Detection", "c": "Predictive Maintenance", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC07", "t": "Intelligent Maintenance Downtime Planning", "c": "Predictive Maintenance", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC08", "t": "Demand Prediction & Inventory Optimization", "c": "Supply Chain", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC09", "t": "Supplier Risk Detection", "c": "Supply Chain", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC10", "t": "Digital Material & Batch Traceability", "c": "Supply Chain", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC11", "t": "AI Production Planning (MPS)", "c": "AI Operations", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC12", "t": "AI Plant Operator Assistant (RAG)", "c": "AI Operations", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC13", "t": "Workplace Safety Incident Analysis", "c": "AI Operations", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC14", "t": "Factory Energy Consumption Optimization", "c": "AI Operations", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC15", "t": "B2B Customer Intelligence & Order Prediction", "c": "AI Operations", "i": "Manufacturing", "k": "🏭", "f": "manufacturing.html"}, {"id": "UC01", "t": "Dynamic Pricing with Model Registry", "c": "Revenue & Pricing", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC02", "t": "Multi-Horizon Hotel Demand Forecasting", "c": "Revenue & Pricing", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC03", "t": "Revenue Optimization with Ancillary Services", "c": "Revenue & Pricing", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC04", "t": "Customer Value Segmentation (CLV) with ML", "c": "Revenue & Pricing", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC05", "t": "Predictive Facility Maintenance with Model Registry", "c": "Guest Experience", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC06", "t": "Personalized Local Experience Recommendations", "c": "Guest Experience", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC07", "t": "Multi-Channel Review Sentiment Analysis", "c": "Guest Experience", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC08", "t": "Guest Preference Feature Store", "c": "Guest Experience", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC09", "t": "Hotel Knowledge Base RAG Concierge Chatbot", "c": "Guest Experience", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC10", "t": "Staffing Optimization via Occupancy Prediction", "c": "Operations", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC11", "t": "AI Hotel Energy Optimization", "c": "Operations", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC12", "t": "No-Show Prediction & Intelligent Overbooking", "c": "Operations", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC13", "t": "Housekeeping Speed Analysis with NLP", "c": "Operations", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC14", "t": "B2B Partner Performance Feature Store", "c": "B2B Distribution", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC15", "t": "B2B Cancellation Prediction by Channel", "c": "B2B Distribution", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC16", "t": "Channel Price Discrepancy Detection", "c": "B2B Distribution", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC17", "t": "AI Commission & Channel Mix Optimization", "c": "B2B Distribution", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC18", "t": "Reservation & Chargeback Fraud Detection", "c": "Fraud & Security", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC19", "t": "Fake Review & Reputation Manipulation Detection", "c": "Fraud & Security", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC20", "t": "GDPR/PCI Compliance in Guest Data", "c": "Fraud & Security", "i": "Hospitality", "k": "🏨", "f": "hospitality.html"}, {"id": "UC01", "t": "Conversational Plant Assistant (Talk to your Plant)", "c": "Plant Operations", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC02", "t": "Turbidity & Physicochemical Parameter Prediction", "c": "Water Quality", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC03", "t": "Reagent Dosing Optimization", "c": "Plant Operations", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC04", "t": "Predictive Plant Equipment Maintenance", "c": "Plant Operations", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC05", "t": "Distribution Network Leak Detection", "c": "Distribution Network", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC06", "t": "NLP Incident & Work Order Analysis", "c": "Water Quality", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC07", "t": "Water Demand Prediction", "c": "Distribution Network", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC08", "t": "Subscriber Consumption Anomaly Detection", "c": "Customer Experience", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC09", "t": "Customer Complaint Analysis", "c": "Customer Experience", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC10", "t": "Plant Energy Optimization", "c": "Plant Operations", "i": "Water", "k": "💧", "f": "water.html"}, {"id": "UC01", "t": "ETA Prediction with Model Registry", "c": "Routes & Last Mile", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC02", "t": "Last Mile Route Optimization", "c": "Routes & Last Mile", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC03", "t": "Shipment Demand Prediction with Model Registry", "c": "Demand & Planning", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC04", "t": "Predictive Fleet Maintenance", "c": "Fleet & Maintenance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC05", "t": "Picking & Order Preparation Optimization", "c": "Warehouse & Fulfillment", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC06", "t": "Failed Delivery Detection & Auto-Rerouting", "c": "Routes & Last Mile", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC07", "t": "Warehouse Volume & Staffing Prediction", "c": "Warehouse & Fulfillment", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC08", "t": "Shipment 360 Feature Store", "c": "Routes & Last Mile", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC09", "t": "Load & Shipment Consolidation Optimization", "c": "Demand & Planning", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC10", "t": "Fuel Consumption & Emissions Monitoring", "c": "Fleet & Maintenance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC11", "t": "Dynamic Slotting & Location Optimization", "c": "Warehouse & Fulfillment", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC12", "t": "Driver Scoring & Road Safety", "c": "Fleet & Maintenance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC13", "t": "Logistics Cost & Profitability Analysis by Customer", "c": "Demand & Planning", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC14", "t": "Warehouse Operations Feature Store", "c": "Warehouse & Fulfillment", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC15", "t": "Logistics RAG Chatbot for Incident Management", "c": "Demand & Planning", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC16", "t": "Capacity Optimization & Fleet Sizing", "c": "Fleet & Maintenance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC17", "t": "Chain of Custody Anomaly Detection", "c": "Security & Compliance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC18", "t": "NLP Complaint Sentiment Analysis", "c": "Security & Compliance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC19", "t": "Delivery & Documentation Fraud Detection", "c": "Security & Compliance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC20", "t": "Regulatory Compliance & Driving Time Management", "c": "Security & Compliance", "i": "Logistics", "k": "🚛", "f": "logistics.html"}, {"id": "UC01", "t": "Content Recommendation with Model Registry", "c": "Content & Production", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC02", "t": "Pre-Production Content Success Prediction", "c": "Content & Production", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC03", "t": "Viewership Prediction with Model Registry", "c": "Audience & Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC04", "t": "AI Post-Production Optimization", "c": "Content & Production", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC05", "t": "Advanced Audience Segmentation & CLV", "c": "Audience & Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC06", "t": "Ad Inventory & Yield Optimization", "c": "Advertising & Monetization", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC07", "t": "Subscriber Churn Prediction", "c": "Distribution & Platforms", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC08", "t": "Viewer 360 Feature Store", "c": "Audience & Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC09", "t": "Programmatic Advertising & Contextual Targeting", "c": "Advertising & Monetization", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC10", "t": "Trend Analysis & Social Listening for Content", "c": "Content & Production", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC11", "t": "Schedule & Programming Optimization", "c": "Distribution & Platforms", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC12", "t": "Product Placement Impact Measurement", "c": "Advertising & Monetization", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC13", "t": "Subscription Pricing & Bundling Optimization", "c": "Distribution & Platforms", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC14", "t": "Content Performance Feature Store", "c": "Distribution & Platforms", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC15", "t": "Subscriber Service RAG Chatbot", "c": "Audience & Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC16", "t": "Ad Fraud & Bot Traffic Detection", "c": "Advertising & Monetization", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC17", "t": "Digital Rights & Exploitation Window Management", "c": "Security & Rights", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC18", "t": "Piracy & Unauthorized Distribution Detection", "c": "Security & Rights", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC19", "t": "Content Sentiment & Reputation Analysis", "c": "Security & Rights", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC20", "t": "Regulatory Compliance & Content Classification", "c": "Security & Rights", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC01", "t": "Churn Prediction with Model Registry", "c": "Customer Experience", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC02", "t": "5G Network Optimization & Capacity Management", "c": "Network & Connectivity", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC03", "t": "Network Traffic Prediction with Model Registry", "c": "Network & Connectivity", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC04", "t": "Predictive Network Infrastructure Maintenance", "c": "Network & Connectivity", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC05", "t": "Advanced Customer Segmentation & CLV", "c": "Customer Experience", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC06", "t": "Convergent Pricing & Bundle Optimization", "c": "Monetization & Offers", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC07", "t": "Field Service & Technician Optimization", "c": "Operations & Efficiency", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC08", "t": "Telco Customer 360 Feature Store", "c": "Customer Experience", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC09", "t": "Personalized Next-Best-Action Offer Engine", "c": "Monetization & Offers", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC10", "t": "Network Quality Anomaly Detection", "c": "Network & Connectivity", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC11", "t": "NLP for Incidents & Support Tickets", "c": "Operations & Efficiency", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC12", "t": "Telco Customer Service RAG Chatbot", "c": "Operations & Efficiency", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC13", "t": "Service Demand Prediction & Revenue Forecast", "c": "Monetization & Offers", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC14", "t": "Network Performance Feature Store", "c": "Operations & Efficiency", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC15", "t": "SIM Fraud & Number Porting Detection", "c": "Security & Compliance", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC16", "t": "Cybersecurity & Network Threat Detection", "c": "Security & Compliance", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC17", "t": "Brand Sentiment & Reputation Analysis", "c": "Monetization & Offers", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC18", "t": "GDPR Compliance & Consent Management", "c": "Security & Compliance", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC19", "t": "Omnichannel Customer Experience (CX) Analysis", "c": "Customer Experience", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC20", "t": "Revenue Assurance Fraud Detection", "c": "Security & Compliance", "i": "Telecom", "k": "📡", "f": "telecom.html"}, {"id": "UC01", "t": "Electricity Demand Forecasting with Model Registry", "c": "Grid & Smart Grid", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC02", "t": "Solar Photovoltaic Generation Prediction", "c": "Renewable Generation", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC03", "t": "Wind Generation Prediction with Model Registry", "c": "Renewable Generation", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC04", "t": "Energy Storage Optimization (BESS)", "c": "Renewable Generation", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC05", "t": "Technical & Non-Technical Network Loss Detection", "c": "Grid & Smart Grid", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC06", "t": "Distribution Network Congestion Management", "c": "Grid & Smart Grid", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC07", "t": "Predictive Wind Turbine Maintenance", "c": "Operations & Efficiency", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC08", "t": "Customer Energy 360 Feature Store", "c": "Customer Experience", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC09", "t": "Customer Segmentation & Energy Efficiency", "c": "Customer Experience", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC10", "t": "Renewable Generation Portfolio Optimization", "c": "Renewable Generation", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC11", "t": "Predictive Distribution Network Maintenance", "c": "Operations & Efficiency", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC12", "t": "NLP for Incidents & Work Orders", "c": "Operations & Efficiency", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC13", "t": "Energy Customer Service RAG Chatbot", "c": "Customer Experience", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC14", "t": "Network Asset Performance Feature Store", "c": "Operations & Efficiency", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC15", "t": "Smart Meter Electricity Fraud Detection", "c": "Security & Compliance", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC16", "t": "Energy OT/IT Infrastructure Cybersecurity", "c": "Security & Compliance", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC17", "t": "Energy Community & Self-Consumption Management", "c": "Customer Experience", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC18", "t": "Regulatory Compliance & ESG Reporting", "c": "Security & Compliance", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC19", "t": "EV Charging Network Management", "c": "Grid & Smart Grid", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC20", "t": "Energy Market Anomaly Detection", "c": "Security & Compliance", "i": "Energy", "k": "⚡", "f": "energy.html"}, {"id": "UC01", "t": "Grant Fraud Detection with Model Registry", "c": "Fraud & Control", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC02", "t": "Multichannel Citizen Service RAG Chatbot", "c": "Citizen Experience", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC03", "t": "Social Services Demand Prediction with Model Registry", "c": "Public Policy", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC04", "t": "Case File Classification Automation", "c": "Administrative Efficiency", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC05", "t": "Next Generation EU Funds Execution Control", "c": "Fraud & Control", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC06", "t": "Intelligent Urban Mobility Management", "c": "Security & Smart Cities", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC07", "t": "Public Policy Impact Assessment", "c": "Public Policy", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC08", "t": "Citizen 360 Profile Feature Store", "c": "Citizen Experience", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC09", "t": "Public Procurement Optimization", "c": "Administrative Efficiency", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC10", "t": "Public Building Energy Consumption Anomaly Detection", "c": "Security & Smart Cities", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC11", "t": "Tax Fraud Detection with Network Analysis", "c": "Fraud & Control", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC12", "t": "Digital Service Personalization for Citizens", "c": "Citizen Experience", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC13", "t": "Healthcare Resource Allocation Optimization", "c": "Public Policy", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC14", "t": "Public Agency Performance Feature Store", "c": "Administrative Efficiency", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC15", "t": "Public Digital Infrastructure Cybersecurity", "c": "Security & Smart Cities", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC16", "t": "Incompatibility & Conflict of Interest Control", "c": "Fraud & Control", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC17", "t": "NLP on Regulations & Legal Summary Generation", "c": "Administrative Efficiency", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC18", "t": "Social Vulnerability Predictive Analysis", "c": "Public Policy", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC19", "t": "Citizen Participation Sentiment Analysis", "c": "Citizen Experience", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC20", "t": "Intelligent Municipal Waste Management", "c": "Security & Smart Cities", "i": "Public Sector", "k": "🏛️", "f": "public-sector.html"}, {"id": "UC01", "t": "Readmission Prediction with Model Registry", "c": "Clinical Data", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC02", "t": "Patient & Appointment Service RAG Chatbot", "c": "Patient Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC03", "t": "Care Demand Prediction with Model Registry", "c": "Operations", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC04", "t": "Chronic Patient Risk Stratification", "c": "Chronic Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC05", "t": "Predictive Medical Equipment Maintenance", "c": "Operations", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC06", "t": "Medical Documentation NLP & Entity Extraction", "c": "Clinical Data", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC07", "t": "Patient Experience & Satisfaction Analysis", "c": "Patient Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC08", "t": "Patient 360 Profile Feature Store", "c": "Patient Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC09", "t": "Surgical Schedule Optimization", "c": "Operations", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC10", "t": "Medical Billing Fraud Detection", "c": "Security", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC11", "t": "Remote Patient Monitoring with IoT & ML Alerts", "c": "Chronic Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC12", "t": "Clinical Decision Support with RAG", "c": "Clinical Data", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC13", "t": "Bed Management & Patient Flow Optimization", "c": "Operations", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC14", "t": "Hospital Performance Feature Store", "c": "Security", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC15", "t": "Treatment Compliance Prediction", "c": "Chronic Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC16", "t": "Real-Time Sepsis Early Detection with ML", "c": "Clinical Data", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC17", "t": "Discharge & Follow-Up Plan Personalization", "c": "Patient Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC18", "t": "Adverse Event Detection & Patient Safety", "c": "Security", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC19", "t": "Functional Decline Prediction in Geriatric Patients", "c": "Chronic Care", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC20", "t": "Intelligent Clinical Data Anonymization for Research", "c": "Security", "i": "Healthcare", "k": "🏥", "f": "healthcare.html"}, {"id": "UC01", "t": "Student Dropout Prediction with Model Registry", "c": "Student Experience", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC02", "t": "Student Service & Regulations RAG Chatbot", "c": "Academic Management", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC03", "t": "Enrollment Prediction with Model Registry", "c": "Admissions", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC04", "t": "Learning Analytics & Teaching Personalization", "c": "Student Experience", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC05", "t": "Schedule Optimization & Space Allocation", "c": "Academic Management", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC06", "t": "Scientific Output NLP & Bibliometric Analysis", "c": "Research", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC07", "t": "Student Satisfaction & Teaching Quality Analysis", "c": "Student Experience", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC08", "t": "Student 360 Profile Feature Store", "c": "Student Experience", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC09", "t": "Intelligent Enrollment Campaign Segmentation", "c": "Admissions", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC10", "t": "Academic Fraud & Plagiarism Detection with AI", "c": "Operations", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC11", "t": "Academic Outcome Prediction & Early Alerts", "c": "Academic Management", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC12", "t": "Research Application Review Support with RAG", "c": "Research", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC13", "t": "Academic Success Prediction by Enrollment Profile", "c": "Admissions", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC14", "t": "Academic Program Performance Feature Store", "c": "Operations", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC15", "t": "Scientific Publication Impact Prediction", "c": "Research", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC16", "t": "Data-Driven Curriculum Design from Labor Market Data", "c": "Academic Management", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC17", "t": "Scholarship & Financial Aid Optimization", "c": "Admissions", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC18", "t": "University Financial Management Anomaly Detection", "c": "Operations", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC19", "t": "University-Industry Transfer Matchmaking", "c": "Research", "i": "Education", "k": "🎓", "f": "education.html"}, {"id": "UC20", "t": "GDPR Compliance & University Data Management", "c": "Operations", "i": "Education", "k": "🎓", "f": "education.html"}];
+
+(function() {
+  var input = document.getElementById('globalSearch');
+  var panel = document.getElementById('searchResults');
+  var debounce;
+
+  function normalize(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function search(q) {
+    if (!q || q.length < 2) { panel.classList.remove('active'); return; }
+    var nq = normalize(q);
+    var words = nq.split(/\s+/).filter(function(w) { return w.length > 0; });
+    var results = UC_CATALOG.filter(function(uc) {
+      var hay = normalize(uc.t + ' ' + uc.c + ' ' + uc.i + ' ' + uc.id);
+      return words.every(function(w) { return hay.indexOf(w) !== -1; });
+    });
+    render(results, q);
+  }
+
+  function render(results, q) {
+    if (results.length === 0) {
+      panel.innerHTML = '<div class="sr-empty">Nie znaleziono use cases para &laquo;' + q + '&raquo;</div>';
+      panel.classList.add('active');
+      return;
+    }
+    var shown = results.slice(0, 20);
+    var html = '<div class="sr-header">Mostrando ' + shown.length + (results.length > 20 ? ' of ' + results.length : '') + ' result' + (results.length !== 1 ? 's' : '') + '</div>';
+    shown.forEach(function(uc) {
+      html += '<a class="sr-item" href="' + uc.f + '">' +
+        '<span class="sr-icon">' + uc.k + '</span>' +
+        '<div class="sr-text"><div class="sr-title">' + uc.t + '</div>' +
+        '<div class="sr-meta"><span class="sr-id">' + uc.id + '</span>' + uc.i + ' &middot; ' + uc.c + '</div></div>' +
+        '<svg class="sr-arrow" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>' +
+        '</a>';
+    });
+    panel.innerHTML = html;
+    panel.classList.add('active');
+  }
+
+  input.addEventListener('input', function() {
+    clearTimeout(debounce);
+    var q = this.value.trim();
+    debounce = setTimeout(function() { search(q); }, 150);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.global-search')) panel.classList.remove('active');
+  });
+
+  input.addEventListener('focus', function() {
+    if (this.value.trim().length >= 2) search(this.value.trim());
+  });
+})();
+</script>
+</body>
+</html>
+

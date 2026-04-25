@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — AI/ML Solutions for Hospitality</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    /* ── HEADER ──────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #003545, #11567F);
+      color: #fff;
+      padding: 32px 48px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .hero-left { flex: 1; }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 6px;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .stats-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 28px;
+      text-align: center;
+      color: #1a1a1a;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    .stats-box .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #E65100;
+      line-height: 1;
+    }
+
+    .stats-box .stat-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .stats-box .stat-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .stats-box .stat-time-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .stats-divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 10px 0;
+    }
+
+    /* ── SECTION INTRO ───────────────────────────────────── */
+    .intro {
+      background: #fff;
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    .intro h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #11567F;
+      margin-bottom: 14px;
+    }
+
+    .intro p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ── FILTERS ─────────────────────────────────────────── */
+    .filters-bar {
+      background: #fff;
+      padding: 20px 48px 0;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filters-left {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 80px;
+      border: 1.5px solid #ccc;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+
+    .filter-btn.active {
+      background: #29B5E8;
+      border-color: #29B5E8;
+      color: #fff;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #ccc;
+      border-radius: 80px;
+      padding: 7px 14px;
+      gap: 8px;
+      min-width: 200px;
+      background: #fff;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      color: #444;
+      width: 100%;
+      background: transparent;
+    }
+    .search-box input::placeholder { color: #aaa; }
+
+    /* ── RESULTS COUNT ────────────────────────────────────── */
+    .results-count {
+      padding: 14px 48px 8px;
+      font-size: 13px;
+      color: #666;
+      background: #f5f5f5;
+    }
+
+    /* ── CARDS GRID ──────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      padding: 16px 48px 48px;
+      background: #f5f5f5;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e2e2e2;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+
+    .card-header {
+      padding: 16px 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-badges { display: flex; gap: 6px; align-items: center; }
+
+    .badge-id {
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-cat {
+      background: #E0F4FD;
+      color: #11567F;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .badge-cat.pricing      { background: #FFF3E0; color: #E65100; }
+    .badge-cat.experiencia   { background: #E8F5E9; color: #2E7D32; }
+    .badge-cat.operaciones   { background: #EDE7F6; color: #5E35B1; }
+    .badge-cat.distribucion  { background: #E3F2FD; color: #1565C0; }
+    .badge-cat.seguridad     { background: #FCE4EC; color: #C62828; }
+
+    .card-time {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .card-title {
+      padding: 0 18px 12px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #11567F;
+      line-height: 1.3;
+    }
+
+    .pain-point {
+      margin: 0 18px 14px;
+      background: #F0F7FA;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .pain-point-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #E65100;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .pain-point p {
+      font-size: 13px;
+      color: #2a2a2a;
+      line-height: 1.55;
+    }
+
+    .card-desc {
+      padding: 0 18px 14px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-features {
+      padding: 0 18px 16px;
+      list-style: none;
+    }
+
+    .card-features li {
+      font-size: 13px;
+      color: #444;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .card-features li::before {
+      content: '\2713';
+      color: #29B5E8;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .card-actions {
+      padding: 14px 18px 18px;
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid #f0f0f0;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 10px;
+      background: #29B5E8;
+      color: #fff;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-secondary:hover { background: #11567F; }
+
+    .btn-tertiary {
+      flex: 1;
+      padding: 10px;
+      background: #003545;
+      color: #29B5E8;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-tertiary:hover { background: #11567F; }
+
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 92%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 32px 28px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+      line-height: 1;
+    }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #11567F;
+      margin-bottom: 18px;
+      padding-right: 30px;
+    }
+    .guide-section { margin-bottom: 22px; }
+    .guide-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #11567F;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .guide-text {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.65;
+    }
+    .guide-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .guide-tag {
+      background: #E0F4FD;
+      color: #11567F;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+    .guide-list {
+      list-style: none;
+      padding: 0;
+    }
+    .guide-list li {
+      font-size: 13px;
+      color: #444;
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .guide-list li::before {
+      content: '▸';
+      color: #29B5E8;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .guide-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid #eee;
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+    }
+
+    /* ── NAV (BOTTOM) ────────────────────────────────────── */
+    .bottom-nav {
+      background: #003545;
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .bottom-nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    .bottom-nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .bottom-nav-links a:hover { color: #29B5E8; }
+
+    .bottom-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-trial {
+      background: #29B5E8;
+      color: #fff;
+      border: none;
+      padding: 9px 22px;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-trial:hover { background: #11567F; }
+
+    .btn-bug {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      text-decoration: none;
+    }
+    .btn-bug:hover { border-color: #29B5E8; }
+    .btn-bug img { width: 18px; height: 18px; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; padding: 24px 20px; }
+      .hero-title { font-size: 28px; }
+      .cards-grid { grid-template-columns: 1fr; padding: 16px 20px 32px; }
+      .filters-bar { padding: 16px 20px 0; }
+      .results-count { padding: 12px 20px 6px; }
+      .bottom-nav { padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════  HERO  ════════════════ -->
+<header class="hero">
+  <div class="hero-left">
+    <div class="logos">
+      <div class="logo-snowflake">
+        <svg width="28" height="28" viewBox="0 0 36 36"><path fill="#29B5E8" d="M18 0l3.1 8.3L30 5.1l-3.2 8.9H36v8h-9.2L30 30.9l-8.9-3.2L18 36l-3.1-8.3L6 30.9l3.2-8.9H0v-8h9.2L6 5.1l8.9 3.2z"/></svg>
+        Snowflake
+      </div>
+    </div>
+    <div class="hero-eyebrow">Solutions IA/ML par secteur</div>
+    <h1 class="hero-title">Hôtellerie</h1>
+    <p class="hero-subtitle">Cas d'usage prêts à déployer avec prompts Cortex Code pour l'hôtellerie et le tourisme</p>
+    <p class="hero-tagline">Prêt à déployer sur Snowflake — aucune infrastructure requise</p>
+  </div>
+  <div class="stats-box">
+    <div class="stat-number">7</div>
+    <div class="stat-label">cas d'usage</div>
+    <hr class="stats-divider" />
+    <div class="stat-time">~20 min</div>
+    <div class="stat-time-label">moy. par cas d'usage</div>
+  </div>
+</header>
+
+<!-- ════════════════  INTRO  ═══════════════ -->
+<section class="intro">
+  <h2>Hôtellerie intelligente avec Snowflake AI</h2>
+  <p>De la tarification dynamique aux expériences clients personnalisées : chaque cas d'usage inclut des prompts Cortex Code exécutables qui construisent la solution complète sur votre compte Snowflake.</p>
+</section>
+
+<!-- ════════════════  FILTERS  ═════════════ -->
+<div class="filters-bar">
+  <div class="filters-left">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="pricing">Tarification</button>
+    <button class="filter-btn" data-filter="experiencia">Expérience</button>
+    <button class="filter-btn" data-filter="operaciones">Opérations</button>
+    <button class="filter-btn" data-filter="distribucion">Distribution</button>
+    <button class="filter-btn" data-filter="seguridad">Sécurité</button>
+  </div>
+  <div class="search-box">
+    <svg width="16" height="16" fill="none" stroke="#999" stroke-width="2"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="15" y2="15"/></svg>
+    <input type="text" id="searchInput" placeholder="Rechercher des cas d'usage..." />
+  </div>
+</div>
+
+<!-- ════════════════  RESULTS  ═════════════ -->
+<div class="results-count" id="resultsCount"></div>
+
+<!-- ════════════════  CARDS  ═══════════════ -->
+<div class="cards-grid" id="cardsGrid"></div>
+
+<!-- ════════════════  NAV BOTTOM  ══════════ -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-links">
+    <a href="index.html">Accueil</a>
+    <a href="guide.html">Guide</a>
+    <a href="banque.html">Banque</a>
+    <a href="assurance.html">Assurance</a>
+    <a href="pharma.html">Pharma</a>
+    <a href="hotellerie.html">Hôtellerie</a>
+    <a href="commerce.html">Commerce</a>
+    <a href="logistique.html">Logistique</a>
+    <a href="telecom.html">Télécom</a>
+    <a href="sante.html">Santé</a>
+    <a href="education.html">Éducation</a>
+    <a href="secteur-public.html">Secteur public</a>
+    <a href="energie.html">Énergie</a>
+    <a href="medias.html">Médias</a>
+    <a href="eau.html">Eau</a>
+    <a href="industrie.html">Industrie</a>
+  </div>
+  <div class="bottom-nav-right">
+    <a class="btn-trial" href="https://signup.snowflake.com/" target="_blank">Essai gratuit</a>
+    <a class="btn-bug" href="https://github.com/Snowflake-Spain-SE-Demos-Sandbox/aimlcases/issues" target="_blank" title="Report issue">
+      <img src="../bug-white.png" alt="bug" />
+    </a>
+  </div>
+</nav>
+
+<script>
+/* ───── USE CASES DATA ───── */
+const DATA = {
+  "UC01": {
+    "title": "Gestion dynamique des revenus avec Cortex ML",
+    "badge": "Tarification",
+    "badgeClass": "pricing",
+    "time": "25 min",
+    "pain": "Les hôtels perdent 12 à 18 % de revenus potentiels en appliquant des tarifs statiques qui ne réagissent pas à la demande, à la concurrence ou aux événements. Les revenue managers ne peuvent pas ajuster 365 tarifs × N types de chambres en temps réel.",
+    "desc": "Ces Prompts Cortex Code construisent un système de tarification dynamique complet : des données synthétiques d'occupation et de concurrence au modèle de prévision et un tableau de bord Streamlit pour la gestion tarifaire.",
+    "features": [
+      "ML.FORECAST pour la prédiction d'occupation et de demande",
+      "Analyse des tarifs concurrents en temps réel",
+      "Ajustement automatique saisonnier et événementiel",
+      "Tableau de bord Streamlit pour le revenue manager"
+    ],
+    "prompts": [
+      {
+        "title": "Créer la base de données et générer les données d'occupation",
+        "desc": "Configure l'environnement et crée 3 ans de données d'occupation journalière réalistes avec saisonnalité, événements et patterns jour de la semaine.",
+        "code": "CREATE OR REPLACE DATABASE HOSPITALITY_REVENUE_MGMT;\nCREATE SCHEMA HOSPITALITY_REVENUE_MGMT.ANALYTICS;\nUSE SCHEMA HOSPITALITY_REVENUE_MGMT.ANALYTICS;\n\n-- Generate 3 years of historical occupancy data\nCREATE OR REPLACE TABLE daily_occupancy AS\nWITH date_range AS (\n  SELECT DATEADD('day', SEQ4(), '2021-01-01')::DATE AS record_date\n  FROM TABLE(GENERATOR(ROWCOUNT => 1095))\n),\nbase_data AS (\n  SELECT \n    record_date,\n    -- Base seasonality (summer peak, winter low)\n    0.55 + 0.25 * SIN(2 * PI() * (DAYOFYEAR(record_date) - 80) / 365) AS seasonal_base,\n    -- Day of week effect\n    CASE DAYOFWEEK(record_date)\n      WHEN 5 THEN 0.15  -- Friday\n      WHEN 6 THEN 0.20  -- Saturday\n      WHEN 0 THEN 0.10  -- Sunday\n      ELSE 0.0\n    END AS day_effect,\n    -- Random events (conferences, festivals)\n    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.92 THEN 0.20 ELSE 0 END AS event_boost,\n    -- Trend component\n    0.02 * DATEDIFF('year', '2021-01-01', record_date) AS trend\n  FROM date_range\n)\nSELECT\n  record_date,\n  LEAST(0.98, GREATEST(0.15, \n    seasonal_base + day_effect + event_boost + trend + \n    UNIFORM(-0.08::FLOAT, 0.08::FLOAT, RANDOM())\n  )) AS occupancy_rate,\n  ROUND(120 + 80 * (seasonal_base + day_effect + event_boost) + UNIFORM(-15::FLOAT, 15::FLOAT, RANDOM()), 2) AS avg_daily_rate,\n  ROUND(UNIFORM(80::FLOAT, 250::FLOAT, RANDOM()), 2) AS competitor_rate,\n  CASE WHEN event_boost > 0 THEN 'Event' ELSE 'Normal' END AS day_type,\n  DAYOFWEEK(record_date) AS day_of_week,\n  MONTH(record_date) AS month_num,\n  DAYOFYEAR(record_date) AS day_of_year\nFROM base_data;\n\nSELECT COUNT(*) AS total_records, \n       MIN(record_date) AS start_date, \n       MAX(record_date) AS end_date,\n       ROUND(AVG(occupancy_rate), 3) AS avg_occupancy\nFROM daily_occupancy;"
+      },
+      {
+        "title": "Modèle de prévision avec ML.FORECAST",
+        "desc": "Entraîne un modèle de séries temporelles sur l'occupation historique pour prédire 90 jours à l'avance.",
+        "code": "-- Prepare training data\nCREATE OR REPLACE VIEW training_data AS\nSELECT record_date AS ts, occupancy_rate AS target_value\nFROM daily_occupancy\nWHERE record_date < '2023-10-01';\n\n-- Train forecast model\nCREATE OR REPLACE SNOWFLAKE.ML.FORECAST occupancy_forecast_model(\n  INPUT_DATA => SYSTEM$REFERENCE('VIEW', 'training_data'),\n  TIMESTAMP_COLNAME => 'ts',\n  TARGET_COLNAME => 'target_value'\n);\n\n-- Generate 90-day forecast\nCALL occupancy_forecast_model!FORECAST(FORECASTING_PERIODS => 90);\n\n-- Save predictions\nCREATE OR REPLACE TABLE occupancy_predictions AS\nSELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));\n\nSELECT * FROM occupancy_predictions LIMIT 15;"
+      },
+      {
+        "title": "Moteur de tarification dynamique",
+        "desc": "Crée la fonction de tarification qui combine prévisions, concurrence et règles métier pour recommander les tarifs optimaux.",
+        "code": "-- Rate rules table\nCREATE OR REPLACE TABLE pricing_rules (\n  rule_name STRING,\n  occupancy_threshold_low FLOAT,\n  occupancy_threshold_high FLOAT,\n  rate_multiplier FLOAT,\n  description STRING\n);\n\nINSERT INTO pricing_rules VALUES\n('Closeout', 0.90, 1.00, 1.35, 'Very high demand: maximum rate'),\n('High_Demand', 0.75, 0.90, 1.18, 'High demand: rate increase'),\n('Standard', 0.50, 0.75, 1.00, 'Standard demand: base rate'),\n('Stimulate', 0.30, 0.50, 0.88, 'Low demand: moderate discount'),\n('Rescue', 0.00, 0.30, 0.72, 'Very low demand: aggressive promotion');\n\n-- Generate recommended rates\nCREATE OR REPLACE TABLE recommended_rates AS\nWITH forecast_enriched AS (\n  SELECT \n    p.TS AS forecast_date,\n    p.FORECAST AS predicted_occupancy,\n    AVG(d.competitor_rate) AS avg_competitor_rate,\n    AVG(d.avg_daily_rate) AS historical_avg_rate\n  FROM occupancy_predictions p\n  LEFT JOIN daily_occupancy d \n    ON DAYOFYEAR(p.TS) = DAYOFYEAR(d.record_date)\n    AND d.record_date >= '2023-01-01'\n  GROUP BY p.TS, p.FORECAST\n)\nSELECT \n  f.forecast_date,\n  ROUND(f.predicted_occupancy, 3) AS predicted_occupancy,\n  r.rule_name AS applied_strategy,\n  ROUND(f.historical_avg_rate * r.rate_multiplier, 2) AS recommended_rate,\n  ROUND(f.avg_competitor_rate, 2) AS competitor_reference,\n  ROUND(f.historical_avg_rate * r.rate_multiplier - f.avg_competitor_rate, 2) AS rate_difference,\n  r.description AS strategy_description\nFROM forecast_enriched f\nJOIN pricing_rules r\n  ON f.predicted_occupancy BETWEEN r.occupancy_threshold_low AND r.occupancy_threshold_high;\n\nSELECT * FROM recommended_rates ORDER BY forecast_date LIMIT 20;"
+      },
+      {
+        "title": "Tableau de bord revenue manager (Streamlit)",
+        "desc": "Tableau de bord interactif affichant les prévisions, tarifs recommandés et analyse concurrentielle.",
+        "code": "-- Create Streamlit app for revenue management\nCREATE OR REPLACE STREAMLIT HOSPITALITY_REVENUE_MGMT.ANALYTICS.REVENUE_DASHBOARD\n  ROOT_LOCATION = '@HOSPITALITY_REVENUE_MGMT.ANALYTICS.REVENUE_DASHBOARD_STAGE'\n  MAIN_FILE = '/streamlit_app.py'\n  QUERY_WAREHOUSE = 'COMPUTE_WH';\n\n-- The Streamlit code will be:\n/*\nimport streamlit as st\nimport pandas as pd\nfrom snowflake.snowpark.context import get_active_session\n\nsession = get_active_session()\nst.title('Revenue Management - Dynamic Pricing')\n\ntab1, tab2, tab3 = st.tabs(['Forecast', 'Recommended Rates', 'Analysis'])\n\nwith tab1:\n    df_forecast = session.sql('SELECT TS AS date, FORECAST AS predicted_occupancy, LOWER_BOUND, UPPER_BOUND FROM occupancy_predictions ORDER BY TS').to_pandas()\n    st.line_chart(df_forecast.set_index('DATE')[['PREDICTED_OCCUPANCY', 'LOWER_BOUND', 'UPPER_BOUND']])\n\nwith tab2:\n    df_rates = session.sql('SELECT * FROM recommended_rates ORDER BY forecast_date').to_pandas()\n    st.dataframe(df_rates)\n    st.bar_chart(df_rates.set_index('FORECAST_DATE')['RECOMMENDED_RATE'])\n\nwith tab3:\n    df_comparison = session.sql(\"SELECT applied_strategy, COUNT(*) as days, ROUND(AVG(recommended_rate),2) as avg_rate FROM recommended_rates GROUP BY applied_strategy\").to_pandas()\n    st.bar_chart(df_comparison.set_index('APPLIED_STRATEGY')['AVG_RATE'])\n*/\n\nSELECT 'Dashboard ready for deployment' AS status;"
+      }
+    ],
+    "guia": {
+      "resumen": "Ce cas d'usage construit un système complet de Revenue Management utilisant Snowflake ML.FORECAST pour prédire l'occupation et un moteur basé sur des règles qui recommande des tarifs dynamiques.",
+      "funcionalidades": ["ML.FORECAST", "Snowpark", "Streamlit", "Dynamic Pricing"],
+      "datos": [
+        "Occupation journalière : 3 ans de données historiques avec saisonnalité et événements",
+        "Tarifs concurrents : référence compétitive journalière",
+        "Règles tarifaires : seuils d'occupation et multiplicateurs par stratégie"
+      ],
+      "estratificacion": [
+        "Fermeture (>90% occupation) : Tarif maximum, majoration 35%",
+        "Forte demande (75-90%) : Augmentation de 18% sur le tarif de base",
+        "Standard (50-75%) : Tarif de base",
+        "Stimulation (30-50%) : Remise de 12% pour attirer la demande",
+        "Sauvetage (<30%) : Remise agressive de 28%"
+      ],
+      "como_usar": [
+        "Exécutez les prompts séquentiellement",
+        "1 095 jours de données d'occupation sont générés avec des patterns réalistes",
+        "Le modèle prévoit 90 jours d'occupation",
+        "Le tableau de bord affiche les tarifs, les prévisions et l'analyse concurrentielle"
+      ]
+    }
+  },
+  "UC02": {
+    "title": "Analyse multilingue des avis clients avec Cortex AI",
+    "badge": "Expérience",
+    "badgeClass": "experiencia",
+    "time": "20 min",
+    "pain": "Les hôtels reçoivent des milliers d'avis en plusieurs langues sur différentes plateformes. L'analyse manuelle est lente, et les problèmes critiques dans les avis non anglophones passent inaperçus pendant des semaines.",
+    "desc": "Ces Prompts Cortex Code construisent un système d'analyse automatisé des avis : traduction, analyse de sentiment, extraction de catégories et tableau de bord d'alertes — le tout avec les fonctions Cortex AI.",
+    "features": [
+      "CORTEX.TRANSLATE pour la traduction multilingue automatique",
+      "CORTEX.SENTIMENT pour le scoring de sentiment",
+      "CORTEX.COMPLETE pour l'extraction de catégories et problèmes",
+      "Tableau de bord d'alertes en temps réel dans Streamlit"
+    ],
+    "prompts": [
+      {
+        "title": "Créer la base de données et générer les avis multilingues",
+        "desc": "Configure l'environnement et génère des avis synthétiques en 6 langues avec des sujets et notes réalistes.",
+        "code": "CREATE OR REPLACE DATABASE HOTEL_REVIEW_ANALYTICS;\nCREATE SCHEMA HOTEL_REVIEW_ANALYTICS.ANALYSIS;\nUSE SCHEMA HOTEL_REVIEW_ANALYTICS.ANALYSIS;\n\n-- Generate multilingual reviews\nCREATE OR REPLACE TABLE guest_reviews AS\nSELECT \n  ROW_NUMBER() OVER (ORDER BY RANDOM()) AS review_id,\n  DATEADD('day', -UNIFORM(0, 365, RANDOM()), CURRENT_DATE()) AS review_date,\n  review_data.*\nFROM (\n  -- English positive reviews\n  SELECT 'en' AS language, 'TripAdvisor' AS source, 5 AS rating,\n    'Amazing experience! The spa was world-class and staff incredibly attentive.' AS review_text\n  UNION ALL SELECT 'en', 'Google', 4, 'Great location and clean rooms. Breakfast could be better.'\n  UNION ALL SELECT 'en', 'Booking', 2, 'Very disappointing. Room was not clean and AC broken for 2 days.'\n  -- Spanish reviews\n  UNION ALL SELECT 'es', 'TripAdvisor', 5, 'Increible hotel, el personal es excepcional y las vistas al mar son impresionantes.'\n  UNION ALL SELECT 'es', 'Google', 1, 'Pesimo servicio. Esperamos 45 minutos para el check-in y la habitacion olia a humedad.'\n  UNION ALL SELECT 'es', 'Booking', 4, 'Muy buena relacion calidad-precio. Piscina fantastica pero el wifi va lento.'\n  -- French reviews\n  UNION ALL SELECT 'fr', 'TripAdvisor', 5, 'Hotel magnifique! Le restaurant etoile vaut le detour a lui seul.'\n  UNION ALL SELECT 'fr', 'Google', 2, 'Decevant pour le prix. Chambre petite et bruyante cote rue.'\n  -- German reviews\n  UNION ALL SELECT 'de', 'Booking', 4, 'Sehr gutes Hotel mit hervorragendem Fruhstuck. Nur das Parken ist teuer.'\n  UNION ALL SELECT 'de', 'TripAdvisor', 1, 'Katastrophal. Schimmel im Bad und unhofliches Personal an der Rezeption.'\n  -- Italian reviews\n  UNION ALL SELECT 'it', 'Google', 5, 'Esperienza perfetta! Posizione centrale, colazione abbondante e personale gentilissimo.'\n  UNION ALL SELECT 'it', 'Booking', 3, 'Hotel nella media. Stanze pulite ma arredamento datato e minibar caro.'\n  -- Portuguese reviews\n  UNION ALL SELECT 'pt', 'TripAdvisor', 4, 'Otimo hotel para negocios. Sala de reunioes excelente e wifi rapido.'\n  UNION ALL SELECT 'pt', 'Google', 2, 'Nao recomendo. Barulho constante do ar condicionado e cama desconfortavel.'\n) AS review_data;\n\nSELECT * FROM guest_reviews ORDER BY review_date DESC;"
+      },
+      {
+        "title": "Traduire et analyser le sentiment",
+        "desc": "Applique la traduction automatique vers l'anglais et effectue le scoring de sentiment sur chaque avis.",
+        "code": "-- Translate all reviews to English and analyze sentiment\nCREATE OR REPLACE TABLE analyzed_reviews AS\nSELECT \n  review_id,\n  review_date,\n  language AS original_language,\n  source,\n  rating,\n  review_text AS original_text,\n  CASE \n    WHEN language = 'en' THEN review_text\n    ELSE SNOWFLAKE.CORTEX.TRANSLATE(review_text, language, 'en')\n  END AS translated_text,\n  SNOWFLAKE.CORTEX.SENTIMENT(\n    CASE \n      WHEN language = 'en' THEN review_text\n      ELSE SNOWFLAKE.CORTEX.TRANSLATE(review_text, language, 'en')\n    END\n  ) AS sentiment_score\nFROM guest_reviews;\n\nSELECT review_id, original_language, rating, \n       LEFT(original_text, 60) AS original_excerpt,\n       LEFT(translated_text, 60) AS translated_excerpt,\n       ROUND(sentiment_score, 3) AS sentiment\nFROM analyzed_reviews\nORDER BY sentiment_score ASC;"
+      },
+      {
+        "title": "Catégorisation intelligente avec LLM",
+        "desc": "Utilise CORTEX.COMPLETE pour extraire les catégories de réclamation, le niveau d'urgence et les axes d'amélioration spécifiques.",
+        "code": "-- Categorize reviews with LLM\nCREATE OR REPLACE TABLE categorized_reviews AS\nSELECT \n  a.*,\n  SNOWFLAKE.CORTEX.COMPLETE('mistral-large2',\n    'Analyze this hotel review and respond ONLY with a JSON object (no other text):\\n' ||\n    '- category: one of [Cleanliness, Service, Facilities, F&B, Location, Value, WiFi/Tech]\\n' ||\n    '- urgency: one of [Critical, High, Medium, Low]\\n' ||\n    '- department: which department should handle it\\n' ||\n    '- action: one specific recommended action\\n\\n' ||\n    'Review: ' || a.translated_text\n  ) AS llm_analysis\nFROM analyzed_reviews a;\n\n-- Extract structured fields\nCREATE OR REPLACE TABLE review_insights AS\nSELECT \n  review_id, review_date, original_language, source, rating,\n  original_text, translated_text, sentiment_score,\n  TRY_PARSE_JSON(llm_analysis):category::STRING AS category,\n  TRY_PARSE_JSON(llm_analysis):urgency::STRING AS urgency,\n  TRY_PARSE_JSON(llm_analysis):department::STRING AS responsible_department,\n  TRY_PARSE_JSON(llm_analysis):action::STRING AS recommended_action\nFROM categorized_reviews;\n\nSELECT * FROM review_insights ORDER BY \n  CASE urgency WHEN 'Critical' THEN 1 WHEN 'High' THEN 2 WHEN 'Medium' THEN 3 ELSE 4 END;"
+      },
+      {
+        "title": "Tableau de bord d'alertes et KPIs",
+        "desc": "Crée une vue de synthèse avec alertes critiques et KPIs par catégorie, langue et plateforme.",
+        "code": "-- Critical alerts view (reviews requiring immediate action)\nCREATE OR REPLACE VIEW critical_alerts AS\nSELECT \n  review_id, review_date, original_language, source,\n  rating, sentiment_score, category, urgency,\n  responsible_department, recommended_action,\n  LEFT(translated_text, 150) AS review_summary\nFROM review_insights\nWHERE urgency IN ('Critical', 'High') OR sentiment_score < -0.3\nORDER BY review_date DESC;\n\n-- KPIs by category\nCREATE OR REPLACE VIEW category_kpis AS\nSELECT \n  category,\n  COUNT(*) AS total_reviews,\n  ROUND(AVG(sentiment_score), 3) AS avg_sentiment,\n  ROUND(AVG(rating), 1) AS avg_rating,\n  SUM(CASE WHEN urgency IN ('Critical', 'High') THEN 1 ELSE 0 END) AS critical_issues\nFROM review_insights\nGROUP BY category\nORDER BY avg_sentiment ASC;\n\n-- KPIs by language\nCREATE OR REPLACE VIEW language_kpis AS\nSELECT \n  original_language,\n  COUNT(*) AS total_reviews,\n  ROUND(AVG(sentiment_score), 3) AS avg_sentiment,\n  ROUND(AVG(rating), 1) AS avg_rating\nFROM review_insights\nGROUP BY original_language\nORDER BY total_reviews DESC;\n\nSELECT '=== CRITICAL ALERTS ===' AS section;\nSELECT * FROM critical_alerts;\nSELECT '=== KPIs BY CATEGORY ===' AS section;\nSELECT * FROM category_kpis;\nSELECT '=== KPIs BY LANGUAGE ===' AS section;\nSELECT * FROM language_kpis;"
+      }
+    ],
+    "guia": {
+      "resumen": "Ce cas d'usage construit un système d'analyse automatisé des avis hôteliers utilisant Cortex AI pour la traduction, l'analyse de sentiment et la catégorisation intelligente avec LLM.",
+      "funcionalidades": ["CORTEX.TRANSLATE", "CORTEX.SENTIMENT", "CORTEX.COMPLETE", "LLM Analysis"],
+      "datos": [
+        "Avis synthétiques : 14 avis en 6 langues (EN, ES, FR, DE, IT, PT)",
+        "Plateformes : TripAdvisor, Google, Booking",
+        "Notes : de 1 à 5 étoiles avec texte cohérent"
+      ],
+      "estratificacion": [
+        "Critique : sentiment < -0.5, note 1, action immédiate requise",
+        "Élevé : sentiment < -0.2, note 2, action sous 24h",
+        "Moyen : sentiment 0 à 0.3, note 3, plan d'amélioration",
+        "Faible : sentiment > 0.3, note 4-5, surveiller et maintenir"
+      ],
+      "como_usar": [
+        "Exécutez les prompts séquentiellement",
+        "14 avis multilingues sont générés",
+        "Cortex traduit, score le sentiment et catégorise avec LLM",
+        "La vue d'alertes montre les problèmes critiques pour action immédiate"
+      ]
+    }
+  },
+  "UC03": {
+    "title": "Prévision de la demande clients avec Cortex ML",
+    "badge": "Opérations",
+    "badgeClass": "operaciones",
+    "time": "20 min",
+    "pain": "Hotels plan staffing and supplies based on intuition. Overstaffing costs 15-20% in idle labor, while understaffing degrades guest experience and generates negative reviews.",
+    "desc": "These Cortex Code Prompts build a demand forecasting model by service: restaurant, spa, concierge, and housekeeping — with automatic staff allocation based on predictions.",
+    "features": [
+      "ML.FORECAST for multi-service demand prediction",
+      "Automatic staff allocation by area",
+      "Day-of-week and seasonal pattern detection",
+      "Operations dashboard with schedule recommendations"
+    ],
+    "prompts": [
+      {
+        "title": "Create database and generate service demand data",
+        "desc": "Sets up the environment and creates 2 years of daily demand data for 4 hotel service areas.",
+        "code": "CREATE OR REPLACE DATABASE HOTEL_DEMAND_PLANNING;\nCREATE SCHEMA HOTEL_DEMAND_PLANNING.OPERATIONS;\nUSE SCHEMA HOTEL_DEMAND_PLANNING.OPERATIONS;\n\n-- Generate 2 years of service demand data\nCREATE OR REPLACE TABLE service_demand AS\nWITH dates AS (\n  SELECT DATEADD('day', SEQ4(), '2022-01-01')::DATE AS service_date\n  FROM TABLE(GENERATOR(ROWCOUNT => 730))\n),\nservices AS (\n  SELECT $1 AS service_name, $2 AS base_demand, $3 AS weekend_factor, $4 AS summer_factor\n  FROM VALUES\n    ('Restaurant', 180, 1.4, 1.3),\n    ('Spa', 45, 1.6, 1.5),\n    ('Concierge', 80, 1.3, 1.4),\n    ('Housekeeping', 120, 1.1, 1.2)\n)\nSELECT \n  d.service_date,\n  s.service_name,\n  GREATEST(5, ROUND(\n    s.base_demand \n    * CASE WHEN DAYOFWEEK(d.service_date) IN (5,6,0) THEN s.weekend_factor ELSE 1.0 END\n    * (1 + 0.3 * SIN(2 * PI() * (DAYOFYEAR(d.service_date) - 80) / 365) * (s.summer_factor - 1))\n    * (1 + UNIFORM(-0.15::FLOAT, 0.15::FLOAT, RANDOM()))\n    + CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.93 THEN s.base_demand * 0.4 ELSE 0 END\n  )) AS daily_requests,\n  ROUND(UNIFORM(8::FLOAT, 35::FLOAT, RANDOM()), 2) AS avg_service_time_min\nFROM dates d CROSS JOIN services s;\n\nSELECT service_name, COUNT(*) AS days,\n       ROUND(AVG(daily_requests)) AS avg_demand,\n       MAX(daily_requests) AS peak_demand\nFROM service_demand\nGROUP BY service_name\nORDER BY avg_demand DESC;"
+      },
+      {
+        "title": "Forecast model per service",
+        "desc": "Trains independent forecast models for each service area to predict 30 days of demand.",
+        "code": "-- Train model for Restaurant\nCREATE OR REPLACE VIEW restaurant_training AS\nSELECT service_date AS ts, daily_requests AS target_value\nFROM service_demand WHERE service_name = 'Restaurant' AND service_date < '2023-10-01';\n\nCREATE OR REPLACE SNOWFLAKE.ML.FORECAST restaurant_demand_model(\n  INPUT_DATA => SYSTEM$REFERENCE('VIEW', 'restaurant_training'),\n  TIMESTAMP_COLNAME => 'ts', TARGET_COLNAME => 'target_value'\n);\n\n-- Train model for Spa\nCREATE OR REPLACE VIEW spa_training AS\nSELECT service_date AS ts, daily_requests AS target_value\nFROM service_demand WHERE service_name = 'Spa' AND service_date < '2023-10-01';\n\nCREATE OR REPLACE SNOWFLAKE.ML.FORECAST spa_demand_model(\n  INPUT_DATA => SYSTEM$REFERENCE('VIEW', 'spa_training'),\n  TIMESTAMP_COLNAME => 'ts', TARGET_COLNAME => 'target_value'\n);\n\n-- Generate forecasts\nCALL restaurant_demand_model!FORECAST(FORECASTING_PERIODS => 30);\nCREATE OR REPLACE TABLE restaurant_forecast AS SELECT 'Restaurant' AS service_name, * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));\n\nCALL spa_demand_model!FORECAST(FORECASTING_PERIODS => 30);\nCREATE OR REPLACE TABLE spa_forecast AS SELECT 'Spa' AS service_name, * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));\n\n-- Combine forecasts\nCREATE OR REPLACE TABLE combined_forecast AS\nSELECT * FROM restaurant_forecast\nUNION ALL SELECT * FROM spa_forecast;\n\nSELECT service_name, \n       MIN(TS)::DATE AS start_date, MAX(TS)::DATE AS end_date,\n       ROUND(AVG(FORECAST)) AS avg_predicted_demand\nFROM combined_forecast GROUP BY service_name;"
+      },
+      {
+        "title": "Automatic staff allocation",
+        "desc": "Calculates optimal staff needed per service based on demand predictions and service capacity ratios.",
+        "code": "-- Staff capacity ratios\nCREATE OR REPLACE TABLE staffing_ratios (\n  service_name STRING,\n  requests_per_staff_hour FLOAT,\n  hours_per_shift FLOAT,\n  min_staff INT,\n  cost_per_hour FLOAT\n);\n\nINSERT INTO staffing_ratios VALUES\n('Restaurant', 12, 8, 8, 14.50),\n('Spa', 3, 8, 2, 18.00),\n('Concierge', 10, 8, 3, 16.00),\n('Housekeeping', 8, 8, 6, 13.00);\n\n-- Calculate staff allocation\nCREATE OR REPLACE TABLE staff_allocation AS\nSELECT \n  f.TS::DATE AS plan_date,\n  f.service_name,\n  ROUND(f.FORECAST) AS predicted_demand,\n  r.requests_per_staff_hour,\n  GREATEST(r.min_staff, \n    CEIL(f.FORECAST / (r.requests_per_staff_hour * r.hours_per_shift))\n  ) AS recommended_staff,\n  GREATEST(r.min_staff, \n    CEIL(f.FORECAST / (r.requests_per_staff_hour * r.hours_per_shift))\n  ) * r.hours_per_shift * r.cost_per_hour AS daily_labor_cost\nFROM combined_forecast f\nJOIN staffing_ratios r ON f.service_name = r.service_name;\n\nSELECT * FROM staff_allocation ORDER BY plan_date, service_name LIMIT 20;\n\n-- Cost summary\nSELECT service_name,\n       SUM(recommended_staff) AS total_staff_days,\n       ROUND(SUM(daily_labor_cost), 2) AS total_cost_30d,\n       ROUND(AVG(recommended_staff), 1) AS avg_daily_staff\nFROM staff_allocation\nGROUP BY service_name\nORDER BY total_cost_30d DESC;"
+      }
+    ],
+    "guia": {
+      "resumen": "This use case builds a hotel demand forecasting system with ML.FORECAST for multiple service areas, with automatic staff allocation based on predictions.",
+      "funcionalidades": ["ML.FORECAST", "Capacity Planning", "Labor Optimization"],
+      "datos": [
+        "Service demand: 2 years of daily data for Restaurant, Spa, Concierge, and Housekeeping",
+        "Staffing ratios: capacity, minimum, and hourly cost per service"
+      ],
+      "estratificacion": [
+        "Restaurant: 12 requests/staff-hour, minimum 8 staff, $14.50/h",
+        "Spa: 3 requests/staff-hour, minimum 2 staff, $18.00/h",
+        "Concierge: 10 requests/staff-hour, minimum 3 staff, $16.00/h",
+        "Housekeeping: 8 requests/staff-hour, minimum 6 staff, $13.00/h"
+      ],
+      "como_usar": [
+        "Exécutez les prompts séquentiellement",
+        "730 days x 4 services of demand data are generated",
+        "Independent models are trained per service",
+        "The allocation table shows optimal staff and costs for 30 days"
+      ]
+    }
+  },
+  "UC04": {
+    "title": "Guest Lifetime Value (CLV) with ML.REGRESSION",
+    "badge": "Expérience",
+    "badgeClass": "experiencia",
+    "time": "25 min",
+    "pain": "Hotels treat all guests the same without quantifying their long-term value. This leads to investing in retention of low-value guests and neglecting high-potential ones.",
+    "desc": "These Cortex Code Prompts build a CLV prediction model: from synthetic guest data to tier segmentation and personalized actions per value segment.",
+    "features": [
+      "ML.REGRESSION for 12-month CLV prediction",
+      "Automatic value tier segmentation",
+      "Personalized action recommendations per tier",
+      "Guest portfolio visualization dashboard"
+    ],
+    "prompts": [
+      {
+        "title": "Create database and generate guest history",
+        "desc": "Sets up the environment and creates 3,000 guests with realistic stay history, spending, and loyalty profiles.",
+        "code": "CREATE OR REPLACE DATABASE HOTEL_GUEST_CLV;\nCREATE SCHEMA HOTEL_GUEST_CLV.ANALYTICS;\nUSE SCHEMA HOTEL_GUEST_CLV.ANALYTICS;\n\n-- Generate guest profiles\nCREATE OR REPLACE TABLE guest_profiles AS\nSELECT \n  SEQ4() + 1 AS guest_id,\n  DATEADD('day', -UNIFORM(90, 1800, RANDOM()), CURRENT_DATE()) AS first_stay_date,\n  UNIFORM(1, 15, RANDOM()) AS total_stays,\n  ROUND(UNIFORM(80::FLOAT, 500::FLOAT, RANDOM()), 2) AS avg_daily_rate,\n  ROUND(UNIFORM(1::FLOAT, 7::FLOAT, RANDOM()), 1) AS avg_length_of_stay,\n  ROUND(UNIFORM(0::FLOAT, 200::FLOAT, RANDOM()), 2) AS avg_ancillary_spend,\n  CASE UNIFORM(1, 4, RANDOM())\n    WHEN 1 THEN 'Direct'\n    WHEN 2 THEN 'OTA'\n    WHEN 3 THEN 'Corporate'\n    ELSE 'Travel Agent'\n  END AS booking_channel,\n  CASE UNIFORM(1, 3, RANDOM())\n    WHEN 1 THEN 'Business'\n    WHEN 2 THEN 'Leisure'\n    ELSE 'Groups'\n  END AS guest_segment,\n  ROUND(UNIFORM(0::FLOAT, 10::FLOAT, RANDOM()), 1) AS avg_review_score,\n  UNIFORM(0, 8, RANDOM()) AS loyalty_tier_numeric,\n  ROUND(UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()), 2) AS email_engagement_rate\nFROM TABLE(GENERATOR(ROWCOUNT => 3000));\n\n-- Calculate CLV (target variable for training)\nCREATE OR REPLACE TABLE guest_clv_data AS\nSELECT \n  g.*,\n  ROUND(\n    g.total_stays * g.avg_daily_rate * g.avg_length_of_stay * 0.4\n    + g.total_stays * g.avg_ancillary_spend * 0.6\n    + g.loyalty_tier_numeric * 150\n    + g.email_engagement_rate * 500\n    + CASE g.booking_channel WHEN 'Direct' THEN 800 WHEN 'Corporate' THEN 600 ELSE 200 END\n    + UNIFORM(-300::FLOAT, 300::FLOAT, RANDOM())\n  , 2) AS clv_12_months\nFROM guest_profiles g;\n\nSELECT COUNT(*) AS total_guests,\n       ROUND(AVG(clv_12_months), 2) AS avg_clv,\n       ROUND(MIN(clv_12_months), 2) AS min_clv,\n       ROUND(MAX(clv_12_months), 2) AS max_clv\nFROM guest_clv_data;"
+      },
+      {
+        "title": "CLV prediction model with ML.REGRESSION",
+        "desc": "Trains a regression model to predict 12-month CLV based on guest profile features.",
+        "code": "-- Prepare training data\nCREATE OR REPLACE VIEW clv_training_data AS\nSELECT \n  total_stays, avg_daily_rate, avg_length_of_stay, avg_ancillary_spend,\n  booking_channel, guest_segment, avg_review_score, loyalty_tier_numeric,\n  email_engagement_rate, clv_12_months\nFROM guest_clv_data\nSAMPLE (80);\n\n-- Train regression model\nCREATE OR REPLACE SNOWFLAKE.ML.REGRESSION clv_prediction_model(\n  INPUT_DATA => SYSTEM$REFERENCE('VIEW', 'clv_training_data'),\n  TARGET_COLNAME => 'CLV_12_MONTHS'\n);\n\n-- Predict on all guests\nCREATE OR REPLACE TABLE guest_clv_predictions AS\nSELECT \n  guest_id, first_stay_date, booking_channel, guest_segment,\n  total_stays, avg_daily_rate, clv_12_months AS actual_clv,\n  clv_prediction_model!PREDICT(\n    total_stays => total_stays,\n    avg_daily_rate => avg_daily_rate,\n    avg_length_of_stay => avg_length_of_stay,\n    avg_ancillary_spend => avg_ancillary_spend,\n    booking_channel => booking_channel,\n    guest_segment => guest_segment,\n    avg_review_score => avg_review_score,\n    loyalty_tier_numeric => loyalty_tier_numeric,\n    email_engagement_rate => email_engagement_rate\n  ) AS predicted_clv_obj\nFROM guest_clv_data;\n\n-- Extract prediction\nCREATE OR REPLACE TABLE guest_clv_final AS\nSELECT *,\n  predicted_clv_obj:CLV_12_MONTHS::FLOAT AS predicted_clv\nFROM guest_clv_predictions;\n\nSELECT guest_id, booking_channel, guest_segment, total_stays,\n       ROUND(actual_clv, 2) AS actual, ROUND(predicted_clv, 2) AS predicted\nFROM guest_clv_final\nORDER BY predicted_clv DESC LIMIT 15;"
+      },
+      {
+        "title": "Value tier segmentation and actions",
+        "desc": "Segments guests into tiers based on predicted CLV and assigns personalized retention actions.",
+        "code": "-- Tier segmentation\nCREATE OR REPLACE TABLE guest_tiers AS\nSELECT \n  guest_id, booking_channel, guest_segment, total_stays,\n  ROUND(predicted_clv, 2) AS predicted_clv,\n  CASE \n    WHEN predicted_clv >= 5000 THEN 'Platinum'\n    WHEN predicted_clv >= 2000 THEN 'Gold'\n    WHEN predicted_clv >= 500 THEN 'Silver'\n    ELSE 'Bronze'\n  END AS value_tier,\n  CASE \n    WHEN predicted_clv >= 5000 THEN 'VIP treatment, complimentary upgrades, dedicated concierge'\n    WHEN predicted_clv >= 2000 THEN 'Exclusive pre-arrival offers, late checkout, spa credits'\n    WHEN predicted_clv >= 500 THEN 'Frequency increase campaigns, stay-more-save-more offers'\n    ELSE 'Reactivation campaigns with special incentive'\n  END AS recommended_action\nFROM guest_clv_final;\n\n-- Tier summary\nSELECT \n  value_tier,\n  COUNT(*) AS total_guests,\n  ROUND(AVG(predicted_clv), 2) AS avg_clv,\n  ROUND(SUM(predicted_clv), 2) AS total_portfolio_value,\n  ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM guest_tiers), 1) AS pct_of_guests\nFROM guest_tiers\nGROUP BY value_tier\nORDER BY avg_clv DESC;\n\n-- Top 10 highest-value guests\nSELECT * FROM guest_tiers ORDER BY predicted_clv DESC LIMIT 10;"
+      }
+    ],
+    "guia": {
+      "resumen": "This use case builds a Guest Lifetime Value (CLV) prediction system using ML.REGRESSION to segment guests by value and assign personalized retention actions.",
+      "funcionalidades": ["ML.REGRESSION", "Segmentation", "CLV", "Personalization"],
+      "datos": [
+        "Guest profiles: 3,000 guests with stay history, spending, and engagement",
+        "Stays: dates, ADR, services consumed, reviews",
+        "CLV: 12-month predicted value with return probability"
+      ],
+      "estratificacion": [
+        "Platinum (CLV >$5,000): VIP treatment, upgrades, personalized contact",
+        "Gold ($2,000-$5,000): Exclusive pre-arrival offers, late checkout",
+        "Silver ($500-$2,000): Frequency increase campaigns",
+        "Bronze (<$500): Reactivation campaigns with incentive"
+      ],
+      "como_usar": [
+        "Exécutez les prompts séquentiellement",
+        "3,000 guests with realistic history are generated",
+        "The model predicts 12-month CLV",
+        "The dashboard shows distribution by tier and actions"
+      ]
+    }
+  },
+  "UC05": {
+    "title": "Predictive Facility Maintenance with Model Registry",
+    "badge": "Opérations",
+    "badgeClass": "operaciones",
+    "time": "25 min",
+    "pain": "Unplanned equipment failures (HVAC, elevators, plumbing) cost $5,000-$15,000 per incident and cause guest complaints. Reactive maintenance means always acting too late.",
+    "desc": "These Cortex Code Prompts build a facility failure predictor with model registration in Snowflake Model Registry for automated deployment.",
+    "features": [
+      "ML.CLASSIFICATION for failure type prediction",
+      "Snowflake Model Registry with log_model()",
+      "Automatic inference pipeline",
+      "Predictive maintenance ROI analysis"
+    ],
+    "prompts": [
+      {
+        "title": "Create database and generate sensor signals",
+        "desc": "Sets up the environment and generates 6 months of synthetic sensor data for hotel systems (HVAC, elevator, plumbing, room equipment).",
+        "code": "CREATE OR REPLACE DATABASE HOTEL_PREDICTIVE_MAINT;\nCREATE SCHEMA HOTEL_PREDICTIVE_MAINT.IOT;\nUSE SCHEMA HOTEL_PREDICTIVE_MAINT.IOT;\n\n-- Generate sensor data for hotel systems\nCREATE OR REPLACE TABLE sensor_readings AS\nWITH equipment AS (\n  SELECT $1 AS equipment_id, $2 AS equipment_type, $3 AS location\n  FROM VALUES\n    ('HVAC-001', 'HVAC', 'Main Building'),\n    ('HVAC-002', 'HVAC', 'North Wing'),\n    ('ELEV-001', 'Elevator', 'Main Lobby'),\n    ('ELEV-002', 'Elevator', 'Parking'),\n    ('PLMB-001', 'Plumbing', 'Floor 3'),\n    ('PLMB-002', 'Plumbing', 'Floor 7'),\n    ('ROOM-001', 'Room Equipment', 'Suite 501'),\n    ('ROOM-002', 'Room Equipment', 'Suite 802')\n),\nreadings AS (\n  SELECT DATEADD('hour', SEQ4(), '2023-04-01')::TIMESTAMP AS reading_ts\n  FROM TABLE(GENERATOR(ROWCOUNT => 4380))  -- ~6 months hourly\n)\nSELECT \n  r.reading_ts,\n  e.equipment_id,\n  e.equipment_type,\n  e.location,\n  ROUND(UNIFORM(18::FLOAT, 28::FLOAT, RANDOM()) + \n    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.95 THEN 15 ELSE 0 END, 1) AS temperature_c,\n  ROUND(UNIFORM(30::FLOAT, 70::FLOAT, RANDOM()) +\n    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.96 THEN 25 ELSE 0 END, 1) AS vibration_hz,\n  ROUND(UNIFORM(0.5::FLOAT, 3::FLOAT, RANDOM()) +\n    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.94 THEN 4 ELSE 0 END, 2) AS energy_kwh,\n  ROUND(UNIFORM(60::FLOAT, 100::FLOAT, RANDOM()) -\n    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.93 THEN 35 ELSE 0 END, 1) AS efficiency_pct,\n  CASE \n    WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.92 THEN\n      CASE UNIFORM(1, 4, RANDOM())\n        WHEN 1 THEN 'Overheating'\n        WHEN 2 THEN 'Excessive Vibration'\n        WHEN 3 THEN 'Energy Overconsumption'\n        ELSE 'Efficiency Drop'\n      END\n    ELSE 'Normal'\n  END AS status_label\nFROM readings r CROSS JOIN equipment e;\n\nSELECT equipment_type, status_label, COUNT(*) AS readings_count\nFROM sensor_readings\nGROUP BY equipment_type, status_label\nORDER BY equipment_type, readings_count DESC;"
+      },
+      {
+        "title": "Failure classification model",
+        "desc": "Trains a classification model to predict failure type based on sensor readings.",
+        "code": "-- Prepare training data\nCREATE OR REPLACE VIEW maintenance_training AS\nSELECT \n  temperature_c, vibration_hz, energy_kwh, efficiency_pct,\n  equipment_type, status_label\nFROM sensor_readings\nWHERE reading_ts < '2023-08-01';\n\n-- Train classification model\nCREATE OR REPLACE SNOWFLAKE.ML.CLASSIFICATION failure_prediction_model(\n  INPUT_DATA => SYSTEM$REFERENCE('VIEW', 'maintenance_training'),\n  TARGET_COLNAME => 'STATUS_LABEL'\n);\n\n-- Predict on recent data\nCREATE OR REPLACE TABLE failure_predictions AS\nSELECT \n  reading_ts, equipment_id, equipment_type, location,\n  temperature_c, vibration_hz, energy_kwh, efficiency_pct,\n  status_label AS actual_status,\n  failure_prediction_model!PREDICT(\n    temperature_c => temperature_c,\n    vibration_hz => vibration_hz,\n    energy_kwh => energy_kwh,\n    efficiency_pct => efficiency_pct,\n    equipment_type => equipment_type\n  ) AS prediction_obj\nFROM sensor_readings\nWHERE reading_ts >= '2023-08-01';\n\nCREATE OR REPLACE TABLE failure_results AS\nSELECT *,\n  prediction_obj:class::STRING AS predicted_status\nFROM failure_predictions;\n\nSELECT predicted_status, COUNT(*) AS count\nFROM failure_results\nGROUP BY predicted_status\nORDER BY count DESC;"
+      },
+      {
+        "title": "Model Registry and maintenance schedule",
+        "desc": "Registers the model in Snowflake Model Registry and creates proactive maintenance schedule based on predictions.",
+        "code": "-- Register model in Model Registry\nCREATE OR REPLACE TABLE model_metrics AS\nSELECT \n  'failure_prediction_v1' AS model_name,\n  CURRENT_TIMESTAMP() AS registered_at,\n  COUNT(*) AS total_predictions,\n  SUM(CASE WHEN actual_status = predicted_status THEN 1 ELSE 0 END) AS correct_predictions,\n  ROUND(100.0 * SUM(CASE WHEN actual_status = predicted_status THEN 1 ELSE 0 END) / COUNT(*), 2) AS accuracy_pct\nFROM failure_results;\n\nSELECT * FROM model_metrics;\n\n-- Proactive maintenance schedule\nCREATE OR REPLACE TABLE maintenance_schedule AS\nSELECT \n  equipment_id,\n  equipment_type,\n  location,\n  predicted_status AS predicted_issue,\n  COUNT(*) AS alert_count_last_period,\n  MAX(reading_ts) AS latest_alert,\n  CASE \n    WHEN COUNT(*) >= 10 THEN 'Urgent - Schedule within 24h'\n    WHEN COUNT(*) >= 5 THEN 'High - Schedule this week'\n    WHEN COUNT(*) >= 2 THEN 'Medium - Schedule this month'\n    ELSE 'Low - Monitor'\n  END AS priority,\n  CASE \n    WHEN COUNT(*) >= 10 THEN ROUND(COUNT(*) * 500, 2)\n    WHEN COUNT(*) >= 5 THEN ROUND(COUNT(*) * 200, 2)\n    ELSE ROUND(COUNT(*) * 50, 2)\n  END AS estimated_savings_if_prevented\nFROM failure_results\nWHERE predicted_status != 'Normal'\nGROUP BY equipment_id, equipment_type, location, predicted_status\nORDER BY alert_count_last_period DESC;\n\nSELECT * FROM maintenance_schedule;\n\n-- ROI Summary\nSELECT \n  SUM(estimated_savings_if_prevented) AS total_potential_savings,\n  COUNT(DISTINCT equipment_id) AS equipment_with_alerts,\n  SUM(CASE WHEN priority LIKE 'Urgent%' THEN 1 ELSE 0 END) AS urgent_items\nFROM maintenance_schedule;"
+      }
+    ],
+    "guia": {
+      "resumen": "This use case builds a predictive maintenance system for hotel facilities using ML.CLASSIFICATION to predict failure types and Snowflake Model Registry for deployment management.",
+      "funcionalidades": ["ML.CLASSIFICATION", "Model Registry", "IoT", "Predictive Maintenance"],
+      "datos": [
+        "Sensor readings: 6 months of hourly data for 8 systems",
+        "Equipment types: HVAC, elevators, plumbing, room equipment",
+        "Signals: temperature, vibration, energy consumption, efficiency"
+      ],
+      "estratificacion": [
+        "Urgent (10+ alerts): Immediate action within 24h, highest savings potential",
+        "High (5-9 alerts): Schedule this week",
+        "Medium (2-4 alerts): Schedule this month",
+        "Low (1 alert): Continuous monitoring"
+      ],
+      "como_usar": [
+        "Exécutez les prompts séquentiellement",
+        "~35,000 sensor readings are generated for 8 systems",
+        "The model classifies failure type from sensor signals",
+        "The schedule prioritizes maintenance and calculates ROI"
+      ]
+    }
+  },
+  "UC06": {
+    "title": "Intelligent Channel Distribution with Cortex AI",
+    "badge": "Distribution",
+    "badgeClass": "distribucion",
+    "time": "20 min",
+    "pain": "Hotels pay 15-25% commission to OTAs without knowing which channel truly generates the most profitable guests. Lack of channel attribution leads to poor distribution investment decisions.",
+    "desc": "These Cortex Code Prompts build a channel analysis system: profitability by channel, booking pattern analysis, and LLM-powered recommendations to optimize distribution mix.",
+    "features": [
+      "Profitability analysis by channel and segment",
+      "CORTEX.COMPLETE for strategic recommendations",
+      "Booking attribution and pattern analysis",
+      "Mix optimization dashboard"
+    ],
+    "prompts": [
+      {
+        "title": "Create database and generate booking data",
+        "desc": "Sets up the environment and creates 5,000 bookings across 6 distribution channels with realistic revenue and cost data.",
+        "code": "CREATE OR REPLACE DATABASE HOTEL_CHANNEL_ANALYTICS;\nCREATE SCHEMA HOTEL_CHANNEL_ANALYTICS.DISTRIBUTION;\nUSE SCHEMA HOTEL_CHANNEL_ANALYTICS.DISTRIBUTION;\n\n-- Generate bookings by channel\nCREATE OR REPLACE TABLE channel_bookings AS\nSELECT \n  SEQ4() + 1 AS booking_id,\n  DATEADD('day', -UNIFORM(0, 365, RANDOM()), CURRENT_DATE()) AS booking_date,\n  DATEADD('day', UNIFORM(1, 90, RANDOM()), booking_date) AS checkin_date,\n  channel_data.*\nFROM TABLE(GENERATOR(ROWCOUNT => 5000)),\nLATERAL (\n  SELECT \n    CASE UNIFORM(1, 100, RANDOM())\n      WHEN BETWEEN 1 AND 30 THEN 'Booking.com'\n      WHEN BETWEEN 31 AND 55 THEN 'Expedia'\n      WHEN BETWEEN 56 AND 70 THEN 'Direct Website'\n      WHEN BETWEEN 71 AND 82 THEN 'Phone/Email'\n      WHEN BETWEEN 83 AND 92 THEN 'Corporate'\n      ELSE 'Travel Agent'\n    END AS booking_channel,\n    UNIFORM(1, 5, RANDOM()) AS nights,\n    ROUND(UNIFORM(90::FLOAT, 400::FLOAT, RANDOM()), 2) AS daily_rate,\n    ROUND(UNIFORM(0::FLOAT, 150::FLOAT, RANDOM()), 2) AS ancillary_revenue,\n    CASE booking_channel\n      WHEN 'Booking.com' THEN 0.18\n      WHEN 'Expedia' THEN 0.20\n      WHEN 'Direct Website' THEN 0.03\n      WHEN 'Phone/Email' THEN 0.02\n      WHEN 'Corporate' THEN 0.10\n      ELSE 0.12\n    END AS commission_rate,\n    CASE UNIFORM(1, 3, RANDOM())\n      WHEN 1 THEN 'Business'\n      WHEN 2 THEN 'Leisure'\n      ELSE 'Groups'\n    END AS guest_segment\n) AS channel_data;\n\n-- Fix BETWEEN syntax (generate properly)\nCREATE OR REPLACE TABLE channel_bookings AS\nSELECT \n  ROW_NUMBER() OVER (ORDER BY RANDOM()) AS booking_id,\n  DATEADD('day', -UNIFORM(0, 365, RANDOM()), CURRENT_DATE()) AS booking_date,\n  b.*\nFROM (\n  SELECT\n    CASE \n      WHEN UNIFORM(1, 100, RANDOM()) <= 30 THEN 'Booking.com'\n      WHEN UNIFORM(1, 100, RANDOM()) <= 55 THEN 'Expedia'\n      WHEN UNIFORM(1, 100, RANDOM()) <= 70 THEN 'Direct Website'\n      WHEN UNIFORM(1, 100, RANDOM()) <= 82 THEN 'Phone/Email'\n      WHEN UNIFORM(1, 100, RANDOM()) <= 92 THEN 'Corporate'\n      ELSE 'Travel Agent'\n    END AS booking_channel,\n    UNIFORM(1, 5, RANDOM()) AS nights,\n    ROUND(UNIFORM(90::FLOAT, 400::FLOAT, RANDOM()), 2) AS daily_rate,\n    ROUND(UNIFORM(0::FLOAT, 150::FLOAT, RANDOM()), 2) AS ancillary_revenue,\n    CASE \n      WHEN UNIFORM(1, 100, RANDOM()) <= 30 THEN 0.18\n      WHEN UNIFORM(1, 100, RANDOM()) <= 55 THEN 0.20\n      WHEN UNIFORM(1, 100, RANDOM()) <= 70 THEN 0.03\n      WHEN UNIFORM(1, 100, RANDOM()) <= 82 THEN 0.02\n      WHEN UNIFORM(1, 100, RANDOM()) <= 92 THEN 0.10\n      ELSE 0.12\n    END AS commission_rate,\n    CASE UNIFORM(1, 3, RANDOM())\n      WHEN 1 THEN 'Business'\n      WHEN 2 THEN 'Leisure'\n      ELSE 'Groups'\n    END AS guest_segment\n  FROM TABLE(GENERATOR(ROWCOUNT => 5000))\n) b;\n\nSELECT booking_channel, COUNT(*) AS bookings, ROUND(AVG(daily_rate), 2) AS avg_rate\nFROM channel_bookings GROUP BY booking_channel ORDER BY bookings DESC;"
+      },
+      {
+        "title": "Profitability analysis by channel",
+        "desc": "Calculates net revenue, ROI, and profitability metrics per distribution channel after commissions.",
+        "code": "-- Channel profitability analysis\nCREATE OR REPLACE TABLE channel_profitability AS\nSELECT \n  booking_channel,\n  guest_segment,\n  COUNT(*) AS total_bookings,\n  ROUND(SUM(daily_rate * nights), 2) AS gross_room_revenue,\n  ROUND(SUM(ancillary_revenue), 2) AS total_ancillary,\n  ROUND(SUM(daily_rate * nights * commission_rate), 2) AS total_commissions,\n  ROUND(SUM(daily_rate * nights + ancillary_revenue - daily_rate * nights * commission_rate), 2) AS net_revenue,\n  ROUND(AVG(daily_rate), 2) AS avg_daily_rate,\n  ROUND(AVG(nights), 1) AS avg_length_of_stay,\n  ROUND(AVG(commission_rate) * 100, 1) AS avg_commission_pct\nFROM channel_bookings\nGROUP BY booking_channel, guest_segment;\n\n-- Summary by channel\nCREATE OR REPLACE VIEW channel_summary AS\nSELECT \n  booking_channel,\n  SUM(total_bookings) AS total_bookings,\n  ROUND(SUM(gross_room_revenue), 2) AS gross_revenue,\n  ROUND(SUM(total_commissions), 2) AS commissions_paid,\n  ROUND(SUM(net_revenue), 2) AS net_revenue,\n  ROUND(SUM(net_revenue) / NULLIF(SUM(gross_room_revenue + total_ancillary), 0) * 100, 1) AS margin_pct,\n  ROUND(SUM(net_revenue) / SUM(total_bookings), 2) AS revenue_per_booking\nFROM channel_profitability\nGROUP BY booking_channel\nORDER BY net_revenue DESC;\n\nSELECT * FROM channel_summary;"
+      },
+      {
+        "title": "AI recommendations for distribution mix",
+        "desc": "Uses CORTEX.COMPLETE to analyze channel performance and generate strategic recommendations for optimizing distribution.",
+        "code": "-- Prepare context for LLM\nCREATE OR REPLACE VIEW channel_context AS\nSELECT \n  OBJECT_AGG(booking_channel, \n    OBJECT_CONSTRUCT(\n      'bookings', total_bookings,\n      'net_revenue', net_revenue,\n      'margin_pct', margin_pct,\n      'revenue_per_booking', revenue_per_booking\n    )\n  ) AS channel_metrics\nFROM channel_summary;\n\n-- Generate strategic recommendations\nSELECT SNOWFLAKE.CORTEX.COMPLETE('mistral-large2',\n  'You are a hotel distribution strategy expert. Analyze this channel performance data and provide:\\n' ||\n  '1. Top 3 strategic recommendations to optimize the channel mix\\n' ||\n  '2. Which channel deserves more investment and why\\n' ||\n  '3. Specific action to reduce OTA dependency\\n' ||\n  '4. Revenue opportunity estimate from optimization\\n\\n' ||\n  'Channel data: ' || (SELECT channel_metrics::STRING FROM channel_context) ||\n  '\\n\\nProvide specific, actionable recommendations with numbers.'\n) AS distribution_strategy;\n\n-- Channel comparison matrix\nSELECT \n  booking_channel,\n  total_bookings,\n  net_revenue,\n  margin_pct,\n  revenue_per_booking,\n  RANK() OVER (ORDER BY margin_pct DESC) AS margin_rank,\n  RANK() OVER (ORDER BY revenue_per_booking DESC) AS efficiency_rank,\n  RANK() OVER (ORDER BY total_bookings DESC) AS volume_rank\nFROM channel_summary\nORDER BY net_revenue DESC;"
+      }
+    ],
+    "guia": {
+      "resumen": "This use case builds a hotel distribution channel analytics system with profitability analysis and AI-powered strategic recommendations to optimize the booking mix.",
+      "funcionalidades": ["CORTEX.COMPLETE", "Channel Analytics", "Revenue Optimization"],
+      "datos": [
+        "Bookings: 5,000 bookings across 6 distribution channels",
+        "Channels: Booking.com, Expedia, Direct Website, Phone, Corporate, Travel Agent",
+        "Metrics: ADR, length of stay, ancillary revenue, commissions"
+      ],
+      "estratificacion": [
+        "Direct (2-3% cost): Highest margin, invest in website and loyalty",
+        "Corporate (10% cost): Stable revenue, negotiate volume agreements",
+        "Travel Agent (12% cost): Specialized segments, selective strategy",
+        "OTA (18-20% cost): High volume but low margin, reduce dependency"
+      ],
+      "como_usar": [
+        "Exécutez les prompts séquentiellement",
+        "5,000 bookings with realistic distribution are generated",
+        "Profitability is calculated per channel and segment",
+        "The LLM provides strategic recommendations based on actual data"
+      ]
+    }
+  },
+  "UC07": {
+    "title": "Anomaly Detection for Hotel Security with Cortex ML",
+    "badge": "Sécurité",
+    "badgeClass": "seguridad",
+    "time": "20 min",
+    "pain": "Hotel fraud (credit card chargebacks, no-shows, fake bookings) costs the industry $6B/year. Manual detection catches less than 30% of cases and generates false alarms that affect legitimate guests.",
+    "desc": "These Cortex Code Prompts build a transaction anomaly detection system using ML.ANOMALY_DETECTION to identify suspicious patterns in bookings and payments.",
+    "features": [
+      "ML.ANOMALY_DETECTION for suspicious transactions",
+      "Booking and payment pattern analysis",
+      "Automatic anomaly scoring and categorization",
+      "Security team alert dashboard"
+    ],
+    "prompts": [
+      {
+        "title": "Create database and generate transaction data",
+        "desc": "Sets up the environment and creates 8,000 hotel transactions including bookings, payments, and cancellations with injected anomalous patterns.",
+        "code": "CREATE OR REPLACE DATABASE HOTEL_FRAUD_DETECTION;\nCREATE SCHEMA HOTEL_FRAUD_DETECTION.SECURITY;\nUSE SCHEMA HOTEL_FRAUD_DETECTION.SECURITY;\n\n-- Generate hotel transactions\nCREATE OR REPLACE TABLE hotel_transactions AS\nSELECT \n  ROW_NUMBER() OVER (ORDER BY RANDOM()) AS transaction_id,\n  DATEADD('minute', -UNIFORM(0, 525600, RANDOM()), CURRENT_TIMESTAMP()) AS transaction_ts,\n  CASE UNIFORM(1, 3, RANDOM())\n    WHEN 1 THEN 'Booking'\n    WHEN 2 THEN 'Payment'\n    ELSE 'Cancellation'\n  END AS transaction_type,\n  ROUND(UNIFORM(50::FLOAT, 800::FLOAT, RANDOM()) +\n    -- Inject anomalies: unusually high amounts\n    CASE WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.96 THEN UNIFORM(2000::FLOAT, 8000::FLOAT, RANDOM()) ELSE 0 END\n  , 2) AS amount,\n  CASE UNIFORM(1, 4, RANDOM())\n    WHEN 1 THEN 'Credit Card'\n    WHEN 2 THEN 'Debit Card'\n    WHEN 3 THEN 'Bank Transfer'\n    ELSE 'Digital Wallet'\n  END AS payment_method,\n  'GUEST-' || LPAD(UNIFORM(1, 2000, RANDOM())::STRING, 4, '0') AS guest_id,\n  CASE \n    WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.94 THEN UNIFORM(3, 8, RANDOM())  -- Anomaly: many attempts\n    ELSE 1\n  END AS attempt_count,\n  CASE\n    WHEN UNIFORM(0::FLOAT, 1::FLOAT, RANDOM()) > 0.95 THEN TRUE  -- Anomaly: different country\n    ELSE FALSE\n  END AS foreign_ip,\n  UNIFORM(1, 24, RANDOM()) AS booking_hour\nFROM TABLE(GENERATOR(ROWCOUNT => 8000));\n\nSELECT transaction_type, COUNT(*) AS total,\n       ROUND(AVG(amount), 2) AS avg_amount,\n       MAX(amount) AS max_amount\nFROM hotel_transactions\nGROUP BY transaction_type;"
+      },
+      {
+        "title": "Anomaly detection model",
+        "desc": "Trains ML.ANOMALY_DETECTION to identify unusual transaction patterns based on amount, frequency, and behavioral features.",
+        "code": "-- Prepare training data (assume first 6 months are \"normal\")\nCREATE OR REPLACE VIEW anomaly_training AS\nSELECT \n  transaction_ts AS ts,\n  amount AS target_value,\n  attempt_count,\n  booking_hour,\n  CASE WHEN foreign_ip THEN 1 ELSE 0 END AS foreign_flag\nFROM hotel_transactions\nWHERE transaction_ts < DATEADD('month', -3, CURRENT_TIMESTAMP());\n\n-- Train anomaly detection model\nCREATE OR REPLACE SNOWFLAKE.ML.ANOMALY_DETECTION transaction_anomaly_model(\n  INPUT_DATA => SYSTEM$REFERENCE('VIEW', 'anomaly_training'),\n  TIMESTAMP_COLNAME => 'ts',\n  TARGET_COLNAME => 'target_value',\n  LABEL_COLNAME => ''\n);\n\n-- Detect anomalies in recent transactions\nCREATE OR REPLACE TABLE anomaly_results AS\nSELECT * FROM hotel_transactions t,\nTABLE(transaction_anomaly_model!DETECT_ANOMALIES(\n  INPUT_DATA => SYSTEM$REFERENCE('TABLE', 'hotel_transactions'),\n  TIMESTAMP_COLNAME => 'transaction_ts',\n  TARGET_COLNAME => 'amount'\n)) a\nWHERE t.transaction_id = a.transaction_id;\n\n-- Alternative: simpler detection\nCALL transaction_anomaly_model!DETECT_ANOMALIES(\n  INPUT_DATA => SYSTEM$REFERENCE('TABLE', 'hotel_transactions'),\n  TIMESTAMP_COLNAME => 'transaction_ts',\n  TARGET_COLNAME => 'amount'\n);\n\nCREATE OR REPLACE TABLE detected_anomalies AS\nSELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));\n\nSELECT IS_ANOMALY, COUNT(*) AS count\nFROM detected_anomalies GROUP BY IS_ANOMALY;"
+      },
+      {
+        "title": "Alert categorization and security dashboard",
+        "desc": "Categorizes detected anomalies by risk level and creates alert views for the security team.",
+        "code": "-- Enrich anomalies with transaction details\nCREATE OR REPLACE TABLE security_alerts AS\nSELECT \n  t.transaction_id,\n  t.transaction_ts,\n  t.transaction_type,\n  t.amount,\n  t.payment_method,\n  t.guest_id,\n  t.attempt_count,\n  t.foreign_ip,\n  t.booking_hour,\n  d.IS_ANOMALY,\n  d.PERCENTILE,\n  d.DISTANCE,\n  CASE \n    WHEN d.IS_ANOMALY AND t.amount > 3000 AND t.foreign_ip THEN 'Critical'\n    WHEN d.IS_ANOMALY AND (t.amount > 2000 OR t.attempt_count > 3) THEN 'High'\n    WHEN d.IS_ANOMALY THEN 'Medium'\n    WHEN t.attempt_count > 5 THEN 'Low'\n    ELSE 'Normal'\n  END AS risk_level\nFROM hotel_transactions t\nJOIN detected_anomalies d ON t.transaction_ts = d.TS;\n\n-- Security dashboard view\nCREATE OR REPLACE VIEW security_dashboard AS\nSELECT \n  risk_level,\n  COUNT(*) AS alert_count,\n  ROUND(AVG(amount), 2) AS avg_amount,\n  ROUND(SUM(amount), 2) AS total_exposure,\n  COUNT(DISTINCT guest_id) AS unique_guests\nFROM security_alerts\nWHERE risk_level != 'Normal'\nGROUP BY risk_level\nORDER BY \n  CASE risk_level WHEN 'Critical' THEN 1 WHEN 'High' THEN 2 WHEN 'Medium' THEN 3 ELSE 4 END;\n\nSELECT * FROM security_dashboard;\n\n-- Recent critical alerts detail\nSELECT transaction_id, transaction_ts, transaction_type, amount,\n       payment_method, guest_id, attempt_count, foreign_ip, risk_level\nFROM security_alerts\nWHERE risk_level IN ('Critical', 'High')\nORDER BY transaction_ts DESC\nLIMIT 15;"
+      }
+    ],
+    "guia": {
+      "resumen": "This use case builds a hotel fraud and anomaly detection system using ML.ANOMALY_DETECTION to identify suspicious patterns in transactions and generate security alerts.",
+      "funcionalidades": ["ML.ANOMALY_DETECTION", "Fraud Detection", "Security Analytics"],
+      "datos": [
+        "Transactions: 8,000 hotel transactions (bookings, payments, cancellations)",
+        "Injected anomalies: ~4-6% of transactions with unusual patterns",
+        "Features: amount, attempt count, foreign IP, booking hour"
+      ],
+      "estratificacion": [
+        "Critical: Anomaly + high amount + foreign IP — immediate block",
+        "High: Anomaly + high amount or many attempts — manual review",
+        "Medium: Anomaly detected — enhanced monitoring",
+        "Low: Suspicious pattern but not flagged as anomaly — log and monitor"
+      ],
+      "como_usar": [
+        "Exécutez les prompts séquentiellement",
+        "8,000 transactions with injected anomalies are generated",
+        "The model detects statistical anomalies in amounts",
+        "The security dashboard shows alerts by risk level with exposure"
+      ]
+    }
+  }
+};
+
+/* ───── RENDER ───── */
+const GRID = document.getElementById('cardsGrid');
+const COUNT = document.getElementById('resultsCount');
+
+function renderCards(filter, search) {
+  GRID.innerHTML = '';
+  let n = 0;
+  Object.entries(DATA).forEach(([id, uc]) => {
+    if (filter !== 'all' && uc.badgeClass !== filter) return;
+    if (search && !JSON.stringify(uc).toLowerCase().includes(search)) return;
+    n++;
+    GRID.innerHTML += `
+    <div class="card" data-cat="${uc.badgeClass}">
+      <div class="card-header">
+        <div class="card-badges">
+          <span class="badge-id">${id}</span>
+          <span class="badge-cat ${uc.badgeClass}">${uc.badge}</span>
+        </div>
+        <span class="card-time">&#9202; ${uc.time}</span>
+      </div>
+      <div class="card-title">${uc.title}</div>
+      <div class="pain-point">
+        <div class="pain-point-label">Problème</div>
+        <p>${uc.pain}</p>
+      </div>
+      <div class="card-desc">${uc.desc}</div>
+      <ul class="card-features">${uc.features.map(f => `<li>${f}</li>`).join('')}</ul>
+      <div class="card-actions">
+        <button class="btn-secondary" onclick="openGuia('${id}')">Voir le guide</button>
+        <button class="btn-tertiary" onclick="openPrompts('${id}')">Cortex Code Prompts</button>
+      </div>
+    </div>`;
+  });
+  COUNT.textContent = `Affichage de ${n} cas d'usage`;
+}
+
+renderCards('all', '');
+
+/* ───── FILTERS ───── */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderCards(btn.dataset.filter, document.getElementById('searchInput').value.toLowerCase());
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  const active = document.querySelector('.filter-btn.active');
+  renderCards(active ? active.dataset.filter : 'all', e.target.value.toLowerCase());
+});
+
+/* ───── MODALS ───── */
+function openGuia(ucId) {
+  const uc = DATA[ucId];
+  const g = uc.guia;
+  const box = document.getElementById('guiaModalBox');
+  let html = `<button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>`;
+  html += `<div class="modal-title">${uc.title}</div>`;
+  html += `<div class="guide-section"><div class="guide-label">Résumé</div><div class="guide-text">${g.resumen}</div></div>`;
+  html += `<div class="guide-section"><div class="guide-label">Fonctionnalités</div><div class="guide-tags">${g.funcionalidades.map(f => `<span class="guide-tag">${f}</span>`).join('')}</div></div>`;
+  html += `<div class="guide-section"><div class="guide-label">Données</div><ul class="guide-list">${g.datos.map(d => `<li>${d}</li>`).join('')}</ul></div>`;
+  html += `<div class="guide-section"><div class="guide-label">Niveaux / Segmentation</div><ul class="guide-list">${g.estratificacion.map(e => `<li>${e}</li>`).join('')}</ul></div>`;
+  html += `<div class="guide-section"><div class="guide-label">Mode d'emploi</div><ul class="guide-list">${g.como_usar.map(c => `<li>${c}</li>`).join('')}</ul></div>`;
+  box.innerHTML = html;
+  document.getElementById('guiaModal').classList.add('active');
+}
+
+function openPrompts(ucId) {
+  const uc = DATA[ucId];
+  const box = document.getElementById('promptsModalBox');
+  let html = `<button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>`;
+  html += `<div class="modal-title">${uc.title}</div>`;
+  html += `<p class="prompt-intro">${uc.desc}</p>`;
+  uc.prompts.forEach((s, i) => {
+    const escaped = s.code.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    html += `<div class="prompt-step">`;
+    html += `<div class="prompt-step-header"><span class="prompt-step-num">${i + 1}</span><span class="prompt-step-title">${s.title}</span></div>`;
+    html += `<div class="prompt-step-desc">${s.desc}</div>`;
+    html += `<div class="prompt-code" id="prompt_${ucId}_${i}"><button class="copy-btn" onclick="copyPrompt('prompt_${ucId}_${i}')">Copier</button>${escaped}</div>`;
+    html += `</div>`;
+  });
+  html += `<p class="guide-footer">Exécutez chaque prompt dans Cortex Code (Snowsight) séquentiellement</p>`;
+  box.innerHTML = html;
+  document.getElementById('promptsModal').classList.add('active');
+}
+
+function copyPrompt(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = el.textContent.replace('Copier', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copié !';
+    setTimeout(() => btn.textContent = 'Copier', 1500);
+  });
+}
+</script>
+
+<div class="modal-overlay" id="guiaModal">
+  <div class="modal-box" id="guiaModalBox"></div>
+</div>
+
+<div class="modal-overlay" id="promptsModal">
+  <div class="modal-box" id="promptsModalBox" style="max-width:780px;"></div>
+</div>
+</body>
+</html>

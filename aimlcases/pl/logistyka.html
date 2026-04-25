@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — Rozwiązania AI/ML dla logistyki i transportu</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #003545, #11567F);
+      color: #fff;
+      padding: 32px 48px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .hero-left { flex: 1; }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 6px;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .stats-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 28px;
+      text-align: center;
+      color: #1a1a1a;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    .stats-box .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #399AA6;
+      line-height: 1;
+    }
+
+    .stats-box .stat-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .stats-box .stat-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .stats-box .stat-time-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .stats-divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 10px 0;
+    }
+
+    .intro {
+      background: #fff;
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    .intro h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #11567F;
+      margin-bottom: 14px;
+    }
+
+    .intro p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .filters-bar {
+      background: #fff;
+      padding: 20px 48px 0;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filters-left {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 80px;
+      border: 1.5px solid #ccc;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+
+    .filter-btn.active {
+      background: #29B5E8;
+      border-color: #29B5E8;
+      color: #fff;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #ccc;
+      border-radius: 80px;
+      padding: 7px 14px;
+      gap: 8px;
+      min-width: 200px;
+      background: #fff;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      color: #444;
+      width: 100%;
+      background: transparent;
+    }
+    .search-box input::placeholder { color: #aaa; }
+
+    .results-count {
+      padding: 14px 48px 8px;
+      font-size: 13px;
+      color: #666;
+      background: #f5f5f5;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      padding: 16px 48px 48px;
+      background: #f5f5f5;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e2e2e2;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+
+    .card-header {
+      padding: 16px 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-badges { display: flex; gap: 6px; align-items: center; }
+
+    .badge-id {
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-cat {
+      background: #E0F4FD;
+      color: #11567F;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .badge-cat.rutas     { background: #E0F7FA; color: #00838F; }
+    .badge-cat.almacen   { background: #FFF3E0; color: #E65100; }
+    .badge-cat.flota     { background: #E8F5E9; color: #2E7D32; }
+    .badge-cat.demanda   { background: #E3F2FD; color: #1565C0; }
+    .badge-cat.seguridad { background: #FCE4EC; color: #C62828; }
+
+    .card-time {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .card-title {
+      padding: 0 18px 12px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #11567F;
+      line-height: 1.3;
+    }
+
+    .pain-point {
+      margin: 0 18px 14px;
+      background: #F0F7FA;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .pain-point-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #399AA6;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .pain-point p {
+      font-size: 13px;
+      color: #2a2a2a;
+      line-height: 1.55;
+    }
+
+    .card-desc {
+      padding: 0 18px 14px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-features {
+      padding: 0 18px 16px;
+      list-style: none;
+    }
+
+    .card-features li {
+      font-size: 13px;
+      color: #444;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .card-features li::before {
+      content: '\2713';
+      color: #29B5E8;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .card-actions {
+      padding: 14px 18px 18px;
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid #f0f0f0;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 10px;
+      background: #29B5E8;
+      color: #fff;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-secondary:hover { background: #11567F; }
+
+    .btn-tertiary {
+      flex: 1;
+      padding: 10px;
+      background: #003545;
+      color: #29B5E8;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-tertiary:hover { background: #11567F; }
+
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 92%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 32px 28px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #399AA6; }
+    .modal-box h2 { color: #11567F; font-size: 20px; margin-bottom: 6px; }
+    .modal-box h3 { font-size: 15px; color: #333; margin: 18px 0 8px; }
+    .modal-box p, .modal-box li { font-size: 13px; line-height: 1.7; color: #444; }
+    .modal-box ul { padding-left: 20px; margin: 6px 0; }
+    .modal-box .guide-badge { display: inline-block; background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 50px; margin-bottom: 10px; }
+    .modal-box .guide-footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; padding: 24px 20px; }
+      .cards-grid { grid-template-columns: 1fr; padding: 16px 16px 48px; }
+      .filters-bar { padding: 16px 16px 0; }
+      .results-count { padding: 12px 16px 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-left">
+    <div class="logos">
+      <div class="logo-snowflake">
+        <img src="../bug-white.png" alt="Snowflake" width="32" height="32" />
+        Snowflake
+      </div>
+    </div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Powrót do katalogu branż</a>
+    <p class="hero-eyebrow">Sektor Logistyka &amp; Transport &times; Snowflake</p>
+    <h1 class="hero-title">Rozwiązania AI/ML dla logistyki i transportu</h1>
+    <p class="hero-subtitle">Przewodniki i Prompty Cortex Code gotowe do wdrożenia w logistyce, dystrybucji i transporcie</p>
+    <p class="hero-tagline">Opracowane z Snowflake Cortex AI | Natychmiastowy efekt</p>
+  </div>
+
+  <div class="stats-box">
+    <div class="stat-number">20</div>
+    <div class="stat-label">Przypadków użycia</div>
+    <hr class="stats-divider"/>
+    <div class="stat-time">8-15 min</div>
+    <div class="stat-time-label">Czas konfiguracji</div>
+  </div>
+</header>
+
+<section class="intro">
+  <h2>Przyspiesz swoją analitykę dzięki wstępnie skonfigurowanym rozwiązaniom AI dla logistyki</h2>
+  <p>Każde rozwiązanie zawiera Cortex Code Prompts Snowflake z danymi syntetycznymi, przewodniki krok po kroku
+     oraz implementacje SQL-first z Cortex AI/ML. Zawiera Feature Store i Model Registry do wdrożenia
+     produkcyjnego. Optymalizuje trasy, magazyny, flotę i ostatnią milę — wszystko w Snowflake,
+     bez zewnętrznych zależności, gotowe do dostosowania do Twoich danych.</p>
+</section>
+
+<div class="filters-bar">
+  <div class="filters-left" id="filterBtns">
+    <button class="filter-btn active" data-filter="all">Wszystkie (20)</button>
+    <button class="filter-btn" data-filter="rutas">Trasy i ostatnia mila (4)</button>
+    <button class="filter-btn" data-filter="almacen">Magazyn i fulfillment (4)</button>
+    <button class="filter-btn" data-filter="flota">Flota i utrzymanie (4)</button>
+    <button class="filter-btn" data-filter="demanda">Popyt i planowanie (4)</button>
+    <button class="filter-btn" data-filter="seguridad">Bezpieczeństwo i zgodność (4)</button>
+  </div>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round">
+      <circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/>
+    </svg>
+    <input id="searchInput" type="text" placeholder="Szukaj przypadków użycia&hellip;" />
+  </div>
+</div>
+
+<div class="results-count" id="resultsCount">Wyświetlanie 20 z 20 przypadków użycia</div>
+
+<main class="cards-grid" id="cardsGrid"></main>
+<script>
+const USE_CASES = [
+  {
+    "id": "UC01",
+    "cat": "rutas",
+    "catLabel": "Trasy i ostatnia mila",
+    "time": "15 min",
+    "title": "Predykcja ETA z Model Registry",
+    "pain": "35% dostaw nie mieści się w obiecanym oknie ETA. Modele statyczne nie uwzględniają ruchu w czasie rzeczywistym, pogody ani incydentów, co generuje niezadowolenie klientów i kary umowne.",
+    "desc": "Model ML do predykcji czasu dostawy (ETA) na przesyłkę, integrujący dystans, historyczne dane o ruchu, pogodę, typ pojazdu i strefę dostawy. Model jest rejestrowany w Snowflake Model Registry do wdrożenia produkcyjnego.",
+    "features": [
+      "Predykcja ETA z ML.CLASSIFICATION + Model Registry",
+      "Wersjonowanie modeli z log_model() i deploy()",
+      "Zmienne: dystans, ruch, pogoda, pojazd, strefa, godzina",
+      "Dashboard Streamlit precyzji ETA wg trasy"
+    ]
+  },
+  {
+    "id": "UC02",
+    "cat": "rutas",
+    "catLabel": "Trasy i ostatnia mila",
+    "time": "14 min",
+    "title": "Optymalizacja tras ostatniej mili",
+    "pain": "Ostatnia mila stanowi 53% całkowitego kosztu wysyłki. Trasy planuje się prostymi heurystykami bez uwzględnienia okien dostawy, gęstości przystanków i ograniczeń pojazdu, marnując 20-30% przejechanych km.",
+    "desc": "Silnik optymalizacji tras ostatniej mili minimalizujący dystans i czas z uwzględnieniem okien dostawy, pojemności pojazdu i priorytetów obsługi. Integruje predykcję ruchu do dynamicznej korekty.",
+    "features": [
+      "Optymalizacja tras z SQL + CORTEX.COMPLETE",
+      "Zmienne: przystanki, okna, pojemność, ruch, priorytet",
+      "Symulacja scenariuszy: gęstość, flota, okna",
+      "Dashboard Streamlit planowania tras"
+    ]
+  },
+  {
+    "id": "UC03",
+    "cat": "demanda",
+    "catLabel": "Popyt i planowanie",
+    "time": "14 min",
+    "title": "Predykcja popytu na przesyłki z Model Registry",
+    "pain": "Planowanie przepustowości opiera się na średnich historycznych z błędem MAPE 30%. Szczyty popytu (Black Friday, kampanie, sezonowość) paraliżują operacje i generują masowe opóźnienia.",
+    "desc": "Model predykcji wolumenu przesyłek wg strefy, produktu i kanału z ML.FORECAST integrujący sezonowość, promocje, pogodę i wydarzenia. Model jest wersjonowany w Model Registry.",
+    "features": [
+      "Prognoza popytu z ML.FORECAST + Model Registry",
+      "Zmienne egzogenne: promocje, pogoda, święta, kampanie",
+      "Przedziały ufności 95% wg strefy i kanału",
+      "Śledzenie dokładności z MAPE wg segmentu"
+    ]
+  },
+  {
+    "id": "UC04",
+    "cat": "flota",
+    "catLabel": "Flota i utrzymanie",
+    "time": "15 min",
+    "title": "Predykcyjne utrzymanie floty",
+    "pain": "12% pojazdów flotowych ulega nieplanowanym awariom, które kosztują 3-5× więcej niż konserwacja prewencyjna. Utrzymanie wg stałych km generuje 40% niepotrzebnych interwencji.",
+    "desc": "System predykcyjnego utrzymania analizujący telemetrię pojazdów (silnik, hamulce, opony, akumulator) w celu przewidywania awarii z 2-4 tygodniowym wyprzedzeniem i planowania optymalnych interwencji.",
+    "features": [
+      "Predykcja awarii z ML.CLASSIFICATION",
+      "Zmienne: telemetria silnika, km, wiek, klimat, obciążenie",
+      "Alerty wg pojazdu z typem prawdopodobnej awarii",
+      "Dashboard Streamlit planowania konserwacji"
+    ]
+  },
+  {
+    "id": "UC05",
+    "cat": "almacen",
+    "catLabel": "Magazyn i fulfillment",
+    "time": "13 min",
+    "title": "Optymalizacja pickingu i przygotowania zamówień",
+    "pain": "Picking stanowi 55% kosztów operacyjnych magazynu. Losowe trasy pickingowe generują zbędne przemieszczenia, a operator pokonuje 12-15 km/dzień, gdy optimum to 6-8 km.",
+    "desc": "Optymalizator tras pickingowych grupujący zamówienia, obliczający optymalną sekwencję lokalizacji i przydzielający operatorów wg stref, minimalizując przemieszczenia i maksymalizując zamówienia/godzinę.",
+    "features": [
+      "Optymalizacja tras pickingowych z SQL analitycznym",
+      "Grupowanie zamówień wg strefy i priorytetu",
+      "Zmienne: lokalizacja, objętość, waga, pilność, strefa",
+      "Dashboard Streamlit produktywności magazynu"
+    ]
+  },
+  {
+    "id": "UC06",
+    "cat": "rutas",
+    "catLabel": "Trasy i ostatnia mila",
+    "time": "12 min",
+    "title": "Wykrywanie nieudanych dostaw i automatyczny rerouting",
+    "pain": "8-12% prób dostawy kończy się niepowodzeniem (nieobecność, błędny adres, brak dostępu). Każda ponowna próba kosztuje 4-8€ i opóźnia dostawę o 24-48h, obniżając satysfakcję klienta.",
+    "desc": "Model predykcyjny prawdopodobieństwa udanej dostawy na przesyłkę, identyfikujący problematyczne adresy i godziny przed wyjazdem. Sugeruje działania prewencyjne: wcześniejszy kontakt, zmianę godziny lub alternatywny punkt odbioru.",
+    "features": [
+      "Predykcja nieudanej dostawy z ML.CLASSIFICATION",
+      "Zmienne: historia adresu, godzina, typ paczki, strefa",
+      "Automatyczne działania prewencyjne wg prawdopodobieństwa",
+      "Dashboard Streamlit jakości dostaw"
+    ]
+  },
+  {
+    "id": "UC07",
+    "cat": "almacen",
+    "catLabel": "Magazyn i fulfillment",
+    "time": "14 min",
+    "title": "Predykcja wolumenu magazynowego i planowanie zatrudnienia",
+    "pain": "Magazyny planują personel z 1-2 tygodniowym wyprzedzeniem na podstawie średnich. Nieoczekiwane szczyty generują wąskie gardła i kosztowne nadgodziny, a doliny marnują przepustowość.",
+    "desc": "Model predykcji wolumenu wejścia i wyjścia wg magazynu optymalizujący planowanie personelu, sprzętu i przestrzeni z horyzontem 2-4 tygodni.",
+    "features": [
+      "Prognoza wolumenu z ML.FORECAST",
+      "Zmienne: historia, promocje, sezonowość, dzień tygodnia",
+      "Planowanie zmian i sprzętu wg przedziałów czasowych",
+      "Dashboard Streamlit planowania przepustowości"
+    ]
+  },
+  {
+    "id": "UC08",
+    "cat": "rutas",
+    "catLabel": "Trasy i ostatnia mila",
+    "time": "15 min",
+    "title": "Feature Store Przesyłka 360",
+    "pain": "Dane każdej przesyłki są rozproszone w TMS, WMS, GPS, CRM i systemach incydentów. Brak jednolitego widoku rzeczywistego statusu przesyłki — decyzje podejmowane są na podstawie niepełnych informacji.",
+    "desc": "Scentralizowany Feature Store w Snowflake konsolidujący cechy każdej przesyłki ze wszystkich systemów. Serwuje cechy w czasie rzeczywistym do predykcji ETA, alertów ryzyka i decyzji o reroutingu.",
+    "features": [
+      "Snowflake Feature Store z Entity i FeatureView",
+      "Cechy serwowane w czasie rzeczywistym do ETA i alertów",
+      "Automatyczne wersjonowanie statusu przesyłki",
+      "Pipeline ingestii z TMS, WMS, GPS, CRM"
+    ]
+  },
+  {
+    "id": "UC09",
+    "cat": "demanda",
+    "catLabel": "Popyt i planowanie",
+    "time": "12 min",
+    "title": "Optymalizacja załadunku i konsolidacja przesyłek",
+    "pain": "Ciężarówki jeżdżą z 25-35% niewykorzystanej pojemności. Brak inteligentnej konsolidacji między zamówieniami, destynacjami i oknami dostawy marnuje paliwo, emisje i koszty transportu.",
+    "desc": "Silnik konsolidacji grupujący przesyłki wg trasy, destynacji i okna dostawy, maksymalizując obłożenie pojazdu z uwzględnieniem ograniczeń wagi, objętości i kompatybilności towarów.",
+    "features": [
+      "Konsolidacja z SQL analitycznym + CORTEX.COMPLETE",
+      "Zmienne: waga, objętość, destynacja, okno, kompatybilność",
+      "Symulacja obłożenia wg scenariusza grupowania",
+      "Dashboard Streamlit efektywności załadunku"
+    ]
+  },
+  {
+    "id": "UC10",
+    "cat": "flota",
+    "catLabel": "Flota i utrzymanie",
+    "time": "12 min",
+    "title": "Monitoring zużycia paliwa i emisji",
+    "pain": "Paliwo stanowi 30-40% kosztów transportu. Kierowcy z nieefektywnymi nawykami zużywają 15-25% więcej, a firmy nie mają granularnej widoczności emisji wg trasy i pojazdu.",
+    "desc": "System monitoringu zużycia i emisji CO₂ wg pojazdu, kierowcy i trasy, identyfikujący nieefektywności, obliczający ślad węglowy i generujący rekomendacje poprawy dla zgodności ESG.",
+    "features": [
+      "Analiza zużycia z SQL + ML.CLASSIFICATION",
+      "Zmienne: prędkość, przyspieszenie, obciążenie, trasa, pogoda",
+      "Obliczanie emisji CO₂ na przesyłkę i klienta",
+      "Dashboard Streamlit zrównoważonego rozwoju i ESG"
+    ]
+  },
+  {
+    "id": "UC11",
+    "cat": "almacen",
+    "catLabel": "Magazyn i fulfillment",
+    "time": "13 min",
+    "title": "Dynamiczny slotting i optymalizacja lokalizacji",
+    "pain": "70% magazynów stosuje statyczne przypisanie lokalizacji. Produkty o wysokiej rotacji lądują daleko od strefy ekspedycji, zwiększając czas pickingu o 30-40%.",
+    "desc": "Silnik dynamicznego slottingu przypisujący lokalizacje produktów w zależności od rotacji, sezonowości, powinowactwa co-pickingowego i ergonomii, minimalizując przemieszczenia i poprawiając produktywność.",
+    "features": [
+      "Optymalizacja slottingu z SQL i ML.CLASSIFICATION",
+      "Zmienne: rotacja, objętość, waga, co-picking, ergonomia",
+      "Okresowa realokacja z minimalnym wpływem operacyjnym",
+      "Dashboard Streamlit layoutu magazynu"
+    ]
+  },
+  {
+    "id": "UC12",
+    "cat": "flota",
+    "catLabel": "Flota i utrzymanie",
+    "time": "11 min",
+    "title": "Scoring kierowców i bezpieczeństwo drogowe",
+    "pain": "Wypadki flotowe kosztują 3-5% kosztów transportu (naprawy, ubezpieczenie, absencja kierowców). Brak widoczności nawyków jazdy poszczególnych kierowców aż do wystąpienia incydentu.",
+    "desc": "System scoringowy oceniający każdego kierowcę w czasie rzeczywistym, analizujący prędkość, gwałtowne hamowanie, przyspieszanie, odpoczynki i przestrzeganie grafiku. Generuje ranking i spersonalizowane plany poprawy.",
+    "features": [
+      "Scoring jazdy z ML.CLASSIFICATION",
+      "Zmienne: prędkość, hamowania, przyspieszenia, odpoczynki, godziny",
+      "Ranking kierowców z planem poprawy",
+      "Dashboard Streamlit bezpieczeństwa floty"
+    ]
+  },
+  {
+    "id": "UC13",
+    "cat": "demanda",
+    "catLabel": "Popyt i planowanie",
+    "time": "13 min",
+    "title": "Analiza kosztów logistycznych i rentowności klientów",
+    "pain": "20% klientów transportowych generuje ukryte straty przez rozproszone dostawy, częste zwroty lub restrykcyjne okna dostawy. Rzeczywiste koszty na przesyłkę nie są dokładnie kalkulowane.",
+    "desc": "Model kosztorysowania wg aktywności (ABC) obliczający rzeczywisty koszt obsługi każdego klienta, integrujący transport, magazyn, zwroty, incydenty i wymagany poziom usług.",
+    "features": [
+      "Kosztorysowanie ABC z SQL analitycznym + ML",
+      "Zmienne: km, przystanki, zwroty, incydenty, SLA",
+      "Rzeczywista rentowność wg klienta i przesyłki",
+      "Dashboard Streamlit analizy rentowności"
+    ]
+  },
+  {
+    "id": "UC14",
+    "cat": "almacen",
+    "catLabel": "Magazyn i fulfillment",
+    "time": "15 min",
+    "title": "Feature Store Magazyn do operacji",
+    "pain": "KPI magazynowe obliczane są batchowo z 24-48h opóźnieniem. Brak widoku w czasie rzeczywistym produktywności wg strefy, operatora i zmiany do podejmowania natychmiastowych decyzji operacyjnych.",
+    "desc": "Feature Store w Snowflake konsolidujący metryki operacyjne każdego magazynu: produktywność, jakość, pojemność, personel i wyposażenie. Serwuje cechy do decyzji planistycznych w czasie rzeczywistym.",
+    "features": [
+      "Snowflake Feature Store z Entity wg magazynu",
+      "FeatureViews: productivity, quality, capacity, staffing",
+      "Cechy serwowane do planowania w czasie rzeczywistym",
+      "Automatyczny pipeline aktualizacji co godzinę"
+    ]
+  },
+  {
+    "id": "UC15",
+    "cat": "demanda",
+    "catLabel": "Popyt i planowanie",
+    "time": "12 min",
+    "title": "Chatbot logistyczny z RAG do incydentów",
+    "pain": "Zespoły obsługi logistycznej obsługują 500-1000 zapytań dziennie o status przesyłek, incydenty i procedury. 70% jest powtarzalnych, ale wymaga ręcznego przeszukiwania wielu systemów.",
+    "desc": "Asystent konwersacyjny RAG z Cortex Search indeksujący procedury operacyjne, FAQ, status przesyłek i protokoły incydentów. Rozwiązuje 75% zapytań bez interwencji człowieka.",
+    "features": [
+      "RAG z Cortex Search + CORTEX.COMPLETE",
+      "Baza wiedzy: procedury, FAQ, protokoły",
+      "Integracja ze statusem przesyłek w czasie rzeczywistym",
+      "Dashboard Streamlit chatu z eskalacją"
+    ]
+  },
+  {
+    "id": "UC16",
+    "cat": "flota",
+    "catLabel": "Flota i utrzymanie",
+    "time": "12 min",
+    "title": "Optymalizacja przepustowości i wymiarowanie floty",
+    "pain": "Floty są przewymiarowane o 15-20% na pokrycie szczytów, ale 30% pojazdów jest nieaktywnych w dolinach. Brak analizy wykorzystania uniemożliwia optymalne decyzje zakupowe/leasingowe.",
+    "desc": "Model wymiarowania floty analizujący rzeczywiste wykorzystanie wg typu pojazdu, trasy i sezonowości, rekomendujący optymalny miks floty własnej, wynajmowanej i podwykonawczej.",
+    "features": [
+      "Analiza wykorzystania z ML.FORECAST",
+      "Zmienne: trasy, wolumen, sezonowość, koszt pojazdu",
+      "Symulacja floty własnej vs wynajem vs podwykonawstwo",
+      "Dashboard Streamlit zarządzania flotą"
+    ]
+  },
+  {
+    "id": "UC17",
+    "cat": "seguridad",
+    "catLabel": "Bezpieczeństwo i zgodność",
+    "time": "12 min",
+    "title": "Wykrywanie anomalii w łańcuchu nadzoru",
+    "pain": "2-4% przesyłek doświadcza incydentów nadzoru: nieautoryzowane otwarcia, odchylenia od trasy, nieplanowane postoje. Wykrywanie jest reaktywne, a straty z kradzieży/uszkodzeń sięgają 1% przychodów.",
+    "desc": "System wykrywania anomalii w łańcuchu nadzoru monitorujący GPS, czujniki otwarcia, temperaturę i odchylenia od trasy, generujący alerty w czasie rzeczywistym.",
+    "features": [
+      "Wykrywanie anomalii z ML i analizą statystyczną",
+      "Zmienne: GPS, trasa planowana, otwarcia, temperatura",
+      "Alerty w czasie rzeczywistym wg typu incydentu",
+      "Dashboard Streamlit bezpieczeństwa przesyłek"
+    ]
+  },
+  {
+    "id": "UC18",
+    "cat": "seguridad",
+    "catLabel": "Bezpieczeństwo i zgodność",
+    "time": "13 min",
+    "title": "Analiza sentymentu reklamacji z NLP",
+    "pain": "Reklamacje logistyczne obsługiwane są w kolejności zgłoszeń bez priorytetyzacji wg pilności, wpływu czy ryzyka utraty klienta. 30% klientów, którzy reklamują, nie korzysta ponownie z usług.",
+    "desc": "Pipeline NLP klasyfikujący reklamacje wg pilności, typu problemu, sentymentu i ryzyka churnu. Priorytetyzuje kolejkę obsługi i generuje automatyczne odpowiedzi dla standardowych przypadków.",
+    "features": [
+      "NLP z CORTEX.SENTIMENT + CORTEX.COMPLETE",
+      "Klasyfikacja wg pilności, typu i ryzyka churnu",
+      "Automatyczne odpowiedzi dla standardowych przypadków",
+      "Dashboard Streamlit zarządzania reklamacjami"
+    ]
+  },
+  {
+    "id": "UC19",
+    "cat": "seguridad",
+    "catLabel": "Bezpieczeństwo i zgodność",
+    "time": "11 min",
+    "title": "Wykrywanie oszustw w dostawach i dokumentacji",
+    "pain": "Oszustwa w dostawach (fałszywe podpisy, manipulowane potwierdzenia dostawy, fikcyjne dostawy) stanowią 0,5-1,5% przesyłek. Ręczna weryfikacja POD jest niemożliwa w skali.",
+    "desc": "System ML wykrywający oszustwa w potwierdzeniach dostawy, analizujący wzorce podpisów, zdjęcia, GPS, timing i zachowanie dostawcy w celu identyfikacji podejrzanych POD.",
+    "features": [
+      "Wykrywanie oszustw z ML.CLASSIFICATION",
+      "Zmienne: wzorzec podpisu, GPS vs adres, timing, zdjęcie",
+      "Scoring ryzyka na dostawę z dochodzeniem",
+      "Dashboard Streamlit integralności dostaw"
+    ]
+  },
+  {
+    "id": "UC20",
+    "cat": "seguridad",
+    "catLabel": "Bezpieczeństwo i zgodność",
+    "time": "10 min",
+    "title": "Zgodność regulacyjna i zarządzanie czasem jazdy",
+    "pain": "Kary za nieprzestrzeganie czasu jazdy i odpoczynku (regulacja UE 561/2006) kosztują 500-5000€ za naruszenie. Ręczne zarządzanie tachografami nie zapobiega naruszeniom w czasie rzeczywistym.",
+    "desc": "System monitorowania przestrzegania czasu jazdy i odpoczynku alertujący przed naruszeniem i sugerujący optymalne postoje dla zgodności z przepisami.",
+    "features": [
+      "Monitoring z ML i regułami biznesowymi",
+      "Zmienne: godziny jazdy, odpoczynki, tachograf cyfrowy",
+      "Alerty prewencyjne 30 min przed naruszeniem",
+      "Dashboard Streamlit zgodności regulacyjnej"
+    ]
+  }
+];
+const TOTAL = 20;
+
+function renderCards(list) {
+  const grid = document.getElementById('cardsGrid');
+  const count = document.getElementById('resultsCount');
+  grid.innerHTML = '';
+  count.textContent = `Wyświetlanie ${list.length} z ${TOTAL} przypadków użycia`;
+  list.forEach(uc => {
+    const catClass = uc.cat;
+    grid.innerHTML += `
+      <article class="card">
+        <div class="card-header">
+          <div class="card-badges">
+            <span class="badge-id">${uc.id}</span>
+            <span class="badge-cat ${catClass}">${uc.catLabel}</span>
+          </div>
+          <span class="card-time">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2"><circle cx="10" cy="10" r="8"/><polyline points="10,5 10,10 13,13"/></svg>
+            ${uc.time}
+          </span>
+        </div>
+        <h3 class="card-title">${uc.title}</h3>
+        <div class="pain-point">
+          <div class="pain-point-label">Problem</div>
+          <p>${uc.pain}</p>
+        </div>
+        <p class="card-desc">${uc.desc}</p>
+        <ul class="card-features">
+          ${uc.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <div class="card-actions">
+          <a href="#" class="btn-secondary" onclick="verGuia('${uc.id}');return false;">Zobacz przewodnik</a>
+          <a href="#" class="btn-tertiary" onclick="verPrompts('${uc.id}');return false;">Cortex Code Prompts</a>
+        </div>
+      </article>`;
+  });
+}
+let activeFilter = 'all';
+let searchTerm = '';
+function applyFilters() {
+  let result = USE_CASES;
+  if (activeFilter !== 'all') result = result.filter(u => u.cat === activeFilter);
+  if (searchTerm) result = result.filter(u => u.title.toLowerCase().includes(searchTerm) || u.desc.toLowerCase().includes(searchTerm) || u.pain.toLowerCase().includes(searchTerm));
+  renderCards(result);
+}
+document.getElementById('filterBtns').addEventListener('click', e => {
+  if (!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.filter;
+  applyFilters();
+});
+document.getElementById('searchInput').addEventListener('input', e => { searchTerm = e.target.value.toLowerCase().trim(); applyFilters(); });
+renderCards(USE_CASES);
+
+const GUIAS = {
+  "UC01": {
+    "title": "Predykcja ETA z Model Registry",
+    "contexto": "Te Cortex Code Prompts budują model predykcji ETA (Estimated Time of Arrival) na przesyłkę, rejestrowany w Snowflake Model Registry do wdrożenia produkcyjnego.",
+    "foco": "Precyzja dostawy — predykcja czasu dostarczenia integrująca ruch, pogodę, typ pojazdu i strefę.",
+    "reto": "Zmniejszyć błąd ETA z 35% do 10% i poprawić komunikację z klientem dzięki wiarygodnym oknom dostawy.",
+    "objetivos": [
+      "Zbudować model predykcji ETA z ML.CLASSIFICATION",
+      "Zarejestrować i wersjonować model w Snowflake Model Registry (log_model)",
+      "Wygenerować syntetyczne dane przesyłek z rzeczywistymi czasami",
+      "Wdrożyć model do inferencji produkcyjnej",
+      "Zbudować dashboard precyzji ETA"
+    ],
+    "funcionalidades": [
+      "Model ML: Klasyfikacja przedziału ETA na przesyłkę",
+      "Model Registry: Wersjonowanie z log_model() i metrykami",
+      "Dane syntetyczne: 20 000 przesyłek z rzeczywistymi czasami dostawy",
+      "Dashboard Streamlit: Panel precyzji wg trasy i strefy"
+    ],
+    "datos": [
+      "Przesyłki: Pochodzenie, cel, dystans, typ pojazdu, waga, objętość",
+      "Ruch: Historyczne zatory wg godziny i odcinka",
+      "Pogoda: Deszcz, wiatr, temperatura wg strefy i godziny",
+      "Wynik: ETA rzeczywisty vs przewidziany, odchylenie"
+    ],
+    "estratificacion": [
+      "Precyzyjny ETA (błąd <10 min): Komunikować stałe okno klientowi",
+      "Przybliżony ETA (10-30 min): Komunikować przedział z marginesem",
+      "Niepewny ETA (>30 min): Proaktywnie powiadomić o możliwym opóźnieniu"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Model jest trenowany i rejestrowany w Model Registry",
+      "Generowana jest inferencja dla aktywnych przesyłek",
+      "Dashboard pozwala monitorować precyzję w czasie rzeczywistym"
+    ]
+  },
+  "UC02": {
+    "title": "Optymalizacja tras ostatniej mili",
+    "contexto": "Te Cortex Code Prompts budują silnik optymalizacji tras ostatniej mili minimalizujący dystans i czas z uwzględnieniem okien dostawy.",
+    "foco": "Ostatnia mila — planowanie tras maksymalizujące dostawy na pojazd z minimalnym kosztem i emisjami.",
+    "reto": "Zmniejszyć przejechane km o 20% i zwiększyć dostawy na pojazd/dzień z 35 do 50.",
+    "objetivos": [
+      "Wygenerować dane punktów dostawy z oknami",
+      "Obliczyć dystanse i czasy między przystankami",
+      "Zoptymalizować sekwencję dostaw na pojazd",
+      "Zasymulować scenariusze floty i okien",
+      "Zbudować dashboard planowania tras"
+    ],
+    "funcionalidades": [
+      "Optymalizacja: Heurystyki TSP/VRP z SQL + Cortex AI",
+      "Dane syntetyczne: 500 punktów dostawy dziennie w 5 strefach",
+      "Zmienne: dystans, czas, okno, pojemność, priorytet",
+      "Dashboard Streamlit: Mapa tras z KPI"
+    ],
+    "datos": [
+      "Przystanki: Adres, współrzędne, okno dostawy, priorytet",
+      "Pojazdy: Typ, pojemność waga/objętość, koszt/km, emisja CO₂",
+      "Ruch: Macierz czasów wg godziny dnia między strefami"
+    ],
+    "estratificacion": [
+      "Optymalna trasa (obłożenie >85%): Realizować bez zmian",
+      "Trasa do poprawy (70-85%): Skonsolidować z pobliskimi trasami",
+      "Trasa nieefektywna (<70%): Przesunąć na następny dzień lub punkt odbioru"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 500 punktów dostawy dziennie",
+      "Optymalizator oblicza trasy wg pojazdu",
+      "Dashboard pokazuje trasy na mapie z metrykami"
+    ]
+  },
+  "UC03": {
+    "title": "Predykcja popytu na przesyłki z Model Registry",
+    "contexto": "Te Cortex Code Prompts budują modele prognozy wolumenu przesyłek wg strefy i kanału z ML.FORECAST i rejestracją w Model Registry.",
+    "foco": "Planowanie przepustowości — predykcja wolumenu do wymiarowania floty, magazynu i personelu.",
+    "reto": "Zmniejszyć błąd prognozy (MAPE) z 30% do 12% i nieplanowane nadgodziny o 60%.",
+    "objetivos": [
+      "Trenować modele prognozy wg strefy z ML.FORECAST",
+      "Zarejestrować model w Model Registry z log_model()",
+      "Zintegrować zmienne zewnętrzne: promocje, pogoda, wydarzenia",
+      "Ocenić dokładność wg strefy i horyzontu czasowego",
+      "Zbudować dashboard prognozy z planowaniem przepustowości"
+    ],
+    "funcionalidades": [
+      "Model ML: ML.FORECAST z szeregami czasowymi + Model Registry",
+      "Dane syntetyczne: 10 stref × 52 tygodnie z sezonowością",
+      "Prognoza: 4, 8 i 12 tygodni z przedziałami ufności",
+      "Dashboard Streamlit: Prognoza wg strefy z alertami"
+    ],
+    "datos": [
+      "Wolumen: Dzienne przesyłki wg strefy, kanału i typu usługi",
+      "Zmienne zewnętrzne: Promocje e-commerce, pogoda, święta",
+      "Przepustowość: Dostępne pojazdy, personel, przestrzeń magazynowa"
+    ],
+    "estratificacion": [
+      "MAPE <12%: Automatyczne planowanie przepustowości",
+      "MAPE 12-20%: Planowanie z buforem 15%",
+      "MAPE >20%: Przegląd modelu, możliwe zdarzenie anomalne"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 52 tygodnie wolumenu dla 10 stref",
+      "Model jest trenowany i rejestrowany w Model Registry",
+      "Dashboard pokazuje prognozę vs rzeczywistość z alertami"
+    ]
+  },
+  "UC04": {
+    "title": "Predykcyjne utrzymanie floty",
+    "contexto": "Te Cortex Code Prompts budują system predykcyjnego utrzymania pojazdów flotowych oparty na telemetrii i wzorcach użytkowania.",
+    "foco": "Zarządzanie flotą — predykcja awarii mechanicznych do planowania optymalnej konserwacji i unikania kosztownych usterek.",
+    "reto": "Zmniejszyć nieplanowane awarie o 70% i całkowity koszt utrzymania o 25%.",
+    "objetivos": [
+      "Wygenerować dane telemetryczne pojazdów",
+      "Wyodrębnić cechy predykcyjne awarii",
+      "Wytrenować model predykcji awarii",
+      "Zaplanować optymalną konserwację",
+      "Zbudować dashboard floty"
+    ],
+    "funcionalidades": [
+      "Model ML: Predykcja awarii z ML.CLASSIFICATION",
+      "Dane syntetyczne: 200 pojazdów × 365 dni telemetrii",
+      "Zmienne: silnik, hamulce, opony, akumulator, km, obciążenie",
+      "Dashboard Streamlit: Panel konserwacji z alertami"
+    ],
+    "datos": [
+      "Telemetria: Temperatura silnika, ciśnienie opon, hamulce, akumulator",
+      "Użytkowanie: Dzienne km, średnie obciążenie, typ trasy (miejska/międzymiastowa)",
+      "Historia: Poprzednie naprawy, koszt, typ awarii, warsztat"
+    ],
+    "estratificacion": [
+      "Awaria nieuchronna (<7 dni): Natychmiastowe skierowanie do warsztatu",
+      "Wysokie ryzyko (7-30 dni): Włączyć do następnej konserwacji",
+      "Umiarkowane ryzyko (30-90 dni): Monitorować wskaźniki",
+      "Brak ryzyka (>90 dni): Standardowa konserwacja wg km"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 365 dni telemetrii na pojazd",
+      "Model przewiduje awarie z 2-4 tygodniowym wyprzedzeniem",
+      "Dashboard pokazuje kalendarz konserwacji"
+    ]
+  },
+  "UC05": {
+    "title": "Optymalizacja pickingu i przygotowania zamówień",
+    "contexto": "Te Cortex Code Prompts budują optymalizator tras pickingowych w magazynie minimalizujący przemieszczenia i maksymalizujący produktywność.",
+    "foco": "Operacje magazynowe — optymalizacja pickingu w celu redukcji kosztów operacyjnych i przyspieszenia przygotowania zamówień.",
+    "reto": "Zmniejszyć dystans pickingowy o 40% i zwiększyć zamówienia/godzinę/operatora z 15 do 25.",
+    "objetivos": [
+      "Wygenerować layout magazynu z lokalizacjami",
+      "Utworzyć zamówienia z wieloma liniami",
+      "Zoptymalizować grupowanie zamówień i sekwencję",
+      "Ocenić produktywność wg operatora i strefy",
+      "Zbudować dashboard magazynu"
+    ],
+    "funcionalidades": [
+      "Optymalizacja: Sekwencjonowanie pickingu z SQL analitycznym",
+      "Dane syntetyczne: Magazyn z 5000 lokalizacjami, 500 zamówień/dzień",
+      "Zmienne: lokalizacja, strefa, alejka, poziom, objętość, waga",
+      "Dashboard Streamlit: Panel produktywności"
+    ],
+    "datos": [
+      "Layout: Strefy, alejki, regały, poziomy, współrzędne",
+      "Zapasy: Produkt, lokalizacja, stan, rotacja",
+      "Zamówienia: Linie, produkty, pilność, cel"
+    ],
+    "estratificacion": [
+      "Zamówienie pilne: Natychmiastowy picking indywidualny",
+      "Zamówienie standardowe: Grupowanie wg strefy z batch pickingiem",
+      "Zamówienie duże (>20 linii): Przydzielić dedykowanego operatora",
+      "Zamówienie wielostrefowe: Picking równoległy wg stref"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowany jest magazyn z 5000 lokalizacjami",
+      "Optymalizator oblicza trasy pickingowe",
+      "Dashboard pokazuje produktywność wg operatora"
+    ]
+  },
+  "UC06": {
+    "title": "Wykrywanie nieudanych dostaw i automatyczny rerouting",
+    "contexto": "Te Cortex Code Prompts budują model predykcyjny nieudanej dostawy sugerujący działania prewencyjne przed wyjazdem pojazdu.",
+    "foco": "Jakość dostawy — redukcja nieudanych prób poprzez predykcję i proaktywne działania.",
+    "reto": "Zmniejszyć nieudane dostawy z 10% do 3% i kosztowne ponowne próby o 70%.",
+    "objetivos": [
+      "Wygenerować historię dostaw z wynikiem (sukces/niepowodzenie)",
+      "Wyodrębnić cechy ryzyka niepowodzenia",
+      "Wytrenować model predykcyjny nieudanej dostawy",
+      "Wygenerować automatyczne działania prewencyjne",
+      "Dashboard jakości dostaw"
+    ],
+    "funcionalidades": [
+      "Model ML: Predykcja niepowodzenia z ML.CLASSIFICATION",
+      "Dane syntetyczne: 50 000 dostaw z 10% niepowodzeń",
+      "Zmienne: historia adresu, godzina, typ paczki, strefa, kontakt",
+      "Dashboard Streamlit: Panel jakości z działaniami"
+    ],
+    "datos": [
+      "Dostawy: Adres, godzina próby, wynik, powód niepowodzenia",
+      "Adresy: Historia sukcesu/niepowodzenia, typ (mieszkalny/komercyjny)",
+      "Działania: Wcześniejszy kontakt, zmiana godziny, punkt odbioru"
+    ],
+    "estratificacion": [
+      "Wysokie ryzyko (>50% prawd. niepowodzenia): Kontakt z klientem, zaproponować alternatywę",
+      "Średnie ryzyko (20-50%): SMS z potwierdzeniem obecności",
+      "Niskie ryzyko (<20%): Standardowa dostawa",
+      "Adres zablokowany (>3 niepowodzenia): Tylko punkt odbioru"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowanych jest 50 000 dostaw ze wzorcami niepowodzeń",
+      "Model przewiduje prawdopodobieństwo na przesyłkę",
+      "Dashboard pokazuje działania prewencyjne wg trasy"
+    ]
+  },
+  "UC07": {
+    "title": "Predykcja wolumenu magazynowego i planowanie zatrudnienia",
+    "contexto": "Te Cortex Code Prompts budują model predykcji wolumenu wejścia i wyjścia wg magazynu do planowania personelu i sprzętu.",
+    "foco": "Planowanie przepustowości — predykcja wolumenu do optymalizacji zmian, sprzętu i przestrzeni magazynowej.",
+    "reto": "Zmniejszyć nieplanowane nadgodziny o 60% i poprawić wykorzystanie przepustowości z 65% do 85%.",
+    "objetivos": [
+      "Wygenerować dane wolumenu magazynowego z sezonowością",
+      "Przewidzieć wolumen z ML.FORECAST",
+      "Zoptymalizować planowanie zmian i sprzętu",
+      "Zasymulować scenariusze szczytowe",
+      "Dashboard planowania przepustowości"
+    ],
+    "funcionalidades": [
+      "Model ML: Prognoza z ML.FORECAST",
+      "Dane syntetyczne: 3 magazyny × 52 tygodnie × wejście/wyjście",
+      "Zmienne: dzień tygodnia, sezonowość, promocje, pogoda",
+      "Dashboard Streamlit: Panel planowania zmian"
+    ],
+    "datos": [
+      "Wolumen: Jednostki wejście/wyjście wg godziny i magazynu",
+      "Personel: Operatorzy wg zmiany, produktywność, dostępność",
+      "Sprzęt: Wózki, terminale, strefy załadunku"
+    ],
+    "estratificacion": [
+      "Skrajny szczyt (>130% przepustowości): Dodatkowe zmiany + pracownicy tymczasowi",
+      "Umiarkowany szczyt (110-130%): Redistrybucja personelu między strefami",
+      "Normalnie (80-110%): Standardowa operacja",
+      "Dolina (<80%): Redukcja zmian, wykorzystanie na realokacje"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 52 tygodnie wolumenu wg magazynu",
+      "Model przewiduje następne 4 tygodnie",
+      "Dashboard planuje zmiany i sprzęt"
+    ]
+  },
+  "UC08": {
+    "title": "Feature Store Przesyłka 360",
+    "contexto": "Te Cortex Code Prompts budują Feature Store w Snowflake konsolidujący dane każdej przesyłki z TMS, WMS, GPS, CRM do decyzji w czasie rzeczywistym.",
+    "foco": "Widoczność end-to-end — scentralizowany Feature Store z kompletnym statusem każdej przesyłki do decyzji operacyjnych.",
+    "reto": "Osiągnąć widoczność 360° dla 95% przesyłek w czasie rzeczywistym do proaktywnych decyzji.",
+    "objetivos": [
+      "Utworzyć encje i FeatureViews z Snowflake Feature Store",
+      "Wygenerować dane z wielu systemów (TMS, WMS, GPS, CRM)",
+      "Zaimplementować pipeline ingestii i merge",
+      "Serwować cechy w czasie rzeczywistym do ETA i alertów",
+      "Zwalidować spójność i świeżość"
+    ],
+    "funcionalidades": [
+      "Feature Store: Entity (shipment_id) + FeatureViews (route, status, customer, warehouse)",
+      "Pipeline: Ingestia z TMS, WMS, GPS tracker, CRM",
+      "Dane syntetyczne: 10 000 przesyłek z danymi multi-systemowymi",
+      "Dashboard Streamlit: Panel przesyłki 360"
+    ],
+    "datos": [
+      "Trasa: Pochodzenie, cel, przystanki, km, szacowany czas",
+      "Status: Pozycja GPS, aktualny kamień milowy, incydenty, temperatura",
+      "Klient: Preferencje, historia, SLA, reklamacje",
+      "Magazyn: Przygotowanie, ekspedycja, jakość pakowania"
+    ],
+    "estratificacion": [
+      "Przesyłka kompletna (>90% cech): Precyzyjne śledzenie, wiarygodny ETA",
+      "Przesyłka częściowa (60-90%): Śledzenie z estymacjami",
+      "Przesyłka minimalna (<60%): Alert do uzupełnienia danych",
+      "Przesyłka krytyczna (wymagające SLA): Priorytetowe monitorowanie"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Tworzone są encje i FeatureViews w Feature Store",
+      "Generowane są dane 10 000 przesyłek multi-systemowych",
+      "Dashboard pokazuje status 360 przesyłki"
+    ]
+  },
+  "UC09": {
+    "title": "Optymalizacja załadunku i konsolidacja przesyłek",
+    "contexto": "Te Cortex Code Prompts budują silnik inteligentnej konsolidacji grupujący przesyłki w celu maksymalizacji obłożenia pojazdów.",
+    "foco": "Efektywność transportu — konsolidacja przesyłek w celu redukcji pustych przejazdów, kosztów i emisji CO₂.",
+    "reto": "Zwiększyć średnie obłożenie z 65% do 85% i zmniejszyć koszty transportu o 15%.",
+    "objetivos": [
+      "Wygenerować dane przesyłek z destynacjami i ograniczeniami",
+      "Zaimplementować algorytm konsolidacji",
+      "Obliczyć oszczędności kosztów i emisji",
+      "Zasymulować scenariusze grupowania",
+      "Dashboard efektywności załadunku"
+    ],
+    "funcionalidades": [
+      "Konsolidacja: SQL analityczny + CORTEX.COMPLETE",
+      "Dane syntetyczne: 1000 przesyłek/dzień z różnymi destynacjami",
+      "Zmienne: waga, objętość, destynacja, okno, kompatybilność, pilność",
+      "Dashboard Streamlit: Panel obłożenia i oszczędności"
+    ],
+    "datos": [
+      "Przesyłki: Pochodzenie, cel, waga, objętość, okno dostawy, pilność",
+      "Pojazdy: Typ, pojemność waga/objętość, koszt stały + zmienny",
+      "Kompatybilność: Towary niebezpieczne, temperatura, kruchość"
+    ],
+    "estratificacion": [
+      "Pełna konsolidacja (>90% obłożenia): Trasa bezpośrednia",
+      "Częściowa konsolidacja (70-90%): Szukanie przesyłek uzupełniających",
+      "Niskie obłożenie (<70%): Opóźnić 24h lub przekierować do hubu",
+      "Przesyłka niekompatybilna: Dedykowany pojazd"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowanych jest 1000 dziennych przesyłek z ograniczeniami",
+      "Konsolidator grupuje wg destynacji i okna",
+      "Dashboard pokazuje oszczędności i obłożenie"
+    ]
+  },
+  "UC10": {
+    "title": "Monitoring zużycia paliwa i emisji",
+    "contexto": "Te Cortex Code Prompts budują system monitoringu zużycia i emisji CO₂ wg pojazdu, kierowcy i trasy dla zgodności ESG.",
+    "foco": "Zrównoważona logistyka — monitoring śladu węglowego i efektywności energetycznej floty.",
+    "reto": "Zmniejszyć zużycie paliwa o 12% i dysponować raportingiem ESG emisji na przesyłkę i klienta.",
+    "objetivos": [
+      "Wygenerować dane zużycia i telemetrii floty",
+      "Zidentyfikować nieefektywnych kierowców i trasy",
+      "Obliczyć emisje CO₂ na przesyłkę i klienta",
+      "Wygenerować rekomendacje poprawy",
+      "Dashboard zrównoważonego rozwoju"
+    ],
+    "funcionalidades": [
+      "Analiza: SQL + ML.CLASSIFICATION efektywności",
+      "Dane syntetyczne: 200 pojazdów × 90 dni zużycia",
+      "Zmienne: prędkość, przyspieszenie, obciążenie, trasa, pogoda, kierowca",
+      "Dashboard Streamlit: Panel zrównoważonego rozwoju ESG"
+    ],
+    "datos": [
+      "Zużycie: Litry/100km wg pojazdu i trasy",
+      "Telemetria: Średnia prędkość, gwałtowne hamowania, jałowy bieg",
+      "Emisje: CO₂ kalkulowane wg współczynnika emisji paliwa"
+    ],
+    "estratificacion": [
+      "Efektywny (<P25 zużycia): Docenić i nagrodzić kierowcę",
+      "Normalny (P25-P75): Bez specjalnych działań",
+      "Nieefektywny (P75-P90): Szkolenie z eco-drivingu",
+      "Bardzo nieefektywny (>P90): Przegląd pojazdu + pilne szkolenie"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 90 dni zużycia dla 200 pojazdów",
+      "Analiza identyfikuje nieefektywności",
+      "Dashboard pokazuje emisje i ranking"
+    ]
+  },
+  "UC11": {
+    "title": "Dynamiczny slotting i optymalizacja lokalizacji",
+    "contexto": "Te Cortex Code Prompts budują silnik dynamicznego slottingu przypisujący lokalizacje magazynowe w zależności od rzeczywistego popytu.",
+    "foco": "Layout magazynu — dynamiczne przypisywanie produktów do lokalizacji w celu minimalizacji trasy pickingowej.",
+    "reto": "Zmniejszyć średni dystans pickingowy o 30% i czas przygotowania zamówień o 25%.",
+    "objetivos": [
+      "Wygenerować layout magazynu ze strefami i lokalizacjami",
+      "Obliczyć rotację i powinowactwo co-pickingowe wg produktu",
+      "Zoptymalizować przypisanie do lokalizacji",
+      "Ocenić wpływ na produktywność",
+      "Dashboard zoptymalizowanego layoutu"
+    ],
+    "funcionalidades": [
+      "Optymalizacja: Slotting z SQL + ML.CLASSIFICATION",
+      "Dane syntetyczne: 3000 produktów w 5000 lokalizacjach",
+      "Zmienne: rotacja, objętość, waga, co-picking, ergonomia, strefa",
+      "Dashboard Streamlit: Panel layoutu z mapą cieplną"
+    ],
+    "datos": [
+      "Layout: Strefy A/B/C, alejki, regały, dystans do ekspedycji",
+      "Produkty: Dzienna rotacja, objętość, waga, kategoria",
+      "Co-picking: Pary produktów często zamawianych razem"
+    ],
+    "estratificacion": [
+      "Strefa A (wysoka rotacja): Lokalizacja blisko ekspedycji, ergonomiczny poziom",
+      "Strefa B (średnia rotacja): Lokalizacja pośrednia",
+      "Strefa C (niska rotacja): Lokalizacja odległa, wysokie/niskie poziomy",
+      "Strefa bulk: Produkty o dużej objętości z bezpośrednim dostępem"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowany jest layout z 5000 lokalizacjami",
+      "Optymalizator przypisuje produkty do optymalnych stref",
+      "Dashboard pokazuje przed/po z metrykami"
+    ]
+  },
+  "UC12": {
+    "title": "Scoring kierowców i bezpieczeństwo drogowe",
+    "contexto": "Te Cortex Code Prompts budują system scoringowy kierowców oparty na telemetrii w celu poprawy bezpieczeństwa drogowego i redukcji wypadków.",
+    "foco": "Bezpieczeństwo floty — ciągła ocena nawyków jazdy w celu prewencji wypadków i redukcji kosztów ubezpieczenia.",
+    "reto": "Zmniejszyć wypadki o 40% i koszty ubezpieczenia o 15% poprzez scoring i ukierunkowane szkolenia.",
+    "objetivos": [
+      "Wygenerować dane telemetryczne jazdy",
+      "Obliczyć wielowymiarowy scoring wg kierowcy",
+      "Zidentyfikować wzorce ryzyka",
+      "Wygenerować spersonalizowane plany poprawy",
+      "Dashboard bezpieczeństwa floty"
+    ],
+    "funcionalidades": [
+      "Scoring: Wielowymiarowy ML.CLASSIFICATION",
+      "Dane syntetyczne: 100 kierowców × 90 dni telemetrii",
+      "Zmienne: prędkość, hamowania, przyspieszenia, odpoczynki, godziny",
+      "Dashboard Streamlit: Ranking kierowców z planem"
+    ],
+    "datos": [
+      "Telemetria: Prędkość, przyspieszenie, hamowania, zakręty, dystans",
+      "Odpoczynki: Czas odpoczynku, postoje, ciągłe godziny",
+      "Incydenty: Wypadki, mandaty, skargi klientów"
+    ],
+    "estratificacion": [
+      "Score A (>80): Doskonały kierowca, bonifikacja",
+      "Score B (60-80): Dobry kierowca, bez działań",
+      "Score C (40-60): Szkolenie zalecane w ciągu miesiąca",
+      "Score D (<40): Natychmiastowe obowiązkowe szkolenie + nadzór"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 90 dni telemetrii na kierowcę",
+      "Model oblicza wielowymiarowy scoring",
+      "Dashboard pokazuje ranking i rekomendacje"
+    ]
+  },
+  "UC13": {
+    "title": "Analiza kosztów logistycznych i rentowności klientów",
+    "contexto": "Te Cortex Code Prompts budują model kosztorysowania ABC (Activity-Based Costing) do obliczania rzeczywistej rentowności każdego klienta logistycznego.",
+    "foco": "Rentowność — rzeczywiste kosztorysowanie wg klienta integrujące wszystkie aktywności logistyczne do decyzji cenowych i obsługowych.",
+    "reto": "Zidentyfikować 20% klientów niszczących wartość i odzyskać 5% marży dzięki dostosowanym cenom.",
+    "objetivos": [
+      "Wygenerować dane kosztów wg aktywności logistycznej",
+      "Obliczyć rzeczywisty koszt na przesyłkę i klienta",
+      "Zidentyfikować nierentownych klientów",
+      "Zasymulować korekty cenowe i poziomu usług",
+      "Dashboard rentowności"
+    ],
+    "funcionalidades": [
+      "Kosztorysowanie ABC: SQL analityczny z alokacją kosztów",
+      "Dane syntetyczne: 500 klientów × 12 miesięcy aktywności",
+      "Zmienne: km, przystanki, zwroty, incydenty, SLA, pilności",
+      "Dashboard Streamlit: Panel rentowności wg klienta"
+    ],
+    "datos": [
+      "Koszty bezpośrednie: Transport, paliwo, opłaty, kierowca",
+      "Koszty pośrednie: Magazyn, picking, pakowanie, administracja",
+      "Przychody: Fakturowanie na przesyłkę i klienta z rabatami"
+    ],
+    "estratificacion": [
+      "Rentowny klient (marża >15%): Utrzymać i lojalizować",
+      "Klient marginalny (5-15%): Zoptymalizować koszt obsługi",
+      "Nierentowny klient (0-5%): Renegocjować taryfy lub SLA",
+      "Klient destrukcyjny (<0%): Dostosować ceny lub zaprzestać obsługi"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 12 miesięcy kosztów wg aktywności",
+      "Model oblicza rzeczywistą rentowność wg klienta",
+      "Dashboard pokazuje ranking i działania"
+    ]
+  },
+  "UC14": {
+    "title": "Feature Store Magazyn do operacji",
+    "contexto": "Te Cortex Code Prompts budują Feature Store w Snowflake konsolidujący metryki operacyjne magazynu do decyzji planistycznych w czasie rzeczywistym.",
+    "foco": "Operacje magazynowe — Feature Store z metrykami produktywności, jakości, pojemności i personelu w czasie rzeczywistym.",
+    "reto": "Dysponować metrykami operacyjnymi z latencją <1 godziny do intraday decyzji o rebalansowaniu personelu i sprzętu.",
+    "objetivos": [
+      "Utworzyć encje i FeatureViews z Snowflake Feature Store",
+      "Wygenerować dane operacyjne 3 magazynów",
+      "Zaimplementować pipeline aktualizacji co godzinę",
+      "Serwować cechy do decyzji o zatrudnieniu",
+      "Dashboard operacji magazynowych"
+    ],
+    "funcionalidades": [
+      "Feature Store: Entity (warehouse_id) + FeatureViews (productivity, quality, capacity, staffing)",
+      "Pipeline: Aktualizacja co godzinę z WMS, HR, jakości",
+      "Dane syntetyczne: 3 magazyny × 90 dni × 24 godziny",
+      "Dashboard Streamlit: Panel operacji w czasie rzeczywistym"
+    ],
+    "datos": [
+      "Produktywność: Zamówienia/godzinę, linie/godzinę, wg operatora i strefy",
+      "Jakość: Błędy pickingowe, uszkodzenia, reklamacje",
+      "Pojemność: Zajętość m³, wolne miejsca, strefa załadunku",
+      "Personel: Obecni, indywidualna produktywność, absencje"
+    ],
+    "estratificacion": [
+      "Magazyn optymalny (>90% KPI na zielono): Bez działań",
+      "Magazyn w alercie (70-90%): Rebalansowanie personelu między strefami",
+      "Magazyn krytyczny (<70%): Natychmiastowe wzmocnienie + dochodzenie",
+      "Magazyn w szczycie: Aktywacja protokołu szczytowego z personelem tymczasowym"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Tworzone są encje i FeatureViews w Feature Store",
+      "Generowane jest 90 dni danych dla 3 magazynów",
+      "Dashboard pokazuje KPI operacyjne w czasie rzeczywistym"
+    ]
+  },
+  "UC15": {
+    "title": "Chatbot logistyczny z RAG do incydentów",
+    "contexto": "Te Cortex Code Prompts budują asystenta konwersacyjnego RAG z Cortex Search nad procedurami operacyjnymi i statusem przesyłek.",
+    "foco": "Obsługa logistyczna — chatbot rozwiązujący zapytania o przesyłki, incydenty i procedury bez interwencji człowieka.",
+    "reto": "Rozwiązywać 75% zapytań logistycznych automatycznie, redukując koszt obsługi z 4€ do 0,40€ na interakcję.",
+    "objetivos": [
+      "Wygenerować logistyczną bazę wiedzy",
+      "Utworzyć chunki do indeksowania semantycznego",
+      "Utworzyć Cortex Search Service",
+      "Zaimplementować pipeline RAG",
+      "Dashboard chatbota z eskalacją"
+    ],
+    "funcionalidades": [
+      "RAG: Cortex Search + CORTEX.COMPLETE",
+      "Baza wiedzy: Procedury, FAQ, protokoły, status przesyłek",
+      "Dane syntetyczne: 200 dokumentów + 5000 par Q&A",
+      "Dashboard Streamlit: Chat z eskalacją i metrykami"
+    ],
+    "datos": [
+      "Procedury: Procesy operacyjne, incydenty, zwroty, reklamacje",
+      "FAQ: 500 najczęstszych pytań z weryfikowanymi odpowiedziami",
+      "Status: Aktualizacja pozycji, kamienie milowe, ETA"
+    ],
+    "estratificacion": [
+      "Wysoka pewność (>85%): Odpowiedź automatyczna",
+      "Średnia pewność (60-85%): Odpowiedź z opcją potwierdzenia",
+      "Niska pewność (<60%): Eskalacja do agenta z kontekstem",
+      "Krytyczny incydent: Natychmiastowa eskalacja z priorytetem"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Tworzona jest baza wiedzy z indeksem semantycznym",
+      "Pipeline RAG odpowiada na pytania automatycznie",
+      "Dashboard pokazuje metryki rozwiązań i eskalacji"
+    ]
+  },
+  "UC16": {
+    "title": "Optymalizacja przepustowości i wymiarowanie floty",
+    "contexto": "Te Cortex Code Prompts budują model wymiarowania floty analizujący rzeczywiste wykorzystanie wg typu pojazdu, trasy i sezonowości.",
+    "foco": "Zarządzanie flotą — analiza wykorzystania do optymalnego wymiarowania floty własnej, wynajmowanej i podwykonawczej.",
+    "reto": "Zmniejszyć koszty floty o 15% dzięki optymalnemu miksowi własna/wynajem/podwykonawstwo.",
+    "objetivos": [
+      "Wygenerować dane wykorzystania floty",
+      "Analizować wykorzystanie wg typu, trasy i sezonu",
+      "Symulować scenariusze wymiarowania floty",
+      "Rekomendować optymalny miks floty",
+      "Dashboard zarządzania flotą"
+    ],
+    "funcionalidades": [
+      "Analiza wykorzystania z ML.FORECAST",
+      "Dane syntetyczne: 150 pojazdów × 12 miesięcy",
+      "Zmienne: trasy, wolumen, sezonowość, koszt pojazdu, typ",
+      "Dashboard Streamlit: Panel zarządzania flotą"
+    ],
+    "datos": [
+      "Wykorzystanie: Godziny/dzień, km, obłożenie wg pojazdu",
+      "Koszty: Amortyzacja, ubezpieczenie, paliwo, konserwacja",
+      "Alternatywy: Taryfy wynajmu, koszty podwykonawstwa"
+    ],
+    "estratificacion": [
+      "Pojazd wysokiego wykorzystania (>80%): Utrzymać we flocie własnej",
+      "Pojazd średniego wykorzystania (50-80%): Ocenić wynajem długoterminowy",
+      "Pojazd niskiego wykorzystania (<50%): Przejść na wynajem na żądanie",
+      "Pojazd sezonowy: Podwykonawstwo w szczytach"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 12 miesięcy wykorzystania floty",
+      "Symulator porównuje scenariusze kosztowe",
+      "Dashboard pokazuje rekomendacje miksu floty"
+    ]
+  },
+  "UC17": {
+    "title": "Wykrywanie anomalii w łańcuchu nadzoru",
+    "contexto": "Te Cortex Code Prompts budują system wykrywania anomalii w łańcuchu nadzoru monitorujący GPS, czujniki i odchylenia od trasy.",
+    "foco": "Bezpieczeństwo przesyłek — monitorowanie łańcucha nadzoru w celu wykrywania manipulacji, odchyleń i incydentów w czasie rzeczywistym.",
+    "reto": "Wykrywać 90% incydentów nadzoru w czasie rzeczywistym i zmniejszyć straty o 60%.",
+    "objetivos": [
+      "Wygenerować dane GPS, czujników i tras",
+      "Zdefiniować reguły i modele anomalii",
+      "Zaimplementować alerty w czasie rzeczywistym",
+      "Klasyfikować incydenty wg typu i ważności",
+      "Dashboard bezpieczeństwa przesyłek"
+    ],
+    "funcionalidades": [
+      "Wykrywanie anomalii: ML + analiza statystyczna",
+      "Dane syntetyczne: 10 000 przesyłek z 3% incydentami",
+      "Zmienne: GPS, trasa planowana, otwarcia, temperatura, postoje",
+      "Dashboard Streamlit: Panel bezpieczeństwa w czasie rzeczywistym"
+    ],
+    "datos": [
+      "GPS: Pozycja co 30s, prędkość, trasa vs planowana",
+      "Czujniki: Otwarcia, temperatura, wilgotność, wstrząsy",
+      "Incydenty: Typ, ważność, lokalizacja, czas, rozwiązanie"
+    ],
+    "estratificacion": [
+      "Anomalia krytyczna (odchylenie + otwarcie): Alert natychmiastowy + interwencja",
+      "Anomalia wysoka (odchylenie od trasy): Alert + weryfikacja telefoniczna",
+      "Anomalia średnia (nieplanowany postój): Monitoring wzmożony",
+      "Anomalia niska (drobne odchylenie): Rejestrowanie do analizy"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowanych jest 10 000 przesyłek z incydentami",
+      "System wykrywa anomalie w czasie rzeczywistym",
+      "Dashboard pokazuje alerty i historię incydentów"
+    ]
+  },
+  "UC18": {
+    "title": "Analiza sentymentu reklamacji z NLP",
+    "contexto": "Te Cortex Code Prompts budują pipeline NLP klasyfikujący reklamacje logistyczne wg pilności, typu i ryzyka churnu.",
+    "foco": "Zarządzanie reklamacjami — priorytetyzacja i automatyzacja obsługi reklamacji w celu retencji klientów.",
+    "reto": "Zmniejszyć czas odpowiedzi o 60% i churn po reklamacji z 30% do 10%.",
+    "objetivos": [
+      "Wygenerować historię reklamacji z tekstem",
+      "Klasyfikować sentyment i pilność z NLP",
+      "Priorytetyzować kolejkę obsługi",
+      "Wygenerować automatyczne odpowiedzi",
+      "Dashboard zarządzania reklamacjami"
+    ],
+    "funcionalidades": [
+      "NLP: CORTEX.SENTIMENT + CORTEX.COMPLETE",
+      "Dane syntetyczne: 10 000 reklamacji z tekstem i wynikiem",
+      "Klasyfikacja: Pilność, typ, sentyment, ryzyko churnu",
+      "Dashboard Streamlit: Panel zarządzania reklamacjami"
+    ],
+    "datos": [
+      "Reklamacje: Tekst, kanał, data, klient, typ problemu",
+      "Klient: Historia, wartość, poprzednie reklamacje, segment",
+      "Wynik: Rozwiązanie, czas, satysfakcja, retencja"
+    ],
+    "estratificacion": [
+      "Krytyczna (sentyment bardzo negatywny + wysoka wartość): Natychmiastowa eskalacja z kompensacją",
+      "Wysoka (negatywny sentyment): Priorytetowa obsługa w 2h",
+      "Średnia (neutralny sentyment): Automatyczna odpowiedź + follow-up",
+      "Niska (zapytanie/sugestia): Odpowiedź automatyczna"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowanych jest 10 000 reklamacji z tekstem",
+      "Pipeline NLP klasyfikuje i priorytetyzuje",
+      "Dashboard pokazuje kolejkę i metryki rozwiązań"
+    ]
+  },
+  "UC19": {
+    "title": "Wykrywanie oszustw w dostawach i dokumentacji",
+    "contexto": "Te Cortex Code Prompts budują system ML wykrywający oszustwa w potwierdzeniach dostawy, analizując wzorce podpisów, GPS i zachowania dostawcy.",
+    "foco": "Integralność dostaw — wykrywanie fałszywych potwierdzeń dostawy (POD) w skali za pomocą ML.",
+    "reto": "Wykryć 80% oszukańczych POD i zmniejszyć straty z oszustw o 70%.",
+    "objetivos": [
+      "Wygenerować dane dostaw z POD",
+      "Wyodrębnić cechy ryzyka oszustwa",
+      "Wytrenować model wykrywania oszustw",
+      "Zaimplementować scoring ryzyka na dostawę",
+      "Dashboard integralności dostaw"
+    ],
+    "funcionalidades": [
+      "Wykrywanie oszustw: ML.CLASSIFICATION wielowymiarowy",
+      "Dane syntetyczne: 50 000 dostaw z 1,5% oszustw",
+      "Zmienne: wzorzec podpisu, GPS vs adres, timing, zdjęcie, zachowanie",
+      "Dashboard Streamlit: Panel integralności z dochodzeniami"
+    ],
+    "datos": [
+      "POD: Podpis, zdjęcie, GPS, timestamp, urządzenie",
+      "Dostawca: Historia, trasa, wzorce czasowe, scoring",
+      "Dochodzenie: Status, wynik, dowody, działania"
+    ],
+    "estratificacion": [
+      "Wysokie ryzyko (scoring >80): Natychmiastowe dochodzenie",
+      "Średnie ryzyko (50-80): Weryfikacja automatyczna + przegląd",
+      "Niskie ryzyko (20-50): Losowa kontrola jakości",
+      "Minimalne ryzyko (<20): Standardowe przetwarzanie"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowanych jest 50 000 dostaw z wzorcami oszustw",
+      "Model scoruje każdą dostawę wg ryzyka",
+      "Dashboard pokazuje alerty i dochodzenia"
+    ]
+  },
+  "UC20": {
+    "title": "Zgodność regulacyjna i zarządzanie czasem jazdy",
+    "contexto": "Te Cortex Code Prompts budują system monitorowania przestrzegania czasu jazdy i odpoczynku alertujący przed naruszeniami regulacyjnymi.",
+    "foco": "Zgodność regulacyjna — monitoring czasu jazdy i odpoczynku do prewencji naruszeń i kar.",
+    "reto": "Zmniejszyć naruszenia regulacyjne o 90% i kary o 85% dzięki prewencyjnym alertom.",
+    "objetivos": [
+      "Wygenerować dane tachografu i czasu jazdy",
+      "Zaimplementować reguły UE 561/2006",
+      "Utworzyć alerty prewencyjne",
+      "Sugerować optymalne postoje",
+      "Dashboard zgodności regulacyjnej"
+    ],
+    "funcionalidades": [
+      "Monitoring: ML + reguły biznesowe UE 561/2006",
+      "Dane syntetyczne: 100 kierowców × 30 dni z tachografem",
+      "Alerty: 30 min przed naruszeniem z sugestią postoju",
+      "Dashboard Streamlit: Panel zgodności z historią"
+    ],
+    "datos": [
+      "Tachograf: Czas jazdy, odpoczynki, przerwy, tryb pracy",
+      "Regulacje: Limity dzienne, tygodniowe, dwutygodniowe",
+      "Postoje: Dostępne lokalizacje, usługi, szacowany czas"
+    ],
+    "estratificacion": [
+      "Alerta 30 min: Sugerować najbliższy postój",
+      "Alerta 15 min: Wymusić planowanie postoju",
+      "Naruszenie bliskie: Natychmiast zatrzymać + raport",
+      "Zgodność OK: Monitoring standardowy"
+    ],
+    "como_usar": [
+      "Wykonuj prompty sekwencyjnie",
+      "Generowane jest 30 dni danych tachografu na kierowcę",
+      "System monitoruje w czasie rzeczywistym",
+      "Dashboard pokazuje zgodność i historię alertów"
+    ]
+  }
+};
+
+const PROMPTS = {};
+
+function verGuia(ucId) {
+  const g = GUIAS[ucId];
+  if (!g) return;
+  let html = `<span class="guide-badge">${ucId}</span><h2>${g.title}</h2>`;
+  html += `<p class="prompt-intro">${g.contexto}</p>`;
+  html += `<h3>Zakres</h3><p>${g.foco}</p>`;
+  html += `<h3>Wyzwanie</h3><p>${g.reto}</p>`;
+  html += `<h3>Cele</h3><ul>${g.objetivos.map(o => `<li>${o}</li>`).join('')}</ul>`;
+  html += `<h3>Funkcjonalności</h3><ul>${g.funcionalidades.map(f => `<li>${f}</li>`).join('')}</ul>`;
+  html += `<h3>Dane</h3><ul>${g.datos.map(d => `<li>${d}</li>`).join('')}</ul>`;
+  html += `<h3>Stratyfikacja</h3><ul>${g.estratificacion.map(e => `<li>${e}</li>`).join('')}</ul>`;
+  html += `<h3>Jak używać</h3><ul>${g.como_usar.map(c => `<li>${c}</li>`).join('')}</ul>`;
+  html += `<div class="guide-footer">Przewodnik wygenerowany przez Snowflake Cortex AI — gotowy do dostosowania do Twoich danych</div>`;
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function verPrompts(ucId) {
+  const steps = PROMPTS[ucId];
+  if (!steps || steps.length === 0) { verGuia(ucId); return; }
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  let html = `<h2>Cortex Code Prompts — ${ucId}</h2>`;
+  steps.forEach((s, i) => {
+    html += `<div class="prompt-step">
+      <div class="prompt-step-header">
+        <span class="prompt-step-num">${i+1}</span>
+        <span class="prompt-step-title">${s.title}</span>
+      </div>
+      <p class="prompt-step-desc">${s.desc}</p>
+      <div class="prompt-code"><button class="copy-btn" onclick="copiarPrompt(this)">Kopiuj</button>${esc(s.prompt)}</div>
+    </div>`;
+  });
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function copiarPrompt(btn) {
+  const code = btn.parentElement.textContent.replace('Kopiuj','').trim();
+  navigator.clipboard.writeText(code).then(()=>{btn.textContent='✓ Skopiowano';setTimeout(()=>btn.textContent='Kopiuj',1500);});
+}
+
+function cerrarModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+</script>
+
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)cerrarModal();">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal()">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+</body>
+</html>

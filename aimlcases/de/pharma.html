@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — KI/ML-Lösungen für Pharma</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #003545, #11567F);
+      color: #fff;
+      padding: 32px 48px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .hero-left { flex: 1; }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 6px;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .stats-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 28px;
+      text-align: center;
+      color: #1a1a1a;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    .stats-box .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #71D3DC;
+      line-height: 1;
+    }
+
+    .stats-box .stat-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .stats-box .stat-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .stats-box .stat-time-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .stats-divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 10px 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #fff; }
+
+    .intro {
+      background: #fff;
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    .intro h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #11567F;
+      margin-bottom: 14px;
+    }
+
+    .intro p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .filters-bar {
+      background: #fff;
+      padding: 20px 48px 0;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filters-left {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 80px;
+      border: 1.5px solid #ccc;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+
+    .filter-btn.active {
+      background: #29B5E8;
+      border-color: #29B5E8;
+      color: #fff;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #ccc;
+      border-radius: 80px;
+      padding: 7px 14px;
+      gap: 8px;
+      min-width: 200px;
+      background: #fff;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      color: #444;
+      width: 100%;
+      background: transparent;
+    }
+    .search-box input::placeholder { color: #aaa; }
+
+    .results-count {
+      padding: 14px 48px 8px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+      gap: 22px;
+      padding: 16px 48px 64px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      padding: 16px 18px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .badge-id {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #003545;
+      color: #fff;
+    }
+
+    .badge-cat {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .badge-cat.ml { background: #E0F4FD; color: #11567F; }
+    .badge-cat.nlp { background: #EAF0FF; color: #4A6EE0; }
+    .badge-cat.journey { background: #F0FFF4; color: #2E7D4F; }
+
+    .card-time {
+      font-size: 12px;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-body {
+      padding: 0 18px 12px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-pain {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      background: #fafafa;
+      border-left: 3px solid #ddd;
+      border-radius: 4px;
+      line-height: 1.5;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 14px;
+    }
+
+    .card-features li {
+      font-size: 12px;
+      color: #444;
+      padding: 3px 0;
+    }
+
+    .card-features li::before {
+      content: "✓ ";
+      color: #29B5E8;
+      font-weight: 700;
+    }
+
+    .card-actions {
+      padding: 12px 14px;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 10px;
+      background: #29B5E8;
+      color: #fff;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-secondary:hover { background: #11567F; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .modal-box h2 { color: #11567F; font-size: 20px; margin-bottom: 16px; }
+    .modal-box h3 { color: #29B5E8; font-size: 16px; margin: 20px 0 8px; }
+    .modal-box p { font-size: 14px; line-height: 1.7; color: #444; margin-bottom: 8px; }
+    .modal-box ul { padding-left: 20px; margin-bottom: 12px; }
+    .modal-box li { font-size: 13px; line-height: 1.8; color: #555; }
+
+    .guide-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: #003545;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .modal-box .guide-footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+
+
+    .btn-tertiary {
+      padding: 8px 18px;
+      background: #003545;
+      color: #29B5E8;
+      border: none;
+      border-radius: 80px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-tertiary:hover { background: #11567F; }
+
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; }
+
+    .pain-point {
+      margin: 0 18px 10px;
+      padding: 8px 10px;
+      background: #fafafa;
+      border-left: 3px solid #ddd;
+      border-radius: 4px;
+    }
+    .pain-point-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 3px;
+    }
+    .pain-point p {
+      font-size: 12px;
+      color: #777;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .card-body { padding: 0 18px 12px; }
+    .card-title { padding: 0 18px; }
+    .card-features { padding: 0 18px; }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      color: #999;
+      background: #fff;
+      border-top: 1px solid #eee;
+    }
+
+    footer a {
+      color: #29B5E8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-left">
+    <a href="index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="12,4 6,10 12,16"/>
+      </svg>
+      Zurück zum Katalog
+    </a>
+    <div class="logos">
+      <div class="logo-snowflake">
+        <img src="../bug-white.png" alt="Snowflake" width="32" height="32" />
+        Snowflake
+      </div>
+    </div>
+    <div class="hero-eyebrow">Branchenlösungen · Pharma</div>
+    <h1 class="hero-title">KI/ML für die<br>Pharmaindustrie</h1>
+    <p class="hero-subtitle">27 produktionsreife Anwendungsfälle mit Cortex AI, ML und Cortex Code</p>
+    <p class="hero-tagline">Arzneimittelentwicklung · Klinische Studien · Pharmakovigilanz · Patienten-Journeys</p>
+  </div>
+  <div class="stats-box">
+    <div class="stat-number">27</div>
+    <div class="stat-label">Anwendungsfälle</div>
+    <hr class="stats-divider">
+    <div class="stat-time">~15'</div>
+    <div class="stat-time-label">Durchschn. pro Fall</div>
+  </div>
+</header>
+
+<section class="intro">
+  <h2>Intelligenz für jeden Bereich der Pharma-Wertschöpfungskette</h2>
+  <p>Vom Adhärenz-Scoring und der Vorhersage unerwünschter Ereignisse bis zur Pipeline-Optimierung und Sentinel-Überwachung — jeder Anwendungsfall wird direkt in Snowflake mit Cortex Code ausgeführt. Keine Infrastruktur, keine Konfiguration. Kopieren, einfügen und ausführen.</p>
+</section>
+
+<div class="filters-bar">
+  <div class="filters-left" id="filterBtns">
+    <button class="filter-btn active" data-filter="all">Alle</button>
+    <button class="filter-btn" data-filter="ml">Machine Learning</button>
+    <button class="filter-btn" data-filter="nlp">NLP und generative KI</button>
+    <button class="filter-btn" data-filter="journey">Patienten-Journey</button>
+  </div>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round">
+      <circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/>
+    </svg>
+    <input id="searchInput" type="text" placeholder="Anwendungsfälle suchen…" />
+  </div>
+</div>
+
+<div class="results-count" id="resultsCount">27 von 27 Anwendungsfällen angezeigt</div>
+
+<main class="cards-grid" id="cardsGrid"></main>
+
+<script>
+const USE_CASES = [
+  {
+    id:"UC01", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Vorhersage des Adhärenzrisikos von Patienten",
+    pain:"40-60% der kardiovaskulären Patienten befolgen die Antikoagulationstherapie nicht. Es gibt keine einheitliche Methode, um AFib-Patienten mit Risiko über verschiedene Kontaktpunkte hinweg zu identifizieren.",
+    desc:"KI-gestütztes Risikoscoring mit Snowflake Cortex ML zur Vorhersage von Adhärenzeinbrüchen nach 30/60/90 Tagen. Kombiniert Patientenportal, Apothekenausgaben, App-Nutzung und Supportanrufe zu umsetzbaren Erkenntnissen.",
+    features:["Klassifikationsmodelle mit Cortex ML","Echtzeit-Patienten-Risikoscoring","Interaktives Streamlit-Dashboard","Automatisierte Interventionsempfehlungen"]
+  },
+  {
+    id:"UC02", cat:"ml", catLabel:"Machine Learning", time:"12 min",
+    title:"Kampagnen-Performance-Optimierer",
+    pain:"Manuelle Kampagnenanalyse über mehr als 50 Märkte. Keine automatisierte Attribution. Budgetentscheidungen basieren auf verzögerten Indikatoren.",
+    desc:"SQL-basierte Multi-Touch-Attribution mit Window Functions zur Zuordnung von Kontaktpunkten in Konversionspfaden. Lineare und zeitgewichtete Modelle berechnen den ROI pro Kanal.",
+    features:["Window Functions für Attribution","Multi-Touch-Attributionsmodelle","ROI-Berechnungen pro Kanal","Konversionspfad-Analyse"]
+  },
+  {
+    id:"UC03", cat:"ml", catLabel:"Machine Learning", time:"14 min",
+    title:"Nachfrageprognose für klinische Prüfpräparate",
+    pain:"Prüfpräparate mit kurzer Haltbarkeit erfordern präzise Prognosen. 15-20% Überproduktion bedeuten Abfall; Unterproduktion verzögert Studien und betrifft Patienten.",
+    desc:"Zeitreihenprognose mit Cortex ML zur Vorhersage des Bedarfs an Prüfpräparaten nach Standort und Besuch. Bezieht historische Rekrutierung, Dropout-Raten und Logistikvariablen ein.",
+    features:["Zeitreihenprognose mit Cortex ML","Standortspezifische Bedarfsvorhersage","Prüfpräparate-Bestandsoptimierung","Ablauf- und Abfall-Dashboard"]
+  },
+  {
+    id:"UC04", cat:"ml", catLabel:"Machine Learning", time:"13 min",
+    title:"Prognose des Screeningversagens in klinischen Studien",
+    pain:"30-40% der Kandidaten scheitern beim Screening, was Kosten und Verzögerungen verursacht. Kriterien werden mit statischen Regeln ohne prädiktiven Ansatz bewertet.",
+    desc:"ML-Klassifikator, der die Wahrscheinlichkeit des Screeningversagens vor dem Besuch vorhersagt. Analysiert Labor-, Demografie- und Anamnese-Daten, um Studienkoordinatoren ein Pre-Screening-Scoring zu ermöglichen.",
+    features:["Binäre Klassifikation mit Cortex ML","Pre-Screening-Scoring vor dem Besuch","Analyse prädiktiver Variablen für das Scheitern","Streamlit-Dashboard zur Kandidatenpriorisierung"]
+  },
+  {
+    id:"UC05", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Optimierung des Medizinvertrieb-Territoriums",
+    pain:"Die Gebietszuweisung erfolgt manuell mit Tabellenkalkulationen. Unausgewogene Gebiete: Einige Vertreter betreuen 40 Ärzte, andere 120, ohne Berücksichtigung des Verschreibungspotenzials.",
+    desc:"Gebietsoptimierungsmodell mit Cortex ML, das Ärzte nach Verschreibungspotenzial, Spezialisierung und Standort gruppiert. Balanciert die Arbeitslast und maximiert die Abdeckung von Ärzten mit hohem Potenzial.",
+    features:["ML-Clustering für Gebietssegmentierung","Balancierte Arbeitsauslastung pro Vertreter","Geolokalisierung und Potenzial-Heatmap","Vergleichs-Dashboard aktuell vs. optimiert"]
+  },
+  {
+    id:"UC06", cat:"ml", catLabel:"Machine Learning", time:"12 min",
+    title:"Anomalieerkennung in Produktionschargen",
+    pain:"Abweichende Chargen werden erst in der Endkontrolle entdeckt. Jede verworfene Charge kostet 50.000-500.000€. Frühzeitige Abweichungen in In-Prozess-Parametern werden nicht automatisch erkannt.",
+    desc:"Multivariates Anomalieerkennungsmodell, das In-Prozess-Parameter (Temperatur, pH, Druck, Viskosität) in Echtzeit überwacht. Erkennt subtile Abweichungsmuster, bevor sie die Endqualität beeinträchtigen.",
+    features:["Anomalieerkennung mit Cortex ML","Echtzeit-Überwachung von In-Prozess-Parametern","Frühwarnsystem für abweichende Chargen","Kontrollgrenzen-Dashboard mit Trendanalyse"]
+  },
+  {
+    id:"UC07", cat:"ml", catLabel:"Machine Learning", time:"14 min",
+    title:"Vorhersage der Lieferketten-Durchlaufzeit",
+    pain:"Die Durchlaufzeit von API bis Fertigprodukt variiert um 30-50%. Unvorhersehbare Verzögerungen erzeugen Fehlbestände oder Überbestände mit Ablaufrisiko.",
+    desc:"Regressionsmodell mit Cortex ML zur Vorhersage der Durchlaufzeit pro SKU und Lieferant. Bezieht historische Zyklen, Lieferantenkapazität und saisonale Variablen ein, um Bestandsplanung und Sicherheitspuffer zu optimieren.",
+    features:["Regressionsmodell für Durchlaufzeit-Vorhersage","Vorhersage pro SKU und Lieferant","Optimierung von Sicherheitsbeständen","Dashboard für Abweichung und Ursachenanalyse"]
+  },
+  {
+    id:"UC08", cat:"ml", catLabel:"Machine Learning", time:"13 min",
+    title:"Scoring klinischer Patientenrekrutierung",
+    pain:"Die Rekrutierung für klinische Studien verfehlt in 80% der Fälle das Ziel. Die manuelle Identifizierung geeigneter Patienten ist langsam und verpasst Kandidaten in den eigenen Daten.",
+    desc:"ML-Scoring-Modell, das geeignete Patienten für spezifische Studien anhand klinischer, demografischer und Verhaltensdaten identifiziert und nach Konversionswahrscheinlichkeit einordnet.",
+    features:["ML-Klassifikation für Studieneignung","Scoring für Konversionswahrscheinlichkeit","Multikriterielles Matching für Studienprotokolle","Dashboard zur Rekrutierungspriorisierung"]
+  },
+  {
+    id:"UC09", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Prognose klinischer Endpunkte mit Feature Store",
+    pain:"Klinische Endpunkte (HbA1c, Blutdruck) werden bis Studienende gemessen. Keine Frühvorhersage, ob ein Patient den Endpunkt erreicht, für eine informierte Stichprobenanpassung.",
+    desc:"Feature Store mit klinischen Variablen pro Besuch und Prognosemodell für den primären Endpunkt zum Zeitpunkt des Zwischenbesuchs. Ermöglicht datengesteuerte Entscheidungen zur Stichprobenanpassung oder frühzeitigen Beendigung.",
+    features:["Feature Store mit longitudinalen klinischen Variablen","Endpunkt-Vorhersage zum Zwischenbesuch","Stichprobenanpassungssimulation","Streamlit-Dashboard mit klinischen Trajektorien"]
+  },
+  {
+    id:"UC10", cat:"nlp", catLabel:"NLP und generative KI", time:"12 min",
+    title:"Automatische Kodierung unerwünschter Ereignisse",
+    pain:"Die manuelle Kodierung unerwünschter Ereignisse (MedDRA) benötigt 5-15 Minuten pro Fall. Rückstände von 500+ Ereignissen in laufenden Studien verzögern regulatorische Einreichungen.",
+    desc:"Automatische Kodierung mit CORTEX.COMPLETE, die die Freitextbeschreibung des unerwünschten Ereignisses analysiert und den MedDRA-PT-Code (Preferred Term) mit Begründung vorschlägt. Menschliche Überprüfung für die endgültige Validierung.",
+    features:["CORTEX.COMPLETE für MedDRA-Kodierung","Kontextuelle Analyse der UE-Beschreibung","Vorschlag mit Begründung und Konfidenz","Überwachungs-Dashboard für ausstehende Kodierungen"]
+  },
+  {
+    id:"UC11", cat:"nlp", catLabel:"NLP und generative KI", time:"14 min",
+    title:"Intelligente Zusammenfassung klinischer Protokolle",
+    pain:"Klinische Protokolle umfassen 80-200 Seiten. Interne Teams benötigen 2-3 Tage, um operative Zusammenfassungen zu erstellen. Jede Änderung erfordert eine erneute manuelle Überprüfung.",
+    desc:"Intelligente Zusammenfassung mit CORTEX.COMPLETE + CORTEX.SUMMARIZE, die strukturierte Zusammenfassungen aus den Schlüsselabschnitten des Protokolls extrahiert: Ein-/Ausschlusskriterien, Endpunkte, Besuchsschema und Studienmedikation.",
+    features:["CORTEX.COMPLETE für strukturierte Extraktion","CORTEX.SUMMARIZE für exekutive Zusammenfassungen","Automatische Erkennung von Schlüsselabschnitten","Vergleichs-Dashboard zwischen Protokollversionen"]
+  },
+  {
+    id:"UC12", cat:"nlp", catLabel:"NLP und generative KI", time:"13 min",
+    title:"Pharmakovigilanz-Signalerkennung",
+    pain:"Die Identifizierung neuer Sicherheitssignale in Spontanmeldungen und sozialen Medien ist manuell und reaktiv. Neue Signale werden Monate nach ihrem Auftreten entdeckt.",
+    desc:"NLP-Pipeline mit CORTEX.COMPLETE + CORTEX.SENTIMENT, die Pharmakovigilanz-Quellen (FAERS, Spontanmeldungen, Patientenforen) analysiert, um Sicherheitssignale proaktiv zu erkennen.",
+    features:["CORTEX.COMPLETE für UE-Extraktion aus Text","CORTEX.SENTIMENT für die Erkennung von Stimmungsveränderungen","Signalerkennung mit zeitlicher Aggregation","Überwachungs-Dashboard mit konfigurierbaren Alarmen"]
+  },
+  {
+    id:"UC13", cat:"nlp", catLabel:"NLP und generative KI", time:"15 min",
+    title:"KI-Assistent für medizinische Information",
+    pain:"Medizinische Informationsteams bearbeiten über 1.000 Anfragen/Monat. 60% sind repetitiv, aber jede erfordert die Suche in der Fachinformation und die Formulierung einer personalisierten Antwort.",
+    desc:"RAG-System (Retrieval-Augmented Generation) mit CORTEX.COMPLETE, das auf dem Dokumentenkorpus (Fachinformation, Zusammenfassungen der Merkmale, Q&A) sucht und Entwurfsantworten für den medizinischen Informationsspezialisten generiert.",
+    features:["RAG mit CORTEX.COMPLETE über Fachinformationen","Semantische Suche mit CORTEX.EMBED","Entwurfsgenerierung mit Quellenangabe","Review-Dashboard für medizinische Information"]
+  },
+  {
+    id:"UC14", cat:"nlp", catLabel:"NLP und generative KI", time:"12 min",
+    title:"Klassifizierung regulatorischer Dokumente",
+    pain:"Die regulatorische Abteilung bearbeitet über 500 Dokumente/Monat aus verschiedenen Quellen. Die manuelle Klassifizierung (Typ, Dringlichkeit, zuständiges Arzneimittel) benötigt 30-60 min pro Dokument.",
+    desc:"Automatische Klassifizierung mit CORTEX.CLASSIFY_TEXT, die eingehende Dokumente nach Typ (Variation, Verlängerung, PSUR, Anfrage), Dringlichkeit und zuständigem Produkt kategorisiert.",
+    features:["CORTEX.CLASSIFY_TEXT für Dokumentenklassifizierung","Automatische Prioritätszuweisung","Zuordnung zum zuständigen Produkt/Team","Dashboard für regulatorisches Dokumentenmanagement"]
+  },
+  {
+    id:"UC15", cat:"nlp", catLabel:"NLP und generative KI", time:"14 min",
+    title:"Analyse des Verschreibungsverhaltens von Ärzten",
+    pain:"Das Medizinvertriebsteam hat keinen Einblick in die Gründe für Verschreibungsentscheidungen. CRM-Besuchsnotizen werden nicht systematisch analysiert, um Verhaltensmuster zu extrahieren.",
+    desc:"NLP-Analyse mit CORTEX.COMPLETE + CORTEX.SENTIMENT der CRM-Notizen des Medizinvertriebs, um Verschreibungstreiber, Bedenken und Einstellungen zu extrahieren. Generiert Ärzteprofile mit bevorzugter Botschaft.",
+    features:["CORTEX.COMPLETE für Extraktion von Verschreibungstreibern","CORTEX.SENTIMENT für Einstellungsanalyse","Generierung von Ärzteprofilen mit Erkenntnissen","Dashboard pro Gebiet und Spezialisierung"]
+  },
+  {
+    id:"UC16", cat:"nlp", catLabel:"NLP und generative KI", time:"13 min",
+    title:"Automatisierung der Literaturrecherche",
+    pain:"Medizinisches Team überprüft manuell über 200 Publikationen/Monat auf Sicherheitssignale und Wettbewerbsinformationen. Relevante Artikel werden verpasst oder mit Verspätung entdeckt.",
+    desc:"Pipeline mit CORTEX.COMPLETE + CORTEX.SUMMARIZE, die Abstracts von neuen Publikationen analysiert, nach Relevanz (Produkt, therapeutischer Bereich, Sicherheit) klassifiziert und Zusammenfassungen nach Priorität generiert.",
+    features:["CORTEX.COMPLETE für Abstract-Analyse","Klassifizierung nach therapeutischem Bereich und Relevanz","Automatische Zusammenfassungen nach Priorität","Überwachungs-Dashboard für Publikationen"]
+  },
+  {
+    id:"UC17", cat:"nlp", catLabel:"NLP und generative KI", time:"15 min",
+    title:"Intelligente Sentinel-Überwachung von Patientenforen",
+    pain:"Patienten berichten über Nebenwirkungen und Behandlungserfahrungen in Online-Foren, bevor sie formelle Kanäle nutzen. Diese Signale werden vom Pharmakovigilanz-Team nicht erfasst.",
+    desc:"Sentinel-System mit CORTEX.COMPLETE + CORTEX.SENTIMENT, das Patientenforen und Communitys überwacht, um UE-Meldungen, Off-Label-Nutzung und aufkommende Bedenken proaktiv zu erkennen.",
+    features:["CORTEX.COMPLETE für UE-Erkennung in Forumsposts","CORTEX.SENTIMENT für Stimmungstrend-Überwachung","Erkennung von Off-Label-Nutzung und aufkommenden Bedenken","Echtzeit-Alarm-Dashboard mit Quelle und Schweregrad"]
+  },
+  {
+    id:"UC18", cat:"nlp", catLabel:"NLP und generative KI", time:"12 min",
+    title:"Automatische Generierung regulatorischer Antworten",
+    pain:"Anfragen der Gesundheitsbehörden erfordern gut begründete Antworten mit Referenzen. Jede Antwort dauert 2-5 Tage und erfordert die Suche in mehreren Informationsquellen.",
+    desc:"RAG-basiertes System mit CORTEX.COMPLETE, das auf dem regulatorischen Dokumentenkorpus sucht und begründete Antwortentwürfe auf Behördenanfragen mit korrekten Referenzen und Format generiert.",
+    features:["RAG über regulatorisches Dokumentenkorpus","CORTEX.COMPLETE für begründete Antworterstellung","Automatische Einbindung relevanter Referenzen","Review- und Genehmigungsworkflow"]
+  },
+  {
+    id:"UC19", cat:"journey", catLabel:"Patienten-Journey", time:"15 min",
+    title:"Mapping der Patienten-Journey in klinischen Studien",
+    pain:"Keine End-to-End-Sicht auf die Patientenerfahrung in klinischen Studien. Abbrüche werden erst entdeckt, wenn sie auftreten, ohne prädiktive Indikatoren.",
+    desc:"End-to-End-Mapping der Patienten-Journey (Screening → Randomisierung → Behandlung → Nachbeobachtung) mit KI-Analyse der Erfahrung an jedem Kontaktpunkt. Identifiziert Friktionspunkte und Dropout-Risiken.",
+    features:["Journey-Funnel mit Konversionsmetriken pro Etappe","CORTEX.SENTIMENT zur Erfahrungsanalyse pro Kontaktpunkt","Dropout-Risikovorhersage mit CORTEX.CLASSIFY_TEXT","Friktionspunkt-Dashboard mit Ursachenanalyse"]
+  },
+  {
+    id:"UC20", cat:"journey", catLabel:"Patienten-Journey", time:"13 min",
+    title:"Patient-Support-Programm-Analytik",
+    pain:"Patient-Support-Programme (PSP) generieren Daten über Kanäle, aber keine einheitliche Sicht, welche Interventionen die Adhärenz verbessern und welche keine Wirkung haben.",
+    desc:"Analyse des Patient-Support-Programmes mit KI, die die Erfahrung pro Kanal (Krankenschwester, App, Callcenter) und Interaktion mit Sentiment-Analyse und Interventionswirksamkeit evaluiert.",
+    features:["Multi-Kanal-Analyse von Patienteninteraktionen","CORTEX.SENTIMENT pro Kanal und Interaktion","Korrelation von Intervention und Adhärenz","Wirksamkeits-Dashboard für Patient-Support-Programme"]
+  },
+  {
+    id:"UC21", cat:"journey", catLabel:"Patienten-Journey", time:"14 min",
+    title:"Intelligenz der Arzt-Engagement-Journey",
+    pain:"Das Medizinvertriebsteam verwaltet den Arztkontakt ohne Daten darüber, welche Interaktionen Verschreibungsänderungen bewirken. Besuche, E-Mails, Webinare und Kongresse werden nicht als Journey analysiert.",
+    desc:"Mapping der Arzt-Engagement-Journey mit KI-Analyse der Interaktionswirksamkeit. Korreliert Kontaktsequenzen mit Verschreibungsveränderungen und identifiziert die optimale Engagement-Strategie pro Ärzteprofil.",
+    features:["Engagement-Journey mit 8+ Kontaktpunkt-Typen","CORTEX.SENTIMENT für Interaktionsstimmung","Korrelation Kontaktsequenz → Verschreibungsveränderung","Dashboard für optimale Strategie pro Ärzteprofil"]
+  },
+  {
+    id:"UC22", cat:"journey", catLabel:"Patienten-Journey", time:"12 min",
+    title:"Diagnose-zu-Behandlung-Pfad-Analytik",
+    pain:"Die durchschnittliche Zeit von der Diagnose bis zur Behandlung variiert um das 3-fache zwischen Regionen. Keine Sicht auf die Patient Journey von der Diagnose über die Überweisung bis zum Therapiebeginn.",
+    desc:"Analyse des Diagnose-zu-Behandlung-Pfades mit Identifizierung von Engpässen, regionalen Unterschieden und Optimierungsmöglichkeiten. Kombiniert Diagnosedaten, Überweisungen und Rezeptdaten mit Stimmungsanalyse.",
+    features:["Time-to-Treatment-Funnel pro Region","Identifizierung kritischer Engpässe im Pfad","CORTEX.SENTIMENT auf Patienten-Feedback pro Etappe","Dashboard für regionale Unterschiede und Optimierung"]
+  },
+  {
+    id:"UC23", cat:"journey", catLabel:"Patienten-Journey", time:"15 min",
+    title:"Klinische Studie — Erfahrung der Prüfzentren",
+    pain:"Prüfzentren, die 80% der Patienten rekrutieren, erhalten die gleiche Betreuung wie jene mit 5%. Keine analytische Sicht, um die Prüfzentrums-Erfahrung zu personalisieren und niedrig performende zu verbessern.",
+    desc:"Analyse der Prüfzentrums-Erfahrung mit KI, die jedes Zentrum nach Rekrutierung, Qualität, Interaktionsstimmung und betrieblicher Effizienz bewertet. Identifiziert Best Practices und Verbesserungsmöglichkeiten pro Zentrum.",
+    features:["Multidimensionales Scoring pro Prüfzentrum","CORTEX.SENTIMENT auf der Zentrum-Sponsor-Kommunikation","Vergleich der Best Practices der besten Zentren","Dashboard für Segmentierung und personalisierte Maßnahmen"]
+  },
+  {
+    id:"UC24", cat:"journey", catLabel:"Patienten-Journey", time:"13 min",
+    title:"Omni-Kanal-Analyse der Arztinteraktion",
+    pain:"Arztkontakte sind über CRM, E-Mail, Webinare, Kongresse und digitale Plattformen verteilt. Kein einheitliches Bild des Engagements oder des Kanaleffekts auf Verschreibungen.",
+    desc:"Omni-Kanal-Zusammenführung der Arztinteraktion mit KI-Analyse der Kanalwirksamkeit, optimaler Frequenz und Nachrichtenpersonalisierung basierend auf Verhaltensmustern und Stimmung.",
+    features:["Zusammenführung über 8+ Interaktionskanäle","CORTEX.SENTIMENT für Interaktionsstimmung pro Kanal","Identifizierung der optimalen Kanalkombination","Dashboard für Personalisierung und Frequenzoptimierung"]
+  },
+  {
+    id:"UC25", cat:"journey", catLabel:"Patienten-Journey", time:"14 min",
+    title:"Patienten-Behandlungs-Journey-Erfahrung",
+    pain:"Die Patientenerfahrung wird punktuell (Zufriedenheitsumfragen) gemessen, ohne die Emotion während der gesamten Behandlungs-Journey zu erfassen. Friktionspunkte werden nicht systematisch identifiziert.",
+    desc:"Journey-Tracking mit Cortex Code Prompts, das die Patientenerfahrung über sechs Behandlungsetappen mithilfe mehrerer Cortex-KI-Funktionen verfolgt.",
+    features:["6-Etappen-Funnel: Diagnose → Verschreibung → Abgabe → Adhärenz → Nachsorge → Ergebnis","CORTEX.SENTIMENT in jeder Etappe der Journey","CORTEX.COMPLETE + SUMMARIZE für Barrierenanalyse","CORTEX.CLASSIFY_TEXT für Dropout-Risiko-Scoring"]
+  },
+  {
+    id:"UC26", cat:"journey", catLabel:"Patienten-Journey", time:"15 min",
+    title:"Intelligenz der Behandlungsadhärenz-Journey",
+    pain:"Therapieabbrüche bei chronischen Medikamenten erfolgen schrittweise und unbemerkt. 50% der Chroniker brechen im ersten Jahr ab, ohne dass klar ist, wann oder warum.",
+    desc:"Journey-Tracking mit Cortex Code Prompts, das Rezepteinlösungs-Analytik mit KI kombiniert, um Adhärenzbarrieren zu klassifizieren und Risikozeitfenster vorherzusagen.",
+    features:["Vollständiges Rezepteinlösungs- und Persistenz-Tracking über 12 Monate","CORTEX.SENTIMENT-Trendlinie der Patientenstimmung zur Medikation","Barrierenklassifizierung + Aktionspläne mit KI","CORTEX.CLASSIFY_TEXT Risikoetiketten für 30/60/90 Tage"]
+  },
+  {
+    id:"UC27", cat:"journey", catLabel:"Patienten-Journey", time:"13 min",
+    title:"Multi-Stakeholder-Ökosystem-Analyse",
+    pain:"Die Beziehung zwischen Ärzten, Apotheken, Kostenträgern und Patienten wird isoliert analysiert. Kein Stakeholder-Map, das Einflüsse und den Informationsfluss zwischen Akteuren zeigt.",
+    desc:"Multi-Stakeholder-Mapping-Analyse mit KI, die die Beziehungen zwischen Ärzten, Apotheken, Kostenträgern und Patienten als zusammenhängendes Ökosystem modelliert. Identifiziert Schlüsselakteure und Einflussströme.",
+    features:["Stakeholder-Mapping mit Einfluss-Scores","CORTEX.SENTIMENT auf der Interaktion zwischen Stakeholdern","Identifizierung von Schlüsselakteuren und Einflussströmen","Ökosystem-Dashboard mit Netzwerkvisualisierung"]
+  }
+];
+
+const TOTAL = 27;
+
+function renderCards(list) {
+  const grid = document.getElementById('cardsGrid');
+  const count = document.getElementById('resultsCount');
+  grid.innerHTML = '';
+  count.textContent = `${list.length} von ${TOTAL} Anwendungsfällen angezeigt`;
+  list.forEach(uc => {
+    const catClass = { 'Machine Learning':'ml', 'NLP und generative KI':'nlp', 'Patienten-Journey':'journey' }[uc.catLabel] || '';
+    grid.innerHTML += `
+      <article class="card">
+        <div class="card-header">
+          <div class="card-badges">
+            <span class="badge-id">${uc.id}</span>
+            <span class="badge-cat ${catClass}">${uc.catLabel}</span>
+          </div>
+          <span class="card-time">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2">
+              <circle cx="10" cy="10" r="8"/><polyline points="10,5 10,10 13,13"/>
+            </svg>
+            ${uc.time}
+          </span>
+        </div>
+        <h3 class="card-title">${uc.title}</h3>
+        <div class="pain-point">
+          <div class="pain-point-label">Problemstellung</div>
+          <p>${uc.pain}</p>
+        </div>
+        <p class="card-desc">${uc.desc}</p>
+        <ul class="card-features">
+          ${uc.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <div class="card-actions">
+          <a href="#" class="btn-secondary" onclick="showGuide('${uc.id}');return false;">Anleitung ansehen</a>
+          <a href="#" class="btn-tertiary" onclick="showPrompts('${uc.id}');return false;">Cortex Code Prompts</a>
+        </div>
+      </article>`;
+  });
+}
+
+let activeFilter = 'all';
+let searchTerm = '';
+
+function applyFilters() {
+  let result = USE_CASES;
+  if (activeFilter !== 'all') result = result.filter(u => u.cat === activeFilter);
+  if (searchTerm) result = result.filter(u =>
+    u.title.toLowerCase().includes(searchTerm) ||
+    u.desc.toLowerCase().includes(searchTerm) ||
+    u.pain.toLowerCase().includes(searchTerm)
+  );
+  renderCards(result);
+}
+
+document.getElementById('filterBtns').addEventListener('click', e => {
+  if (!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.filter;
+  applyFilters();
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  applyFilters();
+});
+
+renderCards(USE_CASES);
+
+
+const GUIDES = {
+  UC01: {
+    title: 'Vorhersage des Adhärenzrisikos von Patienten',
+    contexto: 'Diese Cortex Code Prompts demonstrieren das KI-Risikoscoring zur Vorhersage von Adhärenzeinbrüchen bei kardiovaskulären Patienten in Snowflake.',
+    foco: 'Kardiovaskuläre Patienten (AFib) — Adhärenzrisiko mit Multi-Kontaktpunkt-Scoring.',
+    reto: 'Patienten mit hohem Risiko für Therapieabbrüche bei 30/60/90 Tagen proaktiv identifizieren, um reaktive durch präventive Interventionen zu ersetzen.',
+    objetivos: ['ML-Workflows mit SNOWFLAKE.ML.CLASSIFICATION erstellen','Synthetische Patientendaten mit Adhärenzindikatoren generieren','Prädiktive Variablen aus Patientenportal, Apotheke und App erstellen','Binäre Klassifikationsmodelle evaluieren','Streamlit-Dashboard für interaktives Risikoscoring erstellen'],
+    funcionalidades: ['ML-Modell: Binäre Klassifikation für Adhärenzrisiko-Vorhersage','Synthetische Daten: 1.000 Patienten mit Multi-Kanal-Indikatoren','Variablen: DAYS_SINCE_LAST_REFILL, MISSED_APPOINTMENTS, APP_USAGE_FREQUENCY, SUPPORT_CALLS, PORTAL_LOGINS','Streamlit-Dashboard: Interaktives Scoring und Filterung nach Risikostufe'],
+    datos: ['PATIENTS: Clinical and demographic profile','PRESCRIPTIONS: Dispensing history and refill gaps','INTERACTIONS: Portal, app, and support call activity','PREDICTIONS: Risk level (High/Medium/Low) with probabilities'],
+    como_usar: ['Prompts sequentiell ausführen','Die Umgebungskonfiguration erstellt eine isolierte Datenbank','Die synthetischen Daten erzeugen 1.000 Patienten automatisch','Das Modell trainiert in 30-60 Sekunden','Das Dashboard startet interaktiv im Notebook']
+  },
+  UC02: {
+    title: 'Kampagnen-Performance-Optimierer',
+    contexto: 'Diese Cortex Code Prompts erstellen ein Multi-Touch-Attributionssystem zur Bewertung der Wirksamkeit pharmazeutischer Kampagnen über Märkte und Kanäle hinweg.',
+    foco: 'Pharma-Marketingkampagnen — Multi-Touch-Attribution über 50+ Märkte.',
+    reto: 'Die Wirksamkeit jedes Kontaktpunkts objektiv messen und Budgets basierend auf datengestützter Attribution statt auf Verzögerungsindikatoren zuweisen.',
+    objetivos: ['Window Functions für Multi-Touch-Attribution implementieren','Synthetische Kampagnendaten über Märkte und Kanäle generieren','Lineare und zeitgewichtete Attributionsmodelle berechnen','ROI pro Kanal und Konversionspfade analysieren','Streamlit-Dashboard für Kampagnen-Performance erstellen'],
+    funcionalidades: ['Attributionsmodell: Window Functions für Multi-Touch-Zuweisung','Synthetische Daten: 10.000 Interaktionen über 50 Märkte und 8 Kanäle','Variablen: CHANNEL, TOUCHPOINT_ORDER, CONVERSION_FLAG, TIME_DECAY_WEIGHT','Streamlit-Dashboard: ROI pro Kanal und Konversionspfad-Visualisierung'],
+    datos: ['CAMPAIGNS: Campaign definitions and budgets per market','TOUCHPOINTS: Multi-channel interactions with timestamps','CONVERSIONS: Conversion events with attribution weights','CHANNEL_ROI: ROI calculations per channel and model'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Kampagnen, Kontaktpunkte und Konversionen generiert','Die Attributionsmodelle berechnen sich in Sekunden','Das Dashboard zeigt ROI und Konversionspfade']
+  },
+  UC03: {
+    title: 'Nachfrageprognose für klinische Prüfpräparate',
+    contexto: 'Diese Cortex Code Prompts erstellen ein Zeitreihen-Prognosemodell zur Optimierung des Prüfpräparate-Bestands in klinischen Studien.',
+    foco: 'Klinische Prüfpräparate — standortspezifische Bedarfsvorhersage mit Abfallminimierung.',
+    reto: 'Den Bedarf an Prüfpräparaten pro Zentrum und Besuch präzise vorhersagen, um Überproduktion (Abfall) und Unterproduktion (Studienverzögerungen) zu vermeiden.',
+    objetivos: ['Zeitreihenprognose mit SNOWFLAKE.ML.FORECAST implementieren','Synthetische Rekrutierungs- und Verbrauchsdaten generieren','Prädiktive Variablen pro Zentrum und Besuchstyp erstellen','Sicherheitsbestandsniveaus optimieren','Dashboard für Ablauf und Abfall erstellen'],
+    funcionalidades: ['Prognosemodell: Zeitreihen mit SNOWFLAKE.ML.FORECAST','Synthetische Daten: 20 Zentren, 500 Patienten, 12 Monate Verlauf','Variablen: SITE_ID, VISIT_TYPE, RECRUITMENT_RATE, DROPOUT_RATE, SHELF_LIFE','Dashboard: Bestandsoptimierung mit Ablauf- und Abfall-Metriken'],
+    datos: ['SITES: Site profile, capacity, and recruitment history','PATIENTS: Enrollment, visits, and dropout events','INVENTORY: Supply levels, expiry dates, and waste records','FORECASTS: Predicted demand per site and visit window'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Zentren, Patienten und Bestandsdaten generiert','Das Prognosemodell trainiert in 30-60 Sekunden','Das Dashboard zeigt Bedarfsprognosen und Optimierungen']
+  },
+  UC04: {
+    title: 'Prognose des Screeningversagens in klinischen Studien',
+    contexto: 'Diese Cortex Code Prompts erstellen einen ML-Klassifikator zur Vorhersage des Screeningversagens vor dem Klinikbesuch.',
+    foco: 'Klinische Studien — Pre-Screening-Scoring zur Reduktion der Ausfallrate.',
+    reto: 'Die Screeningversagensrate von 30-40% reduzieren, indem die Wahrscheinlichkeit vor dem Besuch vorhergesagt wird und Studienkoordinatoren Kandidaten priorisieren können.',
+    objetivos: ['Binäre Klassifikation mit SNOWFLAKE.ML.CLASSIFICATION implementieren','Synthetische Screening-Daten mit Versagensindikatoren generieren','Prädiktive Variablen aus Labor, Demografie und Anamnese erstellen','Pre-Screening-Scoring-Modell evaluieren','Dashboard zur Kandidatenpriorisierung erstellen'],
+    funcionalidades: ['ML-Modell: Binäre Klassifikation für Screeningversagens-Vorhersage','Synthetische Daten: 2.000 Kandidaten mit Screening-Ergebnissen','Variablen: LAB_VALUES, AGE, COMORBIDITY_COUNT, PRIOR_TRIAL_HISTORY, MEDICATION_COUNT','Dashboard: Priorisierung nach Erfolgswahrscheinlichkeit'],
+    datos: ['CANDIDATES: Demographic and clinical profile','LAB_RESULTS: Screening lab values and ranges','SCREENING_OUTCOMES: Pass/fail results with failure reasons','PREDICTIONS: Screening success probability per candidate'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Kandidaten und Screening-Ergebnisse generiert','Das Modell trainiert in 30-60 Sekunden','Das Dashboard zeigt Kandidaten-Scoring und Priorisierung']
+  },
+  UC05: {
+    title: 'Optimierung des Medizinvertrieb-Territoriums',
+    pain: 'Die Gebietszuweisung erfolgt manuell mit Tabellenkalkulationen. Unausgewogene Gebiete: Einige Vertreter betreuen 40 Ärzte, andere 120.',
+    contexto: 'Diese Cortex Code Prompts erstellen ein Gebietsoptimierungsmodell, das Ärzte intelligent nach Potenzial und Standort gruppiert.',
+    foco: 'Medizinvertrieb — Gebietsoptimierung mit ML-Clustering nach Verschreibungspotenzial.',
+    reto: 'Die Arbeitsbelastung der Außendienstmitarbeiter ausbalancieren und gleichzeitig die Abdeckung von Ärzten mit hohem Verschreibungspotenzial maximieren.',
+    objetivos: ['ML-Clustering für Gebietssegmentierung implementieren','Synthetische Arzt- und Außendienstdaten generieren','Variablen für Potenzial, Spezialisierung und Standort erstellen','Arbeitsbelastung und Abdeckung optimieren','Vergleichs-Dashboard erstellen'],
+    funcionalidades: ['ML-Modell: Clustering für Gebietssegmentierung','Synthetische Daten: 500 Ärzte, 20 Vertreter, 10 Regionen','Variablen: PRESCRIBING_POTENTIAL, SPECIALTY, LOCATION, CURRENT_REP_WORKLOAD','Dashboard: Vergleich aktuell vs. optimiert mit Heatmap'],
+    datos: ['PHYSICIANS: Profile, specialty, and prescribing potential','REPRESENTATIVES: Territory assignment and workload','TERRITORIES: Geographic boundaries and physician allocation','OPTIMIZATION: Proposed territory assignments with balance metrics'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Ärzte, Vertreter und Gebiete generiert','Das Clustering-Modell segmentiert in Sekunden','Das Dashboard zeigt Vergleich und Heatmap']
+  },
+  UC06: {
+    title: 'Anomalieerkennung in Produktionschargen',
+    contexto: 'Diese Cortex Code Prompts erstellen ein Anomalieerkennungssystem zur Echtzeit-Überwachung von Produktionsparametern.',
+    foco: 'Pharmaproduktion — Frühwarnsystem für abweichende Chargen mit In-Prozess-Überwachung.',
+    reto: 'Abweichende Chargen frühzeitig in der Produktion erkennen, bevor sie die Endkontrolle erreichen und Verluste von 50.000-500.000€ verursachen.',
+    objetivos: ['Anomalieerkennung mit SNOWFLAKE.ML.ANOMALY_DETECTION implementieren','Synthetische Produktionschargen-Daten generieren','In-Prozess-Parameter überwachen (Temperatur, pH, Druck, Viskosität)','Frühwarnsystem konfigurieren','Kontrollgrenzen-Dashboard erstellen'],
+    funcionalidades: ['ML-Modell: Multivariate Anomalieerkennung','Synthetische Daten: 1.000 Chargen mit 10 In-Prozess-Parametern','Variablen: TEMPERATURE, PH_LEVEL, PRESSURE, VISCOSITY, MIXING_SPEED, PARTICLE_SIZE','Dashboard: Kontrollkarten mit Trendanalyse und Alarmen'],
+    datos: ['BATCHES: Production batch records with parameters','IN_PROCESS_READINGS: Time-series sensor measurements','QUALITY_RESULTS: Final quality control outcomes','ANOMALIES: Detected deviations with severity scores'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Chargen und Sensordaten generiert','Das Anomaliemodell trainiert in 30-60 Sekunden','Das Dashboard zeigt Kontrollkarten und Alarme']
+  },
+  UC07: {
+    title: 'Vorhersage der Lieferketten-Durchlaufzeit',
+    contexto: 'Diese Cortex Code Prompts erstellen ein Regressionsmodell zur Vorhersage der Durchlaufzeit in der pharmazeutischen Lieferkette.',
+    foco: 'Pharma-Lieferkette — Durchlaufzeit-Vorhersage pro SKU und Lieferant.',
+    reto: 'Die 30-50% Variabilität der Durchlaufzeit reduzieren und Bestandsplanung mit präzisen Vorhersagen optimieren.',
+    objetivos: ['Regressionsmodell mit SNOWFLAKE.ML.FORECAST implementieren','Synthetische Lieferkettendaten generieren','Variablen pro SKU und Lieferant erstellen','Sicherheitsbestandsniveaus optimieren','Dashboard für Abweichungsanalyse erstellen'],
+    funcionalidades: ['Regressionsmodell: Durchlaufzeit-Vorhersage','Synthetische Daten: 100 SKUs, 20 Lieferanten, 24 Monate Verlauf','Variablen: SKU_ID, SUPPLIER_ID, ORDER_QUANTITY, SEASON, SUPPLIER_CAPACITY, HISTORICAL_LEAD_TIME','Dashboard: Vorhersage vs. Ist-Werte mit Ursachenanalyse'],
+    datos: ['SUPPLIERS: Supplier profiles and capacity data','PURCHASE_ORDERS: Order history with lead times','SKU_CATALOG: Product catalog with supply chain attributes','FORECASTS: Predicted lead times per SKU and supplier'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden SKUs, Lieferanten und Bestellungen generiert','Das Regressionsmodell trainiert in 30-60 Sekunden','Das Dashboard zeigt Vorhersagen und Abweichungen']
+  },
+  UC08: {
+    title: 'Scoring klinischer Patientenrekrutierung',
+    contexto: 'Diese Cortex Code Prompts erstellen ein ML-Scoring-Modell zur Identifizierung geeigneter Patienten für klinische Studien.',
+    foco: 'Klinische Studien — Patientenrekrutierungsoptimierung mit ML-Scoring.',
+    reto: 'Die Rekrutierungsziele erreichen, indem geeignete Patienten in den eigenen Daten identifiziert und nach Konversionswahrscheinlichkeit priorisiert werden.',
+    objetivos: ['ML-Klassifikation für Studieneignung implementieren','Synthetische Patientenpopulation generieren','Multikriterielles Matching für Protokollkriterien erstellen','Scoring für Konversionswahrscheinlichkeit berechnen','Rekrutierungspriorisierungs-Dashboard erstellen'],
+    funcionalidades: ['ML-Modell: Klassifikation für Studieneignung','Synthetische Daten: 5.000 Patienten, 10 Studienprotokolle','Variablen: DIAGNOSIS_CODE, AGE, LAB_VALUES, COMORBIDITIES, MEDICATION_HISTORY, LOCATION','Dashboard: Kandidaten-Ranking pro Studie'],
+    datos: ['PATIENTS: Clinical records and demographics','PROTOCOLS: Study eligibility criteria','MATCHING_SCORES: Patient-protocol compatibility scores','RECRUITMENT_PIPELINE: Candidate funnel with conversion tracking'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Patienten und Protokolle generiert','Das Matching-Modell berechnet Scores in Sekunden','Das Dashboard zeigt Rekrutierungs-Pipeline und Priorisierung']
+  },
+  UC09: {
+    title: 'Prognose klinischer Endpunkte mit Feature Store',
+    contexto: 'Diese Cortex Code Prompts erstellen einen Feature Store mit klinischen Variablen und ein Prognosemodell für den primären Endpunkt.',
+    foco: 'Klinische Studien — Endpunkt-Vorhersage mit Feature Store für informierte Stichprobenanpassung.',
+    reto: 'Am Zwischenbesuch vorhersagen, ob ein Patient den primären Endpunkt erreichen wird, um datengesteuerte Entscheidungen zur Stichprobenanpassung zu ermöglichen.',
+    objetivos: ['Feature Store mit longitudinalen klinischen Variablen erstellen','Synthetische klinische Studiendaten generieren','Endpunkt-Prognosemodell zum Zwischenbesuch trainieren','Stichprobenanpassungssimulationen durchführen','Dashboard mit klinischen Trajektorien erstellen'],
+    funcionalidades: ['Feature Store: Entity PATIENT mit longitudinalen FeatureViews','Prognosemodell: Endpunkt-Vorhersage zum Zwischenbesuch','Synthetische Daten: 500 Patienten, 8 Besuche, 20 klinische Variablen','Dashboard: Klinische Trajektorien und Simulationsanalyse'],
+    datos: ['PATIENTS: Enrollment and baseline characteristics','VISITS: Longitudinal clinical measurements per visit','FEATURE_STORE: Centralized clinical feature repository','PREDICTIONS: Endpoint probability at interim visit'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Patienten und Besuchsdaten generiert','Der Feature Store wird mit longitudinalen Variablen aufgebaut','Das Prognosemodell trainiert und generiert Vorhersagen']
+  },
+  UC10: {
+    title: 'Automatische Kodierung unerwünschter Ereignisse',
+    contexto: 'Diese Cortex Code Prompts erstellen ein automatisches Kodierungssystem für unerwünschte Ereignisse nach MedDRA-Standard.',
+    foco: 'Pharmakovigilanz — automatische MedDRA-Kodierung mit LLM-Unterstützung.',
+    reto: 'Die manuelle Kodierung von 500+ ausstehenden Ereignissen beschleunigen und die Konsistenz der MedDRA-Zuordnung verbessern.',
+    objetivos: ['CORTEX.COMPLETE für MedDRA-Kodierungsvorschläge implementieren','Synthetische Daten unerwünschter Ereignisse generieren','Konfidenz-Scoring für die vorgeschlagene Kodierung erstellen','Review-Workflow für menschliche Validierung aufbauen','Überwachungs-Dashboard erstellen'],
+    funcionalidades: ['LLM-Kodierung: CORTEX.COMPLETE für MedDRA-PT-Vorschläge','Synthetische Daten: 1.000 unerwünschte Ereignisse mit Freitextbeschreibungen','Variablen: EVENT_DESCRIPTION, SUGGESTED_PT_CODE, CONFIDENCE_SCORE, REASONING','Dashboard: Ausstehende Kodierungen mit Review-Priorität'],
+    datos: ['ADVERSE_EVENTS: Event descriptions and reporter information','MEDDRA_DICTIONARY: MedDRA preferred terms and hierarchy','CODING_SUGGESTIONS: LLM-proposed codes with confidence','REVIEW_QUEUE: Pending human validation queue'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden unerwünschte Ereignisse und MedDRA-Referenz generiert','CORTEX.COMPLETE generiert Kodierungsvorschläge','Das Dashboard zeigt Review-Queue und Statistiken']
+  },
+  UC11: {
+    title: 'Intelligente Zusammenfassung klinischer Protokolle',
+    contexto: 'Diese Cortex Code Prompts erstellen ein System zur intelligenten Zusammenfassung klinischer Protokolldokumente.',
+    foco: 'Regulatorisch/Klinisch — strukturierte Extraktion und Zusammenfassung aus Protokollen mit 80-200 Seiten.',
+    reto: 'Die 2-3 Tage manuelle Zusammenfassungsarbeit auf Minuten reduzieren und konsistente, strukturierte Zusammenfassungen der Schlüsselabschnitte sicherstellen.',
+    objetivos: ['CORTEX.COMPLETE für strukturierte Extraktion implementieren','CORTEX.SUMMARIZE für exekutive Zusammenfassungen nutzen','Synthetische Protokollabschnitte generieren','Automatische Erkennung von Schlüsselabschnitten erstellen','Vergleichs-Dashboard zwischen Versionen erstellen'],
+    funcionalidades: ['Extraktion: CORTEX.COMPLETE für strukturierte Abschnittserkennung','Zusammenfassung: CORTEX.SUMMARIZE für exekutive Zusammenfassungen','Synthetische Daten: 20 Protokolle mit 10 Schlüsselabschnitten','Dashboard: Versionsvergleich und Zusammenfassungs-Navigator'],
+    datos: ['PROTOCOLS: Protocol documents with section structure','SECTIONS: Extracted key sections (criteria, endpoints, schedule)','SUMMARIES: AI-generated structured summaries','VERSION_COMPARISONS: Differences between protocol versions'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Protokolle und Abschnitte generiert','CORTEX.COMPLETE extrahiert und CORTEX.SUMMARIZE fasst zusammen','Das Dashboard zeigt Zusammenfassungen und Versionsvergleiche']
+  },
+  UC12: {
+    title: 'Pharmakovigilanz-Signalerkennung',
+    contexto: 'Diese Cortex Code Prompts erstellen eine NLP-Pipeline zur proaktiven Erkennung von Sicherheitssignalen in Pharmakovigilanz-Quellen.',
+    foco: 'Pharmakovigilanz — proaktive Signalerkennung in Spontanmeldungen und sozialen Medien.',
+    reto: 'Von der reaktiven zur proaktiven Sicherheitsüberwachung wechseln und neue Signale Monate früher als mit manuellen Prozessen erkennen.',
+    objetivos: ['CORTEX.COMPLETE für UE-Extraktion aus Text implementieren','CORTEX.SENTIMENT für Stimmungsveränderungen nutzen','Synthetische Pharmakovigilanz-Daten generieren','Zeitliche Aggregation zur Signalerkennung aufbauen','Überwachungs-Dashboard mit Alarmen erstellen'],
+    funcionalidades: ['NLP-Pipeline: CORTEX.COMPLETE + CORTEX.SENTIMENT für Signalextraktion','Synthetische Daten: 5.000 Meldungen aus 3 Quellen (FAERS, Spontan, Foren)','Variablen: SOURCE, EVENT_TEXT, EXTRACTED_AE, SENTIMENT_SCORE, SIGNAL_FLAG','Dashboard: Zeitreihen-Signalüberwachung mit Alarmen'],
+    datos: ['REPORTS: Spontaneous reports and forum posts','EXTRACTED_EVENTS: NLP-extracted adverse events','SENTIMENT_TRENDS: Temporal sentiment aggregations','SIGNALS: Detected safety signals with evidence'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Meldungen aus verschiedenen Quellen generiert','Die NLP-Pipeline extrahiert und klassifiziert','Das Dashboard zeigt Signale und Stimmungstrends']
+  },
+  UC13: {
+    title: 'KI-Assistent für medizinische Information',
+    contexto: 'Diese Cortex Code Prompts erstellen ein RAG-System für die Beantwortung medizinischer Informationsanfragen.',
+    foco: 'Medizinische Information — RAG-basierter KI-Assistent für über 1.000 Anfragen/Monat.',
+    reto: 'Die Bearbeitungszeit für die 60% repetitiven Anfragen drastisch reduzieren und gleichzeitig die Qualität und Nachvollziehbarkeit sicherstellen.',
+    objetivos: ['RAG-System mit CORTEX.COMPLETE und Dokumentenkorpus implementieren','CORTEX.EMBED für semantische Suche nutzen','Synthetische Fachinformationen und Anfragen generieren','Antwortgenerierung mit Quellenangabe erstellen','Review-Dashboard für medizinische Information erstellen'],
+    funcionalidades: ['RAG-System: CORTEX.COMPLETE mit semantischer Suche über Fachinformationen','Embedding: CORTEX.EMBED für Dokumenten-Retrieval','Synthetische Daten: 50 Fachinformationen, 500 Anfragen','Dashboard: Review-Queue mit Quellenverweis'],
+    datos: ['DOCUMENTS: Product information sheets and summaries','EMBEDDINGS: Semantic vectors for document chunks','QUERIES: Medical information requests with categories','DRAFT_RESPONSES: AI-generated responses with source citations'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Fachinformationen und Anfragen generiert','Das RAG-System generiert Antwortentwürfe mit Quellen','Das Dashboard zeigt Review-Queue und Qualitätsmetriken']
+  },
+  UC14: {
+    title: 'Klassifizierung regulatorischer Dokumente',
+    contexto: 'Diese Cortex Code Prompts erstellen ein automatisches Klassifizierungssystem für eingehende regulatorische Dokumente.',
+    foco: 'Regulatorische Abteilung — automatische Dokumentenklassifizierung und Priorisierung.',
+    reto: 'Die manuelle Klassifizierung von 500+ Dokumenten/Monat automatisieren und konsistente Priorisierung und Team-Zuordnung sicherstellen.',
+    objetivos: ['CORTEX.CLASSIFY_TEXT für Dokumentenklassifizierung implementieren','Synthetische regulatorische Dokumente generieren','Automatische Prioritätszuweisung erstellen','Zuordnung zu Produkt und Team automatisieren','Dashboard für Dokumentenmanagement erstellen'],
+    funcionalidades: ['Klassifizierung: CORTEX.CLASSIFY_TEXT für Typ und Dringlichkeit','Synthetische Daten: 1.000 regulatorische Dokumente aus 5 Typen','Variablen: DOCUMENT_TYPE, URGENCY_LEVEL, PRODUCT_ASSIGNMENT, TEAM_ASSIGNMENT','Dashboard: Eingangsmanagement und Priorisierung'],
+    datos: ['DOCUMENTS: Incoming regulatory documents with metadata','CLASSIFICATIONS: Document type, urgency, and product assignment','ROUTING: Team assignment and processing queue','METRICS: Processing times and classification accuracy'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden regulatorische Dokumente und Kategorien generiert','CORTEX.CLASSIFY_TEXT klassifiziert und priorisiert','Das Dashboard zeigt Eingangsmanagement und Metriken']
+  },
+  UC15: {
+    title: 'Analyse des Verschreibungsverhaltens von Ärzten',
+    contexto: 'Diese Cortex Code Prompts erstellen ein NLP-Analysesystem für CRM-Besuchsnotizen des Medizinvertriebs.',
+    foco: 'Medizinvertrieb — Verhaltensanalyse und Ärzteprofilerstellung aus CRM-Notizen.',
+    reto: 'Versteckte Muster in CRM-Besuchsnotizen aufdecken, um Verschreibungstreiber zu verstehen und die Botschaft pro Arzt zu personalisieren.',
+    objetivos: ['CORTEX.COMPLETE für Treiber-Extraktion implementieren','CORTEX.SENTIMENT für Einstellungsanalyse nutzen','Synthetische CRM-Besuchsnotizen generieren','Ärzteprofilerstellung automatisieren','Dashboard pro Gebiet erstellen'],
+    funcionalidades: ['NLP-Analyse: CORTEX.COMPLETE + CORTEX.SENTIMENT auf CRM-Notizen','Synthetische Daten: 2.000 Besuchsnotizen für 200 Ärzte','Variablen: VISIT_NOTES, PRESCRIBING_DRIVERS, CONCERNS, ATTITUDE_SCORE, PREFERRED_MESSAGE','Dashboard: Ärzteprofil-Karten mit Gebietsansicht'],
+    datos: ['PHYSICIANS: Doctor profiles and specialties','VISIT_NOTES: CRM visit reports and notes','DRIVER_ANALYSIS: Extracted prescribing drivers and concerns','PHYSICIAN_PROFILES: AI-generated profiles with messaging preferences'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Ärzte und Besuchsnotizen generiert','NLP-Pipeline extrahiert Treiber und Stimmung','Das Dashboard zeigt Profile und Gebietsansichten']
+  },
+  UC16: {
+    title: 'Automatisierung der Literaturrecherche',
+    contexto: 'Diese Cortex Code Prompts erstellen eine Pipeline zur automatischen Analyse und Klassifizierung neuer Publikationen.',
+    foco: 'Medizinisch-wissenschaftlich — automatisierte Literaturüberwachung und Zusammenfassung.',
+    reto: 'Die manuelle Überprüfung von 200+ Publikationen/Monat automatisieren und sicherstellen, dass keine relevanten Artikel verpasst werden.',
+    objetivos: ['CORTEX.COMPLETE für Abstract-Analyse implementieren','CORTEX.SUMMARIZE für Zusammenfassungen nach Priorität nutzen','Synthetische Publikationsdaten generieren','Klassifizierung nach therapeutischem Bereich erstellen','Überwachungs-Dashboard erstellen'],
+    funcionalidades: ['Pipeline: CORTEX.COMPLETE + CORTEX.SUMMARIZE für Analyse und Zusammenfassung','Synthetische Daten: 500 Abstracts aus 10 therapeutischen Bereichen','Variablen: ABSTRACT_TEXT, THERAPEUTIC_AREA, RELEVANCE_SCORE, SAFETY_FLAG, PRIORITY_LEVEL','Dashboard: Publikationsüberwachung mit Prioritäts-Feed'],
+    datos: ['PUBLICATIONS: Article metadata and abstracts','CLASSIFICATIONS: Therapeutic area and relevance scores','SUMMARIES: AI-generated priority summaries','ALERTS: Safety-relevant publication alerts'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Abstracts und Klassifizierungen generiert','Die Pipeline analysiert und priorisiert automatisch','Das Dashboard zeigt Zusammenfassungen und Alarme']
+  },
+  UC17: {
+    title: 'Intelligente Sentinel-Überwachung von Patientenforen',
+    contexto: 'Diese Cortex Code Prompts erstellen ein Sentinel-System zur proaktiven Überwachung von Patientenforen auf Sicherheitssignale.',
+    foco: 'Pharmakovigilanz — Echtzeit-Überwachung von Patientenforen und Online-Communitys.',
+    reto: 'Patienten-gemeldete unerwünschte Ereignisse und Off-Label-Nutzung in Online-Foren erkennen, bevor sie über formelle Kanäle gemeldet werden.',
+    objetivos: ['CORTEX.COMPLETE für UE-Erkennung in Forumposts implementieren','CORTEX.SENTIMENT für Stimmungstrend-Überwachung nutzen','Synthetische Forumdaten generieren','Erkennung von Off-Label-Nutzung erstellen','Echtzeit-Alarm-Dashboard erstellen'],
+    funcionalidades: ['Sentinel-System: CORTEX.COMPLETE + CORTEX.SENTIMENT für Forumüberwachung','Synthetische Daten: 10.000 Forumposts aus 5 Patientenforen','Variablen: POST_TEXT, DETECTED_AE, SENTIMENT_TREND, OFF_LABEL_FLAG, SEVERITY_LEVEL','Dashboard: Echtzeit-Überwachung mit Alarmen und Quellen'],
+    datos: ['FORUM_POSTS: Patient forum posts with metadata','DETECTED_EVENTS: NLP-extracted adverse events from posts','SENTIMENT_TRENDS: Community sentiment over time','ALERTS: Real-time alerts with severity and source'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Forumposts und Patientenberichte generiert','Das Sentinel-System analysiert und erkennt Signale','Das Dashboard zeigt Echtzeit-Alarme und Trends']
+  },
+  UC18: {
+    title: 'Automatische Generierung regulatorischer Antworten',
+    contexto: 'Diese Cortex Code Prompts erstellen ein RAG-basiertes System zur Generierung von Antworten auf Behördenanfragen.',
+    foco: 'Regulatorisch — RAG-basierte Antwortentwürfe auf Behördenanfragen mit korrekten Referenzen.',
+    reto: 'Die 2-5-tägige Antwortzeit für Behördenanfragen drastisch reduzieren und gleichzeitig die Qualität und Referenzgenauigkeit sicherstellen.',
+    objetivos: ['RAG-System über regulatorisches Dokumentenkorpus implementieren','CORTEX.COMPLETE für begründete Antworten nutzen','Synthetische Behördenanfragen generieren','Automatische Referenzeinbindung erstellen','Review- und Genehmigungsworkflow aufbauen'],
+    funcionalidades: ['RAG-System: CORTEX.COMPLETE über regulatorisches Dokumentenkorpus','Referenzierung: Automatische Einbindung relevanter Quellen','Synthetische Daten: 200 Behördenanfragen, 100 regulatorische Dokumente','Dashboard: Review-Workflow mit Genehmigungsprozess'],
+    datos: ['REGULATORY_DOCUMENTS: Regulatory corpus and reference documents','AUTHORITY_QUERIES: Incoming questions from health authorities','DRAFT_RESPONSES: AI-generated responses with citations','REVIEW_WORKFLOW: Approval status and reviewer feedback'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Anfragen und regulatorische Dokumente generiert','Das RAG-System erstellt begründete Antwortentwürfe','Das Dashboard zeigt Review-Workflow und Genehmigungen']
+  },
+  UC19: {
+    title: 'Mapping der Patienten-Journey in klinischen Studien',
+    contexto: 'Diese Cortex Code Prompts erstellen ein End-to-End-Mapping der Patienten-Journey in klinischen Studien mit KI-Erfahrungsanalyse.',
+    foco: 'Klinische Studien — End-to-End-Patienten-Journey mit Dropout-Risiko-Vorhersage.',
+    reto: 'Patientenabbrüche voraussehen, bevor sie eintreten, indem Friktionspunkte und Risikoindikatoren in jeder Studienphase identifiziert werden.',
+    objetivos: ['End-to-End-Journey-Funnel modellieren (Screening → Nachbeobachtung)','CORTEX.SENTIMENT für Erfahrungsanalyse pro Kontaktpunkt implementieren','Dropout-Risikovorhersage mit CORTEX.CLASSIFY_TEXT erstellen','Synthetische Journey-Daten generieren','Friktionspunkt-Dashboard erstellen'],
+    funcionalidades: ['Journey-Funnel: Screening → Randomisierung → Behandlung → Nachbeobachtung','CORTEX.SENTIMENT: Erfahrungsanalyse pro Kontaktpunkt','CORTEX.CLASSIFY_TEXT: Dropout-Risikovorhersage','Dashboard: Konversionsmetriken und Friktionspunkte'],
+    datos: ['PATIENTS: Enrollment and baseline characteristics','JOURNEY_EVENTS: Touchpoints with timestamps and feedback','SENTIMENT_SCORES: Experience scores per stage and patient','DROPOUT_RISK: Predicted dropout probability with risk factors'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Journey-Daten über alle Phasen generiert','Cortex AI analysiert Erfahrung und Risiken','Das Dashboard zeigt Funnel und Friktionspunkte']
+  },
+  UC20: {
+    title: 'Patient-Support-Programm-Analytik',
+    contexto: 'Diese Cortex Code Prompts erstellen eine Analyse des Patient-Support-Programmes mit Multi-Kanal-Evaluation.',
+    foco: 'Patient Support — Multi-Kanal-Analyse von Interventionswirksamkeit und Adhärenzwirkung.',
+    reto: 'Verstehen, welche Patient-Support-Interventionen die Adhärenz tatsächlich verbessern und welche keine messbare Wirkung haben.',
+    objetivos: ['Multi-Kanal-Analyse von Patienteninteraktionen implementieren','CORTEX.SENTIMENT pro Kanal und Interaktion anwenden','Korrelation von Intervention und Adhärenz berechnen','Synthetische PSP-Daten generieren','Wirksamkeits-Dashboard erstellen'],
+    funcionalidades: ['Multi-Kanal-Analyse: Pflegekraft, App, Callcenter, E-Mail','CORTEX.SENTIMENT: Stimmungsanalyse pro Kanal und Interaktion','Korrelation: Intervention-Adhärenz-Wirksamkeitsbewertung','Dashboard: PSP-Performance nach Kanal und Intervention'],
+    datos: ['PATIENTS: Program enrollment and adherence metrics','INTERACTIONS: Multi-channel touchpoints with details','SENTIMENT_SCORES: Experience scores per channel and interaction','EFFECTIVENESS: Intervention-adherence correlation metrics'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Patienten und Multi-Kanal-Interaktionen generiert','Cortex AI bewertet Stimmung und Wirksamkeit','Das Dashboard zeigt Kanalvergleich und Interventions-ROI']
+  },
+  UC21: {
+    title: 'Intelligenz der Arzt-Engagement-Journey',
+    contexto: 'Diese Cortex Code Prompts erstellen ein Mapping der Arzt-Engagement-Journey mit KI-Analyse der Interaktionswirksamkeit.',
+    foco: 'Medizinvertrieb — Journey-Mapping mit Korrelation von Engagement und Verschreibungsverhalten.',
+    reto: 'Verstehen, welche Interaktionssequenzen Verschreibungsänderungen bewirken, und die Engagement-Strategie pro Ärzteprofil optimieren.',
+    objetivos: ['Engagement-Journey mit 8+ Kontaktpunkt-Typen modellieren','CORTEX.SENTIMENT für Interaktionsstimmung implementieren','Korrelation Kontaktsequenz → Verschreibungsveränderung analysieren','Synthetische Engagement-Daten generieren','Dashboard für optimale Strategie erstellen'],
+    funcionalidades: ['Journey-Mapping: 8+ Kontaktpunkt-Typen (Besuch, E-Mail, Webinar, Kongress, ...)','CORTEX.SENTIMENT: Interaktionsstimmungsanalyse','Korrelation: Sequenz → Verschreibungsveränderung','Dashboard: Optimale Strategie pro Ärzteprofil'],
+    datos: ['PHYSICIANS: Doctor profiles and engagement history','INTERACTIONS: Multi-type touchpoints with sequence data','PRESCRIBING_CHANGES: Prescription volume changes over time','STRATEGY_RECOMMENDATIONS: Optimal engagement strategy per profile'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Ärzte und Interaktionssequenzen generiert','Cortex AI analysiert Stimmung und Wirksamkeit','Das Dashboard zeigt optimale Strategien und Korrelationen']
+  },
+  UC22: {
+    title: 'Diagnose-zu-Behandlung-Pfad-Analytik',
+    contexto: 'Diese Cortex Code Prompts analysieren den Pfad von der Diagnose bis zum Therapiebeginn mit Identifizierung von Engpässen.',
+    foco: 'Patientenversorgung — Time-to-Treatment-Analyse mit regionalen Unterschieden.',
+    reto: 'Die 3-fache Variabilität der Time-to-Treatment zwischen Regionen reduzieren und kritische Engpässe im Diagnosepfad identifizieren.',
+    objetivos: ['Time-to-Treatment-Funnel pro Region modellieren','Engpässe im Pfad identifizieren','CORTEX.SENTIMENT für Patienten-Feedback pro Etappe implementieren','Synthetische Pfaddaten generieren','Dashboard für regionale Unterschiede erstellen'],
+    funcionalidades: ['Funnel: Diagnose → Überweisung → Spezialist → Therapiebeginn','Engpassanalyse: Kritische Verzögerungen identifizieren','CORTEX.SENTIMENT: Patienten-Feedback pro Etappe','Dashboard: Regionale Vergleiche und Optimierung'],
+    datos: ['PATIENTS: Diagnosis and treatment timeline data','PATH_EVENTS: Journey stages with timestamps per region','SENTIMENT_SCORES: Patient feedback scores per stage','BOTTLENECK_ANALYSIS: Identified delays and regional variations'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Patientenpfade und regionale Daten generiert','Cortex AI analysiert Feedback und identifiziert Engpässe','Das Dashboard zeigt regionale Vergleiche und Empfehlungen']
+  },
+  UC23: {
+    title: 'Klinische Studie — Erfahrung der Prüfzentren',
+    contexto: 'Diese Cortex Code Prompts analysieren die Prüfzentrums-Erfahrung mit multidimensionalem KI-Scoring.',
+    foco: 'Klinische Studien — personalisierte Zentrumsbetreuung mit KI-basiertem Erfahrungs-Scoring.',
+    reto: 'Hoch- und niedrig performende Prüfzentren identifizieren und die Betreuungsstrategie personalisieren, um die Gesamtperformance zu verbessern.',
+    objetivos: ['Multidimensionales Scoring pro Prüfzentrum erstellen','CORTEX.SENTIMENT auf der Zentrum-Sponsor-Kommunikation anwenden','Best Practices der besten Zentren identifizieren','Synthetische Zentrumsdaten generieren','Dashboard für Segmentierung erstellen'],
+    funcionalidades: ['Multidimensionales Scoring: Rekrutierung, Qualität, Stimmung, Effizienz','CORTEX.SENTIMENT: Kommunikationsanalyse Zentrum-Sponsor','Best-Practice-Identifizierung aus Top-Zentren','Dashboard: Segmentierung und personalisierte Maßnahmen'],
+    datos: ['SITES: Site profiles and performance metrics','COMMUNICATIONS: Site-sponsor communication records','SITE_SCORES: Multi-dimensional experience scores','BEST_PRACTICES: Identified best practices from top performers'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Prüfzentren und Kommunikationsdaten generiert','Cortex AI bewertet und identifiziert Best Practices','Das Dashboard zeigt Segmentierung und Empfehlungen']
+  },
+  UC24: {
+    title: 'Omni-Kanal-Analyse der Arztinteraktion',
+    contexto: 'Diese Cortex Code Prompts erstellen eine Omni-Kanal-Zusammenführung der Arztinteraktionen mit KI-Kanalanalyse.',
+    foco: 'Medizinvertrieb — einheitliche Sicht über 8+ Kanäle mit Wirksamkeitsanalyse.',
+    reto: 'Ein einheitliches Bild des Arzt-Engagements über CRM, E-Mail, Webinare, Kongresse und digitale Plattformen schaffen und die optimale Kanalstrategie identifizieren.',
+    objetivos: ['Zusammenführung über 8+ Interaktionskanäle implementieren','CORTEX.SENTIMENT für Stimmung pro Kanal anwenden','Optimale Kanalkombination identifizieren','Synthetische Omni-Kanal-Daten generieren','Dashboard für Personalisierung erstellen'],
+    funcionalidades: ['Omni-Kanal: CRM, E-Mail, Webinar, Kongress, Digital, Telefon, Muster, MSL','CORTEX.SENTIMENT: Interaktionsstimmung pro Kanal','Kanaloptimierung: Identifizierung der besten Kombination','Dashboard: Personalisierung und Frequenzoptimierung'],
+    datos: ['PHYSICIANS: Doctor profiles and channel preferences','INTERACTIONS: Multi-channel touchpoints with timestamps','CHANNEL_EFFECTIVENESS: Sentiment and impact per channel','OPTIMIZATION: Recommended channel mix per physician profile'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Ärzte und Omni-Kanal-Interaktionen generiert','Cortex AI analysiert Stimmung und Kanalwirksamkeit','Das Dashboard zeigt optimale Kanalstrategie und Personalisierung']
+  },
+  UC25: {
+    title: 'Patienten-Behandlungs-Journey-Erfahrung',
+    contexto: 'Diese Cortex Code Prompts verfolgen die Patientenerfahrung über sechs Behandlungsetappen mithilfe mehrerer Cortex-KI-Funktionen.',
+    foco: 'AFib-Patienten — 6-Etappen-Behandlungs-Journey mit Friktionsanalyse.',
+    reto: 'End-to-End-Transparenz über Behandlungsetappen gewinnen, um Abbrüche und Schmerzpunkte zu identifizieren.',
+    objetivos: ['6-Etappen-Journey-Funnel mit Vollständigkeitsmetriken modellieren','CORTEX.SENTIMENT in jeder Journey-Etappe implementieren','CORTEX.COMPLETE + CORTEX.SUMMARIZE für Barrieren-Insights nutzen','Dropout-Risiko mit CORTEX.CLASSIFY_TEXT klassifizieren'],
+    funcionalidades: ['6-Etappen-Funnel: Diagnose → Verschreibung → Abgabe → Adhärenz → Nachsorge → Ergebnis','CORTEX.SENTIMENT in jeder Journey-Etappe','CORTEX.COMPLETE + SUMMARIZE für Barrierenanalyse','CORTEX.CLASSIFY_TEXT für Dropout-Risiko-Scoring'],
+    datos: ['PATIENTS: Clinical and demographic profile','JOURNEY: 6 stages with timestamps and feedback','SENTIMENT: Scores per stage and patient','BARRIERS: Analysis of friction reasons'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden 6-Etappen-Journey-Daten generiert','Cortex AI analysiert Stimmung und Barrieren pro Etappe','Das Dashboard zeigt Funnel und Friktionspunkte']
+  },
+  UC26: {
+    title: 'Intelligenz der Behandlungsadhärenz-Journey',
+    contexto: 'Diese Cortex Code Prompts kombinieren Rezepteinlösungs-Analytik mit KI zur Klassifizierung von Adhärenzbarrieren und Vorhersage von Risikozeitfenstern.',
+    foco: 'Chronische Medikamente — 12-Monats-Adhärenzprogramm mit Abbruchvorhersage bei 30/60/90 Tagen.',
+    reto: 'Abbrüche bei 30/60/90 Tagen in einem 12-Monats-Programm vorhersagen und von reaktiven zu proaktiven Interventionen wechseln.',
+    objetivos: ['Rezepteinlösungs- und Persistenz-Tracking über 12 Monate implementieren','Stimmungstrend zur Medikation mit CORTEX.SENTIMENT analysieren','Barrieren klassifizieren und Aktionspläne mit KI generieren','Risiko bei 30/60/90 Tagen mit CORTEX.CLASSIFY_TEXT etikettieren'],
+    funcionalidades: ['Vollständiges Rezepteinlösungs- und Persistenz-Tracking über 12 Monate','CORTEX.SENTIMENT-Trendlinie der Patientenstimmung zur Medikation','Barrierenklassifizierung + Aktionspläne mit KI','CORTEX.CLASSIFY_TEXT Risikoetiketten für 30/60/90 Tage'],
+    datos: ['REFILLS: 12-month dispensing history','PERSISTENCE: Gaps and interruption patterns','SENTIMENT: Patient tone trend about treatment','RISK: Risk labels per time window'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden 12-Monats-Rezepteinlösungsdaten generiert','Cortex AI klassifiziert Barrieren und prognostiziert Risiko','Das Dashboard zeigt Kohorten und Risikozeitfenster']
+  },
+  UC27: {
+    title: 'Multi-Stakeholder-Ökosystem-Analyse',
+    contexto: 'Diese Cortex Code Prompts erstellen eine Multi-Stakeholder-Mapping-Analyse, die Beziehungen zwischen Akteuren als Ökosystem modelliert.',
+    foco: 'Pharma-Ökosystem — Stakeholder-Mapping mit Einfluss-Scores zwischen Ärzten, Apotheken, Kostenträgern und Patienten.',
+    reto: 'Die isolierte Analyse einzelner Stakeholder überwinden und Einflüsse und Informationsflüsse zwischen Akteuren als zusammenhängendes System verstehen.',
+    objetivos: ['Stakeholder-Mapping mit Einfluss-Scores erstellen','CORTEX.SENTIMENT auf Stakeholder-Interaktionen anwenden','Schlüsselakteure und Einflussströme identifizieren','Synthetische Ökosystem-Daten generieren','Netzwerkvisualisierungs-Dashboard erstellen'],
+    funcionalidades: ['Stakeholder-Mapping: Ärzte, Apotheken, Kostenträger, Patienten','CORTEX.SENTIMENT: Interaktionsanalyse zwischen Stakeholdern','Einfluss-Scores und Informationsfluss-Identifizierung','Dashboard: Netzwerkvisualisierung des Ökosystems'],
+    datos: ['STAKEHOLDERS: Profiles for physicians, pharmacies, payers, patients','RELATIONSHIPS: Interaction records between stakeholder pairs','INFLUENCE_SCORES: Computed influence metrics per stakeholder','ECOSYSTEM_MAP: Network graph with information flow paths'],
+    como_usar: ['Prompts sequentiell ausführen','Es werden Stakeholder und Beziehungsdaten generiert','Cortex AI analysiert Stimmung und berechnet Einfluss-Scores','Das Dashboard zeigt Netzwerkkarte und Einflussströme']
+  }
+};
+
+
+function showGuide(ucId) {
+  const g = GUIDES[ucId];
+  if (!g) return;
+  const box = document.getElementById('guideModalBox');
+  let html = `<button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>`;
+  html += `<span class="guide-badge">${ucId}</span>`;
+  html += `<h2>${g.title}</h2>`;
+  html += `<p>${g.contexto}</p>`;
+  html += `<h3>🎯 Fokus</h3><p>${g.foco}</p>`;
+  html += `<h3>⚡ Herausforderung</h3><p>${g.reto}</p>`;
+  html += `<h3>🎓 Lernziele</h3><ul>${g.objetivos.map(o => `<li>${o}</li>`).join('')}</ul>`;
+  html += `<h3>🔧 Hauptfunktionen</h3><ul>${g.funcionalidades.map(f => `<li>${f}</li>`).join('')}</ul>`;
+  html += `<h3>📊 Generierte Daten</h3><ul>${g.datos.map(d => `<li>${d}</li>`).join('')}</ul>`;
+  if (g.estratificacion) {
+    html += `<h3>📈 Risikostratifizierung</h3><ul>${g.estratificacion.map(s => `<li>${s}</li>`).join('')}</ul>`;
+  }
+  html += `<h3>🚀 Verwendung</h3><ul>${g.como_usar.map(p => `<li>${p}</li>`).join('')}</ul>`;
+  html += `<p class="guide-footer">Jeden Prompt sequentiell in Cortex Code (Snowsight) ausführen</p>`;
+  box.innerHTML = html;
+  document.getElementById('guideModal').classList.add('active');
+}
+
+
+function showPrompts(ucId) {
+  const g = GUIDES[ucId];
+  if (!g) return;
+  const box = document.getElementById('promptsModalBox');
+  let html = `<button class="modal-close" onclick="this.closest('.modal-overlay').classList.remove('active')">&times;</button>`;
+  html += `<span class="guide-badge">${ucId}</span>`;
+  html += `<h2>${g.title} — Cortex Code Prompts</h2>`;
+  html += `<p class="prompt-intro">${g.contexto}</p>`;
+  const steps = g.objetivos;
+  steps.forEach((step, i) => {
+    const promptId = `prompt_${ucId}_${i}`;
+    html += `<div class="prompt-step">`;
+    html += `<div class="prompt-step-header"><span class="prompt-step-num">${i+1}</span><span class="prompt-step-title">${step}</span></div>`;
+    html += `<div class="prompt-code" id="${promptId}"><button class="copy-btn" onclick="copyPrompt('${promptId}')">Kopieren</button>${step}</div>`;
+    html += `</div>`;
+  });
+  html += `<p class="guide-footer">Jeden Prompt sequentiell in Cortex Code (Snowsight) ausführen</p>`;
+  box.innerHTML = html;
+  document.getElementById('promptsModal').classList.add('active');
+}
+
+function copyPrompt(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = el.textContent.replace('Kopieren', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Kopiert!';
+    setTimeout(() => btn.textContent = 'Kopieren', 1500);
+  });
+}
+
+</script>
+
+<div class="modal-overlay" id="guideModal">
+  <div class="modal-box" id="guideModalBox"></div>
+</div>
+
+<div class="modal-overlay" id="promptsModal">
+  <div class="modal-box" id="promptsModalBox" style="max-width:780px;"></div>
+</div>
+
+</body>
+</html>

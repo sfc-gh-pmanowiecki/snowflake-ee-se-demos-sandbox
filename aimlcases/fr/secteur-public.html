@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — Solutions IA/ML pour le Secteur Public</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+    .hero { background: linear-gradient(135deg, #003545, #11567F); color: #fff; padding: 32px 48px 36px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+    .hero-left { flex: 1; }
+    .logos { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .logo-snowflake { display: flex; align-items: center; gap: 7px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .hero-title { font-size: 42px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+    .hero-subtitle { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 6px; }
+    .hero-tagline { font-size: 12px; color: rgba(255,255,255,0.65); }
+    .stats-box { background: #fff; border-radius: 10px; padding: 20px 28px; text-align: center; color: #1a1a1a; min-width: 160px; flex-shrink: 0; }
+    .stats-box .stat-number { font-size: 40px; font-weight: 700; color: #546E7A; line-height: 1; }
+    .stats-box .stat-label { font-size: 12px; color: #666; margin-bottom: 14px; }
+    .stats-box .stat-time { font-size: 20px; font-weight: 700; color: #1a1a1a; line-height: 1; }
+    .stats-box .stat-time-label { font-size: 12px; color: #666; }
+    .stats-divider { border: none; border-top: 1px solid #e8e8e8; margin: 10px 0; }
+    .intro { background: #fff; text-align: center; padding: 48px 24px 32px; }
+    .intro h2 { font-size: 22px; font-weight: 700; color: #11567F; margin-bottom: 14px; }
+    .intro p { max-width: 600px; margin: 0 auto; font-size: 14px; color: #555; line-height: 1.7; }
+    .filters-bar { background: #fff; padding: 20px 48px 0; border-bottom: 1px solid #e8e8e8; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .filters-left { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+    .filter-btn { padding: 8px 18px; border-radius: 80px; border: 1.5px solid #ccc; background: transparent; font-size: 13px; font-weight: 500; color: #444; cursor: pointer; transition: all 0.15s; }
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+    .filter-btn.active { background: #29B5E8; border-color: #29B5E8; color: #fff; }
+    .search-box { display: flex; align-items: center; border: 1.5px solid #ccc; border-radius: 80px; padding: 7px 14px; gap: 8px; min-width: 200px; background: #fff; }
+    .search-box input { border: none; outline: none; font-size: 13px; color: #444; width: 100%; background: transparent; }
+    .search-box input::placeholder { color: #aaa; }
+    .results-count { padding: 14px 48px 8px; font-size: 13px; color: #666; background: #f5f5f5; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; padding: 16px 48px 48px; background: #f5f5f5; }
+    .card { background: #fff; border-radius: 10px; border: 1px solid #e2e2e2; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
+    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+    .card-header { padding: 16px 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .card-badges { display: flex; gap: 6px; align-items: center; }
+    .badge-id { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 0.5px; }
+    .badge-cat { background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 50px; }
+    .badge-cat.ciudadano  { background: #E3F2FD; color: #1565C0; }
+    .badge-cat.politicas  { background: #E8F5E9; color: #2E7D32; }
+    .badge-cat.fraude     { background: #FFF3E0; color: #E65100; }
+    .badge-cat.eficiencia { background: #EDE7F6; color: #5E35B1; }
+    .badge-cat.seguridad  { background: #FCE4EC; color: #C62828; }
+    .card-time { font-size: 12px; color: #888; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .card-title { padding: 0 18px 12px; font-size: 17px; font-weight: 700; color: #11567F; line-height: 1.3; }
+    .pain-point { margin: 0 18px 14px; background: #ECEFF1; border-radius: 8px; padding: 12px 14px; }
+    .pain-point-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #546E7A; margin-bottom: 6px; text-transform: uppercase; }
+    .pain-point p { font-size: 13px; color: #2a2a2a; line-height: 1.55; }
+    .card-desc { padding: 0 18px 14px; font-size: 13px; color: #555; line-height: 1.65; flex: 1; }
+    .card-features { padding: 0 18px 16px; list-style: none; }
+    .card-features li { font-size: 13px; color: #444; display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+    .card-features li::before { content: '\2713'; color: #29B5E8; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .card-actions { padding: 14px 18px 18px; display: flex; gap: 10px; border-top: 1px solid #f0f0f0; flex-wrap: wrap; }
+    .btn-secondary { flex: 1; padding: 10px; background: #29B5E8; color: #fff; border: none; border-radius: 80px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; transition: background 0.15s; text-decoration: none; display: block; }
+    .btn-secondary:hover { background: #11567F; }
+    .btn-tertiary { flex: 1; padding: 10px; background: #003545; color: #29B5E8; border: none; border-radius: 80px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; transition: background 0.15s; text-decoration: none; display: block; }
+    .btn-tertiary:hover { background: #11567F; }
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: #fff; border-radius: 12px; max-width: 700px; width: 92%; max-height: 85vh; overflow-y: auto; padding: 32px 28px; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.2); }
+    .modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: #888; line-height: 1; }
+    .modal-close:hover { color: #546E7A; }
+    .modal-box h2 { color: #11567F; font-size: 20px; margin-bottom: 6px; }
+    .modal-box h3 { font-size: 15px; color: #333; margin: 18px 0 8px; }
+    .modal-box p, .modal-box li { font-size: 13px; line-height: 1.7; color: #444; }
+    .modal-box ul { padding-left: 20px; margin: 6px 0; }
+    .modal-box .guide-badge { display: inline-block; background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 50px; margin-bottom: 10px; }
+    .modal-box .guide-footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; padding: 24px 20px; }
+      .cards-grid { grid-template-columns: 1fr; padding: 16px 16px 48px; }
+      .filters-bar { padding: 16px 16px 0; }
+      .results-count { padding: 12px 16px 6px; }
+    }
+  </style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-left">
+    <div class="logos"><div class="logo-snowflake"><img src="../bug-white.png" alt="Snowflake" width="32" height="32" /> Snowflake</div></div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Retour &agrave; l'Index des Industries</a>
+    <p class="hero-eyebrow">Secteur Public &times; Snowflake</p>
+    <h1 class="hero-title">Solutions IA/ML pour le Secteur Public</h1>
+    <p class="hero-subtitle">Guides et Prompts Cortex Code pr&ecirc;ts &agrave; d&eacute;ployer pour l'administration num&eacute;rique, les politiques publiques, le contr&ocirc;le des fonds et les services aux citoyens</p>
+    <p class="hero-tagline">Chaque cas d'usage comprend un guide pas &agrave; pas et des prompts optimis&eacute;s pour Cortex Code</p>
+  </div>
+  <div class="stats-box">
+    <div class="stat-number" id="totalCases">0</div>
+    <div class="stat-label">Cas d'usage</div>
+    <hr class="stats-divider" />
+    <div class="stat-time">~15 min</div>
+    <div class="stat-time-label">par impl&eacute;mentation</div>
+  </div>
+</header>
+
+<section class="intro">
+  <h2>Intelligence Artificielle pour l'Administration Publique</h2>
+  <p>S&eacute;lectionnez un cas d'usage pour acc&eacute;der au guide complet d'impl&eacute;mentation avec Cortex Code. Chaque fiche comprend le probl&egrave;me m&eacute;tier, la solution technique et les prompts pr&ecirc;ts &agrave; ex&eacute;cuter.</p>
+</section>
+
+<nav class="filters-bar">
+  <div class="filters-left">
+    <button class="filter-btn active" data-filter="all">Tous</button>
+    <button class="filter-btn" data-filter="ciudadano">Services aux Citoyens</button>
+    <button class="filter-btn" data-filter="politicas">Politiques</button>
+    <button class="filter-btn" data-filter="fraude">Fraude</button>
+    <button class="filter-btn" data-filter="eficiencia">Efficience</button>
+    <button class="filter-btn" data-filter="seguridad">S&eacute;curit&eacute;</button>
+  </div>
+  <div class="search-box">
+    <svg width="16" height="16" fill="none" stroke="#888" stroke-width="2"><circle cx="7" cy="7" r="5"/><line x1="11" y1="11" x2="15" y2="15"/></svg>
+    <input type="text" id="searchInput" placeholder="Rechercher un cas d'usage..." />
+  </div>
+</nav>
+<div class="results-count" id="resultsCount"></div>
+<main class="cards-grid" id="cardsGrid"></main>
+
+<script>
+var UC_CATALOG = {
+  "UC01": {
+    "title": "Chatbot Citoyen Intelligent",
+    "category": "ciudadano",
+    "catLabel": "Services aux Citoyens",
+    "time": "15 min",
+    "pain": "Les citoyens font face à des délais de plusieurs jours pour des démarches simples. Les centres d'appels sont saturés et les informations sur les sites web sont fragmentées entre plusieurs portails.",
+    "desc": "Chatbot intelligent basé sur Cortex Search et COMPLETE qui résout les consultations courantes des citoyens (certificats, impôts, aides) avec des données en temps réel et un langage naturel.",
+    "features": [
+      "Cortex Search sur la base de connaissances réglementaires",
+      "COMPLETE pour le dialogue contextuel multi-tour",
+      "Intégration avec le registre d'état civil et les données fiscales",
+      "Escalade automatique vers un agent humain avec contexte complet",
+      "Tableau de bord analytique du service citoyen"
+    ],
+    "focus": "Déployer un chatbot qui résout plus de 70 % des consultations citoyennes de premier niveau (certificats, impôts, aides, rendez-vous) en utilisant Cortex Search sur la base de connaissances réglementaires et COMPLETE pour le dialogue contextuel, avec escalade vers un agent humain lorsque nécessaire.",
+    "challenge": "L'information publique est répartie sur des dizaines de portails, réglementations et procédures qui changent fréquemment. Le bot doit être précis (les erreurs en matière administrative ont des conséquences légales) et accessible (niveaux numériques variés de la population).",
+    "objectives": [
+      "Indexer plus de 5 000 documents réglementaires, procédures et FAQ avec Cortex Search",
+      "Résoudre plus de 70 % des consultations de premier niveau sans intervention humaine",
+      "Temps de réponse moyen inférieur à 3 secondes avec référence à la source",
+      "Escalade intelligente avec contexte complet vers un agent humain",
+      "Réduire les appels au centre d'attention de 45 %"
+    ],
+    "capabilities": [
+      "Cortex Search : indexation de réglementations, procédures, formulaires, FAQ",
+      "COMPLETE (mistral-large2) : dialogue contextuel avec citation de sources",
+      "Dynamic Tables : synchronisation en temps réel des procédures et dates limites",
+      "Streamlit : interface de chat accessible et panneau d'administration",
+      "Feature Store : profil citoyen pour la personnalisation"
+    ],
+    "data": [
+      "Base réglementaire : lois, décrets, ordonnances, circulaires",
+      "Catalogue de procédures : exigences, délais, formulaires, coût",
+      "FAQ historique : questions fréquentes, résolutions, mises à jour",
+      "Registre citoyen : historique de démarches, profil, préférences",
+      "Calendrier administratif : dates limites, horaires, jours fériés"
+    ],
+    "stratification": [
+      "Par type de démarche : certificats, impôts, aides sociales, urbanisme",
+      "Par profil citoyen : particulier, entreprise, association, non-résident",
+      "Par canal : web, mobile, kiosque, téléphone",
+      "Par complexité : résolution directe, orientation, escalade",
+      "Par langue : multilingue si applicable"
+    ],
+    "steps": [
+      {
+        "title": "Préparer les données",
+        "desc": "Créer les tables et charger la base documentaire.",
+        "prompt": "Create database PUBLIC_SERVICES_AI; use it. Create tables:\n1. REGULATIONS (regulation_id STRING, title STRING, category STRING, full_text STRING, effective_date DATE, expiry_date DATE, source_url STRING, last_updated TIMESTAMP)\n2. PROCEDURES (procedure_id STRING, name STRING, description STRING, requirements STRING, estimated_time STRING, cost FLOAT, forms STRING, online_available BOOLEAN)\n3. FAQ_ENTRIES (faq_id STRING, question STRING, answer STRING, category STRING, views INT, helpful_votes INT, last_updated TIMESTAMP)\n4. CITIZEN_INTERACTIONS (interaction_id STRING, citizen_id STRING, channel STRING, query_text STRING, response_text STRING, resolved BOOLEAN, escalated BOOLEAN, satisfaction_score FLOAT, created_at TIMESTAMP)\nLoad sample data with 200 regulations, 80 procedures, 500 FAQ entries. Categories: certificates, taxes, social_aid, urban_planning, civil_registry."
+      },
+      {
+        "title": "Créer les services de recherche",
+        "desc": "Configurer Cortex Search pour la base de connaissances.",
+        "prompt": "Create Cortex Search service REGULATION_SEARCH on REGULATIONS(full_text) with attributes title, category, effective_date. Create another service PROCEDURE_SEARCH on PROCEDURES(description) with attributes name, requirements, cost, online_available. Create a COMPLETE function that: 1) Receives the citizen query, 2) Searches both services, 3) Builds context with the most relevant results, 4) Generates a response citing sources, 5) Evaluates confidence. Create view CHATBOT_RESPONSES with: query, response, sources_cited, confidence, needs_escalation."
+      },
+      {
+        "title": "Intelligence et personalisation",
+        "desc": "Modèles de détection d'intention et personnalisation.",
+        "prompt": "Create a classification view QUERY_INTENT that uses CORTEX.COMPLETE to classify each citizen query into: certificate_request, tax_query, social_aid, appointment, complaint, general_info. For each intent, define the search strategy and required data. Create view PERSONALIZED_RESPONSE that considers: citizen interaction history, frequent procedures for their profile, pending deadlines. Use Feature Store with Entity('citizen') and FeatureViews for interaction_history and procedure_profile."
+      },
+      {
+        "title": "Escalade et analyses",
+        "desc": "Système d'escalade et tableau de bord analytique.",
+        "prompt": "Create view ESCALATION_QUEUE that identifies interactions requiring a human agent: low confidence (<0.6), complex requests (multiple procedures), complaints, vulnerable profiles. Include: interaction context, intent detected, attempted responses, suggested agent. Create CITIZEN_SERVICE_ANALYTICS with: daily queries, resolution rate, average time, satisfaction, top unresolved topics. Create IMPROVEMENT_OPPORTUNITIES that identifies: frequent unanswered questions, outdated procedures, confusion patterns."
+      },
+      {
+        "title": "Interface et pipeline",
+        "desc": "Chat Streamlit et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Accessible chat interface (large fonts, high contrast, simple language)\n2. Common quick actions panel (certificates, appointments, payments)\n3. Satisfaction survey after each interaction\n4. Administration panel: analytics, knowledge management, escalation queue\n5. Metrics: queries/day, resolution rate, CSAT, average time\n6. Unanswered question log for continuous improvement\n\nCreate Tasks:\n1. SYNC_REGULATIONS: daily update of the regulatory base\n2. UPDATE_SEARCH: rebuild search index after changes\n3. DAILY_ANALYTICS: daily citizen service report\n4. QUALITY_REVIEW: weekly analysis of low-confidence responses"
+      }
+    ]
+  },
+  "UC02": {
+    "title": "Detection of Fraud in Grants and Public Subsidies",
+    "category": "fraude",
+    "catLabel": "Fraude",
+    "time": "15 min",
+    "pain": "Des millions en subventions et aides publiques sont détournés chaque année. La détection manuelle ne couvre que 5 % des dossiers et les schémas de fraude deviennent de plus en plus sophistiqués.",
+    "desc": "Système de détection de fraude qui combine des modèles d'anomalie, l'analyse de réseaux et l'IA générative pour identifier des schémas suspects dans les subventions, marchés publics et aides sociales.",
+    "features": [
+      "ML.DETECT_ANOMALIES sur les schémas de subventions",
+      "Analyse de réseaux pour détecter la collusion",
+      "COMPLETE pour l'explication des schémas suspects",
+      "Scoring de risque multicritère automatisé",
+      "Tableau de bord d'investigation avec priorisation"
+    ],
+    "focus": "Construire un système de détection de fraude multicouche qui analyse les subventions, marchés publics et aides sociales pour identifier les anomalies, la collusion et les schémas suspects, en combinant des modèles ML, l'analyse de réseaux et l'IA générative pour l'explication.",
+    "challenge": "La fraude aux fonds publics est sophistiquée : faux bénéficiaires, fractionnement de marchés, réseaux de complices, surfacturation systématique. Chaque type requiert des approches de détection spécifiques et les faux positifs ont un coût politique.",
+    "objectives": [
+      "Analyser 100 % des subventions et marchés vs. 5 % en audit manuel",
+      "Détecter les anomalies avec ML.DETECT_ANOMALIES et les réseaux de collusion",
+      "Réduire les faux positifs en dessous de 15 % avec un scoring multicritère",
+      "Générer des explications compréhensibles pour les auditeurs non techniques",
+      "Récupérer au moins 10x l'investissement en fraude détectée"
+    ],
+    "capabilities": [
+      "ML.DETECT_ANOMALIES : schémas anomaux dans les montants, délais, fréquences",
+      "COMPLETE : explication en langage naturel des schémas suspects",
+      "Dynamic Tables : scoring de risque en temps réel",
+      "Snowpark ML : modèle de classification de fraude par type",
+      "Cortex Search : recherche de précédents et schémas similaires"
+    ],
+    "data": [
+      "Subventions : bénéficiaire, montant, objet, dates, justificatifs",
+      "Marchés publics : adjudicataire, offres, montants, délais, avenants",
+      "Registre des bénéficiaires : NIF/SIRET, représentants, adresses, comptes",
+      "Historique des sanctions : fraudes antérieures, inhabilitados, récidive",
+      "Données croisées : relations entre personnes morales, administrateurs communs"
+    ],
+    "stratification": [
+      "Par type de fraude : faux bénéficiaire, fractionnement, collusion, surfacturation",
+      "Par montant : micro-fraude (<10k€), moyenne (10k-100k€), grande (>100k€)",
+      "Par programme : subventions européennes, nationales, régionales, municipales",
+      "Par secteur : agriculture, innovation, social, culture, infrastructure",
+      "Par niveau de risque : faible, moyen, élevé, critique"
+    ],
+    "steps": [
+      {
+        "title": "Préparer les données",
+        "desc": "Créer les tables de subventions et marchés.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. GRANTS (grant_id STRING, program STRING, beneficiary_id STRING, amount FLOAT, purpose STRING, application_date DATE, approval_date DATE, payment_date DATE, status STRING, justification_docs INT)\n2. PUBLIC_CONTRACTS (contract_id STRING, entity STRING, contractor_id STRING, amount FLOAT, contract_type STRING, num_bids INT, award_date DATE, completion_date DATE, amendments INT, amendment_amount FLOAT)\n3. BENEFICIARY_REGISTRY (beneficiary_id STRING, tax_id STRING, name STRING, legal_type STRING, address STRING, representatives STRING, bank_account STRING, creation_date DATE, sector STRING)\n4. SANCTION_HISTORY (sanction_id STRING, entity_id STRING, fraud_type STRING, amount_recovered FLOAT, sanction_date DATE, resolution STRING)\n5. ENTITY_RELATIONSHIPS (entity_a STRING, entity_b STRING, relationship_type STRING, shared_address BOOLEAN, shared_representatives BOOLEAN, shared_bank BOOLEAN)\nLoad sample data with 5000 grants, 2000 contracts, 3000 beneficiaries. Include 8% anomalous patterns."
+      },
+      {
+        "title": "Detect anomalies",
+        "desc": "ML models for anomalous patterns.",
+        "prompt": "Use ML.DETECT_ANOMALIES on GRANTS to identify anomalous patterns in: amount vs. program average, time between application and approval, number of justification documents, payment frequency. Create view GRANT_ANOMALIES with: grant_id, anomaly_score, anomaly_factors, is_anomalous. Do the same for PUBLIC_CONTRACTS: amount vs. estimate, number of bids (suspect if always minimum), amendments (frequency and amount), contractor concentration. Create view CONTRACT_ANOMALIES."
+      },
+      {
+        "title": "Analyse de réseaux",
+        "desc": "Détecter la collusion et les réseaux.",
+        "prompt": "Create view COLLUSION_NETWORK that identifies suspicious groups from ENTITY_RELATIONSHIPS: shared address between different beneficiaries, common representatives across entities, same bank account, coordinated application patterns. Calculate network_risk_score. Create view SPLIT_DETECTION that identifies contract splitting: same entity, same contractor, sequential dates, amounts just below threshold. Create COMPREHENSIVE_RISK_SCORE combining: individual anomaly + network risk + history + splitting."
+      },
+      {
+        "title": "Explication IA",
+        "desc": "Explication des schémas et priorisation.",
+        "prompt": "Create view FRAUD_EXPLANATIONS that uses CORTEX.COMPLETE to generate for each high-risk case: narrative summary of the suspicious pattern, comparison with known fraud cases, recommended investigation actions, estimated fraud amount, priority level. Create INVESTIGATION_QUEUE ordered by: risk score, estimated amount, fraud type. Include all evidence and related entities. Create FRAUD_PATTERN_CATALOG that catalogs and classifies detected patterns for future learning."
+      },
+      {
+        "title": "Tableau de bord et pipeline",
+        "desc": "Panneau d'investigation et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Investigation dashboard with case list sorted by priority\n2. Entity relationship network graph\n3. Case detail with all evidence and IA explanation\n4. Case management workflow: open, investigate, confirm, dismiss\n5. Metrics: detected cases, confirmed amount, false positive rate\n6. Historical comparison and fraud trend analysis\n\nCreate Tasks:\n1. DAILY_SCAN: daily anomaly analysis on new grants/contracts\n2. NETWORK_UPDATE: weekly recalculation of entity relationships\n3. RISK_SCORING: daily comprehensive risk score update\n4. MONTHLY_REPORT: fraud detection and recovery monthly report"
+      }
+    ]
+  },
+  "UC03": {
+    "title": "Optimisation Fiscale et Prédiction de Revenus",
+    "category": "eficiencia",
+    "catLabel": "Efficience",
+    "time": "15 min",
+    "pain": "Les administrations fiscales subissent un écart important entre les recettes prévues et les recettes réelles. L'évasion fiscale et les erreurs de prévision affectent la planification budgétaire et les services publics.",
+    "desc": "Système prédictif qui utilise ML.FORECAST et des modèles de classification pour améliorer les prévisions de recettes, détecter l'évasion fiscale et optimiser les campagnes de contrôle avec priorisation basée sur le risque.",
+    "features": [
+      "ML.FORECAST pour la prévision de recettes par catégorie d'impôt",
+      "Classification du risque d'évasion par contribuable",
+      "COMPLETE pour l'explication des écarts et recommandations",
+      "Optimisation des campagnes de contrôle fiscal",
+      "Tableau de bord de suivi budgétaire prédictif"
+    ],
+    "focus": "Implémenter un système qui améliore la prévision des recettes fiscales de plus de 20 %, détecte les contribuables à risque d'évasion et optimise l'allocation des ressources de contrôle pour maximiser la récupération.",
+    "challenge": "La prévision fiscale dépend de multiples facteurs macro et micro-économiques. L'évasion prend des formes diverses (économie souterraine, planification agressive, sous-déclaration) et les ressources de contrôle sont limitées. Il faut maximiser l'impact par contrôle réalisé.",
+    "objectives": [
+      "Prévision de recettes avec une erreur inférieure à 5 % par catégorie d'impôt",
+      "Identifier les contribuables à haut risque d'évasion avec un taux de réussite supérieur à 60 %",
+      "Optimiser l'allocation des inspecteurs pour maximiser le retour par contrôle",
+      "Réduire l'écart entre recettes prévues et réelles de 20 %",
+      "Détection précoce des tendances d'évasion émergentes"
+    ],
+    "capabilities": [
+      "ML.FORECAST : séries temporelles de recettes par impôt, zone et secteur",
+      "ML.CLASSIFY : scoring de risque d'évasion par contribuable",
+      "COMPLETE : analyse des écarts et recommandations de politique fiscale",
+      "Dynamic Tables : indicateurs fiscaux en temps réel",
+      "Snowpark ML : modèle d'optimisation de l'allocation des contrôles"
+    ],
+    "data": [
+      "Recettes fiscales : montant par impôt, période, zone géographique",
+      "Déclarations : base déclarée, retenues, paiements, délais",
+      "Historique des contrôles : contribuable, résultat, montant régularisé, durée",
+      "Indicateurs économiques : PIB, emploi, inflation, activité sectorielle",
+      "Registre des contribuables : type, secteur, taille, historique de conformité"
+    ],
+    "stratification": [
+      "Par type d'impôt : IR, IS, TVA, impôts locaux, cotisations sociales",
+      "Par profil de contribuable : particulier, PME, grande entreprise, non-résident",
+      "Par zone géographique : région, département, commune",
+      "Par type de risque : sous-déclaration, économie souterraine, planification agressive",
+      "Par secteur économique : construction, restauration, commerce, services"
+    ],
+    "steps": [
+      {
+        "title": "Préparer les données",
+        "desc": "Créer les tables de données fiscales.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. TAX_REVENUE (period DATE, tax_type STRING, geographic_zone STRING, sector STRING, declared_amount FLOAT, collected_amount FLOAT, pending_amount FLOAT, num_taxpayers INT)\n2. TAX_RETURNS (return_id STRING, taxpayer_id STRING, tax_type STRING, period DATE, declared_base FLOAT, calculated_amount FLOAT, paid_amount FLOAT, filing_delay_days INT, amendments INT)\n3. AUDIT_HISTORY (audit_id STRING, taxpayer_id STRING, audit_type STRING, start_date DATE, result STRING, regularized_amount FLOAT, penalty_amount FLOAT, duration_days INT, inspector_id STRING)\n4. ECONOMIC_INDICATORS (period DATE, zone STRING, gdp_growth FLOAT, unemployment_rate FLOAT, inflation FLOAT, new_businesses INT, business_closures INT, sector_activity_index FLOAT)\n5. TAXPAYER_REGISTRY (taxpayer_id STRING, tax_id STRING, type STRING, sector STRING, size_category STRING, creation_date DATE, compliance_score FLOAT, last_audit_date DATE)\nLoad 36 months of revenue data, 10000 returns, 500 audits, economic indicators."
+      },
+      {
+        "title": "Prévision de recettes",
+        "desc": "Modèles prédictifs par catégorie d'impôt.",
+        "prompt": "Use ML.FORECAST to predict collected_amount from TAX_REVENUE by tax_type for the next 12 months. Exogenous variables: gdp_growth, unemployment_rate, inflation, new_businesses. Create view REVENUE_FORECAST with: period, tax_type, zone, predicted_amount, confidence_interval, comparison_vs_budget. Create FORECAST_ACCURACY tracking forecast vs actual by period. Create REVENUE_ALERTS for periods where forecast deviates >10% from budget."
+      },
+      {
+        "title": "Scoring de risque d'évasion",
+        "desc": "Classifier les contribuables par risque.",
+        "prompt": "Create EVASION_RISK_FEATURES with features per taxpayer: declared_base_vs_sector_average, year_over_year_variation, filing_delay_trend, amendment_frequency, audit_history_result, sector_risk_index, compliance_score_trend. Use Snowpark ML to train a classification model on AUDIT_HISTORY (positive = regularization > 0). Create view EVASION_RISK_SCORING with: taxpayer_id, risk_score, risk_factors, estimated_evaded_amount, recommended_audit_type. Use CORTEX.COMPLETE to explain each risk assessment."
+      },
+      {
+        "title": "Optimise audit allocation",
+        "desc": "Maximize return per audit.",
+        "prompt": "Create view AUDIT_OPTIMIZATION that for each inspector calculates: optimal assignment based on risk score x estimated amount, geographic proximity, specialization matching, workload balance. Create CAMPAIGN_PLANNING with: monthly target, selected taxpayers, expected recovery, resource allocation. Create AUDIT_ROI_TRACKING comparing: predicted vs actual recovery per campaign, inspector performance, audit type effectiveness."
+      },
+      {
+        "title": "Tableau de bord et pipeline",
+        "desc": "Suivi budgétaire et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Predictive budget dashboard with forecast vs actual by tax type\n2. Revenue forecast heat map by zone and sector\n3. Taxpayer risk scoring list with filters and explanation\n4. Audit campaign planner with optimization\n5. Metrics: collection rate, audit ROI, forecast accuracy\n6. Tax trends and emerging evasion pattern analysis\n\nCreate Tasks:\n1. DAILY_REVENUE: daily collection update and forecast comparison\n2. WEEKLY_RISK_SCORING: recalculate taxpayer risk scores\n3. MONTHLY_FORECAST: update 12-month revenue forecasts\n4. CAMPAIGN_REPORT: monthly audit campaign performance report"
+      }
+    ]
+  },
+  "UC04": {
+    "title": "Gestion Intelligente des D\u00e9marches Administratives",
+    "category": "ciudadano",
+    "catLabel": "Services aux Citoyens",
+    "time": "15 min",
+    "pain": "Les d\u00e9marches administratives prennent des semaines en raison de donn\u00e9es fragment\u00e9es entre services, de processus manuels redondants et du manque de suivi en temps r\u00e9el pour le citoyen.",
+    "desc": "Plateforme intelligente qui utilise Dynamic Tables, Cortex ML et l'IA g\u00e9n\u00e9rative pour automatiser, acc\u00e9l\u00e9rer et personnaliser les d\u00e9marches administratives, de la demande \u00e0 la r\u00e9solution.",
+    "features": [
+      "Dynamic Tables pour le suivi en temps r\u00e9el des dossiers",
+      "Classification automatique et routage intelligent",
+      "COMPLETE pour la g\u00e9n\u00e9ration de documents et notifications",
+      "Pr\u00e9diction des d\u00e9lais et d\u00e9tection des blocages",
+      "Portail citoyen avec \u00e9tat transparent des d\u00e9marches"
+    ],
+    "focus": "Construire une plateforme qui r\u00e9duit le d\u00e9lai moyen des d\u00e9marches de 60 % en automatisant la classification, le routage, la v\u00e9rification documentaire et la communication avec le citoyen, tout en garantissant la transparence compl\u00e8te du processus.",
+    "challenge": "L'administration gère des centaines de types de démarches avec des exigences spécifiques, des dépendances inter-services et des cadres réglementaires complexes. Les citoyens manquent de visibilité et fournissent souvent des documents incomplets, ce qui génère des allers-retours coûteux.",
+    "objectives": [
+      "R\u00e9duire le d\u00e9lai moyen des d\u00e9marches de 45 jours \u00e0 18 jours",
+      "Automatiser la classification et la v\u00e9rification documentaire \u00e0 80 %",
+      "Pr\u00e9dire le d\u00e9lai de r\u00e9solution avec une pr\u00e9cision de 85 %",
+      "R\u00e9duire les documents incomplets de 35 % \u00e0 8 % gr\u00e2ce \u00e0 la validation proactive",
+      "Transparence totale : le citoyen conna\u00eet l'\u00e9tat en temps r\u00e9el"
+    ],
+    "capabilities": [
+      "Dynamic Tables : suivi en temps r\u00e9el de l'\u00e9tat de chaque dossier",
+      "COMPLETE : v\u00e9rification documentaire, g\u00e9n\u00e9ration de r\u00e9ponses et r\u00e9sum\u00e9s",
+      "ML.CLASSIFY : classification automatique par type et priorit\u00e9",
+      "ML.FORECAST : pr\u00e9diction du d\u00e9lai de r\u00e9solution",
+      "Cortex Search : recherche de pr\u00e9c\u00e9dents et r\u00e9glementations applicables"
+    ],
+    "data": [
+      "Dossiers : type, demandeur, documents, dates, \u00e9tat, service responsable",
+      "Catalogue de d\u00e9marches : exigences, d\u00e9lais l\u00e9gaux, d\u00e9pendances, formulaires",
+      "Historique de traitement : dur\u00e9es par \u00e9tape, goulots d'\u00e9tranglement, r\u00e9solutions",
+      "Profil citoyen : d\u00e9marches ant\u00e9rieures, documents d\u00e9j\u00e0 fournis, pr\u00e9f\u00e9rences",
+      "Effectifs : agents par service, charge de travail, sp\u00e9cialit\u00e9s"
+    ],
+    "stratification": [
+      "Par type de d\u00e9marche : certificats, permis, aides, inscriptions, r\u00e9clamations",
+      "Par complexit\u00e9 : simple (automatisable), moyenne, complexe (expertise requise)",
+      "Par urgence : standard, prioritaire, urgente (d\u00e9lai l\u00e9gal proche)",
+      "Par service : urbanisme, fiscalit\u00e9, social, \u00e9tat civil, environnement",
+      "Par canal d'entr\u00e9e : en ligne, en personne, courrier, t\u00e9l\u00e9phone"
+    ],
+    "steps": [
+      {
+        "title": "Pr\u00e9parer les donn\u00e9es",
+        "desc": "Cr\u00e9er les tables de gestion des d\u00e9marches.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. CASES (case_id STRING, case_type STRING, citizen_id STRING, submission_date TIMESTAMP, status STRING, assigned_department STRING, assigned_agent STRING, priority STRING, documents_submitted INT, documents_required INT, current_step STRING, estimated_resolution DATE, actual_resolution DATE)\n2. CASE_EVENTS (event_id STRING, case_id STRING, event_type STRING, timestamp TIMESTAMP, agent_id STRING, description STRING, auto_generated BOOLEAN)\n3. PROCEDURE_CATALOG (procedure_id STRING, name STRING, department STRING, required_documents STRING, legal_deadline_days INT, avg_resolution_days FLOAT, steps STRING, dependencies STRING)\n4. DOCUMENT_VERIFICATION (doc_id STRING, case_id STRING, doc_type STRING, submitted_date TIMESTAMP, verification_status STRING, issues STRING, verified_by STRING)\n5. DEPARTMENT_CAPACITY (department STRING, period DATE, total_agents INT, available_agents INT, pending_cases INT, avg_processing_time FLOAT)\nLoad sample data: 5000 cases, 20000 events, 80 procedures, 15000 document verifications."
+      },
+      {
+        "title": "Classification et routage",
+        "desc": "Classification automatique et assignation intelligente.",
+        "prompt": "Create view AUTO_CLASSIFICATION that uses CORTEX.COMPLETE to classify each new case into: procedure_type, complexity (simple/medium/complex), priority, department. Create view SMART_ROUTING that assigns each case to the optimal agent based on: specialization, current workload, case complexity, geographic proximity. Create DOCUMENT_CHECKER that uses CORTEX.COMPLETE to verify if the submitted documents match the requirements from PROCEDURE_CATALOG and generates a list of missing/incorrect documents with guidance for the citizen."
+      },
+      {
+        "title": "Pr\u00e9diction et suivi",
+        "desc": "Pr\u00e9dire les d\u00e9lais et d\u00e9tecter les blocages.",
+        "prompt": "Use ML.FORECAST to predict the resolution time per case based on: type, complexity, department load, historical patterns. Create Dynamic Table CASE_STATUS_LIVE with: case_id, current_step, time_in_step, predicted_completion, risk_of_delay, next_action. Create BOTTLENECK_DETECTOR that identifies: cases stalled more than 2x average, departments with growing backlogs, steps where cases accumulate. Create PROACTIVE_ALERTS for: legal deadline approaching, stalled cases, missing document follow-up."
+      },
+      {
+        "title": "Communication IA",
+        "desc": "G\u00e9n\u00e9ration automatique de communications.",
+        "prompt": "Create view CITIZEN_NOTIFICATIONS that uses CORTEX.COMPLETE to generate for each significant event: status update message (clear, non-technical language), missing document request with specific guidance, resolution notification with next steps, satisfaction survey. Create CASE_SUMMARY that generates for each agent: case summary, key documents, applicable precedents, recommended action. Create PERIODIC_REPORT for management: processed cases, average time, citizen satisfaction, improvement opportunities."
+      },
+      {
+        "title": "Portail et pipeline",
+        "desc": "Portail citoyen et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Citizen portal: case tracking with step-by-step timeline\n2. Online document submission with real-time validation\n3. Agent dashboard: assigned cases, priorities, recommendations\n4. Manager view: department metrics, bottlenecks, capacity\n5. Metrics: average resolution time, citizen satisfaction, automation rate\n6. Bottleneck and continuous improvement analysis\n\nCreate Tasks:\n1. CLASSIFY_NEW_CASES: every 15 min classify and route new cases\n2. UPDATE_PREDICTIONS: hourly update resolution predictions\n3. SEND_NOTIFICATIONS: generate and send pending notifications\n4. DAILY_REPORT: departmental performance daily summary\n5. WEEKLY_OPTIMIZATION: weekly agent and process optimization analysis"
+      }
+    ]
+  },
+  "UC05": {
+    "title": "Analyse de Sentiment et Participation Citoyenne",
+    "category": "politicas",
+    "catLabel": "Politiques",
+    "time": "15 min",
+    "pain": "Les d\u00e9cisions de politique publique manquent de retour citoyen en temps r\u00e9el. Les consultations traditionnelles sont co\u00fbteuses, lentes et ne captent qu'une infime partie de l'opinion publique.",
+    "desc": "Plateforme d'analyse de sentiment et de participation citoyenne qui utilise Cortex AI pour traiter des commentaires, des p\u00e9titions et des opinions depuis de multiples canaux, fournissant aux d\u00e9cideurs une vision en temps r\u00e9el de la perception publique.",
+    "features": [
+      "AI_SENTIMENT multi-canal (réseaux sociaux, portail, pétitions)",
+      "COMPLETE pour le résumé et la catégorisation de propositions",
+      "Détection de tendances et sujets émergents",
+      "Tableau de bord de participation avec segmentation démographique",
+      "Rapports automatiques pour les commissions et conseils"
+    ],
+    "focus": "Implémenter une plateforme qui capture et analyse en temps réel le sentiment citoyen depuis de multiples canaux, catégorise les propositions et fournit aux décideurs des informations exploitables pour l'élaboration des politiques publiques.",
+    "challenge": "L'opinion citoyenne est exprimée sur des dizaines de canaux (réseaux sociaux, portails, pétitions, réunions de quartier) dans différents formats et niveaux de détail. Il faut filtrer le bruit, détecter la manipulation et garantir la représentativité démographique de l'analyse.",
+    "objectives": [
+      "Analyser le sentiment sur plus de 10 000 commentaires/jour depuis 5+ canaux",
+      "Catégoriser automatiquement les propositions citoyennes par domaine politique",
+      "Détecter les sujets émergents 48h avant qu'ils ne deviennent critiques",
+      "Fournir des rapports hebdomadaires exploitables aux commissions",
+      "Augmenter la participation citoyenne effective de 300 %"
+    ],
+    "capabilities": [
+      "AI_SENTIMENT : analyse de sentiment multi-langue et multi-canal",
+      "COMPLETE : résumé, catégorisation et extraction de propositions",
+      "AI_CLASSIFY : détection de thèmes et sous-thèmes de politique publique",
+      "Dynamic Tables : métriques de sentiment en temps réel",
+      "ML.DETECT_ANOMALIES : détection de campagnes organisées ou de manipulation"
+    ],
+    "data": [
+      "Réseaux sociaux : mentions, commentaires, hashtags, géolocalisation",
+      "Portail de participation : propositions, votes, commentaires",
+      "Pétitions : texte, signatures, catégorie, évolution temporelle",
+      "Réunions de quartier : procès-verbaux, enregistrements transcrits",
+      "Enquêtes et sondages : réponses structurées et ouvertes"
+    ],
+    "stratification": [
+      "Par canal : réseaux sociaux, portail officiel, pétitions, en personne",
+      "Par domaine politique : mobilité, sécurité, environnement, services sociaux",
+      "Par démographie : âge, quartier, genre (quand disponible)",
+      "Par sentiment : positif, négatif, neutre, mixte",
+      "Par type de contribution : plainte, proposition, question, soutien"
+    ],
+    "steps": [
+      {
+        "title": "Pr\u00e9parer les donn\u00e9es",
+        "desc": "Cr\u00e9er les tables de participation citoyenne.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. CITIZEN_COMMENTS (comment_id STRING, channel STRING, author_id STRING, text STRING, timestamp TIMESTAMP, location STRING, topic_tags STRING, likes INT, replies INT, is_verified BOOLEAN)\n2. PARTICIPATION_PROPOSALS (proposal_id STRING, title STRING, description STRING, category STRING, author_id STRING, submission_date DATE, votes_for INT, votes_against INT, status STRING, official_response STRING)\n3. PETITIONS (petition_id STRING, title STRING, text STRING, category STRING, signatures INT, target INT, start_date DATE, status STRING, addressed_to STRING)\n4. NEIGHBORHOOD_MEETINGS (meeting_id STRING, district STRING, date DATE, attendees INT, transcript STRING, key_issues STRING, commitments STRING)\n5. SURVEY_RESPONSES (survey_id STRING, respondent_id STRING, question_id STRING, response_text STRING, response_value FLOAT, demographic_segment STRING, date DATE)\nLoad sample data: 50000 comments, 2000 proposals, 300 petitions, 100 meetings, 10000 survey responses."
+      },
+      {
+        "title": "Analyse de sentiment",
+        "desc": "Analyser le sentiment multi-canal.",
+        "prompt": "Create view COMMENT_SENTIMENT that applies AI_SENTIMENT to CITIZEN_COMMENTS.text. Add AI_CLASSIFY to categorize by domain: mobility, security, environment, social_services, urban_planning, culture, health. Create SENTIMENT_TRENDS as Dynamic Table with: daily sentiment average by domain, channel, and location. Create EMERGING_TOPICS using CORTEX.COMPLETE to identify emerging topics not yet in predefined categories. Use ML.DETECT_ANOMALIES on comment volume per topic to detect manipulation campaigns."
+      },
+      {
+        "title": "Analyse des propositions",
+        "desc": "Cat\u00e9goriser et \u00e9valuer les propositions.",
+        "prompt": "Create view PROPOSAL_ANALYSIS that uses CORTEX.COMPLETE to: summarize each proposal in 2 lines, extract the core request, evaluate feasibility (technical, budgetary, legal), identify similar previous proposals and their outcome. Create PROPOSAL_CLUSTERS that groups similar proposals to detect recurring demands. Create PETITION_TRACKING with: growth trend, estimated time to target, predicted outcome, media visibility. Use CORTEX.COMPLETE to generate an official response draft for proposals reaching 1000 votes."
+      },
+      {
+        "title": "Rapports pour d\u00e9cideurs",
+        "desc": "G\u00e9n\u00e9rer des rapports exploitables.",
+        "prompt": "Create view WEEKLY_POLICY_BRIEF that uses CORTEX.COMPLETE to generate: executive summary of citizen sentiment by domain, top 5 most urgent issues with supporting data, emerging trends requiring attention, comparison with previous week, recommended actions per commission. Create DISTRICT_PULSE with per-neighborhood: top concerns, sentiment evolution, unresolved commitments from meetings. Create DEMOGRAPHIC_ANALYSIS showing sentiment patterns by age, location, channel to ensure representative participation."
+      },
+      {
+        "title": "Tableau de bord et pipeline",
+        "desc": "Plateforme de participation et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Real-time sentiment dashboard by domain and neighborhood map\n2. Proposal explorer with filtering, voting trends and AI summary\n3. Emerging topics panel with alerts and evolution graphs\n4. Commission-specific reports with data and recommendations\n5. Metrics: total participation, sentiment trends, response rate\n6. Demographic representativeness analysis with coverage gaps\n\nCreate Tasks:\n1. INGEST_COMMENTS: every 30 min from all channels\n2. SENTIMENT_ANALYSIS: hourly sentiment update\n3. TOPIC_DETECTION: daily emerging topic detection\n4. WEEKLY_BRIEF: weekly report generation for commissions\n5. MANIPULATION_CHECK: daily bot and campaign detection"
+      }
+    ]
+  },
+  "UC06": {
+    "title": "Mobilit\u00e9 Urbaine Intelligente et Gestion du Trafic",
+    "category": "eficiencia",
+    "catLabel": "Efficience",
+    "time": "15 min",
+    "pain": "Les embouteillages co\u00fbtent des milliards en productivit\u00e9 perdue et en \u00e9missions de CO2. La gestion du trafic est r\u00e9active au lieu de pr\u00e9dictive et les infrastructures ne s'adaptent pas en temps r\u00e9el.",
+    "desc": "Plateforme de mobilit\u00e9 intelligente qui utilise ML.FORECAST, des capteurs IoT et Cortex AI pour pr\u00e9dire les embouteillages, optimiser les feux de circulation et recommander des alternatives de transport multimodal.",
+    "features": [
+      "ML.FORECAST pour la pr\u00e9diction du trafic par tron\u00e7on",
+      "Optimisation des cycles de feux en temps r\u00e9el",
+      "Recommandations multimodales personnalis\u00e9es",
+      "D\u00e9tection d'incidents et r\u00e9ponse automatique",
+      "Tableau de bord du centre de contr\u00f4le de mobilit\u00e9"
+    ],
+    "focus": "Impl\u00e9menter un syst\u00e8me pr\u00e9dictif de mobilit\u00e9 qui r\u00e9duit les embouteillages de 15 % en combinant la pr\u00e9vision du trafic, l'optimisation des feux et les recommandations de transport alternatif, avec un tableau de bord de centre de contr\u00f4le.",
+    "challenge": "Le trafic urbain est un syst\u00e8me complexe avec des milliers de variables (m\u00e9t\u00e9o, \u00e9v\u00e9nements, travaux, accidents, saisonnalit\u00e9). La coordination des feux de circulation, du transport public et des alternatives de mobilit\u00e9 requiert un traitement en temps r\u00e9el et une pr\u00e9diction fiable.",
+    "objectives": [
+      "Pr\u00e9dire les embouteillages avec 30 min d'avance et une pr\u00e9cision de 80 %",
+      "Optimiser les cycles de feux pour r\u00e9duire les temps de parcours de 15 %",
+      "Int\u00e9grer les donn\u00e9es en temps r\u00e9el de capteurs, GPS et transport public",
+      "R\u00e9duire les \u00e9missions de CO2 li\u00e9es au trafic de 10 %",
+      "Am\u00e9liorer la multimodalit\u00e9 : augmenter l'usage du transport public de 20 %"
+    ],
+    "capabilities": [
+      "ML.FORECAST : pr\u00e9diction de v\u00e9hicules/heure par tron\u00e7on et horizon temporel",
+      "Dynamic Tables : m\u00e9triques de trafic en temps r\u00e9el depuis capteurs IoT",
+      "COMPLETE : g\u00e9n\u00e9ration de recommandations de mobilit\u00e9 personnalis\u00e9es",
+      "Snowpark ML : mod\u00e8le d'optimisation des cycles de feux",
+      "Streamlit : centre de contr\u00f4le avec carte en temps r\u00e9el"
+    ],
+    "data": [
+      "Capteurs de trafic : d\u00e9bit, vitesse, occupation par boucle/cam\u00e9ra",
+      "GPS flotte : position, vitesse, itin\u00e9raire des bus et taxis",
+      "Feux de signalisation : cycles, phases, \u00e9tat op\u00e9rationnel",
+      "M\u00e9t\u00e9o : temp\u00e9rature, pluie, vent, visibilit\u00e9",
+      "Transport public : horaires, occupation, retards, fr\u00e9quence"
+    ],
+    "stratification": [
+      "Par type de voie : autoroute, avenue, rue, zone pi\u00e9tonne",
+      "Par p\u00e9riode : heure de pointe matin, midi, soir, nuit, week-end",
+      "Par mode : v\u00e9hicule priv\u00e9, bus, m\u00e9tro, v\u00e9lo, pi\u00e9ton",
+      "Par zone : centre-ville, p\u00e9riph\u00e9rie, couloir, n\u0153ud de correspondance",
+      "Par condition : normal, d\u00e9grad\u00e9 (travaux), incident, \u00e9v\u00e9nement sp\u00e9cial"
+    ],
+    "steps": [
+      {
+        "title": "Pr\u00e9parer les donn\u00e9es",
+        "desc": "Cr\u00e9er les tables de mobilit\u00e9 urbaine.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. TRAFFIC_SENSORS (sensor_id STRING, segment_id STRING, timestamp TIMESTAMP, vehicles_per_hour INT, avg_speed_kmh FLOAT, occupancy_pct FLOAT, service_level STRING)\n2. TRAFFIC_LIGHTS (intersection_id STRING, timestamp TIMESTAMP, current_cycle_sec INT, green_time_sec FLOAT, direction STRING, queue_length INT, wait_time_sec FLOAT)\n3. PUBLIC_TRANSPORT (route_id STRING, vehicle_id STRING, timestamp TIMESTAMP, lat FLOAT, lon FLOAT, occupancy_pct FLOAT, delay_min FLOAT, next_stop STRING)\n4. WEATHER_CONDITIONS (timestamp TIMESTAMP, zone STRING, temperature FLOAT, rain BOOLEAN, wind_kmh FLOAT, visibility_km FLOAT)\n5. MOBILITY_INCIDENTS (incident_id STRING, type STRING, segment_id STRING, start_time TIMESTAMP, end_time TIMESTAMP, severity STRING, affected_lanes INT, alternative_routes STRING)\nLoad sample data: 500 sensors with 15min readings for 90 days, 200 intersections, 50 bus routes."
+      },
+      {
+        "title": "Pr\u00e9dire les embouteillages",
+        "desc": "ML.FORECAST du trafic par zone et heure.",
+        "prompt": "Use ML.FORECAST to predict vehicles_per_hour by segment at 30min, 1h and 4h horizons. Exogenous variables: hour, day_of_week, rain BOOLEAN, nearby_event BOOLEAN, road_works BOOLEAN. Create view TRAFFIC_PREDICTION with: segment_id, hour, predicted_vehicles, predicted_service_level, confidence. Identify segments that will reach level E or F."
+      },
+      {
+        "title": "Optimiser les feux",
+        "desc": "Moteur d'ajustement des cycles de feux.",
+        "prompt": "Create view TRAFFIC_LIGHT_OPTIMIZATION that for each signalized intersection calculates: current_cycle_sec, current_green_sec per direction, predicted_demand per direction, optimal_cycle_sec, optimal_green_sec, estimated_improvement_vehicles_per_hour. Prioritize main corridors. Calculate total time saved per corridor during peak hours."
+      },
+      {
+        "title": "Int\u00e9grer le transport public",
+        "desc": "Recommandations multimodales.",
+        "prompt": "Create view MOBILITY_ALTERNATIVES that for each congested corridor generates: bus_alternative (line, frequency, occupancy), metro_alternative, bike_alternative, estimated_time per mode, co2_savings, recommendation. Use CORTEX.COMPLETE to generate a personalized recommendation message."
+      },
+      {
+        "title": "Tableau de bord de mobilit\u00e9",
+        "desc": "Streamlit du centre de contr\u00f4le.",
+        "prompt": "Generate Streamlit code with:\n1. Real-time traffic map with service level by segment\n2. Congestion forecast for the next 4 hours\n3. Traffic light optimization panel by corridor\n4. Transport alternatives for congested corridors\n5. Metrics: average travel time, public transport usage, emissions\n6. History of applied optimization impact"
+      },
+      {
+        "title": "Pipeline et nettoyage",
+        "desc": "Automatiser la gestion de la mobilit\u00e9.",
+        "prompt": "Create Tasks:\n1. INGEST_TRAFFIC: every 15 min from sensors\n2. PREDICT_CONGESTION: every 30 min generate predictions\n3. OPTIMIZE_TRAFFIC_LIGHTS: every hour recalculate optimal cycles\n4. DAILY_REPORT: daily mobility and improvement summary\n5. Document. Goal: reduce travel time by 15%."
+      }
+    ]
+  },
+  "UC07": {
+    "title": "\u00c9valuation de l'Impact des Politiques Publiques",
+    "category": "politicas",
+    "catLabel": "Politiques",
+    "time": "15 min",
+    "pain": "Les politiques publiques sont \u00e9valu\u00e9es des mois ou des ann\u00e9es apr\u00e8s leur mise en \u0153uvre, quand il est trop tard pour les corriger. Il manque des indicateurs en temps r\u00e9el et la capacit\u00e9 d'attribuer les effets aux actions sp\u00e9cifiques.",
+    "desc": "Plateforme d'évaluation d'impact en temps réel qui combine des indicateurs multidimensionnels, la modélisation causale et l'IA générative pour mesurer, expliquer et prédire l'effet des politiques publiques.",
+    "features": [
+      "Indicateurs d'impact en temps r\u00e9el par politique et programme",
+      "Mod\u00e9lisation causale : attribution d'effets aux actions sp\u00e9cifiques",
+      "ML.FORECAST pour la projection d'impact futur",
+      "COMPLETE pour la g\u00e9n\u00e9ration de rapports d'\u00e9valuation",
+      "Tableau de bord comparatif entre politiques et territoires"
+    ],
+    "focus": "Construire une plateforme qui mesure en continu l'impact des politiques publiques avec des indicateurs en temps réel, une modélisation causale pour attribuer les effets, et une IA générative qui génère des rapports d'évaluation compréhensibles pour les décideurs.",
+    "challenge": "L'\u00e9valuation des politiques est complexe car les effets sont multicausaux, diff\u00e9r\u00e9s et interdépendants. Il faut séparer l'impact d'une politique des tendances externes, des cycles économiques et des autres interventions simultanées. De plus, les indicateurs traditionnels sont trop lents.",
+    "objectives": [
+      "Mesurer l'impact de chaque politique majeure avec des indicateurs mensuels",
+      "Attribuer au moins 60 % des effets observés à des actions spécifiques",
+      "Prédire l'impact à 6-12 mois pour éclairer les décisions budgétaires",
+      "Réduire le temps d'évaluation de 18 mois à un rapport continu",
+      "Fournir des comparaisons entre territoires et politiques similaires"
+    ],
+    "capabilities": [
+      "ML.FORECAST : projection des indicateurs d'impact",
+      "Snowpark ML : modèles causaux de différences-en-différences et contrôle synthétique",
+      "COMPLETE : génération de rapports d'évaluation et recommandations",
+      "Dynamic Tables : métriques d'impact en temps réel",
+      "Cortex Search : recherche de politiques similaires et résultats dans d'autres territoires"
+    ],
+    "data": [
+      "Indicateurs sociaux : emploi, pauvreté, logement, santé, éducation",
+      "Données budgétaires : investissement par politique, exécution, efficience",
+      "Indicateurs économiques : PIB, activité, entreprises, investissement",
+      "Données environnementales : qualité de l'air, énergie, déchets, espaces verts",
+      "Enquêtes de perception : satisfaction, confiance, priorités citoyennes"
+    ],
+    "stratification": [
+      "Par domaine politique : emploi, social, environnement, mobilité, éducation",
+      "Par territoire : commune, département, région, quartier",
+      "Par période : court terme (<6 mois), moyen terme (6-24 mois), long terme (>24 mois)",
+      "Par type d'indicateur : résultat, impact, processus, perception",
+      "Par population cible : jeunes, seniors, chômeurs, entrepreneurs, familles"
+    ],
+    "steps": [
+      {
+        "title": "Pr\u00e9parer les donn\u00e9es",
+        "desc": "Cr\u00e9er les tables d'indicateurs et de politiques.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. POLICIES (policy_id STRING, name STRING, domain STRING, start_date DATE, budget FLOAT, target_population STRING, territory STRING, objectives STRING, status STRING)\n2. IMPACT_INDICATORS (indicator_id STRING, policy_id STRING, name STRING, category STRING, value FLOAT, period DATE, territory STRING, data_source STRING, confidence STRING)\n3. BUDGET_EXECUTION (policy_id STRING, period DATE, allocated FLOAT, committed FLOAT, spent FLOAT, efficiency_ratio FLOAT)\n4. COUNTERFACTUAL_DATA (territory STRING, period DATE, indicator STRING, value FLOAT, is_treated BOOLEAN, treatment_start DATE)\n5. POLICY_BENCHMARKS (policy_type STRING, territory STRING, indicator STRING, value FLOAT, period DATE, context STRING)\nLoad sample data: 50 active policies, 200 indicators with 36 months history, budget execution, counterfactual territories."
+      },
+      {
+        "title": "\u00c9valuation causale",
+        "desc": "Mod\u00e8les d'attribution d'impact.",
+        "prompt": "Create view DIFF_IN_DIFF_ANALYSIS that implements difference-in-differences for each policy: compare treated territories vs control before and after implementation. Calculate: estimated_effect, standard_error, statistical_significance, effect_size. Create SYNTHETIC_CONTROL that builds synthetic counterfactual from POLICY_BENCHMARKS for territories without natural control. Create IMPACT_ATTRIBUTION combining both methods with: policy_id, indicator, causal_effect, confidence, methodology, confounding_factors."
+      },
+      {
+        "title": "Indicateurs en temps r\u00e9el",
+        "desc": "Tableau de bord d'impact en continu.",
+        "prompt": "Create Dynamic Table POLICY_DASHBOARD_LIVE with: policy_id, name, domain, budget_execution_pct, key_indicators (latest value vs target), trend (improving/stable/declining), impact_score, alert_flag. Use ML.FORECAST to project each indicator forward 6 and 12 months. Create EARLY_WARNING that detects: policies not reaching targets, unexpected negative effects, budget execution anomalies."
+      },
+      {
+        "title": "Rapports IA",
+        "desc": "G\u00e9n\u00e9ration de rapports d'\u00e9valuation.",
+        "prompt": "Create view EVALUATION_REPORT that uses CORTEX.COMPLETE to generate for each policy: executive summary (3 paragraphs: context, results, recommendation), indicator analysis with visual trend description, causal impact explanation in non-technical language, comparison with similar policies in other territories, specific and budgeted improvement recommendations. Create CROSS_POLICY_ANALYSIS comparing effectiveness across domains. Create CITIZEN_REPORT simplified version for public transparency."
+      },
+      {
+        "title": "Tableau de bord et pipeline",
+        "desc": "Plateforme d'\u00e9valuation et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Policy overview dashboard with impact traffic lights\n2. Detailed policy page with indicators, trends and causal analysis\n3. Territory comparison with maps and benchmarks\n4. Automatic evaluation report generator (PDF-exportable)\n5. Metrics: policies on target, budget efficiency, overall impact\n6. Citizen transparency portal with simplified results\n\nCreate Tasks:\n1. UPDATE_INDICATORS: daily indicator data ingestion\n2. CAUSAL_ANALYSIS: monthly diff-in-diff and synthetic control recalculation\n3. FORECAST_UPDATE: monthly 6-12 month projections\n4. EVALUATION_REPORTS: quarterly full evaluation generation\n5. TRANSPARENCY_PUBLISH: publish simplified results for citizens"
+      }
+    ]
+  },
+  "UC08": {
+    "title": "Cybers\u00e9curit\u00e9 et Protection des Infrastructures Critiques",
+    "category": "seguridad",
+    "catLabel": "S\u00e9curit\u00e9",
+    "time": "15 min",
+    "pain": "Les administrations publiques sont des cibles prioritaires de cyberattaques. Les SOC sont submerg\u00e9s d'alertes, le d\u00e9lai de d\u00e9tection se mesure en jours et les infrastructure critiques (sant\u00e9, \u00e9nergie, transport) sont vuln\u00e9rables.",
+    "desc": "Plateforme de cybersécurité qui utilise ML.DETECT_ANOMALIES, l'analyse de comportement et l'IA générative pour détecter les menaces, automatiser la réponse aux incidents et protéger les infrastructures critiques.",
+    "features": [
+      "ML.DETECT_ANOMALIES sur les journaux réseau et applicatifs",
+      "Analyse comportementale des utilisateurs (UEBA)",
+      "COMPLETE pour le triage automatique et les playbooks de réponse",
+      "Surveillance des infrastructures critiques en temps réel",
+      "Tableau de bord SOC avec priorisation par risque"
+    ],
+    "focus": "Déployer un SOC augmenté par l'IA qui réduit le temps de détection de jours à minutes, automatise le triage de 80 % des alertes et fournit des playbooks de réponse contextualisés pour les infrastructures critiques.",
+    "challenge": "Le volume d'alertes (des milliers par jour) dépasse la capacité humaine. Les attaques avancées (APT) sont subtiles et évoluent rapidement. Les infrastructures critiques ont des contraintes de disponibilité (pas d'arrêt possible) et de régulation (NIS2, schéma national de sécurité).",
+    "objectives": [
+      "Réduire le temps moyen de détection (MTTD) de 72h à 15 minutes",
+      "Automatiser le triage de 80 % des alertes avec moins de 5 % de faux négatifs",
+      "Détecter les comportements utilisateurs anormaux (UEBA) avec une précision de 90 %",
+      "Générer des playbooks de réponse contextualisés pour chaque type d'incident",
+      "Surveillance 24/7 des infrastructures critiques avec alertes hiérarchisées"
+    ],
+    "capabilities": [
+      "ML.DETECT_ANOMALIES : trafic réseau, accès aux fichiers, authentification",
+      "Snowpark ML : modèles UEBA de comportement utilisateur",
+      "COMPLETE : triage automatique, corrélation et playbooks de réponse",
+      "Dynamic Tables : métriques de sécurité en temps réel",
+      "Cortex Search : base de connaissances CTI (Cyber Threat Intelligence)"
+    ],
+    "data": [
+      "Journaux réseau : flux, connexions, DNS, pare-feu, IDS/IPS",
+      "Journaux applicatifs : accès, erreurs, modifications de configuration",
+      "Authentification : connexions, échecs, privilèges, MFA",
+      "Endpoints : processus, fichiers, registre, vulnérabilités",
+      "Threat Intelligence : IoC, TTPs, campagnes actives, CVE"
+    ],
+    "stratification": [
+      "Par type de menace : malware, phishing, APT, ransomware, insider",
+      "Par infrastructure : réseau interne, DMZ, cloud, SCADA/OT, IoT",
+      "Par criticité : infrastructures critiques, données sensibles, services publics",
+      "Par vecteur : email, web, USB, accès distant, supply chain",
+      "Par sévérité : informationnelle, basse, moyenne, haute, critique"
+    ],
+    "steps": [
+      {
+        "title": "Pr\u00e9parer les donn\u00e9es",
+        "desc": "Cr\u00e9er les tables de s\u00e9curit\u00e9.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. NETWORK_LOGS (log_id STRING, timestamp TIMESTAMP, src_ip STRING, dst_ip STRING, src_port INT, dst_port INT, protocol STRING, bytes_sent BIGINT, bytes_received BIGINT, action STRING, threat_category STRING)\n2. AUTH_EVENTS (event_id STRING, timestamp TIMESTAMP, user_id STRING, event_type STRING, source_ip STRING, device STRING, mfa_used BOOLEAN, success BOOLEAN, risk_score FLOAT)\n3. USER_BEHAVIOR (user_id STRING, period DATE, login_count INT, avg_login_hour FLOAT, unique_ips INT, data_downloaded_mb FLOAT, privilege_escalations INT, after_hours_access INT, new_systems_accessed INT)\n4. THREAT_INTELLIGENCE (ioc_id STRING, ioc_type STRING, ioc_value STRING, threat_actor STRING, campaign STRING, severity STRING, first_seen DATE, last_seen DATE, ttps STRING)\n5. SECURITY_INCIDENTS (incident_id STRING, timestamp TIMESTAMP, type STRING, severity STRING, affected_systems STRING, status STRING, analyst_id STRING, response_actions STRING, resolution_time_hours FLOAT, root_cause STRING)\nLoad sample data: 1M network logs, 100K auth events, 500 users behavior profiles, 5000 IoCs, 200 incidents."
+      },
+      {
+        "title": "D\u00e9tection d'anomalies",
+        "desc": "ML pour d\u00e9tecter les menaces.",
+        "prompt": "Use ML.DETECT_ANOMALIES on NETWORK_LOGS to identify: unusual traffic volumes by src/dst, connections to rare destinations, protocol anomalies, data exfiltration patterns. Create view NETWORK_ANOMALIES with: log_id, anomaly_score, anomaly_type, risk_level. Apply ML.DETECT_ANOMALIES to AUTH_EVENTS for: impossible travel, unusual hours, brute force, privilege abuse. Create AUTH_ANOMALIES. Create UEBA_ALERTS from USER_BEHAVIOR comparing current period vs baseline: login patterns, data access, system exploration, privilege usage."
+      },
+      {
+        "title": "Corr\u00e9lation et triage IA",
+        "desc": "Corr\u00e9ler les alertes et trier automatiquement.",
+        "prompt": "Create view ALERT_CORRELATION that groups related anomalies by: temporal proximity (5-minute window), same user/IP, same target, common TTPs. Use CORTEX.COMPLETE to: correlate grouped alerts into incidents, assign severity based on context (infrastructure criticality, user privilege level, data sensitivity), check against THREAT_INTELLIGENCE for known IoCs/TTPs, generate triage decision: true_positive, false_positive, needs_investigation. Create AUTO_TRIAGE with: incident_id, correlated_alerts, severity, triage_decision, confidence, analyst_action_needed."
+      },
+      {
+        "title": "Playbooks de r\u00e9ponse",
+        "desc": "G\u00e9n\u00e9rer des plans de r\u00e9ponse contextualis\u00e9s.",
+        "prompt": "Create view RESPONSE_PLAYBOOKS that uses CORTEX.COMPLETE to generate for each confirmed incident: immediate containment actions (specific to the threat type and affected infrastructure), investigation steps (what logs to review, what to correlate), eradication procedure, recovery steps with critical infrastructure considerations, communication plan (internal, NIS2 notification if required). Create INCIDENT_TIMELINE that reconstructs the attack chronology. Create LESSONS_LEARNED that analyzes resolved incidents for pattern improvement."
+      },
+      {
+        "title": "SOC et pipeline",
+        "desc": "Tableau de bord SOC et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. SOC dashboard with prioritized alert queue and severity indicators\n2. Incident detail with correlated alerts, timeline and playbook\n3. UEBA panel with user behavior anomaly profiles\n4. Critical infrastructure status monitor with real-time health\n5. Metrics: MTTD, MTTR, alert volume, triage automation rate\n6. Threat intelligence feed with active campaign indicators\n\nCreate Tasks:\n1. INGEST_LOGS: continuous network and auth log ingestion\n2. ANOMALY_DETECTION: every 5 min run detection models\n3. ALERT_CORRELATION: every 5 min correlate and triage\n4. THREAT_INTEL_UPDATE: daily update IoC and TTP database\n5. WEEKLY_SECURITY_REPORT: weekly executive security report"
+      }
+    ]
+  },
+  "UC09": {
+    "title": "Gestion Intelligente du Patrimoine et des Infrastructures Publiques",
+    "category": "eficiencia",
+    "catLabel": "Efficience",
+    "time": "15 min",
+    "pain": "Le patrimoine public (b\u00e2timents, routes, r\u00e9seaux) se d\u00e9grade par manque de maintenance pr\u00e9ventive. Les r\u00e9parations d'urgence co\u00fbtent 3 \u00e0 5 fois plus que la maintenance planifi\u00e9e et affectent les services aux citoyens.",
+    "desc": "Plateforme de gestion du patrimoine qui utilise des capteurs IoT, ML.FORECAST et l'IA g\u00e9n\u00e9rative pour pr\u00e9dire les d\u00e9faillances, prioriser la maintenance et optimiser le cycle de vie des infrastructures publiques.",
+    "features": [
+      "ML.FORECAST pour la pr\u00e9diction des d\u00e9faillances d'infrastructure",
+      "Priorisation multicrit\u00e8re de la maintenance",
+      "COMPLETE pour les rapports d'\u00e9tat et les recommandations",
+      "Optimisation budg\u00e9taire du cycle de vie",
+      "Tableau de bord g\u00e9ographique de l'\u00e9tat du patrimoine"
+    ],
+    "focus": "Implémenter une gestion du patrimoine public basée sur les données qui prédit les défaillances 6 mois à l'avance, priorise les interventions par impact et optimise l'allocation budgétaire entre maintenance préventive et corrective.",
+    "challenge": "Le patrimoine public comprend des milliers d'actifs hétérogènes (bâtiments, routes, canalisations, éclairage) avec des cycles de vie différents. Les capteurs IoT fournissent des données massives mais hétérogènes. Le budget de maintenance est toujours insuffisant et il faut prioriser avec des critères techniques, économiques et sociaux.",
+    "objectives": [
+      "Pr\u00e9dire 80 % des d\u00e9faillances critiques avec 6 mois d'avance",
+      "R\u00e9duire les r\u00e9parations d'urgence de 50 %",
+      "Optimiser le budget de maintenance pour maximiser la dur\u00e9e de vie utile",
+      "Centraliser l'\u00e9tat de 100 % du patrimoine sur une plateforme unique",
+      "R\u00e9duire le co\u00fbt total de maintenance de 25 % avec la pr\u00e9vention"
+    ],
+    "capabilities": [
+      "ML.FORECAST : prédiction de défaillance par type d'actif et composant",
+      "Dynamic Tables : état en temps réel depuis capteurs IoT",
+      "COMPLETE : rapports d'état, recommandations de maintenance, estimation des coûts",
+      "Snowpark ML : modèle d'optimisation budgétaire multi-objectif",
+      "Cortex Search : recherche de précédents et normes techniques"
+    ],
+    "data": [
+      "Inventaire d'actifs : type, emplacement, âge, composants, coût de remplacement",
+      "Capteurs IoT : température, vibrations, humidité, consommation d'énergie",
+      "Historique de maintenance : interventions, coûts, pannes, temps d'indisponibilité",
+      "Inspections : état, photos, gravité, recommandations",
+      "Budget : alloué par catégorie, exécuté, engagé, disponible"
+    ],
+    "stratification": [
+      "Par type d'actif : bâtiment, route, canalisation, éclairage, espace vert",
+      "Par criticité : essentiel (hôpital, école), important, standard",
+      "Par état : bon, acceptable, préoccupant, critique, hors service",
+      "Par type de maintenance : préventive, corrective, amélioration, remplacement",
+      "Par zone géographique : district, quartier, itinéraire"
+    ],
+    "steps": [
+      {
+        "title": "Pr\u00e9parer les donn\u00e9es",
+        "desc": "Cr\u00e9er les tables du patrimoine public.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. ASSET_INVENTORY (asset_id STRING, asset_type STRING, name STRING, location STRING, lat FLOAT, lon FLOAT, construction_year INT, replacement_cost FLOAT, criticality STRING, current_condition STRING, last_inspection DATE)\n2. IOT_READINGS (reading_id STRING, asset_id STRING, sensor_type STRING, timestamp TIMESTAMP, value FLOAT, unit STRING, alert_threshold FLOAT, is_alert BOOLEAN)\n3. MAINTENANCE_HISTORY (work_order_id STRING, asset_id STRING, maintenance_type STRING, description STRING, start_date DATE, end_date DATE, cost FLOAT, downtime_hours FLOAT, was_emergency BOOLEAN, root_cause STRING)\n4. INSPECTIONS (inspection_id STRING, asset_id STRING, date DATE, inspector_id STRING, overall_condition STRING, component_ratings STRING, photos_url STRING, recommendations STRING, urgency STRING)\n5. MAINTENANCE_BUDGET (period DATE, category STRING, allocated FLOAT, committed FLOAT, spent FLOAT, remaining FLOAT)\nLoad sample data: 2000 assets, 500K IoT readings (90 days), 5000 work orders (5 years), 3000 inspections."
+      },
+      {
+        "title": "Pr\u00e9diction de d\u00e9faillances",
+        "desc": "ML pour pr\u00e9dire les pannes.",
+        "prompt": "Use ML.FORECAST on IOT_READINGS aggregated by asset to predict: when each sensor metric will cross alert threshold, trend of degradation by asset. Create view FAILURE_PREDICTION with: asset_id, predicted_failure_date, failure_type, confidence, remaining_useful_life_days. Create CONDITION_SCORING combining: IoT predictions, inspection results, age vs expected lifespan, maintenance history. Calculate composite_condition_score (0-100). Create DEGRADATION_ALERTS for assets whose condition is dropping faster than expected."
+      },
+      {
+        "title": "Priorisation de la maintenance",
+        "desc": "Classement multicrit\u00e8re des interventions.",
+        "prompt": "Create view MAINTENANCE_PRIORITY that ranks all pending interventions by: criticality_score (infrastructure importance x failure probability), economic_score (repair cost now vs emergency cost later), social_score (citizens affected x service disruption), safety_score (risk to persons). Calculate composite_priority and ROI of prevention vs waiting. Create MAINTENANCE_PLAN with: monthly planned interventions, resource allocation, estimated cost, expected condition improvement. Create BUDGET_OPTIMIZER that distributes available budget to maximize total infrastructure lifespan."
+      },
+      {
+        "title": "Rapports et recommandations IA",
+        "desc": "Rapports d'\u00e9tat automatiques.",
+        "prompt": "Create view ASSET_REPORTS that uses CORTEX.COMPLETE to generate for each asset: current condition summary integrating sensors + inspections, predicted evolution over the next 12 months, specific maintenance recommendations with estimated cost, replacement vs repair analysis when applicable, comparison with similar assets. Create PORTFOLIO_REPORT for management: overall condition by category, budget adequacy, risk of service disruption, investment recommendations."
+      },
+      {
+        "title": "Tableau de bord et pipeline",
+        "desc": "Plateforme de gestion du patrimoine et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Geographic map with condition-colored assets and IoT alerts\n2. Asset detail with sensor history, inspections and prediction\n3. Prioritized maintenance planning panel\n4. Budget tracker with optimization recommendations\n5. Metrics: % in good condition, emergency vs preventive ratio, budget efficiency\n6. Year-over-year condition trend by asset category\n\nCreate Tasks:\n1. INGEST_IOT: every 15 min from IoT sensors\n2. UPDATE_PREDICTIONS: daily failure prediction refresh\n3. PRIORITY_RECALC: daily maintenance priority recalculation\n4. WEEKLY_REPORT: weekly infrastructure status report\n5. MONTHLY_BUDGET: monthly budget execution and optimization review"
+      }
+    ]
+  },
+  "UC10": {
+    "title": "Transparence Budg\u00e9taire et Open Data Intelligence",
+    "category": "politicas",
+    "catLabel": "Politiques",
+    "time": "15 min",
+    "pain": "Les budgets publics sont opaques pour les citoyens, les donn\u00e9es ouvertes sont publi\u00e9es mais inutilisables, et il n'y a pas d'outils d'analyse accessibles pour le contr\u00f4le citoyen et le journalisme de donn\u00e9es.",
+    "desc": "Plateforme de transparence budgétaire qui combine l'analyse de données ouvertes, l'IA générative pour l'explication et des visualisations interactives pour rendre les comptes publics compréhensibles et explorables par tout citoyen.",
+    "features": [
+      "Analyse automatique des données ouvertes budgétaires",
+      "COMPLETE pour l'explication de dépenses en langage accessible",
+      "Détection d'anomalies dans l'exécution budgétaire",
+      "Comparaisons entre administrations et périodes",
+      "Portail citoyen interactif avec recherche en langage naturel"
+    ],
+    "focus": "Créer une plateforme de transparence qui transforme les données budgétaires brutes en information compréhensible, avec recherche en langage naturel, détection d'anomalies et comparaisons, accessible à tout citoyen sans connaissances techniques.",
+    "challenge": "Les données ouvertes sont publiées dans des formats hétérogènes, avec une nomenclature comptable incompréhensible pour les non-spécialistes. Le volume est massif (des milliers de lignes budgétaires) et le contexte est nécessaire pour interpréter correctement les chiffres (ne pas confondre alloué et dépensé, investissement et fonctionnement).",
+    "objectives": [
+      "Rendre 100 % du budget explorable en langage naturel",
+      "Générer des explications compréhensibles pour chaque poste budgétaire",
+      "Détecter automatiquement les anomalies dans l'exécution budgétaire",
+      "Permettre la comparaison entre administrations, périodes et catégories",
+      "Atteindre 10 000 consultations citoyennes mensuelles"
+    ],
+    "capabilities": [
+      "Cortex Search : recherche en langage naturel sur les données budgétaires",
+      "COMPLETE : explication de dépenses, contextualisation, comparaisons",
+      "ML.DETECT_ANOMALIES : détection d'exécutions anormales",
+      "Dynamic Tables : indicateurs budgétaires en temps réel",
+      "Streamlit : portail interactif accessible et responsive"
+    ],
+    "data": [
+      "Budget : postes, alloué, engagé, dépensé, par organisme et programme",
+      "Open data : jeux de données gouvernementaux standardisés",
+      "Marchés publics : adjudications, montants, adjudicataires",
+      "Indicateurs socio-économiques : pour contextualiser les dépenses",
+      "Historique : séries pluriannuelles pour analyse de tendances"
+    ],
+    "stratification": [
+      "Par niveau d'administration : État, région, département, commune",
+      "Par catégorie : fonctionnement, investissement, personnel, dette",
+      "Par domaine : éducation, santé, sécurité, mobilité, culture",
+      "Par type d'analyse : postes, tendances, anomalies, comparaisons",
+      "Par profil utilisateur : citoyen, journaliste, chercheur, élu"
+    ],
+    "steps": [
+      {
+        "title": "Pr\u00e9parer les donn\u00e9es",
+        "desc": "Cr\u00e9er les tables de donn\u00e9es budg\u00e9taires.",
+        "prompt": "In database PUBLIC_SERVICES_AI create tables:\n1. BUDGET_LINES (line_id STRING, fiscal_year INT, admin_level STRING, entity_name STRING, program STRING, category STRING, subcategory STRING, description STRING, allocated FLOAT, committed FLOAT, spent FLOAT, revenue_source STRING)\n2. PUBLIC_CONTRACTS_OPEN (contract_id STRING, entity STRING, contractor STRING, amount FLOAT, type STRING, sector STRING, award_date DATE, status STRING, transparency_url STRING)\n3. BUDGET_GLOSSARY (term STRING, definition STRING, example STRING, related_terms STRING, citizen_explanation STRING)\n4. ENTITY_COMPARISON (entity_name STRING, population INT, area_km2 FLOAT, gdp_per_capita FLOAT, fiscal_year INT, total_budget FLOAT, budget_per_capita FLOAT, debt_ratio FLOAT)\n5. CITIZEN_QUERIES (query_id STRING, query_text STRING, timestamp TIMESTAMP, results_shown INT, satisfaction BOOLEAN, profile STRING)\nLoad sample data: 50000 budget lines (5 years, 10 entities), 5000 contracts, 200 glossary terms, 50 entities for comparison."
+      },
+      {
+        "title": "Recherche en langage naturel",
+        "desc": "Permettre les questions en langage naturel.",
+        "prompt": "Create Cortex Search service BUDGET_SEARCH on BUDGET_LINES(description) with attributes program, category, entity_name, fiscal_year, spent. Create a COMPLETE function BUDGET_QA that: 1) Receives citizen question in natural language, 2) Searches BUDGET_SEARCH for relevant lines, 3) Generates a clear explanation with numbers and context, 4) Adds comparison with previous year and similar entities, 5) Cites exact sources and transparency links. Create view POPULAR_QUERIES tracking the most searched topics for proactive content creation."
+      },
+      {
+        "title": "D\u00e9tection d'anomalies",
+        "desc": "Identifier les ex\u00e9cutions budg\u00e9taires anormales.",
+        "prompt": "Use ML.DETECT_ANOMALIES on BUDGET_LINES to detect: spending significantly above/below allocation, unusual spending patterns vs similar entities, sudden changes vs previous years, categories with abnormal committed/spent ratio. Create view BUDGET_ANOMALIES with: line_id, anomaly_type, anomaly_score, explanation, comparison_context. Use CORTEX.COMPLETE to generate a journalist-friendly summary of each anomaly with context and potential explanations."
+      },
+      {
+        "title": "Comparaisons et classements",
+        "desc": "Permettre les comparaisons entre administrations.",
+        "prompt": "Create view ENTITY_RANKINGS that for each category calculates: spending per capita, execution efficiency (spent/allocated), year-over-year variation, ranking among similar entities. Normalize by population and socio-economic context. Create SPENDING_EVOLUTION showing trends per category with inflation adjustment. Create EFFICIENCY_BENCHMARKS identifying best practices: entities that achieve best outcomes with less spending per domain. Use CORTEX.COMPLETE to generate comparative narratives."
+      },
+      {
+        "title": "Portail et pipeline",
+        "desc": "Portail citoyen interactif et automatisation.",
+        "prompt": "Generate Streamlit code with:\n1. Natural language search bar: 'How much is spent on education?'\n2. Interactive budget explorer with drill-down by category and entity\n3. Anomaly panel with explanations and context\n4. Entity comparator with normalized charts\n5. Metrics: top queries, visits, citizen satisfaction\n6. Open data download for researchers and journalists\n\nCreate Tasks:\n1. INGEST_BUDGET: quarterly budget data update\n2. ANOMALY_SCAN: monthly anomaly detection run\n3. UPDATE_RANKINGS: quarterly entity comparison update\n4. POPULAR_CONTENT: weekly proactive content from popular queries\n5. ANNUAL_REPORT: annual transparency report generation"
+      }
+    ]
+  }
+};
+
+/* ---- Rendering ---- */
+var categories = Object.values(UC_CATALOG);
+document.getElementById('totalCases').textContent = categories.length;
+var grid = document.getElementById('cardsGrid');
+var activeFilter = 'all';
+var searchTerm = '';
+
+function renderCards() {
+  var filtered = categories.filter(function(c) {
+    var matchFilter = activeFilter === 'all' || c.category === activeFilter;
+    var matchSearch = searchTerm === '' || (c.title + ' ' + c.desc + ' ' + c.catLabel).toLowerCase().indexOf(searchTerm) >= 0;
+    return matchFilter && matchSearch;
+  });
+  document.getElementById('resultsCount').textContent = filtered.length + ' cas d\'usage' + (activeFilter !== 'all' ? ' dans ' + document.querySelector('.filter-btn[data-filter="'+activeFilter+'"]').textContent : '');
+  grid.innerHTML = '';
+  filtered.forEach(function(c, idx) {
+    var ucKey = Object.keys(UC_CATALOG).find(function(k){ return UC_CATALOG[k] === c; });
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML =
+      '<div class="card-header"><div class="card-badges"><span class="badge-id">' + ucKey + '</span><span class="badge-cat ' + c.category + '">' + c.catLabel + '</span></div><span class="card-time"><svg width="14" height="14" fill="none" stroke="#888" stroke-width="2"><circle cx="7" cy="7" r="5"/><line x1="7" y1="4" x2="7" y2="7"/><line x1="7" y1="7" x2="9" y2="9"/></svg>' + c.time + '</span></div>' +
+      '<div class="card-title">' + c.title + '</div>' +
+      '<div class="pain-point"><div class="pain-point-label">Probl\u00e8me</div><p>' + c.pain + '</p></div>' +
+      '<div class="card-desc">' + c.desc + '</div>' +
+      '<ul class="card-features">' + c.features.map(function(f){ return '<li>' + f + '</li>'; }).join('') + '</ul>' +
+      '<div class="card-actions"><a href="guide.html" class="btn-secondary">Guide d\'impl\u00e9mentation</a><button class="btn-tertiary" onclick=\'openGuide(' + JSON.stringify(ucKey) + ')\'>Voir les Prompts</button></div>';
+    grid.appendChild(card);
+  });
+}
+renderCards();
+
+document.querySelectorAll('.filter-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    activeFilter = btn.getAttribute('data-filter');
+    renderCards();
+  });
+});
+document.getElementById('searchInput').addEventListener('input', function(e) {
+  searchTerm = e.target.value.toLowerCase();
+  renderCards();
+});
+
+/* ---- Modal ---- */
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function openGuide(ucKey) {
+  var data = UC_CATALOG[ucKey];
+  if (!data || !data.steps) return;
+  var html = '<span class="guide-badge">' + ucKey + ' \u2014 ' + data.catLabel + '</span>';
+  html += '<h2>' + data.title + '</h2>';
+  html += '<p class="prompt-intro">' + data.focus + '</p>';
+  data.steps.forEach(function(st, i) {
+    html += '<div class="prompt-step">';
+    html += '<div class="prompt-step-header"><span class="prompt-step-num">' + (i+1) + '</span><span class="prompt-step-title">' + st.title + '</span></div>';
+    html += '<p class="prompt-step-desc">' + st.desc + '</p>';
+    html += '<div class="prompt-code"><button class="copy-btn" onclick="copyPrompt(this)">Copier</button>' + esc(st.prompt) + '</div>';
+    html += '</div>';
+  });
+  html += '<div class="guide-footer">Ex\u00e9cutez ces prompts s\u00e9quentiellement dans Cortex Code</div>';
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function copyPrompt(btn) {
+  var code = btn.parentElement.textContent.replace('Copier','').trim();
+  navigator.clipboard.writeText(code).then(function(){btn.textContent='\u2713 Copi\u00e9';setTimeout(function(){btn.textContent='Copier';},1500);});
+}
+
+function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+</script>
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal();">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+</body>
+</html>

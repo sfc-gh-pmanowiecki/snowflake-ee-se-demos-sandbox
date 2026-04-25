@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Banking — Snowflake AI/ML Use Cases</title>
+<link rel="icon" href="../bug-white.png" type="image/png" />
+<style>
+:root {
+  --bg: #0b0f1a;
+  --surface: #131926;
+  --card: #19202e;
+  --border: #262e3f;
+  --accent: #29b5e8;
+  --accent2: #6366f1;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --success: #4ade80;
+  --badge-riesgo: rgba(239,68,68,.15);
+  --badge-riesgo-text: #f87171;
+  --badge-cliente: rgba(99,102,241,.15);
+  --badge-cliente-text: #818cf8;
+  --badge-operaciones: rgba(234,179,8,.15);
+  --badge-operaciones-text: #facc15;
+  --badge-inteligencia: rgba(168,85,247,.15);
+  --badge-inteligencia-text: #c084fc;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'Inter','SF Pro Display',-apple-system,sans-serif; line-height:1.6; }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* ── HEADER ────────────────────────────────────── */
+.page-header {
+  background: linear-gradient(135deg, #1a1040 0%, #0b1a2e 50%, #0a2540 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 2rem 1.5rem;
+}
+.header-top { display:flex; align-items:center; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+.header-top img { height:32px; }
+.header-breadcrumb { font-size:.85rem; color:var(--muted); }
+.header-breadcrumb a { color:var(--accent); }
+.header-title-row { display:flex; align-items:center; gap:.75rem; margin-bottom:.5rem; }
+.header-title-row .industry-icon { font-size:2rem; }
+.header-title-row h1 { font-size:1.75rem; font-weight:700; }
+.header-desc { color:var(--muted); font-size:.95rem; max-width:800px; }
+.header-stats { display:flex; gap:2rem; margin-top:1rem; flex-wrap:wrap; }
+.header-stat { display:flex; align-items:center; gap:.5rem; font-size:.85rem; color:var(--muted); }
+.header-stat strong { color:var(--text); font-size:1rem; }
+
+/* ── FILTER BAR ────────────────────────────────── */
+.filter-bar {
+  display:flex; align-items:center; gap:.75rem; padding:1rem 2rem;
+  border-bottom:1px solid var(--border); flex-wrap:wrap;
+  background:var(--surface);
+}
+.filter-chip {
+  padding:.4rem .9rem; border-radius:20px; font-size:.8rem; cursor:pointer;
+  border:1px solid var(--border); background:transparent; color:var(--muted);
+  transition: all .2s;
+}
+.filter-chip:hover { border-color:var(--accent); color:var(--text); }
+.filter-chip.active { background:var(--accent); color:#000; border-color:var(--accent); font-weight:600; }
+.search-box {
+  margin-left:auto; display:flex; align-items:center; gap:.5rem;
+  background:var(--card); border:1px solid var(--border); border-radius:8px;
+  padding:.35rem .75rem;
+}
+.search-box input {
+  background:none; border:none; color:var(--text); font-size:.85rem; width:180px; outline:none;
+}
+.results-count { padding:.5rem 2rem; font-size:.8rem; color:var(--muted); }
+
+/* ── CARDS ─────────────────────────────────────── */
+.cards-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:1.25rem; padding:1.5rem 2rem 3rem;
+}
+.case-card {
+  background:var(--card); border:1px solid var(--border); border-radius:12px;
+  padding:1.5rem; display:flex; flex-direction:column; gap:.75rem;
+  transition: border-color .2s, transform .2s;
+}
+.case-card:hover { border-color:var(--accent); transform:translateY(-2px); }
+.card-top { display:flex; justify-content:space-between; align-items:start; }
+.card-badge {
+  font-size:.7rem; font-weight:600; padding:.25rem .65rem; border-radius:20px;
+  text-transform:uppercase; letter-spacing:.5px;
+}
+.card-badge.riesgo      { background:var(--badge-riesgo);       color:var(--badge-riesgo-text); }
+.card-badge.cliente     { background:var(--badge-cliente);      color:var(--badge-cliente-text); }
+.card-badge.operaciones { background:var(--badge-operaciones);  color:var(--badge-operaciones-text); }
+.card-badge.inteligencia{ background:var(--badge-inteligencia);  color:var(--badge-inteligencia-text); }
+.card-time { font-size:.75rem; color:var(--muted); }
+.card-title { font-size:1.05rem; font-weight:600; line-height:1.35; }
+.card-pain { font-size:.82rem; color:var(--muted); line-height:1.45; }
+.card-desc { font-size:.82rem; color:#7d8baa; line-height:1.5; }
+.card-features { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:auto; padding-top:.5rem; }
+.card-feature {
+  font-size:.68rem; padding:.2rem .55rem; border-radius:6px;
+  background:rgba(41,181,232,.08); color:var(--accent); border:1px solid rgba(41,181,232,.15);
+}
+.card-actions { display:flex; gap:.5rem; margin-top:.75rem; }
+.btn-guide, .btn-prompts {
+  flex:1; padding:.5rem; border-radius:8px; font-size:.78rem; font-weight:600;
+  cursor:pointer; border:none; text-align:center; transition:opacity .2s;
+}
+.btn-guide { background:var(--accent); color:#000; }
+.btn-prompts { background:var(--accent2); color:#fff; }
+.btn-guide:hover, .btn-prompts:hover { opacity:.85; }
+
+/* ── MODALS ────────────────────────────────────── */
+.modal-overlay {
+  position:fixed; inset:0; background:rgba(0,0,0,.7); display:flex;
+  align-items:center; justify-content:center; z-index:999;
+  opacity:0; pointer-events:none; transition:opacity .25s;
+}
+.modal-overlay.active { opacity:1; pointer-events:auto; }
+.modal-box {
+  background:var(--surface); border:1px solid var(--border); border-radius:14px;
+  max-width:680px; width:92%; max-height:85vh; overflow-y:auto;
+  padding:2rem; position:relative;
+}
+.modal-box .close-btn {
+  position:absolute; top:1rem; right:1rem; background:none; border:none;
+  color:var(--muted); font-size:1.5rem; cursor:pointer;
+}
+.modal-box .close-btn:hover { color:var(--text); }
+
+/* Guide */
+.guide-badge {
+  display:inline-block; font-size:.7rem; font-weight:700; padding:.2rem .6rem;
+  border-radius:20px; background:var(--accent); color:#000; margin-bottom:.75rem;
+}
+.guide-section { margin-top:1.25rem; }
+.guide-section h3 {
+  font-size:.85rem; text-transform:uppercase; letter-spacing:.5px;
+  color:var(--accent); margin-bottom:.5rem;
+}
+.guide-section p, .guide-section li { font-size:.88rem; color:var(--muted); line-height:1.6; }
+.guide-section ul { padding-left:1.25rem; }
+.guide-footer {
+  margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--border);
+  font-size:.82rem; color:var(--muted); text-align:center;
+}
+
+/* Prompts */
+.prompt-intro { font-size:.88rem; color:var(--muted); margin-bottom:1rem; }
+.prompt-step { margin-bottom:1.25rem; }
+.prompt-step-header { display:flex; align-items:center; gap:.5rem; margin-bottom:.35rem; }
+.prompt-step-num {
+  width:24px; height:24px; border-radius:50%; background:var(--accent2);
+  color:#fff; font-size:.75rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+.prompt-step-title { font-weight:600; font-size:.9rem; }
+.prompt-step-desc { font-size:.82rem; color:var(--muted); margin-bottom:.4rem; }
+.prompt-code {
+  background:#0d1117; border:1px solid var(--border); border-radius:8px;
+  padding:.75rem 1rem; font-family:'JetBrains Mono','Fira Code',monospace;
+  font-size:.78rem; line-height:1.6; color:#c9d1d9; white-space:pre-wrap;
+  position:relative;
+}
+.copy-btn {
+  position:absolute; top:.5rem; right:.5rem; background:var(--accent2);
+  color:#fff; border:none; border-radius:6px; padding:.25rem .6rem;
+  font-size:.7rem; cursor:pointer; font-weight:600;
+}
+.copy-btn:hover { opacity:.85; }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:640px){
+  .page-header { padding:1.25rem; }
+  .header-title-row h1 { font-size:1.25rem; }
+  .cards-grid { grid-template-columns:1fr; padding:1rem; }
+  .filter-bar { padding:.75rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────── -->
+<div class="page-header">
+  <div class="header-top">
+    <img src="../bug-white.png" alt="Snowflake" />
+    <span class="header-breadcrumb">
+      <a href="index.html">Industry Index</a> &rsaquo; Banking
+    </span>
+  </div>
+  <div class="header-title-row">
+    <span class="industry-icon">🏦</span>
+    <h1>Banking</h1>
+  </div>
+  <p class="header-desc">
+    20 use cases applying Cortex AI, ML Classification, Forecasting and Streamlit
+    to real banking challenges: fraud, credit scoring, AML, stress testing and regulatory compliance.
+  </p>
+  <div class="header-stats">
+    <div class="header-stat">📦 <strong>20</strong> use cases</div>
+    <div class="header-stat">⏱️ <strong>8–15 min</strong> each</div>
+    <div class="header-stat">🧠 <strong>Cortex AI + ML + Streamlit</strong></div>
+  </div>
+</div>
+
+<!-- ── FILTER BAR ─────────────────────────────────────────── -->
+<div class="filter-bar">
+  <button class="filter-chip active" data-cat="all">All (20)</button>
+  <button class="filter-chip" data-cat="riesgo">Risk & Compliance</button>
+  <button class="filter-chip" data-cat="cliente">Customer & Business</button>
+  <button class="filter-chip" data-cat="operaciones">Operations & Markets</button>
+  <button class="filter-chip" data-cat="inteligencia">Advanced Intelligence</button>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round">
+      <circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/>
+    </svg>
+    <input id="searchInput" type="text" placeholder="Search use cases…" />
+  </div>
+</div>
+
+<!-- ── RESULTS COUNT ─────────────────────────────────────── -->
+<div class="results-count" id="resultsCount">Showing 20 of 20 use cases</div>
+
+<!-- ── CARDS ─────────────────────────────────────────────── -->
+<main class="cards-grid" id="cardsGrid"></main>
+
+<!-- ── MODALS ─────────────────────────────────────────────── -->
+<div class="modal-overlay" id="guiaModal"><div class="modal-box" id="guiaModalBox"></div></div>
+<div class="modal-overlay" id="promptsModal"><div class="modal-box" id="promptsModalBox" style="max-width:780px;"></div></div>
+
+<script>
+const USE_CASES = [
+  {
+    id:"UC01", cat:"riesgo", catLabel:"Risk & Compliance", time:"12 min",
+    title:"Real-Time Transaction Fraud Detection",
+    pain:"Billions are lost annually to banking transaction fraud. Manual detection barely covers 2% of operations in real time.",
+    desc:"ML.CLASSIFICATION on 50K transactions with amount z-score, new device, anomalous location and time. Differentiated thresholds: BLOCK (≥80%), REVIEW (≥50%), APPROVE. Real-time monitoring dashboard.",
+    features:["SNOWFLAKE.ML.CLASSIFICATION","Z-Score per customer with STDDEV()","GENERATOR() for 50,000 transactions","Streamlit alert dashboard"]
+  },
+  {
+    id:"UC02", cat:"riesgo", catLabel:"Risk & Compliance", time:"15 min",
+    title:"AI Credit Scoring with Explainability",
+    pain:"Traditional credit scoring models are opaque and slow to update. 40% of banks still use rigid scorecards that exclude creditworthy customers.",
+    desc:"ML.CLASSIFICATION on applicants with 15 variables (income, history, employment, DTI). AI explanations per decision. Monitoring of metrics by segment. Impact analysis on financial inclusion.",
+    features:["ML.CLASSIFICATION with 15 features","CORTEX.COMPLETE for AI explanations","Monitoring per segment and fairness","Streamlit decision dashboard"]
+  },
+  {
+    id:"UC03", cat:"riesgo", catLabel:"Risk & Compliance", time:"12 min",
+    title:"AML Pattern Detection",
+    pain:"Money laundering detection generates 95% false positives. Manual review of each alert costs €50–200 and takes hours.",
+    desc:"ML.CLASSIFICATION on 20K operations with features: frequency, structuring, geography, PEP network. Automated alert prioritization with CORTEX.COMPLETE explaining the risk pattern.",
+    features:["ML.CLASSIFICATION with AML features","Structuring detection with LAG()","PEP network and risk geography","AI alert prioritization"]
+  },
+  {
+    id:"UC04", cat:"riesgo", catLabel:"Risk & Compliance", time:"10 min",
+    title:"Macroeconomic Stress Testing",
+    pain:"Stress testing required by regulators (EBA/Fed) takes weeks of manual Excel work. Models are difficult to audit and reproduce.",
+    desc:"ML.FORECAST of delinquency rate under 3 scenarios (base, adverse, severe) with macro variables. Automated calculation of provisions and capital impact. Auditability report with CORTEX.COMPLETE.",
+    features:["SNOWFLAKE.ML.FORECAST","3 macro scenarios (base/adverse/severe)","Automated provision calculations","Streamlit comparative dashboard"]
+  },
+  {
+    id:"UC05", cat:"riesgo", catLabel:"Risk & Compliance", time:"10 min",
+    title:"Regulatory Compliance Monitoring",
+    pain:"The average bank faces 200+ changing regulatory obligations per year. 60% of fines come from failures in systematic monitoring.",
+    desc:"AI analysis with CORTEX.COMPLETE of 50 regulatory obligations (ECB, EBA, CNMV, SEPBLAC). Automated gap detection by crossing controls and assessments. Prioritized action plan.",
+    features:["CORTEX.COMPLETE for regulation analysis","Automated gap detection","Prioritization by risk","Compliance action dashboard"]
+  },
+  {
+    id:"UC06", cat:"cliente", catLabel:"Customer & Business", time:"10 min",
+    title:"Intelligent Churn Prediction",
+    pain:"Banks lose 15–25% of customers annually. Acquiring a new customer costs 5–7x more than retaining an existing one.",
+    desc:"ML.CLASSIFICATION with 12 behavioral features (frequency, balances, products, digital engagement). AI-generated personalized retention campaigns per segment with CORTEX.COMPLETE.",
+    features:["ML.CLASSIFICATION with 12 features","Customer behavioral analysis","AI personalized campaigns","Streamlit retention dashboard"]
+  },
+  {
+    id:"UC07", cat:"cliente", catLabel:"Customer & Business", time:"10 min",
+    title:"Dynamic Customer Segmentation",
+    pain:"Static segmentation based only on demographics misses 60% of cross-sell opportunities. Segments become outdated every quarter.",
+    desc:"Multi-variable clustering combining demographics + transactions + products + digital behavior. AI profile of each segment with CORTEX.COMPLETE. Automatic identification of migration between segments.",
+    features:["Multi-dimensional clustering","Behavioral transaction analysis","AI segment profiling","Migration and evolution dashboard"]
+  },
+  {
+    id:"UC08", cat:"cliente", catLabel:"Customer & Business", time:"10 min",
+    title:"Intelligent Product Recommendation",
+    pain:"Generic banking campaigns have <3% conversion. Without intelligent recommendation, cross-sell potential of existing customers is wasted.",
+    desc:"Collaborative filtering model based on product adoption patterns. Analysis of customer lifecycle and propensity to hire. AI-personalized campaigns per product and segment.",
+    features:["Product adoption analysis","Propensity models per product","AI personalized recommendations","Product opportunity dashboard"]
+  },
+  {
+    id:"UC09", cat:"cliente", catLabel:"Customer & Business", time:"10 min",
+    title:"Customer Lifetime Value (CLV) Prediction",
+    pain:"80% of banks cannot predict which customers will generate the most long-term value. Budget allocation is done by intuition rather than data.",
+    desc:"CLV prediction model combining current revenue, growth potential, churn risk, and product deepening. Strategic segmentation by value and action for each group.",
+    features:["Multi-factor CLV model","Revenue and potential analysis","Strategic value segmentation","CLV management dashboard"]
+  },
+  {
+    id:"UC10", cat:"cliente", catLabel:"Customer & Business", time:"10 min",
+    title:"Sentiment Analysis and Customer Feedback",
+    pain:"Banks receive thousands of complaints and comments daily. 70% are not analyzed, missing critical patterns of dissatisfaction.",
+    desc:"AI sentiment analysis of 500 simulated comments with CORTEX.COMPLETE. Classification by product, channel, and severity. Detection of urgent patterns and automatic escalation with topic analysis.",
+    features:["CORTEX.COMPLETE for sentiment analysis","Multi-dimensional classification","Critical pattern detection","Voice of customer dashboard"]
+  },
+  {
+    id:"UC11", cat:"operaciones", catLabel:"Operations & Markets", time:"10 min",
+    title:"ATM Network Cash Flow Optimization",
+    pain:"Banks maintain €2–5B in ATM cash. Poor forecasting causes 15% of ATMs to run out of cash monthly while others hold excess.",
+    desc:"ML.FORECAST of daily demand per ATM with 12-month history. Route optimization and rebalancing based on predictions. Detection of anomalous patterns and special events.",
+    features:["SNOWFLAKE.ML.FORECAST per ATM","Pattern and seasonality analysis","Rebalancing optimization","ATM network monitoring dashboard"]
+  },
+  {
+    id:"UC12", cat:"operaciones", catLabel:"Operations & Markets", time:"10 min",
+    title:"Payment Anomaly Detection",
+    pain:"Payment operations process millions of transactions daily. 0.1% of anomalies can represent millions in losses or operational failures.",
+    desc:"Anomaly detection in payments with z-score over rolling windows. Patterns by time, channel, and counterpart. Automated alert classification with CORTEX.COMPLETE explaining the context.",
+    features:["Z-Score on rolling windows","Temporal pattern analysis","AI alert classification","Payment operations dashboard"]
+  },
+  {
+    id:"UC13", cat:"operaciones", catLabel:"Operations & Markets", time:"10 min",
+    title:"FX Rate and Spread Forecasting",
+    pain:"FX desks operate with tight margins. A 1bp spread improvement on $1B daily volume equals $100K annually.",
+    desc:"ML.FORECAST of major pairs (EUR/USD, GBP/USD, USD/JPY) with volatility and technical analysis. Automated dynamic spread based on predictions and liquidity conditions.",
+    features:["SNOWFLAKE.ML.FORECAST for FX","Technical and volatility analysis","Dynamic spread model","FX monitoring dashboard"]
+  },
+  {
+    id:"UC14", cat:"operaciones", catLabel:"Operations & Markets", time:"10 min",
+    title:"AI Operational Process Automation (IDP)",
+    pain:"Banks process millions of documents (contracts, IDs, certificates). 40% of operations staff time goes to manual extraction and verification.",
+    desc:"Intelligent document processing with CORTEX.COMPLETE simulating extraction of contracts, IDs, and financial certificates. Classification, data extraction, and cross-referencing validation.",
+    features:["CORTEX.COMPLETE for extraction","Document classification","Cross-referencing validation","Document processing dashboard"]
+  },
+  {
+    id:"UC15", cat:"operaciones", catLabel:"Operations & Markets", time:"10 min",
+    title:"Interbank Liquidity Management",
+    pain:"Liquidity management requires real-time monitoring of interbank flows. Errors in positioning can cost millions in penalties or missed opportunities.",
+    desc:"Forecasting of interbank flows with ML.FORECAST and real-time position monitoring. Automatic gap detection between assets and liabilities by time bucket. AI alerts on critical situations.",
+    features:["SNOWFLAKE.ML.FORECAST for flows","Asset-liability analysis","GAP detection by time bucket","Liquidity monitoring dashboard"]
+  },
+  {
+    id:"UC16", cat:"inteligencia", catLabel:"Advanced Intelligence", time:"12 min",
+    title:"Predictive Market Risk (VaR ML)",
+    pain:"Traditional VaR uses static assumptions. During crises (2008, COVID), traditional models underestimated real risk by 300–500%.",
+    desc:"ML-enhanced VaR model with dynamic estimation of volatility and correlations. Historical vs. Monte Carlo comparison. AI stress narratives with CORTEX.COMPLETE for risk committee.",
+    features:["ML model for VaR estimation","Historical vs Monte Carlo","Dynamic volatility analysis","Risk committee dashboard"]
+  },
+  {
+    id:"UC17", cat:"inteligencia", catLabel:"Advanced Intelligence", time:"12 min",
+    title:"Advanced Behavioral Biometrics",
+    pain:"Passwords and 2FA are not enough. 35% of banking fraud occurs with valid credentials. Behavioral analysis is the next security frontier.",
+    desc:"Behavioral biometrics model analyzing digital patterns: session times, navigation flows, typing speed, typical devices. Anomaly detection per user and AI scoring.",
+    features:["Digital behavioral analysis","Anomaly detection per user","AI session scoring","Behavioral security dashboard"]
+  },
+  {
+    id:"UC18", cat:"inteligencia", catLabel:"Advanced Intelligence", time:"12 min",
+    title:"Systemic Risk Analysis and Contagion",
+    pain:"Systemic risk can collapse the entire financial system. Banks need to understand their exposure to cascading failures in the interbank network.",
+    desc:"Interbank network graph model with exposure and contagion analysis. Cascade failure simulation under stress scenarios. Systemic risk indicators and contribution per entity.",
+    features:["Interbank network model","Contagion simulation","Systemic risk indicators","Network analysis dashboard"]
+  },
+  {
+    id:"UC19", cat:"inteligencia", catLabel:"Advanced Intelligence", time:"12 min",
+    title:"NLP for Regulatory Intelligence",
+    pain:"Regulatory changes average 200+ per day globally. Compliance teams cannot manually process the volume and determine the impact on the bank.",
+    desc:"AI processing of regulatory texts with CORTEX.COMPLETE for summarization, impact classification, and extraction of specific requirements. Automated mapping to internal policies and gap identification.",
+    features:["CORTEX.COMPLETE for regulatory NLP","Impact classification","Requirements extraction","Regulatory intelligence dashboard"]
+  },
+  {
+    id:"UC20", cat:"inteligencia", catLabel:"Advanced Intelligence", time:"12 min",
+    title:"Advanced ESG Scoring with AI",
+    pain:"ESG compliance is now mandatory for European banking (SFDR, Taxonomy). Manual evaluation of thousands of clients is unfeasible and inconsistent.",
+    desc:"AI ESG scoring model with CORTEX.COMPLETE analyzing clients across 3 pillars (Environmental, Social, Governance) with 12 factors. Taxonomy alignment, portfolio analysis, and transition risk.",
+    features:["CORTEX.COMPLETE for ESG analysis","Multi-pillar scoring (E/S/G)","EU Taxonomy alignment","ESG portfolio dashboard"]
+  }
+];
+
+/* ── GUIDES DATA ──────────────────────────────────── */
+const GUIAS = {
+  UC01: {
+    title: 'Real-Time Transaction Fraud Detection',
+    contexto: 'Banks process millions of transactions daily where less than 0.1% are fraudulent, but each can mean significant losses. Detection requires analyzing anomalous patterns in milliseconds without blocking legitimate operations.',
+    foco: 'ML.CLASSIFICATION to predict fraud probability on each transaction combining behavioral features (z-score of amount per customer), device (new yes/no), geographic consistency and time.',
+    reto: 'Build a real-time fraud classifier that separates 50K transactions into BLOCK/REVIEW/APPROVE with differentiated thresholds and a monitoring dashboard.',
+    objetivos: ['Configure a Snowflake environment for real-time fraud analytics', 'Generate realistic transaction data with GENERATOR()', 'Create features with z-score, time patterns and device analysis', 'Train ML.CLASSIFICATION and apply differentiated thresholds', 'Build a Streamlit alert monitoring dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.CLASSIFICATION — binary/multiclass classifier', 'GENERATOR() + UNIFORM/NORMAL — synthetic data', 'STDDEV() + AVG() OVER — z-score per customer', 'Streamlit — interactive dashboard'],
+    datos: ['CUSTOMERS: 5,000 customers with demographics and product history', 'TRANSACTIONS: 50,000 transactions with amount, device, location, time', 'FRAUD_FEATURES: engineered features with z-score, time and device flags'],
+    como_usar: ['Run sequentially in Cortex Code (Snowsight)', 'Each prompt builds on the previous one', 'Includes synthetic data — no real data required', 'Dashboard auto-generates at the end']
+  },
+  UC02: {
+    title: 'AI Credit Scoring with Explainability',
+    contexto: 'Banks need to evaluate credit applications quickly and fairly, but traditional scorecards are opaque and slow. Regulators demand explainability in automated credit decisions.',
+    foco: 'ML.CLASSIFICATION with 15 variables (income, history, employment, DTI, banking tenure) and AI explanations per decision using CORTEX.COMPLETE.',
+    reto: 'Build a credit scoring model that predicts default, explains each decision with AI, and monitors segment fairness.',
+    objetivos: ['Configure credit scoring environment in Snowflake', 'Generate realistic applicant data with credit history', 'Engineer 15 features including derived ratios', 'Train classifier and generate AI explanations', 'Build a decision and fairness monitoring dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.CLASSIFICATION — default prediction', 'CORTEX.COMPLETE — natural language decision explanations', 'Window functions — trend analysis', 'Streamlit — credit decision dashboard'],
+    datos: ['APPLICANTS: 3,000 applicants with 12 demographic variables', 'CREDIT_HISTORY: history of payments, defaults, utilization', 'APPLICATIONS: active applications with amount, term, purpose'],
+    como_usar: ['Run each prompt sequentially', 'The model trains on credit history', 'AI explanations are generated for each decision', 'The dashboard shows metrics by segment']
+  },
+  UC03: {
+    title: 'AML Pattern Detection',
+    contexto: 'Money laundering through banking accounts uses techniques like structuring (splitting amounts), geographic arbitrage and smurfing. Current systems generate 95% false positives, overwhelming analysts.',
+    foco: 'ML.CLASSIFICATION with AML-specific features: transaction frequency, structuring detection with LAG(), PEP network geography, and automated alert prioritization.',
+    reto: 'Build an ML-based AML detector that reduces false positives and automatically prioritizes alerts with AI explanation.',
+    objetivos: ['Configure AML detection environment', 'Generate 20K operations with suspicious patterns', 'Create AML features: structuring, frequency, geography', 'Train classifier and prioritize alerts', 'Build an AI-prioritized alert dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.CLASSIFICATION — suspicious pattern detection', 'LAG() + SUM() OVER — structuring and frequency', 'CORTEX.COMPLETE — alert risk explanation', 'Streamlit — prioritized alert dashboard'],
+    datos: ['ACCOUNTS: 2,000 accounts with risk types and PEP flags', 'OPERATIONS: 20,000 with amount, origin, destination, geography', 'AML_FEATURES: derived features with rolling behavior'],
+    como_usar: ['Prompts create the complete environment', 'Suspicious patterns are automatically generated', 'The model learns from labeled patterns', 'The dashboard prioritizes by risk level']
+  },
+  UC04: {
+    title: 'Macroeconomic Stress Testing',
+    contexto: 'Banking regulators (EBA, Fed, PRA) require periodic stress tests under extreme macroeconomic scenarios. These exercises traditionally take weeks with Excel and manual models.',
+    foco: 'ML.FORECAST to project delinquency rate under 3 scenarios (base, adverse, severe) incorporating macro variables (GDP, unemployment, rates).',
+    reto: 'Build an automated stress testing system that projects delinquency and calculates capital impact under multiple scenarios with full auditability.',
+    objetivos: ['Configure stress testing environment with historical data', 'Create macroeconomic scenarios (base/adverse/severe)', 'Train delinquency forecasting model with macro variables', 'Calculate provisions and capital impact automatically', 'Build a scenario comparison dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.FORECAST — time series projection', 'CORTEX.COMPLETE — audit narratives', 'Multi-scenario analysis — base/adverse/severe', 'Streamlit — comparative dashboard'],
+    datos: ['CREDIT_PORTFOLIO: portfolio by segment with balances and delinquency', 'MACRO_SERIES: 120 months of GDP, unemployment, rates', 'HISTORICAL_DELINQUENCY: monthly delinquency series by segment'],
+    como_usar: ['Includes 10 years of simulated macro history', 'The model projects 12 months ahead', 'Each scenario applies macro shocks', 'The report is auto-generated with AI']
+  },
+  UC05: {
+    title: 'Regulatory Compliance Monitoring',
+    contexto: 'European banks face overlapping requirements from multiple regulators (ECB, EBA, CNMV, SEPBLAC, BdE, GDPR). The complexity of systematic monitoring exceeds manual capacity.',
+    foco: 'AI analysis with CORTEX.COMPLETE of regulatory obligations and automated gap detection by crossing controls and assessments.',
+    reto: 'Build an automated compliance monitoring system that identifies gaps, prioritizes risks and generates a prioritized action plan.',
+    objetivos: ['Configure multi-regulator compliance environment', 'Generate realistic obligations and controls structure', 'Analyze each obligation with AI', 'Detect and classify compliance gaps automatically', 'Build a prioritized action dashboard'],
+    funcionalidades: ['CORTEX.COMPLETE — regulatory obligation analysis', 'JOINs + CASE — automated gap detection', 'Risk prioritization — severity x deadline', 'Streamlit — compliance dashboard'],
+    datos: ['REGULATORY_OBLIGATIONS: 50 obligations from 6 regulators', 'CONTROLS: 150 controls linked to obligations', 'ASSESSMENTS: 200 historical assessments with PASS/PARTIAL/FAIL'],
+    como_usar: ['Generates a realistic regulatory structure', 'AI analyzes each obligation individually', 'Gap detection crosses 3 tables automatically', 'The dashboard prioritizes by risk level']
+  },
+  UC06: {
+    title: 'Intelligent Churn Prediction',
+    contexto: 'Retail banking faces increasing churn due to the ease of switching banks. Identifying at-risk customers early and acting with personalized retention is critical.',
+    foco: 'ML.CLASSIFICATION with 12 behavioral features and AI-generated personalized retention campaigns per segment.',
+    reto: 'Predict which customers will leave in the next 90 days and generate personalized AI retention actions for each risk segment.',
+    objetivos: ['Configure churn prediction environment', 'Generate behavioral data for 5,000 customers', 'Create 12 behavioral and transactional features', 'Train a churn model and generate AI campaigns', 'Build a retention monitoring dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.CLASSIFICATION — churn prediction', 'Behavioral feature engineering', 'CORTEX.COMPLETE — personalized campaigns', 'Streamlit — retention dashboard'],
+    datos: ['CUSTOMERS: 5,000 with demographics and product tenure', 'DIGITAL_BEHAVIOR: logins, transfers, channel usage', 'CHURN_FEATURES: 12 derived behavioral variables'],
+    como_usar: ['Behavioral data is automatically generated', 'The model identifies at-risk patterns', 'AI creates campaigns per risk segment', 'The dashboard monitors retention funnel']
+  },
+  UC07: {
+    title: 'Dynamic Customer Segmentation',
+    contexto: 'Traditional demographic segmentation is too static. Banks need segments that reflect actual behavior and evolve over time to capture cross-sell and migration opportunities.',
+    foco: 'Multi-variable clustering combining demographics + transactions + products + digital behavior with AI profiling of each segment.',
+    reto: 'Create dynamic segments that capture real behavioral patterns and automatically detect migration between segments over time.',
+    objetivos: ['Configure segmentation environment with multiple data dimensions', 'Generate transactional and digital behavioral data', 'Create multi-dimensional features for clustering', 'Assign segments and generate AI profiles', 'Build a segment evolution dashboard'],
+    funcionalidades: ['Multi-dimensional clustering', 'CORTEX.COMPLETE — AI segment profiles', 'Window functions — temporal evolution', 'Streamlit — segmentation dashboard'],
+    datos: ['CUSTOMERS: 5,000 with full demographics', 'TRANSACTIONS: 12 months of transactional history', 'SEGMENTS: assignment and quarterly evolution'],
+    como_usar: ['Clustering uses multiple data dimensions', 'AI creates a narrative profile of each segment', 'Quarterly migration is automatically detected', 'The dashboard shows evolution and opportunities']
+  },
+  UC08: {
+    title: 'Intelligent Product Recommendation',
+    contexto: 'Banks have extensive product catalogs but generic campaigns generate low conversion. Understanding adoption patterns and lifecycle enables precise cross-sell.',
+    foco: 'Product adoption analysis and propensity models to recommend the next product per customer with AI-personalized campaigns.',
+    reto: 'Build a recommendation system that identifies which product to offer to each customer and generates personalized AI messaging.',
+    objetivos: ['Configure product analysis environment', 'Generate product catalog and adoption data', 'Analyze adoption patterns and lifecycle', 'Build propensity models per product', 'Create dashboard with AI recommendations'],
+    funcionalidades: ['Product adoption analysis', 'ML.CLASSIFICATION — propensity per product', 'CORTEX.COMPLETE — personalized messaging', 'Streamlit — recommendations dashboard'],
+    datos: ['CUSTOMERS: 5,000 with demographics and tenure', 'PRODUCTS: product catalog with categories', 'ADOPTIONS: history of product activations per customer'],
+    como_usar: ['Adoption data reveals natural patterns', 'Propensity models score each customer-product pair', 'AI personalizes messaging per segment', 'The dashboard shows top opportunities']
+  },
+  UC09: {
+    title: 'Customer Lifetime Value (CLV) Prediction',
+    contexto: 'Not all customers generate the same long-term value. Banks that understand CLV can optimize acquisition spending, retention investment and service levels strategically.',
+    foco: 'Multi-factor CLV model combining current revenue, growth potential, churn risk and product deepening with strategic segmentation.',
+    reto: 'Predict the 5-year value of each customer and create strategic action plans per value segment.',
+    objetivos: ['Configure CLV analysis environment', 'Generate revenue and product history per customer', 'Build multi-factor CLV model', 'Create value-based strategic segmentation', 'Build a CLV management dashboard'],
+    funcionalidades: ['Multi-factor CLV model', 'ML.CLASSIFICATION — value segment prediction', 'CORTEX.COMPLETE — strategic actions per segment', 'Streamlit — CLV dashboard'],
+    datos: ['CUSTOMERS: 5,000 with full product and revenue data', 'REVENUE_HISTORY: 36 months of revenue per customer', 'CLV_SCORES: predicted CLV with contributing factors'],
+    como_usar: ['CLV combines multiple financial factors', 'The model projects 5-year value', 'AI recommends actions per value tier', 'The dashboard enables strategic management']
+  },
+  UC10: {
+    title: 'Sentiment Analysis and Customer Feedback',
+    contexto: 'Banks receive thousands of comments across multiple channels (branches, app, call center, social media). Unanalyzed feedback hides critical dissatisfaction patterns.',
+    foco: 'AI sentiment analysis with CORTEX.COMPLETE of multi-channel comments with multi-dimensional classification and critical pattern detection.',
+    reto: 'Analyze 500 customer comments, classify by sentiment, product and urgency, and detect patterns that require immediate escalation.',
+    objetivos: ['Configure customer feedback environment', 'Generate 500 realistic multi-channel comments', 'Analyze sentiment and classify each comment with AI', 'Detect critical patterns and automatic escalation', 'Build a voice of customer dashboard'],
+    funcionalidades: ['CORTEX.COMPLETE — sentiment analysis', 'Multi-dimensional classification', 'Critical pattern detection', 'Streamlit — voice of customer dashboard'],
+    datos: ['COMMENTS: 500 across 5 channels with realistic text', 'ANALYSES: sentiment, product, urgency per comment', 'PATTERNS: detected topics and escalation signals'],
+    como_usar: ['Comments simulate real multi-channel scenarios', 'AI classifies each comment individually', 'Patterns emerge from cross-dimensional analysis', 'The dashboard highlights critical patterns']
+  },
+  UC11: {
+    title: 'ATM Network Cash Flow Optimization',
+    contexto: 'ATM cash management is a trillion-dollar optimization problem. Stockouts frustrate customers while excess cash has opportunity cost. Patterns vary by location, day and season.',
+    foco: 'ML.FORECAST per ATM with pattern analysis, seasonality and special events for demand-based rebalancing optimization.',
+    reto: 'Forecast daily cash demand per ATM for the next 30 days and optimize replenishment routes to minimize stockouts and excess.',
+    objetivos: ['Configure ATM network environment', 'Generate 12 months of demand data per ATM', 'Analyze patterns and seasonality per location', 'Train demand forecasting model per ATM', 'Build a network optimization dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.FORECAST — demand per ATM', 'Seasonality and pattern analysis', 'Rebalancing optimization', 'Streamlit — network monitoring dashboard'],
+    datos: ['ATMs: 200 ATMs with type, location and capacity', 'DEMAND_HISTORY: 365 days of withdrawals per ATM', 'FORECASTS: 30-day projections per ATM'],
+    como_usar: ['Demand data includes realistic patterns', 'The model captures weekly and monthly seasonality', 'Rebalancing optimization minimizes cost', 'The dashboard shows the real-time network']
+  },
+  UC12: {
+    title: 'Payment Anomaly Detection',
+    contexto: 'Payment systems process millions of transactions with very low error rates, but anomalies can indicate fraud, technical failures or operational issues requiring immediate attention.',
+    foco: 'Statistical anomaly detection with z-score over rolling windows and AI classification of alerts explaining operational context.',
+    reto: 'Detect anomalous patterns in payments in real time with automated AI classification that explains the context and likely cause.',
+    objetivos: ['Configure payment operations environment', 'Generate millions of transactions with anomalous patterns', 'Calculate z-scores on rolling windows', 'Classify alerts automatically with AI', 'Build a payment operations dashboard'],
+    funcionalidades: ['Z-Score on rolling windows', 'Temporal pattern analysis', 'CORTEX.COMPLETE — alert classification', 'Streamlit — operations dashboard'],
+    datos: ['PAYMENTS: 1M transactions across multiple channels', 'ANOMALIES: detected outliers with z-score', 'ALERT_CLASSIFICATION: AI explanation of each anomaly'],
+    como_usar: ['Anomalous patterns are subtly injected', 'Z-score detects statistical deviations', 'AI classifies and explains each alert', 'The dashboard enables rapid triage']
+  },
+  UC13: {
+    title: 'FX Rate and Spread Forecasting',
+    contexto: 'FX desks manage billions in daily volume with very tight margins. Spread optimization and rate forecasting directly impact profitability and competitiveness.',
+    foco: 'ML.FORECAST for major currency pairs with technical analysis, volatility and dynamic spread model based on market conditions.',
+    reto: 'Forecast major FX pair movements and optimize spread dynamically based on volatility and liquidity conditions.',
+    objetivos: ['Configure FX analysis environment', 'Generate price history for major pairs', 'Calculate technical indicators and volatility', 'Train rate forecasting model', 'Build an FX monitoring dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.FORECAST — rate forecasting', 'Technical analysis indicators', 'Dynamic spread model', 'Streamlit — FX dashboard'],
+    datos: ['FX_HISTORY: 2 years of daily OHLCV for 5 pairs', 'TECHNICAL_INDICATORS: MA, RSI, Bollinger per pair', 'SPREAD_MODEL: dynamic spread based on conditions'],
+    como_usar: ['FX data simulates realistic market behavior', 'Technical indicators enrich the model', 'Spread adjusts based on conditions', 'The dashboard monitors rates and P&L']
+  },
+  UC14: {
+    title: 'AI Operational Process Automation (IDP)',
+    contexto: 'Banks process millions of documents: loan contracts, IDs, income certificates, financial statements. Manual extraction is slow, expensive and error-prone.',
+    foco: 'Intelligent document processing with CORTEX.COMPLETE simulating extraction, classification and cross-referencing validation of banking documents.',
+    reto: 'Build an AI document processing system that extracts data, classifies documents and validates consistency across sources.',
+    objetivos: ['Configure IDP environment', 'Generate realistic banking document samples', 'Extract data from documents with AI', 'Classify and validate cross-references', 'Build a document processing dashboard'],
+    funcionalidades: ['CORTEX.COMPLETE — data extraction', 'Document classification', 'Cross-referencing validation', 'Streamlit — processing dashboard'],
+    datos: ['DOCUMENTS: 500 simulated banking documents', 'EXTRACTIONS: structured data from each document', 'VALIDATIONS: cross-reference consistency checks'],
+    como_usar: ['Documents simulate real banking formats', 'AI extracts structured data fields', 'Cross-referencing detects inconsistencies', 'The dashboard tracks processing pipeline']
+  },
+  UC15: {
+    title: 'Interbank Liquidity Management',
+    contexto: 'Banks must maintain adequate liquidity positions while optimizing returns. Interbank flows are complex and errors can result in regulatory penalties or missed investment opportunities.',
+    foco: 'ML.FORECAST for interbank flows with real-time position monitoring and automated detection of asset-liability gaps by time bucket.',
+    reto: 'Build a liquidity monitoring system that forecasts flows, detects gaps and alerts on critical positions automatically.',
+    objetivos: ['Configure liquidity management environment', 'Generate interbank flow history', 'Analyze asset-liability gaps by time bucket', 'Train flow forecasting model', 'Build a liquidity monitoring dashboard'],
+    funcionalidades: ['SNOWFLAKE.ML.FORECAST — flow forecasting', 'Asset-liability gap analysis', 'Time bucket monitoring', 'Streamlit — liquidity dashboard'],
+    datos: ['INTERBANK_FLOWS: 12 months of daily flows', 'POSITIONS: real-time asset/liability positions', 'GAP_ANALYSIS: gaps by time bucket and currency'],
+    como_usar: ['Flow data captures interbank patterns', 'GAP analysis runs automatically', 'Forecasts enable proactive management', 'The dashboard monitors positions in real time']
+  },
+  UC16: {
+    title: 'Predictive Market Risk (VaR ML)',
+    contexto: 'Value at Risk (VaR) is the key measure for market risk but traditional parametric methods fail during crises. ML can capture non-linear dynamics and fat tails.',
+    foco: 'ML-enhanced VaR with dynamic volatility estimation, regime detection and AI stress narratives for risk committee reporting.',
+    reto: 'Build an ML VaR model that outperforms traditional methods especially in crisis periods and generates AI narratives for governance.',
+    objetivos: ['Configure market risk environment', 'Generate portfolio and market data', 'Build ML VaR model with dynamic volatility', 'Compare Historical vs Monte Carlo methods', 'Build a risk committee dashboard'],
+    funcionalidades: ['ML model for VaR estimation', 'Historical vs Monte Carlo comparison', 'CORTEX.COMPLETE — stress narratives', 'Streamlit — risk dashboard'],
+    datos: ['PORTFOLIO: multi-asset portfolio with positions', 'MARKET_DATA: 5 years of daily returns', 'VAR_RESULTS: VaR estimates by method and confidence'],
+    como_usar: ['Market data includes stress periods', 'ML captures non-linear patterns', 'Multiple methods are compared', 'AI generates risk committee narratives']
+  },
+  UC17: {
+    title: 'Advanced Behavioral Biometrics',
+    contexto: 'Traditional authentication (passwords, 2FA) is increasingly compromised. Behavioral patterns (how a user interacts with the banking app) are unique and hard to replicate.',
+    foco: 'Behavioral biometrics analysis of digital patterns: session times, navigation, typing speed, devices, and anomaly detection per user.',
+    reto: 'Build a behavioral biometrics system that detects session anomalies and scores authentication risk based on behavioral deviation.',
+    objetivos: ['Configure behavioral biometrics environment', 'Generate digital behavior data per user', 'Create behavioral baseline per user', 'Detect anomalies and score sessions', 'Build a behavioral security dashboard'],
+    funcionalidades: ['Behavioral pattern analysis', 'Anomaly detection per user', 'CORTEX.COMPLETE — session risk scoring', 'Streamlit — security dashboard'],
+    datos: ['USERS: 1,000 users with behavioral profiles', 'SESSIONS: 50,000 sessions with behavioral metrics', 'ANOMALIES: detected deviations from baseline'],
+    como_usar: ['Normal behavior establishes baselines', 'Anomalous sessions are injected for testing', 'The model detects behavioral deviations', 'The dashboard shows real-time risk scores']
+  },
+  UC18: {
+    title: 'Systemic Risk Analysis and Contagion',
+    contexto: 'Systemic risk arises from interconnections between financial institutions. The failure of one entity can trigger cascading failures throughout the system, as seen in 2008.',
+    foco: 'Interbank network graph modeling with exposure analysis and contagion simulation under stress scenarios.',
+    reto: 'Build a systemic risk model that maps interbank exposures, simulates contagion cascades and quantifies each entity contribution to systemic risk.',
+    objetivos: ['Configure network analysis environment', 'Generate interbank exposure network', 'Build network metrics and centrality analysis', 'Simulate cascading failures under stress', 'Build a network analysis dashboard'],
+    funcionalidades: ['Network graph analysis', 'Cascade failure simulation', 'Systemic risk indicators', 'Streamlit — network dashboard'],
+    datos: ['ENTITIES: 50 banks with size and capital', 'EXPOSURES: bilateral exposure matrix', 'SIMULATIONS: cascade results under scenarios'],
+    como_usar: ['The network represents interbank exposures', 'Cascade simulation follows default logic', 'Risk indicators quantify contribution', 'The dashboard visualizes the network']
+  },
+  UC19: {
+    title: 'NLP for Regulatory Intelligence',
+    contexto: 'The volume of regulatory changes is overwhelming: 200+ daily globally. Banks need to automatically identify relevant changes, assess impact and map to internal policies.',
+    foco: 'AI processing of regulatory texts with CORTEX.COMPLETE for summarization, impact classification and extraction of specific requirements.',
+    reto: 'Build a regulatory intelligence system that automatically processes regulations, classifies impact and maps requirements to internal policies.',
+    objetivos: ['Configure regulatory intelligence environment', 'Generate regulatory text samples from multiple sources', 'Process and summarize regulations with AI', 'Classify impact and extract requirements', 'Build a regulatory intelligence dashboard'],
+    funcionalidades: ['CORTEX.COMPLETE — text summarization and analysis', 'Impact classification', 'Requirements extraction', 'Streamlit — intelligence dashboard'],
+    datos: ['REGULATIONS: 100 regulatory documents from 10 sources', 'ANALYSES: summary, impact, requirements per document', 'MAPPINGS: requirements mapped to internal policies'],
+    como_usar: ['Regulatory texts simulate real publications', 'AI processes each document individually', 'Impact classification prioritizes attention', 'The dashboard tracks regulatory landscape']
+  },
+  UC20: {
+    title: 'Advanced ESG Scoring with AI',
+    contexto: 'EU regulation (SFDR, Taxonomy) mandates ESG evaluation of banking portfolios. Manual assessment of thousands of clients across 12+ factors is unfeasible.',
+    foco: 'AI ESG scoring with CORTEX.COMPLETE analyzing clients across 3 pillars (Environmental, Social, Governance) with EU Taxonomy alignment.',
+    reto: 'Build an AI ESG scoring system that evaluates clients, aligns with EU Taxonomy and analyzes portfolio-level transition risk.',
+    objetivos: ['Configure ESG analysis environment', 'Generate client data with ESG-relevant attributes', 'Score each client with AI across E/S/G pillars', 'Analyze Taxonomy alignment and transition risk', 'Build an ESG portfolio dashboard'],
+    funcionalidades: ['CORTEX.COMPLETE — multi-pillar ESG analysis', 'EU Taxonomy alignment scoring', 'Portfolio transition risk analysis', 'Streamlit — ESG dashboard'],
+    datos: ['CLIENTS: 500 corporate clients with ESG attributes', 'ESG_SCORES: AI scores per E/S/G pillar', 'PORTFOLIO: exposure by sector and ESG rating'],
+    como_usar: ['Client data includes ESG-relevant attributes', 'AI evaluates each client across 12 factors', 'Taxonomy alignment is automatically calculated', 'The dashboard shows portfolio ESG profile']
+  }
+};
+
+/* ── PROMPTS DATA ──────────────────────────────────── */
+const PROMPTS = {
+  UC01: {
+    title: 'Real-Time Transaction Fraud Detection',
+    intro: 'Prompts to build a complete real-time fraud detection system with ML.CLASSIFICATION, synthetic data and Streamlit dashboard.',
+    steps: [
+      { title: 'Set up environment', desc: 'Create database, schema and warehouse.', prompt: 'Create database FRAUD_TRANSACTIONS_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for real-time banking fraud detection.' },
+      { title: 'Create tables', desc: 'Customer and transaction tables.', prompt: 'Create two tables: CUSTOMERS (customer_id INT PK, age INT, gender VARCHAR, city VARCHAR, annual_income FLOAT, tenure_years INT, num_products INT, risk_segment VARCHAR) and TRANSACTIONS (txn_id INT PK, customer_id INT FK, timestamp TIMESTAMP, amount FLOAT, local_hour INT, new_device BOOLEAN, source_account VARCHAR, destination_country VARCHAR, channel VARCHAR, is_fraud BOOLEAN).' },
+      { title: 'Generate data', desc: '5,000 customers and 50,000 transactions.', prompt: 'Generate 5,000 diverse customers with GENERATOR and 50,000 transactions. 0.5% of transactions should be fraudulent with realistic patterns: higher than usual amounts (3–10x average), unusual hours (2–5 AM), new devices, international destinations. Use UNIFORM and NORMAL for distributions.' },
+      { title: 'Feature engineering', desc: 'Z-score, time patterns and device analysis.', prompt: 'Create table FRAUD_FEATURES from TRANSACTIONS joined with CUSTOMERS adding: amount_zscore (z-score of amount per customer using STDDEV and AVG OVER PARTITION BY customer_id), is_unusual_hour (1 if local_hour BETWEEN 1 AND 5), new_device (1/0), is_international (1 if destination_country != \'ES\'), txn_frequency_7d (count of transactions per customer in last 7 days using window). Keep is_fraud as target.' },
+      { title: 'Train ML model', desc: 'Binary classifier for fraud.', prompt: 'Create view TRAINING as 80% sample of FRAUD_FEATURES. Train classifier: CREATE OR REPLACE SNOWFLAKE.ML.CLASSIFICATION fraud_detector_txn(INPUT_DATA => SYSTEM$REFERENCE(\'VIEW\',\'TRAINING\'), TARGET_COLNAME => \'IS_FRAUD\'). Predict on remaining 20% saving predictions and probabilities to FRAUD_PREDICTIONS.' },
+      { title: 'Decision thresholds', desc: 'BLOCK, REVIEW, APPROVE based on probability.', prompt: 'Create view FRAUD_DECISIONS from FRAUD_PREDICTIONS adding column DECISION: if fraud probability >= 0.8 then \'BLOCK\', if >= 0.5 then \'REVIEW\', else \'APPROVE\'. Calculate confusion matrix for each threshold. Show summary of decisions per type with volume and average amount.' },
+      { title: 'Dashboard', desc: 'Real-time fraud monitoring.', prompt: 'Create Streamlit dashboard with: 4 KPIs (total transactions, fraud detected, block rate, average fraud amount), time chart of fraud rate over 24h, scatter plot amount vs z-score colored by decision, table of top 20 most recent BLOCK transactions with details.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS FRAUD_TRANSACTIONS_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC02: {
+    title: 'AI Credit Scoring with Explainability',
+    intro: 'Prompts to build a credit scoring system with AI explainability per decision.',
+    steps: [
+      { title: 'Set up environment', desc: 'Credit scoring database.', prompt: 'Create database CREDIT_SCORING_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for AI-powered credit scoring with explainability.' },
+      { title: 'Create tables', desc: 'Applicants, credit history and applications.', prompt: 'Create three tables: APPLICANTS (customer_id INT PK, age INT, gender VARCHAR, city VARCHAR, monthly_income FLOAT, monthly_expenses FLOAT, current_debt FLOAT, years_employed INT, employment_type VARCHAR, marital_status VARCHAR, housing VARCHAR, banking_tenure_years INT), CREDIT_HISTORY (customer_id INT FK, on_time_payments_pct FLOAT, defaults_30d INT, defaults_90d INT, credit_utilization FLOAT, num_products INT), APPLICATIONS (application_id INT PK, customer_id FK, requested_amount FLOAT, term_months INT, purpose VARCHAR, application_date DATE).' },
+      { title: 'Generate data', desc: '3,000 applicants with realistic profiles.', prompt: 'Generate 3,000 applicants with coherent profiles: income correlated with employment type, expenses proportional to income, debt correlated with age and income. Credit history with realistic defaults (15% default rate). 500 active applications with amounts proportional to income.' },
+      { title: 'Feature engineering', desc: '15 features including DTI and ratios.', prompt: 'Create table CREDIT_FEATURES joining APPLICANTS + CREDIT_HISTORY + APPLICATIONS adding: debt_to_income (current_debt / monthly_income / 12), expense_ratio (monthly_expenses / monthly_income), available_income (monthly_income - monthly_expenses - current_debt/12), payment_ratio (requested_amount / term_months / available_income), risk_score_basic (composite of on_time_payments_pct, defaults_30d, credit_utilization). Include is_delinquent as target.' },
+      { title: 'Train model', desc: 'Classifier with 15 features.', prompt: 'Create training view as 80% of CREDIT_FEATURES. Train: CREATE OR REPLACE SNOWFLAKE.ML.CLASSIFICATION credit_scoring(INPUT_DATA => SYSTEM$REFERENCE(\'VIEW\',\'CREDIT_TRAIN\'), TARGET_COLNAME => \'IS_DELINQUENT\'). Predict on test set saving to CREDIT_TEST. Show metrics: accuracy, precision, recall by segment.' },
+      { title: 'AI explanations', desc: 'Natural language explanation per decision.', prompt: 'For each applicant in CREDIT_TEST, use SNOWFLAKE.CORTEX.COMPLETE(\'llama3.1-70b\', prompt) to generate a 3-line credit decision explanation including: (1) the main risk or strength factors, (2) how they compare to typical approved profiles, (3) specific recommendation (approve/conditions/deny with reason). Save to CREDIT_DECISIONS with columns customer_id, prediction, probability, ai_explanation.' },
+      { title: 'Dashboard', desc: 'Credit decisions with explainability.', prompt: 'Create Streamlit dashboard with: 3 KPIs (approval rate, average default probability, average approved amount), histogram of default probability distribution, bar chart of approval rate by employment type, expandable table with AI explanation for each application.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS CREDIT_SCORING_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC03: {
+    title: 'AML Pattern Detection',
+    intro: 'Prompts to build a money laundering detection system with automated alert prioritization.',
+    steps: [
+      { title: 'Set up environment', desc: 'AML detection database.', prompt: 'Create database AML_DETECTION_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for ML-based anti-money laundering detection.' },
+      { title: 'Create tables', desc: 'Accounts, operations, and beneficiaries.', prompt: 'Create three tables: ACCOUNTS (account_id VARCHAR PK, customer_id INT, account_type VARCHAR, opening_date DATE, risk_rating VARCHAR with values LOW/MEDIUM/HIGH/VERY_HIGH, is_pep BOOLEAN, country VARCHAR), OPERATIONS (operation_id INT PK, account_id FK, timestamp TIMESTAMP, operation_type VARCHAR, amount FLOAT, source_account VARCHAR, destination_account VARCHAR, destination_country VARCHAR, channel VARCHAR), BENEFICIARIES (beneficiary_id INT PK, account_id FK, name VARCHAR, country VARCHAR, relationship VARCHAR, is_suspicious BOOLEAN).' },
+      { title: 'Generate data', desc: '2,000 accounts and 20,000 operations.', prompt: 'Generate 2,000 accounts (5% PEP, 10% HIGH/VERY_HIGH risk) and 20,000 operations. Inject 3% suspicious patterns: structuring (5+ transactions of €9,000–9,999 in 48h), smurfing (multiple accounts to same beneficiary), geographic arbitrage (amounts to high-risk jurisdictions), round amounts (exact €10,000 or €50,000). Keep is_suspicious as label.' },
+      { title: 'AML feature engineering', desc: 'Structuring, frequency, and PEP risk features.', prompt: 'Create table AML_FEATURES from OPERATIONS + ACCOUNTS adding: txn_count_48h (transactions per account in 48h using window), structuring_flag (1 if 3+ transactions of 9000-9999 in 48h), amount_round_flag (1 if amount is exact multiple of 1000 or 5000), high_risk_geo (1 if destination_country in high-risk list), avg_amount_7d per account, amount_deviation (vs 30-day average), pep_flag from account. Keep is_suspicious as target.' },
+      { title: 'Train model', desc: 'AML classifier with prioritization.', prompt: 'Train classifier: CREATE OR REPLACE SNOWFLAKE.ML.CLASSIFICATION aml_detector(INPUT_DATA => SYSTEM$REFERENCE(\'VIEW\',\'AML_TRAIN\'), TARGET_COLNAME => \'IS_SUSPICIOUS\'). Predict on AML_TEST set. Create AML_ALERTS with prediction, probability and risk level: CRITICAL (prob >= 0.85), HIGH (>= 0.65), MEDIUM (>= 0.40), LOW (rest).' },
+      { title: 'AI alert explanation', desc: 'Contextual explanation per alert.', prompt: 'For each CRITICAL and HIGH alert in AML_ALERTS, use SNOWFLAKE.CORTEX.COMPLETE(\'llama3.1-70b\') to generate a 4-line analysis: (1) detected suspicious pattern, (2) specific behavioral anomalies, (3) comparison with known typologies (structuring/smurfing/layering), (4) recommended action for the analyst. Save to column ai_analysis.' },
+      { title: 'Dashboard', desc: 'Prioritized alert monitoring.', prompt: 'Create Streamlit dashboard with: 4 KPIs (total alerts, critical, investigation rate, false positive rate), bar chart of alerts by risk level, timeline of suspicious activity, table of top 20 CRITICAL alerts with AI explanation and expandable detail.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS AML_DETECTION_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC04: {
+    title: 'Macroeconomic Stress Testing',
+    intro: 'Prompts to build an automated stress testing system with macroeconomic scenarios and AI audit reports.',
+    steps: [
+      { title: 'Set up environment', desc: 'Stress testing database.', prompt: 'Create database STRESS_TESTING_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for automated regulatory macroeconomic stress testing.' },
+      { title: 'Create tables', desc: 'Credit portfolio, macro series and historical delinquency.', prompt: 'Create three tables: CREDIT_PORTFOLIO (segment VARCHAR PK with values MORTGAGE/CONSUMER/CARDS/SME/CORPORATE, balance_millions FLOAT, num_accounts INT, avg_ltv FLOAT, avg_rating VARCHAR, delinquency_rate FLOAT), MACRO_SERIES (date DATE, gdp_growth FLOAT, unemployment FLOAT, interest_rate FLOAT, housing_price_idx FLOAT, scenario VARCHAR DEFAULT \'BASE\'), HISTORICAL_DELINQUENCY (date DATE, segment VARCHAR, delinquency_rate FLOAT, provisions_millions FLOAT).' },
+      { title: 'Generate data', desc: '10 years of macro history and portfolio.', prompt: 'Generate: portfolio with 5 segments (MORTGAGE balance 15B, CONSUMER 8B, CARDS 3B, SME 5B, CORPORATE 20B). 120 months of macro history with realistic correlations (GDP 1-3%, unemployment 8-15%, rates 0-4%). Historical delinquency per segment correlated with macro: mortgage 1-5%, consumer 3-8%, cards 5-12%, SME 2-6%, corporate 0.5-3%. Generate 3 scenarios for next 12 months: BASE (GDP 2%, unemployment 11%, rates 3%), ADVERSE (GDP -1%, unemployment 15%, rates 5%), SEVERE (GDP -4%, unemployment 20%, rates 7%).' },
+      { title: 'Train delinquency model', desc: 'Forecasting model with macro variables.', prompt: 'For each segment, create a time series view combining HISTORICAL_DELINQUENCY with MACRO_SERIES. Train: CREATE OR REPLACE SNOWFLAKE.ML.FORECAST delinquency_forecast(INPUT_DATA => SYSTEM$REFERENCE(\'VIEW\',\'TRAINING_TS\'), SERIES_COLNAME => \'SEGMENT\', TIMESTAMP_COLNAME => \'DATE\', TARGET_COLNAME => \'DELINQUENCY_RATE\'). Generate 12-month forecast for each scenario.' },
+      { title: 'Impact calculation', desc: 'Provisions and capital by scenario.', prompt: 'Create results table crossing projected delinquency per segment with portfolio balances. Calculate for each scenario: expected loss (delinquency x balance x LGD), additional provisions required (expected loss - current provisions), capital impact (provisions / RWA). Compare scenarios: delta base vs adverse, delta base vs severe.' },
+      { title: 'AI audit report', desc: 'Narrative for regulatory submission.', prompt: 'Use SNOWFLAKE.CORTEX.COMPLETE(\'llama3.1-70b\') to generate a structured audit report including: executive summary comparing 3 scenarios, analysis per segment with most impacted one identified, sensitivity to macro variables, recommendation on capital buffer, regulatory compliance notes for EBA/ECB. Save to AUDIT_REPORT table.' },
+      { title: 'Dashboard', desc: 'Visual comparison of scenarios.', prompt: 'Create Streamlit dashboard with: 3 KPIs per scenario (average projected delinquency, total expected loss, additional provisions required), grouped bar chart comparing delinquency by segment across 3 scenarios, line chart with 12-month projected delinquency with confidence intervals, expandable AI report.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS STRESS_TESTING_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC05: {
+    title: 'Regulatory Compliance Monitoring',
+    intro: 'Prompts to automate banking regulatory compliance monitoring with AI analysis of obligations and gap detection.',
+    steps: [
+      { title: 'Set up environment', desc: 'Regulatory compliance database.', prompt: 'Create database REGULATORY_COMPLIANCE_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for automated banking compliance monitoring.' },
+      { title: 'Create tables', desc: 'Regulatory obligations, controls and assessments.', prompt: 'Create three tables: REGULATORY_OBLIGATIONS (obligation_id VARCHAR PK, regulator VARCHAR, regulation VARCHAR, area VARCHAR, title VARCHAR, description TEXT, deadline DATE, severity VARCHAR with values CRITICAL/HIGH/MEDIUM/LOW, status VARCHAR), CONTROLS (control_id VARCHAR PK, obligation_id FK, name VARCHAR, type VARCHAR, responsible VARCHAR, frequency VARCHAR, last_result VARCHAR, last_control_date DATE), ASSESSMENTS (assessment_id VARCHAR PK, obligation_id FK, date DATE, assessor VARCHAR, result VARCHAR with values PASS/PARTIAL/FAIL, findings TEXT, corrective_actions TEXT).' },
+      { title: 'Generate data', desc: '50 obligations from European and national regulators.', prompt: 'Generate 50 regulatory obligations from: ECB (12, on liquidity and capital), EBA (8, on COREP/FINREP reporting), CNMV (7, on conduct), SEPBLAC (8, on AML), BdE (10, on provisions and supervision), GDPR (5, on data). Generate 150 controls (3 per obligation average) and 200 historical assessments with realistic distribution: 60% PASS, 25% PARTIAL, 15% FAIL.' },
+      { title: 'AI analysis of obligations', desc: 'Summarize and contextualize each obligation.', prompt: 'For each of the 50 obligations, use SNOWFLAKE.CORTEX.COMPLETE(\'llama3.1-70b\') to generate a 3-line analysis that includes: (1) exactly what is required, (2) the risk of non-compliance for the bank, and (3) the specific actions the compliance team must take. Save to ai_analysis column of the REGULATORY_OBLIGATIONS table.' },
+      { title: 'Detect compliance gaps', desc: 'Identify non-compliance by risk level.', prompt: 'Create table COMPLIANCE_GAPS crossing REGULATORY_OBLIGATIONS with CONTROLS and the latest ASSESSMENT per obligation. Classify each gap as: CRITICAL (latest assessment FAIL AND deadline within next 30 days or severity CRITICAL), HIGH (controls with FAIL result or PARTIAL assessment on HIGH obligation), MEDIUM (PARTIAL assessment on MEDIUM obligation), LOW (rest). Include days_to_deadline and control responsible.' },
+      { title: 'AI action plan', desc: 'Prioritized remediation recommendations.', prompt: 'For each CRITICAL and HIGH gap in COMPLIANCE_GAPS, use SNOWFLAKE.CORTEX.COMPLETE(\'llama3.1-70b\') to generate: (1) specific risk of this gap, (2) concrete remediation actions in priority order, (3) estimated timeline and resources, (4) temporary mitigating measures while permanent fix is implemented. Save to AI_ACTIONS table.' },
+      { title: 'Dashboard', desc: 'Compliance status by regulator.', prompt: 'Create Streamlit dashboard with: 4 KPIs (total obligations, PASS %, CRITICAL gaps, upcoming deadlines), donut chart of status per regulator, table of CRITICAL/HIGH gaps with AI action plan, timeline of upcoming deadlines with risk level.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS REGULATORY_COMPLIANCE_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC06: {
+    title: 'Intelligent Churn Prediction',
+    intro: 'Prompts to build a customer churn prediction system with AI-generated personalized retention campaigns.',
+    steps: [
+      { title: 'Set up environment', desc: 'Churn prediction database.', prompt: 'Create database CHURN_PREDICTION_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for intelligent banking churn prediction with personalized AI campaigns.' },
+      { title: 'Create tables', desc: 'Customer and digital behavior tables.', prompt: 'Create tables for customers with demographics and product data, plus digital behavior table with login frequency, app usage, channel preferences and engagement metrics. Include churned flag as target.' },
+      { title: 'Generate data', desc: '5,000 customers with behavioral data.', prompt: 'Generate 5,000 customers with realistic churn patterns: 20% churn rate. Churned customers show declining login frequency (50% drop in last month), reduced transaction amounts, less product usage. Generate 12 months of behavioral data per customer.' },
+      { title: 'Feature engineering', desc: '12 behavioral features.', prompt: 'Create 12 features: login_trend (slope of monthly logins), txn_amount_trend, product_usage_ratio, digital_engagement_score, days_since_last_txn, balance_trend, complaint_count, support_contacts, channel_diversity, peer_comparison (vs segment avg), tenure_satisfaction (products/tenure), recency_frequency_monetary composite.' },
+      { title: 'Train model', desc: 'Churn classifier.', prompt: 'Train churn classifier on 80% training split. Predict on test set. Show performance metrics and feature importance. Segment predictions by risk level: HIGH (prob >= 0.7), MEDIUM (>= 0.4), LOW (rest).' },
+      { title: 'AI retention campaigns', desc: 'Personalized campaigns per segment.', prompt: 'For each HIGH risk customer, use SNOWFLAKE.CORTEX.COMPLETE to generate a personalized retention message including: (1) acknowledgment of specific behavior change, (2) tailored offer based on product usage, (3) channel-optimized delivery recommendation. For MEDIUM risk, generate proactive engagement suggestions.' },
+      { title: 'Dashboard', desc: 'Retention monitoring.', prompt: 'Create Streamlit dashboard with: churn risk distribution, trend of churn indicators over time, customer table with risk score and AI campaign, retention funnel by segment.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS CHURN_PREDICTION_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC07: {
+    title: 'Dynamic Customer Segmentation',
+    intro: 'Prompts to build a multi-dimensional dynamic segmentation system with AI profiling and migration tracking.',
+    steps: [
+      { title: 'Set up environment', desc: 'Segmentation database.', prompt: 'Create database SEGMENTATION_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for dynamic multi-dimensional banking customer segmentation.' },
+      { title: 'Create tables', desc: 'Customer, transaction and digital behavior tables.', prompt: 'Create tables for customers with demographics, 12-month transaction history and digital channel behavior. Include segment assignment and quarterly evolution tracking.' },
+      { title: 'Generate data', desc: '5,000 customers with multi-dimensional data.', prompt: 'Generate 5,000 customers with coherent multi-dimensional data: high income correlates with more products and digital engagement, young customers with higher digital but lower balances, etc. Generate 12 months of transactions and behavior per customer.' },
+      { title: 'Multi-dimensional clustering', desc: 'Combine demographics, transactions, products and digital behavior.', prompt: 'Create feature matrix combining: demographics (age, income, tenure), transactional (avg amount, frequency, channels), products (count, categories, last activation), digital (login frequency, features used, session duration). Apply clustering to assign 6-8 segments.' },
+      { title: 'AI segment profiling', desc: 'Narrative profile of each segment.', prompt: 'For each segment, use SNOWFLAKE.CORTEX.COMPLETE to generate a detailed profile: (1) defining characteristics, (2) financial behavior, (3) product affinity, (4) digital maturity, (5) growth opportunities, (6) recommended strategy. Save profiles with actionable insights.' },
+      { title: 'Migration tracking', desc: 'Detect quarterly segment changes.', prompt: 'Compare segment assignments quarterly. Build migration matrix showing: customers moving between segments, upgrade vs downgrade trends, triggers for migration (life events, product changes). Identify at-risk migrations early.' },
+      { title: 'Dashboard', desc: 'Segment evolution and opportunities.', prompt: 'Create Streamlit dashboard with: segment distribution treemap, migration flow diagram, AI profile per segment, cross-sell opportunities matrix by segment pair.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS SEGMENTATION_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC08: {
+    title: 'Intelligent Product Recommendation',
+    intro: 'Prompts to build a banking product recommendation system with propensity models and AI-personalized campaigns.',
+    steps: [
+      { title: 'Set up environment', desc: 'Recommendation database.', prompt: 'Create database RECOMMENDATION_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for intelligent banking product recommendation.' },
+      { title: 'Create tables', desc: 'Customer, product and adoption tables.', prompt: 'Create customer table with demographics, product catalog with categories and features, and adoption history tracking when each customer activated each product.' },
+      { title: 'Generate data', desc: '5,000 customers with product adoption history.', prompt: 'Generate 5,000 customers with realistic product adoption patterns: checking account first (99%), then savings (70%), card (65%), then specialized products following lifecycle (mortgage with age/income, investments with age/wealth). Generate adoption dates reflecting lifecycle patterns.' },
+      { title: 'Adoption analysis', desc: 'Product adoption patterns and lifecycle.', prompt: 'Analyze adoption patterns: most common product sequences, average time between adoptions, lifecycle stages (basic/growing/mature/premium), cross-sell success rates by source-target product pair. Create adoption likelihood matrix.' },
+      { title: 'Propensity models', desc: 'Score each customer-product pair.', prompt: 'For each non-adopted product per customer, build propensity score based on: demographic fit, adoption pattern similarity, lifecycle stage, peer behavior. Rank top 3 recommendations per customer with probability.' },
+      { title: 'AI campaigns', desc: 'Personalized messaging per recommendation.', prompt: 'For top recommendations, use SNOWFLAKE.CORTEX.COMPLETE to generate: (1) personalized product pitch based on customer profile, (2) specific benefit aligned with detected needs, (3) optimal timing and channel. Save campaigns with messaging and delivery plan.' },
+      { title: 'Dashboard', desc: 'Product opportunities and campaign management.', prompt: 'Create Streamlit dashboard with: product adoption funnel, top opportunities by product, customer lookup with recommendations and AI messaging, campaign performance tracking.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS RECOMMENDATION_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC09: {
+    title: 'Customer Lifetime Value (CLV) Prediction',
+    intro: 'Prompts to build a CLV prediction system with strategic segmentation and value-based management.',
+    steps: [
+      { title: 'Set up environment', desc: 'CLV database.', prompt: 'Create database CLV_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for customer lifetime value prediction and strategic management.' },
+      { title: 'Create tables', desc: 'Customer, revenue and product tables.', prompt: 'Create customer table with full demographics and product data, monthly revenue table with breakdown by product type, and product engagement metrics.' },
+      { title: 'Generate data', desc: '5,000 customers with 36 months revenue history.', prompt: 'Generate 5,000 customers with 36 months of revenue data. Revenue correlates with products held, balance levels and engagement. Include growth patterns, seasonal effects and realistic variance.' },
+      { title: 'CLV model', desc: 'Multi-factor value prediction.', prompt: 'Build CLV model combining: current annual revenue, revenue growth trend (slope over 36 months), product deepening potential (products not yet adopted), churn probability (from behavioral signals), margin by product type. Project 5-year CLV per customer.' },
+      { title: 'Strategic segmentation', desc: 'Value-based customer tiers.', prompt: 'Create strategic segments: PLATINUM (top 5% CLV, high growth), GOLD (next 15%, stable high value), SILVER (next 30%, growth potential), BRONZE (next 30%, maintain), AT_RISK (bottom 20%, declining value). Define strategy per tier.' },
+      { title: 'AI strategic actions', desc: 'Value management recommendations.', prompt: 'For each tier, use SNOWFLAKE.CORTEX.COMPLETE to generate strategic recommendations: (1) relationship management approach, (2) specific product/service actions, (3) investment level justified by CLV, (4) migration path to higher tier. For AT_RISK, generate recovery plan.' },
+      { title: 'Dashboard', desc: 'CLV management and value distribution.', prompt: 'Create Streamlit dashboard with: CLV distribution by tier, value concentration analysis (top 20% generating what %), tier migration tracking, customer lookup with CLV breakdown and AI strategy.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS CLV_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC10: {
+    title: 'Sentiment Analysis and Customer Feedback',
+    intro: 'Prompts to build a customer feedback analysis system with AI sentiment classification and pattern detection.',
+    steps: [
+      { title: 'Set up environment', desc: 'Customer feedback database.', prompt: 'Create database FEEDBACK_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for AI-powered customer feedback analysis and sentiment monitoring.' },
+      { title: 'Create tables', desc: 'Comment, analysis and pattern tables.', prompt: 'Create COMMENTS table (comment_id, customer_id, date, channel, product, text, rating), ANALYSES table (comment_id, sentiment, category, urgency, topics), PATTERNS table (pattern_id, date, topic, frequency, trend, severity).' },
+      { title: 'Generate data', desc: '500 multi-channel comments.', prompt: 'Generate 500 realistic comments from 5 channels (branch, app, call center, email, social media). Distribution: 40% positive, 35% neutral, 25% negative. Negative comments focused on: wait times, app errors, fees, poor service. Include varied language and realistic complaint patterns.' },
+      { title: 'AI sentiment analysis', desc: 'Classify each comment with AI.', prompt: 'For each comment, use SNOWFLAKE.CORTEX.COMPLETE to analyze: (1) sentiment (positive/neutral/negative with score -1 to 1), (2) main topic category, (3) urgency level (LOW/MEDIUM/HIGH/CRITICAL), (4) specific product/service mentioned, (5) recommended action. Save structured analysis.' },
+      { title: 'Pattern detection', desc: 'Identify recurring themes and escalation triggers.', prompt: 'Aggregate analyses to detect patterns: top complaint topics by week, rising negative trends by product, correlation between channel and sentiment, clusters of similar complaints. Flag escalation triggers: 3+ CRITICAL in same topic within a week, or sudden sentiment drop for a product.' },
+      { title: 'AI insights summary', desc: 'Executive summary of customer voice.', prompt: 'Use SNOWFLAKE.CORTEX.COMPLETE to generate weekly executive summary: (1) overall sentiment trend, (2) top 3 issues requiring attention, (3) positive highlights to reinforce, (4) specific actionable recommendations per department. Save as structured report.' },
+      { title: 'Dashboard', desc: 'Voice of customer monitoring.', prompt: 'Create Streamlit dashboard with: sentiment trend over time, word cloud of negative topics, channel comparison matrix, urgent alert panel, expandable comment detail with AI analysis.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS FEEDBACK_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC11: {
+    title: 'ATM Network Cash Flow Optimization',
+    intro: 'Prompts to build an ATM cash demand forecasting system with route optimization.',
+    steps: [
+      { title: 'Set up environment', desc: 'ATM management database.', prompt: 'Create database ATM_MGMT_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for ATM network cash flow optimization with ML forecasting.' },
+      { title: 'Create tables', desc: 'ATM, demand history and replenishment tables.', prompt: 'Create ATM table (atm_id, location, type, capacity, avg_daily_demand), daily demand history (atm_id, date, withdrawals, deposits, balance_end), and replenishment schedule (atm_id, date, amount_loaded, cost).' },
+      { title: 'Generate data', desc: '200 ATMs with 12-month history.', prompt: 'Generate 200 ATMs across 4 zone types (commercial, residential, tourist, industrial) with 365 days of demand data. Patterns: weekday vs weekend, month-end salary spike, seasonal tourism, random special events. Each zone type has distinct patterns.' },
+      { title: 'Pattern analysis', desc: 'Seasonality and demand drivers.', prompt: 'Analyze per-ATM patterns: daily of week seasonality, monthly cycle, zone-specific events, trend. Calculate optimal stock levels per ATM based on demand percentiles with safety margin. Identify chronic over-stocked and under-stocked ATMs.' },
+      { title: 'Demand forecasting', desc: 'ML.FORECAST per ATM for 30 days.', prompt: 'Train per-ATM forecast: CREATE OR REPLACE SNOWFLAKE.ML.FORECAST atm_demand_forecast(INPUT_DATA => SYSTEM$REFERENCE(\'VIEW\',\'ATM_TRAINING\'), SERIES_COLNAME => \'ATM_ID\', TIMESTAMP_COLNAME => \'DATE\', TARGET_COLNAME => \'WITHDRAWALS\'). Generate 30-day projections per ATM.' },
+      { title: 'Route optimization', desc: 'Optimize replenishment based on forecasts.', prompt: 'Using demand forecasts, calculate optimal replenishment schedule: when each ATM needs refilling (balance falls below 20% capacity), optimal load amount (forecast demand until next visit), route grouping by geographic proximity. Calculate savings vs current schedule.' },
+      { title: 'Dashboard', desc: 'ATM network monitoring.', prompt: 'Create Streamlit dashboard with: network map with ATM status (OK/LOW/CRITICAL), demand vs capacity per ATM, forecast accuracy metrics, optimized route planner, cost savings analysis.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS ATM_MGMT_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC12: {
+    title: 'Payment Anomaly Detection',
+    intro: 'Prompts to build a payment anomaly detection system with AI alert classification.',
+    steps: [
+      { title: 'Set up environment', desc: 'Payment operations database.', prompt: 'Create database PAYMENT_OPS_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for payment anomaly detection with AI classification.' },
+      { title: 'Create tables', desc: 'Payment, anomaly and classification tables.', prompt: 'Create PAYMENTS table (payment_id, timestamp, channel, amount, currency, sender, receiver, status), ANOMALIES (payment_id, z_score, anomaly_type, detected_at), CLASSIFICATIONS (payment_id, ai_category, ai_explanation, severity, action_required).' },
+      { title: 'Generate data', desc: '1M transactions with injected anomalies.', prompt: 'Generate 1M transactions over 90 days across 4 channels (SWIFT, SEPA, internal, cards). Inject 0.2% anomalies: unusual amounts (10x average), time anomalies (high volume at unusual hours), channel anomalies (unexpected channel for transaction type), velocity anomalies (burst of transactions).' },
+      { title: 'Statistical detection', desc: 'Z-score on rolling windows.', prompt: 'Calculate z-scores on multiple rolling windows: per-channel hourly volume (1h, 4h, 24h windows), per-sender daily amount, per-receiver frequency. Flag anomalies where |z_score| > 3.0. Combine multiple z-scores into composite anomaly score.' },
+      { title: 'AI classification', desc: 'Explain each anomaly.', prompt: 'For each detected anomaly, use SNOWFLAKE.CORTEX.COMPLETE to classify: (1) likely cause (fraud/technical/operational/seasonal), (2) severity assessment, (3) recommended action (block/investigate/monitor/dismiss), (4) contextual explanation. Save AI classification.' },
+      { title: 'Pattern correlation', desc: 'Link related anomalies.', prompt: 'Correlate anomalies to detect coordinated patterns: same time window across channels, common counterparties, similar amount patterns. Create incident groups where related anomalies are linked for unified investigation.' },
+      { title: 'Dashboard', desc: 'Payment operations monitoring.', prompt: 'Create Streamlit dashboard with: real-time anomaly feed, volume heatmap by channel and hour, anomaly trend by type, incident investigation panel with grouped alerts and AI explanation.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS PAYMENT_OPS_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC13: {
+    title: 'FX Rate and Spread Forecasting',
+    intro: 'Prompts to build an FX rate forecasting system with dynamic spread optimization.',
+    steps: [
+      { title: 'Set up environment', desc: 'FX analysis database.', prompt: 'Create database FX_ANALYSIS_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for FX rate forecasting and dynamic spread optimization.' },
+      { title: 'Create tables', desc: 'FX history, technical indicators and spread tables.', prompt: 'Create FX_HISTORY (date, pair, open, high, low, close, volume), TECHNICAL_INDICATORS (date, pair, ma_20, ma_50, rsi_14, bollinger_upper, bollinger_lower, atr_14), SPREAD_MODEL (date, pair, bid_spread, ask_spread, volatility, liquidity_score).' },
+      { title: 'Generate data', desc: '2 years of daily data for 5 major pairs.', prompt: 'Generate 2 years (500 trading days) of realistic OHLCV data for EUR/USD, GBP/USD, USD/JPY, EUR/GBP, USD/CHF. Include realistic patterns: trends, mean reversion, volatility clustering, and correlation between pairs. Volume varies by day of week.' },
+      { title: 'Technical analysis', desc: 'Calculate indicators per pair.', prompt: 'Calculate per pair: MA(20), MA(50), RSI(14), Bollinger Bands (20, 2σ), ATR(14), MACD(12,26,9). Add signals: golden/death cross, RSI overbought/oversold, Bollinger squeeze/expansion. Save to TECHNICAL_INDICATORS.' },
+      { title: 'Rate forecasting', desc: 'ML.FORECAST for major pairs.', prompt: 'Train per-pair forecast: CREATE OR REPLACE SNOWFLAKE.ML.FORECAST fx_rate_forecast(INPUT_DATA => SYSTEM$REFERENCE(\'VIEW\',\'FX_TRAINING\'), SERIES_COLNAME => \'PAIR\', TIMESTAMP_COLNAME => \'DATE\', TARGET_COLNAME => \'CLOSE\'). Generate 20-day projections with confidence intervals.' },
+      { title: 'Dynamic spread', desc: 'Optimize spread based on conditions.', prompt: 'Build dynamic spread model: base spread by pair, adjusted by volatility (ATR percentile), liquidity (volume vs average), time of day, directional conviction (forecast vs current). Calculate optimal bid/ask that maximizes expected revenue while remaining competitive.' },
+      { title: 'Dashboard', desc: 'FX monitoring and P&L.', prompt: 'Create Streamlit dashboard with: multi-pair price chart with forecast overlay, technical signals summary, spread optimization panel, P&L simulation comparing fixed vs dynamic spread.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS FX_ANALYSIS_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC14: {
+    title: 'AI Operational Process Automation (IDP)',
+    intro: 'Prompts to build an intelligent document processing system for banking operations.',
+    steps: [
+      { title: 'Set up environment', desc: 'Document processing database.', prompt: 'Create database DOC_PROCESSING_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for intelligent document processing in banking operations.' },
+      { title: 'Create tables', desc: 'Document, extraction and validation tables.', prompt: 'Create DOCUMENTS (doc_id, type, source, received_date, status, content_text), EXTRACTIONS (doc_id, field_name, extracted_value, confidence), VALIDATIONS (doc_id, validation_type, result, details).' },
+      { title: 'Generate data', desc: '500 simulated banking documents.', prompt: 'Generate 500 simulated documents across 5 types: loan contracts (100), IDs (100), income certificates (100), financial statements (100), property appraisals (100). Each contains realistic structured text with key fields to extract.' },
+      { title: 'AI data extraction', desc: 'Extract structured fields from documents.', prompt: 'For each document, use SNOWFLAKE.CORTEX.COMPLETE to extract key fields: for contracts (amount, rate, term, parties), for IDs (name, number, expiry), for income certificates (employer, salary, date), for financials (revenue, assets, liabilities), for appraisals (address, value, date). Save structured extractions with confidence scores.' },
+      { title: 'Classification and routing', desc: 'Auto-classify and route documents.', prompt: 'Use AI to classify each document by: type (if not pre-labeled), priority (urgent/normal/low), completeness (all required fields present), quality (legibility and consistency). Route to appropriate processing queue based on classification.' },
+      { title: 'Cross-reference validation', desc: 'Detect inconsistencies across documents.', prompt: 'Cross-reference extracted data across related documents for same customer: name consistency, income figures matching, dates logical, amounts consistent. Flag discrepancies with severity and AI explanation of likely cause (typo, fraud, outdated info).' },
+      { title: 'Dashboard', desc: 'Document processing pipeline.', prompt: 'Create Streamlit dashboard with: processing pipeline status (received/extracting/validating/complete), extraction accuracy metrics, validation failure rate by type, document detail view with extracted fields and cross-references.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS DOC_PROCESSING_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC15: {
+    title: 'Interbank Liquidity Management',
+    intro: 'Prompts to build an interbank liquidity monitoring system with flow forecasting and gap detection.',
+    steps: [
+      { title: 'Set up environment', desc: 'Liquidity management database.', prompt: 'Create database LIQUIDITY_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for interbank liquidity management with flow forecasting.' },
+      { title: 'Create tables', desc: 'Flow, position and gap analysis tables.', prompt: 'Create INTERBANK_FLOWS (flow_id, date, counterparty, direction, amount, currency, maturity, instrument_type), POSITIONS (date, currency, assets, liabilities, net_position), GAP_ANALYSIS (date, time_bucket, currency, asset_maturities, liability_maturities, gap, cumulative_gap).' },
+      { title: 'Generate data', desc: '12 months of interbank flows.', prompt: 'Generate 12 months of daily interbank flows with 50 counterparties, 3 currencies (EUR, USD, GBP), and various instruments (repos, deposits, loans). Include realistic patterns: month-end concentration, seasonal funding needs, rate-driven behavior. Generate daily positions and maturity ladder.' },
+      { title: 'GAP analysis', desc: 'Asset-liability gaps by time bucket.', prompt: 'Calculate maturity GAP analysis by time buckets: overnight, 1 week, 1 month, 3 months, 6 months, 1 year, >1 year. For each currency. Identify structural gaps and stress points. Calculate liquidity coverage ratio (LCR) and net stable funding ratio (NSFR) proxies.' },
+      { title: 'Flow forecasting', desc: 'ML.FORECAST for interbank flows.', prompt: 'Train flow forecast per currency: predict daily net flows for 30 days ahead. Incorporate known maturities, seasonal patterns and counterparty behavior. Generate confidence intervals for stress planning.' },
+      { title: 'AI alerts', desc: 'Intelligent alert on critical positions.', prompt: 'Set up AI alert system: when projected gap exceeds threshold (e.g., overnight gap > 500M or LCR < 110%), use SNOWFLAKE.CORTEX.COMPLETE to generate analysis: (1) cause of liquidity pressure, (2) available countermeasures, (3) cost of each option, (4) recommended action with timeline.' },
+      { title: 'Dashboard', desc: 'Liquidity monitoring.', prompt: 'Create Streamlit dashboard with: real-time position by currency, maturity ladder visualization, GAP analysis chart by time bucket, forecast with confidence bands, AI alert panel for critical situations.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS LIQUIDITY_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC16: {
+    title: 'Predictive Market Risk (VaR ML)',
+    intro: 'Prompts to build an ML-enhanced VaR model with dynamic volatility and AI stress narratives.',
+    steps: [
+      { title: 'Set up environment', desc: 'Market risk database.', prompt: 'Create database MARKET_RISK_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for ML-enhanced Value at Risk with stress narratives.' },
+      { title: 'Create tables', desc: 'Portfolio, market data and VaR results tables.', prompt: 'Create PORTFOLIO (asset_id, asset_class, name, position, weight, currency), MARKET_DATA (date, asset_id, price, return_1d, volatility_20d), VAR_RESULTS (date, method, confidence, var_1d, var_10d, expected_shortfall, backtest_exceptions).' },
+      { title: 'Generate data', desc: 'Multi-asset portfolio with 5 years of history.', prompt: 'Generate 20-asset portfolio across 4 classes (equities 40%, bonds 30%, FX 20%, commodities 10%) with 5 years (1,250 days) of daily returns. Include 2 stress periods with increased correlation and volatility. Returns with realistic fat tails and volatility clustering.' },
+      { title: 'ML VaR model', desc: 'Dynamic volatility estimation with ML.', prompt: 'Build ML-enhanced VaR: (1) estimate dynamic volatility per asset using rolling windows with regime detection, (2) estimate dynamic correlations, (3) calculate portfolio VaR at 95% and 99% confidence. Compare with Historical VaR and parametric VaR. Backtest all methods.' },
+      { title: 'Monte Carlo simulation', desc: 'Correlated scenario generation.', prompt: 'Generate 10,000 Monte Carlo scenarios using dynamic covariance matrix. Calculate portfolio P&L distribution, VaR, Expected Shortfall (CVaR). Compare Monte Carlo VaR with historical and ML methods. Analyze tail behavior under stress scenarios.' },
+      { title: 'AI stress narratives', desc: 'Risk committee reporting.', prompt: 'Use SNOWFLAKE.CORTEX.COMPLETE to generate risk committee report: (1) current risk level vs historical context, (2) main risk contributors and diversification benefit, (3) stress test results under 2008 and COVID scenarios, (4) recommendations on hedging or position adjustments. Generate weekly narrative.' },
+      { title: 'Dashboard', desc: 'Risk committee reporting.', prompt: 'Create Streamlit dashboard with: VaR trend by method with backtest exceptions, risk decomposition by asset class, correlation heatmap (normal vs stress), AI risk narrative panel, drill-down per asset.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS MARKET_RISK_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC17: {
+    title: 'Advanced Behavioral Biometrics',
+    intro: 'Prompts to build a behavioral biometrics system for continuous authentication and fraud detection.',
+    steps: [
+      { title: 'Set up environment', desc: 'Behavioral biometrics database.', prompt: 'Create database BIOMETRICS_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for behavioral biometrics continuous authentication.' },
+      { title: 'Create tables', desc: 'User, session and anomaly tables.', prompt: 'Create USERS (user_id, registration_date, device_count, avg_session_minutes, typical_hours), SESSIONS (session_id, user_id, timestamp, duration_min, device, ip_country, pages_visited, typing_speed_cpm, mouse_movement_score, scroll_pattern_score), ANOMALIES (session_id, anomaly_score, anomaly_factors, is_confirmed_fraud).' },
+      { title: 'Generate data', desc: '1,000 users with 50,000 sessions.', prompt: 'Generate 1,000 users with distinct behavioral profiles. 50,000 sessions where 95% match user baseline and 5% are anomalous (different device, unusual hours, different typing/navigation patterns, foreign IP). 1% are confirmed fraud (credential theft simulated).' },
+      { title: 'Behavioral baseline', desc: 'Normal behavior profile per user.', prompt: 'Calculate per-user behavioral baseline: typical session duration (avg, stddev), preferred hours (mode, range), typing speed profile, navigation patterns, device fingerprints. Define deviation thresholds per feature as multiples of individual stddev.' },
+      { title: 'Anomaly detection', desc: 'Score sessions by behavioral deviation.', prompt: 'Score each session: calculate deviation from user baseline for each feature, combine into composite anomaly score. Flag sessions exceeding threshold. Classify: NORMAL (score < 2), SUSPICIOUS (2-4), HIGH_RISK (4-7), CRITICAL (> 7). Train classifier on confirmed fraud to optimize thresholds.' },
+      { title: 'AI session analysis', desc: 'Explain anomalous sessions.', prompt: 'For CRITICAL and HIGH_RISK sessions, use SNOWFLAKE.CORTEX.COMPLETE to generate analysis: (1) which behaviors deviate from baseline, (2) comparison with known attack patterns (credential theft, session hijacking, bot activity), (3) recommended action (block, challenge, monitor), (4) confidence level. Save AI analysis.' },
+      { title: 'Dashboard', desc: 'Behavioral security monitoring.', prompt: 'Create Streamlit dashboard with: real-time session risk scores, user behavioral profile viewer, anomaly trend over time, investigation panel for flagged sessions with AI analysis, false positive tracking.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS BIOMETRICS_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC18: {
+    title: 'Systemic Risk Analysis and Contagion',
+    intro: 'Prompts to build a systemic risk model with interbank network analysis and contagion simulation.',
+    steps: [
+      { title: 'Set up environment', desc: 'Systemic risk database.', prompt: 'Create database SYSTEMIC_RISK_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for systemic risk analysis and interbank contagion simulation.' },
+      { title: 'Create tables', desc: 'Entity, exposure and simulation tables.', prompt: 'Create ENTITIES (entity_id, name, type, total_assets_bn, tier1_capital_bn, country, systemic_importance), EXPOSURES (from_entity, to_entity, exposure_amount_mn, instrument_type, maturity), SIMULATIONS (simulation_id, scenario, trigger_entity, round, defaulted_entity, losses_mn, contagion_path).' },
+      { title: 'Generate data', desc: '50 banks with bilateral exposure network.', prompt: 'Generate 50 banks with realistic size distribution (5 G-SIBs, 10 large, 15 medium, 20 small). Create bilateral exposure network with ~500 links. Larger banks have more connections. Exposure amounts proportional to bank size. Include domestic and cross-border exposures.' },
+      { title: 'Network analysis', desc: 'Centrality and concentration metrics.', prompt: 'Calculate network metrics: degree centrality (connections), betweenness centrality (intermediation), eigenvector centrality (connected to important nodes), clustering coefficient, network density. Identify too-connected-to-fail entities. Calculate concentration: HHI of exposures, largest single exposure per entity.' },
+      { title: 'Contagion simulation', desc: 'Cascade failures under stress.', prompt: 'Simulate cascade defaults: (1) pick trigger entity, (2) distribute losses to creditors proportional to exposure, (3) if losses exceed capital buffer, entity defaults creating new losses, (4) repeat until no new defaults. Run for each of top 10 systemic entities as trigger. Track cascade depth, total losses, entities affected.' },
+      { title: 'AI risk assessment', desc: 'Systemic risk narrative.', prompt: 'Use SNOWFLAKE.CORTEX.COMPLETE to generate systemic risk assessment: (1) most systemically important entities and why, (2) most dangerous contagion channels, (3) comparison with 2008 Lehman scenario, (4) recommendations for exposure limits and capital buffers, (5) early warning indicators to monitor.' },
+      { title: 'Dashboard', desc: 'Network analysis and simulation.', prompt: 'Create Streamlit dashboard with: network graph visualization with node size by assets and edge width by exposure, centrality ranking table, contagion simulation results (cascade depth, total losses per trigger), AI risk narrative panel.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS SYSTEMIC_RISK_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC19: {
+    title: 'NLP for Regulatory Intelligence',
+    intro: 'Prompts to build a regulatory intelligence system with AI text processing and impact analysis.',
+    steps: [
+      { title: 'Set up environment', desc: 'Regulatory intelligence database.', prompt: 'Create database REG_INTEL_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for NLP-powered regulatory intelligence monitoring.' },
+      { title: 'Create tables', desc: 'Regulation, analysis and policy mapping tables.', prompt: 'Create REGULATIONS (reg_id, source, date, title, category, full_text), ANALYSES (reg_id, summary, impact_level, affected_areas, key_requirements, urgency), POLICY_MAPPINGS (reg_id, internal_policy_id, policy_name, alignment_status, gap_description, action_required).' },
+      { title: 'Generate data', desc: '100 regulatory documents from 10 sources.', prompt: 'Generate 100 regulatory documents from: ECB (15), EBA (15), ESMA (10), CNMV (10), SEPBLAC (10), BdE (10), EC (10), GDPR authority (10), ESG regulators (5), National AML body (5). Each with realistic title, category, and simulated full text of 200-500 words covering specific requirements.' },
+      { title: 'AI text processing', desc: 'Summarize and classify each regulation.', prompt: 'For each regulation, use SNOWFLAKE.CORTEX.COMPLETE to: (1) generate a 3-sentence executive summary, (2) classify impact level (HIGH/MEDIUM/LOW), (3) identify affected areas (capital, liquidity, conduct, reporting, AML, data, ESG), (4) extract 3-5 specific requirements as bullet points, (5) assess implementation urgency. Save structured analysis.' },
+      { title: 'Policy mapping', desc: 'Map requirements to internal policies.', prompt: 'For each extracted requirement, map to simulated internal policies (generate 30 internal policies covering main banking areas). Identify: ALIGNED (policy exists and covers requirement), PARTIAL (policy exists but gaps), MISSING (no policy covers this). Calculate compliance coverage percentage.' },
+      { title: 'AI gap analysis', desc: 'Detailed gap remediation plan.', prompt: 'For MISSING and PARTIAL mappings, use SNOWFLAKE.CORTEX.COMPLETE to generate: (1) specific gap description, (2) risk of non-compliance, (3) proposed policy change or new policy, (4) implementation steps, (5) estimated effort. Prioritize by impact level and deadline proximity.' },
+      { title: 'Dashboard', desc: 'Regulatory landscape monitoring.', prompt: 'Create Streamlit dashboard with: regulatory radar chart by source and impact, compliance coverage gauge, new regulations timeline, gap detail view with AI remediation plan, search and filter by area/source/impact.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS REG_INTEL_DB CASCADE commented out for optional cleanup.' }
+    ]
+  },
+  UC20: {
+    title: 'Advanced ESG Scoring with AI',
+    intro: 'Prompts to build an AI ESG scoring system with EU Taxonomy alignment and portfolio transition risk analysis.',
+    steps: [
+      { title: 'Set up environment', desc: 'ESG analysis database.', prompt: 'Create database ESG_DB with schema PUBLIC and warehouse COMPUTE_WH. Add a project comment for AI ESG scoring with Taxonomy alignment.' },
+      { title: 'Create tables', desc: 'Client, ESG score and portfolio tables.', prompt: 'Create CLIENTS (client_id, name, sector, size, country, revenue_mn, employees, co2_emissions_tons, renewable_pct, gender_diversity_pct, board_independence_pct, anti_corruption_policy, tax_transparency), ESG_SCORES (client_id, e_score, s_score, g_score, overall_score, taxonomy_aligned_pct, transition_risk), PORTFOLIO (client_id, exposure_mn, product_type, maturity_years).' },
+      { title: 'Generate data', desc: '500 corporate clients with ESG attributes.', prompt: 'Generate 500 corporate clients across 10 sectors with realistic ESG attributes: energy sector with high emissions but some with transition plans, tech with good governance but supply chain risks, manufacturing with mixed profiles. Attributes correlated with sector and size. Portfolio exposure distribution: top 20 clients = 40% exposure.' },
+      { title: 'AI ESG scoring', desc: 'Score each client across E/S/G pillars.', prompt: 'For each client, use SNOWFLAKE.CORTEX.COMPLETE to generate: (1) Environmental score (0-100) based on emissions, renewable usage, environmental policy, (2) Social score based on diversity, labor practices, community impact, (3) Governance score based on board independence, transparency, anti-corruption. Generate detailed justification for each pillar score. Calculate overall ESG score as weighted average (E:40%, S:30%, G:30%).' },
+      { title: 'Taxonomy alignment', desc: 'EU Taxonomy assessment.', prompt: 'Assess EU Taxonomy alignment for each client: (1) eligible activities identification, (2) substantial contribution criteria, (3) do no significant harm assessment, (4) minimum safeguards check. Calculate taxonomy-aligned revenue percentage. Flag clients with high exposure but low alignment as priority for engagement.' },
+      { title: 'Transition risk analysis', desc: 'Portfolio-level climate transition risk.', prompt: 'Analyze portfolio transition risk: (1) exposure concentration by ESG rating, (2) high-risk sector exposure (fossil fuels, heavy industry), (3) stranded asset risk under Net Zero 2050 scenario, (4) transition opportunity (clients with credible transition plans). Use CORTEX.COMPLETE to generate portfolio-level risk narrative.' },
+      { title: 'Dashboard', desc: 'ESG portfolio management.', prompt: 'Create Streamlit dashboard with: ESG score distribution by sector, portfolio heatmap (exposure vs ESG rating), Taxonomy alignment gauge, transition risk scenarios, client detail view with AI ESG analysis, sector comparison radar chart.' },
+      { title: 'Cleanup', desc: 'Remove all project objects.', prompt: 'Generate DROP DATABASE IF EXISTS ESG_DB CASCADE commented out for optional cleanup.' }
+    ]
+  }
+};
+
+/* ── RENDER FUNCTIONS ──────────────────────────────── */
+function renderCards(cases) {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = '';
+  cases.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'case-card';
+    card.setAttribute('data-cat', c.cat);
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="card-badge ${c.cat}">${c.catLabel}</span>
+        <span class="card-time">⏱️ ${c.time}</span>
+      </div>
+      <div class="card-title">${c.title}</div>
+      <div class="card-pain">${c.pain}</div>
+      <div class="card-desc">${c.desc}</div>
+      <div class="card-features">${c.features.map(f=>`<span class="card-feature">${f}</span>`).join('')}</div>
+      <div class="card-actions">
+        <button class="btn-guide" onclick="viewGuide('${c.id}')">View Guide</button>
+        <button class="btn-prompts" onclick="viewPrompts('${c.id}')">Cortex Code Prompts</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ── FILTERS ───────────────────────────────────── */
+document.querySelectorAll('.filter-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    applyFilters();
+  });
+});
+document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+function applyFilters() {
+  const cat = document.querySelector('.filter-chip.active').dataset.cat;
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = USE_CASES.filter(c => {
+    if (cat !== 'all' && c.cat !== cat) return false;
+    if (q && !(c.title.toLowerCase().includes(q) || c.desc.toLowerCase().includes(q) || c.pain.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  renderCards(filtered);
+  document.getElementById('resultsCount').textContent = `Showing ${filtered.length} of ${USE_CASES.length} use cases`;
+}
+
+/* ── GUIDE MODAL ───────────────────────────────── */
+function viewGuide(ucId) {
+  const data = GUIAS[ucId];
+  if (!data) { alert('Guide not yet available for ' + ucId); return; }
+  const box = document.getElementById('guiaModalBox');
+  let html = `<button class="close-btn" onclick="closeModal('guiaModal')">&times;</button>`;
+  html += `<span class="guide-badge">${ucId}</span>`;
+  html += `<h2>${data.title}</h2>`;
+  html += `<div class="guide-section"><h3>Business Context</h3><p>${data.contexto}</p></div>`;
+  html += `<div class="guide-section"><h3>Focus:</h3><p>${data.foco}</p></div>`;
+  html += `<div class="guide-section"><h3>Business Challenge:</h3><p>${data.reto}</p></div>`;
+  html += `<div class="guide-section"><h3>Learning Objectives</h3><ul>${data.objetivos.map(o=>`<li>${o}</li>`).join('')}</ul></div>`;
+  html += `<div class="guide-section"><h3>Snowflake Capabilities</h3><ul>${data.funcionalidades.map(f=>`<li>${f}</li>`).join('')}</ul></div>`;
+  html += `<div class="guide-section"><h3>Generated Data</h3><ul>${data.datos.map(d=>`<li>${d}</li>`).join('')}</ul></div>`;
+  html += `<div class="guide-section"><h3>How to Use the Notebook</h3><ul>${data.como_usar.map(u=>`<li>${u}</li>`).join('')}</ul></div>`;
+  html += `<p class="guide-footer">Notebook ready to run in Snowflake — includes synthetic data and dashboard</p>`;
+  box.innerHTML = html;
+  document.getElementById('guiaModal').classList.add('active');
+}
+
+/* ── PROMPTS MODAL ─────────────────────────────── */
+function viewPrompts(ucId) {
+  const data = PROMPTS[ucId];
+  if (!data) { alert('Guide not yet available for ' + ucId); return; }
+  const box = document.getElementById('promptsModalBox');
+  let html = `<button class="close-btn" onclick="closeModal('promptsModal')">&times;</button>`;
+  html += `<span class="guide-badge">${ucId}</span>`;
+  html += `<h2>${data.title} — Cortex Code Prompts</h2>`;
+  html += `<p class="prompt-intro">${data.intro}</p>`;
+  data.steps.forEach((s, i) => {
+    const escaped = s.prompt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    html += `<div class="prompt-step">`;
+    html += `<div class="prompt-step-header"><span class="prompt-step-num">${i+1}</span><span class="prompt-step-title">${s.title}</span></div>`;
+    html += `<div class="prompt-step-desc">${s.desc}</div>`;
+    html += `<div class="prompt-code" id="prompt_${ucId}_${i}"><button class="copy-btn" onclick="copyPrompt('prompt_${ucId}_${i}')">Copy</button>${escaped}</div>`;
+    html += `</div>`;
+  });
+  html += `<p class="guide-footer">Execute each prompt sequentially in Cortex Code (Snowsight)</p>`;
+  box.innerHTML = html;
+  document.getElementById('promptsModal').classList.add('active');
+}
+
+function copyPrompt(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = el.textContent.replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+renderCards(USE_CASES);
+</script>
+</body>
+</html>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — KI/ML-Lösungen nach Branche</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background: #003545;
+      color: #fff;
+      padding: 48px 48px 56px;
+      text-align: center;
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .hackathon-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 20px; background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.35); border-radius: 80px;
+      color: #fff; font-size: 12px; font-weight: 600; text-decoration: none;
+      transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .hackathon-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.6); }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      max-width: 640px;
+      margin: 0 auto 8px;
+      line-height: 1.6;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 32px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: #29B5E8;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+
+    .section-title {
+      text-align: center;
+      padding: 48px 24px 12px;
+    }
+
+    .section-title h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .section-title p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      padding: 32px 48px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-banner {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-banner .card-icon {
+      font-size: 52px;
+      z-index: 1;
+    }
+
+    .card-banner .card-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image: radial-gradient(circle at 20% 50%, #fff 1px, transparent 1px),
+                         radial-gradient(circle at 80% 30%, #fff 1px, transparent 1px),
+                         radial-gradient(circle at 50% 80%, #fff 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .card-body {
+      padding: 20px 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 16px;
+    }
+
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 80px;
+      transition: all 0.15s;
+      width: fit-content;
+    }
+
+    .card-link svg {
+      transition: transform 0.15s;
+    }
+
+    .card-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .card-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #aaa;
+      padding: 10px 0;
+    }
+
+    .footer {
+      background: #003545;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .footer a {
+      color: #29B5E8;
+      text-decoration: none;
+    }
+
+    .global-search {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .global-search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 80px;
+      padding: 12px 20px;
+      gap: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .global-search-box:focus-within {
+      border-color: #29B5E8;
+      box-shadow: 0 0 0 3px rgba(41,181,232,0.15);
+    }
+    .global-search-box input {
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      color: #1a1a1a;
+      width: 100%;
+      background: transparent;
+    }
+    .global-search-box input::placeholder { color: #aaa; }
+    .search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0; right: 0;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      max-height: 420px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    .search-results.active { display: block; }
+    .sr-header {
+      padding: 14px 20px 8px;
+      font-size: 12px;
+      color: #888;
+      font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .sr-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #1a1a1a;
+      transition: background 0.1s;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .sr-item:last-child { border-bottom: none; }
+    .sr-item:hover { background: #f0f9ff; }
+    .sr-icon { font-size: 22px; flex-shrink: 0; width: 32px; text-align: center; }
+    .sr-text { flex: 1; min-width: 0; }
+    .sr-title { font-size: 14px; font-weight: 600; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sr-meta { font-size: 11px; color: #888; margin-top: 2px; }
+    .sr-meta .sr-id { color: #29B5E8; font-weight: 700; margin-right: 6px; }
+    .sr-arrow { color: #ccc; flex-shrink: 0; }
+    .sr-empty { padding: 24px 20px; text-align: center; color: #999; font-size: 14px; }
+    .search-results::-webkit-scrollbar { width: 6px; }
+    .search-results::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 32px 20px 40px; }
+      .hero-title { font-size: 32px; }
+      .stats-row { gap: 24px; }
+      .stat-num { font-size: 28px; }
+      .grid { padding: 24px 16px 48px; grid-template-columns: 1fr; }
+      .global-search-box { padding: 10px 16px; }
+      .global-search-box input { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="logos">
+    <div class="logo-snowflake">
+      <img src="../bug-white.png" width="28" height="28" alt="Snowflake" />
+      Snowflake
+    </div>
+    <a href="hackathon.html" class="hackathon-btn">
+      &#127942; Organisiere einen CoCothon mit deinem Team
+      <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+    </a>
+  </div>
+  <p class="hero-eyebrow">KI/ML-Lösungen nach Branche</p>
+  <h1 class="hero-title">Beschleuniger für Künstliche Intelligenz</h1>
+  <p class="hero-subtitle">Schritt-für-Schritt-Anleitungen und Cortex Code Prompts, sofort einsatzbereit. Jede Branche enthält Anwendungsfälle mit detaillierten Anleitungen, Cortex Code Prompts und Streamlit Dashboards — alles innerhalb von Snowflake.</p>
+  <p class="hero-tagline">Snowflake Cortex AI · Cortex ML · Cortex Search · Streamlit</p>
+  <a href="anleitung.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 24px;background:rgba(41,181,232,0.15);border:1.5px solid rgba(41,181,232,0.4);border-radius:80px;color:#29B5E8;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(41,181,232,0.25)';this.style.borderColor='#29B5E8'" onmouseout="this.style.background='rgba(41,181,232,0.15)';this.style.borderColor='rgba(41,181,232,0.4)'">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 1.5 17V3A2.5 2.5 0 0 1 4 .5h8.5L17.5 5.5v11.5a2.5 2.5 0 0 1-2.5 2.5H4z"/><polyline points="12.5 0.5 12.5 6 18 6"/><line x1="5.5" y1="10" x2="14.5" y2="10"/><line x1="5.5" y1="13" x2="14.5" y2="13"/><line x1="5.5" y1="16" x2="10" y2="16"/></svg>
+    Benutzerhandbuch — Cortex Code in Snowsight
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+  </a>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">14</div>
+      <div class="stat-lbl">Branchen</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">288</div>
+      <div class="stat-lbl">Anwendungsfälle</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-lbl">Natives Snowflake</div>
+    </div>
+  </div>
+</header>
+
+<div class="section-title">
+  <h2>Wähle deine Branche</h2>
+  <p>Jede Branche enthält detaillierte Anleitungen, Schritt-für-Schritt Cortex Code Prompts und interaktive Streamlit Dashboards.</p>
+  <div class="global-search" style="margin-top:24px;">
+    <div class="global-search-box">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/></svg>
+      <input id="globalSearch" type="text" placeholder="Suche unter 288 Anwendungsfällen…" autocomplete="off" />
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<main class="grid">
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#D45B90,#B03A6B);">
+      <span class="card-icon">🏦</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FDE8F0;color:#D45B90;">Verfügbar</span>
+      <h3>Versicherungen</h3>
+      <p>Betrugserkennung, Risikobewertung, NLP-Analyse von Schadensfällen, KI Call Center, KI-Assistenten, Pricing und Betrieb mit Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 36 Anwendungsfälle</span>
+      </div>
+      <a class="card-link" href="versicherung.html" style="background:#D45B90;color:#fff;">
+        Versicherungen entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#71D3DC,#4DBDCA);">
+      <span class="card-icon">💊</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#11567F;">Verfügbar</span>
+      <h3>Pharma</h3>
+      <p>Patientenadhärenz, Wettbewerbsintelligenz, Sentimentanalyse, klinische Studien, Nachfrageprognose, Compliance und Patientenpfade mit Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 27 Anwendungsfälle</span>
+      </div>
+      <a class="card-link" href="pharma.html" style="background:#71D3DC;color:#003545;">
+        Pharma entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#29B5E8,#11567F);">
+      <span class="card-icon">🏦</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F4FD;color:#11567F;">Verfügbar</span>
+      <h3>Bankwesen und Finanzdienstleistungen</h3>
+      <p>Betrugserkennung, Kreditscoring, AML, Stresstests, regulatorische Compliance, Churn, NBO, LTV-Segmentierung und RAG-Regulierungsassistent mit Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+      </div>
+      <a class="card-link" href="bankwesen.html" style="background:#29B5E8;color:#fff;">
+        Bankwesen entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#7D44CF,#5E2FA8);">
+      <span class="card-icon">🛒</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#EDE6FF;color:#7D44CF;">Verfügbar</span>
+      <h3><a href="einzelhandel.html" style="color:inherit;text-decoration:none;">Einzelhandel und E-Commerce</a></h3>
+      <p>Dynamic Pricing, personalisierte Empfehlungen, Nachfrageprognose, Customer 360 Feature Store, RAG-Chatbot, Betrugserkennung und Modetrendanalyse mit Cortex AI/ML und Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+      </div>
+      <a href="einzelhandel.html" class="card-link" style="background:#7D44CF;color:#fff;">Einzelhandel entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#FF9F36,#E08520);">
+      <span class="card-icon">🏭</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF5E6;color:#E08520;">Verfügbar</span>
+      <h3><a href="fertigung.html" style="color:inherit;text-decoration:none;">Fertigung und Industrie</a></h3>
+      <p>Vorausschauende Wartung, KI-Qualitätskontrolle, Lieferkettenoptimierung, Produktionsplanung und RAG-Assistent für Werksoperatoren.</p>
+      <div class="card-meta">
+        <span>📋 15 Anwendungsfälle</span>
+      </div>
+      <a class="card-link" href="fertigung.html" style="background:#FF9F36;color:#fff;">
+        Fertigung entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#E65100,#BF360C);">
+      <span class="card-icon">🏨</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF3E0;color:#E65100;">Verfügbar</span>
+      <h3><a href="gastgewerbe.html" style="color:inherit;text-decoration:none;">Gastgewerbe und Tourismus</a></h3>
+      <p>Dynamic Pricing, Nachfrageprognose, Gäste Feature Store, B2B-Distribution, RAG Concierge Chatbot, Betrugserkennung und DSGVO-Compliance mit Cortex AI/ML und Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+      </div>
+      <a href="gastgewerbe.html" class="card-link" style="background:#E65100;color:#fff;">Gastgewerbe entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#0288D1,#01579B);">
+      <span class="card-icon">💧</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E3F2FD;color:#0288D1;">Verfügbar</span>
+      <h3>Wasserwirtschaft</h3>
+      <p>Talk to your Plant: Konversationsassistent, Trübungsprognose, Reagenziendosierung, vorausschauende Wartung, Leckageerkennung und Energieoptimierung mit Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 10 Anwendungsfälle</span>
+      </div>
+      <a class="card-link" href="wasser.html" style="background:#0288D1;color:#fff;">
+        Wasserwirtschaft entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#4DBDCA,#399AA6);">
+      <span class="card-icon">🚛</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#399AA6;">Verfügbar</span>
+      <h3><a href="logistik.html" style="color:inherit;text-decoration:none;">Logistik und Transport</a></h3>
+      <p>ETA-Prognose, Routen- und letzte-Meile-Optimierung, vorausschauende Flottenwartung, Versand 360 Feature Store, Logistik RAG-Chatbot, Betrug bei Lieferungen und regulatorische Compliance mit Cortex AI/ML und Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+      </div>
+      <a href="logistik.html" class="card-link" style="background:#399AA6;color:#fff;">Logistik entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#E91E63,#C2185B);">
+      <span class="card-icon">🎬</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FCE4EC;color:#C2185B;">Verfügbar</span>
+      <h3><a href="medien.html" style="color:inherit;text-decoration:none;">Audiovisuelle Medien</a></h3>
+      <p>Inhaltsempfehlung, Zuschauerprognose, Werbe-Yield, Viewer 360 Feature Store, Piraterieerkennung, digitale Rechteverwaltung und regulatorische Compliance mit Cortex AI/ML und Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+      </div>
+      <a href="medien.html" class="card-link" style="background:#E91E63;color:#fff;">Medien entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#29B5E8,#1199CC);">
+      <span class="card-icon">📡</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#0097A7;">Verfügbar</span>
+      <h3><a href="telekommunikation.html" style="color:inherit;text-decoration:none;">Telekommunikation</a></h3>
+      <p>Churn-Prognose, 5G-Netzwerkoptimierung, SIM-Betrugserkennung, Customer 360 Feature Store, Cybersicherheit, Revenue Assurance und DSGVO-Compliance mit Cortex AI/ML und Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+      </div>
+      <a href="telekommunikation.html" class="card-link" style="background:#0097A7;color:#fff;">Telekommunikation entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#FFB836,#E09E1C);">
+      <span class="card-icon">⚡</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF3E0;color:#F57C00;">Verfügbar</span>
+      <h3>Energie und Versorgung</h3>
+      <p>Nachfrageprognose, erneuerbare Erzeugung (Solar/Wind), BESS-Optimierung, Verlust- und Betrugserkennung, Smart Grids, Energiegemeinschaften und OT-Cybersicherheit.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+        <span>⏱ 10-15 min</span>
+      </div>
+      <a href="energie.html" class="card-link" style="background:#F57C00;color:#fff;">Energie und Versorgung entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#8A999E,#546E7A);">
+      <span class="card-icon">🏛️</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#ECEFF1;color:#546E7A;">Verfügbar</span>
+      <h3>Öffentlicher Sektor</h3>
+      <p>Betrugserkennung bei Subventionen, RAG-Bürgerservice, Kontrolle europäischer Fördermittel, Bürger 360 Feature Store und Cybersicherheit öffentlicher Infrastruktur.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+        <span>⏱️ 11-15 min</span>
+      </div>
+      <a href="oeffentlicher-sektor.html" class="card-link" style="background:#546E7A;color:#fff;">Öffentlicher Sektor entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#11567F,#0A3D5C);">
+      <span class="card-icon">🏥</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F4FD;color:#0D7C8F;">Verfügbar</span>
+      <h3>Gesundheitswesen und Krankenhäuser</h3>
+      <p>Prognose von Wiedereinweisungen, NLP auf Krankenakten, Erkennung unerwünschter Ereignisse, Patient 360 Feature Store und Model Registry für die Produktion.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+        <span>⏱️ 8-15 min</span>
+      </div>
+      <a href="gesundheit.html" class="card-link" style="background:#0D7C8F;color:#fff;">Gesundheitswesen entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#9B6FE0,#7D44CF);">
+      <span class="card-icon">🎓</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E8F5E9;color:#2E7D32;">Verfügbar</span>
+      <h3>Bildung</h3>
+      <p>Prognose von Studienabbrüchen, Inhaltspersonalisierung, Leistungsanalyse, KI-Plagiatserkennung und Optimierung von Lehrressourcen.</p>
+      <div class="card-meta">
+        <span>📋 20 Anwendungsfälle</span>
+        <span>⏱ 8-15 min</span>
+      </div>
+      <a href="bildung.html" class="card-link" style="background:#7D44CF;color:#fff;">Bildung entdecken
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+
+</main>
+
+<footer class="footer">
+  Entwickelt mit <a href="https://www.snowflake.com/en/data-cloud/cortex/" target="_blank">Snowflake Cortex AI</a> · Cortex Code · Streamlit<br/>
+  100% synthetische Daten · Keine externen Abhängigkeiten · Bereit zur Anpassung
+</footer>
+
+<script>
+var UC_CATALOG = [{"id": "UC01","t": "Betrugsbewertung bei Schadensfällen","c": "Betrugserkennung","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC02","t": "Erkennung simulierter Unfälle","c": "Betrugserkennung","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC03","t": "Antrags- und Identitätsbetrug","c": "Betrugserkennung","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC04","t": "Dynamische Kfz-Risikobewertung","c": "Risiko und Underwriting","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC05","t": "Katastrophenexpositionsanalyse","c": "Risiko und Underwriting","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC06","t": "Abwanderungsprognose bei Verlängerung","c": "Risiko und Underwriting","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC07","t": "Telematische Risikosegmentierung","c": "Risiko und Underwriting","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC08","t": "KI-Dokumentenextraktion bei Schadensfällen","c": "KI und natürliche Sprache","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC09","t": "Kundenbeschwerde-Intelligenz","c": "KI und natürliche Sprache","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC10","t": "Intelligenter Policen-Auskunftsassistent","c": "KI und natürliche Sprache","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC11","t": "Schweregradprognose bei Kfz-Schadensfällen","c": "Schadenmanagement","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC12","t": "Identifikation von Regressmöglichkeiten","c": "Schadenmanagement","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC13","t": "Automatische Anrufklassifizierung","c": "KI Call Center","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC14","t": "Automatische Agentenbewertung (QA)","c": "KI Call Center","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC15","t": "Automatische Zusammenfassungserstellung","c": "KI Call Center","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC16","t": "Echtzeit-CX-Verbesserung","c": "KI Call Center","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC17","t": "Regulatorische Compliance in Gesprächen","c": "KI Call Center","i": "Versicherungen","k": "🏦","f": "versicherung.html"},{"id": "UC01","t": "Prognose des Patientenadhärenz-Risikos","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC02","t": "Kampagnen-Performance-Optimierer","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC03","t": "Verbraucher-Sentimentanalyse","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC04","t": "Prognose des Exklusivitätsverlusts","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC05","t": "Engagement-Optimierer für Gesundheitsfachkräfte","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC06","t": "Chatbot für kommerzielle Intelligenz","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC07","t": "Verbrauchersegmentierung und LTV","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC08","t": "Inhaltseffektivitätsanalyse","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC09","t": "Real-World-Evidence-Generator (RWE)","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC10","t": "Wettbewerbsintelligenz-Monitor","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC11","t": "Omnichannel-Journey-Mapper","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC12","t": "Preis- und Rabattoptimierer","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC13","t": "Standortauswahl für klinische Studien","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC14","t": "Nachfrageprognose bei Markteinführung","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC15","t": "Compliance-Manager für Claims","c": "Machine Learning","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC16","t": "Krisenerkennung in sozialen Medien","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC17","t": "Wettbewerber-Messaging-Intelligenz","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC18","t": "Globaler Medien-Sentiment-Tracker","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC19","t": "Prognose der Markteinführungsrezeption","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC20","t": "Sentiment-Netzwerk von KOLs und Influencern","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC21","t": "Wettbewerbswahrnehmung des Produkts","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC22","t": "Optimierer für Führungskommunikation","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC23","t": "Automatisierte Wettbewerbsintelligenz","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC24","t": "Globales mehrsprachiges Sentiment","c": "KI und natürliche Sprache","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC25","t": "Erlebnis der Patientenbehandlungsreise","c": "Patientenpfad","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC26","t": "Intelligenz der Therapieadhärenz-Reise","c": "Patientenpfad","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC27","t": "Engagement-Insight-Analyse für Gesundheitsfachkräfte","c": "Patientenpfad","i": "Pharma","k": "💊","f": "pharma.html"},{"id": "UC01","t": "Echtzeit-Betrugserkennung bei Transaktionen","c": "Risiko und Compliance","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC02","t": "Dynamisches Kreditrisiko-Scoring","c": "Risiko und Compliance","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC03","t": "Geldwäscheerkennung (AML)","c": "Risiko und Compliance","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC04","t": "Stresstests und Szenario-Simulation","c": "Risiko und Compliance","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC05","t": "Überwachung regulatorischer Compliance","c": "Risiko und Compliance","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC06","t": "Betrugserkennung bei Kreditanträgen","c": "Risiko und Compliance","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC07","t": "Kundenabwanderungsprognose (Churn)","c": "Kunde und Geschäft","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC08","t": "Hyperpersonalisierte Next-Best-Offer-Engine","c": "Kunde und Geschäft","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC09","t": "Erweiterte Segmentierung und Customer LTV","c": "Kunde und Geschäft","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC10","t": "Sentimentanalyse bei Beschwerden","c": "Kunde und Geschäft","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC11","t": "Chatbot für Finanzintelligenz","c": "Kunde und Geschäft","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC12","t": "Produktnachfrageprognose","c": "Kunde und Geschäft","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC13","t": "Kreditpreis-Optimierer","c": "Kunde und Geschäft","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC14","t": "Frühzeitige Zahlungsausfallprognose","c": "Operationen und Märkte","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC15","t": "Anomalieerkennung bei Marktoperationen","c": "Operationen und Märkte","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC16","t": "Filialnetzoptimierung","c": "Operationen und Märkte","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC17","t": "Automatisierung der Dokumentenanalyse","c": "Operationen und Märkte","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC18","t": "Reputationsrisiko-Monitor","c": "Erweiterte Intelligenz","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC19","t": "Bankenwettbewerbsanalyse","c": "Erweiterte Intelligenz","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC20","t": "RAG-Assistent für Bankenregulierung","c": "Erweiterte Intelligenz","i": "Bankwesen","k": "🏦","f": "bankwesen.html"},{"id": "UC01","t": "Omnichannel Dynamic Pricing mit Model Registry","c": "Pricing & Revenue","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC02","t": "Echtzeit-Produktempfehlungen","c": "Personalisierung und CX","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC03","t": "Multi-SKU-Nachfrageprognose mit Model Registry","c": "Supply Chain","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC04","t": "Kundensegmentierung mit prädiktivem CLV","c": "Personalisierung und CX","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC05","t": "Bestandsoptimierung und automatische Nachbestellung","c": "Supply Chain","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC06","t": "Sentimentanalyse in Produktbewertungen","c": "Personalisierung und CX","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC07","t": "Kundenservice-Chatbot mit RAG","c": "Personalisierung und CX","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC08","t": "Customer 360 Feature Store","c": "Personalisierung und CX","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC09","t": "Aktions- und Markdown-Optimierung","c": "Pricing & Revenue","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC10","t": "Prognose für Rabatte und Bestandsliquidierung","c": "Pricing & Revenue","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC11","t": "Modetrendererkennung mit NLP","c": "Supply Chain","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC12","t": "Optimierung der Filialbestandszuordnung","c": "Supply Chain","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC13","t": "Churn-Prognose und Kundenbindung","c": "Marketing & Loyalty","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC14","t": "Produkt Feature Store für Merchandising","c": "Marketing & Loyalty","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC15","t": "Personalisierte Next Best Offer mit KI","c": "Marketing & Loyalty","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC16","t": "Warenkorbanalyse und Cross-Selling","c": "Marketing & Loyalty","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC17","t": "Wettbewerbspreisüberwachung","c": "Pricing & Revenue","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC18","t": "Betrugserkennung im E-Commerce und Zahlungsverkehr","c": "Betrug und Sicherheit","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC19","t": "Betrugserkennung bei Retouren und Richtlinienmissbrauch","c": "Betrug und Sicherheit","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC20","t": "Anomalieerkennung bei Bestand und Schwund","c": "Betrug und Sicherheit","i": "Einzelhandel","k": "🛒","f": "einzelhandel.html"},{"id": "UC01","t": "Visuelle Qualitätskontrolle mit KI","c": "Qualität und Produktion","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC02","t": "Fehlerprognose in der Montagelinie","c": "Qualität und Produktion","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC03","t": "OEE-Optimierung — Gesamtanlageneffektivität","c": "Qualität und Produktion","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC04","t": "Ursachenanalyse mit NLP in Qualitätsberichten","c": "Qualität und Produktion","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC05","t": "Vorausschauende Wartung von CNC-Anlagen","c": "Vorausschauende Wartung","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC06","t": "Anomalieerkennung bei IoT-Sensoren in der Fabrik","c": "Vorausschauende Wartung","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC07","t": "Intelligente Planung von Wartungsstillständen","c": "Vorausschauende Wartung","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC08","t": "Nachfrageprognose und Bestandsoptimierung","c": "Lieferkette","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC09","t": "Lieferantenrisiko-Erkennung","c": "Lieferkette","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC10","t": "Digitale Rückverfolgbarkeit von Materialien und Chargen","c": "Lieferkette","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC11","t": "Produktionsplanung mit KI (MPS)","c": "KI-Operationen","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC12","t": "KI-Assistent für Werksoperatoren (RAG)","c": "KI-Operationen","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC13","t": "Analyse von Arbeitsschutzunfällen","c": "KI-Operationen","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC14","t": "Optimierung des Fabrikenergieverbrauchs","c": "KI-Operationen","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC15","t": "B2B-Kundenintelligenz und Bestellprognose","c": "KI-Operationen","i": "Fertigung","k": "🏭","f": "fertigung.html"},{"id": "UC01","t": "Dynamic Pricing mit Model Registry","c": "Revenue & Pricing","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC02","t": "Multi-Horizont-Hotelnachfrageprognose","c": "Revenue & Pricing","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC03","t": "Revenue-Optimierung durch Zusatzleistungen","c": "Revenue & Pricing","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC04","t": "Kundenwert-Segmentierung (CLV) mit ML","c": "Revenue & Pricing","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC05","t": "Vorausschauende Anlagenwartung mit Model Registry","c": "Gästeerlebnis","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC06","t": "Personalisierte Empfehlungen lokaler Erlebnisse","c": "Gästeerlebnis","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC07","t": "Sentimentanalyse bei Multi-Channel-Bewertungen","c": "Gästeerlebnis","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC08","t": "Feature Store für Gästepräferenzen","c": "Gästeerlebnis","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC09","t": "Concierge-Chatbot mit RAG über Hotelwissen","c": "Gästeerlebnis","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC10","t": "Personalplanung durch Auslastungsprognose","c": "Operationen","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC11","t": "KI-gestützte Energieoptimierung des Hotels","c": "Operationen","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC12","t": "No-Show-Prognose und intelligentes Overbooking","c": "Operationen","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC13","t": "Housekeeping-Geschwindigkeitsanalyse mit NLP","c": "Operationen","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC14","t": "Feature Store für B2B-Partner-Performance","c": "B2B-Distribution","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC15","t": "B2B-Stornierungsprognose nach Kanal","c": "B2B-Distribution","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC16","t": "Erkennung von Preisabweichungen zwischen Kanälen","c": "B2B-Distribution","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC17","t": "Provisions- und Channel-Mix-Optimierung mit KI","c": "B2B-Distribution","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC18","t": "Betrugserkennung bei Buchungen und Chargebacks","c": "Betrug und Sicherheit","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC19","t": "Erkennung gefälschter Bewertungen und Reputationsmanipulation","c": "Betrug und Sicherheit","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC20","t": "DSGVO/PCI-Compliance bei Gästedaten","c": "Betrug und Sicherheit","i": "Gastgewerbe","k": "🏨","f": "gastgewerbe.html"},{"id": "UC01","t": "Konversationsassistent der Anlage (Talk to your Plant)","c": "Anlagenbetrieb","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC02","t": "Trübungs- und physikochemische Parameterprognose","c": "Wasserqualität","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC03","t": "Optimierung der Reagenziendosierung","c": "Anlagenbetrieb","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC04","t": "Vorausschauende Wartung von Anlagenausrüstung","c": "Anlagenbetrieb","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC05","t": "Leckageerkennung im Verteilungsnetz","c": "Verteilungsnetz","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC06","t": "NLP-Analyse von Störungen und Arbeitsaufträgen","c": "Wasserqualität","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC07","t": "Wasserbedarfsprognose","c": "Verteilungsnetz","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC08","t": "Erkennung anomaler Verbräuche bei Kunden","c": "Kundenerlebnis","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC09","t": "Kundenbeschwerde-Intelligenz","c": "Kundenerlebnis","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC10","t": "Energieoptimierung der Anlage","c": "Anlagenbetrieb","i": "Wasser","k": "💧","f": "wasser.html"},{"id": "UC01","t": "ETA-Prognose mit Model Registry","c": "Routen und letzte Meile","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC02","t": "Letzte-Meile-Routenoptimierung","c": "Routen und letzte Meile","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC03","t": "Versandnachfrageprognose mit Model Registry","c": "Nachfrage und Planung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC04","t": "Vorausschauende Flottenwartung","c": "Flotte und Wartung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC05","t": "Optimierung von Picking und Auftragsabwicklung","c": "Lager und Fulfillment","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC06","t": "Erkennung fehlgeschlagener Lieferungen und automatisches Rerouting","c": "Routen und letzte Meile","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC07","t": "Lagervolumen- und Personalprognose","c": "Lager und Fulfillment","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC08","t": "Versand 360 Feature Store","c": "Routen und letzte Meile","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC09","t": "Ladungs- und Versandkonsolidierungsoptimierung","c": "Nachfrage und Planung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC10","t": "Überwachung von Kraftstoffverbrauch und Emissionen","c": "Flotte und Wartung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC11","t": "Dynamisches Slotting und Stellplatzoptimierung","c": "Lager und Fulfillment","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC12","t": "Fahrerbewertung und Verkehrssicherheit","c": "Flotte und Wartung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC13","t": "Logistikkostenanalyse und Kundenrentabilität","c": "Nachfrage und Planung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC14","t": "Lager Feature Store für Operationen","c": "Lager und Fulfillment","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC15","t": "Logistik-Chatbot mit RAG für Störungen","c": "Nachfrage und Planung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC16","t": "Kapazitätsoptimierung und Flottendimensionierung","c": "Flotte und Wartung","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC17","t": "Anomalieerkennung in der Aufbewahrungskette","c": "Sicherheit und Compliance","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC18","t": "Sentimentanalyse bei Beschwerden mit NLP","c": "Sicherheit und Compliance","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC19","t": "Betrugserkennung bei Lieferungen und Dokumentation","c": "Sicherheit und Compliance","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC20","t": "Regulatorische Compliance und Lenkzeitverwaltung","c": "Sicherheit und Compliance","i": "Logistik","k": "🚛","f": "logistik.html"},{"id": "UC01","t": "Inhaltsempfehlung mit Model Registry","c": "Inhalt und Produktion","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC02","t": "Vorproduktions-Erfolgsprognose von Inhalten","c": "Inhalt und Produktion","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC03","t": "Zuschauerprognose mit Model Registry","c": "Zielgruppe und Engagement","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC04","t": "KI-gestützte Postproduktionsoptimierung","c": "Inhalt und Produktion","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC05","t": "Erweiterte Zielgruppensegmentierung und CLV","c": "Zielgruppe und Engagement","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC06","t": "Werbeinventar- und Yield-Optimierung","c": "Werbung und Monetarisierung","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC07","t": "Churn-Prognose bei Abonnenten","c": "Distribution und Plattformen","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC08","t": "Viewer 360 Feature Store","c": "Zielgruppe und Engagement","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC09","t": "Programmatische Werbung und kontextuelles Targeting","c": "Werbung und Monetarisierung","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC10","t": "Trendanalyse und Social Listening für Inhalte","c": "Inhalt und Produktion","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC11","t": "Programmplan- und Sendeoptimierung","c": "Distribution und Plattformen","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC12","t": "Wirkungsmessung von Product Placement","c": "Werbung und Monetarisierung","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC13","t": "Preis- und Abo-Bundling-Optimierung","c": "Distribution und Plattformen","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC14","t": "Feature Store für Inhalts-Performance","c": "Distribution und Plattformen","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC15","t": "RAG-Chatbot für Abonnentenservice","c": "Zielgruppe und Engagement","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC16","t": "Werbebetrugserkennung und Bot-Traffic","c": "Werbung und Monetarisierung","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC17","t": "Digitale Rechteverwaltung und Verwertungsfenster","c": "Sicherheit und Rechte","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC18","t": "Piraterie- und unerlaubte Verbreitungserkennung","c": "Sicherheit und Rechte","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC19","t": "Sentiment- und Inhaltsreputationsanalyse","c": "Sicherheit und Rechte","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC20","t": "Regulatorische Compliance und Inhaltsklassifizierung","c": "Sicherheit und Rechte","i": "Medien","k": "🎬","f": "medien.html"},{"id": "UC01","t": "Churn-Prognose mit Model Registry","c": "Kundenerlebnis","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC02","t": "5G-Netzoptimierung und Kapazitätsmanagement","c": "Netz und Konnektivität","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC03","t": "Netzwerkverkehrsprognose mit Model Registry","c": "Netz und Konnektivität","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC04","t": "Vorausschauende Wartung der Netzinfrastruktur","c": "Netz und Konnektivität","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC05","t": "Erweiterte Kundensegmentierung und CLV","c": "Kundenerlebnis","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC06","t": "Preisoptimierung und konvergente Bundles","c": "Monetarisierung und Angebote","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC07","t": "Field Service und Techniker-Optimierung","c": "Operationen und Effizienz","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC08","t": "Customer 360 Telco Feature Store","c": "Kundenerlebnis","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC09","t": "Personalisierte Next-Best-Action-Angebotsengine","c": "Monetarisierung und Angebote","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC10","t": "Anomalieerkennung bei Netzqualität","c": "Netz und Konnektivität","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC11","t": "NLP über Störungen und Support-Tickets","c": "Operationen und Effizienz","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC12","t": "RAG-Chatbot für Telco-Kundenservice","c": "Operationen und Effizienz","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC13","t": "Servicenachfrage- und Umsatzprognose","c": "Monetarisierung und Angebote","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC14","t": "Feature Store für Netzwerk-Performance","c": "Operationen und Effizienz","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC15","t": "SIM- und Portierungsbetrugserkennung","c": "Sicherheit und Compliance","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC16","t": "Cybersicherheit und Netzwerkbedrohungserkennung","c": "Sicherheit und Compliance","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC17","t": "Sentiment- und Markenreputationsanalyse","c": "Monetarisierung und Angebote","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC18","t": "DSGVO-Compliance und Einwilligungsverwaltung","c": "Sicherheit und Compliance","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC19","t": "Omnichannel-Kundenerlebnisanalyse (CX)","c": "Kundenerlebnis","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC20","t": "Betrugserkennung im Revenue Assurance","c": "Sicherheit und Compliance","i": "Telekommunikation","k": "📡","f": "telekommunikation.html"},{"id": "UC01","t": "Stromnachfrageprognose mit Model Registry","c": "Netz und Smart Grid","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC02","t": "Prognose der Photovoltaik-Stromerzeugung","c": "Erneuerbare Erzeugung","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC03","t": "Windenergieerzeugungsprognose mit Model Registry","c": "Erneuerbare Erzeugung","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC04","t": "Energiespeicheroptimierung (BESS)","c": "Erneuerbare Erzeugung","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC05","t": "Erkennung technischer und nicht-technischer Netzverluste","c": "Netz und Smart Grid","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC06","t": "Engpassmanagement im Verteilungsnetz","c": "Netz und Smart Grid","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC07","t": "Vorausschauende Wartung von Windturbinen","c": "Operationen und Effizienz","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC08","t": "Customer Energy 360 Feature Store","c": "Kundenerlebnis","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC09","t": "Kundensegmentierung und Energieeffizienz","c": "Kundenerlebnis","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC10","t": "Portfolio-Optimierung erneuerbarer Erzeugung","c": "Erneuerbare Erzeugung","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC11","t": "Vorausschauende Wartung des Verteilungsnetzes","c": "Operationen und Effizienz","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC12","t": "NLP über Störungen und Arbeitsaufträge","c": "Operationen und Effizienz","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC13","t": "RAG-Chatbot für Energiekunden-Service","c": "Kundenerlebnis","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC14","t": "Feature Store für Netzvermögens-Performance","c": "Operationen und Effizienz","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC15","t": "Strombetrugserkennung mit Smart Metern","c": "Sicherheit und Compliance","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC16","t": "OT/IT-Cybersicherheit der Energieinfrastruktur","c": "Sicherheit und Compliance","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC17","t": "Energiegemeinschafts- und Eigenverbrauchsmanagement","c": "Kundenerlebnis","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC18","t": "Regulatorische Compliance und ESG-Berichterstattung","c": "Sicherheit und Compliance","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC19","t": "Netzlastmanagement für Elektrofahrzeuge","c": "Netz und Smart Grid","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC20","t": "Anomalieerkennung auf Energiemärkten","c": "Sicherheit und Compliance","i": "Energie","k": "⚡","f": "energie.html"},{"id": "UC01","t": "Subventionsbetrugserkennung mit Model Registry","c": "Betrug und Kontrolle","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC02","t": "Multichannel-RAG-Chatbot für Bürgerservice","c": "Bürgererlebnis","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC03","t": "Nachfrageprognose für Sozialdienste mit Model Registry","c": "Öffentliche Politik","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC04","t": "Automatisierung der Aktenklassifizierung","c": "Verwaltungseffizienz","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC05","t": "Kontrolle der Ausführung von Next Generation EU-Mitteln","c": "Betrug und Kontrolle","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC06","t": "Intelligentes städtisches Mobilitätsmanagement","c": "Sicherheit und Smart Cities","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC07","t": "Folgenabschätzung öffentlicher Politiken","c": "Öffentliche Politik","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC08","t": "Bürger 360 Profil Feature Store","c": "Bürgererlebnis","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC09","t": "Optimierung des öffentlichen Beschaffungswesens","c": "Verwaltungseffizienz","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC10","t": "Anomalieerkennung beim Energieverbrauch öffentlicher Gebäude","c": "Sicherheit und Smart Cities","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC11","t": "Steuerbetrugerkennung mit Netzwerkanalyse","c": "Betrug und Kontrolle","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC12","t": "Personalisierung digitaler Bürgerdienste","c": "Bürgererlebnis","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC13","t": "Optimierung der Zuweisung von Gesundheitsressourcen","c": "Öffentliche Politik","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC14","t": "Feature Store für die Performance öffentlicher Einrichtungen","c": "Verwaltungseffizienz","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC15","t": "Cybersicherheit öffentlicher digitaler Infrastruktur","c": "Sicherheit und Smart Cities","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC16","t": "Kontrolle von Unvereinbarkeiten und Interessenkonflikten","c": "Betrug und Kontrolle","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC17","t": "NLP über Vorschriften und Erstellung juristischer Zusammenfassungen","c": "Verwaltungseffizienz","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC18","t": "Prädiktive Analyse sozialer Vulnerabilität","c": "Öffentliche Politik","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC19","t": "Sentimentanalyse bei Bürgerbeteiligung","c": "Bürgererlebnis","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC20","t": "Intelligentes städtisches Abfallmanagement","c": "Sicherheit und Smart Cities","i": "Öffentlicher Sektor","k": "🏛️","f": "oeffentlicher-sektor.html"},{"id": "UC01","t": "Prognose von Krankenhauswiedereinweisungen mit Model Registry","c": "Klinische Daten","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC02","t": "RAG-Chatbot für Patientenbetreuung und Termine","c": "Patientenversorgung","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC03","t": "Versorgungsnachfrageprognose mit Model Registry","c": "Operationen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC04","t": "Risikostratifizierung chronischer Patienten","c": "Chronische Erkrankungen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC05","t": "Vorausschauende Wartung medizinischer Geräte","c": "Operationen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC06","t": "NLP über Krankenakten und Entitätsextraktion","c": "Klinische Daten","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC07","t": "Analyse der Patientenerfahrung und -zufriedenheit","c": "Patientenversorgung","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC08","t": "Patient 360 Profil Feature Store","c": "Patientenversorgung","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC09","t": "Optimierung der OP-Planung","c": "Operationen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC10","t": "Betrugserkennung bei Gesundheitsabrechnungen","c": "Sicherheit","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC11","t": "Fernüberwachung von Patienten mit IoT und ML-Alerts","c": "Chronische Erkrankungen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC12","t": "Klinische Entscheidungsunterstützung mit RAG","c": "Klinische Daten","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC13","t": "Optimierung des Bettenmanagements und Patientenflusses","c": "Operationen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC14","t": "Feature Store für Krankenhausperformance","c": "Sicherheit","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC15","t": "Therapieadhärenz-Prognose","c": "Chronische Erkrankungen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC16","t": "Echtzeit-Frühsepsiserkennung mit ML","c": "Klinische Daten","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC17","t": "Personalisierung von Entlassungs- und Nachsorgeplänen","c": "Patientenversorgung","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC18","t": "Erkennung unerwünschter Ereignisse und Patientensicherheit","c": "Sicherheit","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC19","t": "Prognose des funktionellen Abbaus bei geriatrischen Patienten","c": "Chronische Erkrankungen","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC20","t": "Intelligente Anonymisierung klinischer Daten für die Forschung","c": "Sicherheit","i": "Gesundheit","k": "🏥","f": "gesundheit.html"},{"id": "UC01","t": "Studienabbruchprognose mit Model Registry","c": "Studentenerlebnis","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC02","t": "RAG-Chatbot für Studierendenbetreuung und Vorschriften","c": "Akademische Verwaltung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC03","t": "Einschreibungsprognose mit Model Registry","c": "Zulassungen","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC04","t": "Learning Analytics und Lernpersonalisierung","c": "Studentenerlebnis","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC05","t": "Stundenplan- und Raumzuweisungsoptimierung","c": "Akademische Verwaltung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC06","t": "NLP über wissenschaftliche Produktion und bibliometrische Analyse","c": "Forschung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC07","t": "Studierendenzufriedenheits- und Lehrqualitätsanalyse","c": "Studentenerlebnis","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC08","t": "Studierenden 360 Profil Feature Store","c": "Studentenerlebnis","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC09","t": "Intelligente Segmentierung von Rekrutierungskampagnen","c": "Zulassungen","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC10","t": "KI-gestützte Erkennung von akademischem Betrug und Plagiat","c": "Operationen","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC11","t": "Studienleistungsprognose und Frühwarnsystem","c": "Akademische Verwaltung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC12","t": "RAG-Unterstützung bei der Prüfung von Forschungsanträgen","c": "Forschung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC13","t": "Studienerfolg-Prognose nach Zulassungsprofil","c": "Zulassungen","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC14","t": "Feature Store für die Performance akademischer Programme","c": "Operationen","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC15","t": "Prognose der Wirkung wissenschaftlicher Publikationen","c": "Forschung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC16","t": "Datenbasierte Lehrplangestaltung nach Arbeitsmarkt","c": "Akademische Verwaltung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC17","t": "Optimierung von Stipendien und Finanzhilfen","c": "Zulassungen","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC18","t": "Anomalieerkennung in der universitären Finanzverwaltung","c": "Operationen","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC19","t": "Matchmaking für Universität-Unternehmen-Transfer","c": "Forschung","i": "Bildung","k": "🎓","f": "bildung.html"},{"id": "UC20","t": "DSGVO-Compliance und universitäre Daten-Governance","c": "Operationen","i": "Bildung","k": "🎓","f": "bildung.html"}];
+
+(function() {
+  var input = document.getElementById('globalSearch');
+  var panel = document.getElementById('searchResults');
+  var debounce;
+
+  function normalize(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function search(q) {
+    if (!q || q.length < 2) { panel.classList.remove('active'); return; }
+    var nq = normalize(q);
+    var words = nq.split(/\s+/).filter(function(w) { return w.length > 0; });
+    var results = UC_CATALOG.filter(function(uc) {
+      var hay = normalize(uc.t + ' ' + uc.c + ' ' + uc.i + ' ' + uc.id);
+      return words.every(function(w) { return hay.indexOf(w) !== -1; });
+    });
+    render(results, q);
+  }
+
+  function render(results, q) {
+    if (results.length === 0) {
+      panel.innerHTML = '<div class="sr-empty">Keine Anwendungsfälle gefunden für &laquo;' + q + '&raquo;</div>';
+      panel.classList.add('active');
+      return;
+    }
+    var shown = results.slice(0, 20);
+    var html = '<div class="sr-header">Anzeige von ' + shown.length + (results.length > 20 ? ' von ' + results.length : '') + ' Ergebnis' + (results.length !== 1 ? 'se' : '') + '</div>';
+    shown.forEach(function(uc) {
+      html += '<a class="sr-item" href="' + uc.f + '">' +
+        '<span class="sr-icon">' + uc.k + '</span>' +
+        '<div class="sr-text"><div class="sr-title">' + uc.t + '</div>' +
+        '<div class="sr-meta"><span class="sr-id">' + uc.id + '</span>' + uc.i + ' &middot; ' + uc.c + '</div></div>' +
+        '<svg class="sr-arrow" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>' +
+        '</a>';
+    });
+    panel.innerHTML = html;
+    panel.classList.add('active');
+  }
+
+  input.addEventListener('input', function() {
+    clearTimeout(debounce);
+    var q = this.value.trim();
+    debounce = setTimeout(function() { search(q); }, 150);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.global-search')) panel.classList.remove('active');
+  });
+
+  input.addEventListener('focus', function() {
+    if (this.value.trim().length >= 2) search(this.value.trim());
+  });
+})();
+</script>
+</body>
+</html>

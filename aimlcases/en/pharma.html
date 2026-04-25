@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="../bug-white.png" type="image/png" />
+  <title>Snowflake — AI/ML Solutions for Pharma</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #003545, #11567F);
+      color: #fff;
+      padding: 32px 48px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .hero-left { flex: 1; }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 6px;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .stats-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 28px;
+      text-align: center;
+      color: #1a1a1a;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    .stats-box .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #71D3DC;
+      line-height: 1;
+    }
+
+    .stats-box .stat-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .stats-box .stat-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .stats-box .stat-time-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .stats-divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 10px 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      margin-bottom: 8px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #fff; }
+
+    .intro {
+      background: #fff;
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    .intro h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #11567F;
+      margin-bottom: 14px;
+    }
+
+    .intro p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .filters-bar {
+      background: #fff;
+      padding: 20px 48px 0;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filters-left {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 80px;
+      border: 1.5px solid #ccc;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+
+    .filter-btn.active {
+      background: #29B5E8;
+      border-color: #29B5E8;
+      color: #fff;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #ccc;
+      border-radius: 80px;
+      padding: 7px 14px;
+      gap: 8px;
+      min-width: 200px;
+      background: #fff;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      color: #444;
+      width: 100%;
+      background: transparent;
+    }
+    .search-box input::placeholder { color: #aaa; }
+
+    .results-count {
+      padding: 14px 48px 8px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+      gap: 22px;
+      padding: 16px 48px 64px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
+
+    .card-header {
+      padding: 16px 18px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .badge-id {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #003545;
+      color: #fff;
+    }
+
+    .badge-cat {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .badge-cat.ml { background: #E0F4FD; color: #11567F; }
+    .badge-cat.nlp { background: #EAF0FF; color: #4A6EE0; }
+    .badge-cat.journey { background: #F0FFF4; color: #2E7D4F; }
+
+    .card-time {
+      font-size: 12px;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-body {
+      padding: 0 18px 12px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-pain {
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 10px;
+      padding: 8px 10px;
+      background: #fafafa;
+      border-left: 3px solid #ddd;
+      border-radius: 4px;
+      line-height: 1.5;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 14px;
+    }
+
+    .card-features li {
+      font-size: 12px;
+      color: #444;
+      padding: 3px 0;
+    }
+
+    .card-features li::before {
+      content: "✓ ";
+      color: #29B5E8;
+      font-weight: 700;
+    }
+
+    .card-actions {
+      padding: 12px 14px;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 10px;
+      background: #29B5E8;
+      color: #fff;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-secondary:hover { background: #11567F; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 100%;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .modal-box h2 { color: #11567F; font-size: 20px; margin-bottom: 16px; }
+    .modal-box h3 { color: #29B5E8; font-size: 16px; margin: 20px 0 8px; }
+    .modal-box p { font-size: 14px; line-height: 1.7; color: #444; margin-bottom: 8px; }
+    .modal-box ul { padding-left: 20px; margin-bottom: 12px; }
+    .modal-box li { font-size: 13px; line-height: 1.8; color: #555; }
+
+    .guide-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      background: #003545;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .modal-box .guide-footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+
+
+    .btn-tertiary {
+      padding: 8px 18px;
+      background: #003545;
+      color: #29B5E8;
+      border: none;
+      border-radius: 80px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-tertiary:hover { background: #11567F; }
+
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; padding: 24px 20px; }
+      .cards-grid { grid-template-columns: 1fr; padding: 12px 16px 48px; }
+      .filters-bar { padding: 12px 16px 0; }
+      .results-count { padding: 12px 16px 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-left">
+    <div class="logos">
+      <div class="logo-snowflake">
+        <img src="../bug-white.png" width="24" height="24" alt="Snowflake" />
+        Snowflake
+      </div>
+    </div>
+    <a href="index.html" class="back-link"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Back to Industry Index</a>
+    <p class="hero-eyebrow">Pharma Sector × Snowflake</p>
+    <h1 class="hero-title">AI/ML Solutions for Pharma</h1>
+    <p class="hero-subtitle">Cortex Code Guides and Prompts ready to deploy for pharmaceutical commercial teams</p>
+    <p class="hero-tagline">Built with Snowflake Cortex AI | Immediate impact</p>
+  </div>
+
+  <div class="stats-box">
+    <div class="stat-number">27</div>
+    <div class="stat-label">Use Cases</div>
+    <hr class="stats-divider"/>
+    <div class="stat-time">10-18 min</div>
+    <div class="stat-time-label">Setup Time</div>
+  </div>
+</header>
+
+<section class="intro">
+  <h2>Accelerate Your Analytics with Pre-built AI Solutions for Pharma</h2>
+  <p>Each solution includes Snowflake Cortex Code Prompts with synthetic data, step-by-step guides
+     and SQL-first implementations with Cortex AI/ML. All processing stays within Snowflake,
+     no external dependencies, ready to customize with your own data.</p>
+</section>
+
+<div class="filters-bar">
+  <div class="filters-left" id="filterBtns">
+    <button class="filter-btn active" data-filter="all">All (27)</button>
+    <button class="filter-btn" data-filter="ml">Machine Learning (15)</button>
+    <button class="filter-btn" data-filter="nlp">AI &amp; Natural Language (9)</button>
+    <button class="filter-btn" data-filter="journey">Patient Journey (3)</button>
+  </div>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round">
+      <circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/>
+    </svg>
+    <input id="searchInput" type="text" placeholder="Search use cases…" />
+  </div>
+</div>
+
+<div class="results-count" id="resultsCount">Showing 27 of 27 use cases</div>
+
+<main class="cards-grid" id="cardsGrid"></main>
+
+<script>
+const USE_CASES = [
+  {
+    id:"UC01", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Patient Adherence Risk Prediction",
+    pain:"40-60% of cardiovascular patients fail to follow anticoagulant therapy. There is no unified way to identify at-risk AF patients across different touchpoints.",
+    desc:"AI risk scoring using Snowflake Cortex ML to predict adherence drops at 30/60/90 days. Combines patient portal, pharmacy dispensations, app usage and support calls into actionable insights.",
+    features:["Classification models with Cortex ML","Real-time patient risk scoring","Interactive Streamlit dashboard","Automated intervention recommendations"]
+  },
+  {
+    id:"UC02", cat:"ml", catLabel:"Machine Learning", time:"12 min",
+    title:"Campaign Performance Optimizer",
+    pain:"Manual campaign analysis across 50+ markets. No automated attribution. Budget decisions based on lagging indicators.",
+    desc:"SQL-based multi-touch attribution using window functions to credit touchpoints in conversion journeys. Linear and time-decay models calculate ROI by channel.",
+    features:["Window functions for attribution","Multi-touch attribution models","ROI calculations by channel","Conversion path analysis"]
+  },
+  {
+    id:"UC03", cat:"ml", catLabel:"Machine Learning", time:"10 min",
+    title:"Consumer Sentiment Analysis",
+    pain:"Millions of social media posts, reviews and support tickets. Manual analysis does not scale. Issues go viral before detection.",
+    desc:"Real-time sentiment scoring using Cortex AI Sentiment(). Analyzes social media, reviews and call transcripts. Alerts on sentiment drops and emerging negative topics.",
+    features:["Cortex Sentiment function","Topic modeling with LLMs","Real-time alerts dashboard","Trend detection algorithms"]
+  },
+  {
+    id:"UC04", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Loss of Exclusivity Prediction",
+    pain:"Patent expiration threatens revenue. Complex scenarios with generic entry, price erosion. Excel models cannot handle the variables.",
+    desc:"Forecasting with SNOWFLAKE.ML.FORECAST predicting revenue impact at 24 months. Models generic entry scenarios using historical LoE patterns and market erosion curves.",
+    features:["SNOWFLAKE.ML.FORECAST models","Historical LoE pattern analysis","Revenue erosion scenarios","Projections with confidence intervals"]
+  },
+  {
+    id:"UC05", cat:"ml", catLabel:"Machine Learning", time:"18 min",
+    title:"HCP Engagement Optimizer",
+    pain:"Field teams don't know which physicians to prioritize. No personalized content recommendations. Time wasted on low-value interactions.",
+    desc:"Next-best-action recommendation engine. Analyzes healthcare professional behavior (emails, webinars, prescription data). Suggests optimal content, timing and channel for each physician.",
+    features:["Collaborative filtering models","Prescription likelihood scoring","Personalized content recommendations","Mobile dashboard for sales force"]
+  },
+  {
+    id:"UC06", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Commercial Intelligence Chatbot",
+    pain:"Analysts spend hours creating market reports. Data locked in dashboards requiring training. Executives want instant answers.",
+    desc:"Natural language query interface with Cortex Analyst. Questions like 'What is our market share in Germany in Q3?' with instant visualizations.",
+    features:["Cortex Analyst semantic layer","Natural language to SQL","Auto-generated charts","Query learning and improvement"]
+  },
+  {
+    id:"UC07", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Consumer Segmentation & LTV",
+    pain:"No clarity on which patient segments to prioritize. No patient lifetime value prediction. Generic messaging with poor results.",
+    desc:"RFM analysis using SQL NTILE() to score patients on Recency, Frequency and Monetary Value. Cortex ML predicts 12-month LTV. Business rules assign segments like Champions, Loyal, At Risk.",
+    features:["RFM segmentation with SQL NTILE()","LTV forecasting with Cortex ML","Business rules for segments","Cohort value analysis"]
+  },
+  {
+    id:"UC08", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Content Effectiveness Analyzer",
+    pain:"Thousands of marketing assets created but unclear what works. No systematic creative analysis. Regulatory review slows iteration.",
+    desc:"AI analyzes advertising copy for emotional tone, clarity and persuasion using Cortex Complete. Image classification for visual elements. Predicts winning creative combinations.",
+    features:["Copy analysis with LLM","A/B test aggregation","Statistical significance tests","Creative performance leaderboard"]
+  },
+  {
+    id:"UC09", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Real-World Evidence (RWE) Generatetor",
+    pain:"Real-World Evidence needed for payer submissions. Manual claims analysis takes weeks. Payers demand specific outcome comparisons.",
+    desc:"SQL-based RWE from de-identified EHR and claims data. Comparative effectiveness analysis, adherence metrics (PDC), clinical outcomes, cost-effectiveness (ICER) and utilization patterns.",
+    features:["SQL aggregate functions for outcomes","LEAD/LAG for treatment sequences","PDC and persistence calculations","Cost-effectiveness analysis"]
+  },
+  {
+    id:"UC10", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Competitive Intelligence Monitor",
+    pain:"Manual competitor tracking. Data scattered across sources. No early warning for competitive threats.",
+    desc:"Automated competitive tracking from news, clinical trials, social media and SEC filings. Cortex Complete summarizes developments. Alerts on significant events.",
+    features:["Snowflake Marketplace data feeds","LLM summarization pipeline","Entity extraction and topic modeling","Competitive landscape dashboard"]
+  },
+  {
+    id:"UC11", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Omnichannel Journey Mapper",
+    pain:"Cannot visualize patient movement across touchpoints. Disconnected data from web, email, events. Optimal conversion paths unknown.",
+    desc:"Creates unified patient journey from all touchpoints. Markov chain analysis identifies optimal paths. Detects drop-off and friction points with improvement recommendations.",
+    features:["Event sequence processing","Graph analytics for paths","Funnel analysis algorithms","Interactive Sankey visualizations"]
+  },
+  {
+    id:"UC12", cat:"ml", catLabel:"Machine Learning", time:"12 min",
+    title:"Pricing & Discount Optimizer",
+    pain:"Pricing requires analyzing thousands of scenarios. Patient assistance programs need optimization. No price elasticity prediction by market.",
+    desc:"SQL scenario modeling using GENERATOR() to test 100 price/discount combinations. The POWER() function models elasticity curves. Identifies price points that maximize revenue.",
+    features:["GENERATOR() for scenarios","Price elasticity with POWER()","Revenue optimization analysis","Interactive pricing simulator"]
+  },
+  {
+    id:"UC13", cat:"ml", catLabel:"Machine Learning", time:"12 min",
+    title:"Clinical Trial Site Selector",
+    pain:"New launches need trials but site selection is intuitive. Patient recruitment is slow. No enrollment success prediction.",
+    desc:"SQL geospatial analysis using ST_DISTANCE() and ST_MAKEPOINT() to score sites by patient accessibility, performance history and geographic coverage. Multi-criteria weighted scoring.",
+    features:["SQL geospatial functions","ST_DISTANCE for accessibility","Multi-criteria weighted scoring","Interactive site map dashboard"]
+  },
+  {
+    id:"UC14", cat:"ml", catLabel:"Machine Learning", time:"15 min",
+    title:"Launch Demand Prediction",
+    pain:"New drug launching globally — how much inventory per market? Stockouts damage the brand, excess costs millions.",
+    desc:"Multi-market demand forecasting with Cortex ML. Incorporates external signals: economic data, competitor launches, seasonality. Per-market models with confidence intervals.",
+    features:["Cortex ML forecasting models","External data integration","Real-time dynamic updates","Supply chain scenario planner"]
+  },
+  {
+    id:"UC15", cat:"ml", catLabel:"Machine Learning", time:"12 min",
+    title:"Claims Compliance Manager",
+    pain:"Marketing needs verification of MLR-approved claims. Claims scattered across documents. Risk of non-compliant content being published.",
+    desc:"SQL regex validation and text parsing to extract claims from marketing content. Matching against approved claims library using pattern matching and FLATTEN for multi-value fields.",
+    features:["SQL regex validation (REGEXP_COUNT)","Text parsing with SPLIT_TO_TABLE","FLATTEN for nested analysis","Compliance scoring dashboard"]
+  },
+  {
+    id:"UC16", cat:"nlp", catLabel:"AI & Natural Language", time:"15 min",
+    title:"Social Media Crisis Detection",
+    pain:"Brand threats go viral before detection. Manual social media monitoring does not scale to millions of posts. Adverse events hidden in the noise.",
+    desc:"Real-time sentiment analysis with AI adverse event detection. Monitors Twitter, Facebook, Reddit, TikTok to detect sentiment spikes and brand threats. Statistical anomaly detection triggers alerts.",
+    features:["SENTIMENT() for real-time scoring","Adverse event classification with LLM","Anomaly detection with Z-score","Automated alerts by severity"]
+  },
+  {
+    id:"UC17", cat:"nlp", catLabel:"AI & Natural Language", time:"18 min",
+    title:"Competitor Messaging Intelligence",
+    pain:"Manual competitor tracking on websites. Claims scattered across documents. No systematic positioning analysis.",
+    desc:"Cortex Search for semantic document retrieval with LLM extraction of competitor claims and positioning. Analyzes efficacy claims, safety messaging and positioning changes.",
+    features:["Cortex Search semantic retrieval","LLM claims extraction pipeline","Positioning analysis tracking","Messaging evolution detection"]
+  },
+  {
+    id:"UC18", cat:"nlp", catLabel:"AI & Natural Language", time:"15 min",
+    title:"Global Media Sentiment Tracker",
+    pain:"Millions of news articles, analyst reports and earned media mentions. No unified sentiment view across global markets.",
+    desc:"Automated sentiment tracking across news media, analyst reports and earned media. Share of voice metrics, trend analysis and regional sentiment comparison.",
+    features:["Multi-source sentiment aggregation","Share of voice calculations","Time series trend analysis","Regional sentiment comparison"]
+  },
+  {
+    id:"UC19", cat:"nlp", catLabel:"AI & Natural Language", time:"15 min",
+    title:"Launch Reception Predictor",
+    pain:"No prediction of how a new product launch will be received. Cannot anticipate sentiment trajectory. Reactive communications instead of proactive.",
+    desc:"ML sentiment forecasting using historical launch data and early signals. Predicts sentiment trajectory at 30/60/90 days with confidence intervals for proactive strategy adjustments.",
+    features:["SNOWFLAKE.ML.FORECAST models","Early signal detection","Predictions with confidence intervals","Launch strategy recommendations"]
+  },
+  {
+    id:"UC20", cat:"nlp", catLabel:"AI & Natural Language", time:"15 min",
+    title:"KOL & Influencer Sentiment Network",
+    pain:"Cannot track influential KOL sentiment at scale. Unknown which opinion leaders are positive or negative. Missing early warning signals.",
+    desc:"Network analysis of key opinion leader sentiment and influence. Tracks statements, analyzes sentiment trends, calculates influence scores and maps relationships between KOLs.",
+    features:["KOL influence scoring algorithms","Sentiment tracking over time","Network relationship mapping","Top influencer rankings"]
+  },
+  {
+    id:"UC21", cat:"nlp", catLabel:"AI & Natural Language", time:"15 min",
+    title:"Competitive Product Perception",
+    pain:"Unknown how the product is perceived vs competitors. No systematic perception tracking. Missed opportunities to address perception gaps.",
+    desc:"Comparative sentiment and positioning analysis between competing products. Analyzes social mentions, reviews and discussions to map perception differences and identify messaging opportunities.",
+    features:["Cross-product sentiment comparison","Perception gap identification","Competitive positioning maps","Messaging opportunity detection"]
+  },
+  {
+    id:"UC22", cat:"nlp", catLabel:"AI & Natural Language", time:"12 min",
+    title:"Executive Communication Optimizer",
+    pain:"Unclear which executive messages resonate with audiences. No systematic tone and clarity testing. Important communications without data-driven optimization.",
+    desc:"AI analysis of executive messaging effectiveness using LLMs. Evaluates tone, clarity, persuasion and audience resonance with improvement recommendations.",
+    features:["LLM message quality scoring","Tone and clarity analysis","Audience resonance prediction","Optimization recommendations"]
+  },
+  {
+    id:"UC23", cat:"nlp", catLabel:"AI & Natural Language", time:"15 min",
+    title:"Automated Competitive Intelligence",
+    pain:"Manual competitive monitoring through news, social media and clinical trials. Scattered data. No early warning for competitive threats.",
+    desc:"Continuous automated competitive tracking from multiple sources with LLM summarization. Monitors launches, price changes and competitor clinical results with automated alerts.",
+    features:["Multi-source data aggregation","LLM event summarization","Automated threat detection","Competitive landscape dashboard"]
+  },
+  {
+    id:"UC24", cat:"nlp", catLabel:"AI & Natural Language", time:"15 min",
+    title:"Global Multi-Language Sentiment",
+    pain:"Language barriers prevent global sentiment analysis. Each region analyzed separately. No unified view of global brand sentiment.",
+    desc:"Multi-language sentiment analysis with Cortex TRANSLATE. Tracks sentiment in native languages, provides regional comparisons and consolidates global metrics with cultural context.",
+    features:["Cortex TRANSLATE integration","Multi-language sentiment scoring","Regional sentiment comparison","Consolidated global sentiment metrics"]
+  },
+  {
+    id:"UC25", cat:"journey", catLabel:"Patient Journey", time:"15 min",
+    title:"Patient Treatment Journey Experience",
+    pain:"Patient support teams lack end-to-end visibility into treatment stages. Drop-offs and pain points remain hidden in qualitative feedback.",
+    desc:"Tracks each patient through six journey stages, overlays outputs from Cortex Sentiment, Complete, Summarize and Classify_Text, and displays the highest-friction stages in a Streamlit dashboard.",
+    features:["6-stage journey funnel with completion metrics","CORTEX.SENTIMENT at each stage","CORTEX.COMPLETE + CORTEX.SUMMARIZE for barrier insights","CORTEX.CLASSIFY_TEXT dropout risk scoring"]
+  },
+  {
+    id:"UC26", cat:"journey", catLabel:"Patient Journey", time:"16 min",
+    title:"Treatment Adherence Journey Intelligence",
+    pain:"Adherence teams struggle to predict drop-offs at 30/60/90 days in a 12-month program, leaving interventions reactive and high-risk patients undetected.",
+    desc:"Combines refill analytics with Cortex Sentiment, Complete, Summarize and Classify_Text to classify barriers, predict risk windows and auto-generate intervention recommendations by cohort.",
+    features:["12-month refill and persistence tracking","CORTEX.SENTIMENT medication tone trendline","Barrier classification + AI action plans","CORTEX.CLASSIFY_TEXT risk labels 30/60/90 days"]
+  },
+  {
+    id:"UC27", cat:"journey", catLabel:"Patient Journey", time:"12 min",
+    title:"HCP Engagement Insights Analyzer",
+    pain:"Field teams review handwritten visit notes to decide which physicians need follow-up, delaying responses to urgent requests.",
+    desc:"Scores each visit note with Cortex Sentiment, extracts intent with AI_EXTRACT, and feeds a Snowflake view plus Streamlit dashboard that prioritizes high-risk accounts within 48 hours.",
+    features:["SNOWFLAKE.CORTEX.SENTIMENT() for each interaction","AI_EXTRACT captures intent, urgency, next steps","Priority SQL view for rapid triage","Streamlit tabs for trends, urgent queue, exports"]
+  }
+];
+
+const TOTAL = 27;
+
+function renderCards(list) {
+  const grid = document.getElementById('cardsGrid');
+  const count = document.getElementById('resultsCount');
+  grid.innerHTML = '';
+  count.textContent = `Showing ${list.length} of ${TOTAL} use cases`;
+  list.forEach(uc => {
+    const catClass = { 'Machine Learning':'ml', 'AI & Natural Language':'nlp', 'Patient Journey':'journey' }[uc.catLabel] || '';
+    grid.innerHTML += `
+      <article class="card">
+        <div class="card-header">
+          <div class="card-badges">
+            <span class="badge-id">${uc.id}</span>
+            <span class="badge-cat ${catClass}">${uc.catLabel}</span>
+          </div>
+          <span class="card-time">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2">
+              <circle cx="10" cy="10" r="8"/><polyline points="10,5 10,10 13,13"/>
+            </svg>
+            ${uc.time}
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-title">${uc.title}</div>
+          <div class="card-pain">${uc.pain}</div>
+          <div class="card-desc">${uc.desc}</div>
+          <ul class="card-features">${uc.features.map(f=>`<li>${f}</li>`).join('')}</ul>
+        </div>
+        <div class="card-actions">
+          <a href="#" class="btn-secondary" onclick="verGuia('${uc.id}');return false;">View Guide</a>
+          <a href="#" class="btn-tertiary" onclick="verPrompts('${uc.id}');return false;">Cortex Code Prompts</a>
+        </div>
+      </article>`;
+  });
+}
+
+document.getElementById('filterBtns').addEventListener('click', e => {
+  if (!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  const f = e.target.dataset.filter;
+  let result = USE_CASES;
+  if (f !== 'all') result = USE_CASES.filter(u => u.cat === f);
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  if (q) result = result.filter(u => (u.title+u.desc+u.pain).toLowerCase().includes(q));
+  renderCards(result);
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  const active = document.querySelector('.filter-btn.active');
+  const f = active ? active.dataset.filter : 'all';
+  let result = USE_CASES;
+  if (f !== 'all') result = result.filter(u => u.cat === f);
+  if (q) result = result.filter(u => (u.title+u.desc+u.pain).toLowerCase().includes(q));
+  renderCards(result);
+});
+
+renderCards(USE_CASES);
+
+
+const GUIAS = {
+  UC01: {
+    title: 'Patient Adherence Risk Prediction',
+    contexto: 'This Cortex Code Prompts demo demonstrates patient adherence risk prediction for chronic disease patients using Snowflake Cortex ML.',
+    foco: 'High-adherence medications (anticoagulants, chronic treatments) — long-term therapy.',
+    reto: 'Predict and prevent non-adherence in chronic cardiovascular patients. 40-60% of patients fail to follow therapy.',
+    objetivos: ['Create ML workflows with SNOWFLAKE.ML.CLASSIFICATION','Generatete synthetic adherence data for pharmaceutical products','Build features from pharmacy dispensations and app engagement','Evaluate binary classification models','Build risk stratification dashboards with Streamlit'],
+    funcionalidades: ['ML Model: Binary classification for adherence prediction','Synthetic data: 500 patients, 8 refills each, 120 days of app usage','Features: Dispensation gaps, engagement patterns, demographics','Streamlit Dashboard: Interactive risk scoring and patient filtering'],
+    datos: ['Patients: Demographics, insurance, enrollment dates','Pharmacy dispensations: Chronic medication refill history','App Usage: Mobile app engagement patterns','ML Predictions: Risk level (High/Medium/Low) with probabilities'],
+    como_usar: ['Execute prompts sequentially','Environment setup creates an isolated database','Synthetic data generates 500 patients automatically','The model trains in 30-60 seconds','The dashboard launches interactively in the notebook']
+  },
+  UC02: {
+    title: 'Campaign Performance Optimizer',
+    contexto: 'This Cortex Code Prompts demo demonstrates multi-touch attribution and campaign ROI optimization for pharmaceutical marketing operations.',
+    foco: 'Multi-product campaigns across 50+ markets — marketing budget optimization.',
+    reto: 'Automate campaign attribution to overcome manual analysis and lagging indicators.',
+    objetivos: ['Implement multi-touch attribution with SQL window functions','Generatete synthetic campaign data with conversion journeys','Build linear and time-decay attribution models','Calculatete ROI by channel and market','Create conversion path analysis'],
+    funcionalidades: ['Window functions for touchpoint credit assignment','Multi-touch attribution models (lineal y decaimiento temporal)','ROI calculations by channel with investment vs return','Most effective conversion path analysis'],
+    datos: ['Campaigns: Multiple channels (email, web, events, rep) across 50+ markets','Touchpoints: Interaction sequences per patient/HCP','Conversions: Prescriptions and therapy switches','ROI: Investment and return by channel and market'],
+    como_usar: ['Execute cells sequentially','Synthetic campaigns and touchpoints are generated','Attribution models calculate credit by channel','The dashboard shows ROI and optimal paths']
+  },
+  UC03: {
+    title: 'Consumer Sentiment Analysis',
+    contexto: 'This Cortex Code Prompts demo demonstrates sentiment analysis using Snowflake Cortex AI for pharmaceutical products across multiple therapeutic areas.',
+    foco: 'Pharmaceutical portfolio products — sentiment monitoring across social media, reviews and support tickets.',
+    reto: 'Scale sentiment analysis to millions of posts. Detect viral issues before they escalate.',
+    objetivos: ['Implement sentiment scoring with CORTEX.SENTIMENT()','Detect emerging topics with LLM topic modeling','Build real-time alerts for sentiment drops','Analyze sentiment trends over time'],
+    funcionalidades: ['CORTEX.SENTIMENT function for automated scoring','Topic modeling with CORTEX.COMPLETE (LLM)','Real-time alerts dashboard con Streamlit','Trend and anomaly detection algorithms'],
+    datos: ['Social media posts: Twitter, Facebook, Reddit, TikTok','Reviews: Patient sites and medical forums','Call transcripts: Complaints and support queries','Alerts: Sentiment drop events'],
+    como_usar: ['Execute cells sequentially','Synthetic social media and review data is generated','Cortex AI scores sentiment and detects topics','The dashboard shows trends and real-time alerts']
+  },
+  UC04: {
+    title: 'Loss of Exclusivity Prediction',
+    contexto: 'This Cortex Code Prompts demo demonstrates revenue forecasting for pharmaceutical products approaching patent expiration using time series ML.',
+    foco: 'Mature products — loss of exclusivity impact and generic erosion scenarios.',
+    reto: 'Predict revenue impact at 24 months with multiple generic entry scenarios.',
+    objetivos: ['Implement forecasting with SNOWFLAKE.ML.FORECAST','Model historical loss of exclusivity patterns','Create market erosion scenarios with generics','Generatete projections with confidence intervals','Analyze financial impact by market'],
+    funcionalidades: ['SNOWFLAKE.ML.FORECAST models para series temporales','Historical LoE pattern analysis en la industria','Scenario modeling: optimistic, base, pessimistic','Projections with confidence intervals a 24 meses'],
+    datos: ['Historical revenue: Monthly sales by market','Patents: Expiration dates and extensions','Generics: Entry history in similar markets','Scenarios: Projected erosion curves'],
+    como_usar: ['Execute cells sequentially','Historical sales data is generated','ML.FORECAST trains models by market','The dashboard shows scenarios and projections']
+  },
+  UC05: {
+    title: 'HCP Engagement Optimizer',
+    contexto: 'This Cortex Code Prompts demo demonstrates prescription propensity prediction in the pharmaceutical industry using engagement data and machine learning.',
+    foco: 'Prescription medications — optimizing engagement with specialists and healthcare professionals (HCPs).',
+    reto: 'Prioritize HCPs to maximize field team impact. Personalize content and timing.',
+    objetivos: ['Build next-best-action recommendation engine','Analyze HCP engagement patterns (emails, webinars, prescriptions)','Generatete prescription likelihood scores','Personalize content recommendations per HCP','Create mobile dashboard for sales force'],
+    funcionalidades: ['Collaborative filtering models para recomendaciones','Likelihood-to-prescribe scoring per HCP','Personalized content and channel recommendations','Sales force dashboard with prioritization'],
+    datos: ['HCPs: Profile, specialty, prescription history','Interactions: Emails, webinars, rep visits','Prescriptions: Data by product and HCP','Recommendations: Next-best-action per HCP'],
+    como_usar: ['Execute cells sequentially','HCP profiles and interaction data are generated','The model calculates prescription propensity','The dashboard prioritizes HCPs and suggests actions']
+  },
+  UC06: {
+    title: 'Commercial Intelligence Chatbot',
+    contexto: 'This Cortex Code Prompts demo builds a natural language query interface for pharmaceutical commercial intelligence using Cortex Analyst.',
+    foco: 'Pharmaceutical portfolio products — market queries, share, sales by region.',
+    reto: 'Democratize access to commercial insights without SQL or dashboard training.',
+    objetivos: ['Implement Cortex Analyst with semantic layer','Configure automated natural language to SQL','Generatete automatic visualizations','Improve queries with continuous learning'],
+    funcionalidades: ['Cortex Analyst semantic layer sobre datos comerciales','Natural language to optimized SQL conversion','Auto-generated charts by query type','Learning system to improve responses'],
+    datos: ['Sales: Data by product, market, period','Market share: Competitive comparisons','Pipeline: Opportunities and forecasts','KPIs: Key commercial metrics'],
+    como_usar: ['Execute cells sequentially','The semantic layer is configured with Cortex Analyst','Interact with natural language questions','The system generates SQL and automatic visualizations']
+  },
+  UC07: {
+    title: 'Consumer Segmentation & LTV',
+    contexto: 'This Cortex Code Prompts demo implements RFM segmentation and patient lifetime value prediction in the pharmaceutical industry.',
+    foco: 'AFib patients — value segmentation and 12-month LTV prediction.',
+    reto: 'Identify which patient segments to prioritize and predict their future value.',
+    objetivos: ['Implement RFM analysis with SQL NTILE()','Score patients on Recency, Frequency and Monetary Value','Predict 12-month LTV with Cortex ML','Assign segments with business rules','Analyze value by cohort'],
+    funcionalidades: ['RFM segmentation with SQL NTILE() para scoring','LTV forecasting with Cortex ML a 12 meses','Business rules for Champions, Loyal, At Risk','Cohort value analysis y segmento'],
+    datos: ['Patients: Demographic and clinical profile','Transactions: Purchases, refills, interactions','RFM Scores: Recency, frequency, value quintiles','LTV: 12-month value prediction'],
+    como_usar: ['Execute cells sequentially','Patient transaction data is generated','SQL calculates RFM scores and assigns segments','The dashboard shows segments and LTV values']
+  },
+  UC08: {
+    title: 'Content Effectiveness Analyzer',
+    contexto: 'This Cortex Code Prompts demo analyzes pharmaceutical marketing content effectiveness using Cortex Complete for AI copy analysis.',
+    foco: 'Pharmaceutical products — marketing asset analysis, emotional tone, clarity and persuasion.',
+    reto: 'Analyze thousands of marketing assets without systematic creative analysis, accelerated by regulatory review.',
+    objetivos: ['Analyze advertising copy with LLM (Cortex Complete)','Classify images and visual elements','Aggregate A/B test results','Calculatete statistical significance of variants','Create creative performance leaderboard'],
+    funcionalidades: ['Copy analysis with CORTEX.COMPLETE (tone, clarity, persuasion)','A/B test result aggregation by variant','Statistical significance tests automatizados','Creative performance leaderboard con rankings'],
+    datos: ['Marketing assets: Copy, images, A/B variants','Metrics: CTR, engagement, conversions by variant','LLM Analysis: Tone, clarity and persuasion scoring','Rankings: Effectiveness leaderboard by asset'],
+    como_usar: ['Execute cells sequentially','Synthetic marketing assets are generated','Cortex Complete analyzes tone, clarity and persuasion','The dashboard shows rankings and recommendations']
+  },
+  UC09: {
+    title: 'Real-World Evidence (RWE) Generatetor',
+    contexto: 'This Cortex Code Prompts demo generates Real-World Evidence (RWE) from EHR and claims data for payer submissions in the pharmaceutical industry.',
+    foco: 'Innovative product vs standard of care — comparative effectiveness, adherence and cost-effectiveness.',
+    reto: 'Generatete RWE for payer submissions in an automated way, comparing results of the product under analysis vs standard of care.',
+    objetivos: ['Build comparative effectiveness analysis with SQL','Calculatete adherence metrics (PDC)','Analyze clinical outcomes (stroke reduction)','Generatete cost-effectiveness analysis (ICER)','Study healthcare utilization patterns'],
+    funcionalidades: ['SQL aggregate functions for outcomes analysis','LEAD/LAG for treatment sequences','PDC (Proportion of Days Covered) and persistence calculations','Cost-effectiveness analysis (ICER) y NNT'],
+    datos: ['EHR: De-identified clinical records','Claims: Dispensations, hospitalizations, visits','Outcomes: Stroke, bleeding, mortality events','Costs: Direct and indirect per treatment'],
+    como_usar: ['Execute cells sequentially','Synthetic EHR and claims data is generated','SQL calculates comparative effectiveness and PDC','The dashboard shows results for submissions']
+  },
+  UC10: {
+    title: 'Competitive Intelligence Monitor',
+    contexto: 'This Cortex Code Prompts demo builds an automated competitive intelligence monitor using Cortex Search to index clinical trials, press releases and news.',
+    foco: 'Competing anticoagulants (Eliquis, Pradaxa) — tracking competitive movements.',
+    reto: 'Automate competitive tracking scattered across multiple sources without early warning.',
+    objetivos: ['Integrate Snowflake Marketplace data feeds','Implement LLM summarization pipeline (Cortex Complete)','Extract entities and model topics automatically','Create competitive landscape dashboard with alerts'],
+    funcionalidades: ['Cortex Search for semantic document retrieval','Summarization pipeline with CORTEX.COMPLETE','Entity extraction and topic modeling','Competitive landscape dashboard con alertas'],
+    datos: ['News: Competitor articles and press releases','Clinical trials: Published records and results','Social media: Relevant mentions and discussions','SEC: Financial filings and earnings'],
+    como_usar: ['Execute cells sequentially','Competitive intelligence sources are generated','Cortex Search indexes and enables semantic search','The dashboard shows alerts and summaries']
+  },
+  UC11: {
+    title: 'Omnichannel Journey Mapper',
+    contexto: 'This Cortex Code Prompts demo tracks HCP engagement across multiple channels to understand which touchpoint sequences lead to prescriptions.',
+    foco: 'Prescription medications — omnichannel HCP journey (Email, Web, Events, Rep Visits).',
+    reto: 'Visualize HCP movement between touchpoints and optimize paths to conversion.',
+    objetivos: ['Process multi-channel event sequences','Implement Markov chain analysis','Identify optimal paths to prescription','Detect drop-off and friction points','Create interactive Sankey visualizations'],
+    funcionalidades: ['Event sequence processing por HCP','Graph analytics for path mapping','Funnel analysis algorithms with conversion rates','Interactive Sankey visualizations del journey'],
+    datos: ['Events: Email opens, web visits, event attendance, rep visits','Sequences: Engagement paths per HCP','Conversions: Prescriptions and therapy switches','Funnel: Conversion rates by stage'],
+    como_usar: ['Execute cells sequentially','Multi-channel engagement data is generated','Markov analysis identifies optimal paths','The dashboard shows funnels and Sankey visualizations']
+  },
+  UC12: {
+    title: 'Pricing & Discount Optimizer',
+    contexto: 'This Cortex Code Prompts demo implements pricing and discount scenario modeling for pharmaceutical products using SQL functions.',
+    foco: 'Pharmaceutical portfolio products — pricing optimization and patient assistance programs.',
+    reto: 'Analyze thousands of price/discount scenarios to maximize revenue and optimize assistance programs.',
+    objetivos: ['Generatete scenarios with GENERATOR() for 100 combinations','Model price elasticity with POWER()','Identify price points that maximize revenue','Build interactive pricing simulator'],
+    funcionalidades: ['GENERATOR() for massive scenario creation','Price elasticity with POWER() function','Revenue optimization analysis por punto de precio','Interactive pricing simulator with Streamlit'],
+    datos: ['Prices: Price catalog by product and market','Discounts: Assistance and copay programs','Scenarios: 100 price/discount combinations','Results: Projected demand and revenue curves'],
+    como_usar: ['Execute cells sequentially','Pricing and demand data is generated','GENERATOR() creates test scenarios','The simulator shows impact of price changes']
+  },
+  UC13: {
+    title: 'Clinical Trial Site Selector',
+    contexto: 'This Cortex Code Prompts demo implements clinical trial site selection and optimization using SQL geospatial analysis.',
+    foco: 'New pharmaceutical products — clinical trial site selection.',
+    reto: 'Overcome intuitive site selection with data-driven accessibility and performance analysis.',
+    objetivos: ['Implement geospatial analysis with ST_DISTANCE() and ST_MAKEPOINT()','Score sites by patient accessibility','Evaluate recruitment performance history','Create multi-criteria weighted scoring'],
+    funcionalidades: ['SQL geospatial functions for distance analysis','ST_DISTANCE for patient accessibility calculation','Multi-criteria weighted scoring para ranking de centros','Interactive site map dashboard'],
+    datos: ['Sites: Location, capacity, trial history','Patients: Geographic distribution of target population','Performance: Historical recruitment rates','Rankings: Weighted scores per site'],
+    como_usar: ['Execute cells sequentially','Site and patient data is generated','ST_DISTANCE calculates accessibility per site','The dashboard shows ranking and interactive map']
+  },
+  UC14: {
+    title: 'Launch Demand Prediction',
+    contexto: 'This Cortex Code Prompts demo predicts demand for new product launches using SNOWFLAKE.ML.FORECAST with analog product adoption patterns.',
+    foco: 'New cardiovascular drugs — multi-market demand forecasting for supply chain.',
+    reto: 'Predict inventory per market to avoid stockouts and costly excess.',
+    objetivos: ['Implement multi-market forecasting with Cortex ML','Integrate external signals (economic data, competition, seasonality)','Model S-curve adoption with analog products','Generatete confidence intervals by market'],
+    funcionalidades: ['SNOWFLAKE.ML.FORECAST models para series temporales','External data integration as exogenous variables','Real-time dynamic updates','Supply chain scenario planner'],
+    datos: ['Historical sales: Analog products by market','External signals: GDP, competitor launches, seasonality','Forecasts: Projected demand with confidence intervals','Supply chain: Required inventory by market and month'],
+    como_usar: ['Execute cells sequentially','Historical sales data and external signals are generated','ML.FORECAST trains models by market','The dashboard shows projections and scenarios']
+  },
+  UC15: {
+    title: 'Claims Compliance Manager',
+    contexto: 'This Cortex Code Prompts demo implements automated marketing claims verification against an MLR-approved library in the pharmaceutical industry.',
+    foco: 'Pharmaceutical portfolio products — claims compliance in marketing content.',
+    reto: 'Automatically verify approved claims to avoid non-compliant content being published.',
+    objetivos: ['Implement SQL regex validation with REGEXP_COUNT','Parse marketing text with SPLIT_TO_TABLE','Match claims against approved library','Analyze multi-value fields with FLATTEN','Create compliance scoring dashboard'],
+    funcionalidades: ['SQL regex validation (REGEXP_COUNT) para claims','Text parsing with SPLIT_TO_TABLE','FLATTEN for nested field analysis','Compliance scoring dashboard por asset'],
+    datos: ['Marketing assets: Copy, promotional materials','Approved claims: MLR library of verified claims','Validations: Regex matching results','Scores: Compliance level per asset'],
+    como_usar: ['Execute cells sequentially','Assets and approved claims library are generated','SQL validates claims against the library','The dashboard shows scores and non-compliance']
+  },
+  UC16: {
+    title: 'Social Media Crisis Detection',
+    contexto: 'This Cortex Code Prompts demo implements social media crisis detection with real-time sentiment analysis and adverse event detection.',
+    foco: 'Pharmaceutical portfolio products — brand threat monitoring on social media.',
+    reto: 'Detect viral threats and adverse events before they escalate, at scale of millions of posts.',
+    objetivos: ['Implement real-time scoring with CORTEX.SENTIMENT()','Classify adverse events with LLM','Detect statistical anomalies with Z-score','Create automated alerts by severity'],
+    funcionalidades: ['SENTIMENT() for real-time scoring de todos los posts','Adverse event classification with CORTEX.COMPLETE','Anomaly detection with statistical Z-score','Automated alerts by severity and reach'],
+    datos: ['Social media: Posts from Twitter, Facebook, Reddit, TikTok','Sentiment: Scores per post and temporal trend','Anomalies: Spikes detected with Z-score','Alerts: Events classified by severity'],
+    como_usar: ['Execute cells sequentially','Synthetic social media posts are generated','Cortex AI scores sentiment and classifies events','The dashboard shows alerts and trends']
+  },
+  UC17: {
+    title: 'Competitor Messaging Intelligence',
+    contexto: 'This Cortex Code Prompts demo implements competitor messaging intelligence extraction using Cortex Search and LLM.',
+    foco: 'Eliquis, Pradaxa — positioning and competitive claims analysis in the anticoagulant space.',
+    reto: 'Systematize competitive positioning analysis that is currently manual and scattered.',
+    objetivos: ['Implementar Cortex Search for semantic document retrieval','Extract claims and positioning with LLM','Analyze efficacy claims and safety messaging','Detect positioning changes over time'],
+    funcionalidades: ['Cortex Search for semantic document retrieval','Claims extraction pipeline with CORTEX.COMPLETE','Positioning analysis tracking por competidor','Messaging evolution detection over time'],
+    datos: ['Documents: Competitor websites, promotional materials','Claims: Extracted efficacy and safety claims','Posicionamiento: Competitive positioning maps','Evolution: Messaging changes over time'],
+    como_usar: ['Execute cells sequentially','Synthetic competitive documents are generated','Cortex Search indexes and enables semantic search','The dashboard shows claims and positioning evolution']
+  },
+  UC18: {
+    title: 'Global Media Sentiment Tracker',
+    contexto: 'This Cortex Code Prompts demo implements automated global media sentiment tracking in the pharmaceutical industry.',
+    foco: 'Leading pharmaceutical products — sentiment monitoring in news, analyst reports and earned media.',
+    reto: 'Obtain a unified view of global brand sentiment from millions of scattered sources.',
+    objetivos: ['Aggregate sentiment from multiple media sources','Calculatete share of voice metrics','Analyze time series trends','Compare regional sentiment'],
+    funcionalidades: ['Multi-source sentiment aggregation automatizada','Share of voice calculations por competidor','Time series trend analysis','Regional sentiment comparison by market'],
+    datos: ['News: Global media articles','Analysts: Market reports and briefings','Earned media: Mentions and spontaneous coverage','Metrics: Share of voice and regional trends'],
+    como_usar: ['Execute cells sequentially','Multi-source media data is generated','Cortex AI analyzes sentiment by source and region','The dashboard shows share of voice and trends']
+  },
+  UC19: {
+    title: 'Launch Reception Predictor',
+    contexto: 'This Cortex Code Prompts demo predicts how a new product launch will be received using ML and early sentiment signals.',
+    foco: 'New cardiovascular products — post-launch sentiment trajectory prediction.',
+    reto: 'Move from reactive to proactive communications by predicting launch reception.',
+    objetivos: ['Implement sentiment forecasting with SNOWFLAKE.ML.FORECAST','Detect early reception signals','Generatete predictions with confidence intervals at 30/60/90 days','Create strategy adjustment recommendations'],
+    funcionalidades: ['SNOWFLAKE.ML.FORECAST models for sentiment prediction','Early signal detection in first hours/days','Predictions with confidence intervals calibrados','Trajectory-based strategy recommendations'],
+    datos: ['Historical launches: Sentiment data from previous products','Early signals: First posts, reactions, media coverage','Forecasts: Sentiment trajectory at 30/60/90 days','Recommendations: Communication strategy adjustments'],
+    como_usar: ['Execute cells sequentially','Historical launch data is generated','ML.FORECAST predicts sentiment trajectory','The dashboard shows predictions and recommendations']
+  },
+  UC20: {
+    title: 'KOL & Influencer Sentiment Network',
+    contexto: 'This Cortex Code Prompts demo implements KOL (Key Opinion Leader) sentiment and influence network analysis in the pharmaceutical industry.',
+    foco: 'KOLs by therapeutic area — sentiment and influence tracking in the sector.',
+    reto: 'Track influential KOL sentiment at scale and identify early signals.',
+    objetivos: ['Build KOL influence scoring algorithms','Track KOL sentiment over time','Map relationships and influence networks','Create top influencer rankings'],
+    funcionalidades: ['KOL influence scoring algorithms','Sentiment tracking with temporal trend','Network relationship mapping entre KOLs','Dynamic top influencer rankings'],
+    datos: ['KOLs: Profile, specialty, publications, lectures','Statements: KOL publications and quotes','Sentiment: Scores per KOL and temporal evolution','Network: Relationships and co-authorships between KOLs'],
+    como_usar: ['Execute cells sequentially','KOL profiles and statements are generated','Cortex AI analyzes sentiment and influence','The dashboard shows rankings and network map']
+  },
+  UC21: {
+    title: 'Competitive Product Perception',
+    contexto: 'This Cortex Code Prompts demo implements comparative product perception analysis between own portfolio and market competitors.',
+    foco: 'Own product vs competitors — comparative perception in the pharmaceutical market.',
+    reto: 'Understand perception differences between products and detect messaging opportunities.',
+    objetivos: ['Compare sentiment between competitive products','Identify perception gaps between products','Create competitive positioning maps','Detect messaging improvement opportunities'],
+    funcionalidades: ['Cross-product sentiment comparison','Perception gap identification y atributos','Competitive positioning maps multidimensional','Specific messaging opportunity detection'],
+    datos: ['Social mentions: Posts and discussions by product','Reviews: Patient and professional opinions','Attributes: Efficacy, safety, convenience, price','Positioning: Competitive maps by attribute'],
+    como_usar: ['Execute cells sequentially','Multi-product perception data is generated','Cortex AI analyzes sentiment by product and attribute','The dashboard shows maps and competitive gaps']
+  },
+  UC22: {
+    title: 'Executive Communication Optimizer',
+    contexto: 'This Cortex Code Prompts demo analyzes pharmaceutical executive communication effectiveness using AI to evaluate tone, clarity and resonance.',
+    foco: 'Pharmaceutical executive communications — AI optimization of corporate messages.',
+    reto: 'Optimize important communications without systematic tone, clarity and audience resonance testing.',
+    objetivos: ['Analyze executive messages with LLM (Cortex Complete)','Evaluate tone, clarity and persuasion','Predict resonance with different audiences','Generatete optimization recommendations'],
+    funcionalidades: ['Message quality scoring with CORTEX.COMPLETE','Multidimensional tone and clarity analysis','Audience resonance prediction objetivo','Specific optimization recommendations'],
+    datos: ['Messages: Executive and corporate communications','Analysis: Tone, clarity, persuasion scores','Audience: Target audience profiles','Recommendations: Improvement suggestions by dimension'],
+    como_usar: ['Execute cells sequentially','Synthetic executive communications are generated','Cortex Complete analyzes each dimension','The dashboard shows scores and recommendations']
+  },
+  UC23: {
+    title: 'Automated Competitive Intelligence',
+    contexto: 'This Cortex Code Prompts demo implements a continuous automated competitive intelligence system for the anticoagulant space.',
+    foco: 'Competing anticoagulants — automated multi-source monitoring with alerts.',
+    reto: 'Overcome manual and scattered competitive monitoring without an early warning system.',
+    objetivos: ['Aggregate data from multiple competitive sources','Summarize events with LLM automatically','Detect competitive threats with alerts','Create updated competitive landscape dashboard'],
+    funcionalidades: ['Automated multi-source data aggregation','Event summarization with CORTEX.COMPLETE','Automated threat detection y cambios','Competitive landscape dashboard con timeline'],
+    datos: ['News: Competitor launches and movements','Prices: Pricing and discount changes','Clinical: Trial results and approvals','Alerts: Classified significant events'],
+    como_usar: ['Execute cells sequentially','Multi-channel intelligence sources are generated','Cortex Complete summarizes and classifies events','The dashboard shows alerts and competitive landscape']
+  },
+  UC24: {
+    title: 'Global Multi-Language Sentiment',
+    contexto: 'This Cortex Code Prompts demo implements multi-language sentiment analysis using Cortex TRANSLATE for a unified global view.',
+    foco: 'Leading pharmaceutical products — global sentiment in native languages consolidated into unified metrics.',
+    reto: 'Overcome language barriers that prevent unified global brand sentiment analysis.',
+    objetivos: ['Integrate CORTEX.TRANSLATE for multi-language translation','Implement sentiment scoring in native languages','Compare regional sentiment con contexto cultural','Consolidate global metrics from multiple languages'],
+    funcionalidades: ['CORTEX.TRANSLATE integration for 10+ languages','Multi-language sentiment scoring con CORTEX.SENTIMENT','Regional sentiment comparison con contexto','Consolidated global sentiment metrics'],
+    datos: ['Multi-language posts: Content in English, German, French, Spanish, Japanese...','Translations: Content translated with Cortex TRANSLATE','Sentiment: Scores by language and region','Global: Consolidated metrics with regional weighting'],
+    como_usar: ['Execute cells sequentially','Posts in multiple languages are generated','Cortex TRANSLATE translates and SENTIMENT scores','The dashboard shows regional and global comparison']
+  },
+  UC25: {
+    title: 'Patient Treatment Journey Experience',
+    contexto: 'This Cortex Code Prompts demo tracks patient experience through six treatment journey stages using multiple Cortex AI functions.',
+    foco: 'AFib patients — 6-stage treatment journey with friction analysis.',
+    reto: 'Gain end-to-end visibility into treatment stages to identify drop-offs and pain points.',
+    objetivos: ['Model 6-stage journey funnel with completion metrics','Implementar CORTEX.SENTIMENT at each stage del journey','Usar CORTEX.COMPLETE + CORTEX.SUMMARIZE for barrier insights','Classify dropout risk with CORTEX.CLASSIFY_TEXT'],
+    funcionalidades: ['6-stage funnel: Diagnosis → Prescription → Dispensation → Adherence → Follow-up → Outcome','CORTEX.SENTIMENT at each stage del journey','CORTEX.COMPLETE + SUMMARIZE for barrier analysis','CORTEX.CLASSIFY_TEXT for dropout risk scoring'],
+    datos: ['Patients: Clinical and demographic profile','Journey: 6 stages with timestamps and feedback','Sentiment: Scores by stage and patient','Barriers: Friction reason analysis'],
+    como_usar: ['Execute cells sequentially','6-stage journey data is generated','Cortex AI analyzes sentiment and barriers by stage','The dashboard shows funnel and friction points']
+  },
+  UC26: {
+    title: 'Treatment Adherence Journey Intelligence',
+    contexto: 'This Cortex Code Prompts demo combines refill analytics with AI to classify adherence barriers and predict risk windows.',
+    foco: 'Chronic medications — 12-month adherence program with 30/60/90-day dropout prediction.',
+    reto: 'Predict drop-offs at 30/60/90 days in a 12-month program, moving from reactive to proactive interventions.',
+    objetivos: ['Implement 12-month refill and persistence tracking','Analyze medication sentiment trend with CORTEX.SENTIMENT','Classify barriers and generate action plans with AI','Label 30/60/90-day risk with CORTEX.CLASSIFY_TEXT'],
+    funcionalidades: ['Complete 12-month refill and persistence tracking','CORTEX.SENTIMENT medication tone trendline','Barrier classification + AI action plans','CORTEX.CLASSIFY_TEXT risk labels 30/60/90 days'],
+    datos: ['Refills: 12-month dispensation history','Persistence: Gaps and interruption patterns','Sentiment: Patient tone trend about treatment','Risk: Risk labels by time window'],
+    como_usar: ['Execute cells sequentially','12-month refill data is generated','Cortex AI classifies barriers and predicts risk','The dashboard shows cohorts and risk windows']
+  },
+  UC27: {
+    title: 'HCP Engagement Insights Analyzer',
+    contexto: 'This Cortex Code Prompts demo scores field visit notes with Cortex Sentiment and extracts intent with AI_EXTRACT to prioritize HCP follow-up.',
+    foco: 'Pharmaceutical field teams — rapid triage of healthcare professional visit notes.',
+    reto: 'Eliminate manual visit note review to prioritize urgent HCP follow-up within 48 hours.',
+    objetivos: ['Score visit notes with SNOWFLAKE.CORTEX.SENTIMENT()','Extract intent, urgency and next steps with AI_EXTRACT','Create priority SQL view for rapid triage','Build Streamlit dashboard for urgent queue management'],
+    funcionalidades: ['SNOWFLAKE.CORTEX.SENTIMENT() for each interaction de campo','AI_EXTRACT captures intent, urgency and next steps','Priority SQL view for rapid triage de cuentas','Streamlit tabs for trends, urgent queue and exports'],
+    datos: ['Visit notes: Free text from HCP interactions','Sentiment: Score per note and trend per HCP','Extraction: Intent, urgency, next steps per visit','Prioritization: HCP ranking by urgency'],
+    como_usar: ['Execute cells sequentially','Synthetic visit notes are generated','Cortex AI scores sentiment and extracts intent','The dashboard shows prioritization queue and trends']
+  }
+};
+
+function verGuia(ucId) {
+  const g = GUIAS[ucId];
+  if (!g) { alert('Guide not yet available for ' + ucId); return; }
+  const box = document.getElementById('guiaModalBox');
+  let h = `<button class="modal-close" onclick="cerrarModal('guiaModal')">&times;</button>`;
+  h += `<span class="guide-badge">${ucId}</span>`;
+  h += `<h2>${g.title}</h2>`;
+  h += `<h3>Business Context</h3><p>${g.contexto}</p>`;
+  h += `<p><strong>Focus:</strong> ${g.foco}</p>`;
+  h += `<p><strong>Business challenge:</strong> ${g.reto}</p>`;
+  h += `<h3>Learning Objectives</h3><ul>${g.objetivos.map(o=>`<li>${o}</li>`).join('')}</ul>`;
+  h += `<h3>Features</h3><ul>${g.funcionalidades.map(f=>`<li>${f}</li>`).join('')}</ul>`;
+  h += `<h3>Generateted Data</h3><ul>${g.datos.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+  h += `<h3>How to Use</h3><ul>${g.como_usar.map(c=>`<li>${c}</li>`).join('')}</ul>`;
+  h += `<p class="guide-footer">Built with Snowflake Cortex AI + Streamlit</p>`;
+  box.innerHTML = h;
+  document.getElementById('guiaModal').classList.add('active');
+}
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('active');
+});
+function cerrarModal(id) { document.getElementById(id).classList.remove('active'); }
+
+
+const PROMPTS = {
+  UC01: {
+    title: 'Patient Adherence Risk Prediction',
+    intro: 'Abre Cortex Code en Snowsight y ejecuta estos prompts secuencialmente. Cada paso genera el código necesario para construir un modelo de predicción de adherencia con ML.CLASSIFICATION.',
+    steps: [
+      { title: 'Set up environment', desc: 'Crea la base de datos, esquema y warehouse.', prompt: 'Create a database called PATIENT_ADHERENCE_DB with schema PUBLIC and a COMPUTE_WH warehouse size SMALL with 60-second auto-suspend. Establece el contexto de sesión.' },
+      { title: 'Generatete data de pacientes', desc: 'Generate 500 synthetic patients con perfil cardiovascular.', prompt: 'Generate una tabla PATIENTS con 500 filas using GENERATOR(). Columnas: patient_id (PAT00001...), age (25-85), gender (M/F), insurance_type (Private 40%, Medicare 30%, Medicaid 30%), enrollment_date (últimos 2 años), risk_score_baseline (0.1-0.9). Incluye indicadores de condición cardiovascular.' },
+      { title: 'Generater dispensaciones en farmacia', desc: 'Generate historial de refills del medicamento.', prompt: 'Generate tabla PHARMACY_FILLS cruzando pacientes con 8 refills cada uno. Columnas: fill_id, patient_id, medication (nombre_medicamento), fill_date, days_supply (30), quantity, pharmacy_id. Pacientes no adherentes tienen gaps crecientes entre refills (45-90 días vs 28-35 días).' },
+      { title: 'Generatete data de uso de app', desc: 'Patrones de engagement con app móvil.', prompt: 'Generate tabla APP_USAGE con registros diarios por paciente durante 120 días: patient_id, usage_date, sessions, minutes_active, reminders_acknowledged. Pacientes no adherentes muestran menor engagement progresivo.' },
+      { title: 'Ingeniería de variables', desc: 'Construye features predictivas.', prompt: 'Create table ADHERENCE_FEATURES haciendo JOIN entre patients, pharmacy_fills y app_usage. Calculate: avg_fill_gap, max_fill_gap, fill_gap_trend (usando LAG), avg_daily_sessions, session_decline_rate, reminder_ack_rate, days_since_enrollment, risk_score_baseline. Target: is_non_adherent (booleano basado en gap > 45 días).' },
+      { title: 'Dividir train/test', desc: 'Separa 80% entrenamiento y 20% test.', prompt: 'Create table TRAINING con SAMPLE(80) de ADHERENCE_FEATURES y tabla TEST con los registros restantes. Muestra el conteo y tasa de no-adherencia de cada conjunto.' },
+      { title: 'Train model', desc: 'Clasificador de riesgo de adherencia.', prompt: 'Entrena un modelo SNOWFLAKE.ML.CLASSIFICATION llamado ADHERENCE_PREDICTOR usando la tabla TRAINING, con TARGET_COLNAME is_non_adherent.' },
+      { title: 'Evaluar rendimiento', desc: 'Métricas del modelo.', prompt: 'Ejecuta SHOW_EVALUATION_METRICS, SHOW_CONFUSION_MATRIX y SHOW_FEATURE_IMPORTANCE del modelo ADHERENCE_PREDICTOR.' },
+      { title: 'Puntuar pacientes', desc: 'Generate predicciones con niveles de riesgo.', prompt: 'Create table ADHERENCE_PREDICTIONS usando ADHERENCE_PREDICTOR!PREDICT sobre el test. Clasifica en Alto Riesgo (>=70%), Riesgo Medio (30-70%), Bajo Riesgo (<30%). Muestra resumen por nivel.' },
+      { title: 'Dashboard Streamlit', desc: 'Dashboard interactivo de riesgo.', prompt: 'Crea un dashboard Streamlit con: 4 KPIs (total pacientes, alto riesgo, exactitud, tasa no-adherencia), gráfico de barras por nivel de riesgo, tabla filtrable de pacientes con probabilidad, y recomendaciones de intervención por nivel.' },
+      { title: 'Limpieza (opcional)', desc: 'Elimina los objetos creados.', prompt: 'Generate los comandos DROP DATABASE IF EXISTS PATIENT_ADHERENCE_DB comentados para limpieza opcional.' },
+    ]
+  },
+  UC02: {
+    title: 'Campaign Performance Optimizer',
+    intro: 'Prompts para construir un sistema de atribución multi-touch y optimización de ROI de campañas de marketing farmacéutico.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for analítica de campañas.', prompt: 'Create database CAMPAIGN_ANALYTICS_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create tables de datos', desc: 'Estructura de campañas, canales y touchpoints.', prompt: 'Create tables: CAMPAIGNS (campaign_id, name, channel, market, budget, start_date, end_date), TOUCHPOINTS (touchpoint_id, patient_id, campaign_id, channel, timestamp, action), CONVERSIONS (conversion_id, patient_id, conversion_date, value).' },
+      { title: 'Generatete data sintéticos', desc: 'Campañas en 50+ mercados con journeys.', prompt: 'Generate 200 campañas en 5 canales (Email, Web, Events, Rep, Digital) y 50 mercados. Generate 10.000 touchpoints y 2.000 conversiones con secuencias de interacción realistas.' },
+      { title: 'Atribución multi-touch', desc: 'Modelos lineal y decaimiento temporal.', prompt: 'Usando window functions (ROW_NUMBER, COUNT OVER), implementa atribución lineal (crédito igual por touchpoint) y time-decay (mayor crédito a touchpoints recientes usando DATEDIFF y ponderación exponencial). Create table ATTRIBUTION_RESULTS.' },
+      { title: 'Calculatete ROI por canal', desc: 'Retorno de inversión por canal y mercado.', prompt: 'Calculate ROI = (revenue_attributed - budget) / budget por canal y mercado. Identifica los 10 canales/mercados con mejor y peor ROI. Generate tabla CHANNEL_ROI_SUMMARY.' },
+      { title: 'Dashboard interactivo', desc: 'Visualización de rendimiento de campañas.', prompt: 'Create Streamlit dashboard with: ROI por canal (barras), distribución de atribución lineal vs time-decay, tabla de campañas con métricas, filtro por mercado y canal.' },
+    ]
+  },
+  UC03: {
+    title: 'Consumer Sentiment Analysis',
+    intro: 'Prompts para construir un sistema de análisis de sentimiento en tiempo real para productos farmacéuticos usando Cortex AI.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for análisis de sentimiento.', prompt: 'Create database SENTIMENT_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure de datos', desc: 'Tablas para feedback multi-fuente.', prompt: 'Create table FEEDBACK con: feedback_id, source (Twitter/Facebook/Reddit/Reviews/Support), product (producto_A/producto_B), text, created_at, author_id, platform_engagement (likes, shares).' },
+      { title: 'Generatete data sintéticos', desc: 'Feedback de múltiples fuentes.', prompt: 'Generate 2.000 registros de feedback sintético distributed across fuentes. Incluye textos con sentimiento positivo (eficacia), negativo (efectos secundarios) y neutro (preguntas). Usa UNIFORM() para distribución realista.' },
+      { title: 'Análisis de sentimiento con Cortex', desc: 'Scoring automatizado.', prompt: 'Aplica SNOWFLAKE.CORTEX.SENTIMENT(text) a cada registro. Clasifica en Positivo (>0.2), Negativo (<-0.2), Neutro. Agrega por fuente y producto.' },
+      { title: 'Detect trends', desc: 'Series temporales de sentimiento.', prompt: 'Calculate sentimiento medio diario/semanal por producto y fuente. Usa LAG() para detectar cambios bruscos. Identifica alertas cuando el sentimiento cae más de 0.3 en 24h.' },
+      { title: 'Extracción de temas con LLM', desc: 'Modelado de temas con Cortex Complete.', prompt: 'Usa SNOWFLAKE.CORTEX.COMPLETE(mistral-large2, prompt) para extraer los 3 temas principales del feedback negativo agrupado por semana. Generate tabla EMERGING_TOPICS.' },
+      { title: 'Sentiment dashboard', desc: 'Monitorización en tiempo real.', prompt: 'Create Streamlit dashboard with: score medio por producto, tendencia temporal, distribución por fuente, alertas activas, tabla de temas emergentes, filtros por producto y periodo.' },
+    ]
+  },
+  UC04: {
+    title: 'Loss of Exclusivity Prediction',
+    intro: 'Prompts para construir modelos de forecasting de ingresos ante expiración de patentes usando SNOWFLAKE.ML.FORECAST.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for forecasting de LoE.', prompt: 'Create database LOE_FORECAST_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create tables', desc: 'Estructura de ventas y patentes.', prompt: 'Create tables: PRODUCT_REVENUE (product, market, month_date, revenue), PATENT_INFO (product, patent_expiry_date, market), GENERIC_HISTORY (product, market, months_post_loe, erosion_pct).' },
+      { title: 'Generatete data históricos', desc: '36 meses de ventas por mercado.', prompt: 'Generate 36 meses de datos de ventas para 3 productos en 5 mercados using GENERATOR() y DATEADD(). Incluye estacionalidad y tendencia. Generate historial de erosión de genéricos basado en patrones reales de la industria.' },
+      { title: 'Train models FORECAST', desc: 'ML.FORECAST by product and market.', prompt: 'Entrena SNOWFLAKE.ML.FORECAST para cada combinación producto-mercado con series temporales de 36 meses. Configura forecasting_periods = 24 meses.' },
+      { title: 'Generater predicciones', desc: 'Forecasts a 24 meses con intervalos de confianza.', prompt: 'Generate predicciones a 24 meses con intervalos de confianza al 80% y 95%. Aplica curvas de erosión de genéricos sobre el forecast base para crear escenarios optimista, base y pesimista.' },
+      { title: 'Análisis de riesgo LoE', desc: 'Impacto financiero por escenario.', prompt: 'Calculate impacto total en ingresos by product and market en los 3 escenarios. Identifica los mercados de mayor riesgo y el timing óptimo para acciones defensivas.' },
+      { title: 'Dashboard de forecasting', desc: 'Visualización de escenarios.', prompt: 'Create Streamlit dashboard with: gráficos de series temporales con forecast e intervalos de confianza, tabla comparativa de escenarios por mercado, waterfall de impacto en ingresos, filtros by product and market.' },
+    ]
+  },
+  UC05: {
+    title: 'Optimizador de Engagement con HCPs',
+    intro: 'Prompts para construir un motor de next-best-action para equipos de campo farmacéuticos.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for engagement HCP.', prompt: 'Create database HCP_ENGAGEMENT_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de HCPs, interacciones y prescripciones.', prompt: 'Create tables: HCPS (hcp_id, specialty, region, tier, prescribing_volume), INTERACTIONS (interaction_id, hcp_id, channel, type, date, content_id), PRESCRIPTIONS (hcp_id, product, month, volume).' },
+      { title: 'Generatete data sintéticos', desc: 'Perfiles de HCPs con historial.', prompt: 'Generate 500 HCPs (cardiólogos), 5.000 interacciones (email, webinar, rep_visit, conference) y datos de prescripciones mensuales. HCPs con más interacciones tienen mayor propensión a prescribir.' },
+      { title: 'Feature engineering', desc: 'Variables de engagement y propensión.', prompt: 'Calculate por HCP: total_interactions_90d, emails_opened_rate, webinars_attended, rep_visits_count, days_since_last_interaction, prescribing_trend (usando LAG sobre 3 meses), content_diversity_score. Target: is_high_prescriber.' },
+      { title: 'Train model', desc: 'ML.CLASSIFICATION de propensión.', prompt: 'Divide 80/20, entrena SNOWFLAKE.ML.CLASSIFICATION PRESCRIBING_PROPENSITY con target is_high_prescriber. Muestra feature importance.' },
+      { title: 'Puntuar y generar listas', desc: 'Scoring y next-best-action.', prompt: 'Puntúa todos los HCPs. Generate tabla TARGET_LIST con: hcp_id, propensity_score, recommended_channel (basado en historial de respuesta), recommended_content, priority_rank.' },
+      { title: 'Dashboard de campo', desc: 'Panel para representantes de ventas.', prompt: 'Create Streamlit dashboard with: lista priorizada de HCPs por región, propensity score con semáforo, recomendación de acción, historial de interacciones por HCP, filtros por región y tier.' },
+    ]
+  },
+  UC06: {
+    title: 'Commercial Intelligence Chatbot',
+    intro: 'Prompts para construir una interfaz de consulta en lenguaje natural con Cortex Analyst para datos comerciales farmacéuticos.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for BI conversacional.', prompt: 'Create database CHATBOT_BI_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create tables de negocio', desc: 'Datos comerciales multi-producto.', prompt: 'Create tables: SALES (product, market, region, month, revenue, units), MARKET_SHARE (product, market, month, share_pct, competitor_share), PIPELINE (opportunity_id, product, stage, value, close_date).' },
+      { title: 'Generatete data de ventas', desc: 'Datos sintéticos multi-mercado.', prompt: 'Generate 3 años de datos para 3 productos de la cartera farmacéutica en 10 mercados. Incluye estacionalidad, tendencias y datos de cuota de mercado vs competidores.' },
+      { title: 'Crear modelo semántico', desc: 'Cortex Analyst semantic layer.', prompt: 'Define un modelo semántico YAML con las tablas, relaciones, métricas (revenue, units, market_share, growth_rate) y dimensiones (product, market, time). Esto permite consultas en lenguaje natural.' },
+      { title: 'Consultas en lenguaje natural', desc: 'Probar con Cortex Analyst.', prompt: 'Ejecuta consultas como: Cual es nuestra cuota de mercado del producto principal en Alemania en Q3, Comparar ventas del producto A vs competidores en los ultimos 6 meses, Top 5 mercados por crecimiento de revenue.' },
+      { title: 'Dashboard conversacional', desc: 'Interfaz de chat para ejecutivos.', prompt: 'Create Streamlit dashboard with: campo de texto para preguntas, área de resultados con tabla y gráfico auto-generado, historial de consultas recientes, métricas KPI en sidebar.' },
+    ]
+  },
+  UC07: {
+    title: 'Consumer Segmentation & LTV',
+    intro: 'Prompts para construir segmentación RFM y predicción de valor de vida del paciente con SQL y Cortex ML.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for segmentación.', prompt: 'Create database CUSTOMER_SEGMENTATION_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create tables', desc: 'Estructura de pacientes y transacciones.', prompt: 'Create tables: PATIENTS (patient_id, enrollment_date, demographics), TRANSACTIONS (transaction_id, patient_id, date, type, amount). Los tipos incluyen: refill, copay, support_call, app_subscription.' },
+      { title: 'Generatete data', desc: 'Pacientes con historial transaccional.', prompt: 'Generate 1.000 pacientes con 5.000 transacciones. Champions tienen alta frecuencia y valor, At-Risk tienen gaps crecientes.' },
+      { title: 'Calculater scores RFM', desc: 'Segmentación con NTILE.', prompt: 'Calculate Recency (días desde última transacción), Frequency (total transacciones), Monetary (valor total). Usa NTILE(5) para crear quintiles de cada dimensión. Asigna segmentos: Champions (R>=4,F>=4,M>=4), Loyal (F>=3), At-Risk (R<=2), Lost (R=1,F<=2).' },
+      { title: 'Predecir LTV', desc: 'Forecasting de valor a 12 meses.', prompt: 'Crea serie temporal de valor mensual por paciente. Entrena SNOWFLAKE.ML.FORECAST para predecir valor de los próximos 12 meses por segmento. Generate tabla LTV_PREDICTIONS.' },
+      { title: 'Dashboard de segmentación', desc: 'Visualización de segmentos y LTV.', prompt: 'Create Streamlit dashboard with: distribución de pacientes por segmento, LTV medio por segmento, heatmap RFM, tabla de pacientes con score y segmento, filtros por segmento y período.' },
+    ]
+  },
+  UC08: {
+    title: 'Content Effectiveness Analyzer',
+    intro: 'Prompts para analizar la efectividad de contenido de marketing farmacéutico usando Cortex Complete para evaluación con IA.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for análisis de contenido.', prompt: 'Create database CONTENT_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de assets y métricas.', prompt: 'Create tables: CONTENT_ASSETS (asset_id, type, product, copy_text, channel, created_date), AB_TESTS (test_id, asset_a_id, asset_b_id, start_date, end_date), ENGAGEMENT_METRICS (asset_id, impressions, clicks, conversions, ctr, conversion_rate).' },
+      { title: 'Generatete data', desc: 'Assets de marketing con métricas.', prompt: 'Generate 500 assets para productos farmacéuticos con copy text variado. Generate 50 tests A/B con métricas de engagement. Assets con mejor tono emocional tienen mejores métricas.' },
+      { title: 'Scoring con Cortex AI', desc: 'Evaluate tone, clarity and persuasion.', prompt: 'Usa SNOWFLAKE.CORTEX.COMPLETE(mistral-large2, prompt) para evaluar cada asset en 3 dimensiones: tono_emocional (1-10), claridad (1-10), persuasion (1-10). Extrae scores con PARSE_JSON. Create table CONTENT_SCORES.' },
+      { title: 'Análisis A/B', desc: 'Significancia estadística de tests.', prompt: 'Calculate diferencia de CTR y conversion_rate entre variantes A y B. Aplica test de significancia (z-score) para determinar ganadores con p-value < 0.05.' },
+      { title: 'Recomendaciones con LLM', desc: 'Generater mejoras para contenido.', prompt: 'Use CORTEX.COMPLETE for generar recomendaciones de mejora del copy para los 20 assets con peor rendimiento. Formato: problema detectado, sugerencia específica, copy mejorado.' },
+      { title: 'Dashboard de contenido', desc: 'Leaderboard y análisis.', prompt: 'Create Streamlit dashboard with: leaderboard de assets por score compuesto, scatter plot de tono vs CTR, resultados A/B con ganadores, tabla de recomendaciones, filtros por producto y canal.' },
+    ]
+  },
+  UC09: {
+    title: 'Real-World Evidence (RWE) Generatetor',
+    intro: 'Prompts para generar Evidencia del Mundo Real desde datos de EHR y claims para submissions a pagadores.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for RWE.', prompt: 'Create database MARKET_ACCESS_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de pacientes, claims y resultados.', prompt: 'Create tables: PATIENTS (patient_id, treatment_arm [Tratamiento_A/Tratamiento_B], demographics), PHARMACY_CLAIMS (claim_id, patient_id, drug, fill_date, days_supply), CLINICAL_EVENTS (patient_id, event_type [stroke/bleed/hospitalization], event_date), COSTS (patient_id, category, amount, date).' },
+      { title: 'Generatete data clínicos', desc: 'Cohortes Tratamiento_A vs Tratamiento_B.', prompt: 'Generate 2.000 pacientes (1.000 por brazo). Tratamiento_A tiene mejor adherencia (PDC 0.85 vs 0.72), menor tasa de eventos primarios (3% vs 5%), perfil similar en eventos secundarios. Generate 24 meses de claims y eventos.' },
+      { title: 'Calculater adherencia (PDC)', desc: 'Proportion of Days Covered.', prompt: 'Calculate PDC por paciente: días cubiertos / días en período. Usa DATEDIFF y LEAD para identificar gaps. Clasifica: Adherente (PDC >= 0.8), Parcial (0.5-0.8), No Adherente (<0.5). Compara por brazo de tratamiento.' },
+      { title: 'Analizar resultados clínicos', desc: 'Comparative effectiveness.', prompt: 'Calculate tasas de eventos (ictus, sangrado, hospitalización) por brazo. Usa análisis de supervivencia simplificado con DATEDIFF al primer evento. Calculate NNT (Number Needed to Treat) y riesgo relativo.' },
+      { title: 'Análisis coste-efectividad', desc: 'ICER and total costs.', prompt: 'Calculate costes totales por paciente y brazo (medicación, hospitalización, consultas). Calculate ICER = (Coste_Tratamiento_A - Coste_Tratamiento_B) / (Eventos_evitados). Generate tabla COST_EFFECTIVENESS_SUMMARY.' },
+      { title: 'RWE dashboard', desc: 'Payer report.', prompt: 'Create Streamlit dashboard with: comparativa de PDC por brazo, Kaplan-Meier simplificado, tabla de NNT y riesgo relativo, waterfall de costes, resumen ejecutivo auto-generado con CORTEX.COMPLETE.' },
+    ]
+  },
+  UC10: {
+    title: 'Competitive Intelligence Monitor',
+    intro: 'Prompts para construir un monitor de inteligencia competitiva con Cortex Search y resumen LLM.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for inteligencia competitiva.', prompt: 'Create database COMPETITIVE_INTEL_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de fuentes de inteligencia.', prompt: 'Create table INTEL_DOCUMENTS con: doc_id, source_type (news/clinical_trial/sec_filing/social), competitor (Eliquis/Pradaxa/Entresto), title, content, published_date, relevance_score.' },
+      { title: 'Generatete data', desc: 'Competitive intelligence documents.', prompt: 'Generate 500 documentos sintéticos distributed across 4 tipos de fuente y 3 competidores. Incluye noticias de lanzamientos, resultados de ensayos clínicos, filings de la SEC y menciones en redes sociales con contenido realista.' },
+      { title: 'Create Cortex Search Service', desc: 'Semantic search index.', prompt: 'Create a Cortex Search Service sobre INTEL_DOCUMENTS indexando la columna content. Configura para búsqueda semántica con resultados rankeados por relevancia.' },
+      { title: 'Semantic search', desc: 'Intelligence queries.', prompt: 'Execute semantic searches like: resultados de ensayos fase III de Eliquis, cambios de precio de Pradaxa en Europa, nuevas indicaciones aprobadas para Entresto. Muestra top 5 resultados con score de relevancia.' },
+      { title: 'Positioning analysis', desc: 'LLM competitive summary.', prompt: 'Use CORTEX.COMPLETE for generar resumen ejecutivo del panorama competitivo agrupado por competidor. Extrae: fortalezas, amenazas, movimientos recientes, implicaciones para la empresa.' },
+      { title: 'Competitive dashboard', desc: 'Monitoring panel.', prompt: 'Create Streamlit dashboard with: campo de búsqueda semántica, timeline de eventos por competidor, resumen ejecutivo, alertas de amenazas, distribución de fuentes, filtros por competidor y período.' },
+    ]
+  },
+  UC11: {
+    title: 'Omnichannel Journey Mapper',
+    intro: 'Prompts para construir un mapeador de journeys de HCPs a través de múltiples canales con análisis de cadenas de Markov.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for journey mapping.', prompt: 'Create database JOURNEY_MAPPING_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de eventos multi-canal.', prompt: 'Create table JOURNEY_EVENTS con: event_id, hcp_id, channel (Email/Website/Event/Rep_Visit), event_type, timestamp, content_id, outcome. Create table CONVERSIONS con: hcp_id, conversion_date, product, type.' },
+      { title: 'Generatete data de journey', desc: 'Secuencias de interacción.', prompt: 'Generate 300 HCPs con 3.000 eventos secuenciales. Los journeys exitosos (prescripción) siguen patrones: Email → Website → Event → Rep_Visit. Los no exitosos tienen menos diversidad de canales.' },
+      { title: 'Build sequences', desc: 'Engagement paths.', prompt: 'Use window functions (LEAD, LAG, ROW_NUMBER PARTITION BY hcp_id ORDER BY timestamp) para construir secuencias de 2, 3 y 4 touchpoints. Calculate frecuencia de cada secuencia y tasa de conversión.' },
+      { title: 'Markov chain analysis', desc: 'Transition probabilities.', prompt: 'Calculate matriz de transición: probabilidad de pasar de canal A a canal B. Identifica las rutas de mayor conversión y los puntos de abandono (transiciones a Inactivo).' },
+      { title: 'Prepare Sankey data', desc: 'Flow visualization.', prompt: 'Generate tabla con formato source, target, value para diagramas Sankey showing the flow de HCPs entre canales en cada paso del journey.' },
+      { title: 'Journey dashboard', desc: 'Interactive visualization.', prompt: 'Create Streamlit dashboard with: diagrama Sankey del journey, tabla de rutas top por conversión, matriz de transición, métricas de funnel (drop-off por etapa), filtros por segmento de HCP.' },
+    ]
+  },
+  UC12: {
+    title: 'Pricing & Discount Optimizer',
+    intro: 'Prompts para construir un simulador de pricing con GENERATOR() y modelado de elasticidad de precios.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for optimización de precios.', prompt: 'Create database PRICING_OPTIMIZER_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create tables', desc: 'Product and pricing structure.', prompt: 'Create tables: PRODUCTS (product_id, name, current_price, cost, market), PRICING_HISTORY (product_id, month, price, discount_pct, units_sold, revenue).' },
+      { title: 'Generatete data históricos', desc: 'Sales at different prices.', prompt: 'Generate 24 meses de datos para 3 productos en 5 mercados. Use GENERATOR() para crear variaciones de precio históricas. La demanda sigue elasticidad: units = base_demand * POWER(price_ratio, elasticity).' },
+      { title: 'Generatete pricing scenarios', desc: '100 combinations.', prompt: 'Usa GENERATOR(ROWCOUNT => 100) para crear combinaciones de precio (80%-120% del actual) y descuento (0%-30%). Para cada escenario, calcula demanda proyectada usando POWER() con elasticidad estimada del histórico.' },
+      { title: 'Revenue impact analysis', desc: 'Find optimal price.', prompt: 'Calculate revenue = price * projected_units for each scenario. Identify the price point that maximizes revenue by product and market. Calculate margen por escenario.' },
+      { title: 'Pricing dashboard', desc: 'Interactive simulator.', prompt: 'Create Streamlit dashboard with: curva de demanda vs precio, slider de precio con actualización en tiempo real de revenue proyectado, heatmap precio × descuento con revenue, tabla de escenarios top, filtros by product and market.' },
+    ]
+  },
+  UC13: {
+    title: 'Clinical Trial Site Selector',
+    intro: 'Prompts para construir un selector de centros de ensayos clínicos con análisis geoespacial SQL.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for ensayos clínicos.', prompt: 'Create database CLINICAL_TRIALS_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de centros y pacientes.', prompt: 'Create tables: TRIAL_SITES (site_id, name, latitude, longitude, beds, investigators, past_enrollment_rate), PATIENT_POPULATIONS (region_id, latitude, longitude, eligible_patients, disease_prevalence), SITE_HISTORY (site_id, trial_id, enrolled, target, completion_rate).' },
+      { title: 'Generatete data', desc: 'Centros y poblaciones.', prompt: 'Generate 100 centros con coordenadas geográficas realistas, 50 regiones de población y historial de 5 ensayos previos por centro.' },
+      { title: 'Calculater scores de centro', desc: 'Multi-criterio ponderado.', prompt: 'Usa ST_DISTANCE(ST_MAKEPOINT(site.lat, site.lon), ST_MAKEPOINT(pop.lat, pop.lon)) para calcular accesibilidad. Score = 0.3*enrollment_rate + 0.25*accessibility + 0.2*capacity + 0.15*experience + 0.1*completion_rate. Normaliza con NTILE(10).' },
+      { title: 'Análisis de cobertura', desc: 'Optimización geográfica.', prompt: 'Selecciona los top 15 centros maximizando cobertura geográfica (minimizando solapamiento). Calculate pacientes elegibles cubiertos y distancia media al centro más cercano.' },
+      { title: 'Justificaciones con IA', desc: 'Resumen por centro.', prompt: 'Use CORTEX.COMPLETE for generar justificación narrativa de la selección de cada centro: fortalezas, riesgos y recomendaciones.' },
+      { title: 'Dashboard de selección', desc: 'Mapa interactivo de centros.', prompt: 'Create Streamlit dashboard with: mapa de centros con color por score, tabla de ranking con métricas, panel de justificación por centro, filtros por región y capacidad mínima.' },
+    ]
+  },
+  UC14: {
+    title: 'Launch Demand Prediction',
+    intro: 'Prompts para predecir demanda de nuevos lanzamientos de producto usando ML.FORECAST con curvas de adopción S.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for forecasting de lanzamiento.', prompt: 'Create database LAUNCH_FORECAST_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create tables', desc: 'Estructura de lanzamientos y ventas.', prompt: 'Create tables: PRODUCT_LAUNCHES (product_id, launch_date, market, category), ANALOG_SALES (analog_product_id, market, months_since_launch, units, revenue), MARKET_SIGNALS (market, month, gdp_index, competitor_launches, seasonality_factor).' },
+      { title: 'Generatete data', desc: 'Historial de productos análogos.', prompt: 'Generate datos de 5 productos análogos con curvas de adopción S en 8 mercados durante 36 meses post-lanzamiento. Incluye señales de mercado (PIB, competencia, estacionalidad).' },
+      { title: 'Train models FORECAST', desc: 'ML.FORECAST por mercado.', prompt: 'Entrena SNOWFLAKE.ML.FORECAST para el nuevo producto usando datos de análogos como base. Incorpora señales externas como variables exógenas. Generate forecasts a 24 meses.' },
+      { title: 'Análisis de preparación', desc: 'Inventario necesario por mercado.', prompt: 'Calculate inventario necesario por mercado y mes basado en forecast + margen de seguridad (percentil 95 del intervalo de confianza). Identifica mercados prioritarios y riesgo de stock-out.' },
+      { title: 'Launch dashboard', desc: 'Planificación de supply chain.', prompt: 'Create Streamlit dashboard with: curvas de adopción proyectadas por mercado, tabla de inventario necesario, comparación con análogos, alertas de stock-out, filtros por mercado y escenario.' },
+    ]
+  },
+  UC15: {
+    title: 'Claims Compliance Manager',
+    intro: 'Prompts para construir un sistema de verificación automatizada de claims de marketing farmacéutico.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for compliance.', prompt: 'Create database CLAIMS_COMPLIANCE_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de claims y materiales.', prompt: 'Create tables: APPROVED_CLAIMS (claim_id, product, claim_text, approval_date, expiry_date, category), MARKETING_MATERIALS (material_id, product, content_text, channel, status, review_date).' },
+      { title: 'Generatete data', desc: 'Claims aprobados y materiales.', prompt: 'Generate 50 claims aprobados para el producto farmacéutico con categorías (eficacia, seguridad, dosificación). Generate 200 materiales de marketing con variaciones: algunos usan claims aprobados textualmente, otros los modifican ligeramente, algunos incluyen claims no aprobados.' },
+      { title: 'Validación regex', desc: 'Matching de claims con REGEXP.', prompt: 'Usa REGEXP_COUNT y SPLIT_TO_TABLE para extraer claims del contenido de cada material. Compara contra librería aprobada usando CONTAINS y similarity matching. Clasifica: Conforme, Modificado (claim alterado), No Aprobado.' },
+      { title: 'Scoring con IA', desc: 'Sentimiento y remediación.', prompt: 'Aplica CORTEX.SENTIMENT sobre claims para detectar exageraciones. Use CORTEX.COMPLETE for generar briefs de remediación: qué claim viola, claim aprobado más cercano, sugerencia de corrección.' },
+      { title: 'Análisis FLATTEN', desc: 'Claims multi-valor.', prompt: 'Usa FLATTEN para analizar materiales con múltiples claims. Generate tabla de compliance por material con detalle de cada claim encontrado y su estado.' },
+      { title: 'Compliance dashboard', desc: 'Panel de auditoría.', prompt: 'Create Streamlit dashboard with: score de compliance por producto, materiales con problemas, detalle de claims no conformes, briefs de remediación, distribución por categoría de claim, filtros por producto y canal.' },
+    ]
+  },
+  UC16: {
+    title: 'Social Media Crisis Detection',
+    intro: 'Prompts para construir un sistema de detección de crisis con análisis de sentimiento y anomalías estadísticas.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for detección de crisis.', prompt: 'Create database CRISIS_DETECTION_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de posts y alertas.', prompt: 'Create table SOCIAL_POSTS con: post_id, platform (Twitter/Facebook/Reddit/TikTok), text, author, timestamp, engagement_count, product. Create table ALERT_THRESHOLDS con: product, baseline_sentiment, std_dev.' },
+      { title: 'Generatete data', desc: 'Posts con crisis simulada.', prompt: 'Generate 5.000 posts sintéticos. Incluye 3 escenarios de crisis: spike de eventos adversos (día 15), mención viral negativa (día 25), comparación negativa con competidor (día 35). Sentimiento base ~0.1, crisis ~-0.6.' },
+      { title: 'Análisis de sentimiento', desc: 'Scoring con Cortex.', prompt: 'Aplica SNOWFLAKE.CORTEX.SENTIMENT(text) a cada post. Calculate sentimiento medio horario y diario por producto y plataforma.' },
+      { title: 'Clasificar eventos adversos', desc: 'Detección con LLM.', prompt: 'Use CORTEX.COMPLETE for clasificar cada post negativo: es_evento_adverso (sí/no), tipo_evento (náusea, sangrado, interacción), severidad (leve/moderado/grave). Generate tabla ADVERSE_EVENTS.' },
+      { title: 'Detección de anomalías', desc: 'Z-score estadístico.', prompt: 'Calculate baseline de sentimiento (media móvil 7 días). Detecta anomalías cuando Z-score < -2 (sentimiento significativamente peor que baseline). Generate alertas con severidad: Crítica (Z<-3), Alta (Z<-2.5), Media (Z<-2).' },
+      { title: 'Crisis dashboard', desc: 'Monitorización en tiempo real.', prompt: 'Create Streamlit dashboard with: timeline de sentimiento con zonas de crisis marcadas, contador de alertas activas por severidad, tabla de eventos adversos, posts virales negativos, filtros por plataforma y producto.' },
+    ]
+  },
+  UC17: {
+    title: 'Competitor Messaging Intelligence',
+    intro: 'Prompts para construir un sistema de extracción de claims competitivos con Cortex Search y LLM.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for análisis competitivo.', prompt: 'Create database COMPETITOR_INTEL_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de documentos competitivos.', prompt: 'Create table COMPETITOR_DOCS con: doc_id, competitor (Eliquis/Pradaxa), doc_type (website/brochure/clinical_paper/press_release), title, content, published_date, source_url.' },
+      { title: 'Generater documentos', desc: 'Contenido competitivo sintético.', prompt: 'Generate 300 documentos con claims de eficacia, seguridad y conveniencia para cada competidor. Incluye evolución temporal: claims más agresivos en períodos recientes.' },
+      { title: 'Crear Cortex Search', desc: 'Índice semántico de documentos.', prompt: 'Crea Cortex Search Service sobre COMPETITOR_DOCS indexando content. Permite búsqueda semántica de claims específicos.' },
+      { title: 'Extract claims con LLM', desc: 'Pipeline de extracción.', prompt: 'Use CORTEX.COMPLETE for extraer de cada documento: claims de eficacia, claims de seguridad, posicionamiento vs competidores. Formato JSON estructurado. Generate tabla EXTRACTED_CLAIMS.' },
+      { title: 'Semantic search', desc: 'Intelligence queries.', prompt: 'Ejecuta búsquedas: claims de superioridad de Competidor_A en la indicación principal, mensajes de seguridad de Competidor_B vs el producto propio, cambios de posicionamiento recientes.' },
+      { title: 'Positioning analysis', desc: 'Evolución temporal.', prompt: 'Analiza cambios de claims por competidor y trimestre. Detecta nuevos claims, claims retirados y cambios de tono.' },
+      { title: 'Competitive dashboard', desc: 'Intelligence panel.', prompt: 'Create Streamlit dashboard with: campo de búsqueda semántica, tabla de claims por competidor y categoría, timeline de evolución de mensajes, alertas de nuevos claims, filtros por competidor y período.' },
+    ]
+  },
+  UC18: {
+    title: 'Global Media Sentiment Tracker',
+    intro: 'Prompts para construir un tracker de sentimiento en medios de comunicación globales con share of voice.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for sentimiento en medios.', prompt: 'Create database MEDIA_SENTIMENT_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de artículos y métricas.', prompt: 'Create table MEDIA_ARTICLES con: article_id, source_type (news/analyst/earned_media), publication, region, title, content, published_date, reach_estimate.' },
+      { title: 'Generatete data', desc: 'Artículos globales multi-fuente.', prompt: 'Generate 2.000 artículos de 50 publicaciones en 10 regiones. Distribuye sentimiento: positivo (40%), neutro (35%), negativo (25%). Incluye picos regionales de sentimiento.' },
+      { title: 'Análisis de sentimiento', desc: 'Scoring multi-fuente.', prompt: 'Aplica CORTEX.SENTIMENT a cada artículo. Calculate sentimiento medio por fuente, región y semana. Pondera por alcance (reach_estimate).' },
+      { title: 'Share of voice', desc: 'Métricas de presencia.', prompt: 'Calculate share of voice: % de menciones del producto propio vs competidores por región y período. Usa COUNT y ratio sobre total de artículos. Generate tabla SOV_METRICS.' },
+      { title: 'Tendencias temporales', desc: 'Series de sentimiento.', prompt: 'Analiza tendencias semanales de sentimiento por región. Detecta cambios significativos con LAG() y alertas cuando la variación supera 0.2 en una semana.' },
+      { title: 'Dashboard de medios', desc: 'Monitorización global.', prompt: 'Create Streamlit dashboard with: mapa de calor de sentimiento por región, share of voice por competidor, tendencias temporales, tabla de artículos destacados, alertas de cambios, filtros por región y fuente.' },
+    ]
+  },
+  UC19: {
+    title: 'Launch Reception Predictor',
+    intro: 'Prompts para predecir la recepción de un lanzamiento de producto con ML.FORECAST y señales tempranas.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for predicción de lanzamiento.', prompt: 'Create database LAUNCH_PREDICTOR_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de lanzamientos y señales.', prompt: 'Create tables: LAUNCH_HISTORY (product, launch_date, day_offset, sentiment_score, volume, source), EARLY_SIGNALS (product, signal_type, day_offset, value).' },
+      { title: 'Generatete data históricos', desc: 'Lanzamientos previos con sentimiento.', prompt: 'Generate datos de sentimiento diario para 5 lanzamientos históricos durante 90 días. Patrones: éxito (sentimiento creciente), moderado (estable), problema (caída en día 30-45). Incluye señales tempranas: cobertura mediática, menciones de KOLs, búsquedas web.' },
+      { title: 'Análisis de sentimiento con IA', desc: 'Scoring de señales.', prompt: 'Aplica CORTEX.SENTIMENT a las señales textuales. Calculate métricas agregadas por fase de lanzamiento: pre-lanzamiento (-30 a 0), lanzamiento (0-7), adopción temprana (7-30), estabilización (30-90).' },
+      { title: 'Forecasting con ML', desc: 'Predicción de trayectoria.', prompt: 'Entrena SNOWFLAKE.ML.FORECAST usando datos históricos. Generate predicción de sentimiento a 30/60/90 días para el nuevo lanzamiento basándose en señales tempranas (días 1-7).' },
+      { title: 'Dashboard de predicción', desc: 'Proyección de recepción.', prompt: 'Create Streamlit dashboard with: gráfico de trayectoria predicha con intervalos de confianza, comparación con lanzamientos históricos análogos, indicadores de señales tempranas, recomendaciones de ajuste de estrategia.' },
+    ]
+  },
+  UC20: {
+    title: 'KOL & Influencer Sentiment Network',
+    intro: 'Prompts para construir un análisis de red de sentimiento e influencia de KOLs en el espacio cardiovascular.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for KOL analytics.', prompt: 'Create database KOL_SENTIMENT_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de KOLs y declaraciones.', prompt: 'Create tables: KOLS (kol_id, name, specialty, institution, h_index, followers, tier), KOL_STATEMENTS (statement_id, kol_id, text, source, date, reach), KOL_CONNECTIONS (kol_a_id, kol_b_id, relationship_type, strength).' },
+      { title: 'Generatete data', desc: 'KOLs con historial de declaraciones.', prompt: 'Generate 100 KOLs por área terapéutica con 1.000 declaraciones sobre los productos del mercado. Algunos KOLs son consistentemente positivos sobre el producto propio, otros negativos. Generate red de conexiones (coautorías, misma institución).' },
+      { title: 'Análisis de sentimiento', desc: 'Scoring por KOL.', prompt: 'Aplica CORTEX.SENTIMENT a cada declaración. Calculate sentimiento medio por KOL, tendencia temporal con LAG(), y volatilidad (desviación estándar). Clasifica: Advocate, Neutral, Detractor.' },
+      { title: 'Métricas de influencia', desc: 'Scoring de red.', prompt: 'Calculate influence_score = 0.3*h_index_norm + 0.3*reach_norm + 0.2*connections + 0.2*statement_frequency. Identifica top 20 influencers y su sentimiento.' },
+      { title: 'KOL dashboard', desc: 'Intelligence panel.', prompt: 'Create Streamlit dashboard with: ranking de KOLs por influencia y sentimiento, mapa de red de conexiones, tendencias temporales por KOL, alertas de cambio de sentimiento, filtros por tier e institución.' },
+    ]
+  },
+  UC21: {
+    title: 'Competitive Product Perception',
+    intro: 'Prompts para analizar la percepción comparativa entre productos farmacéuticos competidores.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for análisis de percepción.', prompt: 'Create database COMPETITIVE_PERCEPTION_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de menciones y atributos.', prompt: 'Create table PRODUCT_MENTIONS con: mention_id, product (Producto_Propio/Competidor_A/Competidor_B), source, text, date, author_type (patient/hcp/media). Create table PERCEPTION_ATTRIBUTES con: attribute (efficacy/safety/convenience/price/side_effects).' },
+      { title: 'Generatete data', desc: 'Menciones multi-producto.', prompt: 'Generate 3.000 menciones distribuidas entre 3 productos. Producto_Propio fuerte en conveniencia, Competidor_A en seguridad percibida, Competidor_B en precio. Incluye textos de pacientes, HCPs y medios.' },
+      { title: 'Scoring de percepción', desc: 'Sentimiento por producto y atributo.', prompt: 'Aplica CORTEX.SENTIMENT por mención. Use CORTEX.COMPLETE for clasificar cada mención en atributos (eficacia, seguridad, conveniencia, precio). Generate matriz producto × atributo con sentimiento medio.' },
+      { title: 'Análisis de gaps', desc: 'Diferencias de percepción.', prompt: 'Calculate diferencias de sentimiento entre el producto propio y competidores por atributo. Identifica: gaps positivos (producto propio gana), gaps negativos (competidor gana), oportunidades de mensajería.' },
+      { title: 'Perception dashboard', desc: 'Mapas competitivos.', prompt: 'Create Streamlit dashboard with: radar chart de percepción por producto, tabla de gaps por atributo, tendencias temporales de percepción, menciones destacadas positivas y negativas, filtros por producto y fuente.' },
+    ]
+  },
+  UC22: {
+    title: 'Executive Communication Optimizer',
+    intro: 'Prompts para analizar y optimizar comunicaciones ejecutivas farmacéuticas con IA.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for comunicación ejecutiva.', prompt: 'Create database EXEC_COMM_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de comunicaciones.', prompt: 'Create table COMMUNICATIONS con: comm_id, author, audience_type (investors/employees/media/regulators), subject, content, date, format (email/speech/press_release), engagement_score.' },
+      { title: 'Generatete data', desc: 'Comunicaciones ejecutivas sintéticas.', prompt: 'Generate 200 comunicaciones de 5 ejecutivos para 4 audiencias. Variedad de tono: formal vs accesible, optimista vs cauteloso. Engagement varía según alineación tono-audiencia.' },
+      { title: 'Análisis con LLM', desc: 'Scoring multidimensional.', prompt: 'Use CORTEX.COMPLETE for evaluar cada comunicación en: clarity_score (1-10), tone_appropriateness (1-10), persuasion_score (1-10), audience_alignment (1-10). Usa CORTEX.SUMMARIZE para extraer temas clave.' },
+      { title: 'Patrones de efectividad', desc: 'Correlación tono-engagement.', prompt: 'Analiza correlación entre scores de IA y engagement real. Identifica patrones de éxito por audiencia: inversores prefieren datos concretos, empleados prefieren visión, medios prefieren noticias.' },
+      { title: 'Communication dashboard', desc: 'Optimization panel.', prompt: 'Create Streamlit dashboard with: score compuesto por comunicación, mejores prácticas por audiencia, recomendaciones de mejora generadas con LLM, tendencias de efectividad por ejecutivo, filtros por audiencia y formato.' },
+    ]
+  },
+  UC23: {
+    title: 'Automated Competitive Intelligence',
+    intro: 'Prompts para construir un sistema de monitorización competitiva continua con resumen automatizado por LLM.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for inteligencia automatizada.', prompt: 'Create database COMP_INTEL_REPORT_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de eventos competitivos.', prompt: 'Create table COMPETITIVE_EVENTS con: event_id, competitor, event_type (launch/pricing/clinical/regulatory/partnership), title, details, date, impact_score, source.' },
+      { title: 'Generatete data', desc: 'Eventos competitivos multi-fuente.', prompt: 'Generate 500 eventos para 3 competidores en 12 meses. Incluye lanzamientos, cambios de precio, resultados clínicos, aprobaciones regulatorias y partnerships. Distribución temporal realista con clusters de actividad.' },
+      { title: 'Análisis con IA', desc: 'Clasificación y resumen.', prompt: 'Aplica CORTEX.SENTIMENT a cada evento. Use CORTEX.COMPLETE for: clasificar impacto (alto/medio/bajo), generar resumen ejecutivo por competidor y mes, detectar patrones estratégicos.' },
+      { title: 'Alertas automatizadas', desc: 'Threat detection.', prompt: 'Define reglas de alerta: nuevo lanzamiento en mercado clave, cambio de precio > 10%, aprobación de nueva indicación, partnership estratégico. Generate tabla THREAT_ALERTS con severidad y recomendación de acción.' },
+      { title: 'Dashboard de inteligencia', desc: 'Panel automatizado.', prompt: 'Create Streamlit dashboard with: timeline de eventos por competidor, alertas activas con severidad, resumen ejecutivo mensual auto-generado, distribución de eventos por tipo, filtros por competidor y período.' },
+    ]
+  },
+  UC24: {
+    title: 'Global Multi-Language Sentiment',
+    intro: 'Prompts para analizar sentimiento en múltiples idiomas con Cortex TRANSLATE y SENTIMENT.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for sentimiento multiidioma.', prompt: 'Create database GLOBAL_SENTIMENT_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Create structure', desc: 'Tablas de contenido multiidioma.', prompt: 'Create table GLOBAL_CONTENT con: content_id, original_text, language (en/de/fr/es/ja/pt/it/zh/ko/nl), region, source, date, product.' },
+      { title: 'Generatete data', desc: 'Contenido en 10 idiomas.', prompt: 'Generate 2.000 registros de contenido en 10 idiomas para 5 regiones. Incluye textos en idioma nativo sobre experiencias con el producto farmacéutico. Sentimiento varía por región (Japón más positivo, Europa mixto).' },
+      { title: 'Traducir con Cortex', desc: 'TRANSLATE a inglés unificado.', prompt: 'Aplica SNOWFLAKE.CORTEX.TRANSLATE(original_text, source_language, en) para traducir todo el contenido a inglés. Almacena texto traducido en columna translated_text.' },
+      { title: 'Análisis de sentimiento', desc: 'Scoring unificado.', prompt: 'Aplica CORTEX.SENTIMENT tanto al texto original como al traducido. Compara scores para validar consistencia de la traducción. Calculate sentimiento medio por región, idioma y producto.' },
+      { title: 'Comparación regional', desc: 'Métricas globales consolidadas.', prompt: 'Consolida sentimiento por región con ponderación por volumen. Identifica regiones con sentimiento divergente del global. Generate tabla REGIONAL_SENTIMENT_SUMMARY con alertas por región.' },
+      { title: 'Dashboard multiidioma', desc: 'Vista global unificada.', prompt: 'Create Streamlit dashboard with: mapa de calor de sentimiento por región, comparación de sentimiento por idioma, tendencias temporales globales vs regionales, tabla de contenido destacado en idioma original, filtros por idioma y región.' },
+    ]
+  },
+  UC25: {
+    title: 'Patient Treatment Journey Experience',
+    intro: 'Prompts para rastrear la experiencia del paciente a través de 6 etapas de tratamiento con múltiples funciones de Cortex AI.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for journey de pacientes.', prompt: 'Create database PATIENT_JOURNEY_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Definir etapas del journey', desc: 'Modelo de 6 etapas.', prompt: 'Create table JOURNEY_STAGES con las 6 etapas: Diagnóstico, Prescripción, Dispensación, Adherencia, Seguimiento, Resultado. Create table PATIENTS con: patient_id, enrollment_date, current_stage, demographics.' },
+      { title: 'Generater interacciones', desc: 'Eventos por etapa.', prompt: 'Generate 500 pacientes con interacciones en cada etapa. Incluye feedback textual (comentarios, quejas, preguntas) por etapa. Pacientes que abandonan tienen feedback progresivamente negativo.' },
+      { title: 'Generater feedback', desc: 'Texto libre por etapa.', prompt: 'Generate tabla PATIENT_FEEDBACK con: patient_id, stage, feedback_text, date. Textos incluyen experiencias positivas (buen seguimiento), neutras (preguntas), negativas (efectos secundarios, confusión, barreras económicas).' },
+      { title: 'Análisis de sentimiento', desc: 'CORTEX.SENTIMENT por etapa.', prompt: 'Aplica SNOWFLAKE.CORTEX.SENTIMENT(feedback_text) a cada feedback. Calculate sentimiento medio por etapa. Identifica las etapas de mayor fricción (sentimiento más bajo).' },
+      { title: 'Extraer barreras', desc: 'CORTEX.COMPLETE para pain points.', prompt: 'Use CORTEX.COMPLETE for analizar el feedback negativo agrupado por etapa y extraer: barrera principal, impacto en adherencia, acción recomendada. Usa CORTEX.SUMMARIZE para resumir por etapa.' },
+      { title: 'Classify risk', desc: 'CORTEX.CLASSIFY_TEXT para abandono.', prompt: 'Usa CORTEX.CLASSIFY_TEXT para clasificar riesgo de abandono: Alto Riesgo, Riesgo Medio, Bajo Riesgo. Basado en sentimiento, etapa actual y patrón de feedback.' },
+      { title: 'Journey dashboard', desc: 'Panel de experiencia del paciente.', prompt: 'Create Streamlit dashboard with: funnel de 6 etapas con tasas de completitud, sentimiento por etapa (barras), barreras principales por etapa, tabla de pacientes de alto riesgo, filtros por etapa y riesgo.' },
+    ]
+  },
+  UC26: {
+    title: 'Treatment Adherence Journey Intelligence',
+    intro: 'Prompts para predecir abandonos a 30/60/90 días combinando analítica de refills con Cortex AI.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for inteligencia de adherencia.', prompt: 'Create database ADHERENCE_INTELLIGENCE_DB with schema PUBLIC and COMPUTE_WH warehouse.' },
+      { title: 'Definir programa de 12 meses', desc: 'Etapas de adherencia.', prompt: 'Create table ADHERENCE_STAGES con etapas mensuales del programa de 12 meses. Create table PATIENTS con: patient_id, start_date, demographics, risk_factors.' },
+      { title: 'Generatete data de refills', desc: 'Historial de 12 meses.', prompt: 'Generate 500 pacientes con historial de refills mensuales durante 12 meses. Patrones: adherentes consistentes (gap < 5 días), intermitentes (gaps crecientes), abandonadores (dejan en meses 3-6).' },
+      { title: 'Generater feedback', desc: 'Texto sobre medicación.', prompt: 'Generate tabla PATIENT_FEEDBACK con comentarios mensuales sobre la medicación: satisfacción, efectos secundarios, coste, complejidad del régimen. Tono se deteriora antes del abandono.' },
+      { title: 'Análisis de sentimiento', desc: 'Trendline de tono.', prompt: 'Aplica CORTEX.SENTIMENT al feedback mensual. Crea trendline de sentimiento por paciente. Detecta pendientes negativas como predictor de abandono.' },
+      { title: 'Classify barriers y riesgo', desc: 'IA para intervención.', prompt: 'Use CORTEX.COMPLETE for clasificar barreras (coste, efectos secundarios, olvido, complejidad). Usa CORTEX.CLASSIFY_TEXT para etiquetar riesgo a 30/60/90 días: Alto, Medio, Bajo. Generate planes de acción automatizados.' },
+      { title: 'Adherence dashboard', desc: 'Intelligence panel.', prompt: 'Create Streamlit dashboard with: curvas de persistencia por cohorte, trendlines de sentimiento, distribución de barreras, tabla de pacientes por ventana de riesgo, planes de acción por paciente, filtros por riesgo y barrera.' },
+    ]
+  },
+  UC27: {
+    title: 'HCP Engagement Insights Analyzer',
+    intro: 'Prompts para construir un triaje automatizado de notas de visitas de campo con Cortex Sentiment y AI_EXTRACT.',
+    steps: [
+      { title: 'Set up environment', desc: 'Database for engagement HCP.', prompt: 'Create database HCP_ENGAGEMENT_DB with schema PUBLIC and COMPUTE_WH warehouse. Si ya existe por UC05, usa un esquema diferente como FIELD_NOTES.' },
+      { title: 'Create tables', desc: 'Estructura de notas de visita.', prompt: 'Create tables: HCPS (hcp_id, name, specialty, institution, tier, region), FIELD_NOTES (note_id, hcp_id, rep_id, visit_date, note_text, follow_up_required).' },
+      { title: 'Generatete data', desc: 'Notas de visita sintéticas.', prompt: 'Generate 200 HCPs y 1.000 notas de visita con texto libre. Incluye: solicitudes de muestras, preguntas clínicas, quejas de pacientes, interés en nuevos datos, solicitudes urgentes. Variedad de tono y urgencia.' },
+      { title: 'Sentimiento por nota', desc: 'CORTEX.SENTIMENT para cada visita.', prompt: 'Aplica SNOWFLAKE.CORTEX.SENTIMENT(note_text) a cada nota. Calculate sentimiento medio y tendencia por HCP. Detecta HCPs con sentimiento decreciente.' },
+      { title: 'Extract intent', desc: 'AI_EXTRACT para triaje.', prompt: 'Usa AI_EXTRACT(note_text, intent, urgency, next_steps, sample_request, clinical_question) para extraer campos estructurados de cada nota de texto libre. Generate tabla EXTRACTED_INSIGHTS.' },
+      { title: 'Vista de priorización', desc: 'SQL para triaje rápido.', prompt: 'Crea vista PRIORITY_QUEUE que combina sentimiento, urgencia extraída y tier del HCP para generar un ranking de prioridad. Top prioridad: sentimiento negativo + urgencia alta + tier 1.' },
+      { title: 'Dashboard de campo', desc: 'Panel de gestión de visitas.', prompt: 'Create Streamlit dashboard with tabs: Cola Urgente (HCPs que necesitan follow-up en 48h), Tendencias (sentimiento por HCP a lo largo del tiempo), Insights (distribución de intenciones y solicitudes), Exportar (CSV de cola priorizada).' },
+    ]
+  },
+};
+
+function verPrompts(ucId) {
+  const data = PROMPTS[ucId];
+  if (!data) { alert('Prompts no disponibles aún para ' + ucId); return; }
+  const box = document.getElementById('promptsModalBox');
+  let html = `<button class="modal-close" onclick="cerrarModal('promptsModal')">&times;</button>`;
+  html += `<span class="guide-badge">${ucId}</span>`;
+  html += `<h2>${data.title} — Cortex Code Prompts</h2>`;
+  html += `<p class="prompt-intro">${data.intro}</p>`;
+  data.steps.forEach((s, i) => {
+    const escaped = s.prompt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    html += `<div class="prompt-step">`;
+    html += `<div class="prompt-step-header"><span class="prompt-step-num">${i+1}</span><span class="prompt-step-title">${s.title}</span></div>`;
+    html += `<div class="prompt-step-desc">${s.desc}</div>`;
+    html += `<div class="prompt-code" id="prompt_${ucId}_${i}"><button class="copy-btn" onclick="copiarPrompt('prompt_${ucId}_${i}')">Copy</button>${escaped}</div>`;
+    html += `</div>`;
+  });
+  html += `<p class="guide-footer">Execute each prompt in Cortex Code (Snowsight) sequentially</p>`;
+  box.innerHTML = html;
+  document.getElementById('promptsModal').classList.add('active');
+}
+
+function copiarPrompt(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = el.textContent.replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+}
+
+</script>
+
+<div class="modal-overlay" id="guiaModal">
+  <div class="modal-box" id="guiaModalBox"></div>
+</div>
+
+<div class="modal-overlay" id="promptsModal">
+  <div class="modal-box" id="promptsModalBox" style="max-width:780px;"></div>
+</div>
+
+</body>
+</html>

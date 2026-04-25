@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — Solutions IA/ML pour l'Industrie</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+    .hero { background: linear-gradient(135deg, #003545, #11567F); color: #fff; padding: 32px 48px 36px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+    .hero-left { flex: 1; }
+    .logos { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .logo-snowflake { display: flex; align-items: center; gap: 7px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .hero-title { font-size: 42px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+    .hero-subtitle { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 6px; }
+    .hero-tagline { font-size: 12px; color: rgba(255,255,255,0.65); }
+    .stats-box { background: #fff; border-radius: 10px; padding: 20px 28px; text-align: center; color: #1a1a1a; min-width: 160px; flex-shrink: 0; }
+    .stats-box .stat-number { font-size: 40px; font-weight: 700; color: #FF9F36; line-height: 1; }
+    .stats-box .stat-label { font-size: 12px; color: #666; margin-bottom: 14px; }
+    .stats-box .stat-time { font-size: 20px; font-weight: 700; color: #1a1a1a; line-height: 1; }
+    .stats-box .stat-time-label { font-size: 12px; color: #666; }
+    .stats-divider { border: none; border-top: 1px solid #e8e8e8; margin: 10px 0; }
+    .intro { background: #fff; text-align: center; padding: 48px 24px 32px; }
+    .intro h2 { font-size: 22px; font-weight: 700; color: #11567F; margin-bottom: 14px; }
+    .intro p { max-width: 600px; margin: 0 auto; font-size: 14px; color: #555; line-height: 1.7; }
+    .filters-bar { background: #fff; padding: 20px 48px 0; border-bottom: 1px solid #e8e8e8; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .filters-left { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+    .filter-btn { padding: 8px 18px; border-radius: 80px; border: 1.5px solid #ccc; background: transparent; font-size: 13px; font-weight: 500; color: #444; cursor: pointer; transition: all 0.15s; }
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+    .filter-btn.active { background: #29B5E8; border-color: #29B5E8; color: #fff; }
+    .search-box { display: flex; align-items: center; border: 1.5px solid #ccc; border-radius: 80px; padding: 7px 14px; gap: 8px; min-width: 200px; background: #fff; }
+    .search-box input { border: none; outline: none; font-size: 13px; color: #444; width: 100%; background: transparent; }
+    .search-box input::placeholder { color: #aaa; }
+    .results-count { padding: 14px 48px 8px; font-size: 13px; color: #666; background: #f5f5f5; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; padding: 16px 48px 48px; background: #f5f5f5; }
+    .card { background: #fff; border-radius: 10px; border: 1px solid #e2e2e2; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
+    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+    .card-header { padding: 16px 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .card-badges { display: flex; gap: 6px; align-items: center; }
+    .badge-id { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 0.5px; }
+    .badge-cat { background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 50px; }
+    .badge-cat.calidad { background: #F0FFF4; color: #2E7D4F; }
+    .badge-cat.mantenimiento { background: #FFF3E8; color: #D97B2A; }
+    .badge-cat.supply { background: #EAF0FF; color: #4A6EE0; }
+    .badge-cat.operaciones { background: #F5EEFF; color: #7D44CF; }
+    .card-time { font-size: 12px; color: #888; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .card-title { padding: 0 18px 12px; font-size: 17px; font-weight: 700; color: #11567F; line-height: 1.3; }
+    .pain-point { margin: 0 18px 14px; background: #F0F7FA; border-radius: 8px; padding: 12px 14px; }
+    .pain-point-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #FF9F36; margin-bottom: 6px; text-transform: uppercase; }
+    .pain-point p { font-size: 13px; color: #2a2a2a; line-height: 1.55; }
+    .card-desc { padding: 0 18px 14px; font-size: 13px; color: #555; line-height: 1.65; flex: 1; }
+    .card-features { padding: 0 18px 16px; list-style: none; }
+    .card-features li { font-size: 13px; color: #444; display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+    .card-features li::before { content: '\2713'; color: #29B5E8; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .card-actions { padding: 14px 18px 18px; display: flex; gap: 10px; border-top: 1px solid #f0f0f0; flex-wrap: wrap; }
+    .btn-secondary { flex: 1; padding: 10px; background: #29B5E8; color: #fff; border: none; border-radius: 80px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; transition: background 0.15s; text-decoration: none; display: block; }
+    .btn-secondary:hover { background: #11567F; }
+    .btn-tertiary { flex: 1; padding: 10px; background: #003545; color: #29B5E8; border: none; border-radius: 80px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; transition: background 0.15s; text-decoration: none; display: block; }
+    .btn-tertiary:hover { background: #11567F; }
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: #fff; border-radius: 12px; max-width: 700px; width: 92%; max-height: 85vh; overflow-y: auto; padding: 32px 28px; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.2); }
+    .modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: #888; line-height: 1; }
+    .modal-close:hover { color: #FF9F36; }
+    .modal-box h2 { color: #11567F; font-size: 20px; margin-bottom: 6px; }
+    .modal-box h3 { font-size: 15px; color: #333; margin: 18px 0 8px; }
+    .modal-box p, .modal-box li { font-size: 13px; line-height: 1.7; color: #444; }
+    .modal-box ul { padding-left: 20px; margin: 6px 0; }
+    .modal-box .guide-badge { display: inline-block; background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 50px; margin-bottom: 10px; }
+    .modal-box .guide-footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; padding: 24px 20px; }
+      .cards-grid { grid-template-columns: 1fr; padding: 16px 16px 48px; }
+      .filters-bar { padding: 16px 16px 0; }
+      .results-count { padding: 12px 16px 6px; }
+    }
+  </style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-left">
+    <div class="logos"><div class="logo-snowflake"><img src="../bug-white.png" alt="Snowflake" width="32" height="32" /> Snowflake</div></div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Retour à l'Index des Industries</a>
+    <p class="hero-eyebrow">Secteur Industriel &times; Snowflake</p>
+    <h1 class="hero-title">Solutions IA/ML pour l'Industrie</h1>
+    <p class="hero-subtitle">Guides et Prompts Cortex Code prêts à déployer pour les équipes industrielles</p>
+    <p class="hero-tagline">Développé avec Snowflake Cortex AI | Impact immédiat</p>
+  </div>
+  <div class="stats-box">
+    <div class="stat-number">15</div>
+    <div class="stat-label">Cas d'Usage</div>
+    <hr class="stats-divider"/>
+    <div class="stat-time">10-15 min</div>
+    <div class="stat-time-label">Temps de Configuration</div>
+  </div>
+</header>
+<section class="intro">
+  <h2>Accélérez votre Analytique avec des Solutions IA Préconfigurées pour l'Industrie</h2>
+  <p>Chaque solution inclut des Prompts Snowflake Cortex Code avec des données synthétiques, des guides pas à pas
+     et des implémentations SQL-first avec Cortex AI/ML. Tout le traitement reste dans Snowflake,
+     sans dépendances externes, prêt à personnaliser avec vos propres données d'usine.</p>
+</section>
+<div class="filters-bar">
+  <div class="filters-left" id="filterBtns">
+    <button class="filter-btn active" data-filter="all">Tous (15)</button>
+    <button class="filter-btn" data-filter="calidad">Qualité &amp; Production (4)</button>
+    <button class="filter-btn" data-filter="mantenimiento">Maintenance Prédictive (3)</button>
+    <button class="filter-btn" data-filter="supply">Chaîne d'Approvisionnement (3)</button>
+    <button class="filter-btn" data-filter="operaciones">Opérations IA (5)</button>
+  </div>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/></svg>
+    <input id="searchInput" type="text" placeholder="Rechercher des cas d'usage&hellip;" />
+  </div>
+</div>
+<div class="results-count" id="resultsCount">Affichage de 15 sur 15 cas d'usage</div>
+<main class="cards-grid" id="cardsGrid"></main>
+<script>
+const USE_CASES = [
+  {
+    "id": "UC01",
+    "cat": "calidad",
+    "catLabel": "Qualité & Production",
+    "time": "13 min",
+    "title": "Contrôle Qualité Visuel avec IA",
+    "pain": "Les défauts visuels en fabrication sont détectés manuellement par des inspecteurs avec des taux d'erreur de 15-20%. Les défauts échappés génèrent des retours coûteux et des dommages à la réputation de marque.",
+    "desc": "Classification ML sur les métriques de processus et attributs dimensionnels pour détecter les pièces défectueuses en temps réel pendant la production. Réduit les fuites de défauts jusqu'à 85% et élimine la fatigue de l'inspecteur.",
+    "features": [
+      "Classification binaire avec ML.CLASSIFICATION",
+      "Données synthétiques de 2 000 pièces avec 12 métriques",
+      "Alertes en temps réel par station qualité",
+      "Dashboard Streamlit de contrôle qualité"
+    ]
+  },
+  {
+    "id": "UC02",
+    "cat": "calidad",
+    "catLabel": "Qualité & Production",
+    "time": "12 min",
+    "title": "Prédiction de Défauts sur Ligne d'Assemblage",
+    "pain": "Les défauts d'assemblage ne sont détectés qu'à l'inspection finale, quand le coût de correction est 10x plus élevé que la détection précoce au point d'origine.",
+    "desc": "Modèle prédictif avec signaux de processus (couples, pressions, températures) anticipant les défauts avant leur apparition. Déclenche des alertes préventives dans les opérations amont et réduit les reprises de 60%.",
+    "features": [
+      "Prédiction de défauts à partir des signaux de processus",
+      "Variables : couple, pression, température, vitesse",
+      "Alertes préventives par poste de travail",
+      "Réduction des reprises et coûts de non-qualité"
+    ]
+  },
+  {
+    "id": "UC03",
+    "cat": "calidad",
+    "catLabel": "Qualité & Production",
+    "time": "14 min",
+    "title": "Optimisation OEE — Efficacité Globale des Équipements",
+    "pain": "L'OEE industriel moyen est d'environ 60%. Les pertes ne sont pas correctement identifiées car les données de disponibilité, performance et qualité sont dans des silos séparés.",
+    "desc": "Analyse OEE intégrée décomposant les pertes par disponibilité, performance et qualité avec Cortex ML. Identifie les contributeurs aux pertes par machine, équipe et ligne avec des recommandations priorisées.",
+    "features": [
+      "Décomposition automatique des 6 grandes pertes",
+      "Analyse par machine, équipe et ligne de production",
+      "Corrélation des signaux de processus avec l'efficacité",
+      "Dashboard exécutif avec drill-down par actif"
+    ]
+  },
+  {
+    "id": "UC04",
+    "cat": "calidad",
+    "catLabel": "Qualité & Production",
+    "time": "11 min",
+    "title": "Analyse des Causes Racines avec NLP sur Rapports Qualité",
+    "pain": "Les rapports de non-conformité accumulent des informations précieuses sans analyse. L'investigation des causes racines prend des jours et les schémas récurrents ne sont pas détectés avant qu'ils n'escaladent.",
+    "desc": "Pipeline NLP avec Cortex AI classifiant les rapports de non-conformité, extrayant les causes racines récurrentes et détectant les schémas émergents. Réduit le temps d'investigation de semaines à minutes.",
+    "features": [
+      "Classification des non-conformités avec CORTEX.COMPLETE",
+      "Extraction structurée des causes racines",
+      "Détection des schémas récurrents par zone et équipe",
+      "Alertes proactives pour les causes racines émergentes"
+    ]
+  },
+  {
+    "id": "UC05",
+    "cat": "mantenimiento",
+    "catLabel": "Maintenance Prédictive",
+    "time": "15 min",
+    "title": "Maintenance Prédictive des Équipements CNC",
+    "pain": "Les pannes non planifiées d'équipements CNC coûtent ~3 500 €/heure d'arrêt. La maintenance préventive calendaire génère des interventions excessives et le remplacement prématuré de composants.",
+    "desc": "Modèle de prédiction de défaillance avec signaux de vibration, température et charge d'outil pour anticiper les pannes CNC 48-72h à l'avance. Réduit les arrêts non planifiés de 70% et prolonge la durée de vie des composants.",
+    "features": [
+      "Prédiction de défaillance avec vibration et température",
+      "Variables : usure outil, charge broche, roulements",
+      "Alertes maintenance 48-72h avant défaillance",
+      "Optimisation du cycle de vie des composants"
+    ]
+  },
+  {
+    "id": "UC06",
+    "cat": "mantenimiento",
+    "catLabel": "Maintenance Prédictive",
+    "time": "11 min",
+    "title": "Détection d'Anomalies des Capteurs IoT d'Usine",
+    "pain": "Les usines génèrent des millions de lectures de capteurs quotidiennement. Les anomalies précédant les défaillances critiques se perdent dans le bruit sans détection multivariée.",
+    "desc": "Système de détection d'anomalies multivariées sur les flux de capteurs IoT. Couvre vibrations, températures, pressions et débits avec classification de sévérité à 4 niveaux.",
+    "features": [
+      "Détection multivariée avec z-score et ML",
+      "Corrélation entre signaux de multiples capteurs",
+      "Classification de sévérité : Critique/Haute/Moyenne/Normale",
+      "Dashboard de santé d'usine en temps réel"
+    ]
+  },
+  {
+    "id": "UC07",
+    "cat": "mantenimiento",
+    "catLabel": "Maintenance Prédictive",
+    "time": "13 min",
+    "title": "Planification Intelligente des Arrêts de Maintenance",
+    "pain": "Les arrêts sont planifiés de manière conservatrice, résultant en interventions inutiles ou pannes imprévues. La coordination manuelle des techniciens et pièces de rechange crée des inefficacités coûteuses.",
+    "desc": "Optimisation des arrêts combinant prédictions de durée de vie résiduelle, disponibilité des pièces de rechange et coûts d'opportunité de production. Réduit le temps total d'arrêt de 25%.",
+    "features": [
+      "Prédiction de durée de vie résiduelle des composants",
+      "Optimisation des fenêtres de maintenance",
+      "Gestion prédictive des pièces de rechange et ressources",
+      "Analyse coût-bénéfice planifié vs panne"
+    ]
+  },
+  {
+    "id": "UC08",
+    "cat": "supply",
+    "catLabel": "Chaîne d'Approvisionnement",
+    "time": "14 min",
+    "title": "Prévision de la Demande et Optimisation des Stocks",
+    "pain": "Les stocks excédentaires représentent 20-30% du fonds de roulement. Les ruptures de stock causent des arrêts de production. Sans prévision précise, la chaîne d'approvisionnement opère de manière réactive.",
+    "desc": "Modèles de prévision de demande multivariés avec variables externes (saisonnalité, carnet de commandes, macro) pour optimiser les niveaux de stock et réduire les excédents et ruptures.",
+    "features": [
+      "Prévision de demande multivariée avec ML",
+      "Variables externes : commandes, saisonnalité, macro",
+      "Calcul des niveaux de réapprovisionnement optimaux par SKU",
+      "Réduction des excédents de stock jusqu'à 30%"
+    ]
+  },
+  {
+    "id": "UC09",
+    "cat": "supply",
+    "catLabel": "Chaîne d'Approvisionnement",
+    "time": "12 min",
+    "title": "Détection des Risques Fournisseurs",
+    "pain": "Les problèmes avec les fournisseurs clés peuvent paralyser la production sans avertissement. Les équipes achats évaluent le risque de manière réactive, seulement après les défaillances.",
+    "desc": "Système de notation du risque fournisseur combinant performance de livraison, qualité des matériaux et indicateurs financiers. Anticipe les perturbations de la chaîne d'approvisionnement.",
+    "features": [
+      "Notation du risque avec ML.CLASSIFICATION",
+      "Variables : OTD, qualité, financier, concentration",
+      "Alertes précoces de détérioration de performance",
+      "Panneau de gestion proactive des risques supply chain"
+    ]
+  },
+  {
+    "id": "UC10",
+    "cat": "supply",
+    "catLabel": "Chaîne d'Approvisionnement",
+    "time": "10 min",
+    "title": "Traçabilité Numérique des Matériaux et des Lots",
+    "pain": "Face à une non-conformité ou un rappel, tracer les lots affectés prend des jours. Le manque de traçabilité expose aux amendes réglementaires et aux dommages réputationnels.",
+    "desc": "Système de traçabilité numérique de bout en bout connectant matières premières, processus de production, tests qualité et expédition. Permet la traçabilité bidirectionnelle en secondes.",
+    "features": [
+      "Graphe de traçabilité complet des matières premières à l'expédition",
+      "Recherche bidirectionnelle : en avant et en arrière",
+      "Simulation de rappel avec identification des articles affectés",
+      "Conformité traçabilité IATF/ISO"
+    ]
+  },
+  {
+    "id": "UC11",
+    "cat": "operaciones",
+    "catLabel": "Opérations IA",
+    "time": "13 min",
+    "title": "Planification de Production avec IA (PDP)",
+    "pain": "La planification principale se fait avec des tableurs et des règles statiques. Les changements dans le carnet de commandes ne sont pas reflétés en temps réel, causant des retards évitables.",
+    "desc": "Optimisation du Plan Directeur de Production combinant carnet de commandes, capacité d'usine, disponibilité des matériaux et contraintes de séquence. Améliore l'OTD jusqu'à 20%.",
+    "features": [
+      "Optimisation PDP avec contraintes de capacité",
+      "Variables : commandes, capacité, nomenclature, délais",
+      "Détection automatique des goulets d'étranglement",
+      "Dashboard OTD prévu avec alertes de risque"
+    ]
+  },
+  {
+    "id": "UC12",
+    "cat": "operaciones",
+    "catLabel": "Opérations IA",
+    "time": "15 min",
+    "title": "Assistant IA pour Opérateurs d'Usine (RAG)",
+    "pain": "Les opérateurs passent 20% de leur temps à chercher des manuels et procédures. Les connaissances critiques sont dispersées dans des documents papier et des systèmes déconnectés.",
+    "desc": "Assistant conversationnel RAG construit sur Cortex Search indexant les manuels d'opération, procédures de maintenance et enregistrements historiques. Réponses précises avec citation de source.",
+    "features": [
+      "RAG sur manuels et procédures d'usine",
+      "Cortex Search sur documentation technique",
+      "Réponses avec référence au document source",
+      "Disponible sur tablettes et écrans de ligne"
+    ]
+  },
+  {
+    "id": "UC13",
+    "cat": "operaciones",
+    "catLabel": "Opérations IA",
+    "time": "11 min",
+    "title": "Analyse des Incidents de Sécurité au Travail",
+    "pain": "Les rapports d'incidents sont archivés sans analyse systématique. Les causes racines se répètent car les schémas entre type, équipe, zone et conditions ne sont pas détectés.",
+    "desc": "Pipeline NLP avec Cortex AI analysant les rapports d'incidents, classifiant les causes racines et détectant les schémas de risque par zone, équipe et type d'opération. Réduit la récurrence de 40%.",
+    "features": [
+      "Classification automatique avec CORTEX.COMPLETE",
+      "Analyse des schémas par zone, équipe et tâche",
+      "Détection proactive des conditions à haut risque",
+      "Dashboard sécurité avec KPIs IF et IG"
+    ]
+  },
+  {
+    "id": "UC14",
+    "cat": "operaciones",
+    "catLabel": "Opérations IA",
+    "time": "12 min",
+    "title": "Optimisation de la Consommation Énergétique d'Usine",
+    "pain": "L'énergie représente 20-40% des coûts variables en fabrication. La consommation est surveillée mais pas optimisée proactivement. Les pics génèrent des pénalités évitables.",
+    "desc": "Analyse des schémas de consommation énergétique avec ML sur les relevés de compteurs et signaux de processus. Identifie les inefficacités, prédit les pics de demande et optimise le séquencement de production.",
+    "features": [
+      "Analyse des schémas par équipement et équipe avec ML",
+      "Identification des équipements inefficaces",
+      "Prédiction des pics pour éviter les pénalités",
+      "Optimisation de séquence basée sur le tarif électrique"
+    ]
+  },
+  {
+    "id": "UC15",
+    "cat": "operaciones",
+    "catLabel": "Opérations IA",
+    "time": "13 min",
+    "title": "Intelligence Client B2B et Prédiction de Commandes",
+    "pain": "Les fabricants B2B ont une visibilité limitée de la demande future. Les variations dans les schémas de commande des clients clés ne sont pas détectées avant qu'elles n'impactent la production.",
+    "desc": "Analyse des schémas de commandes clients B2B avec ML pour prédire la demande future, détecter les signaux de réduction de volume et anticiper les besoins en capacité de production.",
+    "features": [
+      "Prédiction de commandes clients B2B avec ML",
+      "Détection des changements dans les schémas d'achat",
+      "Signaux précoces de réduction de volume",
+      "Dashboard commercial avec prévision par client"
+    ]
+  }
+];
+const TOTAL = 15;
+
+function renderCards(list) {
+  const grid = document.getElementById('cardsGrid');
+  const count = document.getElementById('resultsCount');
+  grid.innerHTML = '';
+  count.textContent = `Affichage de ${list.length} sur ${TOTAL} cas d'usage`;
+  list.forEach(uc => {
+    const catClass = uc.cat;
+    grid.innerHTML += `
+      <article class="card">
+        <div class="card-header">
+          <div class="card-badges">
+            <span class="badge-id">${uc.id}</span>
+            <span class="badge-cat ${catClass}">${uc.catLabel}</span>
+          </div>
+          <span class="card-time">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2"><circle cx="10" cy="10" r="8"/><polyline points="10,5 10,10 13,13"/></svg>
+            ${uc.time}
+          </span>
+        </div>
+        <h3 class="card-title">${uc.title}</h3>
+        <div class="pain-point">
+          <div class="pain-point-label">Problème</div>
+          <p>${uc.pain}</p>
+        </div>
+        <p class="card-desc">${uc.desc}</p>
+        <ul class="card-features">
+          ${uc.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <div class="card-actions">
+          <a href="#" class="btn-secondary" onclick="verGuia('${uc.id}');return false;">Voir le Guide</a>
+          <a href="#" class="btn-tertiary" onclick="verPrompts('${uc.id}');return false;">Cortex Code Prompts</a>
+        </div>
+      </article>`;
+  });
+}
+let activeFilter = 'all';
+let searchTerm = '';
+function applyFilters() {
+  let result = USE_CASES;
+  if (activeFilter !== 'all') result = result.filter(u => u.cat === activeFilter);
+  if (searchTerm) result = result.filter(u => u.title.toLowerCase().includes(searchTerm) || u.desc.toLowerCase().includes(searchTerm) || u.pain.toLowerCase().includes(searchTerm));
+  renderCards(result);
+}
+document.getElementById('filterBtns').addEventListener('click', e => {
+  if (!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.filter;
+  applyFilters();
+});
+document.getElementById('searchInput').addEventListener('input', e => { searchTerm = e.target.value.toLowerCase().trim(); applyFilters(); });
+renderCards(USE_CASES);
+
+const GUIAS = {
+  "UC01": {
+    "title": "Contrôle Qualité Visuel avec IA",
+    "contexto": "These Cortex Code Prompts build an ML classification system to detect defective parts on the production line using process metrics and dimensional attributes.",
+    "foco": "Industrial production line — automatic real-time classification of conforming and non-conforming parts.",
+    "reto": "Reduce defect escapes to the customer from 15% to less than 2%, eliminating dependence on manual visual inspection.",
+    "objetivos": [
+      "Create binary classification models with SNOWFLAKE.ML.CLASSIFICATION",
+      "Generate synthetic data for process measurements and defects",
+      "Build quality variables from process signals",
+      "Evaluate model performance with precision and recall",
+      "Build interactive Streamlit quality control dashboard"
+    ],
+    "funcionalidades": [
+      "ML Model: Binary classification Part Conforming / Non-Conforming",
+      "Synthetic data: 2,000 parts with 12 process metrics",
+      "Variables: dimensional_tolerance, roughness, hardness, temperature, pressure, speed",
+      "Streamlit Dashboard: Quality KPIs, filters by line and shift"
+    ],
+    "datos": [
+      "Parts: ID, production line, shift, material, specifications",
+      "Measurements: 12 process variables per part with realistic distributions",
+      "ML Predictions: Conforming / Non-Conforming with defect probability"
+    ],
+    "estratificacion": [
+      "High risk (≥70%): Segregate part and immediate manual inspection",
+      "Medium risk (30-70%): Measure additional critical parameter",
+      "Low risk (<30%): Approve part and continue production"
+    ],
+    "como_usar": [
+      "Execute the prompts sequentially in Cortex Code",
+      "Synthetic data simulates 2,000 parts with realistic defects",
+      "The model trains in 30-60 seconds with ML.CLASSIFICATION",
+      "The dashboard shows quality KPIs in real time"
+    ]
+  },
+  "UC02": {
+    "title": "Prédiction de Défauts sur Ligne d'Assemblage",
+    "contexto": "These Cortex Code Prompts build an assembly defect predictor using real-time process signals to trigger preventive alerts.",
+    "foco": "Industrial assembly line — early defect prediction from torques, pressures, and temperatures.",
+    "reto": "Detect conditions that will generate defects before they occur, reducing rework by 60%.",
+    "objetivos": [
+      "Generate synthetic assembly data with process signals",
+      "Build predictor variables from torques and pressures",
+      "Train ML assembly defect classifier",
+      "Analyze process variable importance",
+      "Build preventive alert system by station"
+    ],
+    "funcionalidades": [
+      "ML Model: Binary assembly defect prediction",
+      "Synthetic data: 3,000 assembly records with 10 stations",
+      "Variables: tightening_torque, press_pressure, welding_temperature, alignment",
+      "Streamlit Dashboard: Alerts by station with signal history"
+    ],
+    "datos": [
+      "Assemblies: ID, line, station, operator, shift",
+      "Process signals: Torque, pressure, and temperature per assembly",
+      "ML Predictions: Likely Defect / Review / No Defect"
+    ],
+    "estratificacion": [
+      "Likely Defect (≥65%): Stop line and review station",
+      "Review (35-65%): Additional inspection before proceeding",
+      "No Defect (<35%): Approve and continue"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "3,000 assemblies are generated with differentiated signals",
+      "The model learns which combinations predict defects",
+      "The dashboard shows real-time alerts by station"
+    ]
+  },
+  "UC03": {
+    "title": "Optimisation OEE — Efficacité Globale des Équipements",
+    "contexto": "These Cortex Code Prompts build an OEE analysis and optimization system, decomposing the 6 big losses by machine, line, and shift.",
+    "foco": "Industrial plant — integrated analysis of availability, performance, and quality to eliminate production losses.",
+    "reto": "Increase OEE from 60% to 75% by identifying the main loss contributors with prioritized recommendations.",
+    "objetivos": [
+      "Integrate availability, performance, and quality data by machine",
+      "Generate synthetic production, downtime, and rejection data",
+      "Calculate OEE and decompose into the 6 big losses",
+      "Identify machines and shifts with the highest impact",
+      "Generate improvement recommendations with Cortex AI"
+    ],
+    "funcionalidades": [
+      "SQL Analytics: OEE calculation without ML model (100% SQL)",
+      "Synthetic data: 12 weeks across 10 machines and 3 shifts",
+      "Calculations: Availability, Performance, Quality, OEE, 6 big losses",
+      "Streamlit Dashboard: Interactive OEE with drill-down by asset"
+    ],
+    "datos": [
+      "Production: Good and total parts by shift and machine",
+      "Downtime: Type, duration, and frequency (breakdowns, changeovers, waits)",
+      "Rejects: Quantity and reason by shift and line"
+    ],
+    "estratificacion": [
+      "Critical OEE (<50%): Urgent root cause analysis",
+      "Low OEE (50-65%): Review of the 6 big losses",
+      "Target OEE (65-80%): Incremental optimization",
+      "Excellent OEE (>80%): Level maintenance"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "12 weeks of data are generated with realistic variability",
+      "OEE calculations are 100% SQL without ML",
+      "The dashboard allows comparing machines, shifts, and periods"
+    ]
+  },
+  "UC04": {
+    "title": "Analyse des Causes Racines avec NLP sur Rapports Qualité",
+    "contexto": "These Cortex Code Prompts build an NLP pipeline on non-conformance reports to automatically extract root causes and detect recurring patterns.",
+    "foco": "Quality management — automatic analysis of non-conformance reports with generative AI.",
+    "reto": "Reduce root cause investigation time from days to minutes, detecting patterns before they escalate.",
+    "objetivos": [
+      "Generate synthetic non-conformance report texts",
+      "Classify NC type with CORTEX.COMPLETE",
+      "Extract entities: machine, shift, material, operator",
+      "Detect recurring root causes with frequency analysis",
+      "Generate emerging cause alerts"
+    ],
+    "funcionalidades": [
+      "NLP: CORTEX.COMPLETE for classification and extraction",
+      "Synthetic data: 500 NC reports of 5 types",
+      "Detection: Root causes in the 5M (Machine, Method, Material, Manpower, Milieu)",
+      "Streamlit Dashboard: Quality intelligence panel"
+    ],
+    "datos": [
+      "NC Reports: Text, date, area, product, severity",
+      "Classifications: Dimensional, Functional, Visual, Material, Process",
+      "Extracted entities: Machine, shift, operator, root cause"
+    ],
+    "estratificacion": [
+      "Systemic cause (≥5 occurrences): Formal corrective action (8D)",
+      "Cause with increasing trend: Preventive action",
+      "Isolated cause: Standard recording and follow-up"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "500 reports are generated with realistic texts",
+      "Cortex AI automatically classifies and extracts entities",
+      "The dashboard shows trends and alerts by frequency"
+    ]
+  },
+  "UC05": {
+    "title": "Maintenance Prédictive des Équipements CNC",
+    "contexto": "These Cortex Code Prompts build a CNC equipment failure predictor using vibration, temperature, and load signals to anticipate breakdowns 48-72h in advance.",
+    "foco": "Machining plant — failure prediction in CNC centers before they cause unplanned downtime.",
+    "reto": "Reduce unplanned downtime by 70% and extend the useful life of tools and components.",
+    "objetivos": [
+      "Generate synthetic CNC equipment sensor signals",
+      "Build failure predictor variables",
+      "Identify the optimal prediction horizon (RUL)",
+      "Train ML imminent failure classifier",
+      "Calculate predictive maintenance ROI"
+    ],
+    "funcionalidades": [
+      "ML Model: State classification (Imminent Failure / Risk / Normal)",
+      "Synthetic data: 20 CNC units with 180 days of signals",
+      "Variables: spindle_vibration, bearing_temperature, motor_current, wear",
+      "Streamlit Dashboard: Fleet health with alerts and avoided cost"
+    ],
+    "datos": [
+      "CNC Equipment: ID, type, age, accumulated hours",
+      "Sensor signals: Vibrations, temperatures, and loads per equipment",
+      "Breakdown history: Failure type, component, cost, downtime"
+    ],
+    "estratificacion": [
+      "Imminent Failure (≥70%): Urgent scheduled shutdown within 24h",
+      "Elevated Risk (40-70%): Inspection and prepare intervention",
+      "Normal (<40%): Continue with standard monitoring"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "180 days of signals are generated for 20 units",
+      "The model learns patterns that precede failures",
+      "The dashboard shows fleet health and avoided cost"
+    ]
+  },
+  "UC06": {
+    "title": "Détection d'Anomalies des Capteurs IoT d'Usine",
+    "contexto": "These Cortex Code Prompts build a multivariate anomaly detection system over industrial IoT sensor streams.",
+    "foco": "IoT-equipped plant — deviation detection in vibrations, temperatures, pressures, and flow rates.",
+    "reto": "Identify 95% of significant anomalies with less than 5% false alarms.",
+    "objetivos": [
+      "Generate synthetic IoT sensor time series",
+      "Calculate reference statistics (baseline) per sensor",
+      "Implement z-score and percentile detection",
+      "Detect multivariate anomalies by correlating sensors",
+      "Classify severity and correlate with failure history"
+    ],
+    "funcionalidades": [
+      "Statistical detection: z-score and adaptive percentiles",
+      "Multivariate correlation between sensor signals",
+      "Synthetic data: 15 units with 90 days of IoT readings",
+      "Streamlit Dashboard: Anomaly heat map"
+    ],
+    "datos": [
+      "Equipment: 15 assets with 8 sensors each",
+      "Time series: 90 days of hourly readings with anomalies",
+      "Classification: Normal / Low Anomaly / High / Critical"
+    ],
+    "estratificacion": [
+      "Critical Anomaly (z>4): Immediate shutdown and review",
+      "High Anomaly (z 3-4): Increase monitoring",
+      "Low Anomaly (z 2-3): Record and review at next inspection",
+      "Normal (z<2): Standard operation"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "90 days of IoT signals are generated with embedded anomalies",
+      "Detection is 100% SQL with adaptive statistics",
+      "The dashboard shows anomalies by equipment and sensor"
+    ]
+  },
+  "UC07": {
+    "title": "Planification Intelligente des Arrêts de Maintenance",
+    "contexto": "These Cortex Code Prompts build a shutdown optimizer combining useful life predictions, spare parts, and production windows.",
+    "foco": "Maintenance management — shutdown optimization to maximize availability and reduce costs.",
+    "reto": "Reduce total planned shutdown time by 25% coordinating resources, spare parts, and windows with minimum impact.",
+    "objetivos": [
+      "Generate component inventory with estimated useful life",
+      "Predict remaining useful life per component",
+      "Identify optimal maintenance windows",
+      "Optimize technician and spare parts allocation",
+      "Compare planned shutdown vs breakdown cost"
+    ],
+    "funcionalidades": [
+      "Predictive model: Remaining Useful Life (RUL)",
+      "Synthetic data: 50 units with 200 critical components",
+      "Optimization: Task grouping by window",
+      "Streamlit Dashboard: Calendar with cost-benefit"
+    ],
+    "datos": [
+      "Components: ID, equipment, type, installation date, useful life",
+      "Wear signals: Condition indicators per component",
+      "Plan: Tasks, resources, spare parts, cost, and duration"
+    ],
+    "estratificacion": [
+      "Remaining life <10%: Include in next shutdown mandatory",
+      "Remaining life 10-30%: Plan for next window",
+      "Remaining life >30%: Next nominal review"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "50 units are generated with intervention history",
+      "The model predicts remaining useful life per component",
+      "The dashboard optimizes the shutdown calendar"
+    ]
+  },
+  "UC08": {
+    "title": "Prévision de la Demande et Optimisation des Stocks",
+    "contexto": "These Cortex Code Prompts build a demand forecasting engine with external variables to optimize inventory levels.",
+    "foco": "Manufacturing supply chain — SKU demand forecasting with market variables and seasonality.",
+    "reto": "Reduce excess inventory by 30% and eliminate stockouts that cause production shutdowns.",
+    "objetivos": [
+      "Generate sales and order history with realistic patterns",
+      "Integrate external variables: seasonality, order backlog",
+      "Train per-SKU prediction model with ML.FORECAST",
+      "Calculate optimal inventory levels by reorder point",
+      "Identify SKUs at risk of stockout or excess"
+    ],
+    "funcionalidades": [
+      "ML Model: SNOWFLAKE.ML.FORECAST for time series prediction",
+      "Synthetic data: 100 SKUs with 24 months of history",
+      "External variables: confirmed_orders, seasonality, raw_materials",
+      "Streamlit Dashboard: Per-SKU forecast with alerts"
+    ],
+    "datos": [
+      "SKUs: ID, category, supplier, lead time, unit cost",
+      "Sales history: Monthly demand with seasonality",
+      "Forecast: Next 3 months demand with confidence intervals"
+    ],
+    "estratificacion": [
+      "Imminent stockout (stock <1 week): Urgent order",
+      "Stockout risk (1-3 weeks): Launch replenishment",
+      "Excess (>12 weeks): Review plan and reduce order",
+      "Optimal stock (3-12 weeks): No action"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "24 months of history are generated for 100 SKUs",
+      "The model predicts demand for the next 3 months",
+      "The dashboard shows alerts prioritized by criticality"
+    ]
+  },
+  "UC09": {
+    "title": "Détection des Risques Fournisseurs",
+    "contexto": "These Cortex Code Prompts build a multidimensional supplier risk scoring system.",
+    "foco": "Supplier management — risk scoring to anticipate supply chain disruptions.",
+    "reto": "Identify suppliers with performance deterioration 30-60 days in advance.",
+    "objetivos": [
+      "Generate delivery and quality history per supplier",
+      "Build multidimensional scorecard",
+      "Train risk classification model",
+      "Identify critical dependencies (sole supplier)",
+      "Generate early deterioration alerts"
+    ],
+    "funcionalidades": [
+      "ML Model: Risk classification (Critical/High/Medium/Low)",
+      "Synthetic data: 80 suppliers with 18 months of history",
+      "Variables: OTD, rejection rate, credit score, concentration",
+      "Streamlit Dashboard: Risk management panel"
+    ],
+    "datos": [
+      "Suppliers: ID, country, category, volume, certifications",
+      "History: Monthly OTD, rejections, incidents, response",
+      "Score: Composite of OTD (40%), quality (35%), financial (25%)"
+    ],
+    "estratificacion": [
+      "Critical Risk: Contingency plan and find alternatives",
+      "High Risk: Audit and improvement plan in 30 days",
+      "Medium Risk: Monthly monitoring",
+      "Low Risk: Standard annual evaluation"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "80 suppliers are generated with 18 months of history",
+      "The model classifies multidimensional risk",
+      "The dashboard prioritizes by risk level and volume"
+    ]
+  },
+  "UC10": {
+    "title": "Traçabilité Numérique des Matériaux et des Lots",
+    "contexto": "These Cortex Code Prompts build an end-to-end digital traceability system connecting raw materials, production, quality, and shipping.",
+    "foco": "Regulated manufacturing — bidirectional lot traceability for rapid response to non-conformances and recalls.",
+    "reto": "Reduce traceability time from days to seconds, ensuring regulatory coverage.",
+    "objetivos": [
+      "Model the traceability chain from raw materials to product",
+      "Generate synthetic lot data with links",
+      "Implement forward traceability: from raw materials to product",
+      "Implement backward traceability: from customer to raw materials",
+      "Simulate recall and calculate affected units"
+    ],
+    "funcionalidades": [
+      "SQL Analytics: Traceability graph without ML (recursive SQL)",
+      "Synthetic data: 200 raw material lots, 500 work orders, 1,000 shipments",
+      "Traceability: Forward and backward with WITH RECURSIVE",
+      "Streamlit Dashboard: Search with traceability tree"
+    ],
+    "datos": [
+      "Raw material lots: ID, supplier, date, tests, certificate",
+      "Work orders: Raw material lots consumed, process, inspection",
+      "Shipments: Final units, lot, customer, date"
+    ],
+    "estratificacion": [
+      "NC in raw materials: Block and forward traceability of affected production",
+      "NC in process: Backward traceability (raw materials) and forward (units)",
+      "Customer claim: Backward traceability to supplier in <60s"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "200 raw material lots are generated with realistic links",
+      "Traceability queries are 100% recursive SQL",
+      "The dashboard allows simulating a recall in seconds"
+    ]
+  },
+  "UC11": {
+    "title": "Planification de Production avec IA (PDP)",
+    "contexto": "These Cortex Code Prompts build a Master Production Schedule optimizer combining orders, capacity, and materials.",
+    "foco": "Master planning — MPS optimization to maximize on-time delivery (OTD).",
+    "reto": "Improve OTD from 75% to 90% by identifying bottlenecks and automatically rescheduling.",
+    "objetivos": [
+      "Generate order backlog with dates and priorities",
+      "Model plant capacity by resource and shift",
+      "Integrate material availability with BOM",
+      "Calculate load per resource and identify bottlenecks",
+      "Simulate rescheduling for changes"
+    ],
+    "funcionalidades": [
+      "SQL Optimization: MPS planning with finite capacity",
+      "Synthetic data: 200 orders, 15 resources, 50 materials",
+      "Calculations: Load per resource, lead time, OTD slack",
+      "Streamlit Dashboard: Panel with OTD risk alerts"
+    ],
+    "datos": [
+      "Orders: ID, customer, product, quantity, promised date",
+      "Capacity: Resources per shift, cycle time per operation",
+      "Materials: Simplified BOM with lead times and stock"
+    ],
+    "estratificacion": [
+      "Slack <0 days: Urgent action, renegotiate or expand capacity",
+      "Slack 0-3 days: Daily monitoring and contingency",
+      "Slack >3 days: Standard planning"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "200 orders and capacity of 15 resources are generated",
+      "Load and slack calculations are 100% SQL",
+      "The dashboard shows predicted OTD and at-risk orders"
+    ]
+  },
+  "UC12": {
+    "title": "Assistant IA pour Opérateurs d'Usine (RAG)",
+    "contexto": "These Cortex Code Prompts build a RAG conversational assistant on Cortex Search indexing plant manuals and procedures.",
+    "foco": "Plant operators — instant access to technical procedures and specifications without manual search.",
+    "reto": "Reduce the 20% of time spent searching technical documentation with precise answers in seconds.",
+    "objetivos": [
+      "Generate technical documentation knowledge base",
+      "Create text chunks for semantic indexing",
+      "Create Cortex Search Service over documentation",
+      "Implement RAG pipeline with contextual retrieval",
+      "Validate with real operator questions"
+    ],
+    "funcionalidades": [
+      "RAG: Cortex Search + CORTEX.COMPLETE for contextual answers",
+      "Synthetic data: 120 technical documents of 5 types",
+      "Semantic search: Chunks of ~500 characters indexed",
+      "Streamlit Dashboard: Chat with source citation and area filter"
+    ],
+    "datos": [
+      "Documents: Manuals, procedures, data sheets, records",
+      "Chunks: Fragments indexed by equipment and area",
+      "RAG Answers: Text with document and section reference"
+    ],
+    "estratificacion": [
+      "Direct answer: High-relevance chunk + precise answer",
+      "Composite answer: Multiple chunks — verify coherence",
+      "No result: Escalate to specialist technician"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "A base of 120 technical documents is generated",
+      "Cortex Search Service is created with semantic indexing",
+      "The dashboard allows questions with cited answers"
+    ]
+  },
+  "UC13": {
+    "title": "Analyse des Incidents de Sécurité au Travail",
+    "contexto": "These Cortex Code Prompts build an NLP pipeline on safety incident reports to classify root causes and detect risk patterns.",
+    "foco": "Workplace safety — automatic incident analysis to reduce recurrence and improve working conditions.",
+    "reto": "Reduce incident recurrence by 40% by identifying systemic root causes.",
+    "objetivos": [
+      "Generate synthetic incident reports with realistic texts",
+      "Classify incident type and severity with CORTEX.COMPLETE",
+      "Extract entities: area, shift, task, involved equipment",
+      "Detect risk patterns by area-shift combination",
+      "Calculate frequency and severity indices"
+    ],
+    "funcionalidades": [
+      "NLP: CORTEX.COMPLETE for classification and extraction",
+      "Synthetic data: 400 reports of 6 incident types",
+      "Detection: Risk patterns with clustering by area and shift",
+      "Streamlit Dashboard: Safety panel with IF, IG KPIs"
+    ],
+    "datos": [
+      "Reports: Text, date, area, shift, injury type, PPE",
+      "Classifications: Fall, Entrapment, Burn, Cut, Chemical, Electrical",
+      "Entities: Equipment, PPE, immediate cause, root cause, corrective action"
+    ],
+    "estratificacion": [
+      "Critical pattern (≥3 similar): Immediate action plan and audit",
+      "Emerging pattern (2 similar): Root cause and preventive action",
+      "Isolated incident: Standard recording and follow-up"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "400 reports are generated with realistic texts and entities",
+      "Cortex AI automatically classifies and extracts entities",
+      "The dashboard shows risk map and emerging patterns"
+    ]
+  },
+  "UC14": {
+    "title": "Optimisation de la Consommation Énergétique d'Usine",
+    "contexto": "These Cortex Code Prompts build an industrial plant energy consumption analysis and optimization system.",
+    "foco": "Energy management — consumption pattern analysis by equipment, line, and shift to optimize efficiency.",
+    "reto": "Reduce energy consumption by 15-20% by identifying inefficiencies and avoiding demand peaks.",
+    "objetivos": [
+      "Generate consumption time series by equipment and meter",
+      "Correlate consumption with production (energy intensity)",
+      "Identify equipment with anomalous consumption",
+      "Predict demand peaks with ML",
+      "Optimize startup sequence to minimize peaks"
+    ],
+    "funcionalidades": [
+      "ML Model: Consumption prediction and anomaly detection",
+      "Synthetic data: 30 units with 90 days of hourly readings",
+      "Variables: production_per_hour, temperature, shift, tariff_price",
+      "Streamlit Dashboard: Energy management panel"
+    ],
+    "datos": [
+      "Meters: ID, equipment, energy type, rated power",
+      "Time series: Hourly consumption readings 90 days",
+      "Indicators: Intensity (kWh/part), deviation, cost"
+    ],
+    "estratificacion": [
+      "Consumption anomaly (>30% deviation): Immediate investigation",
+      "Structural inefficiency (>P90): Quarterly improvement plan",
+      "Avoidable peak consumption: Reschedule to off-peak hours",
+      "Predicted peak: Stagger startups in next 30 min"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "90 days of consumption are generated for 30 units",
+      "The model predicts consumption and detects anomalies",
+      "The dashboard shows inefficiency ranking and alerts"
+    ]
+  },
+  "UC15": {
+    "title": "Intelligence Client B2B et Prédiction de Commandes",
+    "contexto": "These Cortex Code Prompts build a B2B commercial intelligence system that predicts order volumes and detects purchase reduction signals.",
+    "foco": "B2B industrial sales — per-customer demand prediction and detection of changes in purchasing patterns.",
+    "reto": "Anticipate volume variations in key customers 60-90 days in advance.",
+    "objetivos": [
+      "Generate B2B customer order history",
+      "Build purchasing behavior features",
+      "Predict order volume for the next 3 months",
+      "Detect volume reduction signals with ML",
+      "Calculate B2B customer lifetime value"
+    ],
+    "funcionalidades": [
+      "ML Model: Volume prediction and B2B churn risk",
+      "Synthetic data: 60 customers with 24 months of history",
+      "Variables: quarterly_variation, frequency, recency, portfolio",
+      "Streamlit Dashboard: Commercial panel with forecast and alerts"
+    ],
+    "datos": [
+      "B2B Customers: ID, segment, sector, annual volume",
+      "Orders: Date, product, quantity, amount per customer",
+      "Predictions: Predicted volume, reduction risk, CLV"
+    ],
+    "estratificacion": [
+      "Reduction >30%: Urgent commercial contact within 15 days",
+      "Reduction 10-30%: Business meeting within 4 weeks",
+      "Stable or growing: Routine follow-up and upsell",
+      "High CLV + risk: Maximum commercial priority"
+    ],
+    "como_usar": [
+      "Execute prompts sequentially",
+      "24 months of orders are generated for 60 customers",
+      "The model predicts volume and detects purchase reduction",
+      "The dashboard prioritizes accounts by risk and potential"
+    ]
+  }
+};
+
+const PROMPTS = {
+  UC01: {"title": "Contrôle Qualité Visuel avec IA", "intro": "Ouvrez Cortex Code dans Snowsight et exécutez ces prompts séquentiellement. Chaque étape génère le SQL nécessaire pour construire un classificateur de pièces conformes/non-conformes avec ML.CLASSIFICATION.", "steps": [{"title": "Configure environment", "desc": "Create the database, schema, and warehouse for the project.", "prompt": "Create a database called VISUAL_QUALITY_DB with schema PUBLIC and a warehouse COMPUTE_WH size SMALL with auto-suspend of 60 seconds. Set the session context."}, {"title": "Generate parts table", "desc": "Generate 2,000 parts with dimensional and process attributes.", "prompt": "Generate a table 'parts' with 2,000 rows using GENERATOR(). Columns: part_id (PZ00001...), production_line (L1..L5), shift (Morning 40%, Afternoon 35%, Night 25%), material (Steel 50%, Aluminum 30%, Plastic 20%), inspection_date (last 90 days), es_defective (12% defective)."}, {"title": "Generate process measurements", "desc": "12 process variables per part with differentiated distributions.", "prompt": "Generate a table 'process_measurements' linked to parts. FLOAT columns: diameter_mm (defect: deviation ±0.15, ok: ±0.03), roughness_ra (defect: 3.2-6.5, ok: 0.8-1.6), hardness_hrc (defect: fuera de 58-62, ok: 58-62), process_temperature_c (defect: >420 o <380, ok: 390-410), pressure_bar (defect: fuera de 45-55, ok: 48-52), cutting_speed (defect: >120 o <80, ok: 90-110), cycle_time_sec (defect: <25 o >45, ok: 28-38), thickness_mm (defect: deviation ±0.1, ok: ±0.02), flatness_mm (defect: >0.08, ok: <0.03), concentricity_mm (defect: >0.05, ok: <0.015), surface_finish (defect: >3.2, ok: <1.6), tightening_torque_nm (defect: fuera de 25-35, ok: 28-32)."}, {"title": "Feature engineering", "desc": "Build the ML-ready features table with the 12 variables.", "prompt": "Create a table 'parts_features' doing JOIN between parts y process_measurements. Include the 12 variables numéricas FLOAT como features, más linea_encoded (L1=1..L5=5), turno_encoded (Morning=1,Afternoon=2,Night=3), material_encoded (Acero=1,Aluminio=2,Plástico=3). Target: es_defective VARCHAR."}, {"title": "Dividir train/test", "desc": "Separa 80% entrenamiento y 20% test.", "prompt": "Create table 'entrenamiento' con SAMPLE(80) de parts_features y tabla 'test' con los registros restantes. Muestra el conteo y tasa de defectos de cada conjunto."}, {"title": "Train model", "desc": "Entrena el clasificador con SNOWFLAKE.ML.CLASSIFICATION.", "prompt": "Entrena un modelo SNOWFLAKE.ML.CLASSIFICATION llamado 'detector_defectos' usando la tabla entrenamiento, con TARGET_COLNAME es_defective and evaluate TRUE."}, {"title": "Evaluate performance", "desc": "Revisa métricas, matriz de confusión e importancia de variables.", "prompt": "Execute SHOW_EVALUATION_METRICS, SHOW_CONFUSION_MATRIX y SHOW_FEATURE_IMPORTANCE del modelo detector_defectos. Interpreta la precisión y recall para defective=TRUE."}, {"title": "Clasificar parts", "desc": "Genera predicciones con niveles de riesgo sobre el conjunto test.", "prompt": "Create table 'predicciones_calidad' usando detector_defectos!PREDICT con OBJECT_CONSTRUCT sobre las 15 features del test. Extrae defecto_predicho, probabilidad_defecto y clasifica en Alto Riesgo (>=70%), Riesgo Medio (30-70%), Bajo Riesgo (<30%). Show top 20 y resumen por nivel."}, {"title": "Análisis por línea y turno", "desc": "Correlaciona defectos con variables de producción.", "prompt": "Crea un análisis SQL que muestre: tasa de defectos por línea, por turno y por material. Identifica la combinación (línea, turno, material) con mayor tasa de defectos. Order by tasa descendente."}, {"title": "Streamlit Dashboard", "desc": "Dashboard interactivo de control de calidad.", "prompt": "Crea un dashboard Streamlit que muestre: 4 KPIs (total parts, defectos detectados, tasa de defecto, exactitud del modelo), gráfico de barras de defectos por línea, tabla filtrable de parts con probabilidad de defecto, y filtro por turno y material."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados al terminar.", "prompt": "Genera los comandos DROP DATABASE IF EXISTS CALIDAD_VISUAL_DB y DROP WAREHOUSE IF EXISTS COMPUTE_WH comentados para limpieza opcional."}]},
+  UC02: {"title": "Prédiction de Défauts sur Ligne d'Assemblage", "intro": "Prompts pour construire an assembly defect predictor using real-time process signals (torques, pressures, temperatures).", "steps": [{"title": "Configure environment", "desc": "Isolated database for the project.", "prompt": "Create database ASSEMBLY_DEFECTS_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate assembly line", "desc": "Define stations and nominal parameters.", "prompt": "Generate table 'stations' with 10 assembly stations: estacion_id (EST01..EST10), nombre (Inserción, Soldadura, Atornillado, Prensa, Pegado, Remachado, Inspección, Ajuste, Calibración, Empaque), tipo_operacion, tolerancia_torque, tolerancia_presion, tolerancia_temperatura."}, {"title": "Generate assembly records", "desc": "3,000 assemblies with process signals.", "prompt": "Generate table 'assemblies' with 3,000 rows: ensamblaje_id, estacion_id, operador_id (OP01..OP20), turno, fecha_hora, torque_real (defect: fuera ±15% de tolerancia, ok: dentro ±5%), presion_real (defect: fuera ±20%, ok: dentro ±5%), temperatura_real (defect: fuera ±10%, ok: dentro ±3%), alineacion_mm (defect: >0.5, ok: <0.15), velocidad_avance (defect: fuera ±25%), corriente_motor_a (defect: >nominal*1.2), es_defecto (8%)."}, {"title": "Build features", "desc": "Assembly defect predictor variables.", "prompt": "Create table 'ensamblaje_features' with: desviacion_torque_pct, desviacion_presion_pct, desviacion_temperatura_pct, alineacion_mm, desviacion_velocidad_pct, ratio_corriente_nominal, hora_del_dia, minutos_desde_inicio_turno, estacion_encoded (1-10), operador_encoded. Target: es_defecto."}, {"title": "Train model", "desc": "Clasificador de defecto de ensamblaje.", "prompt": "Split 80/20, train SNOWFLAKE.ML.CLASSIFICATION 'predictor_defecto_ensamblaje' with target es_defecto and evaluate TRUE."}, {"title": "Evaluate performance", "desc": "Metrics and variables más predictivas.", "prompt": "Muestra EVALUATION_METRICS, CONFUSION_MATRIX y FEATURE_IMPORTANCE. Identifica las 3 variables con mayor peso en predicción de defectos."}, {"title": "Puntuar y estratificar", "desc": "Predicciones con niveles de alerta.", "prompt": "Puntúa test con niveles: Defecto Probable (>=65%), Revisar (35-65%), Sin Defecto (<35%). Muestra resumen por estación y nivel de riesgo."}, {"title": "Análisis por estación y operador", "desc": "Identificar estaciones y operadores problemáticos.", "prompt": "Crea análisis SQL: tasa de defectos por estación, por operador, y por combinación estación-operador. Identifica las top 3 combinaciones con mayor tasa de defectos y sugiere acciones."}, {"title": "Dashboard de alertas", "desc": "Panel de alertas preventivas por estación.", "prompt": "Crea dashboard Streamlit: semáforo por estación (Verde/Amarillo/Rojo), tabla de ensamblajes con alerta filtrable por estación y operador, gráfico de tendencia de defectos por turno, KPIs (total ensamblajes, alertas activas, tasa defecto)."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS DEFECTOS_ENSAMBLAJE_DB comentado para limpieza opcional."}]},
+  UC03: {"title": "Optimisation OEE — Efficacité Globale des Équipements", "intro": "Prompts pour construire an OEE calculation and optimization system, decomposing the 6 big losses by machine, line, and shift.", "steps": [{"title": "Configure environment", "desc": "Database for OEE analysis.", "prompt": "Create database OEE_MANUFACTURING_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate production records", "desc": "12 weeks of production by machine and shift.", "prompt": "Generate table 'production' with records for 10 machines (MAQ01..MAQ10), 3 shifts (Morning/Afternoon/Night), 84 days (12 weeks). Columns: produccion_id, maquina_id, turno, fecha, parts_producidas (variación por máquina), parts_conformes (95-99% de producidas), velocidad_real_vs_nominal (0.75-1.0), tiempo_planificado_min (480)."}, {"title": "Generate downtime records", "desc": "Downtime with type and duration.", "prompt": "Generate table 'downtime' linked to producción. 1-4 stoppages per record: parada_id, produccion_id, tipo_parada (Avería 25%, Cambio de formato 30%, Espera material 15%, Ajustes 15%, Arranque 10%, Otros 5%), duracion_min (Avería: 30-180, Cambio: 15-45, Espera: 10-60, Ajustes: 5-20, Arranque: 10-30, Otros: 5-15)."}, {"title": "Calculate OEE", "desc": "Availability, performance, and quality calculation.", "prompt": "Create view 'oee_detalle' with: tiempo_operativo = tiempo_planificado - sum(duracion_paradas), disponibilidad = tiempo_operativo / tiempo_planificado, rendimiento = velocidad_real_vs_nominal, calidad = parts_conformes / parts_producidas, OEE = disponibilidad * rendimiento * calidad. Group by máquina, turno y semana."}, {"title": "Decompose the 6 big losses", "desc": "Quantify each type of loss.", "prompt": "Create view 'seis_perdidas' that classifies: Availability Losses (breakdowns, changeovers), Performance Losses (micro-stops, reduced speed), Quality Losses (rejects, rework). Calculate minutes and percentage de cada pérdida por máquina."}, {"title": "Ranking de máquinas", "desc": "Identificar máquinas con mayor potencial de mejora.", "prompt": "Create query que rankea máquinas por OEE, identifica la principal pérdida de cada una y calcula el incremento de OEE si se eliminara esa pérdida. Order by potencial de mejora descendente."}, {"title": "Análisis temporal", "desc": "Tendencias de OEE por semana.", "prompt": "Create query de tendencia semanal de OEE por máquina. Identifica máquinas con tendencia descendente (últimas 4 semanas < media) y ascendente. Calcula pendiente de regresión lineal para detectar tendencias."}, {"title": "Generar recomendaciones con Cortex AI", "desc": "Recomendaciones priorizadas de mejora.", "prompt": "Usa CORTEX.COMPLETE para generar recomendaciones de mejora para las 3 máquinas con peor OEE. Pasando como contexto: OEE actual, principal pérdida, tipo de parada más frecuente, turno más afectado. Pide al modelo que priorice 3 acciones concretas."}, {"title": "Dashboard OEE", "desc": "Panel ejecutivo de eficiencia.", "prompt": "Crea dashboard Streamlit with: 4 KPIs (OEE medio, Disponibilidad, Rendimiento, Calidad), gráfico de barras de OEE por máquina con línea objetivo (75%), heatmap de OEE by machine and week, pie chart de las 6 grandes pérdidas, filtros por máquina y turno."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS OEE_MANUFACTURA_DB comentado para limpieza opcional."}]},
+  UC04: {"title": "Analyse des Causes Racines avec NLP sur Rapports Qualité", "intro": "Prompts pour construire an NLP pipeline that classifies non-conformance reports, extracts root causes, and detects emerging patterns with Cortex AI.", "steps": [{"title": "Configure environment", "desc": "Database for quality NLP analysis.", "prompt": "Create database ROOT_CAUSE_NLP_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate non-conformance reports", "desc": "500 reports with realistic NC texts.", "prompt": "Generate table 'nc_reports' with 500 rows: report_id, fecha (last 12 months), area (Mecanizado 30%, Ensamblaje 25%, Soldadura 20%, Acabado 15%, Empaque 10%), producto, turno, gravedad (Crítica 10%, Mayor 25%, Menor 65%), report_text (texto de 3-5 frases describiendo la no conformidad con vocabulario técnico de manufactura)."}, {"title": "Classify NC type", "desc": "Automatic classification with Cortex AI.", "prompt": "Create table 'nc_clasificadas' using CORTEX.COMPLETE para clasificar cada report_text en: Dimensional, Funcional, Visual, Material, Proceso. Include the prompt: 'Clasifica esta no conformidad en una categoría: [texto]'. Extract the classification as column tipo_nc."}, {"title": "Extract entities", "desc": "Extraction of machine, cause, and action.", "prompt": "Create table 'nc_entidades' using CORTEX.COMPLETE para extraer de cada informe: maquina_mencionada, causa_inmediata, causa_raiz_probable, accion_correctiva_sugerida. Use a JSON prompt with structured extraction instructions."}, {"title": "Sentiment analysis", "desc": "Evaluate report urgency.", "prompt": "Add column sentimiento using CORTEX.SENTIMENT on report_text. Classify into Urgent (sentimiento <-0.3), Normal (-0.3 a 0.3), Informative (>0.3). Show distribution."}, {"title": "Recurring cause detection", "desc": "Root cause frequency by area.", "prompt": "Create query SQL que agrupa por causa_raiz_probable y área. Identifica causas con >=3 ocurrencias en los last 90 days. Rankea por frecuencia descendente y muestra tendencia mensual."}, {"title": "Detectar patrones emergentes", "desc": "Causas raíz con tendencia creciente.", "prompt": "Crea análisis de tendencia mensual de causas raíz. Identifica causas que aparecen por primera vez en últimos 2 meses o con frecuencia creciente (mes actual > media 6 meses). Marca como 'Emergente' o 'Creciente'."}, {"title": "Análisis 5M con Cortex AI", "desc": "Clasificar causas en las 5M (Ishikawa).", "prompt": "Usa CORTEX.COMPLETE para clasificar cada causa_raiz_probable en las 5M: Máquina, Método, Material, Mano de obra, Medio ambiente. Genera resumen de distribución por M y área."}, {"title": "Dashboard de inteligencia de calidad", "desc": "Panel con causas raíz y alertas.", "prompt": "Crea dashboard Streamlit: 4 KPIs (total NC, críticas, causas recurrentes, causas emergentes), tabla de causas raíz rankeada por frecuencia, gráfico de tendencia mensual, treemap de 5M por área, y alertas de patrones emergentes."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS CAUSA_RAIZ_NLP_DB comentado para limpieza opcional."}]},
+  UC05: {"title": "Maintenance Prédictive des Équipements CNC", "intro": "Prompts pour construire a CNC equipment failure predictor using vibration, temperature, and load signals with 48-72h advance notice.", "steps": [{"title": "Configure environment", "desc": "Database for predictive maintenance.", "prompt": "Create database CNC_PREDMAINT_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate CNC equipment fleet", "desc": "20 units with characteristics.", "prompt": "Generate table 'cnc_equipment' with 20 rows: equipment_id (CNC01..CNC20), tipo (Centro Mecanizado 50%, Torno 30%, Fresadora 20%), marca, modelo, antiguedad_anos (2-15), horas_acumuladas (5000-50000), ultima_revision (last 365 days)."}, {"title": "Generate sensor signals", "desc": "180 days of daily readings per unit.", "prompt": "Generate table 'cnc_signals' con 20 equipos x 180 días = 3.600 records: equipment_id, fecha, vibracion_husillo_mm_s (normal: 2-5, pre-fallo: gradual aumento a 8-15 en 10 días), temperatura_rodamiento_c (normal: 45-65, pre-fallo: aumento a 80-95), corriente_motor_a (normal: 12-18, pre-fallo: picos a 22-30), desgaste_herramienta_pct (0-100, crece linealmente), presion_hidraulica_bar (normal: 150-170, pre-fallo: caída a 120-140)."}, {"title": "Generate breakdown history", "desc": "Record of actual failures to supervise the model.", "prompt": "Generate table 'breakdown_history' con ~40 registros para los 20 equipos: breakdown_id, equipment_id, fecha_fallo, tipo_fallo (Rodamiento 35%, Husillo 25%, Hidráulico 20%, Eléctrico 15%, Otros 5%), componente, coste_reparacion (500-8000€), horas_parada (4-48h)."}, {"title": "Build predictive features", "desc": "Variables that capture progressive deterioration.", "prompt": "Create table 'features_mantenimiento' with: vibracion_husillo, temperatura_rodamiento, corriente_motor, desgaste_herramienta, presion_hidraulica, tendencia_vibracion_7d (pendiente últimos 7 días), tendencia_temperatura_7d, ratio_corriente_nominal, horas_desde_ultima_revision, antiguedad_anos. Target: fallo_en_72h (TRUE si hay avería en los próximos 3 días)."}, {"title": "Entrenar modelo predictivo", "desc": "Clasificador de fallo inminente.", "prompt": "Split 80/20, train SNOWFLAKE.ML.CLASSIFICATION 'predictor_fallo_cnc' with target fallo_en_72h and evaluate TRUE."}, {"title": "Evaluar y puntuar", "desc": "Métricas y predicciones de estado.", "prompt": "Muestra EVALUATION_METRICS y FEATURE_IMPORTANCE. Puntúa test con niveles: Fallo Inminente (>=70%), Riesgo Elevado (40-70%), Normal (<40%). Show distribution y top equipos en riesgo."}, {"title": "Calculate predictive maintenance ROI", "desc": "Coste evitado vs mantenimiento reactivo.", "prompt": "Crea análisis SQL de ROI: coste_averia_reactiva (coste_reparacion + horas_parada * 3500€/h), coste_intervencion_preventiva (30% del reactivo), ahorro_estimado por equipo. Calcula ROI total y payback."}, {"title": "Dashboard de salud de flota", "desc": "Panel con estado de cada equipo y alertas.", "prompt": "Crea dashboard Streamlit: semáforo de salud por equipo (Verde/Amarillo/Rojo), gráfico de tendencia de señales para equipo seleccionado, KPIs (equipos en riesgo, coste evitado YTD, OEE mejora), tabla de intervenciones recomendadas con prioridad."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS MANTPRED_CNC_DB comentado para limpieza opcional."}]},
+  UC06: {"title": "Détection d'Anomalies des Capteurs IoT d'Usine", "intro": "Prompts pour construire a multivariate anomaly detection system over industrial IoT sensor streams.", "steps": [{"title": "Configure environment", "desc": "Database for anomaly detection.", "prompt": "Create database IOT_ANOMALIES_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate equipment and sensors", "desc": "15 units with 8 sensors each.", "prompt": "Generate table 'plant_equipment' con 15 equipos: equipment_id, nombre, area (Producción, Servicios, Almacén), tipo (Compresor, Bomba, Motor, Transportador, Horno). Generate table 'sensors' con 8 sensores por equipo: sensor_id, equipment_id, sensor_type (Vibración, Temperatura, Presión, Caudal, Nivel, Corriente, Velocidad, Humedad), unidad, rango_min, rango_max."}, {"title": "Generate time series", "desc": "90 days of hourly readings with anomalies.", "prompt": "Generate table 'iot_readings' con 15 equipos x 8 sensores x 90 días x 24 horas. Cada lectura: reading_id, sensor_id, equipment_id, timestamp, valor (normal: dentro del rango ±5%, anomalía: fuera del rango ±15-50%). Introduce ~3% de anomalías distribuidas en clusters de 2-6 horas consecutivas."}, {"title": "Calculate baselines", "desc": "Reference statistics per sensor.", "prompt": "Create view 'sensor_baselines' with: sensor_id, equipment_id, media_30d, std_30d, p05, p25, p50, p75, p95 calculados sobre los primeros 60 días (training window). Actualiza semanalmente."}, {"title": "Z-score detection", "desc": "Identify anomalous readings.", "prompt": "Create view 'anomalias_detectadas' calculando z_score = (valor - media_30d) / std_30d para cada lectura de los last 30 days. Clasifica: Normal (|z|<2), Anomalía Baja (2<=|z|<3), Anomalía Alta (3<=|z|<4), Anomalía Crítica (|z|>=4). Filter only anomalías."}, {"title": "Multivariate correlation", "desc": "Detectar anomalías que afectan múltiples sensores.", "prompt": "Create query que identifica ventanas de 1 hora donde >=3 sensores del mismo equipo tienen z_score>2 simultáneamente. Marca como 'Anomalía Correlacionada' y calcula severidad combinada."}, {"title": "Análisis temporal de anomalías", "desc": "Patrones por hora, turno y día de semana.", "prompt": "Crea análisis de distribución de anomalías por: hora_del_dia, dia_semana, turno. Identifica patrones recurrentes (ej: más anomalías en arranque de turno mañana). Calcula tasa de anomalías por ventana temporal."}, {"title": "Comparar con historial de fallos", "desc": "Correlacionar anomalías con breakdowns reales.", "prompt": "Generate table 'fallos_historicos' con 15 fallos en los last 90 days. Crea análisis SQL que compara anomalías detectadas 24-48h antes de cada fallo. Calcula tasa de detección anticipada."}, {"title": "Dashboard de salud de planta", "desc": "Mapa de calor de anomalías en tiempo real.", "prompt": "Crea dashboard Streamlit: heatmap de anomalías por equipo y sensor (últimas 24h), KPIs (anomalías activas, críticas, equipos en alerta), timeline de anomalías para equipo seleccionado, tabla de anomalías correlacionadas con severidad."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS ANOMALIAS_IOT_DB comentado para limpieza opcional."}]},
+  UC07: {"title": "Planification Intelligente des Arrêts de Maintenance", "intro": "Prompts pour construire a maintenance shutdown optimizer combining remaining useful life predictions, spare parts availability, and production windows.", "steps": [{"title": "Configure environment", "desc": "Database for shutdown planning.", "prompt": "Create database MAINT_PLANNING_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate equipment and component inventory", "desc": "50 units with 200 critical components.", "prompt": "Generate table 'equipos' con 50 equipos: equipment_id, nombre, area, criticidad (A 20%, B 40%, C 40%). Generate table 'components' con ~200 componentes: component_id, equipment_id, tipo (Rodamiento, Correa, Filtro, Junta, Válvula, Motor, Bomba), vida_util_nominal_horas, fecha_instalacion, horas_funcionamiento."}, {"title": "Generate intervention history", "desc": "Previous maintenance records.", "prompt": "Generate table 'interventions' con ~150 records: intervention_id, component_id, equipment_id, fecha, tipo (Preventivo 60%, Correctivo 30%, Predictivo 10%), duracion_horas, coste, tecnico_id, repuestos_usados."}, {"title": "Calculate remaining useful life", "desc": "RUL per component.", "prompt": "Create view 'rul_componentes' with: component_id, equipment_id, tipo, vida_util_nominal, horas_funcionamiento, porcentaje_vida_consumida, vida_residual_estimada_horas, vida_residual_dias (asumiendo 16h/día), fecha_fallo_estimada. Order by vida_residual_dias ascendente."}, {"title": "Generate spare parts availability", "desc": "Spare parts stock and lead times.", "prompt": "Generate table 'spare_parts' con 30 tipos: repuesto_id, tipo_componente, stock_actual, punto_reorden, lead_time_dias (3-30), coste_unitario. Vincula con componentes para identificar repuestos necesarios."}, {"title": "Identify maintenance windows", "desc": "Low production periods.", "prompt": "Generate table 'production_calendar' con 90 días: fecha, carga_produccion_pct (0-100), es_festivo, turno_disponible. Identifica ventanas donde carga<60% como candidatas para parada. Muestra las top 10 ventanas."}, {"title": "Optimizar agrupación de tareas", "desc": "Agrupar tareas por ventana.", "prompt": "Create query que asigna componentes con vida_residual_dias<60 a la ventana de mantenimiento más cercana. Group by ventana: total tareas, duración estimada, técnicos necesarios, repuestos requeridos, verificando que stock>=demanda."}, {"title": "Análisis coste-beneficio", "desc": "Comparar coste de parada planificada vs avería.", "prompt": "Crea análisis SQL: coste_parada_planificada (mano_obra + repuestos + lucro_cesante_reducido) vs coste_averia_reactiva (reparacion_urgente + parada_no_planificada * 3500€/h + pieza_defective). Calcula ahorro neto por parada planificada."}, {"title": "Dashboard de planificación", "desc": "Calendario con tareas y recursos.", "prompt": "Crea dashboard Streamlit: calendario de paradas con tareas asignadas, KPIs (componentes en riesgo, coste planificado, ahorro estimado), tabla de componentes ordenada por urgencia, gráfico de Gantt simplificado de tareas por ventana."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS PLANIF_PARADAS_DB comentado para limpieza opcional."}]},
+  UC08: {"title": "Prévision de la Demande et Optimisation des Stocks", "intro": "Prompts pour construire a demand forecasting engine with ML.FORECAST and per-SKU inventory level optimization.", "steps": [{"title": "Configure environment", "desc": "Database for demand forecasting.", "prompt": "Create database DEMAND_INVENTORY_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate SKU catalog", "desc": "100 SKUs with attributes.", "prompt": "Generate table 'skus' with 100 rows: sku_id (SKU0001..SKU0100), nombre_producto, categoria (Componentes 40%, Materias Primas 30%, Consumibles 20%, Embalaje 10%), supplier_id (PROV01..PROV20), lead_time_dias (7-45), coste_unitario (5-500€), stock_actual, punto_reorden_actual."}, {"title": "Generate demand history", "desc": "24 months of demand with seasonality.", "prompt": "Generate table 'historial_demanda' con 100 SKUs x 24 meses = 2.400 records: sku_id, month_date, demanda_unidades (con tendencia y estacionalidad por categoría), pedidos_confirmados, precio_materia_prima_idx (100-150, índice)."}, {"title": "Prepare data for forecast", "desc": "Format required by ML.FORECAST.", "prompt": "Create table 'demanda_forecast_input' con formato: sku_id (series_col), month_date (timestamp_col), demanda_unidades (target_col). Verify there are no gaps or nulls. Show count por SKU."}, {"title": "Train prediction model", "desc": "ML.FORECAST for time series prediction.", "prompt": "Train a SNOWFLAKE.ML.FORECAST model llamado 'predictor_demanda' usando demanda_forecast_input con SERIES_COLNAME='sku_id', TIMESTAMP_COLNAME='month_date', TARGET_COLNAME='demanda_unidades', PREDICTION_INTERVAL=0.95."}, {"title": "Generate predictions", "desc": "3-month forecast with intervals.", "prompt": "Generate predictions for the next 3 months con predictor_demanda!FORECAST(FORECASTING_PERIODS=>3). Extrae forecast, lower_bound, upper_bound. Show top 10 SKUs por demanda prevista."}, {"title": "Calcular niveles óptimos de inventario", "desc": "Punto de reorden y stock de seguridad.", "prompt": "Create view 'niveles_optimos' with: sku_id, demanda_media_mensual (de forecast), lead_time_dias, stock_seguridad (z_95 * std_demanda * sqrt(lead_time)), punto_reorden (demanda_diaria * lead_time + stock_seguridad), stock_actual, dias_cobertura (stock_actual / demanda_diaria)."}, {"title": "Alertas de inventario", "desc": "Identificar SKUs en riesgo.", "prompt": "Create view 'alertas_inventario' clasificando: Rotura Inminente (dias_cobertura <7), Riesgo Rotura (7-21 días), Exceso (>90 días), Stock Óptimo (21-90 días). Muestra resumen por categoría y top SKUs en riesgo."}, {"title": "Dashboard de demanda e inventario", "desc": "Panel de gestión de inventario.", "prompt": "Crea dashboard Streamlit: 4 KPIs (SKUs en riesgo, valor inventario, días cobertura media, SKUs en exceso), gráfico de forecast por SKU seleccionado con bandas de confianza, tabla de alertas filtrable por categoría, pie chart de estado de inventario."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS DEMANDA_INVENTARIO_DB comentado para limpieza opcional."}]},
+  UC09: {"title": "Détection des Risques Fournisseurs", "intro": "Prompts pour construire a multidimensional supplier risk scoring system combining OTD, quality, and financial indicators.", "steps": [{"title": "Configure environment", "desc": "Database for supplier risk management.", "prompt": "Create database SUPPLIER_RISK_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate supplier master", "desc": "80 suppliers with attributes.", "prompt": "Generate table 'suppliers' with 80 rows: supplier_id (PROV001..PROV080), nombre, pais, categoria (Componentes, Materia Prima, Servicios, Embalaje), certificaciones (ISO9001, IATF, AS9100), annual_volume_eur, es_proveedor_unico (15%), alternativas_disponibles (0-3)."}, {"title": "Generate delivery history", "desc": "18 months of deliveries with performance.", "prompt": "Generate table 'deliveries' con ~5.000 records: delivery_id, supplier_id, order_id, order_date, promised_date, fecha_real (OTD: buenos >95%, malos 60-80%), cantidad_pedida, cantidad_recibida, rejects (buenos <2%, malos 5-15%)."}, {"title": "Generate financial indicators", "desc": "Supplier financial health signals.", "prompt": "Generate table 'financial_indicators' con un registro por proveedor y trimestre (6 trimestres): supplier_id, trimestre, score_credito (300-850), dias_pago_media (30-120), ratio_deuda (0.1-0.9), crecimiento_ingresos_pct (-20 a +30)."}, {"title": "Build scorecard", "desc": "Multidimensional composite score.", "prompt": "Create view 'scorecard_proveedores' with: otd_score (OTD% * 40), calidad_score ((1 - tasa_rechazo) * 35), financiero_score (normalizado * 25), score_total (suma), plus: es_proveedor_unico (flag de concentración), tendencia_12m (mejora/deterioro). Order by score_total ascendente."}, {"title": "Train risk model", "desc": "Clasificador de riesgo con ML.", "prompt": "Create table features with: otd_score, calidad_score, financiero_score, es_proveedor_unico, tendencia_12m_encoded, dias_pago_media, ratio_deuda. Target: riesgo_historico (basado en si hubo incidencia grave). Entrena ML.CLASSIFICATION 'clasificador_riesgo_prov' con evaluate TRUE."}, {"title": "Puntuar y estratificar", "desc": "Clasificar proveedores por nivel de riesgo.", "prompt": "Puntúa todos los proveedores con niveles: Riesgo Crítico (>=75%), Riesgo Alto (50-75%), Riesgo Medio (25-50%), Riesgo Bajo (<25%). Muestra resumen por categoría y los top 10 proveedores críticos."}, {"title": "Alertas de deterioro", "desc": "Detectar proveedores con tendencia negativa.", "prompt": "Create query que compara score_total actual vs hace 6 meses. Identifica proveedores con deterioro >10 puntos como 'Alerta de Deterioro'. Lista con motivo principal (OTD bajó, calidad empeoró, financiero débil)."}, {"title": "Dashboard de riesgo supply chain", "desc": "Panel de gestión proactiva de proveedores.", "prompt": "Crea dashboard Streamlit: semáforo de proveedores por nivel de riesgo, KPIs (proveedores críticos, proveedores únicos en riesgo, alertas de deterioro), scatter plot OTD vs Calidad coloreado por riesgo, tabla filtrable con detalle por proveedor."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS RIESGO_PROVEEDORES_DB comentado para limpieza opcional."}]},
+  UC10: {"title": "Traçabilité Numérique des Matériaux et des Lots", "intro": "Prompts pour construire an end-to-end digital traceability system connecting raw materials, production, quality, and shipping with recursive SQL.", "steps": [{"title": "Configure environment", "desc": "Database for traceability.", "prompt": "Create database TRACEABILITY_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate raw material lots", "desc": "200 raw material lots with tests.", "prompt": "Generate table 'raw_material_lots' with 200 rows: raw_lot_id (MP0001..MP0200), supplier_id (PROV01..PROV30), material (Acero, Aluminio, Plástico, Caucho, Cobre), fecha_recepcion (last 180 days), cantidad_kg, resultado_ensayo (Conforme 90%, No Conforme 5%, Condicionado 5%), certificado_id."}, {"title": "Generate production orders", "desc": "500 work orders linked to raw material lots.", "prompt": "Generate table 'production_orders' with 500 rows: wo_id (OP0001..OP0500), producto, fecha_inicio, lote_mp_1 (FK lotes_mp), lote_mp_2 (nullable, 40% usan 2 lotes), cantidad_producida, cantidad_conforme, resultado_inspeccion (OK 92%, NOK 5%, Condicional 3%)."}, {"title": "Generate shipments", "desc": "1,000 units shipped to customers.", "prompt": "Generate table 'shipments' with 1,000 rows: shipment_id, wo_id (FK ordenes_produccion), customer_id (CLI01..CLI50), fecha_expedicion, cantidad, albaran, lote_producto_final."}, {"title": "Forward traceability", "desc": "From raw material to customer.", "prompt": "Create query WITH RECURSIVE que, dado un raw_lot_id, muestra: todas las OPs que lo usaron, todas las expediciones de esas OPs, clientes afectados, cantidades. Test with a Non-Conforming raw material lot."}, {"title": "Backward traceability", "desc": "From customer to raw material.", "prompt": "Create query WITH RECURSIVE que, dado un shipment_id, retrocede: expedición → OP → lotes MP → proveedor y ensayo. Show the complete traceability tree with all links."}, {"title": "Recall simulation", "desc": "Calcular impacto de un recall.", "prompt": "Crea procedimiento que, dado un raw_lot_id con NC, calcula: total OPs afectadas, total expediciones, total clientes, cantidad de unidades en mercado, coste estimado del recall (cantidad * coste_unitario * factor_recall). Execute simulación para 3 lotes No Conforme."}, {"title": "Verificación de cobertura", "desc": "Asegurar que toda la producción es trazable.", "prompt": "Create query de auditoría que identifica: OPs sin lote MP vinculado, expediciones sin OP, lotes MP sin ensayo. Calcula porcentaje de cobertura de trazabilidad. Objetivo: 100%."}, {"title": "Dashboard de trazabilidad", "desc": "Búsqueda interactiva con árbol.", "prompt": "Crea dashboard Streamlit: buscador por raw_lot_id, wo_id o shipment_id, árbol de trazabilidad (forward y backward) en formato tabla, KPIs (cobertura %, lotes en cuarentena, recalls simulados), simulador de recall con cálculo de impacto."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS TRAZABILIDAD_DB comentado para limpieza opcional."}]},
+  UC11: {"title": "Planification de Production avec IA (PDP)", "intro": "Prompts pour construire a Master Production Schedule optimizer combining order backlog, plant capacity, and material availability.", "steps": [{"title": "Configure environment", "desc": "Database for production planning.", "prompt": "Create database PRODUCTION_PLANNING_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate order backlog", "desc": "200 orders with dates and priorities.", "prompt": "Generate table 'orders' with 200 rows: order_id (PED0001..PED0200), customer_id (CLI01..CLI40), product_id (PROD01..PROD25), cantidad (50-5000), order_date (last 30 days), promised_date (10-45 días desde pedido), prioridad (Alta 20%, Media 50%, Baja 30%), estado (Pendiente 70%, En Proceso 20%, Completado 10%)."}, {"title": "Generate plant capacity", "desc": "15 resources with capacity per shift.", "prompt": "Generate table 'resources' with 15 rows: resource_id (REC01..REC15), nombre (Centro CNC, Línea Montaje, Prensa, Horno, Pintura, etc.), tipo (Máquina 70%, Mano Obra 30%), capacidad_hora_turno (480 min), turnos_disponibles (1-3), eficiencia (0.80-0.95). Generate table 'production_routes': product_id, resource_id, secuencia, tiempo_ciclo_min."}, {"title": "Generate BOM and materials", "desc": "Material availability.", "prompt": "Generate table 'bom' con ~150 filas: product_id, material_id (MAT01..MAT50), cantidad_por_unidad. Generate table 'materiales' with 50 rows: material_id, stock_actual, lead_time_dias, pedido_en_transito."}, {"title": "Calculate load per resource", "desc": "Load vs capacity per period.", "prompt": "Create view 'carga_recurso' that calculates: para cada recurso y semana, la carga total (sum de cantidad * tiempo_ciclo) vs capacidad disponible (turnos * capacidad * eficiencia). Identifica recursos con carga >100% como cuellos de botella."}, {"title": "Calculate material availability", "desc": "Verificar que hay material para producir.", "prompt": "Create view 'disponibilidad_materiales' que, para cada pedido, verifica si stock_actual + pedido_en_transito >= cantidad_necesaria (cantidad * bom). Marca pedidos con material insuficiente."}, {"title": "Calcular slack de OTD", "desc": "Días de holgura hasta fecha prometida.", "prompt": "Create view 'slack_otd' with: order_id, promised_date, fecha_estimada_fin (basada en carga acumulada y capacidad), slack_dias (prometida - estimada), en_riesgo (slack <0). Order by slack ascendente."}, {"title": "Identificar cuellos de botella", "desc": "Recursos que limitan el throughput.", "prompt": "Crea análisis SQL que rankea recursos por utilización. Identifica top 3 cuellos de botella. Para cada uno calcula: pedidos afectados, impacto en OTD, opciones (horas extra, subcontratación, re-secuenciación). Usa CORTEX.COMPLETE para generar recomendaciones."}, {"title": "Simulación what-if", "desc": "Impacto de changeovers en capacidad.", "prompt": "Create query que simula: (1) añadir un turno al recurso más saturado, (2) incrementar eficiencia un 10%. Recalcula carga y slack para mostrar el impacto en pedidos en riesgo."}, {"title": "Dashboard de planificación", "desc": "Panel de OTD con alertas.", "prompt": "Crea dashboard Streamlit: KPIs (OTD previsto %, pedidos en riesgo, cuellos de botella, material insuficiente), gráfico de carga por recurso con línea 100%, tabla de pedidos en riesgo ordenada por slack, filtros por cliente y prioridad."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS PLANIF_PRODUCCION_DB comentado para limpieza opcional."}]},
+  UC12: {"title": "Assistant IA pour Opérateurs d'Usine (RAG)", "intro": "Prompts pour construire a RAG conversational assistant on Cortex Search that indexes plant technical manuals and procedures.", "steps": [{"title": "Configure environment", "desc": "Database for the RAG assistant.", "prompt": "Create database PLANT_ASSISTANT_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate documentation base", "desc": "120 technical documents of 5 types.", "prompt": "Generate table 'documents' con 120 filas: doc_id, tipo (Manual de Operación 30%, Procedimiento de Mantenimiento 25%, Ficha de Seguridad 20%, Especificación de Proceso 15%, Registro de Calidad 10%), titulo, area (Mecanizado, Ensamblaje, Soldadura, Acabado, Almacén), equipment_reference, fecha_revision, version."}, {"title": "Generate document content", "desc": "Realistic technical text per document.", "prompt": "Generate table 'document_content' con texto técnico para cada documento using CORTEX.COMPLETE. Prompt: 'Genera un documento técnico de manufactura de tipo [tipo] para el área [area] sobre [titulo]. Incluye secciones: Alcance, Procedimiento, Precauciones, Registro. 400-600 palabras en español técnico industrial.'"}, {"title": "Create chunks for indexing", "desc": "Fragment documents into ~500 char chunks.", "prompt": "Create table 'document_chunks' fragmentando cada contenido en chunks de ~500 caracteres con overlap de 50: chunk_id, doc_id, tipo, area, equipment_reference, chunk_text, chunk_index."}, {"title": "Create Cortex Search Service", "desc": "Semantic indexing over chunks.", "prompt": "Create a Cortex Search Service called 'plant_searcher' on the table chunks_documentos con SEARCH_COLUMN='chunk_text', ATTRIBUTES='tipo,area,equipment_reference'. Configure TARGET_LAG='1 hour'."}, {"title": "Implement semantic search", "desc": "Test queries.", "prompt": "Execute 5 test searches: '¿Cómo ajustar la presión del compresor?', '¿Qué EPIs necesito para soldadura?', '¿Cuál es el par de apriete del modelo X?', '¿Procedimiento de parada de emergencia?', '¿Cada cuánto lubricar el torno?'. Muestra chunks devueltos con score."}, {"title": "Implementar pipeline RAG", "desc": "Respuestas con contexto y cita.", "prompt": "Crea función que: (1) busca los top 5 chunks relevantes con Cortex Search, (2) construye prompt con contexto para CORTEX.COMPLETE, (3) genera respuesta citando documento fuente. Prompt template: 'Basándote SOLO en estos documentos: [chunks]. Responde: [pregunta]. Cita el documento fuente.'"}, {"title": "Validar calidad de respuestas", "desc": "Verificar precisión y relevancia.", "prompt": "Execute 5 preguntas con el pipeline RAG completo. Para cada una muestra: pregunta, chunks usados, respuesta generada, documento citado. Evalúa si la respuesta es correcta y relevante."}, {"title": "Generar FAQ automático", "desc": "Preguntas frecuentes desde documentación.", "prompt": "Usa CORTEX.COMPLETE para generar 3 preguntas FAQ por área (Mecanizado, Ensamblaje, Soldadura, Acabado, Almacén) basándose en los documentos. Create table 'faq_generado' con pregunta, respuesta, area, doc_fuente."}, {"title": "Dashboard del asistente", "desc": "Chat con filtros y citas.", "prompt": "Crea dashboard Streamlit with: campo de pregunta con botón de enviar, área de respuesta con cita de fuente, filtro por área y tipo de documento, historial de preguntas de la sesión, sección de FAQ por área."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS ASISTENTE_PLANTA_DB y DROP CORTEX SEARCH SERVICE buscador_planta comentados para limpieza opcional."}]},
+  UC13: {"title": "Analyse des Incidents de Sécurité au Travail", "intro": "Prompts pour construire an NLP pipeline that analyzes safety incident reports, classifies root causes, and detects risk patterns.", "steps": [{"title": "Configure environment", "desc": "Database for safety analysis.", "prompt": "Create database WORKPLACE_SAFETY_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate incident reports", "desc": "400 reports with realistic texts.", "prompt": "Generate table 'incidents' with 400 rows: incident_id, fecha (last 24 months), area (Producción 35%, Almacén 20%, Mantenimiento 20%, Logística 15%, Oficinas 10%), turno, tipo_lesion (Caída 25%, Atrapamiento 20%, Quemadura 15%, Corte 15%, Químico 10%, Eléctrico 10%, Otro 5%), gravedad (Leve 55%, Grave 30%, Muy Grave 10%, Mortal 5%), dias_baja (Leve: 0-3, Grave: 4-30, Muy Grave: 31-180), report_text (3-5 frases describiendo el incidente con vocabulario de seguridad industrial)."}, {"title": "Classify incident type with NLP", "desc": "Automatic classification with Cortex AI.", "prompt": "Create table 'incidentes_clasificados' using CORTEX.COMPLETE para clasificar cada report_text en tipo_clasificado. Validate against tipo_lesion original. Calculate automatic classification accuracy."}, {"title": "Extract entities", "desc": "Equipo, EPI, causa y acción correctiva.", "prompt": "Create table 'incidentes_entidades' using CORTEX.COMPLETE para extraer: equipo_involucrado, epi_usado (si se menciona), causa_inmediata, causa_raiz, accion_correctiva_mencionada. Usa prompt JSON de extracción estructurada."}, {"title": "Sentiment and urgency analysis", "desc": "Prioritize reports by urgency.", "prompt": "Add column urgencia_score using CORTEX.SENTIMENT on report_text. Clasifica: Urgent (<-0.3), Atención (-0.3 a 0), Estándar (>0). Cruza con gravedad para validar coherencia."}, {"title": "Calculate IF and IG indices", "desc": "Índice de Frecuencia y Gravedad.", "prompt": "Crea análisis SQL de índices de seguridad por área y trimestre: IF (incidentes * 1.000.000 / horas_trabajadas), IG (dias_baja * 1.000 / horas_trabajadas). Asume 200 trabajadores x 8h x 22 días/mes. Muestra tendencia trimestral."}, {"title": "Detección de patrones de riesgo", "desc": "Combinaciones área-turno-tipo con riesgo elevado.", "prompt": "Crea análisis que identifica combinaciones (area, turno, tipo_lesion) con >=3 incidentes en 6 meses. Marca como 'Patrón de Riesgo' y genera alerta. Order by frecuencia descendente."}, {"title": "Análisis con Cortex AI", "desc": "Recomendaciones de prevención.", "prompt": "Para los top 5 patrones de riesgo, usa CORTEX.COMPLETE para generar: resumen del patrón, factores contribuyentes probables, 3 medidas preventivas priorizadas. Almacena en tabla 'recomendaciones_seguridad'."}, {"title": "Dashboard de seguridad", "desc": "Panel con KPIs, patrones y alertas.", "prompt": "Crea dashboard Streamlit: KPIs (IF, IG, incidentes mes actual, tendencia), mapa de calor de incidentes por área y turno, gráfico de tendencia IF/IG trimestral, tabla de patrones de riesgo con alerta, filtros por área y periodo."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS SEGURIDAD_LABORAL_DB comentado para limpieza opcional."}]},
+  UC14: {"title": "Optimisation de la Consommation Énergétique d'Usine", "intro": "Prompts pour construire an energy consumption analysis and optimization system by equipment, line, and shift with anomaly detection and peak prediction.", "steps": [{"title": "Configure environment", "desc": "Database for energy management.", "prompt": "Create database FACTORY_ENERGY_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate equipment and meters", "desc": "30 units with rated power.", "prompt": "Generate table 'energy_equipment' with 30 rows: equipment_id, nombre, area, tipo (Motor 30%, Horno 15%, Compresor 15%, Iluminación 10%, HVAC 10%, Prensa 10%, Otros 10%), potencia_nominal_kw (5-500), factor_potencia (0.85-0.95), tarifa (Punta, Valle, Llano)."}, {"title": "Generate consumption series", "desc": "90 days of hourly readings.", "prompt": "Generate table 'energy_consumption' con 30 equipos x 90 días x 24 horas = 64.800 records: equipment_id, timestamp, consumo_kwh (basado en potencia_nominal con variación: turno mañana 90-100%, tarde 80-95%, noche 40-60%, fines de semana 20-30%), produccion_parts_hora (proporcional al consumo), precio_kwh (Punta: 0.18, Llano: 0.12, Valle: 0.06)."}, {"title": "Calculate energy intensity", "desc": "kWh per produced part.", "prompt": "Create view 'intensidad_energetica' with: equipment_id, fecha, turno, consumo_total_kwh, parts_producidas, kwh_por_pieza, desviacion_vs_media (%). Identifica equipos con intensidad >P90 como ineficientes."}, {"title": "Detect consumption anomalies", "desc": "Equipment with abnormal consumption.", "prompt": "Create view 'anomalias_energia' calculando z_score por equipo y hora_del_dia (baseline últimos 60 días). Clasifica: Anomalía (|z|>3), Atención (2<|z|<3), Normal. Show top anomalías con equipo, hora y deviation."}, {"title": "Predict consumption with ML", "desc": "Modelo de predicción a 24h.", "prompt": "Create features: hora_dia, dia_semana, turno_encoded, produccion_prevista, temperatura_exterior, equipo_encoded. Entrena ML.CLASSIFICATION para predecir consumo_alto (>P80). Evalúa con precisión y recall."}, {"title": "Análisis de picos evitables", "desc": "Identificar picos coincidentes.", "prompt": "Crea análisis SQL de picos: horas donde consumo_total_planta > potencia_contratada * 0.85. Identifica equipos que contribuyen al pico y calcula el coste de la penalización. Sugiere re-secuenciación de arranques."}, {"title": "Optimización por tarifa", "desc": "Mover consumo a horas valle.", "prompt": "Crea análisis de coste por franja horaria. Identifica equipos flexibles (que pueden operar en valle) y calcula ahorro potencial si se mueve el 30% del consumo de punta a valle. Muestra ahorro mensual estimado."}, {"title": "Dashboard de gestión energética", "desc": "Panel de consumo con alertas.", "prompt": "Crea dashboard Streamlit: KPIs (consumo total kWh, coste €, intensidad media, anomalías activas), gráfico de consumo por hora del día (actual vs baseline), ranking de equipos por intensidad energética, alertas de picos previstos, filtros por equipo y periodo."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS ENERGIA_FABRICA_DB comentado para limpieza opcional."}]},
+  UC15: {"title": "Intelligence Client B2B et Prédiction de Commandes", "intro": "Prompts pour construire a B2B commercial intelligence system that predicts order volumes and detects purchase reduction signals.", "steps": [{"title": "Configure environment", "desc": "Database for commercial intelligence.", "prompt": "Create database B2B_INTELLIGENCE_DB with schema PUBLIC and warehouse COMPUTE_WH."}, {"title": "Generate customer master", "desc": "60 B2B customers with attributes.", "prompt": "Generate table 'b2b_customers' with 60 rows: customer_id (CLI001..CLI060), company_name, sector (Automoción 30%, Electrónica 25%, Construcción 20%, Alimentación 15%, Farmacéutico 10%), pais, annual_volume_eur (50K-5M), segmento (Premium 20%, Estándar 50%, Básico 30%), relationship_years (1-15), primary_contact."}, {"title": "Generate order history", "desc": "24 months of orders per customer.", "prompt": "Generate table 'b2b_orders' con ~3.000 records: order_id, customer_id, order_date (last 24 months), product_id, cantidad, amount_eur, plazo_entrega_dias, fue_entregado_otd (90% TRUE). Patrones: Premium piden regularmente cada 2-4 semanas, Estándar cada 4-8, Básico esporádicamente. 15% de clientes tienen tendencia descendente últimos 6 meses."}, {"title": "Build behavior features", "desc": "Purchasing pattern variables.", "prompt": "Create table 'features_clientes' with: avg_order_amount, monthly_frequency, quarterly_variation_pct (último trim vs anterior), days_since_last_order, normalized_recency, distinct_product_count, product_mix (concentración), trend_6m (regresión lineal), seasonality_idx. Target: volume_reduction (TRUE si volumen 3 últimos meses < 70% de media)."}, {"title": "Predict volume with ML.FORECAST", "desc": "Forecast a 3 meses por cliente.", "prompt": "Prepare data in format: customer_id (series), month_date (timestamp), monthly_amount (target). Entrena SNOWFLAKE.ML.FORECAST 'predictor_pedidos_b2b' con SERIES_COLNAME, TIMESTAMP_COLNAME, TARGET_COLNAME. Genera predicciones 3 meses."}, {"title": "Detectar señales de reducción", "desc": "Clientes con caída de volumen.", "prompt": "Entrena ML.CLASSIFICATION 'detector_reduccion' with target volume_reduction. Puntúa todos los clientes: Reducción Probable (>=60%), En Riesgo (30-60%), Estable (<30%). Show top 10 clientes en riesgo con motivo principal (feature importance)."}, {"title": "Calcular CLV (Customer Lifetime Value)", "desc": "Valor del ciclo de vida por cliente.", "prompt": "Create view 'clv_clientes' with: importe_anual_medio, relationship_years, margen_estimado (15%), tasa_retencion (basada en modelo de reducción), CLV = importe_anual * margen * (tasa_retencion / (1 - tasa_retencion)). Rankea por CLV descendente."}, {"title": "Análisis de cartera comercial", "desc": "Segmentación por valor y riesgo.", "prompt": "Crea matriz 2x2: CLV (Alto/Bajo) x Riesgo (Alto/Bajo). Clasifica clientes en: Proteger (CLV alto + riesgo alto), Desarrollar (CLV alto + riesgo bajo), Recuperar (CLV bajo + riesgo alto), Mantener (CLV bajo + riesgo bajo). Cuenta y valor por cuadrante."}, {"title": "Dashboard comercial B2B", "desc": "Panel con forecast y alertas.", "prompt": "Crea dashboard Streamlit: KPIs (clientes activos, ingresos previstos 3m, clientes en riesgo, CLV total), gráfico de forecast por cliente seleccionado, scatter de CLV vs Riesgo con cuadrantes, tabla de alertas de reducción con acción recomendada, filtros por segmento y sector."}, {"title": "Limpieza (opcional)", "desc": "Elimina los objetos creados.", "prompt": "Genera DROP DATABASE IF EXISTS INTELIGENCIA_B2B_DB comentado para limpieza opcional."}]},
+};
+
+function verGuia(ucId) {
+  const g = GUIAS[ucId];
+  if (!g) return;
+  const box = document.getElementById('guiaModalBox');
+  let html = `<button class="modal-close" onclick="cerrarModal('guiaModal')">&times;</button>`;
+  html += `<span class="guide-badge">${ucId}</span>`;
+  html += `<h2>${g.title}</h2>`;
+  html += `<p>${g.contexto}</p>`;
+  html += `<h3>Focus</h3><p>${g.foco}</p>`;
+  html += `<h3>Défi</h3><p>${g.reto}</p>`;
+  html += `<h3>Objectifs d'Apprentissage</h3><ul>${g.objetivos.map(o => `<li>${o}</li>`).join('')}</ul>`;
+  html += `<h3>Fonctionnalités</h3><ul>${g.funcionalidades.map(f => `<li>${f}</li>`).join('')}</ul>`;
+  html += `<h3>Données</h3><ul>${g.datos.map(d => `<li>${d}</li>`).join('')}</ul>`;
+  html += `<h3>Stratification</h3><ul>${g.estratificacion.map(e => `<li>${e}</li>`).join('')}</ul>`;
+  html += `<h3>Comment Utiliser</h3><ul>${g.como_usar.map(c => `<li>${c}</li>`).join('')}</ul>`;
+  html += `<p class="guide-footer">Suivez les instructions du guide pour implémenter la solution complète</p>`;
+  box.innerHTML = html;
+  document.getElementById('guiaModal').classList.add('active');
+}
+
+function verPrompts(ucId) {
+  const p = PROMPTS[ucId];
+  if (!p) return;
+  const box = document.getElementById('promptsModalBox');
+  let html = `<button class="modal-close" onclick="cerrarModal('promptsModal')">&times;</button>`;
+  html += `<h2>${p.title}</h2>`;
+  html += `<p class="prompt-intro">${p.intro}</p>`;
+  p.steps.forEach((s, i) => {
+    html += `<div class="prompt-step">`;
+    html += `<div class="prompt-step-header"><span class="prompt-step-num">${i+1}</span><span class="prompt-step-title">${s.title}</span></div>`;
+    html += `<p class="prompt-step-desc">${s.desc}</p>`;
+    const escaped = s.prompt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    html += `<div class="prompt-code" id="prompt_${ucId}_${i}"><button class="copy-btn" onclick="copiarPrompt('prompt_${ucId}_${i}')">Copier</button>${escaped}</div>`;
+    html += `</div>`;
+  });
+  html += `<p class="guide-footer">Exécutez chaque prompt dans Cortex Code (Snowsight) séquentiellement</p>`;
+  box.innerHTML = html;
+  document.getElementById('promptsModal').classList.add('active');
+}
+
+function copiarPrompt(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = el.textContent.replace('Copier', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copié !';
+    setTimeout(() => btn.textContent = 'Copiar', 1500);
+  });
+}
+
+function cerrarModal(id) { document.getElementById(id).classList.remove('active'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { cerrarModal('guiaModal'); cerrarModal('promptsModal'); } });
+document.querySelectorAll('.modal-overlay').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); }));
+</script>
+
+<div class="modal-overlay" id="guiaModal">
+  <div class="modal-box" id="guiaModalBox"></div>
+</div>
+
+<div class="modal-overlay" id="promptsModal">
+  <div class="modal-box" id="promptsModalBox" style="max-width:780px;"></div>
+</div>
+</body>
+</html>

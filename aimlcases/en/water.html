@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — AI/ML Solutions for Water Management</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #003545, #11567F);
+      color: #fff;
+      padding: 32px 48px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .hero-left { flex: 1; }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 6px;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .stats-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px 28px;
+      text-align: center;
+      color: #1a1a1a;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+
+    .stats-box .stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #0288D1;
+      line-height: 1;
+    }
+
+    .stats-box .stat-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 14px;
+    }
+
+    .stats-box .stat-time {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1;
+    }
+
+    .stats-box .stat-time-label {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .stats-divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 10px 0;
+    }
+
+    .intro {
+      background: #fff;
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    .intro h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #11567F;
+      margin-bottom: 14px;
+    }
+
+    .intro p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .filters-bar {
+      background: #fff;
+      padding: 20px 48px 0;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filters-left {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 80px;
+      border: 1.5px solid #ccc;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+
+    .filter-btn.active {
+      background: #29B5E8;
+      border-color: #29B5E8;
+      color: #fff;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      border: 1.5px solid #ccc;
+      border-radius: 80px;
+      padding: 7px 14px;
+      gap: 8px;
+      min-width: 200px;
+      background: #fff;
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 13px;
+      color: #444;
+      width: 100%;
+      background: transparent;
+    }
+    .search-box input::placeholder { color: #aaa; }
+
+    .results-count {
+      padding: 14px 48px 8px;
+      font-size: 13px;
+      color: #666;
+      background: #f5f5f5;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      padding: 16px 48px 48px;
+      background: #f5f5f5;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #e2e2e2;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+
+    .card-header {
+      padding: 16px 18px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-badges { display: flex; gap: 6px; align-items: center; }
+
+    .badge-id {
+      font-size: 11px;
+      font-weight: 700;
+      color: #888;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-cat {
+      background: #E0F4FD;
+      color: #11567F;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+    .badge-cat.planta { background: #E0F2F1; color: #00695C; }
+    .badge-cat.calidad { background: #E3F2FD; color: #0D47A1; }
+    .badge-cat.red { background: #FFF3E0; color: #E65100; }
+    .badge-cat.cliente { background: #F3E5F5; color: #6A1B9A; }
+
+    .card-time {
+      font-size: 12px;
+      color: #888;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .card-title {
+      padding: 0 18px 12px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #11567F;
+      line-height: 1.3;
+    }
+
+    .pain-point {
+      margin: 0 18px 14px;
+      background: #F0F7FA;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .pain-point-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #0288D1;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .pain-point p {
+      font-size: 13px;
+      color: #2a2a2a;
+      line-height: 1.55;
+    }
+
+    .card-desc {
+      padding: 0 18px 14px;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .card-features {
+      padding: 0 18px 16px;
+      list-style: none;
+    }
+
+    .card-features li {
+      font-size: 13px;
+      color: #444;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .card-features li::before {
+      content: '\2713';
+      color: #29B5E8;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .card-actions {
+      padding: 14px 18px 18px;
+      display: flex;
+      gap: 10px;
+      border-top: 1px solid #f0f0f0;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      flex: 1;
+      padding: 10px;
+      background: #29B5E8;
+      color: #fff;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-secondary:hover { background: #11567F; }
+
+    .btn-tertiary {
+      flex: 1;
+      padding: 10px;
+      background: #003545;
+      color: #29B5E8;
+      border: none;
+      border-radius: 80px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+    }
+    .btn-tertiary:hover { background: #11567F; }
+
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .prompt-code .kw { color: #29B5E8; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 700px;
+      width: 92%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 32px 28px;
+      position: relative;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+      line-height: 1;
+    }
+    .modal-close:hover { color: #0288D1; }
+    .modal-box h2 { color: #11567F; font-size: 20px; margin-bottom: 6px; }
+    .modal-box h3 { font-size: 15px; color: #333; margin: 18px 0 8px; }
+    .modal-box p, .modal-box li { font-size: 13px; line-height: 1.7; color: #444; }
+    .modal-box ul { padding-left: 20px; margin: 6px 0; }
+    .modal-box .guide-badge { display: inline-block; background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 50px; margin-bottom: 10px; }
+    .modal-box .guide-footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; padding: 24px 20px; }
+      .cards-grid { grid-template-columns: 1fr; padding: 16px 16px 48px; }
+      .filters-bar { padding: 16px 16px 0; }
+      .results-count { padding: 12px 16px 6px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-left">
+    <div class="logos">
+      <div class="logo-snowflake">
+        <img src="../bug-white.png" alt="Snowflake" width="32" height="32" />
+        Snowflake
+      </div>
+    </div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Back to Industry Index</a>
+    <p class="hero-eyebrow">Water Management × Snowflake</p>
+    <h1 class="hero-title">AI/ML Solutions for Water Management</h1>
+    <p class="hero-subtitle">Cortex Code Guides and Prompts for Water Management</p>
+    <p class="hero-tagline">Built with Snowflake Cortex AI | Immediate impact</p>
+  </div>
+
+  <div class="stats-box">
+    <div class="stat-number">10</div>
+    <div class="stat-label">Use Cases</div>
+    <hr class="stats-divider"/>
+    <div class="stat-time">8-15 min</div>
+    <div class="stat-time-label">Setup Time</div>
+  </div>
+</header>
+
+<section class="intro">
+  <h2>Talk to your Plant — Artificial Intelligence for the Water Cycle</h2>
+  <p>Each solution includes Snowflake Cortex Code Prompts with synthetic data, step-by-step guides
+     and SQL-first implementations with Cortex AI/ML. From conversational assistants for plant operators
+     to energy optimization and leak detection — all within Snowflake.</p>
+</section>
+
+<div class="filters-bar">
+  <div class="filters-left" id="filterBtns">
+    <button class="filter-btn active" data-filter="all">All (10)</button>
+    <button class="filter-btn" data-filter="planta">Plant Operations (4)</button>
+    <button class="filter-btn" data-filter="calidad">Water Quality (2)</button>
+    <button class="filter-btn" data-filter="red">Distribution Network (2)</button>
+    <button class="filter-btn" data-filter="cliente">Customer Experience (2)</button>
+  </div>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round">
+      <circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/>
+    </svg>
+    <input id="searchInput" type="text" placeholder="Search use cases\u2026" />
+  </div>
+</div>
+
+<div class="results-count" id="resultsCount">Showing 10 of 10 use cases</div>
+
+<main class="cards-grid" id="cardsGrid"></main>
+
+<script>
+const USE_CASES = [
+  {
+    id:"UC01", cat:"planta", catLabel:"Plant Operations", time:"12 min",
+    title:"Conversational Plant Assistant (Talk to your Plant)",
+    pain:"WTP/WWTP operators need to query multiple SCADA systems, historical records, and manuals to make decisions. Incident response time is measured in hours.",
+    desc:"RAG assistant with Cortex Search that allows operators to ask natural language questions about plant status, process parameters, active alarms, and operating procedures. Responses in <3 seconds with source citation.",
+    features:["Cortex Search over manuals and procedures", "RAG with CORTEX.COMPLETE for contextual answers", "Real-time SCADA data integration", "Streamlit conversational interface for operators"]
+  },
+  {
+    id:"UC02", cat:"calidad", catLabel:"Water Quality", time:"14 min",
+    title:"Turbidity and Physicochemical Parameter Prediction",
+    pain:"Raw water turbidity spikes cause reagent cost overruns and regulatory non-compliance risk. Reactive detection does not allow dosing adjustments in time.",
+    desc:"ML time series model that predicts turbidity, pH, residual chlorine, and conductivity over the next 4-24 hours. Enables proactive reagent dosing adjustments and anticipates regulatory alerts.",
+    features:["Forecasting with SNOWFLAKE.ML.FORECAST", "Multi-parameter prediction at 4-24h", "Proactive regulatory threshold alerts", "Trends and predictions dashboard"]
+  },
+  {
+    id:"UC03", cat:"planta", catLabel:"Plant Operations", time:"13 min",
+    title:"Reagent Dosing Optimization",
+    pain:"Coagulant, flocculant, and chlorine dosing is based on fixed rules that do not adapt to raw water variability. Reagent overconsumption represents 25-40% of operating costs.",
+    desc:"ML classification model that recommends optimal reagent dosing based on raw water conditions (turbidity, temperature, pH, organic matter) to minimize costs while meeting quality regulations.",
+    features:["ML.CLASSIFICATION for dosing bands", "Raw water and environmental condition variables", "15-25% reagent cost reduction", "Shift-based recommendation dashboard"]
+  },
+  {
+    id:"UC04", cat:"planta", catLabel:"Plant Operations", time:"15 min",
+    title:"Predictive Maintenance for Plant Equipment",
+    pain:"Unplanned failures of pumps, blowers, and valves cause production shutdowns and repair costs 3-5x higher than preventive maintenance.",
+    desc:"Anomaly detection model on vibration, temperature, pressure, and electrical consumption data from critical equipment. Predicts failures 7-14 days in advance for planned interventions.",
+    features:["Anomaly detection with ML.ANOMALY_DETECTION", "IoT sensors: vibration, temperature, pressure, amperage", "Failure prediction at 7-14 days", "Equipment health dashboard with alerts"]
+  },
+  {
+    id:"UC05", cat:"red", catLabel:"Distribution Network", time:"14 min",
+    title:"Leak Detection in Distribution Network",
+    pain:"Non-revenue water (NRW) losses exceed 25% in many urban networks. Manual leak detection through field campaigns is slow and expensive.",
+    desc:"Classification model that identifies zones with high leak probability by analyzing nighttime pressures, minimum flows, pipe age, and DMA sectorization data. Prioritizes detection campaigns.",
+    features:["ML.CLASSIFICATION on sectorization data", "Nighttime minimum flow analysis", "Leak probability scoring by DMA", "Campaign prioritization dashboard"]
+  },
+  {
+    id:"UC06", cat:"calidad", catLabel:"Water Quality", time:"11 min",
+    title:"NLP Analysis of Incidents and Work Orders",
+    pain:"Thousands of work orders and incidents are logged as free text every month. Root cause patterns are lost in unstructured observation fields.",
+    desc:"NLP pipeline with Cortex AI that classifies incidents, extracts entities (equipment, location, cause), and detects recurring patterns in work orders to prioritize renewal investments.",
+    features:["Incident classification with CORTEX.COMPLETE", "Entity extraction: equipment, location, root cause", "Sentiment analysis on operator reports", "Patterns and trends dashboard"]
+  },
+  {
+    id:"UC07", cat:"red", catLabel:"Distribution Network", time:"13 min",
+    title:"Water Demand Forecasting",
+    pain:"Production planning is based on simple historical data that does not capture the impact of weather, seasonality, or special events. This leads to overproduction or deficit.",
+    desc:"Forecasting model that predicts water demand 24-72 hours ahead combining consumption patterns, weather forecasts, calendar (holidays, vacations), and seasonal tourism data.",
+    features:["SNOWFLAKE.ML.FORECAST for daily demand", "Exogenous variables: temperature, rain, holidays", "24-72h prediction with confidence intervals", "Production planning dashboard"]
+  },
+  {
+    id:"UC08", cat:"cliente", catLabel:"Customer Experience", time:"12 min",
+    title:"Anomalous Consumption Detection for Subscribers",
+    pain:"Internal leaks, meter fraud, and reading errors generate financial losses and customer complaints. They are detected months later during billing.",
+    desc:"Anomaly detection model that identifies unusual consumption patterns per subscriber (internal leaks, fraud, faulty meters) by comparing against historical profile and neighborhood to alert in real time.",
+    features:["ML.ANOMALY_DETECTION on daily consumption", "Consumption profiling by subscriber type", "Comparison with neighborhood/DMA consumption", "Alert dashboard with prioritization"]
+  },
+  {
+    id:"UC09", cat:"cliente", catLabel:"Customer Experience", time:"11 min",
+    title:"Customer Complaint Intelligence",
+    pain:"Quality, pressure, and billing complaints are managed reactively. Systemic root cause patterns are not detected until they escalate to regulators.",
+    desc:"NLP classification and sentiment analysis on customer complaints to detect emerging issues, prioritize resolution, and identify zones at risk of service non-compliance.",
+    features:["CORTEX.SENTIMENT for sentiment analysis", "Automatic complaint classification", "Regulatory risk detection (AEMPS, ACA)", "Complaint intelligence dashboard"]
+  },
+  {
+    id:"UC10", cat:"planta", catLabel:"Plant Operations", time:"14 min",
+    title:"Plant Energy Optimization",
+    pain:"Energy consumption represents 30-40% of operating costs. Operators lack visibility into which equipment combinations minimize energy costs while meeting production targets.",
+    desc:"ML model that recommends optimal pump, blower, and auxiliary equipment configuration based on forecasted demand and hourly electricity rates to minimize energy costs without compromising quality.",
+    features:["ML.CLASSIFICATION for configuration bands", "Electricity rate integration by period", "Multi-objective optimization: cost vs production", "Energy savings dashboard with recommendations"]
+  },
+];
+
+const TOTAL = 10;
+
+function renderCards(list) {
+  const grid = document.getElementById('cardsGrid');
+  const count = document.getElementById('resultsCount');
+  grid.innerHTML = '';
+  count.textContent = `Showing ${list.length} of ${TOTAL} use cases`;
+  list.forEach(uc => {
+    const catClass = uc.cat;
+    grid.innerHTML += `
+      <article class="card">
+        <div class="card-header">
+          <div class="card-badges">
+            <span class="badge-id">${uc.id}</span>
+            <span class="badge-cat ${catClass}">${uc.catLabel}</span>
+          </div>
+          <span class="card-time">
+            <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2">
+              <circle cx="10" cy="10" r="8"/><polyline points="10,5 10,10 13,13"/>
+            </svg>
+            ${uc.time}
+          </span>
+        </div>
+        <h3 class="card-title">${uc.title}</h3>
+        <div class="pain-point">
+          <div class="pain-point-label">Problem</div>
+          <p>${uc.pain}</p>
+        </div>
+        <p class="card-desc">${uc.desc}</p>
+        <ul class="card-features">
+          ${uc.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <div class="card-actions">
+          <a href="#" class="btn-secondary" onclick="viewGuide('${uc.id}');return false;">View Guide</a>
+          <a href="#" class="btn-tertiary" onclick="viewPrompts('${uc.id}');return false;">Cortex Code Prompts</a>
+        </div>
+      </article>`;
+  });
+}
+
+let activeFilter = 'all';
+let searchTerm = '';
+
+function applyFilters() {
+  let result = USE_CASES;
+  if (activeFilter !== 'all') result = result.filter(u => u.cat === activeFilter);
+  if (searchTerm) result = result.filter(u =>
+    u.title.toLowerCase().includes(searchTerm) ||
+    u.desc.toLowerCase().includes(searchTerm) ||
+    u.pain.toLowerCase().includes(searchTerm)
+  );
+  renderCards(result);
+}
+
+document.getElementById('filterBtns').addEventListener('click', e => {
+  if (!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeFilter = e.target.dataset.filter;
+  applyFilters();
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  applyFilters();
+});
+
+renderCards(USE_CASES);
+
+
+const GUIAS = {
+  UC01: {
+    title: "Conversational Plant Assistant (Talk to your Plant)",
+    contexto: "These Cortex Code Prompts build a RAG assistant that allows plant operators to query plant status, procedures, and alarms in natural language.",
+    foco: "WTP/WWTP Operations — conversational queries about plant status, SCADA parameters, and operating manuals.",
+    reto: "Reduce information access time from hours to seconds, improving real-time decision-making.",
+    objetivos: ["Create a knowledge base of operating manuals and procedures", "Index technical documentation with Cortex Search", "Integrate simulated real-time SCADA data", "Implement RAG pipeline with CORTEX.COMPLETE", "Build Streamlit conversational interface for operators"],
+    funcionalidades: ["RAG: Cortex Search + CORTEX.COMPLETE for contextual answers", "Synthetic data: 80 technical documents + 500 SCADA records", "Semantic search: ~500-character indexed chunks", "Streamlit dashboard: Interactive chat with source citation"],
+    datos: ["Manuals: Operating procedures, equipment sheets, emergency protocols", "SCADA: Sensor readings (flow, pH, turbidity, chlorine, pressure, level)", "Alarms: Alarm history with severity and actions taken", "Chunks: Fragments indexed by section and equipment"],
+    como_usar: ["Execute prompts sequentially", "Environment setup creates an isolated database", "Synthetic data generates manuals and SCADA readings automatically", "Cortex Search Service is created over the documentation", "Dashboard launches interactively in the notebook"]
+  },
+  UC02: {
+    title: "Turbidity and Physicochemical Parameter Prediction",
+    contexto: "These Cortex Code Prompts build a forecasting model to predict water quality parameters (turbidity, pH, chlorine, conductivity) 4-24 hours ahead.",
+    foco: "Water quality at WTP — anticipating turbidity spikes and regulatory parameter deviations.",
+    reto: "Predict raw water quality changes far enough in advance to adjust dosing proactively.",
+    objetivos: ["Generate synthetic time series of quality parameters", "Train forecasting models with SNOWFLAKE.ML.FORECAST", "Predict turbidity, pH, residual chlorine, and conductivity at 4-24h", "Configure proactive alerts for regulatory thresholds", "Build trends and predictions dashboard"],
+    funcionalidades: ["ML model: SNOWFLAKE.ML.FORECAST for time series", "Synthetic data: 365 days of hourly readings (8,760 records per parameter)", "Variables: turbidity, pH, residual_chlorine, conductivity, temperature, raw_flow", "Streamlit dashboard: Prediction charts with confidence bands"],
+    datos: ["Hourly readings: Quality sensors in raw and treated water", "Weather: Temperature, precipitation, relative humidity", "Predictions: Expected values at 4, 8, 12, and 24 hours with confidence intervals", "Alerts: Predictions exceeding regulatory thresholds (RD 140/2003)"],
+    como_usar: ["Execute cells sequentially", "365 days of sensor readings are generated", "Model trains in 30-60 seconds per parameter", "Dashboard shows predictions and proactive alerts"]
+  },
+  UC03: {
+    title: "Reagent Dosing Optimization",
+    contexto: "These Cortex Code Prompts build a system that recommends optimal reagent dosing based on raw water conditions.",
+    foco: "Coagulation/flocculation at WTP — optimizing aluminum sulfate, polyelectrolyte, and chlorine dosing.",
+    reto: "Reduce reagent costs by 15-25% while keeping treated water quality within regulations.",
+    objetivos: ["Generate synthetic jar-test and historical dosing data", "Model raw water → optimal dose relationship with ML.CLASSIFICATION", "Create dosing bands by inlet conditions", "Evaluate potential savings vs current dosing", "Shift-based recommendation dashboard for operators"],
+    funcionalidades: ["ML model: ML.CLASSIFICATION for optimal dosing band", "Synthetic data: 2,000 jar-test records with residual turbidity results", "Variables: raw_turbidity, raw_pH, temperature, organic_matter, color, conductivity", "Streamlit dashboard: Real-time dose recommendation"],
+    datos: ["Jar-test: Coagulation test results with different doses", "Raw water: Physicochemical inlet parameters", "Dosing: Applied dose vs optimal dose with estimated savings", "Reagents: Unit cost per reagent and monthly consumption"],
+    como_usar: ["Execute cells sequentially", "Jar-test and historical dosing data are generated", "Model recommends the optimal dosing band", "Dashboard shows potential savings per shift"]
+  },
+  UC04: {
+    title: "Predictive Maintenance for Plant Equipment",
+    contexto: "These Cortex Code Prompts build an anomaly detection system to predict failures in critical plant equipment.",
+    foco: "Rotating equipment at WTP/WWTP — pumps, blowers, mixers, compressors.",
+    reto: "Anticipate equipment failures 7-14 days in advance to plan interventions and avoid unplanned shutdowns.",
+    objetivos: ["Generate synthetic IoT sensor data from equipment", "Train anomaly detection model with ML.ANOMALY_DETECTION", "Detect degradation patterns in vibration, temperature, and consumption", "Classify anomaly severity and prioritize actions", "Equipment health dashboard with predictive alerts"],
+    funcionalidades: ["ML model: ML.ANOMALY_DETECTION on sensor time series", "Synthetic data: 50 equipment × 365 days of daily readings", "Variables: vibration_mm_s, bearing_temperature, discharge_pressure, amperage, operating_hours", "Streamlit dashboard: Equipment health panel with traffic lights"],
+    datos: ["Equipment: Inventory of pumps, blowers, and rotating equipment", "IoT sensors: Vibration, temperature, pressure, electrical consumption", "Maintenance: Intervention and breakdown history", "Anomalies: Detections with severity and recommended action"],
+    como_usar: ["Execute cells sequentially", "Sensor data for 50 equipment over 1 year is generated", "Model detects anomalous patterns 7-14 days in advance", "Dashboard shows health status and alerts per equipment"]
+  },
+  UC05: {
+    title: "Leak Detection in Distribution Network",
+    contexto: "These Cortex Code Prompts build a leak probability scoring system per zone (DMA) to prioritize detection campaigns.",
+    foco: "Distribution network — non-revenue water (NRW) analysis and leak localization through sectorization.",
+    reto: "Reduce non-revenue water (NRW) from 25% to 15% by prioritizing zones with the highest leak probability.",
+    objetivos: ["Generate synthetic hydraulic sectorization data (DMAs)", "Model leak probability with ML.CLASSIFICATION", "Analyze nighttime minimum flows and water balance", "Prioritize detection campaigns by economic impact", "Leak management dashboard with prioritization map"],
+    funcionalidades: ["ML model: ML.CLASSIFICATION for leak scoring per DMA", "Synthetic data: 200 DMAs with flow, pressure, and network data", "Variables: nighttime_minimum_flow, average_pressure, network_age, num_service_connections, pipe_material", "Streamlit dashboard: Prioritization map with NRW KPIs"],
+    datos: ["DMAs: Measurement zones with network characteristics", "Flows: Hourly readings from sector meters", "Network: Age, material, diameter, pipe length per DMA", "Predictions: Leak scoring (High/Medium/Low) with estimated volume"],
+    como_usar: ["Execute cells sequentially", "200 DMAs with sectorization data are generated", "Model assigns leak scoring to each DMA", "Dashboard prioritizes campaigns by estimated lost volume"]
+  },
+  UC06: {
+    title: "NLP Analysis of Incidents and Work Orders",
+    contexto: "These Cortex Code Prompts build an NLP pipeline to classify and extract information from work orders and free-text incidents.",
+    foco: "Incident management — automatic classification and entity extraction from field work orders.",
+    reto: "Transform thousands of unstructured work orders into actionable data to prioritize renewal investments.",
+    objetivos: ["Generate synthetic work orders with realistic text", "Classify incidents with CORTEX.COMPLETE", "Extract entities (equipment, location, root cause) with AI", "Detect recurring patterns and problem zones", "Incident intelligence dashboard"],
+    funcionalidades: ["NLP: CORTEX.COMPLETE for classification and entity extraction", "Synthetic data: 500 work orders with free text", "Extraction: incident_type, affected_equipment, location, root_cause, urgency", "Streamlit dashboard: Trends and patterns panel"],
+    datos: ["Work orders: Free text with operator observations", "Incidents: Type (Breakdown, Leak, Quality, Vandalism, Obstruction)", "Equipment: Affected equipment reference and location", "Patterns: Root cause analysis and recurrence by zone"],
+    como_usar: ["Execute cells sequentially", "500 work orders with realistic text are generated", "Cortex AI classifies and extracts entities automatically", "Dashboard shows patterns and zones with most incidents"]
+  },
+  UC07: {
+    title: "Water Demand Forecasting",
+    contexto: "These Cortex Code Prompts build a water demand forecasting model for 24-72 hours to optimize production.",
+    foco: "Production planning — daily and hourly demand prediction with exogenous variables.",
+    reto: "Predict demand within ±5% accuracy to optimize production, storage, and energy costs.",
+    objetivos: ["Generate synthetic water consumption time series", "Incorporate exogenous variables (weather, calendar, tourism)", "Train SNOWFLAKE.ML.FORECAST with multiple horizons", "Evaluate accuracy with MAPE and RMSE", "Production planning dashboard"],
+    funcionalidades: ["ML model: SNOWFLAKE.ML.FORECAST for daily demand", "Synthetic data: 2 years of daily consumption (730 records)", "Exogenous variables: max_temp, precipitation, is_holiday, is_summer, tourist_population", "Streamlit dashboard: Prediction with confidence intervals"],
+    datos: ["Consumption: Daily demand in m³ by supply zone", "Weather: Maximum temperature, precipitation, wind", "Calendar: Holidays, school vacations, special events", "Predictions: Expected demand at 24, 48, and 72 hours"],
+    como_usar: ["Execute cells sequentially", "2 years of consumption data with seasonality are generated", "Model trains with exogenous variables in 60 seconds", "Dashboard shows prediction vs actual consumption"]
+  },
+  UC08: {
+    title: "Anomalous Consumption Detection for Subscribers",
+    contexto: "These Cortex Code Prompts build an anomaly detection system for subscriber consumption to identify internal leaks, fraud, and meter failures.",
+    foco: "Commercial management — early detection of anomalous consumption before the billing cycle.",
+    reto: "Identify internal leaks and meter fraud in real time, avoiding complaints and revenue losses.",
+    objetivos: ["Generate synthetic consumption profiles by subscriber type", "Train anomaly detection model with ML.ANOMALY_DETECTION", "Compare individual consumption vs profile and neighborhood", "Classify anomaly type (leak, fraud, failure)", "Alert dashboard for commercial team"],
+    funcionalidades: ["ML model: ML.ANOMALY_DETECTION on daily consumption", "Synthetic data: 2,000 subscribers × 365 days of readings", "Variables: daily_consumption, nighttime_consumption, type_profile, neighborhood_average, days_without_consumption", "Streamlit dashboard: Alerts prioritized by economic impact"],
+    datos: ["Subscribers: Type (residential, commercial, industrial), caliber, zone", "Consumption: Daily readings with historical pattern", "Anomalies: Type (internal_leak, fraud, faulty_meter, seasonal_consumption)", "Alerts: Prioritization by estimated volume and type"],
+    como_usar: ["Execute cells sequentially", "Consumption profiles for 2,000 subscribers are generated", "Model detects anomalies by comparing against profile and neighborhood", "Dashboard shows prioritized alerts for commercial action"]
+  },
+  UC09: {
+    title: "Customer Complaint Intelligence",
+    contexto: "These Cortex Code Prompts build an NLP classification and sentiment analysis system for water cycle customer complaints.",
+    foco: "Customer service — automated complaint analysis to detect systemic issues and regulatory risk.",
+    reto: "Process thousands of monthly complaints, detect root cause patterns, and anticipate regulatory escalations.",
+    objetivos: ["Generate synthetic water customer complaints", "Analyze sentiment with CORTEX.SENTIMENT", "Classify complaints by category with CORTEX.COMPLETE", "Detect regulatory risk mentions (ACA, AEMPS, ombudsman)", "Complaint intelligence dashboard"],
+    funcionalidades: ["NLP: CORTEX.SENTIMENT + CORTEX.COMPLETE for classification and sentiment", "Synthetic data: 600 complaints from 4 channels and 5 types", "Detection: Regulatory risk (mentions of regulators, lawsuits, lawyers)", "Streamlit dashboard: Trends and alerts panel"],
+    datos: ["Complaints: Text with channel, zone, problem type", "Sentiment: Score from -1 to 1 per complaint", "Categories: Water_Quality, Low_Pressure, Billing, Supply_Cutoff, Construction", "Alerts: Complaints with regulatory risk indicators"],
+    como_usar: ["Execute cells sequentially", "600 complaints with realistic text are generated", "Cortex analyzes sentiment and classifies automatically", "Dashboard shows trends and regulatory alerts"]
+  },
+  UC10: {
+    title: "Plant Energy Optimization",
+    contexto: "These Cortex Code Prompts build an equipment configuration recommendation system to minimize plant energy costs.",
+    foco: "Energy efficiency — optimizing electricity consumption for pumping, aeration, and auxiliary equipment.",
+    reto: "Reduce energy costs by 10-20% without compromising production or quality, adapting to variable electricity rates.",
+    objetivos: ["Generate synthetic energy consumption data by equipment and rate", "Model the relationship between equipment configuration and energy cost", "Train ML.CLASSIFICATION for optimal configuration bands", "Calculate potential savings by rate period", "Energy management dashboard with recommendations"],
+    funcionalidades: ["ML model: ML.CLASSIFICATION for optimal equipment configuration", "Synthetic data: 365 days × 24 hours of consumption and electricity rates", "Variables: demand_m3h, electricity_rate, active_pumps, aeration_flow, ambient_temp", "Streamlit dashboard: Energy savings panel with recommendations"],
+    datos: ["Equipment: Pumps, blowers, auxiliary equipment with power and efficiency", "Rates: Electricity prices by period (peak, shoulder, off-peak)", "Consumption: kWh per equipment and hour with associated cost", "Configurations: Equipment combinations with cost and production"],
+    como_usar: ["Execute cells sequentially", "Energy consumption and electricity rate data are generated", "Model recommends optimal configuration per hour", "Dashboard shows potential savings and recommendations"]
+  },
+};
+
+function viewGuide(ucId) {
+  const g = GUIAS[ucId];
+  if (!g) { alert('Guide not yet available for ' + ucId); return; }
+  const box = document.getElementById('guiaModalBox');
+  let h = `<button class="modal-close" onclick="closeModal('guiaModal')">&times;</button>`;
+  h += `<span class="guide-badge">${ucId}</span>`;
+  h += `<h2>${g.title}</h2>`;
+  h += `<p><strong>Use Case: ${g.title}</strong></p>`;
+  h += `<h3>Business Context</h3><p>${g.contexto}</p>`;
+  h += `<p><strong>Focus:</strong> ${g.foco}</p>`;
+  h += `<p><strong>Business challenge:</strong> ${g.reto}</p>`;
+  h += `<h3>Learning Objectives</h3><ul>${g.objetivos.map(o=>`<li>${o}</li>`).join('')}</ul>`;
+  h += `<h3>Features</h3><ul>${g.funcionalidades.map(f=>`<li>${f}</li>`).join('')}</ul>`;
+  h += `<h3>Generated Data</h3><ul>${g.datos.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+  h += `<h3>How to Use</h3><ul>${g.como_usar.map(c=>`<li>${c}</li>`).join('')}</ul>`;
+  h += `<p class="guide-footer">Built with Snowflake Cortex AI + Streamlit</p>`;
+  box.innerHTML = h;
+  document.getElementById('guiaModal').classList.add('active');
+}
+
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-overlay')) e.target.classList.remove('active');
+});
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+const PROMPTS = {
+  UC01: {
+    title: "Conversational Plant Assistant (Talk to your Plant)",
+    intro: "Open Cortex Code in Snowsight and execute these prompts sequentially. Each step builds a RAG assistant that allows operators to query the plant in natural language.",
+    steps: [
+      { title: "Set up environment", desc: "Create the database, schema, and warehouse for the project.", prompt: "Create a database called TALK_TO_PLANT_DB with schema PUBLIC and a warehouse COMPUTE_WH size SMALL with auto-suspend of 60 seconds. Set the session context." },
+      { title: "Generate operating manuals", desc: "Knowledge base with plant procedures.", prompt: "Generate a table 'plant_manuals' with 80 records simulating WTP/WWTP technical documentation: doc_id, type (Operating_Procedure/Equipment_Sheet/Emergency_Protocol/Maintenance_Manual), section (Pretreatment/Coagulation/Filtration/Disinfection/Sludge/Pumping), title, content (detailed technical texts of 200-400 words about water plant operation)." },
+      { title: "Generate simulated SCADA data", desc: "Real-time sensor readings.", prompt: "Generate a table 'scada_readings' with 500 records from the last 24 hours: reading_id, timestamp, sensor (Inlet_Flow/Raw_Turbidity/Raw_pH/Residual_Chlorine/Network_Pressure/Tank_Level), value FLOAT (realistic ranges per sensor), unit, plant_zone, status (Normal/Warning/Alarm — 10% Warning, 3% Alarm)." },
+      { title: "Generate alarm history", desc: "Recent alarms with actions taken.", prompt: "Generate table 'alarm_history' with 100 records: alarm_id, timestamp, severity (Low/Medium/High/Critical), equipment, description (technical alarm text), action_taken (operator response text), resolved (boolean, 85% true), resolution_time_min." },
+      { title: "Create text chunks", desc: "Split documents into indexable fragments.", prompt: "Create table 'plant_chunks' by splitting each content from plant_manuals into ~500-character fragments with 50-character overlap: chunk_id, doc_id, type, section, chunk_text, chunk_order. Also add chunks generated from recent alarms with their context." },
+      { title: "Create Cortex Search Service", desc: "Index chunks for semantic search.", prompt: "Create a CORTEX SEARCH SERVICE called 'plant_search' over plant_chunks using chunk_text as the search column and type, section as filter attributes. Configure for maximum relevance." },
+      { title: "Implement RAG pipeline", desc: "Search context and generate response.", prompt: "Create a SQL function that: 1) Receives an operator question, 2) Searches the 5 most relevant chunks with Cortex Search, 3) Enriches with the latest 10 relevant SCADA readings, 4) Builds a prompt with combined context (documentation + real-time data), 5) Uses CORTEX.COMPLETE with mistral-large2 to generate a response citing sources (doc_id, section)." },
+      { title: "Test with operational questions", desc: "Validate with typical operator queries.", prompt: "Test the assistant with 6 typical questions: 'What is the current raw water turbidity?', 'What procedure should I follow if turbidity rises above 50 NTU?', 'Are there active alarms in the filtration zone?', 'When was the last maintenance on pump B-201?', 'What is the emergency protocol for contamination?', 'What chlorine dose should I apply at pH 7.8?'." },
+      { title: "Enrich with shift context", desc: "Add current shift information.", prompt: "Create table 'shifts' with operator, start_date, end_date, observations. Modify the RAG pipeline to include previous shift observations as additional context. Test with: 'What incidents occurred during the previous shift?'." },
+      { title: "Conversational dashboard", desc: "Chat interface for plant operators.", prompt: "Create Streamlit dashboard with: sidebar with current SCADA readings (green/yellow/red traffic lights), text field for questions, submit button, response area with source citations, session question history, plant zone filter to narrow context." },
+      { title: "Assistant usage metrics", desc: "Log queries and satisfaction.", prompt: "Create table 'query_log' to record each question: timestamp, operator, question, response, cited_sources, response_time_ms, useful (boolean). Generate summary query: questions per shift, most queried topics, usefulness rate." },
+      { title: "Cleanup (optional)", desc: "Remove created objects when finished.", prompt: "Generate commented DROP DATABASE IF EXISTS TALK_TO_PLANT_DB and DROP WAREHOUSE IF EXISTS COMPUTE_WH commands for optional cleanup." },
+    ]
+  },
+  UC02: {
+    title: "Turbidity and Physicochemical Parameter Prediction",
+    intro: "Prompts to build a water quality parameter forecasting model using SNOWFLAKE.ML.FORECAST.",
+    steps: [
+      { title: "Set up environment", desc: "Database for quality prediction.", prompt: "Create database QUALITY_PREDICTION_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate quality time series", desc: "365 days of hourly sensor readings.", prompt: "Generate table 'quality_readings' with 8,760 records (365 days × 24 hours): timestamp, turbidity_ntu (2-150, with seasonal spikes and after rainfall), ph (6.5-8.5), residual_chlorine_mg_l (0.1-2.0), conductivity_us_cm (200-800), water_temperature (5-25, seasonal), raw_flow_m3h (100-500). Include realistic correlations: turbidity rises with rain, chlorine drops with high temperature." },
+      { title: "Generate weather data", desc: "Exogenous variables for the model.", prompt: "Generate table 'weather' with 8,760 aligned records: timestamp, air_temperature, precipitation_mm (0-50, concentrated in autumn/spring), humidity_pct, wind_km_h. Join with quality_readings into table 'model_data'." },
+      { title: "Train turbidity model", desc: "Forecasting with SNOWFLAKE.ML.FORECAST.", prompt: "Train a SNOWFLAKE.ML.FORECAST model called 'turbidity_predictor' on model_data with timestamp as the time column and turbidity_ntu as target. Configure horizon of 24 periods (24 hours)." },
+      { title: "Train additional models", desc: "Prediction for pH, chlorine, and conductivity.", prompt: "Train 3 additional models: 'ph_predictor', 'chlorine_predictor', 'conductivity_predictor' with the same structure and 24-hour horizon." },
+      { title: "Generate predictions", desc: "Predictions at 4, 8, 12, and 24 hours.", prompt: "Generate table 'quality_predictions' with predictions from all 4 models. For each parameter show: predicted_value, lower_bound, upper_bound, horizon_hours." },
+      { title: "Configure regulatory alerts", desc: "RD 140/2003 thresholds.", prompt: "Create table 'regulatory_thresholds' with limits: max_turbidity=4 NTU, min_pH=6.5, max_pH=9.5, min_chlorine=0.2 mg/l, max_conductivity=2500 µS/cm. Generate table 'proactive_alerts' with predictions exceeding thresholds in the next 24h." },
+      { title: "Evaluate accuracy", desc: "Error metrics per parameter.", prompt: "Calculate MAPE, RMSE, and MAE for each parameter using the last 30 days as test. Show comparative accuracy table." },
+      { title: "Predictions dashboard", desc: "Trends and proactive alerts panel.", prompt: "Create Streamlit dashboard with: KPIs (current turbidity, 24h prediction, active alerts, MAPE accuracy), line chart with actual values + prediction + confidence band, proactive alerts table with time horizon, parameter selector to visualize." },
+    ]
+  },
+  UC03: {
+    title: "Reagent Dosing Optimization",
+    intro: "Prompts to build an optimal reagent dosing recommendation system with ML.CLASSIFICATION.",
+    steps: [
+      { title: "Set up environment", desc: "Database for dosing.", prompt: "Create database DOSING_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate jar-test data", desc: "Coagulation tests with results.", prompt: "Generate table 'jar_test' with 2000 records: test_id, date, raw_turbidity (5-200 NTU), raw_ph (6.5-8.5), temperature (5-25°C), organic_matter_mg_l (1-15), color_upt (5-100), conductivity (200-800), coagulant_dose_mg_l (10-80), flocculant_dose_mg_l (0.1-2.0), chlorine_dose_mg_l (0.5-5.0), residual_turbidity_ntu (0.1-10). Relationship: optimal dose correlates with turbidity and organic matter." },
+      { title: "Create dosing bands", desc: "Discretize optimal dose into categories.", prompt: "Create table 'jar_test_bands' adding dosing_band based on residual_turbidity: Optimal (residual<1 NTU and minimum dose), Acceptable (residual 1-2 NTU), Excessive (residual<1 but high dose), Insufficient (residual>2 NTU). Target: dosing_band." },
+      { title: "Feature engineering", desc: "Predictor variables for dosing.", prompt: "Create table 'dosing_features' with FLOAT variables: raw_turbidity, raw_ph, temperature, organic_matter, color, conductivity, turb_om_ratio (turbidity/organic_matter), is_winter, is_rainy_period. Target: dosing_band." },
+      { title: "Train model", desc: "Optimal band classification.", prompt: "Split 80/20, train SNOWFLAKE.ML.CLASSIFICATION 'dose_recommender' with target dosing_band and evaluate TRUE." },
+      { title: "Evaluate and show importance", desc: "Metrics and most relevant variables.", prompt: "Show SHOW_EVALUATION_METRICS, SHOW_CONFUSION_MATRIX, and SHOW_FEATURE_IMPORTANCE. Calculate accuracy per band." },
+      { title: "Generate recommendations", desc: "Recommended dose for current conditions.", prompt: "Create table 'recommendations' that for each test record predicts the band and maps to a specific dose: Optimal_Low (coag 15-25 mg/l), Optimal_Medium (25-40), Optimal_High (40-60). Calculate savings vs historically applied dose." },
+      { title: "Calculate economic impact", desc: "Estimated reagent savings.", prompt: "Create query that calculates: historical_reagent_cost (applied_dose × unit_cost), recommended_cost (optimal_dose × unit_cost), monthly_savings, annual_savings. Assume: coagulant €0.35/kg, flocculant €2.50/kg, chlorine €0.80/kg." },
+      { title: "Dosing dashboard", desc: "Recommendation panel for operators.", prompt: "Create Streamlit dashboard with: KPIs (estimated monthly savings, current vs optimal dose, model accuracy), real-time recommendation given raw water inputs, cumulative savings chart, recommendation history table." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS DOSING_DB commands for optional cleanup." },
+    ]
+  },
+  UC04: {
+    title: "Predictive Maintenance for Plant Equipment",
+    intro: "Prompts to build an anomaly detection system for critical WTP/WWTP equipment with ML.ANOMALY_DETECTION.",
+    steps: [
+      { title: "Set up environment", desc: "Database for predictive maintenance.", prompt: "Create database PREDICTIVE_MAINTENANCE_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate equipment inventory", desc: "Catalog of rotating plant equipment.", prompt: "Generate table 'equipment' with 50 records: equipment_id (PMP-001..PMP-020 pumps, BLW-001..BLW-015 blowers, MXR-001..MXR-010 mixers, CMP-001..CMP-005 compressors), type, plant_zone, power_kw, installation_date, accumulated_hours, last_maintenance." },
+      { title: "Generate IoT sensor data", desc: "365 days of daily readings per equipment.", prompt: "Generate table 'equipment_sensors' with 18,250 records (50 equipment × 365 days): equipment_id, date, vibration_mm_s (normal: 2-5, degraded: 5-12, failure: >12), bearing_temperature_c (normal: 40-65, degraded: 65-85, failure: >85), discharge_pressure_bar, amperage_a (% of rated), operating_hours_day. Include 5 equipment with progressive degradation in the last 30 days." },
+      { title: "Generate maintenance history", desc: "Interventions and breakdowns.", prompt: "Generate table 'maintenance_history' with 200 records: maintenance_id, equipment_id, date, type (Preventive/Corrective/Predictive), description, cost_euros, downtime_hours, replaced_part. Corrective costs 3-5x more than preventive." },
+      { title: "Train anomaly model", desc: "Anomalous pattern detection.", prompt: "Train SNOWFLAKE.ML.ANOMALY_DETECTION 'equipment_anomaly_detector' on equipment_sensors with equipment_id as series and date as timestamp. Value columns: vibration_mm_s, bearing_temperature_c, amperage_a." },
+      { title: "Detect recent anomalies", desc: "Identify equipment with anomalous behavior.", prompt: "Generate predictions over the last 30 days. Create table 'detected_anomalies' with: equipment_id, date, is_anomaly, vibration_contribution, temperature_contribution, amperage_contribution. Filter anomalies only." },
+      { title: "Classify severity", desc: "Prioritize maintenance actions.", prompt: "Create table 'maintenance_alerts' classifying anomalies as: Critical (multiple anomalous variables + high accumulated_hours), High (one highly anomalous variable), Medium (degradation trend), Low (isolated anomaly). Prioritize by estimated downtime cost." },
+      { title: "Calculate predictive maintenance ROI", desc: "Compare corrective vs predictive costs.", prompt: "Calculate: annual_corrective_cost (sum of historical corrective), estimated_predictive_cost (planned intervention before failure), estimated_savings, avoided_shutdowns. Show comparison by equipment type." },
+      { title: "Equipment health dashboard", desc: "Monitoring panel with traffic lights.", prompt: "Create Streamlit dashboard with: KPIs (monitored equipment, active alerts, estimated savings), equipment table with health traffic light (Green/Yellow/Red), vibration/temperature trend chart by selectable equipment, prioritized maintenance action list." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS PREDICTIVE_MAINTENANCE_DB commands." },
+    ]
+  },
+  UC05: {
+    title: "Leak Detection in Distribution Network",
+    intro: "Prompts to build a leak probability scoring system per DMA with ML.CLASSIFICATION.",
+    steps: [
+      { title: "Set up environment", desc: "Database for leak detection.", prompt: "Create database LEAK_DETECTION_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate DMAs and network", desc: "Measurement zones with infrastructure characteristics.", prompt: "Generate table 'dmas' with 200 records: dma_id, zone_name, num_service_connections (50-2000), network_length_km (2-30), average_age_years (5-60), predominant_material (Cast_Iron/PVC/Polyethylene/Asbestos_Cement), average_diameter_mm, average_pressure_bar (2-6), has_pressure_regulation (boolean)." },
+      { title: "Generate flow data", desc: "Hourly readings from sector meters.", prompt: "Generate table 'dma_flows' with hourly records per DMA for 30 days: dma_id, timestamp, flow_m3h, pressure_bar. Include day/night pattern with nighttime minimum flow (2-5 AM). DMAs with leaks have elevated nighttime_minimum_flow (>30% of average)." },
+      { title: "Calculate water balance", desc: "Non-revenue water per DMA.", prompt: "Create table 'water_balance' per DMA: supplied_volume, billed_volume (synthetic, 60-95% of supplied), nrw_pct (non-revenue water %), nighttime_minimum_flow_m3h, night_day_ratio. Classify: has_probable_leak (nrw_pct > 25%)." },
+      { title: "Feature engineering", desc: "Predictive leak variables.", prompt: "Create table 'leak_features' with FLOAT variables: nrw_pct, nighttime_minimum_flow, night_day_ratio, average_age_years, is_asbestos_cement (material prone to breakage), average_pressure, num_service_connections, network_length_km, has_pressure_regulation, historical_repair_count (add synthetic column). Target: has_probable_leak." },
+      { title: "Train leak model", desc: "Leak probability classification.", prompt: "Split 80/20, train SNOWFLAKE.ML.CLASSIFICATION 'leak_detector' with target has_probable_leak and evaluate TRUE." },
+      { title: "Score and prioritize", desc: "Leak scoring per DMA.", prompt: "Score all DMAs with levels: High Probability (>=70%), Medium Risk (40-70%), Low Probability (<40%). Estimate leak_volume_m3_day = nighttime_minimum_flow * factor. Calculate lost_water_cost = volume * tariff." },
+      { title: "Plan campaigns", desc: "Economic prioritization of detection campaigns.", prompt: "Create table 'campaign_plan' ordering DMAs by lost_water_cost descending. Calculate: campaign investment (equipment + personnel cost), estimated return, payback period. Top 20 DMAs for next campaign." },
+      { title: "Leak dashboard", desc: "Non-revenue water management panel.", prompt: "Create Streamlit dashboard with: KPIs (total NRW %, m³ lost/day, annual loss cost, DMAs on alert), DMA table with scoring, NRW distribution by pipe material, prioritized campaign plan." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS LEAK_DETECTION_DB commands." },
+    ]
+  },
+  UC06: {
+    title: "NLP Analysis of Incidents and Work Orders",
+    intro: "Prompts to build an NLP pipeline for classification and entity extraction from work orders with Cortex AI.",
+    steps: [
+      { title: "Set up environment", desc: "Database for incident analysis.", prompt: "Create database INCIDENT_NLP_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate work orders", desc: "500 work orders with realistic free text.", prompt: "Generate table 'work_orders' with 500 records: order_id, date, operator_id (20 operators), zone (North_Network/South_Network/WTP/WWTP/Tanks), actual_type (Breakdown/Leak/Quality/Vandalism/Obstruction), observation_text (realistic texts of 50-150 words describing the incident found, actions taken, and final status), actual_urgency (Low/Medium/High/Critical)." },
+      { title: "Classify incidents with AI", desc: "CORTEX.COMPLETE for categorization.", prompt: "Create table 'classified_orders' using SNOWFLAKE.CORTEX.COMPLETE to classify each observation_text into predicted_type (Breakdown/Leak/Quality/Vandalism/Obstruction/Other). Compare predicted_type vs actual_type and calculate accuracy." },
+      { title: "Extract entities", desc: "Equipment, location, and root cause.", prompt: "Use CORTEX.COMPLETE with an extraction prompt to obtain JSON: affected_equipment, exact_location, root_cause, action_taken, final_status, requires_followup. Store in table 'extracted_entities' with TRY_PARSE_JSON." },
+      { title: "Analyze sentiment and urgency", desc: "AI urgency scoring.", prompt: "Add CORTEX.SENTIMENT on observation_text. Use CORTEX.COMPLETE to predict predicted_urgency (Low/Medium/High/Critical). Compare with actual_urgency." },
+      { title: "Detect recurring patterns", desc: "Zones and equipment with most incidents.", prompt: "Create aggregation queries: incidents by zone and type, equipment with most breakdowns, most frequent root causes, monthly trend, zones with increasing incident trend." },
+      { title: "Incident cost analysis", desc: "Estimate cost by type and zone.", prompt: "Generate table 'incident_costs' assigning estimated cost by type: Breakdown (€500-5000), Leak (€200-2000), Quality (€100-1000), Vandalism (€300-3000), Obstruction (€150-1500). Aggregate by zone and type." },
+      { title: "Prioritize investments", desc: "Zones with highest recurring cost.", prompt: "Create table 'investment_prioritization' identifying the 10 zones with highest cumulative cost and increasing trend. Calculate estimated ROI of renewal vs continued corrective maintenance cost." },
+      { title: "Incident dashboard", desc: "Operational intelligence panel.", prompt: "Create Streamlit dashboard with: KPIs (orders processed, classification accuracy, top problem zone), distribution by type and zone (bar chart), recent orders table with AI classification, monthly incident trend." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS INCIDENT_NLP_DB commands." },
+    ]
+  },
+  UC07: {
+    title: "Water Demand Forecasting",
+    intro: "Prompts to build a water demand forecasting model with exogenous variables using SNOWFLAKE.ML.FORECAST.",
+    steps: [
+      { title: "Set up environment", desc: "Database for demand prediction.", prompt: "Create database WATER_DEMAND_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate consumption series", desc: "2 years of daily demand.", prompt: "Generate table 'daily_consumption' with 730 records: date, demand_m3 (range 50,000-120,000 with seasonality: summer +40%, weekends -15%, holidays -10%), supply_zone ('North_Zone'/'South_Zone'/'East_Zone'/'West_Zone')." },
+      { title: "Generate exogenous variables", desc: "Weather and calendar.", prompt: "Generate table 'exogenous_variables' aligned with daily_consumption: date, max_temp_c (5-40, seasonal), precipitation_mm (0-50), is_holiday (boolean), is_weekend (boolean), is_summer (boolean), tourist_population_pct (0-30%, high in July-August in coastal zones)." },
+      { title: "Prepare model data", desc: "Join consumption with exogenous variables.", prompt: "Create table 'demand_data' joining daily_consumption and exogenous_variables by date. Show correlations between demand and each exogenous variable." },
+      { title: "Train demand model", desc: "Forecasting with exogenous variables.", prompt: "Train SNOWFLAKE.ML.FORECAST 'demand_predictor' on demand_data with date as timestamp, demand_m3 as target, and max_temp_c, precipitation_mm, is_holiday, is_summer, tourist_population_pct as exogenous. Horizon of 72 (72 days)." },
+      { title: "Generate 72h predictions", desc: "Forecasted demand with intervals.", prompt: "Generate table 'demand_predictions' with: date, predicted_demand, lower_bound, upper_bound. Calculate MAPE over the last month of data." },
+      { title: "Pattern analysis", desc: "Seasonality and impact factors.", prompt: "Create queries showing: average demand by day of week, average demand by month, temperature impact (each extra °C = X m³), precipitation impact, holiday effect." },
+      { title: "Production planning", desc: "Translate demand to plant operations.", prompt: "Create table 'production_plan' mapping predicted_demand to: num_treatment_lines_needed, production_flow_m3h, pumping_hours, estimated_reagents_kg. Calculate 10% safety margin." },
+      { title: "Planning dashboard", desc: "Production and demand panel.", prompt: "Create Streamlit dashboard with: KPIs (tomorrow's demand, 72h demand, MAPE, required production), actual demand + prediction + interval chart, production plan table by day, current year vs previous year comparison." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS WATER_DEMAND_DB commands." },
+    ]
+  },
+  UC08: {
+    title: "Anomalous Consumption Detection for Subscribers",
+    intro: "Prompts to build a per-subscriber consumption anomaly detection system with ML.ANOMALY_DETECTION.",
+    steps: [
+      { title: "Set up environment", desc: "Database for anomaly detection.", prompt: "Create database CONSUMPTION_ANOMALY_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate subscriber master", desc: "Customer catalog.", prompt: "Generate table 'subscribers' with 2000 records: subscriber_id, type (Residential 70%/Commercial 20%/Industrial 10%), caliber_mm (13/20/25/40), dma_zone, address, household_members (residential: 1-5), area_m2 (commercial: 50-500), has_garden (boolean), registration_date." },
+      { title: "Generate daily consumption", desc: "365 days of readings per subscriber.", prompt: "Generate table 'consumption' with daily records for each subscriber: subscriber_id, date, consumption_liters (residential: 100-500 L/day, commercial: 500-5000, industrial: 2000-20000), nighttime_consumption_liters (normal: <5% of daily). Include 100 subscribers with anomalies: 40 internal leaks (high nighttime consumption), 30 fraud (suspiciously flat consumption), 30 faulty meters (sudden consumption=0)." },
+      { title: "Calculate reference profiles", desc: "Mean and deviation by type and zone.", prompt: "Create table 'consumption_profiles' by subscriber_type and dma_zone: daily_mean, daily_deviation, nighttime_mean, p95_daily, p05_daily. Create table 'neighborhood_consumption' with mean by dma_zone and date." },
+      { title: "Train anomaly model", desc: "ML.ANOMALY_DETECTION per subscriber.", prompt: "Train SNOWFLAKE.ML.ANOMALY_DETECTION 'consumption_anomaly_detector' on consumption with subscriber_id as series and date as timestamp. Columns: consumption_liters, nighttime_consumption_liters." },
+      { title: "Detect anomalies", desc: "Identify subscribers with anomalous consumption.", prompt: "Generate predictions over the last 30 days. Create table 'consumption_anomalies' with anomalous subscribers: subscriber_id, detection_date, probable_anomaly_type (internal_leak if high nighttime, fraud if flat, faulty_meter if zero), estimated_anomalous_volume." },
+      { title: "Prioritize alerts", desc: "Classify by economic impact.", prompt: "Create table 'consumption_alerts' prioritizing by anomalous_volume × tariff: Critical (>1000L/day anomaly), High (500-1000), Medium (200-500), Low (<200). Calculate estimated economic loss per alert." },
+      { title: "Analysis by zone", desc: "Zones with most anomalies.", prompt: "Create aggregation queries: anomalies by dma_zone, anomaly type by zone, correlation with network age, monthly anomaly trend." },
+      { title: "Anomaly dashboard", desc: "Panel for commercial team.", prompt: "Create Streamlit dashboard with: KPIs (monitored subscribers, active alerts, daily anomalous volume, monthly economic loss), prioritized alerts table with type and volume, anomaly type distribution (pie chart), filter by zone and subscriber type." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS CONSUMPTION_ANOMALY_DB commands." },
+    ]
+  },
+  UC09: {
+    title: "Customer Complaint Intelligence",
+    intro: "Prompts to build an NLP classification and sentiment analysis pipeline for water cycle customer complaints.",
+    steps: [
+      { title: "Set up environment", desc: "Database for complaint analysis.", prompt: "Create database WATER_COMPLAINTS_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate synthetic complaints", desc: "600 complaints with realistic text.", prompt: "Generate table 'complaints' with 600 records: complaint_id, date, subscriber_id, channel (Phone/Email/Web/Office/Social_Media), zone, complaint_text (varied texts: cloudy water, low pressure, excessive billing, unannounced cutoff, construction noise, chlorine taste, sidewalk leak), actual_type (Water_Quality/Low_Pressure/Billing/Supply_Cutoff/Construction), status (Open/Resolved/Escalated)." },
+      { title: "Sentiment analysis", desc: "Emotional scoring per complaint.", prompt: "Use SNOWFLAKE.CORTEX.SENTIMENT on complaint_text. Store in table 'complaint_sentiment': sentiment_score, sentiment_label (Very_Negative/Negative/Neutral/Positive)." },
+      { title: "Classify categories", desc: "Automatic categorization with AI.", prompt: "Use SNOWFLAKE.CORTEX.COMPLETE to classify each complaint into: Water_Quality, Low_Pressure, Billing, Supply_Cutoff, Construction, Other. Compare with actual_type and calculate accuracy." },
+      { title: "Detect regulatory signals", desc: "Risk of escalation to regulators.", prompt: "Use CORTEX.COMPLETE to detect mentions of: Catalan Water Agency, AEMPS, citizen ombudsman, lawsuit, lawyer, court, health authority. Flag as regulatory_risk (boolean) and critical_priority." },
+      { title: "Extract complaint entities", desc: "Address, problem, and expectation.", prompt: "Use CORTEX.COMPLETE to extract JSON: affected_address, specific_problem, customer_impact, resolution_expectation, mentions_compensation. Store parsed in table 'complaint_entities'." },
+      { title: "Trend analysis", desc: "Temporal evolution and patterns.", prompt: "Create queries: complaints per week/month, average sentiment per period, emerging categories (growth >20% month over month), zones with complaint spikes, correlation between quality complaints and plant incidents." },
+      { title: "Prioritize resolution", desc: "Intelligent resolution queue.", prompt: "Create table 'resolution_queue' prioritizing: 1) Regulatory risk, 2) Very negative sentiment + important customer, 3) Supply cutoff, 4) Water quality, 5) Other. Estimate SLA per priority." },
+      { title: "Complaint dashboard", desc: "Customer service intelligence panel.", prompt: "Create Streamlit dashboard with: KPIs (open complaints, average sentiment, % regulatory risk, average resolution time), distribution by category (bar chart), complaints table with filter, highlighted regulatory risk alerts, sentiment trend." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS WATER_COMPLAINTS_DB commands." },
+    ]
+  },
+  UC10: {
+    title: "Plant Energy Optimization",
+    intro: "Prompts to build an equipment configuration recommendation system to minimize energy costs with ML.CLASSIFICATION.",
+    steps: [
+      { title: "Set up environment", desc: "Database for energy optimization.", prompt: "Create database ENERGY_OPTIMIZATION_DB with schema PUBLIC and warehouse COMPUTE_WH." },
+      { title: "Generate energy equipment inventory", desc: "Pumps, blowers, and auxiliaries with power ratings.", prompt: "Generate table 'energy_equipment' with 30 records: equipment_id, type (Impulsion_Pump/Recirculation_Pump/Blower/Mixer/Compressor), rated_power_kw (5-150), efficiency_pct (60-90), plant_zone, is_adjustable (boolean 40%)." },
+      { title: "Generate electricity rates", desc: "Prices by time-of-use period.", prompt: "Generate table 'electricity_rates' with 8,760 records (365 days × 24h): timestamp, period (Peak/Shoulder/Off_Peak), price_kwh (Peak: €0.15-0.22, Shoulder: €0.08-0.12, Off_Peak: €0.04-0.07). Pattern: Peak 10-14h and 18-22h Mon-Fri, Off_Peak 0-8h and weekends." },
+      { title: "Generate operating data", desc: "Historical configurations with consumption and production.", prompt: "Generate table 'operating_history' with 8,760 records: timestamp, demand_m3h (50-300), active_pumps (1-5), aeration_flow_m3h, ambient_temp_c, total_consumption_kwh, hourly_cost_euros, outlet_quality_ok (boolean, 95% true). Include suboptimal configurations: same pumps during off-peak as during peak." },
+      { title: "Create configuration bands", desc: "Discretize optimal configuration.", prompt: "Create table 'operating_bands' adding config_band based on efficiency (cost/m³): Optimal (cost/m³ < P25 and quality ok), Acceptable (P25-P50 and quality ok), Improvable (P50-P75), Inefficient (>P75 or quality not ok). Target: config_band." },
+      { title: "Feature engineering", desc: "Variables for the model.", prompt: "Create table 'energy_features' with FLOAT: demand_m3h, is_peak_period (boolean), is_off_peak_period (boolean), ambient_temp, hour_of_day, is_weekend, current_price_kwh, active_pumps, aeration_flow. Target: config_band." },
+      { title: "Train model", desc: "Optimal configuration band classification.", prompt: "Split 80/20, train SNOWFLAKE.ML.CLASSIFICATION 'energy_optimizer' with target config_band and evaluate TRUE." },
+      { title: "Generate recommendations", desc: "Optimal configuration per hour.", prompt: "Score the last 24 hours. For each hour: recommended_band, optimal_num_pumps, suggested_configuration. Calculate savings_per_hour = (current_cost - optimal_cost). Aggregate daily and monthly savings." },
+      { title: "Calculate annual impact", desc: "Energy savings projection.", prompt: "Calculate: annual_current_consumption_kwh, annual_optimal_consumption_kwh, savings_kwh, savings_euros, co2_reduction_tons (factor 0.25 kg CO2/kWh). Breakdown by rate period." },
+      { title: "Energy dashboard", desc: "Energy management panel.", prompt: "Create Streamlit dashboard with: KPIs (today's energy cost, potential savings, CO2 reduction, current efficiency %), hourly consumption chart with overlaid rate, current configuration recommendation, cumulative savings table by month." },
+      { title: "Cleanup (optional)", desc: "Remove created objects.", prompt: "Generate commented DROP DATABASE IF EXISTS ENERGY_OPTIMIZATION_DB commands." },
+    ]
+  },
+};
+
+function viewPrompts(ucId) {
+  const data = PROMPTS[ucId];
+  if (!data) { alert('Prompts not yet available for ' + ucId); return; }
+  const box = document.getElementById('promptsModalBox');
+  let html = `<button class="modal-close" onclick="closeModal('promptsModal')">&times;</button>`;
+  html += `<span class="guide-badge">${ucId}</span>`;
+  html += `<h2>${data.title} \u2014 Cortex Code Prompts</h2>`;
+  html += `<p class="prompt-intro">${data.intro}</p>`;
+  data.steps.forEach((s, i) => {
+    const escaped = s.prompt.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    html += `<div class="prompt-step">`;
+    html += `<div class="prompt-step-header"><span class="prompt-step-num">${i+1}</span><span class="prompt-step-title">${s.title}</span></div>`;
+    html += `<div class="prompt-step-desc">${s.desc}</div>`;
+    html += `<div class="prompt-code" id="prompt_${ucId}_${i}"><button class="copy-btn" onclick="copyPrompt('prompt_${ucId}_${i}')">Copy</button>${escaped}</div>`;
+    html += `</div>`;
+  });
+  html += `<p class="guide-footer">Execute each prompt sequentially in Cortex Code (Snowsight)</p>`;
+  box.innerHTML = html;
+  document.getElementById('promptsModal').classList.add('active');
+}
+
+function copyPrompt(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = el.textContent.replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+}
+</script>
+
+<div class="modal-overlay" id="guiaModal">
+  <div class="modal-box" id="guiaModalBox"></div>
+</div>
+
+<div class="modal-overlay" id="promptsModal">
+  <div class="modal-box" id="promptsModalBox" style="max-width:780px;"></div>
+</div>
+</body>
+</html>

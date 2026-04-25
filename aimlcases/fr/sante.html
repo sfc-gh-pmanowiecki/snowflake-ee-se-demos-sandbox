@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — Solutions IA/ML pour la Santé et les Hôpitaux</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+    .hero { background: linear-gradient(135deg, #003545, #11567F); color: #fff; padding: 32px 48px 36px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+    .hero-left { flex: 1; }
+    .logos { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .logo-snowflake { display: flex; align-items: center; gap: 7px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .hero-title { font-size: 42px; font-weight: 700; line-height: 1.1; margin-bottom: 10px; }
+    .hero-subtitle { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.9); margin-bottom: 6px; }
+    .hero-tagline { font-size: 12px; color: rgba(255,255,255,0.65); }
+    .stats-box { background: #fff; border-radius: 10px; padding: 20px 28px; text-align: center; color: #1a1a1a; min-width: 160px; flex-shrink: 0; }
+    .stats-box .stat-number { font-size: 40px; font-weight: 700; color: #0D7C8F; line-height: 1; }
+    .stats-box .stat-label { font-size: 12px; color: #666; margin-bottom: 14px; }
+    .stats-box .stat-time { font-size: 20px; font-weight: 700; color: #1a1a1a; line-height: 1; }
+    .stats-box .stat-time-label { font-size: 12px; color: #666; }
+    .stats-divider { border: none; border-top: 1px solid #e8e8e8; margin: 10px 0; }
+    .intro { background: #fff; text-align: center; padding: 48px 24px 32px; }
+    .intro h2 { font-size: 22px; font-weight: 700; color: #11567F; margin-bottom: 14px; }
+    .intro p { max-width: 600px; margin: 0 auto; font-size: 14px; color: #555; line-height: 1.7; }
+    .filters-bar { background: #fff; padding: 20px 48px 0; border-bottom: 1px solid #e8e8e8; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .filters-left { display: flex; gap: 8px; flex-wrap: wrap; flex: 1; }
+    .filter-btn { padding: 8px 18px; border-radius: 80px; border: 1.5px solid #ccc; background: transparent; font-size: 13px; font-weight: 500; color: #444; cursor: pointer; transition: all 0.15s; }
+    .filter-btn:hover { border-color: #29B5E8; color: #29B5E8; }
+    .filter-btn.active { background: #29B5E8; border-color: #29B5E8; color: #fff; }
+    .search-box { display: flex; align-items: center; border: 1.5px solid #ccc; border-radius: 80px; padding: 7px 14px; gap: 8px; min-width: 200px; background: #fff; }
+    .search-box input { border: none; outline: none; font-size: 13px; color: #444; width: 100%; background: transparent; }
+    .search-box input::placeholder { color: #aaa; }
+    .results-count { padding: 14px 48px 8px; font-size: 13px; color: #666; background: #f5f5f5; }
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; padding: 16px 48px 48px; background: #f5f5f5; }
+    .card { background: #fff; border-radius: 10px; border: 1px solid #e2e2e2; overflow: hidden; display: flex; flex-direction: column; transition: box-shadow 0.2s; }
+    .card:hover { box-shadow: 0 4px 18px rgba(0,0,0,0.1); }
+    .card-header { padding: 16px 18px 12px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .card-badges { display: flex; gap: 6px; align-items: center; }
+    .badge-id { font-size: 11px; font-weight: 700; color: #888; letter-spacing: 0.5px; }
+    .badge-cat { background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 50px; }
+    .badge-cat.paciente   { background: #E3F2FD; color: #1565C0; }
+    .badge-cat.clinico    { background: #E8F5E9; color: #2E7D32; }
+    .badge-cat.operaciones{ background: #EDE7F6; color: #5E35B1; }
+    .badge-cat.cronico    { background: #FFF3E0; color: #E65100; }
+    .badge-cat.seguridad  { background: #FCE4EC; color: #C62828; }
+    .card-time { font-size: 12px; color: #888; display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .card-title { padding: 0 18px 12px; font-size: 17px; font-weight: 700; color: #11567F; line-height: 1.3; }
+    .pain-point { margin: 0 18px 14px; background: #E0F4FD; border-radius: 8px; padding: 12px 14px; }
+    .pain-point-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #0D7C8F; margin-bottom: 6px; text-transform: uppercase; }
+    .pain-point p { font-size: 13px; color: #2a2a2a; line-height: 1.55; }
+    .card-desc { padding: 0 18px 14px; font-size: 13px; color: #555; line-height: 1.65; flex: 1; }
+    .card-features { padding: 0 18px 16px; list-style: none; }
+    .card-features li { font-size: 13px; color: #444; display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+    .card-features li::before { content: '\2713'; color: #29B5E8; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .card-actions { padding: 14px 18px 18px; display: flex; gap: 10px; border-top: 1px solid #f0f0f0; flex-wrap: wrap; }
+    .btn-secondary { flex: 1; padding: 10px; background: #29B5E8; color: #fff; border: none; border-radius: 80px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; transition: background 0.15s; text-decoration: none; display: block; }
+    .btn-secondary:hover { background: #11567F; }
+    .btn-tertiary { flex: 1; padding: 10px; background: #003545; color: #29B5E8; border: none; border-radius: 80px; font-size: 13px; font-weight: 600; cursor: pointer; text-align: center; transition: background 0.15s; text-decoration: none; display: block; }
+    .btn-tertiary:hover { background: #11567F; }
+    .prompt-step { margin-bottom: 18px; }
+    .prompt-step-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .prompt-step-num { background: #003545; color: #29B5E8; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .prompt-step-title { font-size: 13px; font-weight: 600; color: #333; }
+    .prompt-step-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.5; }
+    .prompt-code { position: relative; background: #003545; color: #e0e0e0; border-radius: 8px; padding: 12px 14px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+    .prompt-code .copy-btn { position: absolute; top: 6px; right: 8px; background: rgba(255,255,255,0.1); border: none; color: #aaa; font-size: 11px; padding: 3px 8px; border-radius: 4px; cursor: pointer; }
+    .prompt-code .copy-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+    .modal-box .prompt-intro { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #eee; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; justify-content: center; align-items: center; }
+    .modal-overlay.active { display: flex; }
+    .modal-box { background: #fff; border-radius: 12px; max-width: 700px; width: 92%; max-height: 85vh; overflow-y: auto; padding: 32px 28px; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.2); }
+    .modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: #888; line-height: 1; }
+    .modal-close:hover { color: #0D7C8F; }
+    .modal-box h2 { color: #11567F; font-size: 20px; margin-bottom: 6px; }
+    .modal-box h3 { font-size: 15px; color: #333; margin: 18px 0 8px; }
+    .modal-box p, .modal-box li { font-size: 13px; line-height: 1.7; color: #444; }
+    .modal-box ul { padding-left: 20px; margin: 6px 0; }
+    .modal-box .guide-badge { display: inline-block; background: #E0F4FD; color: #11567F; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 50px; margin-bottom: 10px; }
+    .modal-box .guide-footer { margin-top: 20px; padding-top: 14px; border-top: 1px solid #eee; font-size: 12px; color: #888; }
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; padding: 24px 20px; }
+      .cards-grid { grid-template-columns: 1fr; padding: 16px 16px 48px; }
+      .filters-bar { padding: 16px 16px 0; }
+      .results-count { padding: 12px 16px 6px; }
+    }
+  </style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-left">
+    <div class="logos"><div class="logo-snowflake"><img src="../bug-white.png" alt="Snowflake" width="32" height="32" /> Snowflake</div></div>
+    <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Retour &agrave; l'Index des Secteurs</a>
+    <p class="hero-eyebrow">Sant&eacute; et H&ocirc;pitaux &times; Snowflake</p>
+    <h1 class="hero-title">Solutions IA/ML pour la Santé et les Hôpitaux</h1>
+    <p class="hero-subtitle">Guides et Prompts Cortex Code prêts à déployer pour les soins aux patients, les opérations hospitalières, la gestion clinique et la médecine basée sur les données</p>
+    <p class="hero-tagline">Développé avec Snowflake Cortex AI | Impact immédiat</p>
+  </div>
+  <div class="stats-box">
+    <div class="stat-number">20</div>
+    <div class="stat-label">Cas d'Usage</div>
+    <hr class="stats-divider"/>
+    <div class="stat-time">8-15 min</div>
+    <div class="stat-time-label">Temps de Configuration</div>
+  </div>
+</header>
+<section class="intro">
+  <h2>Accélérez votre Analytique avec des Solutions IA Préconfigurées pour la Santé</h2>
+  <p>Chaque solution comprend des Prompts Cortex Code de Snowflake avec des données synthétiques, des guides pas à pas
+     et des implémentations SQL-first avec Cortex AI/ML. Inclut Feature Store et Model Registry pour le déploiement
+     en production. Prédisez les réadmissions, optimisez les ressources hospitalières, personnalisez les traitements
+     et gérez les patients chroniques — le tout dans Snowflake, sans dépendances externes, prêt à personnaliser avec vos données.</p>
+</section>
+<div class="filters-bar">
+  <div class="filters-left" id="filterBtns">
+    <button class="filter-btn active" data-filter="all">Tous (20)</button>
+    <button class="filter-btn" data-filter="paciente">Soins aux Patients (4)</button>
+    <button class="filter-btn" data-filter="clinico">Données Cliniques (4)</button>
+    <button class="filter-btn" data-filter="operaciones">Opérations (4)</button>
+    <button class="filter-btn" data-filter="cronico">Maladies Chroniques (4)</button>
+    <button class="filter-btn" data-filter="seguridad">Sécurité (4)</button>
+  </div>
+  <div class="search-box">
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/></svg>
+    <input id="searchInput" type="text" placeholder="Rechercher des cas d'usage&hellip;" />
+  </div>
+</div>
+<div class="results-count" id="resultsCount">Affichage de 20 sur 20 cas d'usage</div>
+<main class="cards-grid" id="cardsGrid"></main>
+<script>
+const USE_CASES = [
+  {
+    "id": "UC01",
+    "cat": "clinico",
+    "catLabel": "Données Cliniques",
+    "time": "15 min",
+    "title": "Prédiction des Réadmissions Hospitalières avec Model Registry",
+    "pain": "15-20 % des patients hospitalisés sont réadmis dans les 30 jours suivant la sortie, avec un coût supplémentaire de 3 000-8 000 € par réadmission. Les hôpitaux ne disposent pas d'outils prédictifs pour identifier les patients à risque avant la sortie.",
+    "desc": "Modèle ML de prédiction des réadmissions non planifiées à 30 jours analysant les diagnostics, procédures, comorbidités et facteurs sociaux. Enregistré dans Snowflake Model Registry pour une exploitation continue et le versionnage.",
+    "features": [
+      "ML.CLASSIFICATION + Model Registry avec log_model() et versionnage",
+      "Variables : diagnostic, comorbidités, durée de séjour, procédures, âge",
+      "Scoring à la sortie pour intervention préventive",
+      "Dashboard Streamlit de gestion des réadmissions"
+    ]
+  },
+  {
+    "id": "UC02",
+    "cat": "paciente",
+    "catLabel": "Soins aux Patients",
+    "time": "13 min",
+    "title": "Chatbot RAG pour le Service Patient et les Rendez-vous",
+    "pain": "Les centres d'appels hospitaliers gèrent 60 % de demandes répétitives (rendez-vous, préparation d'examens, résultats) à un coût de 6-10 €/appel et des temps d'attente de 15-30 minutes. L'insatisfaction des patients atteint 40 %.",
+    "desc": "Assistant conversationnel RAG avec Cortex Search indexant les protocoles cliniques, préparations d'examens, FAQ, informations sur les services et statut des rendez-vous pour un service multicanal 24/7.",
+    "features": [
+      "RAG avec Cortex Search + CORTEX.COMPLETE",
+      "Base de connaissances : protocoles, préparations, FAQ, services",
+      "Intégration avec le système de rendez-vous pour gestion en temps réel",
+      "Dashboard Streamlit du chatbot avec métriques de résolution"
+    ]
+  },
+  {
+    "id": "UC03",
+    "cat": "operaciones",
+    "catLabel": "Opérations",
+    "time": "14 min",
+    "title": "Prédiction de la Demande de Soins avec Model Registry",
+    "pain": "Les hôpitaux planifient les ressources avec 6-12 mois d'avance sur la base d'historiques agrégés. Les pics saisonniers (grippe, canicules) et événements imprévus surchargent les urgences et provoquent des annulations de chirurgie programmée.",
+    "desc": "Modèle de prédiction de la demande de soins par service, spécialité et créneau horaire avec ML.FORECAST enregistré dans le Model Registry pour une planification opérationnelle continue.",
+    "features": [
+      "ML.FORECAST + Model Registry avec métriques de précision",
+      "Variables : saisonnalité, épidémiologie, démographie, météorologie",
+      "Planification des lits, blocs opératoires et personnel par service",
+      "Dashboard Streamlit de planification hospitalière"
+    ]
+  },
+  {
+    "id": "UC04",
+    "cat": "cronico",
+    "catLabel": "Maladies Chroniques",
+    "time": "12 min",
+    "title": "Stratification des Patients Chroniques par Risque",
+    "pain": "Les patients chroniques (diabète, BPCO, insuffisance cardiaque) représentent 80 % des dépenses de santé. Sans stratification efficace, les ressources sont réparties uniformément indépendamment du risque de décompensation.",
+    "desc": "Moteur de stratification des patients chroniques par risque de décompensation, hospitalisation urgente et détérioration fonctionnelle avec ML.CLASSIFICATION sur données cliniques et de monitoring.",
+    "features": [
+      "ML.CLASSIFICATION avec scoring de risque multidimensionnel",
+      "Variables : HbA1c, VEMS, FEVG, observance, comorbidités, hospitalisations antérieures",
+      "Segmentation : risque élevé, risque modéré, stable, contrôlé",
+      "Dashboard Streamlit de gestion des chroniques"
+    ]
+  },
+  {
+    "id": "UC05",
+    "cat": "operaciones",
+    "catLabel": "Opérations",
+    "time": "13 min",
+    "title": "Maintenance Prédictive des Équipements Médicaux",
+    "pain": "Les pannes imprévues d'équipements critiques (scanner, IRM, laboratoire) entraînent des annulations d'examens, des transferts vers d'autres établissements et des coûts de réparation urgente supérieurs de 40 % à la maintenance planifiée.",
+    "desc": "Système ML de prédiction des pannes d'équipements médicaux analysant les données d'utilisation, capteurs, maintenances antérieures et durée de vie pour anticiper les pannes et optimiser les contrats de service.",
+    "features": [
+      "ML.CLASSIFICATION sur données d'utilisation et capteurs",
+      "Variables : heures d'utilisation, cycles, températures, erreurs, ancienneté",
+      "Planification de maintenance par criticité de l'équipement",
+      "Dashboard Streamlit de gestion des équipements"
+    ]
+  },
+  {
+    "id": "UC06",
+    "cat": "clinico",
+    "catLabel": "Données Cliniques",
+    "time": "14 min",
+    "title": "NLP sur les Dossiers Médicaux et Extraction d'Entités",
+    "pain": "80 % des informations cliniques pertinentes se trouvent en texte libre (comptes rendus d'hospitalisation, notes d'évolution, résultats d'examens). Les médecins consacrent 2-3 heures/jour à la documentation et les informations clés se perdent parmi des milliers de notes.",
+    "desc": "Pipeline NLP analysant les dossiers médicaux pour extraire diagnostics, médicaments, allergies, procédures et résultats pertinents, structurant l'information pour l'aide à la décision clinique.",
+    "features": [
+      "CORTEX.COMPLETE pour l'extraction d'entités cliniques",
+      "Cortex Search pour la recherche sémantique dans les dossiers",
+      "Structuration automatique : CIM-10, ATC, procédures SNOMED",
+      "Dashboard Streamlit d'intelligence clinique"
+    ]
+  },
+  {
+    "id": "UC07",
+    "cat": "paciente",
+    "catLabel": "Soins aux Patients",
+    "time": "12 min",
+    "title": "Analyse de l'Expérience Patient et de la Satisfaction",
+    "pain": "Les enquêtes de satisfaction post-hospitalisation ont un taux de réponse de 15-25 % et sont analysées trimestriellement. Les plaintes et réclamations sont traitées individuellement sans détecter les schémas systémiques.",
+    "desc": "Moteur NLP d'analyse de l'expérience patient traitant les enquêtes, réclamations, avis et réseaux sociaux pour identifier les axes d'amélioration, tendances et alertes qualité.",
+    "features": [
+      "CORTEX.SENTIMENT + CORTEX.COMPLETE pour l'analyse des retours",
+      "Classification thématique : attente, accueil, information, installations",
+      "Détection d'alertes qualité en temps réel",
+      "Dashboard Streamlit de l'expérience patient"
+    ]
+  },
+  {
+    "id": "UC08",
+    "cat": "paciente",
+    "catLabel": "Soins aux Patients",
+    "time": "15 min",
+    "title": "Feature Store du Profil Patient 360",
+    "pain": "Les données patient sont dispersées dans 8-12 systèmes (DPI, laboratoire, pharmacie, radiologie, urgences, consultations). Un médecin doit consulter 3-5 systèmes pour avoir une vision complète, perdant 15-20 minutes par patient.",
+    "desc": "Feature Store centralisé dans Snowflake consolidant les caractéristiques du profil patient depuis de multiples sources cliniques, conforme au RGPD et aux réglementations sanitaires, pour l'aide à la décision clinique et la personnalisation des soins.",
+    "features": [
+      "Snowflake Feature Store avec Entity et FeatureView",
+      "Caractéristiques : démographiques, diagnostics, médicaments, laboratoire, hospitalisations",
+      "Versionnage automatique et conformité RGPD",
+      "Pipeline d'ingestion depuis DPI, laboratoire, pharmacie, radiologie"
+    ]
+  },
+  {
+    "id": "UC09",
+    "cat": "operaciones",
+    "catLabel": "Opérations",
+    "time": "12 min",
+    "title": "Optimisation de la Programmation Chirurgicale",
+    "pain": "La sous-utilisation des blocs opératoires oscille entre 20-35 % en raison d'annulations, retards et mauvaises estimations de durée. Le coût d'un bloc vide est de 1 200-2 500 €/heure et les listes d'attente chirurgicales dépassent 120 jours en moyenne.",
+    "desc": "Moteur d'optimisation de la programmation chirurgicale qui prédit la durée réelle, estime la probabilité d'annulation et optimise la séquence des interventions pour maximiser l'utilisation des blocs.",
+    "features": [
+      "ML.FORECAST pour la prédiction de durée chirurgicale",
+      "ML.CLASSIFICATION pour le risque d'annulation",
+      "Optimisation de séquence avec contraintes de personnel et d'équipement",
+      "Dashboard Streamlit de programmation chirurgicale"
+    ]
+  },
+  {
+    "id": "UC10",
+    "cat": "seguridad",
+    "catLabel": "Sécurité",
+    "time": "13 min",
+    "title": "Détection de Fraude dans la Facturation Hospitalière",
+    "pain": "La fraude à la facturation hospitalière (assurances, mutuelles, partenariats public-privé) est estimée à 3-8 % des dépenses totales. La facturation à l'acte sans contrôle génère du surcodage, des actes fictifs et des doublons non détectés manuellement.",
+    "desc": "Système ML de détection d'anomalies dans la facturation hospitalière analysant les schémas de codage, fréquences de procédures, séjours et orientations pour identifier fraude et abus.",
+    "features": [
+      "ML.CLASSIFICATION sur les schémas de facturation",
+      "Variables : GHM, séjour, procédures, orientations, coûts",
+      "Détection de surcodage et d'actes fictifs",
+      "Dashboard Streamlit de contrôle de facturation"
+    ]
+  },
+  {
+    "id": "UC11",
+    "cat": "cronico",
+    "catLabel": "Maladies Chroniques",
+    "time": "14 min",
+    "title": "Surveillance à Distance des Patients avec IoT et Alertes ML",
+    "pain": "Les patients chroniques entre les visites n'ont pas de suivi continu. 30 % des hospitalisations urgentes de patients chroniques pourraient être évitées par la détection précoce de décompensations. La télésurveillance génère des milliers de données non analysées en temps réel.",
+    "desc": "Pipeline ML de surveillance des patients chroniques analysant les données d'appareils connectés (tension, glycémie, saturation, poids, activité) pour détecter les décompensations avant l'hospitalisation.",
+    "features": [
+      "ML.CLASSIFICATION sur les séries temporelles d'appareils IoT",
+      "Ligne de base personnalisée par patient et pathologie",
+      "Alertes multiniveaux : informatif, nécessite un appel, urgent",
+      "Dashboard Streamlit de télésurveillance"
+    ]
+  },
+  {
+    "id": "UC12",
+    "cat": "seguridad",
+    "catLabel": "Sécurité",
+    "time": "15 min",
+    "title": "Optimisation de l'Antibiothérapie et Résistance Microbienne",
+    "pain": "La résistance aux antibiotiques est un problème majeur de santé publique. 30 % des antibiotiques prescrits sont inappropriés. L'absence de systèmes de surveillance des antibiogrammes et des schémas de résistance entrave une thérapie rationnelle.",
+    "desc": "Système d'analyse de la prescription d'antibiotiques et des schémas de résistance microbienne, recommandant la thérapie empirique optimale sur la base des antibiogrammes locaux et du profil clinique du patient.",
+    "features": [
+      "ML.CLASSIFICATION pour la recommandation d'antibiotiques",
+      "Analyse des schémas de résistance par pathogène, service et période",
+      "Cortex Search pour la recherche dans les guides thérapeutiques",
+      "Dashboard Streamlit de surveillance antibiotique"
+    ]
+  },
+  {
+    "id": "UC13",
+    "cat": "operaciones",
+    "catLabel": "Opérations",
+    "time": "12 min",
+    "title": "Optimisation de la Chaîne d'Approvisionnement Pharmaceutique",
+    "pain": "Les ruptures de stock de médicaments en hôpital touchent 5-10 % des références du catalogue, générant des coûts d'approvisionnement d'urgence et de substitution. Les surstocks immobilisent du capital et entraînent des péremptions dans 3-5 % des cas.",
+    "desc": "Système ML de prédiction de la demande de médicaments et matériel médical, optimisant les stocks sur la base de la consommation historique, saisonnalité, activité des services et dates de péremption.",
+    "features": [
+      "ML.FORECAST pour la prédiction de consommation par service",
+      "Optimisation des stocks : point de commande, stock de sécurité, rotation",
+      "Alertes sur les dates de péremption et risque de rupture",
+      "Dashboard Streamlit de gestion de la pharmacie hospitalière"
+    ]
+  },
+  {
+    "id": "UC14",
+    "cat": "clinico",
+    "catLabel": "Données Cliniques",
+    "time": "15 min",
+    "title": "Aide à la Décision Clinique par la Médecine Fondée sur les Preuves",
+    "pain": "Les médecins prennent 40-50 décisions cliniques par garde avec un accès limité aux dernières preuves. Le délai entre la publication d'une étude et le changement de pratique clinique est de 10-17 ans.",
+    "desc": "Système RAG d'aide à la décision clinique indexant les guides de pratique clinique, protocoles, résultats d'études et recommandations pour fournir des informations fondées sur les preuves au point de soin.",
+    "features": [
+      "RAG avec Cortex Search sur les guides de pratique clinique",
+      "CORTEX.COMPLETE pour la contextualisation avec le profil patient",
+      "Hiérarchie des preuves : méta-analyses, ECR, cohortes, experts",
+      "Dashboard Streamlit d'aide clinique"
+    ]
+  },
+  {
+    "id": "UC15",
+    "cat": "cronico",
+    "catLabel": "Maladies Chroniques",
+    "time": "13 min",
+    "title": "Personnalisation du Traitement et Pharmacogénomique",
+    "pain": "Les effets indésirables médicamenteux (EIM) touchent 10-15 % des patients hospitalisés, dont 30-50 % sont évitables. Le dosage standard ne tient pas compte de la variabilité génétique, liée à l'âge et aux comorbidités.",
+    "desc": "Moteur ML de personnalisation du traitement pharmacologique analysant le profil clinique, génétique, les comorbidités et médicaments pour recommander un dosage individualisé et minimiser les effets indésirables.",
+    "features": [
+      "ML.CLASSIFICATION pour la prédiction du risque d'EIM",
+      "Variables : polymorphismes, comorbidités, fonction rénale/hépatique, âge",
+      "Cortex Search dans les bases d'interactions et de pharmacogénomique",
+      "Dashboard Streamlit d'aide à la prescription"
+    ]
+  },
+  {
+    "id": "UC16",
+    "cat": "paciente",
+    "catLabel": "Soins aux Patients",
+    "time": "14 min",
+    "title": "Optimisation du Parcours Patient et des Temps d'Attente",
+    "pain": "Les patients passent 60-70 % de leur temps à l'hôpital à attendre (résultats, consultations, actes). Le manque de visibilité sur le flux des patients empêche l'identification des goulots d'étranglement et l'optimisation de la durée de séjour.",
+    "desc": "Système d'analyse du flux patient avec process mining et ML, identifiant les goulots d'étranglement, prédisant la durée de séjour et optimisant le parcours de soins de l'admission à la sortie.",
+    "features": [
+      "ML.FORECAST pour la prédiction de durée de séjour",
+      "Process mining sur les données d'événements hospitaliers",
+      "Identification des goulots par service, heure et jour de la semaine",
+      "Dashboard Streamlit du flux patient"
+    ]
+  },
+  {
+    "id": "UC17",
+    "cat": "seguridad",
+    "catLabel": "Sécurité",
+    "time": "12 min",
+    "title": "Protection des Données de Santé et Conformité RGPD",
+    "pain": "Les données de santé exigent le plus haut niveau de protection (catégorie spéciale RGPD). Les hôpitaux doivent gérer l'accès de milliers d'utilisateurs à des millions de dossiers en garantissant l'accès minimal et l'auditabilité.",
+    "desc": "Système de surveillance de l'accès aux données de santé avec ML pour la détection d'anomalies, l'audit de conformité RGPD, la gestion des consentements et la génération automatique de rapports pour les DPO.",
+    "features": [
+      "ML.CLASSIFICATION pour la détection d'anomalies d'accès",
+      "Audit en temps réel : qui, quand, quelles données, pour quelle raison",
+      "Gestion des consentements et de la finalité du traitement",
+      "Dashboard Streamlit de conformité RGPD en santé"
+    ]
+  },
+  {
+    "id": "UC18",
+    "cat": "cronico",
+    "catLabel": "Maladies Chroniques",
+    "time": "15 min",
+    "title": "Prédiction de Détérioration Clinique et Early Warning Score",
+    "pain": "40 % des arrêts cardiaques en milieu hospitalier sont précédés d'une détérioration des paramètres sur 6-8 heures qui n'est pas reconnue. Les systèmes d'alerte précoce traditionnels reposent sur des seuils rigides sans personnalisation.",
+    "desc": "Système ML de prédiction continue de la détérioration clinique des patients hospitalisés, analysant les paramètres vitaux, biologiques et cliniques pour générer des alertes précoces personnalisées.",
+    "features": [
+      "ML.CLASSIFICATION sur les séries temporelles de paramètres vitaux",
+      "Seuils personnalisés par patient et pathologie de base",
+      "Alertes multiniveaux : observation, évaluation urgente, intervention rapide",
+      "Dashboard Streamlit de surveillance de la détérioration"
+    ]
+  },
+  {
+    "id": "UC19",
+    "cat": "clinico",
+    "catLabel": "Données Cliniques",
+    "time": "14 min",
+    "title": "Analyse d'Imagerie Médicale Assistée par IA",
+    "pain": "Les radiologues analysent 50-100 examens par jour avec un nombre d'images par examen en constante augmentation. Le délai de rendu de compte est de 24-72 heures et la fatigue augmente le risque de manquer des résultats significatifs.",
+    "desc": "Système d'assistance à l'analyse d'imagerie médicale avec ML pour la priorisation des examens, la pré-classification et l'extraction de résultats, accélérant le workflow des radiologues.",
+    "features": [
+      "ML.CLASSIFICATION pour la priorisation par urgence",
+      "CORTEX.COMPLETE pour la génération de comptes rendus structurés",
+      "Cortex Search pour la corrélation avec l'historique clinique",
+      "Dashboard Streamlit du poste de travail radiologique"
+    ]
+  },
+  {
+    "id": "UC20",
+    "cat": "seguridad",
+    "catLabel": "Sécurité",
+    "time": "13 min",
+    "title": "Anonymisation des Données Cliniques pour la Recherche",
+    "pain": "La recherche clinique et l'IA nécessitent de grands ensembles de données, mais les réglementations (RGPD, droit de la santé) en limitent l'utilisation. L'anonymisation manuelle est lente, coûteuse et sujette aux erreurs de ré-identification.",
+    "desc": "Pipeline d'anonymisation automatique de données cliniques avec ML, appliquant le k-anonymat, la l-diversité et la synthèse de données pour générer des jeux de données conformes aux réglementations tout en préservant l'utilité statistique.",
+    "features": [
+      "CORTEX.COMPLETE pour la détection d'identifiants dans le texte libre",
+      "Techniques de k-anonymat et l-diversité sur données structurées",
+      "Généralisation intelligente : dates, localisations, diagnostics rares",
+      "Dashboard Streamlit de gestion des données de recherche"
+    ]
+  }
+];
+
+const PROMPTS = {
+  "UC01": {
+    "title": "Prédiction des Réadmissions Hospitalières avec Model Registry",
+    "intro": "Pipeline complet de prédiction des réadmissions avec création de données synthétiques, ingénierie des caractéristiques, entraînement du modèle avec ML.CLASSIFICATION, enregistrement dans le Model Registry et dashboard Streamlit.",
+    "steps": [
+      {
+        "title": "Créer la base de données et les données synthétiques",
+        "desc": "Configuration de l'environnement avec les données patients.",
+        "prompt": "Create database HEALTHCARE_READMISSIONS with schema ANALYTICS. Create table PATIENT_EPISODES with 5,000 rows: episode_id, patient_id, age, gender, primary_diagnosis (ICD-10 codes: I50, J44, E11, I63, K80...), charlson_index (0-12), procedures_count, length_of_stay_days, previous_admissions_12m, emergency_admission BOOLEAN, discharge_service, insurance_type. Add table READMISSIONS with 750 readmission events within 30 days. Include realistic clinical distributions."
+      },
+      {
+        "title": "Ingénierie des caractéristiques cliniques",
+        "desc": "Préparation des variables pour le modèle.",
+        "prompt": "Create view READMISSION_FEATURES joining PATIENT_EPISODES with READMISSIONS. Calculate features: age_group, charlson_risk_level, length_of_stay_category, procedures_intensity, previous_admissions_flag, emergency_flag, diagnosis_complexity. Create target variable readmitted_30d BOOLEAN. Show feature distributions and class balance."
+      },
+      {
+        "title": "Entraîner le modèle avec ML.CLASSIFICATION",
+        "desc": "Modèle de prédiction des réadmissions.",
+        "prompt": "Train readmission model using ML.CLASSIFICATION on READMISSION_FEATURES with target readmitted_30d. Evaluate with precision, recall, F1, AUC-ROC. Show feature importance. Register in Model Registry with log_model(), version tagging and metadata: clinical_domain='readmission', target_metric='F1'."
+      },
+      {
+        "title": "Scoring des patients à la sortie",
+        "desc": "Prédiction au moment de la sortie.",
+        "prompt": "Create view DISCHARGE_RISK_SCORING that applies the registered model to current inpatients. Add risk_score, risk_level (high/medium/low), top_3_risk_factors. Create table INTERVENTION_RECOMMENDATIONS with suggested follow-up actions per risk level."
+      },
+      {
+        "title": "Dashboard de gestion des réadmissions",
+        "desc": "Streamlit opérationnel.",
+        "prompt": "Generate Streamlit code with:\n1. Patients at discharge with risk score and level\n2. Top risk factors per patient\n3. Recommended interventions by risk level\n4. Metrics: readmission rate, model accuracy, interventions performed\n5. Trends: readmission rate over time by service\n6. Comparison: predicted vs actual readmissions"
+      },
+      {
+        "title": "Pipeline d'automatisation",
+        "desc": "Automatiser le scoring.",
+        "prompt": "Create Tasks:\n1. SCORE_DISCHARGES: daily scoring of new discharges\n2. GENERATE_INTERVENTIONS: daily, assign follow-up by risk\n3. TRACK_READMISSIONS: weekly, compare predicted vs actual\n4. RETRAIN_MODEL: monthly with new data and Model Registry versioning\n5. Document. Target: AUC-ROC >0.75, 30% reduction in readmissions."
+      }
+    ]
+  },
+  "UC02": {
+    "title": "Chatbot RAG pour le Service Patient et les Rendez-vous",
+    "intro": "Assistant conversationnel RAG avec Cortex Search pour un service patient multicanal 24/7, indexant protocoles, préparations d'examens et services hospitaliers.",
+    "steps": [
+      {
+        "title": "Créer la base de connaissances",
+        "desc": "Données de référence de l'hôpital.",
+        "prompt": "Create database PATIENT_SERVICE with schema KNOWLEDGE_BASE. Create tables: CLINICAL_PROTOCOLS (50 rows: protocol_id, title, content, specialty, type), TEST_PREPARATIONS (80 rows: test_id, test_name, preparation_instructions, fasting_required, contraindications), FAQ (100 rows: question, answer, category, related_service), HOSPITAL_SERVICES (30 rows: service_id, name, description, schedule, location, phone). Include realistic medical content."
+      },
+      {
+        "title": "Créer le Cortex Search Service",
+        "desc": "Index de recherche sémantique.",
+        "prompt": "Create Cortex Search Service PATIENT_KB_SEARCH on a unified view combining CLINICAL_PROTOCOLS, TEST_PREPARATIONS, FAQ and HOSPITAL_SERVICES. Configure appropriate columns for search. Test with queries: 'how to prepare for colonoscopy', 'cardiology consultation schedule', 'what to do if I forgot to fast'."
+      },
+      {
+        "title": "Chatbot avec CORTEX.COMPLETE",
+        "desc": "Génération de réponses contextuelles.",
+        "prompt": "Create function PATIENT_ASSISTANT(user_question TEXT) that: 1) searches PATIENT_KB_SEARCH for top 5 relevant chunks, 2) uses CORTEX.COMPLETE to generate a friendly, accurate response with context, 3) returns answer with confidence score and source references. Test with 10 diverse patient queries."
+      },
+      {
+        "title": "Système de gestion des rendez-vous",
+        "desc": "Intégration calendrier.",
+        "prompt": "Create table APPOINTMENTS (500 rows: appointment_id, patient_id, specialty, doctor, date_time, status, preparation_needed). Create function CHECK_APPOINTMENT_STATUS(patient_id) and SUGGEST_AVAILABLE_SLOTS(specialty, preferred_date). Integrate with chatbot for end-to-end appointment management."
+      },
+      {
+        "title": "Dashboard du chatbot",
+        "desc": "Streamlit avec métriques.",
+        "prompt": "Generate Streamlit code with:\n1. Interactive chat interface with conversation history\n2. Conversation analytics: topics, resolution rate, satisfaction\n3. Knowledge base management: add/edit protocols and FAQ\n4. Metrics: queries/day, avg response time, escalation rate\n5. Top unresolved questions for knowledge base improvement\n6. Channel analysis: web, phone, app"
+      },
+      {
+        "title": "Pipeline d'automatisation",
+        "desc": "Mise à jour de la base de connaissances.",
+        "prompt": "Create Tasks:\n1. UPDATE_KNOWLEDGE_BASE: weekly, add new protocols and FAQ\n2. ANALYZE_CONVERSATIONS: daily, detect unresolved patterns\n3. REINDEX_SEARCH: after each knowledge base update\n4. GENERATE_QUALITY_REPORT: monthly with resolution metrics\n5. Document. Target: 80% first-contact resolution, <5% escalation."
+      }
+    ]
+  },
+  "UC03": {
+    "title": "Prédiction de la Demande de Soins avec Model Registry",
+    "intro": "Modèle de prédiction de la demande de soins par service et spécialité avec ML.FORECAST et Model Registry pour la planification opérationnelle continue.",
+    "steps": [
+      {
+        "title": "Créer les données historiques de demande",
+        "desc": "Données d'activité hospitalière.",
+        "prompt": "Create database HOSPITAL_DEMAND with schema PLANNING. Create table DAILY_DEMAND with 3 years of daily data (1,095 rows per service × 8 services): date, service (emergency, internal_medicine, surgery, pediatrics, obstetrics, icu, outpatient, radiology), admissions, discharges, emergency_visits, scheduled_surgeries, bed_occupancy_pct. Add EXTERNAL_FACTORS: date, flu_index, temperature, holiday_flag, pandemic_level. Include realistic seasonal patterns."
+      },
+      {
+        "title": "Ingénierie des caractéristiques temporelles",
+        "desc": "Variables saisonnières et épidémiologiques.",
+        "prompt": "Create view DEMAND_FEATURES with: day_of_week, month, season, holiday_proximity, flu_trend, temperature_category, previous_week_avg, year_over_year_change, moving_avg_30d per service. Show seasonal patterns and correlation with external factors."
+      },
+      {
+        "title": "Entraîner le modèle avec ML.FORECAST",
+        "desc": "Prédiction de la demande à 30 jours.",
+        "prompt": "Use ML.FORECAST on DEMAND_FEATURES for each service with 30-day horizon. Register in Model Registry with metrics: MAPE, RMSE, R². Compare with naive baseline. Show prediction intervals and confidence levels per service."
+      },
+      {
+        "title": "Planification des ressources",
+        "desc": "Traduire les prédictions en décisions.",
+        "prompt": "Create view RESOURCE_PLANNING that translates demand predictions into: beds_needed, staff_required (doctors, nurses, technicians), operating_rooms_needed, supplies_estimate. Add buffer by confidence level. Create CAPACITY_ALERTS for predicted demand exceeding capacity."
+      },
+      {
+        "title": "Dashboard de planification hospitalière",
+        "desc": "Streamlit opérationnel.",
+        "prompt": "Generate Streamlit code with:\n1. 30-day demand forecast by service with confidence intervals\n2. Resource requirements: beds, staff, ORs\n3. Capacity alerts and bottleneck predictions\n4. Historical accuracy: predicted vs actual\n5. Scenario analysis: what-if for pandemic/flu spikes\n6. Comparison by period: week, month, quarter"
+      },
+      {
+        "title": "Pipeline d'automatisation",
+        "desc": "Mise à jour des prévisions.",
+        "prompt": "Create Tasks:\n1. INGEST_DEMAND_DATA: daily with new activity data\n2. UPDATE_FORECAST: weekly with rolling 30-day predictions\n3. GENERATE_ALERTS: daily when demand >90% capacity\n4. RETRAIN_MODEL: monthly with Model Registry versioning\n5. Document. Target: MAPE <15%, 48h advance warning for surges."
+      }
+    ]
+  }
+};
+
+// UC04-UC20 PROMPTS continue with same structure - abbreviated for remaining UCs
+Object.assign(PROMPTS, {
+  "UC04": {
+    "title": "Stratification des Patients Chroniques par Risque",
+    "intro": "Moteur de stratification des patients chroniques par risque de décompensation avec ML.CLASSIFICATION sur données cliniques et de monitoring.",
+    "steps": [
+      { "title": "Créer le registre des patients chroniques", "desc": "Données cliniques et de monitoring.", "prompt": "Create database CHRONIC_PATIENTS with schema STRATIFICATION. Create table PATIENT_REGISTRY (2,000 chronic patients): patient_id, age, gender, primary_condition (diabetes, COPD, heart_failure, hypertension, CKD), diagnosis_date, charlson_index, active_medications_count, last_hba1c, last_fev1, last_lvef, adherence_score (0-100), emergency_visits_12m, hospitalizations_12m, last_visit_date. Include realistic clinical distributions by condition." },
+      { "title": "Ingénierie des caractéristiques de risque", "desc": "Variables prédictives de décompensation.", "prompt": "Create view RISK_FEATURES with calculated features: condition_duration_years, biomarker_trend (improving/stable/worsening), adherence_category, hospitalization_frequency, polypharmacy_flag, age_adjusted_risk, comorbidity_burden. Create target variable: decompensation_event (hospitalization or emergency visit within 90 days)." },
+      { "title": "Entraîner le modèle de stratification", "desc": "ML.CLASSIFICATION multiniveaux.", "prompt": "Use ML.CLASSIFICATION on RISK_FEATURES with target decompensation_event. Evaluate with precision, recall, F1 per risk level. Show feature importance by condition type. Create risk segments: high_risk, moderate_risk, stable, controlled with clinical thresholds." },
+      { "title": "Plan d'intervention par risque", "desc": "Actions par segment.", "prompt": "Create table INTERVENTION_PLANS mapping risk_level to: follow_up_frequency, monitoring_type (telemonitoring/in-person/phone), specialist_referral, medication_review_flag, patient_education_program. Create view PATIENT_ACTION_LIST with prioritized actions per patient." },
+      { "title": "Dashboard de gestion des chroniques", "desc": "Streamlit clinique.", "prompt": "Generate Streamlit code with:\n1. Patient registry with risk scoring and stratification\n2. Risk distribution by condition and demographic\n3. Intervention tracking: assigned vs completed\n4. Outcomes: hospitalizations avoided, adherence improvement\n5. Temporal trends: risk migration between segments\n6. Alerts: patients with worsening risk trajectory" },
+      { "title": "Pipeline d'automatisation", "desc": "Stratification continue.", "prompt": "Create Tasks:\n1. UPDATE_CLINICAL_DATA: daily from EHR and lab systems\n2. RESCORE_PATIENTS: weekly with updated features\n3. GENERATE_ACTION_LISTS: weekly for clinical teams\n4. TRACK_OUTCOMES: monthly, compare predicted vs actual events\n5. Document. Target: identify 70% of decompensations 30 days in advance." }
+    ]
+  },
+  "UC05": {
+    "title": "Maintenance Prédictive des Équipements Médicaux",
+    "intro": "Système ML de prédiction des pannes d'équipements médicaux analysant les données d'utilisation et capteurs pour optimiser la maintenance.",
+    "steps": [
+      { "title": "Créer l'inventaire et les données capteurs", "desc": "Données d'équipements médicaux.", "prompt": "Create database MEDICAL_EQUIPMENT with schema MAINTENANCE. Create table EQUIPMENT_INVENTORY (200 devices): equipment_id, type (CT_scanner, MRI, ultrasound, lab_analyzer, ventilator, infusion_pump), manufacturer, model, install_date, last_maintenance_date, criticality (critical/high/medium/low), department. Create table SENSOR_READINGS (100,000 rows): equipment_id, timestamp, usage_hours, cycles_count, temperature, error_codes, performance_metric. Include degradation patterns." },
+      { "title": "Ingénierie des caractéristiques de dégradation", "desc": "Indicateurs de détérioration.", "prompt": "Create view DEGRADATION_FEATURES with: days_since_maintenance, usage_intensity (hours/day avg), error_frequency_7d, temperature_anomalies, performance_trend, cycles_since_service, age_years, reliability_score. Create target: failure_within_30d BOOLEAN based on historical MAINTENANCE_EVENTS." },
+      { "title": "Entraîner le modèle prédictif", "desc": "ML.CLASSIFICATION pour la prédiction de pannes.", "prompt": "Use ML.CLASSIFICATION on DEGRADATION_FEATURES with target failure_within_30d. Evaluate by equipment type with precision, recall, F1. Focus on high recall for critical equipment. Register in Model Registry with equipment-specific performance metrics." },
+      { "title": "Planification de la maintenance", "desc": "Programmation basée sur les prédictions.", "prompt": "Create view MAINTENANCE_SCHEDULE with: equipment_id, predicted_failure_probability, recommended_maintenance_date, maintenance_type (preventive/corrective), estimated_downtime_hours, replacement_parts_needed. Prioritize by criticality × failure_probability. Create MAINTENANCE_CALENDAR with weekly planning view." },
+      { "title": "Dashboard de gestion des équipements", "desc": "Streamlit opérationnel.", "prompt": "Generate Streamlit code with:\n1. Equipment fleet overview with health scores\n2. Failure predictions with confidence levels\n3. Maintenance calendar and scheduling\n4. Cost analysis: preventive vs corrective maintenance\n5. Equipment utilization rates and downtime tracking\n6. Alerts: equipment requiring immediate attention" },
+      { "title": "Pipeline d'automatisation", "desc": "Surveillance continue.", "prompt": "Create Tasks:\n1. INGEST_SENSOR_DATA: hourly from equipment sensors\n2. UPDATE_HEALTH_SCORES: daily per equipment\n3. PREDICT_FAILURES: daily, flag high-risk equipment\n4. GENERATE_WORK_ORDERS: weekly maintenance planning\n5. Document. Target: 40% reduction in unplanned downtime, <5% false alarms on critical equipment." }
+    ]
+  },
+  "UC06": {
+    "title": "NLP sur les Dossiers Médicaux et Extraction d'Entités",
+    "intro": "Pipeline NLP analysant les dossiers médicaux pour extraire diagnostics, médicaments, allergies et procédures avec CORTEX.COMPLETE et Cortex Search.",
+    "steps": [
+      { "title": "Créer le corpus de documents cliniques", "desc": "Dossiers médicaux synthétiques.", "prompt": "Create database CLINICAL_NLP with schema TEXT_ANALYTICS. Create table CLINICAL_DOCUMENTS (500 rows): document_id, patient_id, document_type (discharge_summary, progress_note, lab_report, radiology_report, consultation), department, created_date, clinical_text TEXT. Generate realistic synthetic clinical narratives with diagnoses, medications, allergies, procedures and findings embedded in free text." },
+      { "title": "Extraction d'entités cliniques", "desc": "NER sur texte clinique.", "prompt": "Create view CLINICAL_ENTITIES that uses CORTEX.COMPLETE to extract from each document in JSON format:\n- diagnoses: [{icd10, description, type: primary/secondary}]\n- medications: [{name, dose, route, frequency, atc_code}]\n- allergies: [{substance, reaction_type}]\n- procedures: [{name, snomed_code, date}]\n- findings: [{finding, normal/abnormal, value}]\nDemonstrate with 5 documents of different types." },
+      { "title": "Codage automatique CIM-10", "desc": "Mapper les diagnostics aux codes.", "prompt": "Create table ICD10_CODES with the 2,000 most frequent diagnoses. Create function ENCODE_DIAGNOSIS(diagnosis_text) that uses CORTEX.COMPLETE + Cortex Search on ICD10_CODES to assign ICD-10 code with confidence. Evaluate accuracy comparing with manual coding." },
+      { "title": "Recherche sémantique dans les dossiers", "desc": "Cortex Search sur le corpus clinique.", "prompt": "Create Cortex Search Service on CLINICAL_DOCUMENTS indexing text + document_type + department. Demonstrate searches: 'patients with diabetes and nephropathy', 'adverse reactions to amoxicillin', 'discharge reports with COPD exacerbation', 'cardiology consultations for atrial fibrillation'." },
+      { "title": "Détecter les interactions médicamenteuses", "desc": "Alertes de sécurité de prescription.", "prompt": "Create table DRUG_INTERACTIONS with known drug interaction pairs. Create function DETECT_INTERACTIONS(patient_id) that cross-references active medications with interactions and uses CORTEX.COMPLETE to explain clinical risk and alternatives." },
+      { "title": "Dashboard d'intelligence clinique", "desc": "Streamlit NLP clinique.", "prompt": "Generate Streamlit code with:\n1. Medical record viewer with highlighted extracted entities\n2. Semantic search across medical records\n3. Automatic ICD-10 coding with review\n4. Drug interaction alerts\n5. Statistics: frequent diagnoses, medications, procedures\n6. Extraction metrics: precision, recall, F1" },
+      { "title": "Pipeline de traitement", "desc": "Automatiser l'extraction.", "prompt": "Create Tasks:\n1. EXTRACT_ENTITIES: hourly on new documents\n2. ENCODE_DIAGNOSES: daily on extracted entities\n3. CHECK_INTERACTIONS: continuous on new prescriptions\n4. UPDATE_INDEX: daily, reindex new records\n5. Document. Target: F1 >85% in entity extraction." }
+    ]
+  },
+  "UC07": {
+    "title": "Analyse de l'Expérience Patient et de la Satisfaction",
+    "intro": "Moteur NLP d'analyse de l'expérience patient traitant enquêtes, réclamations et avis pour identifier des schémas et des alertes qualité.",
+    "steps": [
+      { "title": "Créer les données de retours patients", "desc": "Données multicanales.", "prompt": "Create database PATIENT_EXPERIENCE with schema FEEDBACK. Create table SURVEYS (2,000 rows): survey_id, patient_id, episode_id, date, department, overall_score (1-10), comments TEXT, channel (post_discharge, outpatient, emergency). Create table COMPLAINTS (300 rows): complaint_id, date, category, description TEXT, severity, status, resolution_text. Create table ONLINE_REVIEWS (500 rows): platform, date, rating, text, department_mentioned. Include realistic healthcare feedback." },
+      { "title": "Analyse de sentiment et classification", "desc": "NLP sur les retours patients.", "prompt": "Create view FEEDBACK_ANALYSIS that applies CORTEX.SENTIMENT to all text feedback and CORTEX.COMPLETE for thematic classification: waiting_time, staff_treatment, information_quality, facilities, clinical_care, food, parking, administrative. Show sentiment distribution by department and channel." },
+      { "title": "Détection de schémas et alertes", "desc": "Identifier les problèmes systémiques.", "prompt": "Create view QUALITY_ALERTS that identifies: departments with declining sentiment trends, recurring complaint patterns, themes with >20% negative sentiment increase, correlations between satisfaction and operational metrics. Use CORTEX.COMPLETE to generate actionable summaries per alert." },
+      { "title": "Benchmarking et objectifs", "desc": "Comparaison par service.", "prompt": "Create view DEPARTMENT_BENCHMARKS with: department, avg_score, sentiment_score, response_rate, complaint_rate, top_positive_themes, top_negative_themes, quarter_over_quarter_change. Set targets by department type and track progress." },
+      { "title": "Dashboard de l'expérience patient", "desc": "Streamlit analytique.", "prompt": "Generate Streamlit code with:\n1. Overall satisfaction dashboard with trends\n2. Department comparison with detailed themes\n3. Active alerts and quality issues\n4. Complaint tracking with resolution status\n5. Word cloud and theme analysis from comments\n6. Channel analysis: survey vs online vs complaints" },
+      { "title": "Pipeline d'automatisation", "desc": "Surveillance continue des retours.", "prompt": "Create Tasks:\n1. INGEST_FEEDBACK: daily from all channels\n2. ANALYZE_SENTIMENT: daily on new feedback\n3. DETECT_ALERTS: daily, flag declining trends\n4. GENERATE_REPORTS: weekly department summaries\n5. Document. Target: 48h alert detection, 90% complaint classification accuracy." }
+    ]
+  },
+  "UC08": {
+    "title": "Feature Store du Profil Patient 360",
+    "intro": "Feature Store consolidant le profil patient depuis de multiples sources cliniques, conforme au RGPD, pour l'aide à la décision clinique et la personnalisation des soins.",
+    "steps": [
+      { "title": "Créer les sources de données cliniques", "desc": "Simulation multi-système.", "prompt": "Create database PATIENT_360 with schema FEATURE_STORE. Create source tables: EHR_RECORDS (diagnoses, history, allergies, clinical notes), LAB_RESULTS (analytics, microbiology, blood counts), PHARMACY (active medications, dispensations, adherence), RADIOLOGY (imaging studies, reports), ADMISSIONS (episodes, stays, referrals, appointments). Each with 3,000+ rows and patient_id as join key." },
+      { "title": "Définir Entity et FeatureViews", "desc": "Implémentation du Feature Store.", "prompt": "Implement Snowflake Feature Store with Entity('patient', join_keys=['patient_id']). Create FeatureViews:\n- demographics: age, gender, address, contact\n- clinical_history: active diagnoses, Charlson score, allergies\n- medications: active medication, adherence, interactions\n- lab_results: latest analytics, trends, alerts\n- activity: admissions, emergency visits, consultations, procedures\nConfigure refresh schedules and RBAC access per FeatureView." },
+      { "title": "Consolidation et qualité des données", "desc": "Nettoyage et validation.", "prompt": "Create data quality pipeline: 1) Deduplicate patients across sources with fuzzy matching, 2) Standardize codes (ICD-10, ATC, SNOMED), 3) Handle missing values by feature type, 4) Create DATA_QUALITY_REPORT with completeness, freshness and consistency per source. Target: >95% record linkage accuracy." },
+      { "title": "Mise à disposition avec get_features()", "desc": "API de consommation des caractéristiques.", "prompt": "Demonstrate get_features() for different use cases: 1) Clinical decision support: full patient profile at point of care, 2) Readmission prediction: risk features at discharge, 3) Chronic disease management: monitoring features for stratification. Show latency and freshness metrics per use case." },
+      { "title": "Dashboard du profil patient", "desc": "Streamlit clinique.", "prompt": "Generate Streamlit code with:\n1. Patient 360 view: demographics, diagnoses, medications, lab results\n2. Clinical timeline: events, visits, procedures\n3. Feature freshness and quality monitoring\n4. Access audit: who accessed what patient data\n5. Data source status and integration health\n6. Feature usage statistics by consuming application" },
+      { "title": "Pipeline d'automatisation", "desc": "Mise à jour continue des caractéristiques.", "prompt": "Create Tasks:\n1. REFRESH_EHR_FEATURES: hourly from EHR system\n2. REFRESH_LAB_FEATURES: every 4 hours from laboratory\n3. REFRESH_PHARMACY_FEATURES: daily from pharmacy\n4. DATA_QUALITY_CHECK: daily, flag anomalies\n5. Document. Target: <1h latency for critical features, >99% availability." }
+    ]
+  },
+  "UC09": {
+    "title": "Optimisation de la Programmation Chirurgicale",
+    "intro": "Moteur d'optimisation de la programmation chirurgicale prédisant les durées, estimant les annulations et optimisant la séquence des interventions.",
+    "steps": [
+      { "title": "Créer les données d'activité chirurgicale", "desc": "Données historiques d'interventions.", "prompt": "Create database SURGICAL_OPTIMIZATION with schema SCHEDULING. Create table SURGICAL_HISTORY (5,000 procedures): procedure_id, date, operating_room, specialty (general, orthopedic, cardiac, neuro, gynecology, urology), procedure_type, scheduled_duration_min, actual_duration_min, surgeon_id, anesthesia_type, patient_age, patient_asa_score, cancellation BOOLEAN, cancellation_reason, turnover_time_min. Include realistic duration distributions by specialty." },
+      { "title": "Prédiction de durée chirurgicale", "desc": "ML.FORECAST sur les durées.", "prompt": "Use ML.FORECAST to predict actual_duration_min based on: specialty, procedure_type, surgeon_experience, patient_asa_score, anesthesia_type, time_of_day, day_of_week. Evaluate with MAE, MAPE per specialty. Compare with scheduled_duration accuracy." },
+      { "title": "Prédiction du risque d'annulation", "desc": "ML.CLASSIFICATION sur les annulations.", "prompt": "Use ML.CLASSIFICATION on SURGICAL_HISTORY with target cancellation. Features: days_scheduled_in_advance, patient_age, asa_score, procedure_complexity, previous_cancellations, pre_op_tests_complete, day_of_week. Show cancellation risk factors by specialty." },
+      { "title": "Optimisation du programme", "desc": "Séquence et allocation des salles.", "prompt": "Create view OPTIMIZED_SCHEDULE that: 1) sequences procedures to minimize turnover time, 2) assigns operating rooms by specialty compatibility, 3) buffers based on duration prediction confidence, 4) flags high-cancellation-risk procedures for confirmation. Create SCHEDULE_COMPARISON: optimized vs current utilization." },
+      { "title": "Dashboard de programmation chirurgicale", "desc": "Streamlit opérationnel.", "prompt": "Generate Streamlit code with:\n1. Weekly OR schedule with optimized sequence\n2. Duration predictions vs actual for ongoing procedures\n3. Cancellation risk alerts for upcoming procedures\n4. OR utilization metrics: scheduled vs actual\n5. Surgeon and specialty performance analysis\n6. Waiting list management with priority scoring" },
+      { "title": "Pipeline d'automatisation", "desc": "Optimisation continue.", "prompt": "Create Tasks:\n1. UPDATE_SURGICAL_DATA: daily from OR system\n2. PREDICT_DURATIONS: daily for next week's schedule\n3. FLAG_CANCELLATION_RISK: daily, alert for >30% risk\n4. OPTIMIZE_SCHEDULE: weekly with constraint optimization\n5. Document. Target: 15% improvement in OR utilization, 20% reduction in overruns." }
+    ]
+  },
+  "UC10": {
+    "title": "Détection de Fraude dans la Facturation Hospitalière",
+    "intro": "Système ML de détection d'anomalies dans la facturation hospitalière analysant les schémas de codage et fréquences de procédures.",
+    "steps": [
+      { "title": "Créer les données de facturation", "desc": "Données de factures et codage.", "prompt": "Create database HEALTHCARE_BILLING with schema FRAUD_DETECTION. Create table BILLING_RECORDS (20,000 rows): invoice_id, patient_id, episode_id, date, department, provider_id, drg_code, drg_weight, length_of_stay, procedures_billed (JSON array), diagnosis_codes (JSON array), total_amount_eur, payer_type (public_health, insurance, mutual). Create table NATIONAL_BENCHMARKS: drg_code, avg_stay, avg_cost, avg_procedures. Include 5% anomalous billing patterns." },
+      { "title": "Ingénierie des caractéristiques de facturation", "desc": "Indicateurs d'anomalies.", "prompt": "Create view BILLING_FEATURES with: drg_weight_vs_avg, stay_vs_expected_ratio, procedures_count_vs_avg, cost_per_day_vs_benchmark, readmission_billing_flag, weekend_procedure_flag, provider_billing_pattern (procedures/month vs peers), duplicate_billing_check. Calculate z-scores against NATIONAL_BENCHMARKS." },
+      { "title": "Entraîner le modèle de détection", "desc": "ML.CLASSIFICATION pour les anomalies.", "prompt": "Use ML.CLASSIFICATION to classify: normal, mild_anomaly, moderate_anomaly, severe_anomaly. Features: all billing features. Evaluate precision and recall. For severe anomalies: generate detailed profile with irregularity type and estimated amount." },
+      { "title": "Générer les alertes d'audit", "desc": "Prioriser les cas à examiner.", "prompt": "Create view BILLING_ALERTS with: invoice_id, anomaly_type (upcoding, excessive_stay, fictitious_service, duplicate), severity, amount_in_question_eur, risk_score, details TEXT. Sort by amount × probability. Generate top 100 for audit." },
+      { "title": "Dashboard de contrôle", "desc": "Streamlit d'audit.", "prompt": "Generate Streamlit code with:\n1. Prioritized alerts with anomaly details\n2. Benchmarking: department vs national by DRG\n3. Coding profiles by department and provider\n4. Metrics: anomalies detected, recoverable amount, trend\n5. Analysis by payer: public health, insurers, mutual\n6. Average DRG weight evolution by department" },
+      { "title": "Pipeline d'audit", "desc": "Automatiser la détection.", "prompt": "Create Tasks:\n1. INGEST_BILLING: monthly with new invoices\n2. SCORE_ANOMALIES: monthly on new billing\n3. GENERATE_ALERTS: monthly, prioritize cases\n4. UPDATE_BENCHMARKS: annually with national data\n5. Document. Target: detect 60% anomalies, <8% false positives." }
+    ]
+  }
+});
+
+Object.assign(PROMPTS, {
+  "UC11": {
+    "title": "Surveillance à Distance des Patients avec IoT et Alertes ML",
+    "intro": "Pipeline ML de surveillance des patients chroniques analysant les données IoT pour détecter les décompensations avant l'hospitalisation urgente.",
+    "steps": [
+      { "title": "Créer les données d'appareils IoT", "desc": "Simulation de télésurveillance.", "prompt": "Create database REMOTE_MONITORING with schema IOT_HEALTH. Create table DEVICE_READINGS (200,000 rows for 500 patients): reading_id, patient_id, device_type (blood_pressure, glucometer, pulse_oximeter, scale, activity_tracker), timestamp, value_1 (systolic/glucose/spo2/weight/steps), value_2 (diastolic/null/heart_rate/null/null), battery_level. Create table PATIENT_BASELINES: patient_id, device_type, normal_range_low, normal_range_high, personalized_threshold. Include deterioration patterns before decompensation events." },
+      { "title": "Ingénierie des caractéristiques de monitoring", "desc": "Indicateurs de détérioration.", "prompt": "Create view MONITORING_FEATURES with per patient per device: current_value_vs_baseline, trend_7d (slope), variability_7d (std dev), out_of_range_count_7d, missing_readings_count, combined_risk_score (multi-device). Create target: decompensation_within_7d BOOLEAN from historical hospitalization events." },
+      { "title": "Entraîner le modèle d'alertes", "desc": "ML.CLASSIFICATION sur données IoT.", "prompt": "Use ML.CLASSIFICATION on MONITORING_FEATURES with target decompensation_within_7d. Evaluate with focus on high recall (>90%) for severe decompensations. Create alert levels: informational (trending), requires_call (concerning), urgent (immediate action). Show performance by condition type." },
+      { "title": "Système d'escalade des alertes", "desc": "Workflow des alertes.", "prompt": "Create table ALERT_RULES mapping alert_level to: response_time_hours, action (auto_message/nurse_call/doctor_review/emergency), escalation_if_no_response. Create view ACTIVE_ALERTS with: patient_id, alert_level, trigger_reason, recommended_action, assigned_to, response_deadline." },
+      { "title": "Dashboard de télésurveillance", "desc": "Streamlit du centre de surveillance.", "prompt": "Generate Streamlit code with:\n1. Patient monitoring dashboard with real-time readings\n2. Active alerts sorted by urgency\n3. Individual patient trends with baseline comparison\n4. Alert response tracking and resolution\n5. Device compliance: readings received vs expected\n6. Outcomes: hospitalizations avoided, early interventions" },
+      { "title": "Pipeline d'automatisation", "desc": "Surveillance continue.", "prompt": "Create Tasks:\n1. INGEST_READINGS: every 15 minutes from devices\n2. CALCULATE_FEATURES: hourly per patient\n3. GENERATE_ALERTS: hourly, flag deterioration\n4. ESCALATE_UNRESPONDED: every 2 hours\n5. Document. Target: 90% sensitivity for severe decompensation, <15% false alert rate." }
+    ]
+  },
+  "UC12": { "title": "Optimisation de l'Antibiothérapie et Résistance Microbienne", "intro": "Système d'analyse de la prescription d'antibiotiques et des résistances microbiennes recommandant la thérapie empirique optimale.", "steps": [
+    { "title": "Créer les données microbiologiques", "desc": "Antibiogrammes et prescriptions.", "prompt": "Create database ANTIMICROBIAL_STEWARDSHIP with schema RESISTANCE. Create table ANTIBIOGRAMS (10,000 rows): culture_id, patient_id, date, specimen_type (blood, urine, sputum, wound), pathogen, department, antibiotic_tested, sensitivity (sensitive/intermediate/resistant). Create table PRESCRIPTIONS (15,000 rows): prescription_id, patient_id, date, antibiotic, dose, route, duration_days, indication, empirical BOOLEAN, culture_guided BOOLEAN, department, prescriber_id. Include realistic resistance patterns." },
+    { "title": "Analyser les schémas de résistance", "desc": "Épidémiologie des résistances.", "prompt": "Create view RESISTANCE_PATTERNS with: pathogen, antibiotic, resistance_rate, trend_12m (increasing/stable/decreasing), by department, by specimen_type, by quarter. Create LOCAL_ANTIBIOGRAM: pathogen × antibiotic matrix with sensitivity percentages. Compare with national resistance data." },
+    { "title": "Système de recommandation d'antibiotiques", "desc": "ML.CLASSIFICATION pour le choix thérapeutique.", "prompt": "Use ML.CLASSIFICATION on prescription data with features: infection_site, patient_age, previous_cultures, department, severity. Target: appropriate_antibiotic (based on subsequent culture results). Create function RECOMMEND_EMPIRICAL_THERAPY(infection_site, department) returning ranked antibiotic options with local sensitivity rates." },
+    { "title": "Recherche dans les guides thérapeutiques", "desc": "Cortex Search sur les protocoles.", "prompt": "Create table THERAPEUTIC_GUIDELINES (50 entries): guideline_id, condition, recommended_first_line, alternatives, contraindications, evidence_level, source, last_updated. Create Cortex Search Service. Test queries: 'empirical treatment for urinary infection', 'alternatives for penicillin-allergic patients', 'MRSA treatment protocols'." },
+    { "title": "Dashboard de surveillance antibiotique", "desc": "Streamlit de surveillance.", "prompt": "Generate Streamlit code with:\n1. Local antibiogram heatmap: pathogen vs antibiotic sensitivity\n2. Resistance trends over time by pathogen\n3. Prescribing patterns: empirical vs culture-guided ratio\n4. Therapy recommendations with evidence\n5. Department comparison: DDD/100 bed-days\n6. Alerts: emerging resistance patterns" },
+    { "title": "Pipeline d'automatisation", "desc": "Surveillance continue.", "prompt": "Create Tasks:\n1. INGEST_CULTURES: daily from microbiology\n2. UPDATE_ANTIBIOGRAM: monthly recalculation\n3. ANALYZE_PRESCRIPTIONS: weekly prescribing audit\n4. DETECT_RESISTANCE_ALERTS: daily for emerging patterns\n5. Document. Target: 20% improvement in empirical therapy appropriateness." }
+  ] },
+  "UC13": { "title": "Optimisation de la Chaîne d'Approvisionnement Pharmaceutique", "intro": "Système ML de prédiction de la demande de médicaments et d'optimisation des stocks en pharmacie hospitalière.", "steps": [
+    { "title": "Créer les données de pharmacie hospitalière", "desc": "Stocks et consommation.", "prompt": "Create database HOSPITAL_PHARMACY with schema SUPPLY_CHAIN. Create table MEDICATION_INVENTORY (500 items): medication_id, name, atc_code, unit, current_stock, reorder_point, lead_time_days, unit_cost_eur, expiry_sensitive BOOLEAN, storage_type (ambient/refrigerated/controlled). Create table CONSUMPTION_HISTORY (50,000 rows, 2 years): medication_id, date, department, quantity_dispensed, prescription_type (scheduled/stat/prn). Include seasonal patterns." },
+    { "title": "Prédiction de consommation", "desc": "ML.FORECAST sur la demande.", "prompt": "Use ML.FORECAST on CONSUMPTION_HISTORY per medication with features: day_of_week, month, department_activity, seasonal_index. Forecast 30-day consumption with prediction intervals. Evaluate with MAPE per medication category. Focus on critical and high-cost medications." },
+    { "title": "Optimisation des stocks", "desc": "Point de commande et stock de sécurité.", "prompt": "Create view INVENTORY_OPTIMIZATION with: medication_id, forecasted_demand_30d, optimal_reorder_point, safety_stock (based on lead_time variability and service level), economic_order_quantity, estimated_annual_savings_eur. Create EXPIRY_RISK_ALERTS for items approaching expiration with low consumption rate." },
+    { "title": "Gestion des dates de péremption", "desc": "Minimiser les péremptions.", "prompt": "Create table EXPIRY_TRACKING: medication_id, batch_id, expiry_date, quantity, location. Create view EXPIRY_ACTIONS with: items expiring within 90 days ranked by quantity × unit_cost, redistribution suggestions between departments, donation eligibility check. Calculate waste reduction potential." },
+    { "title": "Dashboard de la pharmacie hospitalière", "desc": "Streamlit de gestion.", "prompt": "Generate Streamlit code with:\n1. Inventory dashboard with stock levels and alerts\n2. Demand forecast by medication and department\n3. Expiry management with action recommendations\n4. Cost analysis: waste, emergency orders, savings\n5. Supplier performance: lead times, reliability\n6. ABC analysis: classify medications by value and volume" },
+    { "title": "Pipeline d'automatisation", "desc": "Gestion continue des stocks.", "prompt": "Create Tasks:\n1. INGEST_CONSUMPTION: daily from dispensing system\n2. UPDATE_FORECASTS: weekly per medication\n3. GENERATE_ORDERS: daily based on reorder points\n4. CHECK_EXPIRY: daily, flag items within 90 days\n5. Document. Target: 50% reduction in stockouts, 30% reduction in waste." }
+  ] },
+  "UC14": { "title": "Aide à la Décision Clinique par la Médecine Fondée sur les Preuves", "intro": "Système RAG d'aide à la décision clinique indexant les guides de pratique clinique et recommandations fondées sur les preuves.", "steps": [
+    { "title": "Créer la base de preuves cliniques", "desc": "Guides et protocoles.", "prompt": "Create database CLINICAL_DECISION_SUPPORT with schema EVIDENCE. Create table CLINICAL_GUIDELINES (100 entries): guideline_id, title, condition, specialty, content TEXT, evidence_level (Ia, Ib, IIa, IIb, III, IV), source, publication_date, last_reviewed. Create table DRUG_PROTOCOLS (80 entries): drug, indication, dosing, contraindications, monitoring, interactions. Create table CLINICAL_PATHWAYS (30 entries): condition, pathway_steps JSON, decision_points, outcomes. Include current evidence-based content." },
+    { "title": "Créer le Cortex Search Service", "desc": "Index de recherche des preuves.", "prompt": "Create Cortex Search Service EVIDENCE_SEARCH on unified view of CLINICAL_GUIDELINES, DRUG_PROTOCOLS and CLINICAL_PATHWAYS. Configure relevance ranking by evidence_level. Test queries: 'heart failure treatment guidelines', 'insulin dosing for type 2 diabetes', 'anticoagulation in atrial fibrillation'." },
+    { "title": "Aide contextualisée", "desc": "Recommandations avec profil patient.", "prompt": "Create function CLINICAL_DECISION_AID(patient_id, clinical_question TEXT) that: 1) retrieves patient profile from Feature Store, 2) searches EVIDENCE_SEARCH for relevant guidelines, 3) uses CORTEX.COMPLETE to generate contextualized recommendation considering patient-specific factors (age, comorbidities, medications). Test with 10 clinical scenarios." },
+    { "title": "Hiérarchie des preuves et qualité", "desc": "Évaluation de la fiabilité.", "prompt": "Create view EVIDENCE_QUALITY_METRICS with: guideline currency (months since last review), evidence level distribution, coverage gaps (conditions without guidelines), conflicting recommendations detection. Create UPDATE_PRIORITY list for guidelines needing review." },
+    { "title": "Dashboard d'aide clinique", "desc": "Streamlit pour médecins.", "prompt": "Generate Streamlit code with:\n1. Clinical question interface with contextualized answers\n2. Evidence viewer with level and source attribution\n3. Drug protocol lookup with interaction checking\n4. Clinical pathway visualization for common conditions\n5. Guidelines currency dashboard and update alerts\n6. Usage analytics: most queried topics and conditions" },
+    { "title": "Pipeline d'automatisation", "desc": "Mise à jour de la base de preuves.", "prompt": "Create Tasks:\n1. CHECK_GUIDELINE_UPDATES: monthly, flag outdated guidelines\n2. REINDEX_EVIDENCE: after each guideline update\n3. USAGE_ANALYTICS: weekly, identify knowledge gaps\n4. QUALITY_REPORT: quarterly, evidence coverage assessment\n5. Document. Target: >90% of clinical queries answered with Level I-II evidence." }
+  ] },
+  "UC15": { "title": "Personnalisation du Traitement et Pharmacogénomique", "intro": "Moteur ML de personnalisation du traitement pharmacologique analysant le profil clinique et génétique pour minimiser les effets indésirables.", "steps": [
+    { "title": "Créer les données pharmacogénomiques", "desc": "Profils génétiques et événements indésirables.", "prompt": "Create database PERSONALIZED_MEDICINE with schema PHARMACOGENOMICS. Create table PATIENT_GENETIC_PROFILES (1,000 patients): patient_id, cyp2d6_status (poor/intermediate/extensive/ultra_rapid), cyp2c19_status, cyp3a4_status, hla_b_5701 BOOLEAN, vkorc1_genotype, dpyd_status. Create table ADVERSE_EVENTS (800 rows): event_id, patient_id, medication, event_type, severity, date, outcome. Create table MEDICATION_HISTORY (10,000 rows): patient_id, medication, start_date, dose, response (effective/partial/ineffective/adverse). Include pharmacogenomic correlations." },
+    { "title": "Ingénierie des caractéristiques pharmacologiques", "desc": "Variables prédictives d'EIM.", "prompt": "Create view PHARMACOLOGICAL_FEATURES with: patient_age, renal_function (eGFR), hepatic_function, body_weight, polypharmacy_count, drug_drug_interactions_count, genetic_metabolizer_status per relevant CYP, previous_adverse_events_count, medication_class. Target: adverse_event_risk (none/mild/moderate/severe)." },
+    { "title": "Entraîner le modèle de prédiction d'EIM", "desc": "ML.CLASSIFICATION sur événements indésirables.", "prompt": "Use ML.CLASSIFICATION on PHARMACOLOGICAL_FEATURES with target adverse_event_risk. Evaluate per medication class with focus on severe events. Create function PREDICT_ADR_RISK(patient_id, proposed_medication) returning risk level, risk factors and alternative medications." },
+    { "title": "Recommandations de dosage", "desc": "Personnalisation par profil.", "prompt": "Create view DOSING_RECOMMENDATIONS with: medication, standard_dose, recommended_dose_adjustment based on: genetic_metabolizer_status, renal_function, hepatic_function, age, weight, interactions. Create function PERSONALIZED_DOSE(patient_id, medication) with clinical rationale using CORTEX.COMPLETE." },
+    { "title": "Dashboard d'aide à la prescription", "desc": "Streamlit pharmacogénomique.", "prompt": "Generate Streamlit code with:\n1. Patient pharmacogenomic profile summary\n2. ADR risk assessment for proposed medications\n3. Personalized dosing recommendations with rationale\n4. Drug interaction checker with severity levels\n5. Historical adverse events and medication response\n6. Pharmacogenomic alerts for new prescriptions" },
+    { "title": "Pipeline d'automatisation", "desc": "Aide continue à la prescription.", "prompt": "Create Tasks:\n1. UPDATE_GENETIC_PROFILES: on new test results\n2. CHECK_NEW_PRESCRIPTIONS: real-time ADR risk screening\n3. MONITOR_ADVERSE_EVENTS: daily, detect new patterns\n4. UPDATE_INTERACTION_DB: monthly, incorporate new evidence\n5. Document. Target: 30% reduction in preventable ADRs, 100% genetic screening for high-risk medications." }
+  ] },
+  "UC16": { "title": "Optimisation du Parcours Patient et des Temps d'Attente", "intro": "Système d'analyse du flux patient avec process mining et ML pour identifier les goulots d'étranglement et optimiser la durée de séjour.", "steps": [
+    { "title": "Créer les données de flux patient", "desc": "Événements du parcours patient.", "prompt": "Create database PATIENT_FLOW with schema PROCESS_MINING. Create table PATIENT_EVENTS (50,000 rows): event_id, patient_id, episode_id, timestamp, event_type (admission, triage, consultation, lab_order, lab_result, imaging_order, imaging_result, specialist_consultation, procedure, discharge_decision, discharge), department, location, staff_id, duration_minutes. Include realistic hospital flow patterns with bottlenecks." },
+    { "title": "Analyse de processus (Process Mining)", "desc": "Découverte des flux.", "prompt": "Create view PROCESS_ANALYSIS with: most common patient pathways (sequence of event_types), avg duration per step, variance per step, bottleneck_steps (highest wait times), department_transitions, time_of_day_patterns. Identify the top 5 process variants covering 80% of cases." },
+    { "title": "Prédiction de la durée de séjour", "desc": "ML.FORECAST sur la DMS.", "prompt": "Use ML.FORECAST to predict total_length_of_stay at different points: at admission, after triage, after initial diagnosis. Features: admission_type, primary_diagnosis, age, acuity_level, day_of_week, current_occupancy. Evaluate prediction accuracy improvement as more events become available." },
+    { "title": "Identification et résolution des goulots", "desc": "Optimisation du flux.", "prompt": "Create view BOTTLENECK_ANALYSIS with: step, avg_wait_time, 90th_percentile_wait, impact_score (wait_time × patient_count), root_cause_analysis (staffing, equipment, process), by hour_of_day and day_of_week. Create OPTIMIZATION_RECOMMENDATIONS with specific actions per bottleneck." },
+    { "title": "Dashboard du flux patient", "desc": "Streamlit opérationnel.", "prompt": "Generate Streamlit code with:\n1. Real-time patient flow board with status tracking\n2. Process mining visualization: common pathways\n3. Bottleneck heatmap by time and department\n4. LOS predictions for current inpatients\n5. Wait time trends and alerts\n6. Staff allocation recommendations by predicted demand" },
+    { "title": "Pipeline d'automatisation", "desc": "Optimisation continue du flux.", "prompt": "Create Tasks:\n1. INGEST_EVENTS: real-time from hospital systems\n2. UPDATE_PROCESS_MODELS: daily, recalculate pathways\n3. PREDICT_LOS: hourly for current patients\n4. DETECT_BOTTLENECKS: hourly, alert when wait >threshold\n5. Document. Target: 20% reduction in average LOS, 30% reduction in peak wait times." }
+  ] },
+  "UC17": { "title": "Protection des Données de Santé et Conformité RGPD", "intro": "Système de surveillance de l'accès aux données de santé avec ML pour la détection d'anomalies et la conformité RGPD.", "steps": [
+    { "title": "Créer les journaux d'accès et politiques", "desc": "Données d'audit et de conformité.", "prompt": "Create database HEALTH_DATA_PROTECTION with schema COMPLIANCE. Create table ACCESS_LOGS (100,000 rows): log_id, user_id, role, timestamp, patient_id, data_category (demographics, clinical, genetic, mental_health), action (view, export, modify, print), department, ip_address, justification_code. Create table DATA_POLICIES: policy_id, data_category, allowed_roles, purpose_limitation, retention_days, consent_required BOOLEAN. Create table CONSENT_REGISTRY: patient_id, data_category, purpose, consent_status, consent_date, expiry_date. Include 3% anomalous access patterns." },
+    { "title": "Détecter les anomalies d'accès", "desc": "ML.CLASSIFICATION sur les schémas d'accès.", "prompt": "Create view ACCESS_FEATURES with: user access patterns (records/day, departments, categories, hours), deviations from role baseline, bulk_access_flag, after_hours_flag, cross_department_flag, break_the_glass_frequency. Use ML.CLASSIFICATION with target: normal/suspicious/violation. Focus on high recall for sensitive data categories." },
+    { "title": "Audit de conformité RGPD", "desc": "Rapport de conformité automatique.", "prompt": "Create view COMPLIANCE_AUDIT with: access with expired consent, access without valid purpose, retention violations, excessive access beyond minimum necessary principle, cross-purpose data usage. Create function GENERATE_DPO_REPORT(period) producing structured compliance summary with violations, risk level and remediation actions." },
+    { "title": "Gestion des consentements", "desc": "Système de consentement et finalité.", "prompt": "Create view CONSENT_STATUS with: patient_id, data_categories with active consent, purposes authorized, approaching expirations, withdrawal requests pending. Create function CHECK_ACCESS_AUTHORIZATION(user_id, patient_id, data_category, purpose) returning BOOLEAN with detailed reason if denied." },
+    { "title": "Dashboard RGPD en santé", "desc": "Streamlit pour le DPO.", "prompt": "Generate Streamlit code with:\n1. Access anomaly alerts with investigation details\n2. Compliance scorecard by department and data category\n3. Consent management: active, expiring, withdrawn\n4. Audit trail viewer with filtering and export\n5. Privacy impact assessment for new processing activities\n6. Trends: access violations, consent rates, breach incidents" },
+    { "title": "Pipeline d'automatisation", "desc": "Surveillance continue de conformité.", "prompt": "Create Tasks:\n1. ANALYZE_ACCESS_PATTERNS: hourly, detect anomalies\n2. CHECK_CONSENT_VALIDITY: daily, flag expirations\n3. COMPLIANCE_SCAN: daily, check policy violations\n4. GENERATE_DPO_REPORT: monthly, executive summary\n5. Document. Target: <1h detection of unauthorized access, 100% consent validation before access." }
+  ] },
+  "UC18": { "title": "Prédiction de Détérioration Clinique et Early Warning Score", "intro": "Système ML de prédiction continue de la détérioration clinique avec alertes précoces personnalisées.", "steps": [
+    { "title": "Créer les données de paramètres vitaux", "desc": "Données de surveillance hospitalière.", "prompt": "Create database CLINICAL_DETERIORATION with schema EARLY_WARNING. Create table VITAL_SIGNS (200,000 rows): reading_id, patient_id, episode_id, timestamp, heart_rate, systolic_bp, diastolic_bp, respiratory_rate, temperature, spo2, consciousness_level (AVPU), urine_output_ml_hr. Create table CLINICAL_OUTCOMES: patient_id, episode_id, deterioration_event BOOLEAN, event_type (cardiac_arrest, icu_transfer, rapid_response, death), event_timestamp. Include 8% deterioration events with preceding vital sign changes." },
+    { "title": "Ingénierie des caractéristiques de détérioration", "desc": "Indicateurs d'alerte précoce.", "prompt": "Create view DETERIORATION_FEATURES with: current vitals, vital_trends_4h (slopes), variability_metrics, NEWS2_score (calculated), cumulative_triggers (count of out-of-range vitals), time_since_last_normal, patient_baseline_deviation, age, primary_diagnosis_risk_category. Target: deterioration_within_12h BOOLEAN." },
+    { "title": "Entraîner le modèle d'alerte précoce", "desc": "ML.CLASSIFICATION sur la détérioration.", "prompt": "Use ML.CLASSIFICATION on DETERIORATION_FEATURES with target deterioration_within_12h. Optimize for high sensitivity (>90%) with acceptable specificity. Compare with static NEWS2 threshold. Create personalized alert thresholds based on patient baseline and condition. Register in Model Registry." },
+    { "title": "Système d'alertes multiniveaux", "desc": "Escalade clinique.", "prompt": "Create table ALERT_PROTOCOLS with alert_level (observation, urgent_assessment, rapid_response) mapped to: actions, response_team, escalation_time_minutes, documentation_required. Create view ACTIVE_CLINICAL_ALERTS: patient_id, bed, alert_level, trigger_vitals, predicted_risk_score, recommended_action, responsible_nurse, time_since_alert." },
+    { "title": "Dashboard de surveillance de détérioration", "desc": "Streamlit de service.", "prompt": "Generate Streamlit code with:\n1. Ward overview: all patients with risk scores (heatmap)\n2. Active alerts sorted by urgency with recommended actions\n3. Individual patient vital sign trends with predictions\n4. Alert response tracking: time to response, outcomes\n5. Model performance: sensitivity, specificity, PPV, NPV\n6. Comparison: ML early warning vs static NEWS2" },
+    { "title": "Pipeline d'automatisation", "desc": "Surveillance continue.", "prompt": "Create Tasks:\n1. INGEST_VITALS: every 15 minutes from bedside monitors\n2. CALCULATE_RISK_SCORES: every 30 minutes per patient\n3. GENERATE_ALERTS: immediate when threshold crossed\n4. TRACK_RESPONSES: continuous, escalate if no response\n5. Document. Target: 90% sensitivity for deterioration, 6h median advance warning." }
+  ] },
+  "UC19": { "title": "Analyse d'Imagerie Médicale Assistée par IA", "intro": "Système d'assistance à l'analyse d'imagerie médicale avec ML pour la priorisation et l'accélération du workflow radiologique.", "steps": [
+    { "title": "Créer les données d'imagerie", "desc": "Données radiologiques et comptes rendus.", "prompt": "Create database MEDICAL_IMAGING with schema RADIOLOGY_AI. Create table IMAGING_STUDIES (5,000 rows): study_id, patient_id, date, modality (CT, MRI, X_ray, ultrasound, mammography), body_part, requesting_department, clinical_indication, urgency (routine/urgent/stat), reporting_radiologist, report_text TEXT, findings_structured JSON, turnaround_time_hours. Create table RADIOLOGIST_WORKLOAD: radiologist_id, date, studies_reported, avg_turnaround_hours, complexity_score. Include realistic clinical patterns." },
+    { "title": "Priorisation des examens", "desc": "ML.CLASSIFICATION par urgence.", "prompt": "Use ML.CLASSIFICATION to predict study urgency based on: clinical_indication, modality, requesting_department, patient_age, patient_history. Create PRIORITY_QUEUE view with: study_id, predicted_urgency_score, estimated_complexity, recommended_reporting_order. Compare with current FIFO ordering." },
+    { "title": "Extraction et structuration des résultats", "desc": "NLP sur les comptes rendus radiologiques.", "prompt": "Create view STRUCTURED_FINDINGS using CORTEX.COMPLETE to extract from report_text: findings JSON (location, type, size, certainty), impression, recommendations, comparison_with_prior, critical_findings_flag. Standardize findings vocabulary using RadLex terminology where applicable." },
+    { "title": "Corrélation avec l'historique clinique", "desc": "Contexte clinique avec Cortex Search.", "prompt": "Create Cortex Search Service on IMAGING_STUDIES + patient clinical history. Create function CLINICAL_CONTEXT(study_id) that retrieves relevant prior studies, clinical history and lab results for the same patient. Demonstrate value with 5 cases showing how context changes interpretation." },
+    { "title": "Dashboard du poste de travail radiologique", "desc": "Streamlit pour radiologues.", "prompt": "Generate Streamlit code with:\n1. AI-prioritized worklist with urgency scores\n2. Study viewer with extracted structured findings\n3. Clinical context panel: prior studies, history, labs\n4. Workload distribution and turnaround metrics\n5. Quality metrics: critical finding communication time\n6. Trend analysis: study volumes, modality mix, complexity" },
+    { "title": "Pipeline d'automatisation", "desc": "Assistance radiologique continue.", "prompt": "Create Tasks:\n1. PRIORITIZE_NEW_STUDIES: real-time on new orders\n2. EXTRACT_FINDINGS: after each report is signed\n3. DETECT_CRITICAL_FINDINGS: immediate alert protocol\n4. WORKLOAD_BALANCING: hourly redistribution\n5. Document. Target: 30% reduction in turnaround for urgent studies, 100% critical finding communication within 1 hour." }
+  ] },
+  "UC20": { "title": "Anonymisation des Données Cliniques pour la Recherche", "intro": "Pipeline d'anonymisation automatique de données cliniques avec ML pour générer des jeux de données conformes aux réglementations.", "steps": [
+    { "title": "Créer les données à anonymiser", "desc": "Données cliniques avec identifiants.", "prompt": "Create database CLINICAL_ANONYMIZATION with schema RESEARCH_DATA. Create table RAW_CLINICAL_DATA (3,000 rows): record_id, patient_name, national_id, birth_date, postal_code, nationality, diagnosis_codes JSON, medications JSON, lab_values JSON, clinical_notes TEXT, admission_date, discharge_date, treating_physician. Create table RESEARCH_REQUESTS: request_id, researcher, institution, purpose, data_needed, ethics_approval_id, anonymization_level_required (pseudonymized/anonymized/synthetic)." },
+    { "title": "Détecter les identifiants", "desc": "CORTEX.COMPLETE pour la détection PII.", "prompt": "Create function DETECT_IDENTIFIERS(clinical_text TEXT) using CORTEX.COMPLETE to identify: direct identifiers (names, IDs, addresses), quasi-identifiers (dates, postal codes, rare diagnoses), sensitive attributes (genetic data, mental health, substance abuse). Test on CLINICAL_NOTES with precision/recall metrics." },
+    { "title": "Techniques d'anonymisation", "desc": "k-anonymat et l-diversité.", "prompt": "Create function ANONYMIZE_STRUCTURED(record, k_value, l_value) applying: generalization (exact_date→year_quarter, postal_code→region, age→age_group), suppression (unique combinations), perturbation (add noise to lab values within clinical range). Verify k-anonymity and l-diversity on output. Create ANONYMIZE_TEXT(clinical_text) to redact/replace identifiers in free text." },
+    { "title": "Évaluation du risque de ré-identification", "desc": "Validation automatique.", "prompt": "Create function REIDENTIFICATION_RISK_ASSESSMENT(anonymized_dataset) that evaluates: prosecutor risk (probability of uniquely identifying any individual), journalist risk (probability given partial knowledge), marketer risk (probability of matching with external data). Create quality metrics: information_loss_score, analytical_utility_score." },
+    { "title": "Dashboard de gestion des données de recherche", "desc": "Streamlit pour DPO et chercheurs.", "prompt": "Generate Streamlit code with:\n1. Research request workflow: submit, review, approve\n2. Anonymization configuration per request\n3. Re-identification risk assessment results\n4. Data utility comparison: original vs anonymized\n5. Audit trail: who received what data for what purpose\n6. Compliance dashboard: active datasets, expiration dates" },
+    { "title": "Pipeline d'automatisation", "desc": "Gestion continue des données de recherche.", "prompt": "Create Tasks:\n1. PROCESS_RESEARCH_REQUESTS: daily, prepare anonymized datasets\n2. REIDENTIFICATION_CHECK: after each anonymization\n3. EXPIRY_MANAGEMENT: daily, flag datasets past retention\n4. AUDIT_REPORT: monthly, data sharing activity summary\n5. Document. Target: k≥5 for all quasi-identifier combinations, re-identification risk <5%." }
+  ] }
+});
+
+</script>
+<script>
+// -- Rendering --
+var grid = document.getElementById('cardsGrid');
+var filterBtns = document.querySelectorAll('.filter-btn');
+var searchInput = document.getElementById('searchInput');
+var resultsCount = document.getElementById('resultsCount');
+var activeFilter = 'all';
+
+function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+function renderCards() {
+  var q = searchInput.value.toLowerCase();
+  var filtered = USE_CASES.filter(function(uc) {
+    if (activeFilter !== 'all' && uc.cat !== activeFilter) return false;
+    if (q && !(uc.title.toLowerCase().includes(q) || uc.desc.toLowerCase().includes(q) || uc.catLabel.toLowerCase().includes(q))) return false;
+    return true;
+  });
+  resultsCount.textContent = 'Affichage de ' + filtered.length + ' sur ' + USE_CASES.length + " cas d'usage";
+  grid.innerHTML = '';
+  filtered.forEach(function(uc) {
+    var c = document.createElement('div'); c.className = 'card';
+    var featHTML = '<ul class="card-features">' + uc.features.map(function(f){return '<li>'+esc(f)+'</li>';}).join('') + '</ul>';
+    c.innerHTML =
+      '<div class="card-header"><div class="card-badges"><span class="badge-id">'+uc.id+'</span><span class="badge-cat '+uc.cat+'">'+esc(uc.catLabel)+'</span></div><span class="card-time"><svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="#888" stroke-width="2"><circle cx="10" cy="10" r="8"/><polyline points="10,5 10,10 14,12"/></svg>'+uc.time+'</span></div>' +
+      '<div class="card-title">'+esc(uc.title)+'</div>' +
+      '<div class="pain-point"><div class="pain-point-label">Probl&egrave;me</div><p>'+esc(uc.pain)+'</p></div>' +
+      '<p class="card-desc">'+esc(uc.desc)+'</p>' +
+      featHTML +
+      '<div class="card-actions"><button class="btn-secondary" onclick="openGuide(\''+uc.id+'\')">Ouvrir le Guide</button><a class="btn-tertiary" href="guide.html">Manuel</a></div>';
+    grid.appendChild(c);
+  });
+}
+
+filterBtns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    filterBtns.forEach(function(b){b.classList.remove('active');});
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    renderCards();
+  });
+});
+searchInput.addEventListener('input', renderCards);
+renderCards();
+
+function openGuide(id) {
+  var data = PROMPTS[id]; if (!data) return;
+  var html = '<span class="guide-badge">'+id+'</span>';
+  html += '<h2>' + esc(data.title) + '</h2>';
+  html += '<p class="prompt-intro">' + data.intro + '</p>';
+  data.steps.forEach(function(step, i) {
+    html += '<div class="prompt-step">';
+    html += '<div class="prompt-step-header"><span class="prompt-step-num">' + (i+1) + '</span><span class="prompt-step-title">' + step.title + '</span></div>';
+    html += '<p class="prompt-step-desc">' + step.desc + '</p>';
+    html += '<div class="prompt-code"><button class="copy-btn" onclick="copierPrompt(this)">Copier</button>' + esc(step.prompt) + '</div>';
+    html += '</div>';
+  });
+  html += '<div class="guide-footer">Exécutez les prompts dans Cortex Code séquentiellement.</div>';
+  document.getElementById('modalContent').innerHTML = html;
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function copierPrompt(btn) {
+  var code = btn.parentElement.textContent.replace('Copier','').trim();
+  navigator.clipboard.writeText(code).then(function(){btn.textContent='\u2713 Copié';setTimeout(function(){btn.textContent='Copier';},1500);});
+}
+
+function fermerModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+
+</script>
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)fermerModal();">
+  <div class="modal-box">
+    <button class="modal-close" onclick="fermerModal()">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+</body>
+</html>

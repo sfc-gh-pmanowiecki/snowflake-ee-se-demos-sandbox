@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake &mdash; AI Hackathon: From Natural Language to Business Solution</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; color: #1a1a1a; }
+
+    .hero { background: linear-gradient(135deg, #003545, #11567F); color: #fff; padding: 32px 48px 36px; }
+    .hero-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .logo-snowflake { display: flex; align-items: center; gap: 7px; color: #fff; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+    .hero-eyebrow { font-size: 11px; letter-spacing: 2px; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .hero-title { font-size: 38px; font-weight: 700; line-height: 1.15; margin-bottom: 10px; }
+    .hero-subtitle { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.85); max-width: 700px; line-height: 1.65; }
+
+    .content { max-width: 820px; margin: 0 auto; padding: 40px 24px 64px; }
+
+    .toc { background: #fff; border-radius: 12px; padding: 28px 32px; margin-bottom: 36px; border: 1px solid #e8e8e8; }
+    .toc h2 { font-size: 16px; font-weight: 700; color: #11567F; margin-bottom: 14px; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { font-size: 14px; color: #29B5E8; text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    .section { background: #fff; border-radius: 12px; padding: 32px 36px; margin-bottom: 28px; border: 1px solid #e8e8e8; }
+    .section h2 { font-size: 22px; font-weight: 700; color: #11567F; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+    .section h2 .step-num { background: #29B5E8; color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; }
+    .section h3 { font-size: 16px; font-weight: 700; color: #333; margin: 20px 0 8px; }
+    .section p { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 12px; }
+    .section ul, .section ol { padding-left: 22px; margin-bottom: 14px; }
+    .section li { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 4px; }
+
+    .callout { background: #E0F4FD; border-left: 4px solid #29B5E8; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .callout p { color: #11567F; margin: 0; font-size: 13px; }
+    .callout strong { color: #003545; }
+
+    .callout-warn { background: #FFF8E1; border-left: 4px solid #FF9F36; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .callout-warn p { color: #6D4C00; margin: 0; font-size: 13px; }
+
+    .callout-success { background: #E8F5E9; border-left: 4px solid #2E7D32; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .callout-success p { color: #1B5E20; margin: 0; font-size: 13px; }
+
+    .callout-purple { background: #F3E5F5; border-left: 4px solid #7B1FA2; border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; }
+    .callout-purple p { color: #4A148C; margin: 0; font-size: 13px; }
+
+    .code-block { background: #003545; color: #e0e0e0; border-radius: 8px; padding: 16px 18px; font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace; font-size: 13px; line-height: 1.65; white-space: pre-wrap; word-break: break-word; margin: 12px 0; position: relative; overflow-x: auto; }
+    .code-block .lang-tag { position: absolute; top: 8px; right: 12px; font-size: 10px; color: #29B5E8; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+    .steps-visual { display: flex; gap: 12px; margin: 20px 0; flex-wrap: wrap; }
+    .step-card { flex: 1; min-width: 120px; background: #f8f9fa; border: 1px solid #e8e8e8; border-radius: 10px; padding: 16px; text-align: center; }
+    .step-card .sc-num { font-size: 24px; font-weight: 700; color: #29B5E8; }
+    .step-card .sc-label { font-size: 12px; color: #666; margin-top: 4px; }
+
+    .agenda-table { width: 100%; border-collapse: collapse; margin: 16px 0; border-radius: 10px; overflow: hidden; }
+    .agenda-table th { background: #11567F; color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 12px 16px; text-align: left; }
+    .agenda-table td { padding: 12px 16px; font-size: 14px; color: #444; border-bottom: 1px solid #eee; }
+    .agenda-table tr:last-child td { border-bottom: none; }
+    .agenda-table .time-col { font-weight: 700; color: #11567F; white-space: nowrap; width: 110px; }
+    .agenda-table .break-row { background: #FFF8E1; }
+    .agenda-table .break-row td { color: #6D4C00; font-style: italic; }
+    .agenda-table .highlight-row { background: #E0F4FD; }
+    .agenda-table .final-row { background: #E8F5E9; }
+
+    .challenge-card { background: linear-gradient(135deg, #f8f9fa, #fff); border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px 24px; margin: 14px 0; transition: transform 0.15s, box-shadow 0.15s; }
+    .challenge-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+    .challenge-card .cc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .challenge-card .cc-icon { font-size: 24px; }
+    .challenge-card .cc-title { font-size: 16px; font-weight: 700; color: #11567F; }
+    .challenge-card .cc-desc { font-size: 13px; color: #555; line-height: 1.6; margin-bottom: 8px; }
+    .challenge-card .cc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .challenge-card .cc-tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+    .tag-ml { background: #E3F2FD; color: #1565C0; }
+    .tag-llm { background: #F3E5F5; color: #7B1FA2; }
+    .tag-search { background: #E0F2F1; color: #00695C; }
+    .tag-streamlit { background: #FFF3E0; color: #E65100; }
+    .tag-forecast { background: #FCE4EC; color: #C62828; }
+    .tag-agent { background: #EDE7F6; color: #4527A0; }
+
+    .scoring-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+    .scoring-table th { background: #f8f9fa; font-size: 13px; font-weight: 700; color: #11567F; padding: 10px 14px; text-align: left; border-bottom: 2px solid #29B5E8; }
+    .scoring-table td { padding: 10px 14px; font-size: 13px; color: #444; border-bottom: 1px solid #eee; }
+    .scoring-table .pts { font-weight: 700; color: #29B5E8; text-align: center; }
+
+    .faq-item { border-bottom: 1px solid #eee; padding: 14px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 14px; font-weight: 700; color: #11567F; margin-bottom: 6px; }
+    .faq-a { font-size: 13px; color: #555; line-height: 1.65; }
+
+    .footer { background: #003545; color: rgba(255,255,255,0.4); text-align: center; padding: 32px 24px; font-size: 12px; line-height: 1.8; }
+    .footer a { color: #29B5E8; text-decoration: none; }
+
+    @media (max-width: 700px) {
+      .hero { padding: 24px 20px; }
+      .hero-title { font-size: 28px; }
+      .content { padding: 24px 16px 48px; }
+      .section { padding: 24px 20px; }
+      .steps-visual { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-top">
+    <div class="logo-snowflake"><img src="../bug-white.png" alt="Snowflake" width="32" height="32" /> Snowflake</div>
+  </div>
+  <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Back to Industry Index</a>
+  <p class="hero-eyebrow">Customer Hackathon</p>
+  <h1 class="hero-title">From Natural Language to Business Solution</h1>
+  <p class="hero-subtitle">A hands-on experience where your teams will solve real business problems using only natural language with Cortex Code and Snowflake AI/ML. No prior coding needed, no friction &mdash; just ideas and results.</p>
+  <p style="margin-top:16px;padding:10px 18px;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.35);border-radius:8px;font-size:13px;font-weight:600;color:#fff;display:inline-block;">&#9993; Contact your Snowflake representative to organize the event</p>
+</header>
+
+<div class="content">
+
+  <nav class="toc">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#concepto">The Concept</a></li>
+      <li><a href="#agenda">Day Agenda (9:00 &ndash; 14:00)</a></li>
+      <li><a href="#retos">Challenges and Use Cases</a></li>
+      <li><a href="#dinamica">Hackathon Dynamics</a></li>
+      <li><a href="#evaluacion">Evaluation and Prizes</a></li>
+      <li><a href="#requisitos">Requirements and Preparation</a></li>
+      <li><a href="#faq">Frequently Asked Questions</a></li>
+    </ol>
+  </nav>
+
+  <!-- SECTION 1 -->
+  <div class="section" id="concepto">
+    <h2><span class="step-num">1</span> The Concept</h2>
+    <p>A <strong>half-day</strong> hackathon designed for customer teams to experience firsthand how to solve business problems using only <strong>natural language</strong>, with no programming knowledge required. The star is <strong>Cortex Code</strong>: the AI assistant integrated into Snowsight that transforms text prompts into SQL code, Python, ML, and functional dashboards.</p>
+
+    <h3>Value Proposition for the Customer</h3>
+    <ul>
+      <li><strong>Zero-to-solution in hours:</strong> From a business idea to a working ML pipeline + dashboard in a single morning</li>
+      <li><strong>No technical barrier:</strong> Business, product, marketing, and operations profiles can build AI solutions</li>
+      <li><strong>Own or synthetic data:</strong> Each team chooses to work with their domain data or use the catalog data</li>
+      <li><strong>Take the solution home:</strong> Everything built stays in their Snowflake account, ready to evolve</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Key message:</strong> &laquo;You don't need a data science team to solve problems with AI. You just need to know what to ask.&raquo;</p>
+    </div>
+
+    <h3>Hackathon Flow</h3>
+    <div class="steps-visual">
+      <div class="step-card"><div class="sc-num">1</div><div class="sc-label">Choose<br/>challenge</div></div>
+      <div class="step-card"><div class="sc-num">2</div><div class="sc-label">Ask AI<br/>in plain language</div></div>
+      <div class="step-card"><div class="sc-num">3</div><div class="sc-label">Generate<br/>data + ML</div></div>
+      <div class="step-card"><div class="sc-num">4</div><div class="sc-label">Create<br/>dashboard</div></div>
+      <div class="step-card"><div class="sc-num">5</div><div class="sc-label">Present<br/>&amp; compete</div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="agenda">
+    <h2><span class="step-num">2</span> Day Agenda (9:00 &ndash; 14:00)</h2>
+    <p>Five intense hours with a balance between inspiration, building, and celebration:</p>
+
+    <table class="agenda-table">
+      <thead>
+        <tr><th>Time</th><th>Block</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="time-col">09:00 – 09:20</td>
+          <td><strong>Welcome &amp; Keynote</strong></td>
+          <td>Welcome reception with coffee. Inspirational keynote: "AI that speaks your language." Presentation of the concept, rules, and prizes.</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="time-col">09:20 – 09:40</td>
+          <td><strong>Live Demo</strong></td>
+          <td>WOW demonstration: solving a complete use case in 15 minutes using only Cortex Code. From zero to a dashboard with ML, just by talking.</td>
+        </tr>
+        <tr>
+          <td class="time-col">09:40 – 09:50</td>
+          <td><strong>Team Formation</strong></td>
+          <td>Teams of 3–4 people (mix of profiles). Challenge selection. Access to Snowflake trial accounts.</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="time-col">09:50 – 11:15</td>
+          <td><strong>Sprint 1 — Build</strong></td>
+          <td>Building phase: data, ML models, Cortex AI functions. Snowflake mentors circulating between tables. First visible results.</td>
+        </tr>
+        <tr class="break-row">
+          <td class="time-col">11:15 – 11:30</td>
+          <td><strong>Coffee Break</strong></td>
+          <td>Networking and coffee. Time for informal progress sharing between teams and mentor consultations.</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="time-col">11:30 – 12:45</td>
+          <td><strong>Sprint 2 — Enhance</strong></td>
+          <td>Finish the Streamlit dashboard, add creative enhancements: alerts, sentiment analysis, forecasting, semantic search. Automate with Tasks.</td>
+        </tr>
+        <tr>
+          <td class="time-col">12:45 – 13:15</td>
+          <td><strong>Presentations</strong></td>
+          <td>Each team has <strong>5 minutes</strong> to present their solution: problem, approach, live dashboard demo, and key learning.</td>
+        </tr>
+        <tr class="final-row">
+          <td class="time-col">13:15 – 13:30</td>
+          <td><strong>Voting &amp; Awards</strong></td>
+          <td>Voting by applause meter + jury. Award ceremony. Group photo.</td>
+        </tr>
+        <tr class="break-row">
+          <td class="time-col">13:30 – 14:00</td>
+          <td><strong>Lunch &amp; Networking</strong></td>
+          <td>Informal cocktail-style lunch. Time to deepen relationships, exchange ideas, and plan next steps with Snowflake teams.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>Key rhythm:</strong> Two building sprints (85 min + 75 min) separated by coffee. The first sprint focuses on the foundation (data + ML), the second on the experience (dashboard + creative extras).</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="retos">
+    <h2><span class="step-num">3</span> Challenges and Use Cases</h2>
+    <p>Each team chooses one of these challenges (based on the <a href="index.html" style="color:#29B5E8;">industry catalog</a>). They include guided prompts as a starting point, but the team can <strong>modify, improve, or reinvent them</strong>:</p>
+
+    <div class="challenge-card">
+      <div class="cc-header">
+        <span class="cc-icon">💳</span>
+        <span class="cc-title">Challenge A &mdash; Banking Fraud Detective</span>
+      </div>
+      <div class="cc-desc">Build a fraudulent transaction detection system using ML classification. The team must generate transaction data, train a fraud model, and create a real-time alert dashboard with explainability for each detection.</div>
+      <div class="cc-tags">
+        <span class="cc-tag tag-ml">ML.CLASSIFICATION</span>
+        <span class="cc-tag tag-llm">CORTEX.COMPLETE</span>
+        <span class="cc-tag tag-streamlit">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="cc-header">
+        <span class="cc-icon">🛒</span>
+        <span class="cc-title">Challenge B &mdash; Retail Recommendation Engine</span>
+      </div>
+      <div class="cc-desc">Create a product recommendation system that analyzes purchase patterns, segments customers, and suggests products using generative AI. Bonus: add semantic search to the product catalog to "search the way you speak."</div>
+      <div class="cc-tags">
+        <span class="cc-tag tag-ml">ML.CLASSIFICATION</span>
+        <span class="cc-tag tag-search">Cortex Search</span>
+        <span class="cc-tag tag-llm">CORTEX.COMPLETE</span>
+        <span class="cc-tag tag-streamlit">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="cc-header">
+        <span class="cc-icon">🏥</span>
+        <span class="cc-title">Challenge C &mdash; Energy Demand Predictor</span>
+      </div>
+      <div class="cc-desc">Predict energy demand by zone and time slot using ML.FORECAST. Create an interactive dashboard showing predictions vs. actual consumption and generate over-demand alerts with LLM-powered cause analysis.</div>
+      <div class="cc-tags">
+        <span class="cc-tag tag-forecast">ML.FORECAST</span>
+        <span class="cc-tag tag-llm">CORTEX.COMPLETE</span>
+        <span class="cc-tag tag-streamlit">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="cc-header">
+        <span class="cc-icon">🎓</span>
+        <span class="cc-title">Challenge D &mdash; Intelligent Education Copilot</span>
+      </div>
+      <div class="cc-desc">Build an assistant that analyzes academic performance, detects at-risk students using ML classification, and generates personalized support recommendations using generative AI. Dashboard for tutors with a 360&deg; student view.</div>
+      <div class="cc-tags">
+        <span class="cc-tag tag-ml">ML.CLASSIFICATION</span>
+        <span class="cc-tag tag-llm">CORTEX.COMPLETE</span>
+        <span class="cc-tag tag-agent">Cortex Agent</span>
+        <span class="cc-tag tag-streamlit">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="cc-header">
+        <span class="cc-icon">🚲</span>
+        <span class="cc-title">Challenge E &mdash; Logistics Optimizer</span>
+      </div>
+      <div class="cc-desc">Predict delivery delays, classify shipments by risk, and create a logistics control panel with volume forecasting. Bonus: generate automatic explanations for each predicted delay for the operations team.</div>
+      <div class="cc-tags">
+        <span class="cc-tag tag-forecast">ML.FORECAST</span>
+        <span class="cc-tag tag-ml">ML.CLASSIFICATION</span>
+        <span class="cc-tag tag-llm">CORTEX.COMPLETE</span>
+        <span class="cc-tag tag-streamlit">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="cc-header">
+        <span class="cc-icon">&#128137;</span>
+        <span class="cc-title">Challenge F &mdash; Healthcare Sentiment Analyzer</span>
+      </div>
+      <div class="cc-desc">Analyze patient satisfaction surveys with sentiment analysis, extract key topics using generative AI, and predict complaint probability. Executive dashboard for hospital management.</div>
+      <div class="cc-tags">
+        <span class="cc-tag tag-llm">CORTEX.SENTIMENT</span>
+        <span class="cc-tag tag-llm">CORTEX.COMPLETE</span>
+        <span class="cc-tag tag-ml">ML.CLASSIFICATION</span>
+        <span class="cc-tag tag-streamlit">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="challenge-card">
+      <div class="cc-header">
+        <span class="cc-icon">🌟</span>
+        <span class="cc-title">Open Challenge &mdash; Your Problem, Your Solution</span>
+      </div>
+      <div class="cc-desc">For advanced teams: bring your own business problem and build it from scratch with Cortex Code. The Snowflake team will help you design the architecture in the first 10 minutes. Maximum score for creativity.</div>
+      <div class="cc-tags">
+        <span class="cc-tag tag-ml">ML</span>
+        <span class="cc-tag tag-llm">LLM</span>
+        <span class="cc-tag tag-search">Search</span>
+        <span class="cc-tag tag-agent">Agent</span>
+        <span class="cc-tag tag-streamlit">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="callout-purple">
+      <p><strong>Key idea — "Level Up the Challenge":</strong> Each challenge has a mandatory core, but extra points are awarded for creative improvements: adding new data sources, combining techniques (forecasting + classification), creating a Cortex Agent that discusses the results, or designing an especially useful dashboard. The further the team takes the use case, the better.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="dinamica">
+    <h2><span class="step-num">4</span> Hackathon Dynamics</h2>
+
+    <h3>Team Formation</h3>
+    <ul>
+      <li><strong>3–4 people per team</strong> (ideal: mix of business + technical profiles)</li>
+      <li>Suggestion: mix customers from different companies to foster networking</li>
+      <li>Each team chooses a creative name and a challenge</li>
+      <li>A Snowflake mentor assigned to every 2–3 teams</li>
+    </ul>
+
+    <h3>Suggested Team Roles</h3>
+    <ul>
+      <li><strong>Narrator:</strong> Writes the natural language prompts and leads the interaction with Cortex Code</li>
+      <li><strong>Architect:</strong> Reviews the generated code and decides on the data structure</li>
+      <li><strong>Designer:</strong> Handles the Streamlit dashboard and visual experience</li>
+      <li><strong>Presenter:</strong> Prepares the 5-minute demo for the final presentations</li>
+    </ul>
+
+    <h3>How It Works</h3>
+    <ol>
+      <li>Each team receives access to a <strong>Snowflake trial account</strong> (or uses their own)</li>
+      <li>They open the <a href="index.html" style="color:#29B5E8;">use case catalog</a> and choose their challenge</li>
+      <li>They follow the guided prompts as a base and enhance them with their own ideas</li>
+      <li>They use Cortex Code to generate everything: data, ML, dashboard, automation</li>
+      <li>At the end, they present their solution on screen with a live demo</li>
+    </ol>
+
+    <div class="callout">
+      <p><strong>Golden rule:</strong> Everything is built through Cortex Code using natural language. If someone wants to write SQL by hand, they can &mdash; but it doesn't earn extra points. The point is to demonstrate that AI does it for you.</p>
+    </div>
+
+    <h3>Gamification During the Event</h3>
+    <ul>
+      <li><strong>Flash achievements:</strong> First team to have data created, first ML model running, first dashboard deployed &rarr; bonus points</li>
+      <li><strong>Prompt wall:</strong> Shared screen where teams post their best prompts to inspire others</li>
+      <li><strong>11:15 checkpoint:</strong> Quick round before coffee where each team shares their progress in 30 seconds</li>
+      <li><strong>Mentor wildcard:</strong> Each mentor can award 1 &laquo;wildcard&raquo; to a team that demonstrates exceptional creativity</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="evaluacion">
+    <h2><span class="step-num">5</span> Evaluation and Prizes</h2>
+
+    <h3>Scoring Criteria</h3>
+    <table class="scoring-table">
+      <thead>
+        <tr><th>Criterion</th><th>Description</th><th style="text-align:center;">Points</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Business Value</strong></td>
+          <td>Does it solve a real problem? Does it deliver measurable value to the end user?</td>
+          <td class="pts">25</td>
+        </tr>
+        <tr>
+          <td><strong>Cortex Code Usage</strong></td>
+          <td>Was it built primarily using natural language? Were prompts used effectively?</td>
+          <td class="pts">25</td>
+        </tr>
+        <tr>
+          <td><strong>Technical Depth</strong></td>
+          <td>Number of Snowflake capabilities used: ML, LLM, Search, Agent, Feature Store, Tasks</td>
+          <td class="pts">20</td>
+        </tr>
+        <tr>
+          <td><strong>Dashboard &amp; UX</strong></td>
+          <td>Quality of the Streamlit dashboard: clarity, interactivity, design</td>
+          <td class="pts">15</td>
+        </tr>
+        <tr>
+          <td><strong>Creativity &amp; Enhancements</strong></td>
+          <td>Did they go beyond the basic challenge? Did they add original ideas?</td>
+          <td class="pts">15</td>
+        </tr>
+        <tr style="background:#f0f7ff;">
+          <td><strong>TOTAL</strong></td>
+          <td></td>
+          <td class="pts" style="font-size:16px;">100</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Suggested Prizes</h3>
+    <ul>
+      <li><strong>First Place — "AI Innovator":</strong> Main trophy/prize + additional Snowflake credits + mention on Snowflake social media</li>
+      <li><strong>Best Dashboard — "Data Storyteller":</strong> Award for the team with the best visualization and data narrative</li>
+      <li><strong>Most Creative Prompt — "Prompt Whisperer":</strong> Award for the most ingenious prompt that produced the best result with the fewest words</li>
+      <li><strong>All participants:</strong> Participation certificate, Snowflake t-shirt, extended access to trial account</li>
+    </ul>
+
+    <div class="callout-success">
+      <p><strong>Voting:</strong> 50% jury (Snowflake team) + 50% audience applause meter. Each attendee votes by raising their hand or using a QR-based mobile voting system.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="requisitos">
+    <h2><span class="step-num">6</span> Requirements and Preparation</h2>
+
+    <h3>For Participants</h3>
+    <ul>
+      <li>Laptop with a modern browser (Chrome/Edge recommended)</li>
+      <li>Snowflake trial account created before the event (see <a href="guide.html#requisitos" style="color:#29B5E8;">User Guide</a>)</li>
+      <li>Read the chosen challenge page in the catalog (optional but recommended)</li>
+      <li>Willingness to experiment and an open mindset</li>
+    </ul>
+
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="faq">
+    <h2><span class="step-num">7</span> Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">Do participants need to know SQL or Python?</div>
+      <div class="faq-a">No. That's exactly the point of the hackathon: to show that with Cortex Code you can build AI/ML solutions using only natural language. Technical participants will be able to move faster, but it's not required.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How many teams can participate?</div>
+      <div class="faq-a">We recommend 4 to 8 teams (12 to 32 people). Fewer than 4 teams reduces competitiveness; more than 8 complicates presentations within the schedule.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How much does it cost in Snowflake credits?</div>
+      <div class="faq-a">Each team will consume $5 to $15 in credits with synthetic data and a Small warehouse. The free trial account includes $400 in credits, more than enough for the hackathon and weeks of subsequent experimentation.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What happens if a team gets stuck?</div>
+      <div class="faq-a">Snowflake mentors are there to help. Additionally, Cortex Code has the ability to fix its own errors: if something doesn't work, the team can paste the error and ask it to fix it. Iteration is part of the learning process.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can real company data be used?</div>
+      <div class="faq-a">Yes, but only if the team has internal authorization to do so. The challenges are designed with synthetic data to avoid privacy issues. For advanced teams who want to use real data, we recommend the "Open Challenge."</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">What do participants take away after the hackathon?</div>
+      <div class="faq-a">Everything built stays in their Snowflake account: tables, models, dashboards, and pipelines. They also receive access to the full use case catalog to continue experimenting with other challenges from different industries.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can it be adapted to an afternoon half-day or a full day?</div>
+      <div class="faq-a">Absolutely. For a full day, add a third sprint and parallel workshops in the afternoon. For a half-afternoon, adjust sprints to 60 minutes each. The modular structure allows for adaptation.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  Built with <a href="https://www.snowflake.com/en/data-cloud/cortex/" target="_blank">Snowflake Cortex AI</a> &middot; Cortex Code &middot; Streamlit<br/>
+  100% synthetic data &middot; No external dependencies &middot; Ready to customize
+</footer>
+
+</body>
+</html>

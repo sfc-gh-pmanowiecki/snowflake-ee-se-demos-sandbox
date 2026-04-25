@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — Rozwiązania AI/ML według Branż</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+    }
+
+    .hero {
+      background: #003545;
+      color: #fff;
+      padding: 48px 48px 56px;
+      text-align: center;
+    }
+
+    .logos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .hackathon-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 20px; background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.35); border-radius: 80px;
+      color: #fff; font-size: 12px; font-weight: 600; text-decoration: none;
+      transition: all 0.2s; letter-spacing: 0.3px;
+    }
+    .hackathon-btn:hover { background: rgba(255,255,255,0.22); border-color: rgba(255,255,255,0.6); }
+
+    .logo-snowflake {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      max-width: 640px;
+      margin: 0 auto 8px;
+      line-height: 1.6;
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 32px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: #29B5E8;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+    }
+
+    .section-title {
+      text-align: center;
+      padding: 48px 24px 12px;
+    }
+
+    .section-title h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .section-title p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 8px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+      padding: 32px 48px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .card-banner {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-banner .card-icon {
+      font-size: 52px;
+      z-index: 1;
+    }
+
+    .card-banner .card-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.07;
+      background-image: radial-gradient(circle at 20% 50%, #fff 1px, transparent 1px),
+                         radial-gradient(circle at 80% 30%, #fff 1px, transparent 1px),
+                         radial-gradient(circle at 50% 80%, #fff 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .card-body {
+      padding: 20px 24px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .card p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.65;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 16px;
+    }
+
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 80px;
+      transition: all 0.15s;
+      width: fit-content;
+    }
+
+    .card-link svg {
+      transition: transform 0.15s;
+    }
+
+    .card-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    .card-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #aaa;
+      padding: 10px 0;
+    }
+
+    .footer {
+      background: #003545;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .footer a {
+      color: #29B5E8;
+      text-decoration: none;
+    }
+
+    .global-search {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .global-search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border: 2px solid #e0e0e0;
+      border-radius: 80px;
+      padding: 12px 20px;
+      gap: 10px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .global-search-box:focus-within {
+      border-color: #29B5E8;
+      box-shadow: 0 0 0 3px rgba(41,181,232,0.15);
+    }
+    .global-search-box input {
+      border: none;
+      outline: none;
+      font-size: 15px;
+      font-family: inherit;
+      color: #1a1a1a;
+      width: 100%;
+      background: transparent;
+    }
+    .global-search-box input::placeholder { color: #aaa; }
+    .search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0; right: 0;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      max-height: 420px;
+      overflow-y: auto;
+      z-index: 100;
+      display: none;
+    }
+    .search-results.active { display: block; }
+    .sr-header {
+      padding: 14px 20px 8px;
+      font-size: 12px;
+      color: #888;
+      font-weight: 600;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .sr-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #1a1a1a;
+      transition: background 0.1s;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .sr-item:last-child { border-bottom: none; }
+    .sr-item:hover { background: #f0f9ff; }
+    .sr-icon { font-size: 22px; flex-shrink: 0; width: 32px; text-align: center; }
+    .sr-text { flex: 1; min-width: 0; }
+    .sr-title { font-size: 14px; font-weight: 600; color: #1a1a1a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sr-meta { font-size: 11px; color: #888; margin-top: 2px; }
+    .sr-meta .sr-id { color: #29B5E8; font-weight: 700; margin-right: 6px; }
+    .sr-arrow { color: #ccc; flex-shrink: 0; }
+    .sr-empty { padding: 24px 20px; text-align: center; color: #999; font-size: 14px; }
+    .search-results::-webkit-scrollbar { width: 6px; }
+    .search-results::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 32px 20px 40px; }
+      .hero-title { font-size: 32px; }
+      .stats-row { gap: 24px; }
+      .stat-num { font-size: 28px; }
+      .grid { padding: 24px 16px 48px; grid-template-columns: 1fr; }
+      .global-search-box { padding: 10px 16px; }
+      .global-search-box input { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="logos">
+    <div class="logo-snowflake">
+      <img src="../bug-white.png" width="28" height="28" alt="Snowflake" />
+      Snowflake
+    </div>
+    <a href="hackathon.html" class="hackathon-btn">
+      &#127942; Zorganizuj CoCothon ze swoim zespołem
+      <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+    </a>
+  </div>
+  <p class="hero-eyebrow">Rozwiązania AI/ML według Branży</p>
+  <h1 class="hero-title">Akceleratory Sztucznej Inteligencji</h1>
+  <p class="hero-subtitle">Przewodniki krok po kroku i prompty Cortex Code gotowe do wdrożenia. Każda branża zawiera przypadki użycia ze szczegółowymi przewodnikami, promptami Cortex Code i dashboardami Streamlit — wszystko w ramach Snowflake.</p>
+  <p class="hero-tagline">Snowflake Cortex AI · Cortex ML · Cortex Search · Streamlit</p>
+  <a href="przewodnik.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 24px;background:rgba(41,181,232,0.15);border:1.5px solid rgba(41,181,232,0.4);border-radius:80px;color:#29B5E8;font-size:13px;font-weight:600;text-decoration:none;transition:all 0.2s;" onmouseover="this.style.background='rgba(41,181,232,0.25)';this.style.borderColor='#29B5E8'" onmouseout="this.style.background='rgba(41,181,232,0.15)';this.style.borderColor='rgba(41,181,232,0.4)'">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 1.5 17V3A2.5 2.5 0 0 1 4 .5h8.5L17.5 5.5v11.5a2.5 2.5 0 0 1-2.5 2.5H4z"/><polyline points="12.5 0.5 12.5 6 18 6"/><line x1="5.5" y1="10" x2="14.5" y2="10"/><line x1="5.5" y1="13" x2="14.5" y2="13"/><line x1="5.5" y1="16" x2="10" y2="16"/></svg>
+    Podręcznik użytkownika — Cortex Code w Snowsight
+    <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+  </a>
+
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">14</div>
+      <div class="stat-lbl">Branże</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">288</div>
+      <div class="stat-lbl">Przypadki Użycia</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-lbl">Natywny Snowflake</div>
+    </div>
+  </div>
+</header>
+
+<div class="section-title">
+  <h2>Wybierz swoją branżę</h2>
+  <p>Każda branża zawiera szczegółowe przewodniki, instrukcje Cortex Code krok po kroku oraz interaktywne dashboardy Streamlit.</p>
+  <div class="global-search" style="margin-top:24px;">
+    <div class="global-search-box">
+      <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><line x1="15" y1="15" x2="19" y2="19"/></svg>
+      <input id="globalSearch" type="text" placeholder="Szukaj wśród 288 przypadków użycia…" autocomplete="off" />
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<main class="grid">
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#D45B90,#B03A6B);">
+      <span class="card-icon">🏦</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FDE8F0;color:#D45B90;">Dostępne</span>
+      <h3>Ubezpieczenia</h3>
+      <p>Wykrywanie oszustw, scoring ryzyka, analiza NLP szkód, call center AI, asystenci AI, pricing i operacje z Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 36 przypadków użycia</span>
+      </div>
+      <a class="card-link" href="ubezpieczenia.html" style="background:#D45B90;color:#fff;">
+        Odkryj Ubezpieczenia
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#71D3DC,#4DBDCA);">
+      <span class="card-icon">💊</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#11567F;">Dostępne</span>
+      <h3>Farmaceutyka</h3>
+      <p>Adherencja pacjentów, inteligencja konkurencyjna, analiza sentymentu, badania kliniczne, prognozowanie popytu, compliance i ścieżki pacjentów z Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 27 przypadków użycia</span>
+      </div>
+      <a class="card-link" href="farmaceutyczna.html" style="background:#71D3DC;color:#003545;">
+        Odkryj Farmaceutykę
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#29B5E8,#11567F);">
+      <span class="card-icon">🏦</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F4FD;color:#11567F;">Dostępne</span>
+      <h3>Bankowość i Usługi Finansowe</h3>
+      <p>Wykrywanie oszustw, scoring kredytowy, AML, stress testing, compliance regulacyjny, churn, NBO, segmentacja LTV i asystent RAG normatywny z Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+      </div>
+      <a class="card-link" href="bankowosc.html" style="background:#29B5E8;color:#fff;">
+        Odkryj Bankowość
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#7D44CF,#5E2FA8);">
+      <span class="card-icon">🛒</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#EDE6FF;color:#7D44CF;">Dostępne</span>
+      <h3><a href="handel.html" style="color:inherit;text-decoration:none;">Handel Detaliczny i E-Commerce</a></h3>
+      <p>Dynamic pricing, spersonalizowane rekomendacje, predykcja popytu, Feature Store klienta 360, chatbot RAG, wykrywanie oszustw i analiza trendów modowych z Cortex AI/ML i Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+      </div>
+      <a href="handel.html" class="card-link" style="background:#7D44CF;color:#fff;">Odkryj Handel detaliczny
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#FF9F36,#E08520);">
+      <span class="card-icon">🏭</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF5E6;color:#E08520;">Dostępne</span>
+      <h3><a href="produkcja.html" style="color:inherit;text-decoration:none;">Produkcja i Przemysł</a></h3>
+      <p>Konserwacja predykcyjna, kontrola jakości z AI, optymalizacja łańcucha dostaw, planowanie produkcji i asystent RAG dla operatorów zakładu.</p>
+      <div class="card-meta">
+        <span>📋 15 przypadków użycia</span>
+      </div>
+      <a class="card-link" href="produkcja.html" style="background:#FF9F36;color:#fff;">
+        Odkryj Produkcję
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#E65100,#BF360C);">
+      <span class="card-icon">🏨</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF3E0;color:#E65100;">Dostępne</span>
+      <h3><a href="hotelarstwo.html" style="color:inherit;text-decoration:none;">Hotelarstwo i Turystyka</a></h3>
+      <p>Dynamic pricing, predykcja popytu, Feature Store gości, dystrybucja B2B, chatbot concierge RAG, wykrywanie oszustw i zgodność z GDPR z Cortex AI/ML i Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+      </div>
+      <a href="hotelarstwo.html" class="card-link" style="background:#E65100;color:#fff;">Odkryj Hotelarstwo
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#0288D1,#01579B);">
+      <span class="card-icon">💧</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E3F2FD;color:#0288D1;">Dostępne</span>
+      <h3>Zarządzanie Wodą</h3>
+      <p>Talk to your Plant: asystent konwersacyjny, predykcja mętności, dozowanie reagentów, konserwacja predykcyjna, wykrywanie wycieków i optymalizacja energetyczna z Cortex AI/ML.</p>
+      <div class="card-meta">
+        <span>📋 10 przypadków użycia</span>
+      </div>
+      <a class="card-link" href="woda.html" style="background:#0288D1;color:#fff;">
+        Odkryj Zarządzanie wodą
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#4DBDCA,#399AA6);">
+      <span class="card-icon">🚛</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#399AA6;">Dostępne</span>
+      <h3><a href="logistyka.html" style="color:inherit;text-decoration:none;">Logistyka i Transport</a></h3>
+      <p>Predykcja ETA, optymalizacja tras i ostatniej mili, predykcyjne utrzymanie floty, Feature Store wysyłki 360, chatbot RAG logistyczny, wykrywanie oszustw w dostawach i zgodność regulacyjna z Cortex AI/ML i Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+      </div>
+      <a href="logistyka.html" class="card-link" style="background:#399AA6;color:#fff;">Odkryj Logistykę
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#E91E63,#C2185B);">
+      <span class="card-icon">🎬</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FCE4EC;color:#C2185B;">Dostępne</span>
+      <h3><a href="media.html" style="color:inherit;text-decoration:none;">Media Audiowizualne</a></h3>
+      <p>Rekomendacja treści, predykcja oglądalności, yield reklamowy, Feature Store Viewer 360, wykrywanie piractwa, zarządzanie prawami cyfrowymi i zgodność regulacyjna z Cortex AI/ML i Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+      </div>
+      <a href="media.html" class="card-link" style="background:#E91E63;color:#fff;">Odkryj Media
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#29B5E8,#1199CC);">
+      <span class="card-icon">📡</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F7FA;color:#0097A7;">Dostępne</span>
+      <h3><a href="telekomunikacja.html" style="color:inherit;text-decoration:none;">Telekomunikacja</a></h3>
+      <p>Predykcja churn, optymalizacja sieci 5G, wykrywanie oszustw SIM, Feature Store Customer 360, cyberbezpieczeństwo, revenue assurance i zgodność z GDPR z Cortex AI/ML i Model Registry.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+      </div>
+      <a href="telekomunikacja.html" class="card-link" style="background:#0097A7;color:#fff;">Odkryj Telekomunikację
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#FFB836,#E09E1C);">
+      <span class="card-icon">⚡</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#FFF3E0;color:#F57C00;">Dostępne</span>
+      <h3>Energia i Utilities</h3>
+      <p>Predykcja popytu, generacja odnawialna (słoneczna/wiatrowa), optymalizacja BESS, wykrywanie strat i oszustw, smart grids, społeczności energetyczne i cyberbezpieczeństwo OT.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+        <span>⏱ 10-15 min</span>
+      </div>
+      <a href="energetyka.html" class="card-link" style="background:#F57C00;color:#fff;">Odkryj Energetykę
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#8A999E,#546E7A);">
+      <span class="card-icon">🏛️</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#ECEFF1;color:#546E7A;">Dostępne</span>
+      <h3>Sektor Publiczny</h3>
+      <p>Wykrywanie oszustw w dotacjach, obsługa obywatela z RAG, kontrola funduszy europejskich, Feature Store obywatel 360 i cyberbezpieczeństwo infrastruktury publicznej.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+        <span>⏱️ 11-15 min</span>
+      </div>
+      <a href="sektor-publiczny.html" class="card-link" style="background:#546E7A;color:#fff;">Odkryj Sektor publiczny
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#11567F,#0A3D5C);">
+      <span class="card-icon">🏥</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E0F4FD;color:#0D7C8F;">Dostępne</span>
+      <h3>Zdrowie i Szpitale</h3>
+      <p>Predykcja rehospitalizacji, NLP na dokumentacji medycznej, wykrywanie zdarzeń niepożądanych, Feature Store pacjenta 360 i Model Registry dla produkcji.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+        <span>⏱️ 8-15 min</span>
+      </div>
+      <a href="zdrowie.html" class="card-link" style="background:#0D7C8F;color:#fff;">Odkryj Zdrowie i szpitale
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <article class="card">
+    <div class="card-banner" style="background:linear-gradient(135deg,#9B6FE0,#7D44CF);">
+      <span class="card-icon">🎓</span>
+      <div class="card-pattern"></div>
+    </div>
+    <div class="card-body">
+      <span class="card-badge" style="background:#E8F5E9;color:#2E7D32;">Dostępne</span>
+      <h3>Edukacja</h3>
+      <p>Predykcja porzucenia nauki, personalizacja treści, analiza wyników, wykrywanie plagiatu z AI i optymalizacja zasobów dydaktycznych.</p>
+      <div class="card-meta">
+        <span>📋 20 przypadków użycia</span>
+        <span>⏱ 8-15 min</span>
+      </div>
+      <a href="edukacja.html" class="card-link" style="background:#7D44CF;color:#fff;">Odkryj Edukację
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>
+      </a>
+    </div>
+  </article>
+
+
+</main>
+
+<footer class="footer">
+  Opracowane przy użyciu <a href="https://www.snowflake.com/en/data-cloud/cortex/" target="_blank">Snowflake Cortex AI</a> · Cortex Code · Streamlit<br/>
+  Dane 100% syntetyczne · Bez zewnętrznych zależności · Gotowe do personalizacji
+</footer>
+
+<script>
+var UC_CATALOG = [{"id": "UC01", "t": "Scoring oszustw w szkodach", "c": "Wykrywanie oszustw", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC02", "t": "Wykrywanie symulowanych wypadków", "c": "Wykrywanie oszustw", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC03", "t": "Oszustwa we wnioskach i tożsamości", "c": "Wykrywanie oszustw", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC04", "t": "Dynamiczny scoring ryzyka w ubezpieczeniach auto", "c": "Ryzyko i Underwriting", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC05", "t": "Analityka ekspozycji na katastrofy", "c": "Ryzyko i Underwriting", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC06", "t": "Predykcja rezygnacji przy odnowieniu", "c": "Ryzyko i Underwriting", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC07", "t": "Segmentacja ryzyka telematycznego", "c": "Ryzyko i Underwriting", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC08", "t": "Ekstrakcja dokumentów AI w szkodach", "c": "AI i Język Naturalny", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC09", "t": "Inteligencja na podstawie skarg klientów", "c": "AI i Język Naturalny", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC10", "t": "Inteligentny asystent zapytań o polisę", "c": "AI i Język Naturalny", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC11", "t": "Predykcja dotkliwości szkód auto", "c": "Zarządzanie szkodami", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC12", "t": "Identyfikator możliwości subrogacji", "c": "Zarządzanie szkodami", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC13", "t": "Automatyczna klasyfikacja połączeń", "c": "Call Center AI", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC14", "t": "Automatyczna ocena agentów (QA)", "c": "Call Center AI", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC15", "t": "Automatyczne generowanie podsumowań", "c": "Call Center AI", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC16", "t": "Poprawa CX w czasie rzeczywistym", "c": "Call Center AI", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC17", "t": "Zgodność regulacyjna w rozmowach", "c": "Call Center AI", "i": "Ubezpieczenia", "k": "🏦", "f": "ubezpieczenia.html"}, {"id": "UC01", "t": "Predykcja ryzyka adherencji pacjenta", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC02", "t": "Optymalizator wydajności kampanii", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC03", "t": "Analiza sentymentu konsumenta", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC04", "t": "Predykcja utraty wyłączności", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC05", "t": "Optymalizator zaangażowania z pracownikami ochrony zdrowia", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC06", "t": "Chatbot inteligencji handlowej", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC07", "t": "Segmentacja konsumentów i LTV", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC08", "t": "Analizator efektywności treści", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC09", "t": "Generator dowodów z rzeczywistego świata (RWE)", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC10", "t": "Monitor inteligencji konkurencyjnej", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC11", "t": "Maper ścieżki omnikanałowej", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC12", "t": "Optymalizator cen i rabatów", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC13", "t": "Selektor ośrodków do badań klinicznych", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC14", "t": "Predykcja popytu przy premierze", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC15", "t": "Zarządzanie compliance roszczeń", "c": "Machine Learning", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC16", "t": "Wykrywanie kryzysów w mediach społecznościowych", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC17", "t": "Inteligencja komunikatów konkurencji", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC18", "t": "Tracker sentymentu w mediach globalnych", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC19", "t": "Prediktor odbioru premiery", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC20", "t": "Sieć sentymentu KOLs i influencerów", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC21", "t": "Percepcja konkurencyjna produktu", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC22", "t": "Optymalizator komunikacji zarządczej", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC23", "t": "Zautomatyzowana inteligencja konkurencyjna", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC24", "t": "Globalny sentyment wielojęzyczny", "c": "AI i Język Naturalny", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC25", "t": "Doświadczenie ścieżki leczenia pacjenta", "c": "Ścieżka Pacjenta", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC26", "t": "Inteligencja ścieżki adherencji do leczenia", "c": "Ścieżka Pacjenta", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC27", "t": "Analizator insightów zaangażowania z pracownikami ochrony zdrowia", "c": "Ścieżka Pacjenta", "i": "Farmaceutyka", "k": "💊", "f": "farmaceutyczna.html"}, {"id": "UC01", "t": "Wykrywanie oszustw w transakcjach w czasie rzeczywistym", "c": "Ryzyko i Compliance", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC02", "t": "Dynamiczny scoring ryzyka kredytowego", "c": "Ryzyko i Compliance", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC03", "t": "Wykrywanie prania pieniędzy (AML)", "c": "Ryzyko i Compliance", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC04", "t": "Stress testing i symulacja scenariuszy", "c": "Ryzyko i Compliance", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC05", "t": "Monitorowanie compliance regulacyjnego", "c": "Ryzyko i Compliance", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC06", "t": "Wykrywanie oszustw we wnioskach kredytowych", "c": "Ryzyko i Compliance", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC07", "t": "Predykcja rezygnacji klientów (Churn)", "c": "Klient i Biznes", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC08", "t": "Silnik hiperpersonalizowanej Next-Best-Offer", "c": "Klient i Biznes", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC09", "t": "Zaawansowana segmentacja i Customer LTV", "c": "Klient i Biznes", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC10", "t": "Analiza sentymentu w reklamacjach", "c": "Klient i Biznes", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC11", "t": "Chatbot inteligencji finansowej", "c": "Klient i Biznes", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC12", "t": "Predykcja popytu na produkty", "c": "Klient i Biznes", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC13", "t": "Optymalizator pricingu kredytów", "c": "Klient i Biznes", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC14", "t": "Predykcja wczesnej zaległości", "c": "Operacje i Rynki", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC15", "t": "Wykrywanie anomalii w operacjach rynkowych", "c": "Operacje i Rynki", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC16", "t": "Optymalizacja sieci oddziałów", "c": "Operacje i Rynki", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC17", "t": "Automatyzacja analizy dokumentów", "c": "Operacje i Rynki", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC18", "t": "Monitor ryzyka reputacyjnego", "c": "Zaawansowana Inteligencja", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC19", "t": "Analiza konkurencji bankowej", "c": "Zaawansowana Inteligencja", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC20", "t": "Asystent RAG normatywny bankowy", "c": "Zaawansowana Inteligencja", "i": "Bankowość", "k": "🏦", "f": "bankowosc.html"}, {"id": "UC01", "t": "Dynamic Pricing omnikanałowy z Model Registry", "c": "Pricing i Revenue", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC02", "t": "Rekomendacje produktów w czasie rzeczywistym", "c": "Personalizacja i CX", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC03", "t": "Predykcja popytu Multi-SKU z Model Registry", "c": "Łańcuch Dostaw", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC04", "t": "Segmentacja klientów z predykcyjnym CLV", "c": "Personalizacja i CX", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC05", "t": "Optymalizacja zapasów i automatyczne uzupełnianie", "c": "Łańcuch Dostaw", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC06", "t": "Analiza sentymentu w recenzjach produktów", "c": "Personalizacja i CX", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC07", "t": "Chatbot obsługi klienta z RAG", "c": "Personalizacja i CX", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC08", "t": "Feature Store klienta 360", "c": "Personalizacja i CX", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC09", "t": "Optymalizacja promocji i markdown", "c": "Pricing i Revenue", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC10", "t": "Predykcja przecen i likwidacji zapasów", "c": "Pricing i Revenue", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC11", "t": "Wykrywanie trendów modowych z NLP", "c": "Łańcuch Dostaw", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC12", "t": "Optymalizacja alokacji zapasów do sklepów", "c": "Łańcuch Dostaw", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC13", "t": "Predykcja churn i retencja klientów", "c": "Marketing i Lojalność", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC14", "t": "Feature Store produktu dla merchandisingu", "c": "Marketing i Lojalność", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC15", "t": "Spersonalizowana Next Best Offer z AI", "c": "Marketing i Lojalność", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC16", "t": "Analiza koszyka i cross-selling", "c": "Marketing i Lojalność", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC17", "t": "Monitorowanie cen konkurencji", "c": "Pricing i Revenue", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC18", "t": "Wykrywanie oszustw w e-commerce i płatnościach", "c": "Oszustwa i Bezpieczeństwo", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC19", "t": "Wykrywanie oszustw w zwrotach i nadużyciach polityk", "c": "Oszustwa i Bezpieczeństwo", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC20", "t": "Wykrywanie anomalii w zapasach i stratach", "c": "Oszustwa i Bezpieczeństwo", "i": "Handel", "k": "🛒", "f": "handel.html"}, {"id": "UC01", "t": "Wizualna kontrola jakości z AI", "c": "Jakość i Produkcja", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC02", "t": "Predykcja defektów na linii montażowej", "c": "Jakość i Produkcja", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC03", "t": "Optymalizacja OEE — Ogólna Efektywność Urządzeń", "c": "Jakość i Produkcja", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC04", "t": "Analiza przyczyn źródłowych z NLP w raportach jakości", "c": "Jakość i Produkcja", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC05", "t": "Konserwacja predykcyjna urządzeń CNC", "c": "Konserwacja Predykcyjna", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC06", "t": "Wykrywanie anomalii w czujnikach IoT zakładu", "c": "Konserwacja Predykcyjna", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC07", "t": "Inteligentne planowanie przestojów konserwacyjnych", "c": "Konserwacja Predykcyjna", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC08", "t": "Predykcja popytu i optymalizacja zapasów", "c": "Łańcuch Dostaw", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC09", "t": "Wykrywanie ryzyka u dostawców", "c": "Łańcuch Dostaw", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC10", "t": "Cyfrowa identyfikowalność materiałów i partii", "c": "Łańcuch Dostaw", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC11", "t": "Planowanie produkcji z AI (MPS)", "c": "Operacje AI", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC12", "t": "Asystent AI dla operatorów zakładu (RAG)", "c": "Operacje AI", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC13", "t": "Analiza incydentów bezpieczeństwa pracy", "c": "Operacje AI", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC14", "t": "Optymalizacja zużycia energii w fabryce", "c": "Operacje AI", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC15", "t": "Inteligencja klientów B2B i predykcja zamówień", "c": "Operacje AI", "i": "Produkcja", "k": "🏭", "f": "produkcja.html"}, {"id": "UC01", "t": "Dynamic Pricing z Model Registry", "c": "Revenue i Pricing", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC02", "t": "Predykcja popytu hotelowego multi-horyzont", "c": "Revenue i Pricing", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC03", "t": "Optymalizacja przychodów z usług dodatkowych", "c": "Revenue i Pricing", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC04", "t": "Segmentacja wartości klienta (CLV) z ML", "c": "Revenue i Pricing", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC05", "t": "Konserwacja predykcyjna obiektów z Model Registry", "c": "Doświadczenie Gościa", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC06", "t": "Spersonalizowane rekomendacje lokalnych doświadczeń", "c": "Doświadczenie Gościa", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC07", "t": "Analiza sentymentu w recenzjach wielokanałowych", "c": "Doświadczenie Gościa", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC08", "t": "Feature Store preferencji gościa", "c": "Doświadczenie Gościa", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC09", "t": "Chatbot concierge z RAG o wiedzy hotelowej", "c": "Doświadczenie Gościa", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC10", "t": "Optymalizacja personelu wg predykcji obłożenia", "c": "Operacje", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC11", "t": "Optymalizacja energetyczna hotelu z AI", "c": "Operacje", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC12", "t": "Predykcja no-shows i inteligentny overbooking", "c": "Operacje", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC13", "t": "Analiza szybkości housekeepingu z NLP", "c": "Operacje", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC14", "t": "Feature Store wydajności partnerów B2B", "c": "Dystrybucja B2B", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC15", "t": "Predykcja anulacji B2B według kanału", "c": "Dystrybucja B2B", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC16", "t": "Wykrywanie rozbieżności cen w kanałach", "c": "Dystrybucja B2B", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC17", "t": "Optymalizacja prowizji i channel mix z AI", "c": "Dystrybucja B2B", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC18", "t": "Wykrywanie oszustw w rezerwacjach i chargebackach", "c": "Oszustwa i Bezpieczeństwo", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC19", "t": "Wykrywanie fałszywych recenzji i manipulacji reputacją", "c": "Oszustwa i Bezpieczeństwo", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC20", "t": "Zgodność GDPR/PCI w danych gości", "c": "Oszustwa i Bezpieczeństwo", "i": "Hotelarstwo", "k": "🏨", "f": "hotelarstwo.html"}, {"id": "UC01", "t": "Asystent konwersacyjny zakładu (Talk to your Plant)", "c": "Eksploatacja Zakładu", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC02", "t": "Predykcja mętności i parametrów fizykochemicznych", "c": "Jakość Wody", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC03", "t": "Optymalizacja dozowania reagentów", "c": "Eksploatacja Zakładu", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC04", "t": "Konserwacja predykcyjna urządzeń zakładu", "c": "Eksploatacja Zakładu", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC05", "t": "Wykrywanie wycieków w sieci dystrybucji", "c": "Sieć Dystrybucji", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC06", "t": "Analiza NLP incydentów i zleceń pracy", "c": "Jakość Wody", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC07", "t": "Predykcja zapotrzebowania na wodę", "c": "Sieć Dystrybucji", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC08", "t": "Wykrywanie anomalnego zużycia u abonentów", "c": "Doświadczenie Klienta", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC09", "t": "Inteligencja na podstawie reklamacji klientów", "c": "Doświadczenie Klienta", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC10", "t": "Optymalizacja energetyczna zakładu", "c": "Eksploatacja Zakładu", "i": "Woda", "k": "💧", "f": "woda.html"}, {"id": "UC01", "t": "Predykcja ETA z Model Registry", "c": "Trasy i Ostatnia Mila", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC02", "t": "Optymalizacja tras ostatniej mili", "c": "Trasy i Ostatnia Mila", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC03", "t": "Predykcja popytu na wysyłki z Model Registry", "c": "Popyt i Planowanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC04", "t": "Predykcyjne utrzymanie floty", "c": "Flota i Utrzymanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC05", "t": "Optymalizacja pickingu i przygotowania zamówień", "c": "Magazyn i Fulfillment", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC06", "t": "Wykrywanie nieudanych dostaw i automatyczne trasowanie", "c": "Trasy i Ostatnia Mila", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC07", "t": "Predykcja wolumenu magazynu i personelu", "c": "Magazyn i Fulfillment", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC08", "t": "Feature Store wysyłki 360", "c": "Trasy i Ostatnia Mila", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC09", "t": "Optymalizacja ładunku i konsolidacja wysyłek", "c": "Popyt i Planowanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC10", "t": "Monitorowanie zużycia paliwa i emisji", "c": "Flota i Utrzymanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC11", "t": "Dynamiczny slotting i optymalizacja lokalizacji", "c": "Magazyn i Fulfillment", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC12", "t": "Scoring kierowców i bezpieczeństwo drogowe", "c": "Flota i Utrzymanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC13", "t": "Analiza kosztów logistycznych i rentowności na klienta", "c": "Popyt i Planowanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC14", "t": "Feature Store magazynu dla operacji", "c": "Magazyn i Fulfillment", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC15", "t": "Chatbot logistyczny z RAG do incydentów", "c": "Popyt i Planowanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC16", "t": "Optymalizacja pojemności i wymiarowanie floty", "c": "Flota i Utrzymanie", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC17", "t": "Wykrywanie anomalii w łańcuchu nadzoru", "c": "Bezpieczeństwo i Zgodność", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC18", "t": "Analiza sentymentu w reklamacjach z NLP", "c": "Bezpieczeństwo i Zgodność", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC19", "t": "Wykrywanie oszustw w dostawach i dokumentacji", "c": "Bezpieczeństwo i Zgodność", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC20", "t": "Zgodność regulacyjna i zarządzanie czasem jazdy", "c": "Bezpieczeństwo i Zgodność", "i": "Logistyka", "k": "🚛", "f": "logistyka.html"}, {"id": "UC01", "t": "Rekomendacja treści z Model Registry", "c": "Treści i Produkcja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC02", "t": "Predykcja sukcesu treści przed produkcją", "c": "Treści i Produkcja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC03", "t": "Predykcja oglądalności z Model Registry", "c": "Widownia i Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC04", "t": "Optymalizacja postprodukcji z AI", "c": "Treści i Produkcja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC05", "t": "Zaawansowana segmentacja widowni i CLV", "c": "Widownia i Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC06", "t": "Optymalizacja zasobów reklamowych i yield", "c": "Reklama i Monetyzacja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC07", "t": "Predykcja churn subskrybentów", "c": "Dystrybucja i Platformy", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC08", "t": "Feature Store Viewer 360", "c": "Widownia i Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC09", "t": "Reklama programatyczna i targeting kontekstowy", "c": "Reklama i Monetyzacja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC10", "t": "Analiza trendów i social listening dla treści", "c": "Treści i Produkcja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC11", "t": "Optymalizacja ramówki i programowania", "c": "Dystrybucja i Platformy", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC12", "t": "Pomiar wpływu product placement", "c": "Reklama i Monetyzacja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC13", "t": "Optymalizacja pricingu i bundlingu subskrypcji", "c": "Dystrybucja i Platformy", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC14", "t": "Feature Store wydajności treści", "c": "Dystrybucja i Platformy", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC15", "t": "Chatbot RAG obsługi subskrybenta", "c": "Widownia i Engagement", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC16", "t": "Wykrywanie oszustw reklamowych i bot traffic", "c": "Reklama i Monetyzacja", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC17", "t": "Zarządzanie prawami cyfrowymi i oknami eksploatacji", "c": "Bezpieczeństwo i Prawa", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC18", "t": "Wykrywanie piractwa i nieautoryzowanej dystrybucji", "c": "Bezpieczeństwo i Prawa", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC19", "t": "Analiza sentymentu i reputacji treści", "c": "Bezpieczeństwo i Prawa", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC20", "t": "Zgodność regulacyjna i klasyfikacja treści", "c": "Bezpieczeństwo i Prawa", "i": "Media", "k": "🎬", "f": "media.html"}, {"id": "UC01", "t": "Predykcja churn z Model Registry", "c": "Doświadczenie Klienta", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC02", "t": "Optymalizacja sieci 5G i zarządzanie pojemnością", "c": "Sieć i Łączność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC03", "t": "Predykcja ruchu sieciowego z Model Registry", "c": "Sieć i Łączność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC04", "t": "Konserwacja predykcyjna infrastruktury sieciowej", "c": "Sieć i Łączność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC05", "t": "Zaawansowana segmentacja klientów i CLV", "c": "Doświadczenie Klienta", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC06", "t": "Optymalizacja pricingu i bundli konwergentnych", "c": "Monetyzacja i Oferty", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC07", "t": "Optymalizacja serwisu terenowego i techników", "c": "Operacje i Efektywność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC08", "t": "Feature Store Customer 360 Telco", "c": "Doświadczenie Klienta", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC09", "t": "Silnik spersonalizowanych ofert Next-Best-Action", "c": "Monetyzacja i Oferty", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC10", "t": "Wykrywanie anomalii w jakości sieci", "c": "Sieć i Łączność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC11", "t": "NLP na incydentach i ticketach wsparcia", "c": "Operacje i Efektywność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC12", "t": "Chatbot RAG obsługi klienta Telco", "c": "Operacje i Efektywność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC13", "t": "Predykcja popytu na usługi i revenue forecast", "c": "Monetyzacja i Oferty", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC14", "t": "Feature Store wydajności sieci", "c": "Operacje i Efektywność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC15", "t": "Wykrywanie oszustw SIM i przenoszenia numerów", "c": "Bezpieczeństwo i Zgodność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC16", "t": "Cyberbezpieczeństwo i wykrywanie zagrożeń w sieci", "c": "Bezpieczeństwo i Zgodność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC17", "t": "Analiza sentymentu i reputacji marki", "c": "Monetyzacja i Oferty", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC18", "t": "Zgodność z GDPR i zarządzanie zgodami", "c": "Bezpieczeństwo i Zgodność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC19", "t": "Analiza doświadczenia klienta (CX) omnikanałowa", "c": "Doświadczenie Klienta", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC20", "t": "Wykrywanie oszustw w revenue assurance", "c": "Bezpieczeństwo i Zgodność", "i": "Telekomunikacja", "k": "📡", "f": "telekomunikacja.html"}, {"id": "UC01", "t": "Predykcja popytu na energię z Model Registry", "c": "Sieć i Smart Grid", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC02", "t": "Predykcja generacji fotowoltaicznej", "c": "Generacja Odnawialna", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC03", "t": "Predykcja generacji wiatrowej z Model Registry", "c": "Generacja Odnawialna", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC04", "t": "Optymalizacja magazynowania energii (BESS)", "c": "Generacja Odnawialna", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC05", "t": "Wykrywanie strat technicznych i nietechnicznych w sieci", "c": "Sieć i Smart Grid", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC06", "t": "Zarządzanie przeciążeniami w sieci dystrybucji", "c": "Sieć i Smart Grid", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC07", "t": "Konserwacja predykcyjna turbin wiatrowych", "c": "Operacje i Efektywność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC08", "t": "Feature Store Customer Energy 360", "c": "Doświadczenie Klienta", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC09", "t": "Segmentacja klientów i efektywność energetyczna", "c": "Doświadczenie Klienta", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC10", "t": "Optymalizacja portfolio generacji odnawialnej", "c": "Generacja Odnawialna", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC11", "t": "Konserwacja predykcyjna sieci dystrybucji", "c": "Operacje i Efektywność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC12", "t": "NLP na incydentach i zleceniach pracy", "c": "Operacje i Efektywność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC13", "t": "Chatbot RAG obsługi klienta energetycznego", "c": "Doświadczenie Klienta", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC14", "t": "Feature Store wydajności aktywów sieciowych", "c": "Operacje i Efektywność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC15", "t": "Wykrywanie oszustw elektrycznych ze smart metrami", "c": "Bezpieczeństwo i Zgodność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC16", "t": "Cyberbezpieczeństwo infrastruktury OT/IT energetycznej", "c": "Bezpieczeństwo i Zgodność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC17", "t": "Zarządzanie społecznościami energetycznymi i autokonsumpcją", "c": "Doświadczenie Klienta", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC18", "t": "Zgodność regulacyjna i raportowanie ESG", "c": "Bezpieczeństwo i Zgodność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC19", "t": "Zarządzanie ładowaniem pojazdów elektrycznych w sieci", "c": "Sieć i Smart Grid", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC20", "t": "Wykrywanie anomalii na rynkach energetycznych", "c": "Bezpieczeństwo i Zgodność", "i": "Energetyka", "k": "⚡", "f": "energetyka.html"}, {"id": "UC01", "t": "Wykrywanie oszustw w dotacjach z Model Registry", "c": "Oszustwa i Kontrola", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC02", "t": "Chatbot RAG wielokanałowej obsługi obywatela", "c": "Doświadczenie Obywatela", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC03", "t": "Predykcja popytu na usługi socjalne z Model Registry", "c": "Polityki Publiczne", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC04", "t": "Automatyzacja klasyfikacji spraw", "c": "Efektywność Administracyjna", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC05", "t": "Kontrola realizacji funduszy Next Generation EU", "c": "Oszustwa i Kontrola", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC06", "t": "Inteligentne zarządzanie mobilnością miejską", "c": "Bezpieczeństwo i Smart Cities", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC07", "t": "Ocena wpływu polityk publicznych", "c": "Polityki Publiczne", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC08", "t": "Feature Store profilu obywatela 360", "c": "Doświadczenie Obywatela", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC09", "t": "Optymalizacja zamówień publicznych", "c": "Efektywność Administracyjna", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC10", "t": "Wykrywanie anomalii w zużyciu energii budynków publicznych", "c": "Bezpieczeństwo i Smart Cities", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC11", "t": "Wykrywanie oszustw podatkowych z analizą sieci", "c": "Oszustwa i Kontrola", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC12", "t": "Personalizacja usług cyfrowych dla obywatela", "c": "Doświadczenie Obywatela", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC13", "t": "Optymalizacja alokacji zasobów zdrowotnych", "c": "Polityki Publiczne", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC14", "t": "Feature Store wydajności organów publicznych", "c": "Efektywność Administracyjna", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC15", "t": "Cyberbezpieczeństwo cyfrowej infrastruktury publicznej", "c": "Bezpieczeństwo i Smart Cities", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC16", "t": "Kontrola niepołączalności i konfliktów interesów", "c": "Oszustwa i Kontrola", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC17", "t": "NLP na przepisach i generowanie streszczeń prawnych", "c": "Efektywność Administracyjna", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC18", "t": "Analiza predykcyjna wrażliwości społecznej", "c": "Polityki Publiczne", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC19", "t": "Analiza sentymentu w partycypacji obywatelskiej", "c": "Doświadczenie Obywatela", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC20", "t": "Inteligentne zarządzanie odpadami miejskimi", "c": "Bezpieczeństwo i Smart Cities", "i": "Sektor Publiczny", "k": "🏛️", "f": "sektor-publiczny.html"}, {"id": "UC01", "t": "Predykcja rehospitalizacji z Model Registry", "c": "Dane Kliniczne", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC02", "t": "Chatbot RAG opieki nad pacjentem i wizyt", "c": "Opieka nad Pacjentem", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC03", "t": "Predykcja popytu na opiekę z Model Registry", "c": "Operacje", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC04", "t": "Stratyfikacja pacjentów przewlekłych wg ryzyka", "c": "Choroby Przewlekłe", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC05", "t": "Konserwacja predykcyjna sprzętu medycznego", "c": "Operacje", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC06", "t": "NLP na dokumentacji medycznej i ekstrakcja encji", "c": "Dane Kliniczne", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC07", "t": "Analiza doświadczenia pacjenta i satysfakcji", "c": "Opieka nad Pacjentem", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC08", "t": "Feature Store profilu pacjenta 360", "c": "Opieka nad Pacjentem", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC09", "t": "Optymalizacja planowania chirurgicznego", "c": "Operacje", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC10", "t": "Wykrywanie oszustw w fakturowaniu medycznym", "c": "Bezpieczeństwo", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC11", "t": "Zdalne monitorowanie pacjentów z IoT i alertami ML", "c": "Choroby Przewlekłe", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC12", "t": "Wsparcie decyzji klinicznych z RAG", "c": "Dane Kliniczne", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC13", "t": "Optymalizacja zarządzania łóżkami i przepływu pacjentów", "c": "Operacje", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC14", "t": "Feature Store wydajności szpitalnej", "c": "Bezpieczeństwo", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC15", "t": "Predykcja adherencji do leczenia", "c": "Choroby Przewlekłe", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC16", "t": "Wczesne wykrywanie sepsy z ML w czasie rzeczywistym", "c": "Dane Kliniczne", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC17", "t": "Personalizacja planów wypisu i obserwacji", "c": "Opieka nad Pacjentem", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC18", "t": "Wykrywanie zdarzeń niepożądanych i bezpieczeństwo pacjenta", "c": "Bezpieczeństwo", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC19", "t": "Predykcja pogorszenia funkcjonalnego u pacjentów geriatrycznych", "c": "Choroby Przewlekłe", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC20", "t": "Inteligentna anonimizacja danych klinicznych do badań", "c": "Bezpieczeństwo", "i": "Zdrowie", "k": "🏥", "f": "zdrowie.html"}, {"id": "UC01", "t": "Predykcja porzucenia nauki z Model Registry", "c": "Doświadczenie Studenta", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC02", "t": "Chatbot RAG obsługi studenta i regulaminu", "c": "Zarządzanie Akademickie", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC03", "t": "Predykcja zapisów z Model Registry", "c": "Rekrutacja", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC04", "t": "Learning Analytics i personalizacja nauki", "c": "Doświadczenie Studenta", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC05", "t": "Optymalizacja rozkładów zajęć i przydziału sal", "c": "Zarządzanie Akademickie", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC06", "t": "NLP na produkcji naukowej i analiza bibliometryczna", "c": "Badania", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC07", "t": "Analiza satysfakcji studenta i jakości nauczania", "c": "Doświadczenie Studenta", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC08", "t": "Feature Store profilu studenta 360", "c": "Doświadczenie Studenta", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC09", "t": "Inteligentna segmentacja kampanii rekrutacyjnych", "c": "Rekrutacja", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC10", "t": "Wykrywanie oszustw akademickich i plagiatu z AI", "c": "Operacje", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC11", "t": "Predykcja wyników akademickich i wczesne alerty", "c": "Zarządzanie Akademickie", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC12", "t": "Wsparcie przeglądu wniosków badawczych z RAG", "c": "Badania", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC13", "t": "Predykcja sukcesu akademickiego wg profilu rekrutacji", "c": "Rekrutacja", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC14", "t": "Feature Store wydajności programów akademickich", "c": "Operacje", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC15", "t": "Predykcja wpływu publikacji naukowych", "c": "Badania", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC16", "t": "Projektowanie programów nauczania w oparciu o dane rynku pracy", "c": "Zarządzanie Akademickie", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC17", "t": "Optymalizacja stypendiów i pomocy finansowej", "c": "Rekrutacja", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC18", "t": "Wykrywanie anomalii w zarządzaniu finansami uczelni", "c": "Operacje", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC19", "t": "Matchmaking transferu uczelnia-przedsiębiorstwo", "c": "Badania", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}, {"id": "UC20", "t": "Zgodność z RODO i zarządzanie danymi uczelni", "c": "Operacje", "i": "Edukacja", "k": "🎓", "f": "edukacja.html"}];
+
+(function() {
+  var input = document.getElementById('globalSearch');
+  var panel = document.getElementById('searchResults');
+  var debounce;
+
+  function normalize(s) {
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function search(q) {
+    if (!q || q.length < 2) { panel.classList.remove('active'); return; }
+    var nq = normalize(q);
+    var words = nq.split(/\s+/).filter(function(w) { return w.length > 0; });
+    var results = UC_CATALOG.filter(function(uc) {
+      var hay = normalize(uc.t + ' ' + uc.c + ' ' + uc.i + ' ' + uc.id);
+      return words.every(function(w) { return hay.indexOf(w) !== -1; });
+    });
+    render(results, q);
+  }
+
+  function render(results, q) {
+    if (results.length === 0) {
+      panel.innerHTML = '<div class="sr-empty">Nie znaleziono przypadków użycia dla &laquo;' + q + '&raquo;</div>';
+      panel.classList.add('active');
+      return;
+    }
+    var shown = results.slice(0, 20);
+    var html = '<div class="sr-header">Wyświetlanie ' + shown.length + (results.length > 20 ? ' z ' + results.length : '') + ' wynik' + (results.length !== 1 ? 'ów' : '') + '</div>';
+    shown.forEach(function(uc) {
+      html += '<a class="sr-item" href="' + uc.f + '">' +
+        '<span class="sr-icon">' + uc.k + '</span>' +
+        '<div class="sr-text"><div class="sr-title">' + uc.t + '</div>' +
+        '<div class="sr-meta"><span class="sr-id">' + uc.id + '</span>' + uc.i + ' &middot; ' + uc.c + '</div></div>' +
+        '<svg class="sr-arrow" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="8,4 14,10 8,16"/></svg>' +
+        '</a>';
+    });
+    panel.innerHTML = html;
+    panel.classList.add('active');
+  }
+
+  input.addEventListener('input', function() {
+    clearTimeout(debounce);
+    var q = this.value.trim();
+    debounce = setTimeout(function() { search(q); }, 150);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.global-search')) panel.classList.remove('active');
+  });
+
+  input.addEventListener('focus', function() {
+    if (this.value.trim().length >= 2) search(this.value.trim());
+  });
+})();
+</script>
+</body>
+</html>

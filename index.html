@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <title>Snowflake — AI/ML Industry Solutions</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #003545;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 48px;
+    }
+
+    .logo img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .title {
+      font-size: 42px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      max-width: 640px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .lang-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .lang-card:hover {
+      background: rgba(41,181,232,0.15);
+      border-color: rgba(41,181,232,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .lang-flag {
+      font-size: 40px;
+      margin-bottom: 14px;
+    }
+
+    .lang-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .lang-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer a {
+      color: #29B5E8;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .title { font-size: 28px; }
+      .lang-grid { grid-template-columns: 1fr; max-width: 320px; }
+      .page { padding: 32px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="logo">
+    <img src="aimlcases/bug-white.png" alt="Snowflake" />
+    Snowflake
+  </div>
+
+  <h1 class="title">AI/ML Industry Solutions</h1>
+
+  <p class="subtitle">
+    Select your language &middot; Wybierz język &middot; Selecciona tu idioma<br>
+    Wähle deine Sprache &middot; Choisissez votre langue
+  </p>
+
+  <div class="lang-grid">
+    <a href="aimlcases/en/index.html" class="lang-card">
+      <span class="lang-flag">&#127468;&#127463;</span>
+      <span class="lang-name">English</span>
+      <span class="lang-desc">Industry AI/ML Solutions</span>
+    </a>
+
+    <a href="aimlcases/pl/index.html" class="lang-card">
+      <span class="lang-flag">&#127477;&#127473;</span>
+      <span class="lang-name">Polski</span>
+      <span class="lang-desc">Rozwiązania AI/ML według branż</span>
+    </a>
+
+    <a href="aimlcases/es/index.html" class="lang-card">
+      <span class="lang-flag">&#127466;&#127480;</span>
+      <span class="lang-name">Español</span>
+      <span class="lang-desc">Soluciones IA/ML por industria</span>
+    </a>
+
+    <a href="aimlcases/de/index.html" class="lang-card">
+      <span class="lang-flag">&#127465;&#127466;</span>
+      <span class="lang-name">Deutsch</span>
+      <span class="lang-desc">KI/ML-Lösungen nach Branche</span>
+    </a>
+
+    <a href="aimlcases/fr/index.html" class="lang-card">
+      <span class="lang-flag">&#127467;&#127479;</span>
+      <span class="lang-name">Français</span>
+      <span class="lang-desc">Solutions IA/ML par secteur</span>
+    </a>
+  </div>
+</div>
+
+<footer class="footer">
+  Powered by <a href="https://www.snowflake.com/en/data-cloud/cortex/" target="_blank">Snowflake Cortex AI</a> &middot; Cortex Code &middot; Streamlit
+</footer>
+
+</body>
+</html>
