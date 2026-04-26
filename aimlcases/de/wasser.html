@@ -431,35 +431,35 @@
       </div>
     </div>
     <a href="index.html" style="display:inline-flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.75);text-decoration:none;margin-bottom:8px;transition:color 0.15s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.75)'"><svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="12,4 6,10 12,16"/></svg>Zurück zum Branchenindex</a>
-    <p class="hero-eyebrow">Gestión del Agua × Snowflake</p>
-    <h1 class="hero-title">Soluciones IA/ML para Gestión del Agua</h1>
-    <p class="hero-subtitle">Guías y Prompts de Cortex Code para Gestión del Agua</p>
-    <p class="hero-tagline">Desarrollado con Snowflake Cortex AI | Impacto inmediato</p>
+    <p class="hero-eyebrow">Wasserwirtschaft × Snowflake</p>
+    <h1 class="hero-title">KI/ML-Lösungen für die Wasserwirtschaft</h1>
+    <p class="hero-subtitle">Cortex Code Anleitungen und Prompts für die Wasserwirtschaft</p>
+    <p class="hero-tagline">Entwickelt mit Snowflake Cortex AI | Sofortige Wirkung</p>
   </div>
 
   <div class="stats-box">
     <div class="stat-number">10</div>
-    <div class="stat-label">Casos de Uso</div>
+    <div class="stat-label">Anwendungsfälle</div>
     <hr class="stats-divider"/>
     <div class="stat-time">8-15 min</div>
-    <div class="stat-time-label">Tiempo de Configuración</div>
+    <div class="stat-time-label">Einrichtungszeit</div>
   </div>
 </header>
 
 <section class="intro">
-  <h2>Talk to your Plant — Inteligencia Artificial para el Ciclo del Agua</h2>
-  <p>Cada solución incluye Cortex Code Prompts de Snowflake con datos sintéticos, guías paso a paso
-     e implementaciones SQL-first con Cortex AI/ML. Desde asistentes konversationelles para operadores de planta
-     hasta optimización energética y detección de fugas — todo dentro de Snowflake.</p>
+  <h2>Talk to your Plant — Künstliche Intelligenz für den Wasserkreislauf</h2>
+  <p>Jede Lösung enthält Snowflake Cortex Code Prompts mit synthetischen Daten, Schritt-für-Schritt-Anleitungen
+     und SQL-first-Implementierungen mit Cortex AI/ML. Von Konversationsassistenten für Anlagenbetreiber
+     bis hin zur Energieoptimierung und Leckageerkennung — alles innerhalb von Snowflake.</p>
 </section>
 
 <div class="filters-bar">
   <div class="filters-left" id="filterBtns">
-    <button class="filter-btn active" data-filter="all">Todos (10)</button>
-    <button class="filter-btn" data-filter="planta">Operación de Planta (4)</button>
-    <button class="filter-btn" data-filter="calidad">Calidad del Agua (2)</button>
-    <button class="filter-btn" data-filter="red">Red de Distribución (2)</button>
-    <button class="filter-btn" data-filter="cliente">Experiencia de Cliente (2)</button>
+    <button class="filter-btn active" data-filter="all">Alle (10)</button>
+    <button class="filter-btn" data-filter="planta">Anlagenbetrieb (4)</button>
+    <button class="filter-btn" data-filter="calidad">Wasserqualität (2)</button>
+    <button class="filter-btn" data-filter="red">Verteilungsnetz (2)</button>
+    <button class="filter-btn" data-filter="cliente">Kundenerfahrung (2)</button>
   </div>
   <div class="search-box">
     <svg width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round">
@@ -469,7 +469,7 @@
   </div>
 </div>
 
-<div class="results-count" id="resultsCount">Mostrando 10 de 10 casos de uso</div>
+<div class="results-count" id="resultsCount">10 von 10 Anwendungsfällen angezeigt</div>
 
 <main class="cards-grid" id="cardsGrid"></main>
 
@@ -499,51 +499,51 @@ const USE_CASES = [
   {
     id:"UC04", cat:"planta", catLabel:"Anlagenbetrieb", time:"15 min",
     title:"Vorausschauende Wartung von Anlagengeräten",
-    pain:"Las averías no planificadas de bombas, soplantes y válvulas causan paradas de producción y costes de reparación 3-5x superiores al mantenimiento preventivo.",
-    desc:"Modelo de detección de anomalías sobre datos de vibración, temperatura, presión y consumo eléctrico de equipment críticos. Predice fallos con 7-14 días de antelación para planificar intervenciones.",
-    features:["Anomalieerkennung con ML.ANOMALY_DETECTION", "Sensores IoT: vibración, temperatura, presión, amperaje", "Predicción de fallos a 7-14 días", "Dashboard de salud de equipment con alertas"]
+    pain:"Ungeplante Ausfälle von Pumpen, Gebläsen und Ventilen verursachen Produktionsstillstände und Reparaturkosten, die 3-5x höher als die vorbeugende Wartung sind.",
+    desc:"Anomalieerkennungsmodell auf Basis von Vibrations-, Temperatur-, Druck- und Stromverbrauchsdaten kritischer Anlagen. Sagt Ausfälle 7-14 Tage im Voraus vorher, um Eingriffe zu planen.",
+    features:["Anomalieerkennung mit ML.ANOMALY_DETECTION", "IoT-Sensoren: Vibration, Temperatur, Druck, Stromstärke", "Ausfallvorhersage 7-14 Tage im Voraus", "Anlagenzustands-Dashboard mit Warnmeldungen"]
   },
   {
     id:"UC05", cat:"red", catLabel:"Verteilungsnetz", time:"14 min",
-    title:"Detección de Fugas en Red de Distribución",
-    pain:"Las pérdidas de agua no revenue (ANR) superan el 25% en muchas redes urbanas. La detección manual de fugas mediante campañas de campo es lenta y costosa.",
-    desc:"Modelo de clasificación que identifica zonas con alta probabilidad de fuga analizando presiones nocturnas, caudales mínimos, antigüedad de tuberías y datos de sectorización DMA. Prioriza campañas de detección.",
-    features:["ML.CLASSIFICATION sobre datos de sectorización", "Análisis de caudales mínimos nocturnos", "Scoring de probabilidad de fuga por DMA", "Dashboard de priorización de campañas"]
+    title:"Leckageerkennung im Verteilungsnetz",
+    pain:"Wasserverluste (nicht abgerechnetes Wasser, NRW) übersteigen in vielen städtischen Netzen 25%. Die manuelle Leckerkennung durch Feldkampagnen ist langsam und teuer.",
+    desc:"Klassifizierungsmodell, das Zonen mit hoher Leckagewahrscheinlichkeit identifiziert, indem es Nachtdrücke, Mindestdurchflüsse, Rohralter und DMA-Sektorisierungsdaten analysiert. Priorisiert Erkennungskampagnen.",
+    features:["ML.CLASSIFICATION auf Sektorisierungsdaten", "Analyse nächtlicher Mindestdurchflüsse", "Leckagewahrscheinlichkeits-Scoring pro DMA", "Dashboard zur Kampagnenpriorisierung"]
   },
   {
     id:"UC06", cat:"calidad", catLabel:"Wasserqualität", time:"11 min",
-    title:"Análisis NLP de Incidencias y Partes de Trabajo",
-    pain:"Miles de partes de trabajo e incidencias se registran en texto libre cada mes. Los patrones de causa raíz se pierden en campos de observaciones no estructurados.",
-    desc:"Pipeline NLP con Cortex AI que clasifica incidencias, extrae entidades (equipo, ubicación, causa) y detecta patrones recurrentes en partes de trabajo para priorizar inversiones de renovación.",
-    features:["Clasificación de incidencias con CORTEX.COMPLETE", "Extracción de entidades: equipo, ubicación, causa raíz", "Análisis de sentiment en quejas de operadores", "Dashboard de patrones y tendencias"]
+    title:"NLP-Analyse von Störungen und Arbeitsaufträgen",
+    pain:"Tausende Arbeitsaufträge und Störungen werden monatlich in Freitext erfasst. Ursachenmuster gehen in unstrukturierten Beobachtungsfeldern verloren.",
+    desc:"NLP-Pipeline mit Cortex AI, die Störungen klassifiziert, Entitäten (Gerät, Standort, Ursache) extrahiert und wiederkehrende Muster in Arbeitsaufträgen erkennt, um Erneuerungsinvestitionen zu priorisieren.",
+    features:["Störungsklassifizierung mit CORTEX.COMPLETE", "Entitätsextraktion: Gerät, Standort, Ursache", "Sentimentanalyse bei Betreiberbeschwerden", "Dashboard für Muster und Trends"]
   },
   {
     id:"UC07", cat:"red", catLabel:"Verteilungsnetz", time:"13 min",
     title:"Vorhersage des Wasserbedarfs",
-    pain:"La planificación de producción se basa en históricos simples que no capturan el impacto de meteorología, estacionalidad ni eventos especiales. Produce sobreproducción o déficit.",
-    desc:"Modelo de forecasting que predice la demanda de agua a 24-72 horas combinando patrones de consumo, previsión meteorológica, calendario (festivos, vacaciones) y datos de turismo estacional.",
-    features:["SNOWFLAKE.ML.FORECAST para demanda diaria", "Variables exógenas: temperatura, lluvia, festivos", "Predicción a 24-72h con intervalos de confianza", "Dashboard de planificación de producción"]
+    pain:"Die Produktionsplanung basiert auf einfachen historischen Daten, die den Einfluss von Wetter, Saisonalität und besonderen Ereignissen nicht erfassen. Dies führt zu Überproduktion oder Defiziten.",
+    desc:"Prognosemodell, das den Wasserbedarf für 24-72 Stunden vorhersagt, indem es Verbrauchsmuster, Wettervorhersagen, Kalender (Feiertage, Ferien) und saisonale Tourismusdaten kombiniert.",
+    features:["SNOWFLAKE.ML.FORECAST für täglichen Bedarf", "Exogene Variablen: Temperatur, Regen, Feiertage", "Vorhersage für 24-72h mit Konfidenzintervallen", "Dashboard zur Produktionsplanung"]
   },
   {
-    id:"UC08", cat:"cliente", catLabel:"Experiencia de Cliente", time:"12 min",
-    title:"Detección de Consumos Anómalos en Abonados",
-    pain:"Las fugas internas, fraudes de contador y errores de lectura generan pérdidas económicas y complaints de clientes. Se detectan meses después en la facturación.",
-    desc:"Modelo de detección de anomalías que identifica patrones de consumo inusuales por abonado (fugas internas, fraude, contador averiado) comparando con perfil histórico y vecindario para alertar en tiempo real.",
-    features:["ML.ANOMALY_DETECTION sobre consumption diarios", "Perfilado de consumo por tipología de abonado", "Comparación con consumo de vecindario/DMA", "Dashboard de alertas con priorización"]
+    id:"UC08", cat:"cliente", catLabel:"Kundenerfahrung", time:"12 min",
+    title:"Erkennung anomaler Verbräuche bei Abonnenten",
+    pain:"Interne Lecks, Zählerbetrug und Ablesefehler verursachen wirtschaftliche Verluste und Kundenbeschwerden. Sie werden erst Monate später bei der Abrechnung erkannt.",
+    desc:"Anomalieerkennungsmodell, das ungewöhnliche Verbrauchsmuster pro Abonnent identifiziert (interne Lecks, Betrug, defekter Zähler), indem es mit historischem Profil und Nachbarschaft vergleicht, um in Echtzeit zu warnen.",
+    features:["ML.ANOMALY_DETECTION auf täglichen Verbrauchsdaten", "Verbrauchsprofil nach Abonnententyp", "Vergleich mit Nachbarschafts-/DMA-Verbrauch", "Warnungs-Dashboard mit Priorisierung"]
   },
   {
-    id:"UC09", cat:"cliente", catLabel:"Experiencia de Cliente", time:"11 min",
-    title:"Inteligencia sobre Reclamaciones de Clientes",
-    pain:"Las complaints de calidad, presión y facturación se gestionan reactivamente. Los patrones de causa raíz sistémica no se detectan hasta que escalan a reguladores.",
-    desc:"Clasificación NLP y análisis de sentiment sobre complaints de clientes para detectar problemas emergentes, priorizar resolución e identificar zonas con riesgo de incumplimiento de servicio.",
-    features:["CORTEX.SENTIMENT para análisis de sentiment", "Clasificación automática de complaints", "Detección de riesgo regulatorio (AEMPS, ACA)", "Dashboard de inteligencia de complaints"]
+    id:"UC09", cat:"cliente", catLabel:"Kundenerfahrung", time:"11 min",
+    title:"Kundenbeschwerde-Intelligence",
+    pain:"Beschwerden über Qualität, Druck und Abrechnung werden reaktiv bearbeitet. Systemische Ursachenmuster werden erst erkannt, wenn sie an Regulierungsbehörden eskaliert werden.",
+    desc:"NLP-Klassifizierung und Sentimentanalyse von Kundenbeschwerden, um aufkommende Probleme zu erkennen, die Lösung zu priorisieren und Zonen mit Risiko der Dienstleistungsverletzung zu identifizieren.",
+    features:["CORTEX.SENTIMENT für Sentimentanalyse", "Automatische Beschwerdeklassifizierung", "Regulatorische Risikoerkennung (AEMPS, ACA)", "Beschwerde-Intelligence-Dashboard"]
   },
   {
     id:"UC10", cat:"planta", catLabel:"Anlagenbetrieb", time:"14 min",
-    title:"Optimización Energética de la Planta",
-    pain:"El consumo energético representa el 30-40% del coste operativo. Los operadores no tienen visibilidad sobre qué combinaciones de equipment minimizan el coste energético cumpliendo producción.",
-    desc:"Modelo ML que recomienda la configuración óptima de bombas, soplantes y equipment auxiliares según demanda prevista y tarifas eléctricas horarias para minimizar coste energético sin comprometer calidad.",
-    features:["ML.CLASSIFICATION para bandas de configuración", "Integración de tarifas eléctricas por periodo", "Optimización multi-objetivo: coste vs producción", "Dashboard de ahorro energético con recomendaciones"]
+    title:"Energieoptimierung der Anlage",
+    pain:"Der Energieverbrauch macht 30-40% der Betriebskosten aus. Betreiber haben keinen Überblick darüber, welche Gerätekombinationen die Energiekosten bei Einhaltung der Produktion minimieren.",
+    desc:"ML-Modell, das die optimale Konfiguration von Pumpen, Gebläsen und Hilfsgeräten basierend auf prognostiziertem Bedarf und stündlichen Stromtarifen empfiehlt, um Energiekosten ohne Qualitätseinbußen zu minimieren.",
+    features:["ML.CLASSIFICATION für Konfigurationsbänder", "Integration stündlicher Stromtarife", "Multi-Ziel-Optimierung: Kosten vs. Produktion", "Energiespar-Dashboard mit Empfehlungen"]
   },
 ];
 
@@ -553,7 +553,7 @@ function renderCards(list) {
   const grid = document.getElementById('cardsGrid');
   const count = document.getElementById('resultsCount');
   grid.innerHTML = '';
-  count.textContent = `Mostrando ${list.length} de ${TOTAL} casos de uso`;
+  count.textContent = `${list.length} von ${TOTAL} Anwendungsfällen angezeigt`;
   list.forEach(uc => {
     const catClass = uc.cat;
     grid.innerHTML += `
@@ -572,7 +572,7 @@ function renderCards(list) {
         </div>
         <h3 class="card-title">${uc.title}</h3>
         <div class="pain-point">
-          <div class="pain-point-label">Problema</div>
+          <div class="pain-point-label">Problem</div>
           <p>${uc.pain}</p>
         </div>
         <p class="card-desc">${uc.desc}</p>
@@ -580,7 +580,7 @@ function renderCards(list) {
           ${uc.features.map(f => `<li>${f}</li>`).join('')}
         </ul>
         <div class="card-actions">
-          <a href="#" class="btn-secondary" onclick="verGuia('${uc.id}');return false;">Ver Gu\u00eda</a>
+          <a href="#" class="btn-secondary" onclick="verGuia('${uc.id}');return false;">Anleitung</a>
           <a href="#" class="btn-tertiary" onclick="verPrompts('${uc.id}');return false;">Cortex Code Prompts</a>
         </div>
       </article>`;
@@ -619,123 +619,123 @@ renderCards(USE_CASES);
 
 const GUIAS = {
   UC01: {
-    title: "Asistente Conversacional de Planta (Talk to your Plant)",
-    contexto: "Estos Cortex Code Prompts construye un asistente RAG que permite a los operadores de planta consultar en lenguaje natural el estado de la planta, procedimientos y alarmas.",
-    foco: "Operación de ETAP/EDAR — consultas konversationelles sobre estado de planta, parámetros SCADA y manuales operativos.",
-    reto: "Reducir el tiempo de acceso a información operativa de horas a segundos, mejorando la toma de decisiones en tiempo real.",
-    objetivos: ["Crear base de conocimiento de manuales operativos y procedimientos", "Indexar documentación técnica con Cortex Search", "Integrar datos SCADA simulados en tiempo real", "Implementar pipeline RAG con CORTEX.COMPLETE", "Construir interfaz konversationell Streamlit para operadores"],
-    funcionalidades: ["RAG: Cortex Search + CORTEX.COMPLETE para respuestas contextuales", "Datos sintéticos: 80 documentos técnicos + 500 registros SCADA", "Búsqueda semántica: Chunks de ~500 caracteres indexados", "Dashboard Streamlit: Chat interactivo con cita de fuentes"],
-    datos: ["Manuales: Procedimientos operativos, fichas de equipo, protocolos de emergencia", "SCADA: Lecturas de sensores (caudal, pH, turbidez, cloro, presión, nivel)", "Alarmas: Historial de alarmas con severidad y acciones tomadas", "Chunks: Fragmentos indexados por sección y equipo"],
-    como_usar: ["Ejecutar los prompts secuencialmente", "La configuración del entorno crea una base de datos aislada", "Los datos sintéticos generan manuales y lecturas SCADA automáticamente", "Se crea el Cortex Search Service sobre la documentación", "El dashboard se lanza interactivamente en el notebook"]
+    title: "Konversations-Assistent für Anlagen (Talk to your Plant)",
+    contexto: "Diese Cortex Code Prompts bauen einen RAG-Assistenten, der Anlagenbetreibern ermöglicht, den Anlagenzustand, Verfahren und Alarme in natürlicher Sprache abzufragen.",
+    foco: "WBA/KA-Betrieb — konversationelle Abfragen zu Anlagenzustand, SCADA-Parametern und Betriebshandbüchern.",
+    reto: "Die Zugriffszeit auf Betriebsinformationen von Stunden auf Sekunden reduzieren und die Entscheidungsfindung in Echtzeit verbessern.",
+    objetivos: ["Wissensbasis aus Betriebshandbüchern und Verfahren erstellen", "Technische Dokumentation mit Cortex Search indexieren", "Simulierte SCADA-Daten in Echtzeit integrieren", "RAG-Pipeline mit CORTEX.COMPLETE implementieren", "Konversationelle Streamlit-Oberfläche für Betreiber erstellen"],
+    funcionalidades: ["RAG: Cortex Search + CORTEX.COMPLETE für kontextbezogene Antworten", "Synthetische Daten: 80 technische Dokumente + 500 SCADA-Datensätze", "Semantische Suche: Chunks von ~500 Zeichen indexiert", "Streamlit-Dashboard: Interaktiver Chat mit Quellenangabe"],
+    datos: ["Handbücher: Betriebsverfahren, Geräteblätter, Notfallprotokolle", "SCADA: Sensorwerte (Durchfluss, pH, Trübung, Chlor, Druck, Füllstand)", "Alarme: Alarmhistorie mit Schweregrad und ergriffenen Maßnahmen", "Chunks: Indexierte Fragmente nach Abschnitt und Gerät"],
+    como_usar: ["Prompts sequentiell ausführen", "Die Umgebungskonfiguration erstellt eine isolierte Datenbank", "Synthetische Daten generieren Handbücher und SCADA-Werte automatisch", "Der Cortex Search Service wird über die Dokumentation erstellt", "Das Dashboard wird interaktiv im Notebook gestartet"]
   },
   UC02: {
-    title: "Predicción de Turbidez y Parámetros Fisicoquímicos",
-    contexto: "Estos Cortex Code Prompts construye un modelo de forecasting para predecir parámetros de calidad del agua (turbidez, pH, cloro, conductivity) a 4-24 horas vista.",
-    foco: "Calidad del agua en ETAP — anticipación de picos de turbidez y desviaciones de parámetros regulatorios.",
-    reto: "Predecir con antelación suficiente los cambios en calidad del agua bruta para ajustar dosificación proactivamente.",
-    objetivos: ["Generar series temporales sintéticas de parámetros de calidad", "Entrenar modelos de forecasting con SNOWFLAKE.ML.FORECAST", "Predecir turbidez, pH, cloro residual y conductivity a 4-24h", "Configurar alertas proactivas por umbrales regulatorios", "Construir dashboard de tendencias y predicciones"],
-    funcionalidades: ["Modelo ML: SNOWFLAKE.ML.FORECAST para series temporales", "Datos sintéticos: 365 días de lecturas horarias (8.760 registros por parámetro)", "Variables: turbidez, pH, residual_chlorine, conductivity, temperatura, caudal_bruto", "Dashboard Streamlit: Gráficos de predicción con bandas de confianza"],
-    datos: ["Lecturas horarias: Sensores de calidad en agua bruta y tratada", "Meteorología: Temperatura, precipitación, humedad relativa", "Predicciones: Valores esperados a 4, 8, 12 y 24 horas con intervalo de confianza", "Alertas: Predicciones que superan umbrales regulatorios (RD 140/2003)"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan 365 días de lecturas de sensores", "El modelo entrena en 30-60 segundos por parámetro", "El dashboard muestra predicciones y alertas proactivas"]
+    title: "Vorhersage von Trübung und physikalisch-chemischen Parametern",
+    contexto: "Diese Cortex Code Prompts bauen ein Prognosemodell zur Vorhersage von Wasserqualitätsparametern (Trübung, pH, Chlor, Leitfähigkeit) für 4-24 Stunden.",
+    foco: "Wasserqualität in der WBA — Antizipation von Trübungsspitzen und Abweichungen regulatorischer Parameter.",
+    reto: "Veränderungen der Rohwasserqualität rechtzeitig vorhersagen, um die Dosierung proaktiv anzupassen.",
+    objetivos: ["Synthetische Zeitreihen von Qualitätsparametern generieren", "Prognosemodelle mit SNOWFLAKE.ML.FORECAST trainieren", "Trübung, pH, Restchlor und Leitfähigkeit für 4-24h vorhersagen", "Proaktive Alarme bei regulatorischen Schwellenwerten konfigurieren", "Dashboard für Trends und Vorhersagen erstellen"],
+    funcionalidades: ["ML-Modell: SNOWFLAKE.ML.FORECAST für Zeitreihen", "Synthetische Daten: 365 Tage stündliche Messwerte (8.760 Datensätze pro Parameter)", "Variablen: Trübung, pH, Restchlor, Leitfähigkeit, Temperatur, Rohwasserdurchfluss", "Streamlit-Dashboard: Vorhersagegrafiken mit Konfidenzintervallen"],
+    datos: ["Stündliche Messwerte: Qualitätssensoren in Roh- und Trinkwasser", "Meteorologie: Temperatur, Niederschlag, relative Luftfeuchtigkeit", "Vorhersagen: Erwartete Werte für 4, 8, 12 und 24 Stunden mit Konfidenzintervall", "Alarme: Vorhersagen, die regulatorische Schwellenwerte überschreiten"],
+    como_usar: ["Zellen sequentiell ausführen", "365 Tage Sensormesswerte werden generiert", "Das Modell trainiert in 30-60 Sekunden pro Parameter", "Das Dashboard zeigt Vorhersagen und proaktive Alarme"]
   },
   UC03: {
-    title: "Optimización de Dosificación de Reactivos",
-    contexto: "Estos Cortex Code Prompts construye un sistema de recomendación de dosis óptima de reactivos según condiciones del agua bruta.",
-    foco: "Coagulación/floculación en ETAP — optimización de dosis de sulfato de aluminio, polielectrolito y cloro.",
-    reto: "Reducir el coste de reactivos un 15-25% manteniendo la calidad del agua tratada dentro de normativa.",
-    objetivos: ["Generar datos sintéticos de jar-test y dosificación histórica", "Modelar relación agua bruta → dosis óptima con ML.CLASSIFICATION", "Crear bandas de dosificación por condiciones de entrada", "Evaluar ahorro potencial vs dosificación actual", "Dashboard de recomendaciones para operadores de turno"],
-    funcionalidades: ["Modelo ML: ML.CLASSIFICATION para banda de dosificación óptima", "Datos sintéticos: 2.000 registros de jar-test con resultados de turbidez residual", "Variables: turbidez_bruta, pH_bruto, temperatura, materia_organica, color, conductivity", "Dashboard Streamlit: Recomendación de dosis en tiempo real"],
-    datos: ["Jar-test: Resultados de ensayos de coagulación con diferentes dosis", "Agua bruta: Parámetros fisicoquímicos de entrada a planta", "Dosificación: Dosis aplicada vs dosis óptima con ahorro estimado", "Reactivos: Coste unitario por reactivo y consumo mensual"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan datos de jar-test y dosificación histórica", "El modelo recomienda la banda de dosis óptima", "El dashboard muestra ahorro potencial por turno"]
+    title: "Optimierung der Reagenziendosierung",
+    contexto: "Diese Cortex Code Prompts bauen ein Empfehlungssystem für die optimale Reagenziendosis basierend auf Rohwasserbedingungen.",
+    foco: "Koagulation/Flockung in der WBA — Optimierung der Dosierung von Aluminiumsulfat, Polyelektrolyt und Chlor.",
+    reto: "Die Reagenzienkosten um 15-25% senken bei gleichzeitiger Einhaltung der Wasserqualitätsnormen.",
+    objetivos: ["Synthetische Jar-Test- und historische Dosierungsdaten generieren", "Beziehung Rohwasser → optimale Dosis mit ML.CLASSIFICATION modellieren", "Dosierungsbänder nach Eingangsbedingungen erstellen", "Einsparpotenzial gegenüber aktueller Dosierung bewerten", "Empfehlungs-Dashboard für Schichtbetreiber"],
+    funcionalidades: ["ML-Modell: ML.CLASSIFICATION für optimale Dosierungsbänder", "Synthetische Daten: 2.000 Jar-Test-Datensätze mit Resttrübungsergebnissen", "Variablen: Rohtrübung, pH, Temperatur, organische Substanz, Farbe, Leitfähigkeit", "Streamlit-Dashboard: Dosierungsempfehlung in Echtzeit"],
+    datos: ["Jar-Test: Koagulationsversuche mit verschiedenen Dosierungen", "Rohwasser: Physikalisch-chemische Eingangsparameter", "Dosierung: Angewendete vs. optimale Dosis mit geschätzter Einsparung", "Reagenzien: Stückkosten pro Reagenz und monatlicher Verbrauch"],
+    como_usar: ["Zellen sequentiell ausführen", "Jar-Test- und historische Dosierungsdaten werden generiert", "Das Modell empfiehlt das optimale Dosierungsband", "Das Dashboard zeigt das Einsparpotenzial pro Schicht"]
   },
   UC04: {
-    title: "Mantenimiento Predictivo de Equipos de Planta",
-    contexto: "Estos Cortex Code Prompts construye un sistema de detección de anomalías para predecir fallos en equipment críticos de planta.",
-    foco: "Equipos rotativos de ETAP/EDAR — bombas, soplantes, agitadores, compresores.",
-    reto: "Anticipar fallos de equipment con 7-14 días para planificar intervenciones y evitar paradas no programadas.",
-    objetivos: ["Generar datos sintéticos de sensores IoT de equipment", "Entrenar modelo de detección de anomalías con ML.ANOMALY_DETECTION", "Detectar patrones de degradación en vibración, temperatura y consumo", "Clasificar severidad de anomalías y priorizar acciones", "Dashboard de salud de equipment con alertas predictivas"],
-    funcionalidades: ["Modelo ML: SNOWFLAKE.ML.ANOMALY_DETECTION sobre series temporales de sensores", "Datos sintéticos: 50 equipment × 365 días de lecturas diarias", "Variables: vibration_mm_s, temperatura_rodamiento, presion_descarga, amperaje, horas_operacion", "Dashboard Streamlit: Panel de salud de equipment con semáforos"],
-    datos: ["Equipos: Inventario de bombas, soplantes y equipment rotativos", "Sensores IoT: Vibración, temperatura, presión, consumo eléctrico", "Mantenimiento: Historial de intervenciones y averías", "Anomalías: Detecciones con severidad y acción recomendada"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan datos de sensores para 50 equipment durante 1 año", "El modelo detecta patrones anómalos con 7-14 días de antelación", "El dashboard muestra estado de salud y alertas por equipo"]
+    title: "Vorausschauende Wartung von Anlagengeräten",
+    contexto: "Diese Cortex Code Prompts bauen ein Anomalieerkennungssystem zur Vorhersage von Ausfällen kritischer Anlagengeräte.",
+    foco: "Rotierende Geräte in WBA/KA — Pumpen, Gebläse, Rührwerke, Kompressoren.",
+    reto: "Geräteausfälle 7-14 Tage im Voraus erkennen, um Eingriffe zu planen und ungeplante Stillstände zu vermeiden.",
+    objetivos: ["Synthetische IoT-Sensordaten von Geräten generieren", "Anomalieerkennungsmodell mit ML.ANOMALY_DETECTION trainieren", "Degradationsmuster bei Vibration, Temperatur und Verbrauch erkennen", "Schweregrad von Anomalien klassifizieren und Maßnahmen priorisieren", "Gerätezustands-Dashboard mit vorausschauenden Warnungen"],
+    funcionalidades: ["ML-Modell: ML.ANOMALY_DETECTION auf Sensor-Zeitreihen", "Synthetische Daten: 50 Geräte × 365 Tage tägliche Messwerte", "Variablen: Vibration, Lagertemperatur, Ausgangsdruck, Stromstärke, Betriebsstunden", "Streamlit-Dashboard: Gerätezustandspanel mit Ampeln"],
+    datos: ["Geräte: Inventar von Pumpen, Gebläsen und rotierenden Geräten", "IoT-Sensoren: Vibration, Temperatur, Druck, Stromverbrauch", "Wartung: Historie von Eingriffen und Ausfällen", "Anomalien: Erkennungen mit Schweregrad und empfohlener Maßnahme"],
+    como_usar: ["Zellen sequentiell ausführen", "Sensordaten für 50 Geräte über 1 Jahr werden generiert", "Das Modell erkennt anomale Muster 7-14 Tage im Voraus", "Das Dashboard zeigt Gesundheitsstatus und Warnungen pro Gerät"]
   },
   UC05: {
-    title: "Detección de Fugas en Red de Distribución",
-    contexto: "Estos Cortex Code Prompts construye un sistema de scoring de probabilidad de fuga por zona (DMA) para priorizar campañas de detección.",
-    foco: "Red de distribución — análisis de agua no registrada (ANR) y localización de fugas por sectorización.",
-    reto: "Reducir el agua no registrada (ANR) del 25% al 15% priorizando las zonas con mayor probabilidad de fuga.",
-    objetivos: ["Generar datos sintéticos de sectorización hidráulica (DMAs)", "Modelar probabilidad de fuga con ML.CLASSIFICATION", "Analizar caudales mínimos nocturnos y balance hídrico", "Priorizar campañas de detección por impacto económico", "Dashboard de gestión de fugas con mapa de priorización"],
-    funcionalidades: ["Modelo ML: ML.CLASSIFICATION para scoring de fuga por DMA", "Datos sintéticos: 200 DMAs con datos de caudal, presión y red", "Variables: nighttime_minimum_flow, average_pressure, antiguedad_red, num_acometidas, pipe_material", "Dashboard Streamlit: Mapa de priorización con KPIs de ANR"],
-    datos: ["DMAs: Zonas de medición con características de red", "Caudales: Lecturas horarias de contadores sectoriales", "Red: Antigüedad, material, diámetro, longitud de tuberías por DMA", "Predicciones: Scoring de fuga (Alta/Media/Baja) con volumen estimado"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan 200 DMAs con datos de sectorización", "El modelo asigna scoring de fuga a cada DMA", "El dashboard prioriza campañas por volumen perdido estimado"]
+    title: "Leckageerkennung im Verteilungsnetz",
+    contexto: "Diese Cortex Code Prompts bauen ein Leckagewahrscheinlichkeits-Scoring-System pro Zone (DMA) zur Priorisierung von Erkennungskampagnen.",
+    foco: "Verteilungsnetz — Analyse von nicht abgerechnetem Wasser (NRW) und Leckagelokalisierung durch Sektorisierung.",
+    reto: "Das nicht abgerechnete Wasser (NRW) von 25% auf 15% reduzieren, indem Zonen mit höchster Leckagewahrscheinlichkeit priorisiert werden.",
+    objetivos: ["Synthetische hydraulische Sektorisierungsdaten (DMAs) generieren", "Leckagewahrscheinlichkeit mit ML.CLASSIFICATION modellieren", "Nächtliche Mindestdurchflüsse und Wasserbilanzen analysieren", "Erkennungskampagnen nach wirtschaftlichem Impact priorisieren", "Leckagemanagement-Dashboard mit Priorisierungskarte"],
+    funcionalidades: ["ML-Modell: ML.CLASSIFICATION für Leckage-Scoring pro DMA", "Synthetische Daten: 200 DMAs mit Durchfluss-, Druck- und Netzdaten", "Variablen: Nächtlicher Mindestdurchfluss, Durchschnittsdruck, Rohralter, Anschlüsse, Rohrmaterial", "Streamlit-Dashboard: Priorisierungskarte mit NRW-KPIs"],
+    datos: ["DMAs: Messzonen mit Netzcharakteristiken", "Durchflüsse: Stündliche Messwerte sektorieller Zähler", "Netz: Alter, Material, Durchmesser, Rohrlänge pro DMA", "Vorhersagen: Leckage-Scoring (Hoch/Mittel/Niedrig) mit geschätztem Volumen"],
+    como_usar: ["Zellen sequentiell ausführen", "200 DMAs mit Sektorisierungsdaten werden generiert", "Das Modell weist jedem DMA ein Leckage-Scoring zu", "Das Dashboard priorisiert Kampagnen nach geschätztem Volumenverlust"]
   },
   UC06: {
-    title: "Análisis NLP de Incidencias y Partes de Trabajo",
-    contexto: "Estos Cortex Code Prompts construye un pipeline NLP para clasificar y extraer información de partes de trabajo e incidencias en texto libre.",
-    foco: "Gestión de incidencias — clasificación automática y extracción de entidades de partes de trabajo de campo.",
-    reto: "Transformar miles de partes de trabajo no estructurados en datos accionables para priorizar inversiones.",
-    objetivos: ["Generar partes de trabajo sintéticos con texto realista", "Clasificar incidencias con CORTEX.COMPLETE", "Extraer entidades (equipo, ubicación, causa raíz) con IA", "Detectar patrones recurrentes y zonas problemáticas", "Dashboard de inteligencia de incidencias"],
-    funcionalidades: ["NLP: CORTEX.COMPLETE para clasificación y extracción de entidades", "Datos sintéticos: 500 partes de trabajo con texto libre", "Extracción: Tipo_incidencia, equipo_afectado, ubicacion, causa_raiz, urgencia", "Dashboard Streamlit: Panel de tendencias y patrones"],
-    datos: ["Partes de trabajo: Texto libre con observaciones del operario", "Incidencias: Tipo (Avería, Fuga, Calidad, Vandalismo, Obstrucción)", "Equipos: Referencia del equipo afectado y ubicación", "Patrones: Análisis de causa raíz y recurrencia por zona"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan 500 partes de trabajo con texto realista", "Cortex AI clasifica y extrae entidades automáticamente", "El dashboard muestra patrones y zonas con más incidencias"]
+    title: "NLP-Analyse von Störungen und Arbeitsaufträgen",
+    contexto: "Diese Cortex Code Prompts bauen eine NLP-Pipeline zur Klassifizierung und Informationsextraktion aus Arbeitsaufträgen und Freitext-Störungen.",
+    foco: "Störungsmanagement — automatische Klassifizierung und Entitätsextraktion aus Feldarbeitsaufträgen.",
+    reto: "Tausende unstrukturierter Arbeitsaufträge in umsetzbare Daten umwandeln, um Investitionen zu priorisieren.",
+    objetivos: ["Synthetische Arbeitsaufträge mit realistischem Text generieren", "Störungen mit CORTEX.COMPLETE klassifizieren", "Entitäten (Gerät, Standort, Ursache) mit KI extrahieren", "Wiederkehrende Muster und Problemzonen erkennen", "Störungs-Intelligence-Dashboard"],
+    funcionalidades: ["NLP: CORTEX.COMPLETE für Klassifizierung und Entitätsextraktion", "Synthetische Daten: 500 Arbeitsaufträge mit Freitext", "Extraktion: Störungstyp, betroffenes Gerät, Standort, Ursache, Dringlichkeit", "Streamlit-Dashboard: Panel für Trends und Muster"],
+    datos: ["Arbeitsaufträge: Freitext mit Beobachtungen des Betreibers", "Störungen: Typ (Ausfall, Leck, Qualität, Vandalismus, Verstopfung)", "Geräte: Referenz des betroffenen Geräts und Standort", "Muster: Ursachenanalyse und Wiederholung nach Zone"],
+    como_usar: ["Zellen sequentiell ausführen", "500 Arbeitsaufträge mit realistischem Text werden generiert", "Cortex AI klassifiziert und extrahiert Entitäten automatisch", "Das Dashboard zeigt Muster und Zonen mit den meisten Störungen"]
   },
   UC07: {
-    title: "Predicción de Demanda Hídrica",
-    contexto: "Estos Cortex Code Prompts construye un modelo de forecasting de demanda de agua a 24-72 horas para optimizar la producción.",
-    foco: "Planificación de producción — predicción de demanda diaria y horaria con variables exógenas.",
-    reto: "Predecir la demanda con ±5% de precisión para optimizar producción, almacenamiento y costes energéticos.",
-    objetivos: ["Generar series temporales sintéticas de consumo de agua", "Incorporar variables exógenas (meteorología, calendario, turismo)", "Entrenar SNOWFLAKE.ML.FORECAST con múltiples horizontes", "Evaluar precisión con MAPE y RMSE", "Dashboard de planificación de producción"],
-    funcionalidades: ["Modelo ML: SNOWFLAKE.ML.FORECAST para demanda diaria", "Datos sintéticos: 2 años de consumo diario (730 registros)", "Variables exógenas: temp_max, precipitacion, es_festivo, es_verano, poblacion_turista", "Dashboard Streamlit: Predicción con intervalos de confianza"],
-    datos: ["Consumo: Demanda diaria en m³ por zona de abastecimiento", "Meteorología: Temperatura máxima, precipitación, viento", "Calendario: Festivos, vacaciones escolares, eventos especiales", "Predicciones: Demanda esperada a 24, 48 y 72 horas"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan 2 años de datos de consumo con estacionalidad", "El modelo entrena con variables exógenas en 60 segundos", "El dashboard muestra predicción vs consumo real"]
+    title: "Vorhersage des Wasserbedarfs",
+    contexto: "Diese Cortex Code Prompts bauen ein Prognosemodell für den Wasserbedarf über 24-72 Stunden zur Optimierung der Produktion.",
+    foco: "Produktionsplanung — tägliche und stündliche Bedarfsprognose mit exogenen Variablen.",
+    reto: "Den Bedarf mit ±5% Genauigkeit vorhersagen, um Produktion, Speicherung und Energiekosten zu optimieren.",
+    objetivos: ["Synthetische Zeitreihen des Wasserverbrauchs generieren", "Exogene Variablen (Wetter, Kalender, Tourismus) einbeziehen", "SNOWFLAKE.ML.FORECAST mit mehreren Horizonten trainieren", "Genauigkeit mit MAPE und RMSE bewerten", "Dashboard zur Produktionsplanung"],
+    funcionalidades: ["ML-Modell: SNOWFLAKE.ML.FORECAST für täglichen Bedarf", "Synthetische Daten: 2 Jahre täglicher Verbrauch (730 Datensätze)", "Exogene Variablen: Maximaltemperatur, Niederschlag, Feiertag, Sommer, Touristenbevölkerung", "Streamlit-Dashboard: Vorhersage mit Konfidenzintervallen"],
+    datos: ["Verbrauch: Täglicher Bedarf in m³ nach Versorgungszone", "Meteorologie: Maximaltemperatur, Niederschlag, Wind", "Kalender: Feiertage, Schulferien, besondere Ereignisse", "Vorhersagen: Erwarteter Bedarf für 24, 48 und 72 Stunden"],
+    como_usar: ["Zellen sequentiell ausführen", "2 Jahre Verbrauchsdaten mit Saisonalität werden generiert", "Das Modell trainiert mit exogenen Variablen in 60 Sekunden", "Das Dashboard zeigt Vorhersage vs. tatsächlichen Verbrauch"]
   },
   UC08: {
-    title: "Detección de Consumos Anómalos en Abonados",
-    contexto: "Estos Cortex Code Prompts construye un sistema de detección de anomalías de consumo por abonado para identificar fugas internas, fraude y averías de contador.",
-    foco: "Gestión comercial — detección temprana de consumption anómalos antes del ciclo de facturación.",
-    reto: "Identificar fugas internas y fraudes de contador en tiempo real, evitando complaints y pérdidas de ingresos.",
-    objetivos: ["Generar perfiles de consumo sintéticos por tipo de abonado", "Entrenar modelo de detección de anomalías con ML.ANOMALY_DETECTION", "Comparar consumo individual vs perfil y vecindario", "Clasificar tipo de anomalía (fuga, fraude, avería)", "Dashboard de alertas para equipo comercial"],
-    funcionalidades: ["Modelo ML: ML.ANOMALY_DETECTION sobre consumption diarios", "Datos sintéticos: 2.000 subscribers × 365 días de lectura", "Variables: daily_consumption, consumo_nocturno, perfil_tipo, media_vecindario, dias_sin_consumo", "Dashboard Streamlit: Alertas priorizadas por impacto económico"],
-    datos: ["Abonados: Tipo (doméstico, comercial, industrial), calibre, zona", "Consumos: Lecturas diarias con patrón histórico", "Anomalías: Tipo (fuga_interna, fraude, contador_averiado, consumo_estacional)", "Alertas: Priorización por volumen estimado y tipo"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan perfiles de consumo para 2.000 subscribers", "El modelo detecta anomalías comparando con perfil y vecindario", "El dashboard muestra alertas priorizadas para acción comercial"]
+    title: "Erkennung anomaler Verbräuche bei Abonnenten",
+    contexto: "Diese Cortex Code Prompts bauen ein System zur Erkennung von Verbrauchsanomalien pro Abonnent, um interne Lecks, Betrug und Zählerdefekte zu identifizieren.",
+    foco: "Kaufmännisches Management — frühzeitige Erkennung anomaler Verbräuche vor dem Abrechnungszyklus.",
+    reto: "Interne Lecks und Zählerbetrug in Echtzeit erkennen, um Beschwerden und Einnahmeausfälle zu vermeiden.",
+    objetivos: ["Synthetische Verbrauchsprofile nach Abonnententyp generieren", "Anomalieerkennungsmodell mit ML.ANOMALY_DETECTION trainieren", "Einzelverbrauch mit Profil und Nachbarschaft vergleichen", "Anomalietyp klassifizieren (Leck, Betrug, Defekt)", "Warnungs-Dashboard für das kaufmännische Team"],
+    funcionalidades: ["ML-Modell: ML.ANOMALY_DETECTION auf täglichen Verbrauchsdaten", "Synthetische Daten: 2.000 Abonnenten × 365 Tage Messwerte", "Variablen: Tagesverbrauch, Nachtverbrauch, Typprofil, Nachbarschaftsdurchschnitt, Tage ohne Verbrauch", "Streamlit-Dashboard: Priorisierte Warnungen nach wirtschaftlichem Impact"],
+    datos: ["Abonnenten: Typ (Haushalt, Gewerbe, Industrie), Kaliber, Zone", "Verbräuche: Tägliche Messwerte mit historischem Muster", "Anomalien: Typ (internes Leck, Betrug, defekter Zähler, saisonaler Verbrauch)", "Warnungen: Priorisierung nach geschätztem Volumen und Typ"],
+    como_usar: ["Zellen sequentiell ausführen", "Verbrauchsprofile für 2.000 Abonnenten werden generiert", "Das Modell erkennt Anomalien im Vergleich zu Profil und Nachbarschaft", "Das Dashboard zeigt priorisierte Warnungen für kaufmännische Maßnahmen"]
   },
   UC09: {
-    title: "Inteligencia sobre Reclamaciones de Clientes",
-    contexto: "Estos Cortex Code Prompts construye un sistema NLP de clasificación y análisis de sentiment sobre complaints de clientes del ciclo del agua.",
-    foco: "Atención al cliente — análisis automatizado de complaints para detectar problemas sistémicos y riesgo regulatorio.",
-    reto: "Procesar miles de complaints mensuales, detectar patrones de causa raíz y anticipar escaladas regulatorias.",
-    objetivos: ["Generar complaints sintéticas de clientes de agua", "Analizar sentiment con CORTEX.SENTIMENT", "Clasificar complaints por categoría con CORTEX.COMPLETE", "Detectar menciones de riesgo regulatorio (ACA, AEMPS, defensor)", "Dashboard de inteligencia de complaints"],
-    funcionalidades: ["NLP: CORTEX.SENTIMENT + CORTEX.COMPLETE para clasificación y sentiment", "Datos sintéticos: 600 complaints de 4 canales y 5 tipos", "Detección: Riesgo regulatorio (menciones a regulador, denuncias, abogados)", "Dashboard Streamlit: Panel de tendencias y alertas"],
-    datos: ["Reclamaciones: Texto con canal, zona, tipo de problema", "Sentimiento: Puntuación -1 a 1 por reclamación", "Categorías: Calidad_Agua, Presion_Baja, Facturacion, Corte_Suministro, Obras", "Alertas: Reclamaciones con indicadores de riesgo regulatorio"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan 600 complaints con textos realistas", "Cortex analiza sentiment y clasifica automáticamente", "El dashboard muestra tendencias y alertas regulatorias"]
+    title: "Kundenbeschwerde-Intelligence",
+    contexto: "Diese Cortex Code Prompts bauen ein NLP-System zur Klassifizierung und Sentimentanalyse von Kundenbeschwerden im Wasserkreislauf.",
+    foco: "Kundenservice — automatisierte Beschwerdeanalyse zur Erkennung systemischer Probleme und regulatorischer Risiken.",
+    reto: "Tausende monatlicher Beschwerden verarbeiten, Ursachenmuster erkennen und regulatorische Eskalationen antizipieren.",
+    objetivos: ["Synthetische Kundenbeschwerden für Wasserversorgung generieren", "Sentiment mit CORTEX.SENTIMENT analysieren", "Beschwerden nach Kategorie mit CORTEX.COMPLETE klassifizieren", "Regulatorische Risikoerwähnungen erkennen (ACA, AEMPS, Ombudsman)", "Beschwerde-Intelligence-Dashboard"],
+    funcionalidades: ["NLP: CORTEX.SENTIMENT + CORTEX.COMPLETE für Klassifizierung und Sentiment", "Synthetische Daten: 600 Beschwerden über 4 Kanäle und 5 Typen", "Erkennung: Regulatorisches Risiko (Erwähnung von Regulierungsbehörden, Klagen, Anwälten)", "Streamlit-Dashboard: Panel für Trends und Warnungen"],
+    datos: ["Beschwerden: Text mit Kanal, Zone, Problemtyp", "Sentiment: Bewertung -1 bis 1 pro Beschwerde", "Kategorien: Wasserqualität, Niedrigdruck, Abrechnung, Versorgungsunterbrechung, Bauarbeiten", "Warnungen: Beschwerden mit regulatorischen Risikoindikatoren"],
+    como_usar: ["Zellen sequentiell ausführen", "600 Beschwerden mit realistischen Texten werden generiert", "Cortex analysiert Sentiment und klassifiziert automatisch", "Das Dashboard zeigt Trends und regulatorische Warnungen"]
   },
   UC10: {
-    title: "Optimización Energética de la Planta",
-    contexto: "Estos Cortex Code Prompts construye un sistema de recomendación de configuración de equipment para minimizar el coste energético de la planta.",
-    foco: "Eficiencia energética — optimización del consumo eléctrico de bombeos, aireación y equipment auxiliares.",
-    reto: "Reducir el coste energético un 10-20% sin comprometer producción ni calidad, adaptándose a tarifas eléctricas variables.",
-    objetivos: ["Generar datos sintéticos de consumo energético por equipo y tarifa", "Modelar la relación entre configuración de equipment y coste energético", "Entrenar ML.CLASSIFICATION para bandas de configuración óptima", "Calcular ahorro potencial por periodo tarifario", "Dashboard de gestión energética con recomendaciones"],
-    funcionalidades: ["Modelo ML: ML.CLASSIFICATION para configuración óptima de equipment", "Datos sintéticos: 365 días × 24 horas de consumo y tarifa eléctrica", "Variables: demanda_m3h, tarifa_electrica, num_bombas_activas, caudal_aireacion, temp_ambiente", "Dashboard Streamlit: Panel de ahorro energético con recomendaciones"],
-    datos: ["Equipos: Bombas, soplantes, equipment auxiliares con potencia y rendimiento", "Tarifas: Precios eléctricos por periodo (punta, llano, valle)", "Consumo: kWh por equipo y hora con coste asociado", "Configuraciones: Combinaciones de equipment con coste y producción"],
-    como_usar: ["Ejecutar celdas secuencialmente", "Se generan datos de consumo energético y tarifas eléctricas", "El modelo recomienda la configuración óptima por hora", "El dashboard muestra ahorro potencial y recomendaciones"]
+    title: "Energieoptimierung der Anlage",
+    contexto: "Diese Cortex Code Prompts bauen ein Empfehlungssystem für die Gerätekonfiguration zur Minimierung der Energiekosten der Anlage.",
+    foco: "Energieeffizienz — Optimierung des Stromverbrauchs von Pumpen, Belüftung und Hilfsgeräten.",
+    reto: "Die Energiekosten um 10-20% senken, ohne Produktion oder Qualität zu beeinträchtigen, bei Anpassung an variable Stromtarife.",
+    objetivos: ["Synthetische Energieverbrauchsdaten pro Gerät und Tarif generieren", "Beziehung zwischen Gerätekonfiguration und Energiekosten modellieren", "ML.CLASSIFICATION für optimale Konfigurationsbänder trainieren", "Einsparpotenzial pro Tarifperiode berechnen", "Energiemanagement-Dashboard mit Empfehlungen"],
+    funcionalidades: ["ML-Modell: ML.CLASSIFICATION für optimale Gerätekonfiguration", "Synthetische Daten: 365 Tage × 24 Stunden Verbrauch und Stromtarif", "Variablen: Bedarf_m³h, Stromtarif, aktive Pumpen, Belüftungsdurchfluss, Umgebungstemperatur", "Streamlit-Dashboard: Energiespar-Panel mit Empfehlungen"],
+    datos: ["Geräte: Pumpen, Gebläse, Hilfsgeräte mit Leistung und Wirkungsgrad", "Tarife: Strompreise nach Periode (Spitze, Normal, Tal)", "Verbrauch: kWh pro Gerät und Stunde mit zugehörigen Kosten", "Konfigurationen: Gerätekombinationen mit Kosten und Produktion"],
+    como_usar: ["Zellen sequentiell ausführen", "Energieverbrauchs- und Tarifdaten werden generiert", "Das Modell empfiehlt die optimale Konfiguration pro Stunde", "Das Dashboard zeigt Einsparpotenzial und Empfehlungen"]
   },
 };
 
 function verGuia(ucId) {
   const g = GUIAS[ucId];
-  if (!g) { alert('Guía no disponible aún para ' + ucId); return; }
+  if (!g) { alert('Anleitung noch nicht verfügbar für ' + ucId); return; }
   const box = document.getElementById('guiaModalBox');
   let h = `<button class="modal-close" onclick="cerrarModal('guiaModal')">&times;</button>`;
   h += `<span class="guide-badge">${ucId}</span>`;
   h += `<h2>${g.title}</h2>`;
-  h += `<p><strong>Caso de Uso: ${g.title}</strong></p>`;
+  h += `<p><strong>Anwendungsfall: ${g.title}</strong></p>`;
   h += `<h3>Geschäftskontext</h3><p>${g.contexto}</p>`;
-  h += `<p><strong>Foco:</strong> ${g.foco}</p>`;
-  h += `<p><strong>Reto de negocio:</strong> ${g.reto}</p>`;
+  h += `<p><strong>Schwerpunkt:</strong> ${g.foco}</p>`;
+  h += `<p><strong>Geschäftsherausforderung:</strong> ${g.reto}</p>`;
   h += `<h3>Lernziele</h3><ul>${g.objetivos.map(o=>`<li>${o}</li>`).join('')}</ul>`;
-  h += `<h3>Funcionalidades</h3><ul>${g.funcionalidades.map(f=>`<li>${f}</li>`).join('')}</ul>`;
+  h += `<h3>Funktionalitäten</h3><ul>${g.funcionalidades.map(f=>`<li>${f}</li>`).join('')}</ul>`;
   h += `<h3>Generierte Daten</h3><ul>${g.datos.map(d=>`<li>${d}</li>`).join('')}</ul>`;
   h += `<h3>Anleitung</h3><ul>${g.como_usar.map(c=>`<li>${c}</li>`).join('')}</ul>`;
-  h += `<p class="guide-footer">Desarrollado con Snowflake Cortex AI + Streamlit</p>`;
+  h += `<p class="guide-footer">Entwickelt mit Snowflake Cortex AI + Streamlit</p>`;
   box.innerHTML = h;
   document.getElementById('guiaModal').classList.add('active');
 }
@@ -747,172 +747,172 @@ function cerrarModal(id) { document.getElementById(id).classList.remove('active'
 
 const PROMPTS = {
   UC01: {
-    title: "Asistente Conversacional de Planta (Talk to your Plant)",
-    intro: "Abre Cortex Code en Snowsight y ejecuta estos prompts secuencialmente. Cada paso construye un asistente RAG que permite a los operadores consultar la planta en lenguaje natural.",
+    title: "Konversations-Assistent für Anlagen (Talk to your Plant)",
+    intro: "Öffne Cortex Code in Snowsight und führe diese Prompts sequentiell aus. Jeder Schritt baut einen RAG-Assistenten, der Betreibern ermöglicht, die Anlage in natürlicher Sprache abzufragen.",
     steps: [
-      { title: "Configurar entorno", desc: "Erstelle die Datenbank, esquema y warehouse para el proyecto.", prompt: "Crea una base de datos llamada TALK_TO_PLANT_DB con esquema PUBLIC y un warehouse COMPUTE_WH tamaño SMALL con auto-suspend de 60 segundos. Establece el contexto de sesión." },
-      { title: "Generar manuales operativos", desc: "Base de conocimiento con procedimientos de planta.", prompt: "Genera una tabla 'manuales_planta' con 80 registros simulando documentación técnica de ETAP/EDAR: doc_id, tipo (Procedimiento_Operativo/Ficha_Equipo/Protocolo_Emergencia/Manual_Mantenimiento), seccion (Pretratamiento/Coagulacion/Filtracion/Desinfeccion/Fangos/Bombeo), titulo, contenido (textos técnicos detallados de 200-400 palabras sobre operación de planta de agua)." },
-      { title: "Generar datos SCADA simulados", desc: "Lecturas de sensores en tiempo real.", prompt: "Genera una tabla 'lecturas_scada' con 500 registros de las últimas 24 horas: lectura_id, timestamp, sensor (Caudal_Entrada/Turbidez_Bruta/pH_Bruto/Cloro_Residual/Presion_Red/Nivel_Deposito), valor FLOAT (rangos realistas por sensor), unidad, plant_zone, estado (Normal/Alerta/Alarma — 10% Alerta, 3% Alarma)." },
-      { title: "Generar historial de alarmas", desc: "Alarmas recientes con acciones tomadas.", prompt: "Genera tabla 'historial_alarmas' con 100 registros: alarma_id, timestamp, severidad (Baja/Media/Alta/Crítica), equipo, descripcion (texto de alarma técnica), accion_tomada (texto de respuesta del operador), resuelta (boolean, 85% true), tiempo_resolucion_min." },
-      { title: "Crear chunks de texto", desc: "Dividir documentos en fragmentos indexables.", prompt: "Crea tabla 'chunks_planta' dividiendo cada contenido de manuales_planta en fragmentos de ~500 caracteres con solapamiento de 50: chunk_id, doc_id, tipo, seccion, chunk_texto, chunk_orden. Añade también chunks generados a partir de alarmas recientes con su contexto." },
-      { title: "Crear Cortex Search Service", desc: "Indexar los chunks para búsqueda semántica.", prompt: "Crea un CORTEX SEARCH SERVICE llamado 'buscador_planta' sobre chunks_planta usando chunk_texto como columna de búsqueda y tipo, seccion como atributos de filtrado. Configura para máxima relevancia." },
-      { title: "Implementar pipeline RAG", desc: "Kontext suchen und Antwort generieren.", prompt: "Crea una función SQL que: 1) Reciba una pregunta del operador, 2) Busque los 5 chunks más relevantes con Cortex Search, 3) Enriquezca con las últimas 10 lecturas SCADA relevantes, 4) Construya un prompt con contexto combinado (documentación + datos en tiempo real), 5) Use CORTEX.COMPLETE con mistral-large2 para generar respuesta citando fuentes (doc_id, seccion)." },
-      { title: "Probar con preguntas operativas", desc: "Validar con consultas habituales de operadores.", prompt: "Prueba el asistente con 6 preguntas tipo: '¿Cuál es la turbidez actual del agua bruta?', '¿Qué procedimiento sigo si sube la turbidez por encima de 50 NTU?', '¿Hay alarmas activas en la zona de filtración?', '¿Cuándo fue el último mantenimiento de la bomba B-201?', '¿Cuál es el protocolo de emergencia por contaminación?', '¿Qué dosis de cloro debo aplicar con pH 7.8?'." },
-      { title: "Enriquecer con contexto de turno", desc: "Añadir información del turno actual.", prompt: "Crea tabla 'turnos' con operador, fecha_inicio, fecha_fin, observaciones. Modifica el pipeline RAG para incluir las observaciones del turno anterior como contexto adicional. Prueba con: '¿Qué incidencias hubo en el turno anterior?'." },
-      { title: "Dashboard konversationell", desc: "Interfaz de chat para operadores de planta.", prompt: "Crea dashboard Streamlit con: sidebar con lecturas SCADA actuales (semáforos verde/amarillo/rojo), campo de texto para pregunta, botón de enviar, área de respuesta con citas de fuente, historial de preguntas de la sesión, filtro por zona de planta para acotar contexto." },
-      { title: "Métricas de uso del asistente", desc: "Registro de preguntas y satisfacción.", prompt: "Crea tabla 'log_consultas' para registrar cada pregunta: timestamp, operador, pregunta, respuesta, fuentes_citadas, tiempo_respuesta_ms, util (boolean). Genera consulta de resumen: preguntas por turno, temas más consultados, tasa de utilidad." },
-      { title: "Limpieza (opcional)", desc: "Elimina los objetos creados al terminar.", prompt: "Genera los comandos DROP DATABASE IF EXISTS TALK_TO_PLANT_DB y DROP WAREHOUSE IF EXISTS COMPUTE_WH comentados para limpieza opcional." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank, Schema und Warehouse für das Projekt erstellen.", prompt: "Erstelle eine Datenbank namens TALK_TO_PLANT_DB mit Schema PUBLIC und einem Warehouse COMPUTE_WH Größe SMALL mit Auto-Suspend von 60 Sekunden. Setze den Sitzungskontext." },
+      { title: "Betriebshandbücher generieren", desc: "Wissensbasis mit Anlagenverfahren.", prompt: "Generiere eine Tabelle 'operating_manuals' mit 80 Datensätzen, die technische Dokumentation von WBA/KA simulieren: doc_id, type (Operating_Procedure/Equipment_Sheet/Emergency_Protocol/Maintenance_Manual), section (Pretreatment/Coagulation/Filtration/Disinfection/Sludge/Pumping), title, content (detaillierte technische Texte von 200-400 Wörtern über den Betrieb einer Wasseraufbereitungsanlage)." },
+      { title: "Simulierte SCADA-Daten generieren", desc: "Echtzeit-Sensormesswerte.", prompt: "Generiere eine Tabelle 'scada_readings' mit 500 Datensätzen der letzten 24 Stunden: reading_id, timestamp, sensor (Inlet_Flow/Raw_Turbidity/Raw_pH/Residual_Chlorine/Network_Pressure/Tank_Level), value FLOAT (realistische Bereiche pro Sensor), unit, plant_zone, status (Normal/Warning/Alarm — 10% Warning, 3% Alarm)." },
+      { title: "Alarmhistorie generieren", desc: "Aktuelle Alarme mit ergriffenen Maßnahmen.", prompt: "Generiere Tabelle 'alarm_history' mit 100 Datensätzen: alarm_id, timestamp, severity (Low/Medium/High/Critical), equipment, description (technischer Alarmtext), action_taken (Antworttext des Betreibers), resolved (boolean, 85% true), resolution_time_min." },
+      { title: "Text-Chunks erstellen", desc: "Dokumente in indexierbare Fragmente aufteilen.", prompt: "Erstelle Tabelle 'plant_chunks' indem jeder Inhalt von operating_manuals in Fragmente von ~500 Zeichen mit 50 Zeichen Überlappung aufgeteilt wird: chunk_id, doc_id, type, section, chunk_text, chunk_order. Füge auch aus aktuellen Alarmen generierte Chunks mit Kontext hinzu." },
+      { title: "Cortex Search Service erstellen", desc: "Chunks für semantische Suche indexieren.", prompt: "Erstelle einen CORTEX SEARCH SERVICE namens 'plant_searcher' auf plant_chunks mit chunk_text als Suchspalte und type, section als Filterattribute. Konfiguriere für maximale Relevanz." },
+      { title: "RAG-Pipeline implementieren", desc: "Kontext suchen und Antwort generieren.", prompt: "Erstelle eine SQL-Funktion die: 1) Eine Frage des Betreibers empfängt, 2) Die 5 relevantesten Chunks mit Cortex Search sucht, 3) Mit den letzten 10 relevanten SCADA-Messwerten anreichert, 4) Einen Prompt mit kombiniertem Kontext (Dokumentation + Echtzeitdaten) erstellt, 5) CORTEX.COMPLETE mit mistral-large2 verwendet, um eine Antwort mit Quellenangabe (doc_id, section) zu generieren." },
+      { title: "Mit Betriebsfragen testen", desc: "Mit typischen Betreiberfragen validieren.", prompt: "Teste den Assistenten mit 6 typischen Fragen: 'Wie hoch ist die aktuelle Trübung des Rohwassers?', 'Welches Verfahren befolge ich, wenn die Trübung über 50 NTU steigt?', 'Gibt es aktive Alarme im Filtrationsbereich?', 'Wann war die letzte Wartung der Pumpe B-201?', 'Wie lautet das Notfallprotokoll bei Kontamination?', 'Welche Chlordosis soll ich bei pH 7,8 anwenden?'." },
+      { title: "Mit Schichtkontext anreichern", desc: "Informationen der aktuellen Schicht hinzufügen.", prompt: "Erstelle Tabelle 'shifts' mit operator, start_date, end_date, observations. Modifiziere die RAG-Pipeline, um die Beobachtungen der vorherigen Schicht als zusätzlichen Kontext einzubeziehen. Teste mit: 'Welche Vorfälle gab es in der vorherigen Schicht?'." },
+      { title: "Konversations-Dashboard", desc: "Chat-Oberfläche für Anlagenbetreiber.", prompt: "Erstelle Streamlit-Dashboard mit: Sidebar mit aktuellen SCADA-Messwerten (Ampeln grün/gelb/rot), Textfeld für Fragen, Senden-Button, Antwortbereich mit Quellenangabe, Fragenverlauf der Sitzung, Filter nach Anlagenzone zur Kontexteingrenzung." },
+      { title: "Nutzungsmetriken des Assistenten", desc: "Erfassung von Fragen und Zufriedenheit.", prompt: "Erstelle Tabelle 'query_log' zur Erfassung jeder Frage: timestamp, operator, question, answer, cited_sources, response_time_ms, helpful (boolean). Generiere Zusammenfassungsabfrage: Fragen pro Schicht, meistgefragte Themen, Nützlichkeitsrate." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte am Ende löschen.", prompt: "Generiere die Befehle DROP DATABASE IF EXISTS TALK_TO_PLANT_DB und DROP WAREHOUSE IF EXISTS COMPUTE_WH als Kommentare für optionale Bereinigung." },
     ]
   },
   UC02: {
-    title: "Predicción de Turbidez y Parámetros Fisicoquímicos",
-    intro: "Prompts para construir un modelo de forecasting de parámetros de calidad del agua usando SNOWFLAKE.ML.FORECAST.",
+    title: "Vorhersage von Trübung und physikalisch-chemischen Parametern",
+    intro: "Prompts zum Aufbau eines Prognosemodells für Wasserqualitätsparameter mit SNOWFLAKE.ML.FORECAST.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para predicción de calidad.", prompt: "Crea base de datos QUALITY_PREDICTION_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar series temporales de calidad", desc: "365 días de lecturas horarias de sensores.", prompt: "Genera tabla 'lecturas_calidad' con 8.760 registros (365 días × 24 horas): timestamp, turbidity_ntu (2-150, con picos estacionales y tras lluvias), ph (6.5-8.5), residual_chlorine_mg_l (0.1-2.0), conductivity_us_cm (200-800), water_temperature (5-25, estacional), caudal_bruto_m3h (100-500). Incluye correlaciones realistas: turbidez sube con lluvia, cloro baja con temperatura alta." },
-      { title: "Generar datos meteorológicos", desc: "Variables exógenas para el modelo.", prompt: "Genera tabla 'meteo' con 8.760 registros alineados: timestamp, temperatura_aire, precipitacion_mm (0-50, concentrada en otoño/primavera), humedad_pct, viento_km_h. Une con lecturas_calidad en tabla 'datos_modelo'." },
-      { title: "Entrenar modelo de turbidez", desc: "Forecasting con SNOWFLAKE.ML.FORECAST.", prompt: "Entrena un modelo SNOWFLAKE.ML.FORECAST llamado 'predictor_turbidez' sobre datos_modelo con timestamp como columna temporal y turbidity_ntu como target. Configura horizon de 24 periodos (24 horas)." },
-      { title: "Entrenar modelos adicionales", desc: "Predicción de pH, cloro y conductivity.", prompt: "Entrena 3 modelos adicionales: 'predictor_ph', 'predictor_cloro', 'predictor_conductivity' con la misma estructura y horizon de 24 horas." },
-      { title: "Generar predicciones", desc: "Predicciones a 4, 8, 12 y 24 horas.", prompt: "Genera tabla 'predicciones_calidad' con las predicciones de los 4 modelos. Para cada parámetro muestra: valor_predicho, intervalo_inferior, intervalo_superior, horizonte_horas." },
-      { title: "Configurar alertas regulatorias", desc: "Umbrales del RD 140/2003.", prompt: "Crea tabla 'umbrales_regulatorios' con límites: turbidez_max=4 NTU, pH_min=6.5, pH_max=9.5, cloro_min=0.2 mg/l, conductivity_max=2500 µS/cm. Genera tabla 'alertas_proactivas' con predicciones que superan umbrales en las próximas 24h." },
-      { title: "Evaluar precisión", desc: "Métricas de error por parámetro.", prompt: "Calcula MAPE, RMSE y MAE para cada parámetro usando los últimos 30 días como test. Muestra tabla comparativa de precisión." },
-      { title: "Dashboard de predicciones", desc: "Panel de tendencias y alertas proactivas.", prompt: "Crea dashboard Streamlit con: KPIs (turbidez actual, predicción 24h, alertas activas, precisión MAPE), gráfico de líneas con valores reales + predicción + banda de confianza, tabla de alertas proactivas con horizonte temporal, selector de parámetro a visualizar." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Qualitätsvorhersage.", prompt: "Erstelle Datenbank QUALITY_PREDICTION_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Qualitätszeitreihen generieren", desc: "365 Tage stündliche Sensormesswerte.", prompt: "Generiere Tabelle 'quality_readings' mit 8.760 Datensätzen (365 Tage × 24 Stunden): timestamp, turbidity_ntu (2-150, mit saisonalen Spitzen und nach Regen), ph (6.5-8.5), residual_chlorine_mg_l (0.1-2.0), conductivity_us_cm (200-800), water_temperature (5-25, saisonal), raw_flow_m3h (100-500). Inklusive realistischer Korrelationen: Trübung steigt bei Regen, Chlor sinkt bei hoher Temperatur." },
+      { title: "Wetterdaten generieren", desc: "Exogene Variablen für das Modell.", prompt: "Generiere Tabelle 'meteo' mit 8.760 ausgerichteten Datensätzen: timestamp, air_temperature, precipitation_mm (0-50, konzentriert in Herbst/Frühling), humidity_pct, wind_km_h. Verbinde mit quality_readings in Tabelle 'model_data'." },
+      { title: "Trübungsmodell trainieren", desc: "Prognose mit SNOWFLAKE.ML.FORECAST.", prompt: "Trainiere ein SNOWFLAKE.ML.FORECAST Modell namens 'turbidity_predictor' auf model_data mit timestamp als Zeitspalte und turbidity_ntu als Zielwert. Konfiguriere Horizont von 24 Perioden (24 Stunden)." },
+      { title: "Zusätzliche Modelle trainieren", desc: "Vorhersage von pH, Chlor und Leitfähigkeit.", prompt: "Trainiere 3 zusätzliche Modelle: 'ph_predictor', 'chlorine_predictor', 'conductivity_predictor' mit derselben Struktur und 24-Stunden-Horizont." },
+      { title: "Vorhersagen generieren", desc: "Vorhersagen für 4, 8, 12 und 24 Stunden.", prompt: "Generiere Tabelle 'quality_predictions' mit den Vorhersagen der 4 Modelle. Für jeden Parameter zeige: predicted_value, lower_bound, upper_bound, horizon_hours." },
+      { title: "Regulatorische Alarme konfigurieren", desc: "Schwellenwerte gemäß Vorschriften.", prompt: "Erstelle Tabelle 'regulatory_thresholds' mit Grenzwerten: max_turbidity=4 NTU, min_ph=6.5, max_ph=9.5, min_chlorine=0.2 mg/l, max_conductivity=2500 µS/cm. Generiere Tabelle 'proactive_alerts' mit Vorhersagen, die Schwellenwerte in den nächsten 24h überschreiten." },
+      { title: "Genauigkeit bewerten", desc: "Fehlermetriken pro Parameter.", prompt: "Berechne MAPE, RMSE und MAE für jeden Parameter mit den letzten 30 Tagen als Testdaten. Zeige Vergleichstabelle der Genauigkeit." },
+      { title: "Vorhersage-Dashboard", desc: "Panel für Trends und proaktive Alarme.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (aktuelle Trübung, 24h-Vorhersage, aktive Alarme, MAPE-Genauigkeit), Liniendiagramm mit Istwerten + Vorhersage + Konfidenzband, Tabelle proaktiver Alarme mit Zeithorizont, Parameterauswahl zur Visualisierung." },
     ]
   },
   UC03: {
-    title: "Optimización de Dosificación de Reactivos",
-    intro: "Prompts para construir un sistema de recomendación de dosis óptima de reactivos con ML.CLASSIFICATION.",
+    title: "Optimierung der Reagenziendosierung",
+    intro: "Prompts zum Aufbau eines Empfehlungssystems für optimale Reagenziendosierung mit ML.CLASSIFICATION.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para dosificación.", prompt: "Crea base de datos DOSING_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar datos de jar-test", desc: "Ensayos de coagulación con resultados.", prompt: "Genera tabla 'jar_test' con 2000 registros: ensayo_id, fecha, turbidez_bruta (5-200 NTU), ph_bruto (6.5-8.5), temperatura (5-25°C), materia_organica_mg_l (1-15), color_upt (5-100), conductivity (200-800), coagulant_dose_mg_l (10-80), dosis_floculante_mg_l (0.1-2.0), chlorine_dose_mg_l (0.5-5.0), turbidez_residual_ntu (0.1-10). Relación: dosis óptima correlaciona con turbidez y materia orgánica." },
-      { title: "Crear bandas de dosificación", desc: "Discretizar la dosis óptima en categorías.", prompt: "Crea tabla 'jar_test_bandas' añadiendo banda_dosificacion basada en turbidez_residual: Optima (residual<1 NTU y dosis mínima), Aceptable (residual 1-2 NTU), Excesiva (residual<1 pero dosis alta), Insuficiente (residual>2 NTU). Target: banda_dosificacion." },
-      { title: "Feature engineering", desc: "Variables predictoras para dosificación.", prompt: "Crea tabla 'features_dosificacion' con variables FLOAT: turbidez_bruta, ph_bruto, temperatura, materia_organica, color, conductivity, ratio_turb_mo (turbidez/materia_organica), es_invierno, es_periodo_lluvia. Target: banda_dosificacion." },
-      { title: "Entrenar modelo", desc: "Clasificación de banda óptima.", prompt: "Divide 80/20, entrena SNOWFLAKE.ML.CLASSIFICATION 'recomendador_dosis' con target banda_dosificacion y evaluate TRUE." },
-      { title: "Evaluar y mostrar importancia", desc: "Métricas y variables más relevantes.", prompt: "Muestra SHOW_EVALUATION_METRICS, SHOW_CONFUSION_MATRIX y SHOW_FEATURE_IMPORTANCE. Calcula exactitud por banda." },
-      { title: "Generar recomendaciones", desc: "Dosis recomendada para condiciones actuales.", prompt: "Crea tabla 'recomendaciones' que para cada registro de test prediga la banda y mapee a dosis específica: Optima_Baja (coag 15-25 mg/l), Optima_Media (25-40), Optima_Alta (40-60). Calcula ahorro vs dosis histórica aplicada." },
-      { title: "Calcular impacto económico", desc: "Ahorro estimado en reactivos.", prompt: "Crea consulta que calcule: coste_reactivo_historico (dosis_aplicada × coste_unitario), coste_recomendado (dosis_optima × coste_unitario), ahorro_mensual, ahorro_anual. Asume: coagulante 0.35€/kg, floculante 2.50€/kg, cloro 0.80€/kg." },
-      { title: "Dashboard de dosificación", desc: "Panel de recomendaciones para operadores.", prompt: "Crea dashboard Streamlit con: KPIs (ahorro mensual estimado, dosis actual vs óptima, precisión modelo), recomendación en tiempo real dado inputs de agua bruta, gráfico de ahorro acumulado, tabla de histórico de recomendaciones." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS DOSING_DB comentados para limpieza opcional." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Dosierung.", prompt: "Erstelle Datenbank DOSING_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Jar-Test-Daten generieren", desc: "Koagulationsversuche mit Ergebnissen.", prompt: "Generiere Tabelle 'jar_test' mit 2000 Datensätzen: test_id, date, raw_turbidity (5-200 NTU), raw_ph (6.5-8.5), temperature (5-25°C), organic_matter_mg_l (1-15), color_upt (5-100), conductivity (200-800), coagulant_dose_mg_l (10-80), flocculant_dose_mg_l (0.1-2.0), chlorine_dose_mg_l (0.5-5.0), residual_turbidity_ntu (0.1-10). Beziehung: Optimale Dosis korreliert mit Trübung und organischer Substanz." },
+      { title: "Dosierungsbänder erstellen", desc: "Optimale Dosis in Kategorien einteilen.", prompt: "Erstelle Tabelle 'jar_test_bands' mit dosing_band basierend auf residual_turbidity: Optimal (Resttrübung<1 NTU und minimale Dosis), Acceptable (Resttrübung 1-2 NTU), Excessive (Resttrübung<1 aber hohe Dosis), Insufficient (Resttrübung>2 NTU). Zielwert: dosing_band." },
+      { title: "Feature Engineering", desc: "Prädiktive Variablen für Dosierung.", prompt: "Erstelle Tabelle 'dosing_features' mit FLOAT-Variablen: raw_turbidity, raw_ph, temperature, organic_matter, color, conductivity, turbidity_om_ratio (Trübung/organische Substanz), is_winter, is_rainy_period. Zielwert: dosing_band." },
+      { title: "Modell trainieren", desc: "Klassifizierung des optimalen Bandes.", prompt: "Teile 80/20, trainiere SNOWFLAKE.ML.CLASSIFICATION 'dosing_recommender' mit Zielwert dosing_band und evaluate TRUE." },
+      { title: "Auswerten und Wichtigkeit anzeigen", desc: "Metriken und relevanteste Variablen.", prompt: "Zeige SHOW_EVALUATION_METRICS, SHOW_CONFUSION_MATRIX und SHOW_FEATURE_IMPORTANCE. Berechne Genauigkeit pro Band." },
+      { title: "Empfehlungen generieren", desc: "Empfohlene Dosis für aktuelle Bedingungen.", prompt: "Erstelle Tabelle 'recommendations' die für jeden Testdatensatz das Band vorhersagt und auf spezifische Dosis abbildet: Optimal_Low (Koagulant 15-25 mg/l), Optimal_Medium (25-40), Optimal_High (40-60). Berechne Einsparung gegenüber historisch angewendeter Dosis." },
+      { title: "Wirtschaftlichen Impact berechnen", desc: "Geschätzte Reagenzieneinsparung.", prompt: "Erstelle Abfrage die berechnet: historical_reagent_cost (angewendete Dosis × Stückkosten), recommended_cost (optimale Dosis × Stückkosten), monthly_savings, annual_savings. Annahmen: Koagulant 0,35€/kg, Flockungsmittel 2,50€/kg, Chlor 0,80€/kg." },
+      { title: "Dosierungs-Dashboard", desc: "Empfehlungspanel für Betreiber.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (geschätzte Monatseinsparung, aktuelle vs. optimale Dosis, Modellgenauigkeit), Echtzeitempfehlung basierend auf Rohwasser-Inputs, Diagramm kumulierter Einsparungen, Tabelle des Empfehlungsverlaufs." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS DOSING_DB als Kommentare für optionale Bereinigung." },
     ]
   },
   UC04: {
-    title: "Mantenimiento Predictivo de Equipos de Planta",
-    intro: "Prompts para construir un sistema de detección de anomalías en equipment críticos de ETAP/EDAR con ML.ANOMALY_DETECTION.",
+    title: "Vorausschauende Wartung von Anlagengeräten",
+    intro: "Prompts zum Aufbau eines Anomalieerkennungssystems für kritische WBA/KA-Geräte mit ML.ANOMALY_DETECTION.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para mantenimiento predictivo.", prompt: "Crea base de datos PREDICTIVE_MAINTENANCE_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar inventario de equipment", desc: "Catálogo de equipment rotativos de planta.", prompt: "Genera tabla 'equipment' con 50 registros: equipment_id (BOM-001..BOM-020 bombas, SOP-001..SOP-015 soplantes, AGI-001..AGI-010 agitadores, COM-001..COM-005 compresores), tipo, plant_zone, power_kw, installation_date, horas_acumuladas, ultimo_mantenimiento." },
-      { title: "Generar datos de sensores IoT", desc: "365 días de lecturas diarias por equipo.", prompt: "Genera tabla 'equipment_sensors' con 18.250 registros (50 equipment × 365 días): equipment_id, fecha, vibration_mm_s (normal: 2-5, degradado: 5-12, fallo: >12), bearing_temperature_c (normal: 40-65, degradado: 65-85, fallo: >85), presion_descarga_bar, amperage_a (% de nominal), horas_operacion_dia. Incluir 5 equipment con degradación progresiva en últimos 30 días." },
-      { title: "Generar historial de mantenimiento", desc: "Intervenciones y averías.", prompt: "Genera tabla 'maintenance_history' con 200 registros: mto_id, equipment_id, fecha, tipo (Preventivo/Correctivo/Predictivo), descripcion, coste_euros, horas_parada, pieza_sustituida. Los correctivos cuestan 3-5x más que preventivos." },
-      { title: "Entrenar modelo de anomalías", desc: "Detección de patrones anómalos.", prompt: "Entrena SNOWFLAKE.ML.ANOMALY_DETECTION 'detector_anomalias_equipos' sobre equipment_sensors con equipment_id como serie y fecha como timestamp. Columnas de valor: vibration_mm_s, bearing_temperature_c, amperage_a." },
-      { title: "Detectar anomalías recientes", desc: "Identificar equipment con comportamiento anómalo.", prompt: "Generiere Vorhersagen sobre los últimos 30 días. Crea tabla 'anomalias_detectadas' con: equipment_id, fecha, es_anomalia, contribucion_vibracion, contribucion_temperatura, contribucion_amperaje. Filtra solo anomalías." },
-      { title: "Clasificar severidad", desc: "Priorizar acciones de mantenimiento.", prompt: "Crea tabla 'alertas_mantenimiento' clasificando anomalías en: Crítica (múltiples variables anómalas + horas_acumuladas altas), Alta (una variable muy anómala), Media (tendencia de degradación), Baja (anomalía puntual). Prioriza por coste de parada estimado." },
-      { title: "Calcular ROI del mantenimiento predictivo", desc: "Comparar costes correctivo vs predictivo.", prompt: "Calcula: coste_correctivo_anual (suma de correctivos históricos), coste_predictivo_estimado (intervención planificada antes de fallo), ahorro_estimado, paradas_evitadas. Muestra comparativa por tipo de equipo." },
-      { title: "Dashboard de salud de equipment", desc: "Panel de monitorización con semáforos.", prompt: "Crea dashboard Streamlit con: KPIs (equipment monitorizados, alertas activas, ahorro estimado), tabla de equipment con semáforo de salud (Verde/Amarillo/Rojo), gráfico de tendencia de vibración/temperatura por equipo seleccionable, lista de acciones de mantenimiento priorizadas." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS PREDICTIVE_MAINTENANCE_DB comentados." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für vorausschauende Wartung.", prompt: "Erstelle Datenbank PREDICTIVE_MAINTENANCE_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Geräteinventar generieren", desc: "Katalog rotierender Anlagengeräte.", prompt: "Generiere Tabelle 'equipment' mit 50 Datensätzen: equipment_id (PMP-001..PMP-020 Pumpen, BLW-001..BLW-015 Gebläse, AGT-001..AGT-010 Rührwerke, CMP-001..CMP-005 Kompressoren), type, plant_zone, power_kw, installation_date, accumulated_hours, last_maintenance." },
+      { title: "IoT-Sensordaten generieren", desc: "365 Tage tägliche Messwerte pro Gerät.", prompt: "Generiere Tabelle 'equipment_sensors' mit 18.250 Datensätzen (50 Geräte × 365 Tage): equipment_id, date, vibration_mm_s (normal: 2-5, degradiert: 5-12, Ausfall: >12), bearing_temperature_c (normal: 40-65, degradiert: 65-85, Ausfall: >85), discharge_pressure_bar, amperage_a (% des Nennwerts), operating_hours_day. 5 Geräte mit progressiver Degradation in den letzten 30 Tagen einschließen." },
+      { title: "Wartungshistorie generieren", desc: "Eingriffe und Ausfälle.", prompt: "Generiere Tabelle 'maintenance_history' mit 200 Datensätzen: maintenance_id, equipment_id, date, type (Preventive/Corrective/Predictive), description, cost_euros, downtime_hours, replaced_part. Korrektive Eingriffe kosten 3-5x mehr als präventive." },
+      { title: "Anomaliemodell trainieren", desc: "Anomale Muster erkennen.", prompt: "Trainiere SNOWFLAKE.ML.ANOMALY_DETECTION 'equipment_anomaly_detector' auf equipment_sensors mit equipment_id als Serie und date als Zeitstempel. Wertspalten: vibration_mm_s, bearing_temperature_c, amperage_a." },
+      { title: "Aktuelle Anomalien erkennen", desc: "Geräte mit anomalem Verhalten identifizieren.", prompt: "Generiere Vorhersagen über die letzten 30 Tage. Erstelle Tabelle 'detected_anomalies' mit: equipment_id, date, is_anomaly, vibration_contribution, temperature_contribution, amperage_contribution. Filtere nur Anomalien." },
+      { title: "Schweregrad klassifizieren", desc: "Wartungsmaßnahmen priorisieren.", prompt: "Erstelle Tabelle 'maintenance_alerts' die Anomalien klassifiziert in: Critical (mehrere anomale Variablen + hohe Betriebsstunden), High (eine stark anomale Variable), Medium (Degradationstrend), Low (punktuelle Anomalie). Priorisiere nach geschätzten Stillstandskosten." },
+      { title: "ROI der vorausschauenden Wartung berechnen", desc: "Kosten korrektiv vs. prädiktiv vergleichen.", prompt: "Berechne: annual_corrective_cost (Summe historischer korrektiver Eingriffe), estimated_predictive_cost (geplanter Eingriff vor Ausfall), estimated_savings, avoided_downtimes. Zeige Vergleich nach Gerätetyp." },
+      { title: "Gerätezustands-Dashboard", desc: "Überwachungspanel mit Ampeln.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (überwachte Geräte, aktive Warnungen, geschätzte Einsparung), Gerätetabelle mit Gesundheitsampel (Grün/Gelb/Rot), Trenddiagramm für Vibration/Temperatur pro auswählbarem Gerät, priorisierte Wartungsmaßnahmenliste." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS PREDICTIVE_MAINTENANCE_DB als Kommentare." },
     ]
   },
   UC05: {
-    title: "Detección de Fugas en Red de Distribución",
-    intro: "Prompts para construir un sistema de scoring de probabilidad de fuga por DMA con ML.CLASSIFICATION.",
+    title: "Leckageerkennung im Verteilungsnetz",
+    intro: "Prompts zum Aufbau eines Leckagewahrscheinlichkeits-Scoring-Systems pro DMA mit ML.CLASSIFICATION.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para detección de fugas.", prompt: "Crea base de datos LEAK_DETECTION_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar DMAs y red", desc: "Zonas de medición con características de infraestructura.", prompt: "Genera tabla 'dmas' con 200 registros: dma_id, nombre_zona, num_acometidas (50-2000), longitud_red_km (2-30), average_age_years (5-60), material_predominante (Fundicion/PVC/Polietileno/Fibrocemento), diametro_medio_mm, average_pressure_bar (2-6), tiene_regulacion_presion (boolean)." },
-      { title: "Generar datos de caudal", desc: "Lecturas horarias de contadores sectoriales.", prompt: "Genera tabla 'dma_flows' con registros horarios por DMA durante 30 días: dma_id, timestamp, caudal_m3h, presion_bar. Incluir patrón día/noche con caudal mínimo nocturno (2-5 AM). DMAs con fuga tienen nighttime_minimum_flow elevado (>30% del medio)." },
-      { title: "Calcular balance hídrico", desc: "Agua no registrada por DMA.", prompt: "Crea tabla 'water_balance' por DMA: volumen_suministrado, volumen_facturado (sintético, 60-95% del suministrado), anr_pct (agua no registrada %), nighttime_minimum_flow_m3h, ratio_noche_dia. Clasifica: tiene_fuga_probable (anr_pct > 25%)." },
-      { title: "Feature engineering", desc: "Variables predictivas de fuga.", prompt: "Crea tabla 'features_fugas' con variables FLOAT: anr_pct, nighttime_minimum_flow, ratio_noche_dia, average_age_years, es_fibrocemento (material propenso a rotura), average_pressure, num_acometidas, longitud_red_km, tiene_regulacion_presion, num_reparaciones_historico (añadir columna sintética). Target: tiene_fuga_probable." },
-      { title: "Entrenar modelo de fugas", desc: "Clasificación de probabilidad de fuga.", prompt: "Divide 80/20, entrena SNOWFLAKE.ML.CLASSIFICATION 'detector_fugas' con target tiene_fuga_probable y evaluate TRUE." },
-      { title: "Puntuar y priorizar", desc: "Scoring de fuga por DMA.", prompt: "Puntúa todos los DMAs con niveles: Alta Probabilidad (>=70%), Riesgo Medio (40-70%), Baja Probabilidad (<40%). Estima volumen_fuga_m3_dia = nighttime_minimum_flow * factor. Calcula coste_agua_perdida = volumen * tarifa." },
-      { title: "Planificar campañas", desc: "Priorización económica de campañas de detección.", prompt: "Crea tabla 'plan_campanas' ordenando DMAs por coste_agua_perdida descendente. Calcula: inversión campaña (coste equipo + personal), retorno estimado, plazo de amortización. Top 20 DMAs para próxima campaña." },
-      { title: "Dashboard de fugas", desc: "Panel de gestión de agua no registrada.", prompt: "Crea dashboard Streamlit con: KPIs (ANR total %, m³ perdidos/día, coste anual pérdidas, DMAs en alerta), tabla de DMAs con scoring, distribución de ANR por material de tubería, plan de campañas priorizado." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS LEAK_DETECTION_DB comentados." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Leckageerkennung.", prompt: "Erstelle Datenbank LEAK_DETECTION_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "DMAs und Netz generieren", desc: "Messzonen mit Infrastrukturmerkmalen.", prompt: "Generiere Tabelle 'dmas' mit 200 Datensätzen: dma_id, zone_name, num_connections (50-2000), network_length_km (2-30), average_age_years (5-60), predominant_material (Cast_Iron/PVC/Polyethylene/Asbestos_Cement), average_diameter_mm, average_pressure_bar (2-6), has_pressure_regulation (boolean)." },
+      { title: "Durchflussdaten generieren", desc: "Stündliche Messwerte sektorieller Zähler.", prompt: "Generiere Tabelle 'dma_flows' mit stündlichen Datensätzen pro DMA über 30 Tage: dma_id, timestamp, flow_m3h, pressure_bar. Tag-/Nachtmuster mit nächtlichem Mindestdurchfluss (2-5 Uhr) einschließen. DMAs mit Leck haben erhöhten nighttime_minimum_flow (>30% des Durchschnitts)." },
+      { title: "Wasserbilanz berechnen", desc: "Nicht abgerechnetes Wasser pro DMA.", prompt: "Erstelle Tabelle 'water_balance' pro DMA: supplied_volume, billed_volume (synthetisch, 60-95% des gelieferten), nrw_pct (nicht abgerechnetes Wasser %), nighttime_minimum_flow_m3h, night_day_ratio. Klassifiziere: has_probable_leak (nrw_pct > 25%)." },
+      { title: "Feature Engineering", desc: "Prädiktive Leckage-Variablen.", prompt: "Erstelle Tabelle 'leak_features' mit FLOAT-Variablen: nrw_pct, nighttime_minimum_flow, night_day_ratio, average_age_years, is_asbestos_cement (bruchanfälliges Material), average_pressure, num_connections, network_length_km, has_pressure_regulation, historical_repairs_count (synthetische Spalte). Zielwert: has_probable_leak." },
+      { title: "Leckagemodell trainieren", desc: "Leckagewahrscheinlichkeit klassifizieren.", prompt: "Teile 80/20, trainiere SNOWFLAKE.ML.CLASSIFICATION 'leak_detector' mit Zielwert has_probable_leak und evaluate TRUE." },
+      { title: "Bewerten und priorisieren", desc: "Leckage-Scoring pro DMA.", prompt: "Bewerte alle DMAs mit Stufen: High_Probability (>=70%), Medium_Risk (40-70%), Low_Probability (<40%). Schätze leak_volume_m3_day = nighttime_minimum_flow * Faktor. Berechne lost_water_cost = Volumen * Tarif." },
+      { title: "Kampagnen planen", desc: "Wirtschaftliche Priorisierung von Erkennungskampagnen.", prompt: "Erstelle Tabelle 'campaign_plan' mit DMAs sortiert nach lost_water_cost absteigend. Berechne: Kampagneninvestition (Geräte + Personal), geschätzte Rendite, Amortisationszeitraum. Top 20 DMAs für nächste Kampagne." },
+      { title: "Leckage-Dashboard", desc: "Panel für NRW-Management.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (Gesamt-NRW %, verlorene m³/Tag, jährliche Verlustkosten, DMAs in Warnung), DMA-Tabelle mit Scoring, NRW-Verteilung nach Rohrmaterial, priorisierter Kampagnenplan." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS LEAK_DETECTION_DB als Kommentare." },
     ]
   },
   UC06: {
-    title: "Análisis NLP de Incidencias y Partes de Trabajo",
-    intro: "Prompts para construir un pipeline NLP de clasificación y extracción de entidades sobre partes de trabajo con Cortex AI.",
+    title: "NLP-Analyse von Störungen und Arbeitsaufträgen",
+    intro: "Prompts zum Aufbau einer NLP-Pipeline für Klassifizierung und Entitätsextraktion aus Arbeitsaufträgen mit Cortex AI.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para análisis de incidencias.", prompt: "Crea base de datos INCIDENT_NLP_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar partes de trabajo", desc: "500 partes con texto libre realista.", prompt: "Genera tabla 'work_orders' con 500 registros: parte_id, fecha, operario_id (20 operarios), zona (Red_Norte/Red_Sur/ETAP/EDAR/Depositos), tipo_real (Averia/Fuga/Calidad/Vandalismo/Obstruccion), texto_observaciones (textos realistas de 50-150 palabras describiendo la incidencia encontrada, acciones realizadas y estado final), urgencia_real (Baja/Media/Alta/Critica)." },
-      { title: "Clasificar incidencias con IA", desc: "CORTEX.COMPLETE para categorización.", prompt: "Crea tabla 'partes_clasificados' usando SNOWFLAKE.CORTEX.COMPLETE para clasificar cada texto_observaciones en tipo_predicho (Averia/Fuga/Calidad/Vandalismo/Obstruccion/Otro). Compara tipo_predicho vs tipo_real y calcula exactitud." },
-      { title: "Extraer entidades", desc: "Equipo, ubicación y causa raíz.", prompt: "Usa CORTEX.COMPLETE con prompt de extracción para obtener JSON: equipo_afectado, ubicacion_exacta, causa_raiz, accion_realizada, estado_final, requiere_seguimiento. Almacena en tabla 'entidades_extraidas' con TRY_PARSE_JSON." },
-      { title: "Analizar sentiment y urgencia", desc: "Scoring de urgencia con IA.", prompt: "Añade CORTEX.SENTIMENT sobre texto_observaciones. Usa CORTEX.COMPLETE para predecir urgencia_predicha (Baja/Media/Alta/Critica). Compara con urgencia_real." },
-      { title: "Detectar patrones recurrentes", desc: "Zonas y equipment con más incidencias.", prompt: "Crea consultas de agregación: incidencias por zona y tipo, equipment con más averías, causas raíz más frecuentes, evolución mensual, zonas con tendencia creciente de incidencias." },
-      { title: "Análisis de coste de incidencias", desc: "Estimar coste por tipo y zona.", prompt: "Genera tabla 'coste_incidencias' asignando coste estimado por tipo: Averia (500-5000€), Fuga (200-2000€), Calidad (100-1000€), Vandalismo (300-3000€), Obstruccion (150-1500€). Agrega por zona y tipo." },
-      { title: "Priorizar inversiones", desc: "Zonas con mayor coste recurrente.", prompt: "Crea tabla 'priorizacion_inversion' que identifique las 10 zonas con mayor coste acumulado y tendencia creciente. Calcula ROI estimado de renovación vs coste de mantenimiento correctivo continuado." },
-      { title: "Dashboard de incidencias", desc: "Panel de inteligencia operativa.", prompt: "Crea dashboard Streamlit con: KPIs (partes procesados, exactitud clasificación, top zona problemática), distribución por tipo y zona (bar chart), tabla de partes recientes con clasificación IA, tendencia mensual de incidencias." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS INCIDENT_NLP_DB comentados." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Störungsanalyse.", prompt: "Erstelle Datenbank INCIDENT_NLP_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Arbeitsaufträge generieren", desc: "500 Aufträge mit realistischem Freitext.", prompt: "Generiere Tabelle 'work_orders' mit 500 Datensätzen: order_id, date, operator_id (20 Betreiber), zone (North_Network/South_Network/WTP/WWTP/Tanks), actual_type (Failure/Leak/Quality/Vandalism/Blockage), observation_text (realistische Texte von 50-150 Wörtern, die den gefundenen Vorfall, durchgeführte Maßnahmen und Endzustand beschreiben), actual_urgency (Low/Medium/High/Critical)." },
+      { title: "Störungen mit KI klassifizieren", desc: "CORTEX.COMPLETE für Kategorisierung.", prompt: "Erstelle Tabelle 'classified_orders' mit SNOWFLAKE.CORTEX.COMPLETE zur Klassifizierung jedes observation_text in predicted_type (Failure/Leak/Quality/Vandalism/Blockage/Other). Vergleiche predicted_type vs actual_type und berechne Genauigkeit." },
+      { title: "Entitäten extrahieren", desc: "Gerät, Standort und Ursache.", prompt: "Verwende CORTEX.COMPLETE mit Extraktions-Prompt um JSON zu erhalten: affected_equipment, exact_location, root_cause, action_taken, final_status, requires_followup. Speichere in Tabelle 'extracted_entities' mit TRY_PARSE_JSON." },
+      { title: "Sentiment und Dringlichkeit analysieren", desc: "Dringlichkeits-Scoring mit KI.", prompt: "Füge CORTEX.SENTIMENT auf observation_text hinzu. Verwende CORTEX.COMPLETE zur Vorhersage von predicted_urgency (Low/Medium/High/Critical). Vergleiche mit actual_urgency." },
+      { title: "Wiederkehrende Muster erkennen", desc: "Zonen und Geräte mit den meisten Störungen.", prompt: "Erstelle Aggregationsabfragen: Störungen nach Zone und Typ, Geräte mit den meisten Ausfällen, häufigste Ursachen, monatliche Entwicklung, Zonen mit steigendem Störungstrend." },
+      { title: "Störungskostenanalyse", desc: "Kosten nach Typ und Zone schätzen.", prompt: "Generiere Tabelle 'incident_costs' mit geschätzten Kosten pro Typ: Failure (500-5000€), Leak (200-2000€), Quality (100-1000€), Vandalism (300-3000€), Blockage (150-1500€). Aggregiere nach Zone und Typ." },
+      { title: "Investitionen priorisieren", desc: "Zonen mit höchsten wiederkehrenden Kosten.", prompt: "Erstelle Tabelle 'investment_prioritization' die die 10 Zonen mit höchsten kumulierten Kosten und steigendem Trend identifiziert. Berechne geschätzten ROI der Erneuerung vs. fortgesetzte korrektive Wartungskosten." },
+      { title: "Störungs-Dashboard", desc: "Panel für operative Intelligence.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (verarbeitete Aufträge, Klassifizierungsgenauigkeit, Top-Problemzone), Verteilung nach Typ und Zone (Balkendiagramm), Tabelle aktueller Aufträge mit KI-Klassifizierung, monatlicher Störungstrend." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS INCIDENT_NLP_DB als Kommentare." },
     ]
   },
   UC07: {
-    title: "Predicción de Demanda Hídrica",
-    intro: "Prompts para construir un modelo de forecasting de demanda de agua con variables exógenas usando SNOWFLAKE.ML.FORECAST.",
+    title: "Vorhersage des Wasserbedarfs",
+    intro: "Prompts zum Aufbau eines Wasserbedarf-Prognosemodells mit exogenen Variablen mit SNOWFLAKE.ML.FORECAST.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para predicción de demanda.", prompt: "Crea base de datos WATER_DEMAND_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar series de consumo", desc: "2 años de demanda diaria.", prompt: "Genera tabla 'daily_consumption' con 730 registros: fecha, demanda_m3 (rango 50.000-120.000 con estacionalidad: verano +40%, fines de semana -15%, festivos -10%), zona_abastecimiento ('Zona_Norte'/'Zona_Sur'/'Zona_Este'/'Zona_Oeste')." },
-      { title: "Generar variables exógenas", desc: "Meteorología y calendario.", prompt: "Genera tabla 'variables_exogenas' alineada con daily_consumption: fecha, temp_max_c (5-40, estacional), precipitacion_mm (0-50), es_festivo (boolean), es_fin_semana (boolean), es_verano (boolean), poblacion_turista_pct (0-30%, alta en julio-agosto en zonas costeras)." },
-      { title: "Preparar datos modelo", desc: "Unir consumo con variables exógenas.", prompt: "Crea tabla 'datos_demanda' uniendo daily_consumption y variables_exogenas por fecha. Muestra correlaciones entre demanda y cada variable exógena." },
-      { title: "Entrenar modelo de demanda", desc: "Forecasting con variables exógenas.", prompt: "Entrena SNOWFLAKE.ML.FORECAST 'predictor_demanda' sobre datos_demanda con fecha como timestamp, demanda_m3 como target y temp_max_c, precipitacion_mm, es_festivo, es_verano, poblacion_turista_pct como exógenas. Horizon de 72 (72 días)." },
-      { title: "Generar predicciones a 72h", desc: "Demanda prevista con intervalos.", prompt: "Genera tabla 'demand_predictions' con: fecha, demanda_predicha, intervalo_inferior, intervalo_superior. Calcula MAPE sobre el último mes de datos." },
-      { title: "Análisis de patrones", desc: "Estacionalidad y factores de impacto.", prompt: "Crea consultas que muestren: demanda media por día de la semana, demanda media por mes, impacto de temperatura (cada °C extra = X m³), impacto de precipitación, efecto festivos." },
-      { title: "Planificación de producción", desc: "Traducir demanda a operación de planta.", prompt: "Crea tabla 'plan_produccion' que mapee demanda_predicha a: num_lineas_tratamiento_necesarias, caudal_produccion_m3h, horas_bombeo, reactivos_estimados_kg. Calcula margen de seguridad del 10%." },
-      { title: "Dashboard de planificación", desc: "Panel de producción y demanda.", prompt: "Crea dashboard Streamlit con: KPIs (demanda mañana, demanda 72h, MAPE, producción necesaria), gráfico de demanda real + predicción + intervalo, tabla de plan de producción por día, comparativa año actual vs anterior." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS WATER_DEMAND_DB comentados." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Bedarfsvorhersage.", prompt: "Erstelle Datenbank WATER_DEMAND_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Verbrauchszeitreihen generieren", desc: "2 Jahre täglicher Bedarf.", prompt: "Generiere Tabelle 'daily_consumption' mit 730 Datensätzen: date, demand_m3 (Bereich 50.000-120.000 mit Saisonalität: Sommer +40%, Wochenenden -15%, Feiertage -10%), supply_zone ('North_Zone'/'South_Zone'/'East_Zone'/'West_Zone')." },
+      { title: "Exogene Variablen generieren", desc: "Meteorologie und Kalender.", prompt: "Generiere Tabelle 'exogenous_variables' ausgerichtet mit daily_consumption: date, max_temp_c (5-40, saisonal), precipitation_mm (0-50), is_holiday (boolean), is_weekend (boolean), is_summer (boolean), tourist_population_pct (0-30%, hoch im Juli-August in Küstengebieten)." },
+      { title: "Modelldaten vorbereiten", desc: "Verbrauch mit exogenen Variablen verbinden.", prompt: "Erstelle Tabelle 'demand_data' durch Verbindung von daily_consumption und exogenous_variables nach Datum. Zeige Korrelationen zwischen Bedarf und jeder exogenen Variable." },
+      { title: "Bedarfsmodell trainieren", desc: "Prognose mit exogenen Variablen.", prompt: "Trainiere SNOWFLAKE.ML.FORECAST 'demand_predictor' auf demand_data mit date als Zeitstempel, demand_m3 als Zielwert und max_temp_c, precipitation_mm, is_holiday, is_summer, tourist_population_pct als exogene Variablen. Horizont von 72 (72 Tage)." },
+      { title: "72h-Vorhersagen generieren", desc: "Prognostizierter Bedarf mit Intervallen.", prompt: "Generiere Tabelle 'demand_predictions' mit: date, predicted_demand, lower_bound, upper_bound. Berechne MAPE über den letzten Monat der Daten." },
+      { title: "Musteranalyse", desc: "Saisonalität und Einflussfaktoren.", prompt: "Erstelle Abfragen die zeigen: Durchschnittsbedarf nach Wochentag, Durchschnittsbedarf nach Monat, Temperatureinfluss (jedes °C mehr = X m³), Niederschlagseinfluss, Feiertagseffekt." },
+      { title: "Produktionsplanung", desc: "Bedarf in Anlagenbetrieb übersetzen.", prompt: "Erstelle Tabelle 'production_plan' die predicted_demand abbildet auf: benötigte Aufbereitungslinien, Produktionsdurchfluss_m3h, Pumpstunden, geschätzte Reagenzien_kg. Berechne 10% Sicherheitsmarge." },
+      { title: "Planungs-Dashboard", desc: "Produktions- und Bedarfspanel.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (Bedarf morgen, Bedarf 72h, MAPE, benötigte Produktion), Diagramm tatsächlicher Bedarf + Vorhersage + Intervall, Produktionsplantabelle pro Tag, Vergleich aktuelles vs. Vorjahr." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS WATER_DEMAND_DB als Kommentare." },
     ]
   },
   UC08: {
-    title: "Detección de Consumos Anómalos en Abonados",
-    intro: "Prompts para construir un sistema de detección de anomalías de consumo por abonado con ML.ANOMALY_DETECTION.",
+    title: "Erkennung anomaler Verbräuche bei Abonnenten",
+    intro: "Prompts zum Aufbau eines Anomalieerkennungssystems für Verbrauch pro Abonnent mit ML.ANOMALY_DETECTION.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para detección de anomalías.", prompt: "Crea base de datos CONSUMPTION_ANOMALY_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar maestro de subscribers", desc: "Catálogo de clientes.", prompt: "Genera tabla 'subscribers' con 2000 registros: abonado_id, tipo (Domestico 70%/Comercial 20%/Industrial 10%), calibre_mm (13/20/25/40), zona_dma, direccion, num_personas_hogar (doméstico: 1-5), superficie_m2 (comercial: 50-500), tiene_jardin (boolean), fecha_alta." },
-      { title: "Generar consumption diarios", desc: "365 días de lecturas por abonado.", prompt: "Genera tabla 'consumption' con registros diarios para cada abonado: abonado_id, fecha, consumption_liters (doméstico: 100-500 L/día, comercial: 500-5000, industrial: 2000-20000), consumo_nocturno_litros (normal: <5% del diario). Incluir 100 subscribers con anomalías: 40 fugas internas (consumo nocturno alto), 30 fraude (consumo plano sospechoso), 30 contador averiado (consumo=0 repentino)." },
-      { title: "Calcular perfiles de referencia", desc: "Media y desviación por tipo y zona.", prompt: "Crea tabla 'perfiles_consumo' por subscriber_type y zona_dma: media_diaria, desviacion_diaria, media_nocturna, p95_diario, p05_diario. Crea tabla 'consumo_vecindario' con media por zona_dma y fecha." },
-      { title: "Entrenar modelo de anomalías", desc: "ML.ANOMALY_DETECTION por abonado.", prompt: "Entrena SNOWFLAKE.ML.ANOMALY_DETECTION 'detector_anomalias_consumo' sobre consumption con abonado_id como serie y fecha como timestamp. Columnas: consumption_liters, consumo_nocturno_litros." },
-      { title: "Detectar anomalías", desc: "Identificar subscribers con consumo anómalo.", prompt: "Generiere Vorhersagen sobre últimos 30 días. Crea tabla 'anomalias_consumo' con subscribers anómalos: abonado_id, fecha_deteccion, tipo_anomalia_probable (fuga_interna si nocturno alto, fraude si plano, contador_averiado si cero), volumen_anomalo_estimado." },
-      { title: "Priorizar alertas", desc: "Clasificar por impacto económico.", prompt: "Crea tabla 'alertas_consumo' priorizando por volumen_anomalo × tarifa: Crítica (>1000L/día anomalía), Alta (500-1000), Media (200-500), Baja (<200). Calcula pérdida económica estimada por alerta." },
-      { title: "Análisis por zona", desc: "Zonas con más anomalías.", prompt: "Crea consultas de agregación: anomalías por zona_dma, tipo de anomalía por zona, correlación con antigüedad de red, evolución mensual de anomalías." },
-      { title: "Dashboard de anomalías", desc: "Panel para equipo comercial.", prompt: "Crea dashboard Streamlit con: KPIs (subscribers monitorizados, alertas activas, volumen anómalo diario, pérdida económica mensual), tabla de alertas priorizadas con tipo y volumen, distribución por tipo de anomalía (pie chart), filtro por zona y tipo de abonado." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS CONSUMPTION_ANOMALY_DB comentados." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Anomalieerkennung.", prompt: "Erstelle Datenbank CONSUMPTION_ANOMALY_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Abonnentenstamm generieren", desc: "Kundenkatalog.", prompt: "Generiere Tabelle 'subscribers' mit 2000 Datensätzen: subscriber_id, type (Residential 70%/Commercial 20%/Industrial 10%), meter_size_mm (13/20/25/40), dma_zone, address, household_members (Haushalt: 1-5), area_m2 (Gewerbe: 50-500), has_garden (boolean), registration_date." },
+      { title: "Tägliche Verbräuche generieren", desc: "365 Tage Messwerte pro Abonnent.", prompt: "Generiere Tabelle 'consumption' mit täglichen Datensätzen für jeden Abonnenten: subscriber_id, date, consumption_liters (Haushalt: 100-500 L/Tag, Gewerbe: 500-5000, Industrie: 2000-20000), night_consumption_liters (normal: <5% des Tagesverbrauchs). 100 Abonnenten mit Anomalien einschließen: 40 interne Lecks (hoher Nachtverbrauch), 30 Betrug (verdächtig flacher Verbrauch), 30 defekter Zähler (plötzlich Verbrauch=0)." },
+      { title: "Referenzprofile berechnen", desc: "Durchschnitt und Abweichung nach Typ und Zone.", prompt: "Erstelle Tabelle 'consumption_profiles' nach Abonnententyp und DMA-Zone: daily_average, daily_deviation, night_average, p95_daily, p05_daily. Erstelle Tabelle 'neighborhood_consumption' mit Durchschnitt pro DMA-Zone und Datum." },
+      { title: "Anomaliemodell trainieren", desc: "ML.ANOMALY_DETECTION pro Abonnent.", prompt: "Trainiere SNOWFLAKE.ML.ANOMALY_DETECTION 'consumption_anomaly_detector' auf consumption mit subscriber_id als Serie und date als Zeitstempel. Spalten: consumption_liters, night_consumption_liters." },
+      { title: "Anomalien erkennen", desc: "Abonnenten mit anomalem Verbrauch identifizieren.", prompt: "Generiere Vorhersagen über die letzten 30 Tage. Erstelle Tabelle 'consumption_anomalies' mit anomalen Abonnenten: subscriber_id, detection_date, probable_anomaly_type (internal_leak wenn Nachtverbrauch hoch, fraud wenn flach, meter_failure wenn null), estimated_anomalous_volume." },
+      { title: "Warnungen priorisieren", desc: "Nach wirtschaftlichem Impact klassifizieren.", prompt: "Erstelle Tabelle 'consumption_alerts' priorisiert nach anomalous_volume × Tarif: Critical (>1000L/Tag Anomalie), High (500-1000), Medium (200-500), Low (<200). Berechne geschätzten wirtschaftlichen Verlust pro Warnung." },
+      { title: "Zonenanalyse", desc: "Zonen mit den meisten Anomalien.", prompt: "Erstelle Aggregationsabfragen: Anomalien nach DMA-Zone, Anomalietyp nach Zone, Korrelation mit Netzalter, monatliche Anomalieentwicklung." },
+      { title: "Anomalie-Dashboard", desc: "Panel für kaufmännisches Team.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (überwachte Abonnenten, aktive Warnungen, tägliches anomales Volumen, monatlicher wirtschaftlicher Verlust), priorisierte Warnungstabelle mit Typ und Volumen, Verteilung nach Anomalietyp (Kreisdiagramm), Filter nach Zone und Abonnententyp." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS CONSUMPTION_ANOMALY_DB als Kommentare." },
     ]
   },
   UC09: {
-    title: "Inteligencia sobre Reclamaciones de Clientes",
-    intro: "Prompts para construir un sistema NLP de clasificación y análisis de sentiment sobre complaints de clientes del ciclo del agua.",
+    title: "Kundenbeschwerde-Intelligence",
+    intro: "Prompts zum Aufbau eines NLP-Systems für Klassifizierung und Sentimentanalyse von Kundenbeschwerden im Wasserkreislauf.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para análisis de complaints.", prompt: "Crea base de datos WATER_COMPLAINTS_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar complaints sintéticas", desc: "600 complaints con texto realista.", prompt: "Genera tabla 'complaints' con 600 registros: reclamacion_id, fecha, abonado_id, canal (Telefono/Email/Web/Oficina/RRSS), zona, complaint_text (textos variados: agua turbia, baja presión, factura excesiva, corte sin aviso, ruido obras, sabor a cloro, fuga en acera), tipo_real (Calidad_Agua/Presion_Baja/Facturacion/Corte_Suministro/Obras), estado (Abierta/Resuelta/Escalada)." },
-      { title: "Análisis de sentiment", desc: "Scoring emocional por reclamación.", prompt: "Usa SNOWFLAKE.CORTEX.SENTIMENT sobre complaint_text. Almacena en tabla 'complaints_sentiment': sentiment_score, sentiment_label (Muy_Negativo/Negativo/Neutro/Positivo)." },
-      { title: "Clasificar categorías", desc: "Categorización automática con IA.", prompt: "Usa SNOWFLAKE.CORTEX.COMPLETE para clasificar cada reclamación en: Calidad_Agua, Presion_Baja, Facturacion, Corte_Suministro, Obras, Otro. Compara con tipo_real y calcula exactitud." },
-      { title: "Detectar señales regulatorias", desc: "Riesgo de escalada a reguladores.", prompt: "Usa CORTEX.COMPLETE para detectar menciones a: Agencia Catalana del Agua, AEMPS, defensor del ciudadano, demanda, abogado, juzgado, sanidad. Marca como riesgo_regulatorio (boolean) y prioridad_critica." },
-      { title: "Extraer entidades de reclamación", desc: "Dirección, problema y expectativa.", prompt: "Usa CORTEX.COMPLETE para extraer JSON: direccion_afectada, problema_especifico, impacto_cliente, expectativa_resolucion, menciona_compensacion. Almacena parseado en tabla 'entidades_reclamacion'." },
-      { title: "Análisis de tendencias", desc: "Evolución temporal y patrones.", prompt: "Crea consultas: complaints por semana/mes, sentiment medio por periodo, categorías emergentes (crecimiento >20% mes a mes), zonas con pico de complaints, correlación complaints calidad vs incidencias en planta." },
-      { title: "Priorizar resolución", desc: "Cola inteligente de resolución.", prompt: "Crea tabla 'cola_resolucion' priorizando: 1) Riesgo regulatorio, 2) Sentimiento muy negativo + cliente importante, 3) Corte de suministro, 4) Calidad del agua, 5) Resto. Estima SLA por prioridad." },
-      { title: "Dashboard de complaints", desc: "Panel de inteligencia de atención al cliente.", prompt: "Crea dashboard Streamlit con: KPIs (complaints abiertas, sentiment medio, % riesgo regulatorio, tiempo medio resolución), distribución por categoría (bar chart), tabla de complaints con filtro, alertas de riesgo regulatorio destacadas, evolución de sentiment." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS WATER_COMPLAINTS_DB comentados." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Beschwerdeanalyse.", prompt: "Erstelle Datenbank WATER_COMPLAINTS_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Synthetische Beschwerden generieren", desc: "600 Beschwerden mit realistischem Text.", prompt: "Generiere Tabelle 'complaints' mit 600 Datensätzen: complaint_id, date, subscriber_id, channel (Phone/Email/Web/Office/Social_Media), zone, complaint_text (vielfältige Texte: trübes Wasser, niedriger Druck, überhöhte Rechnung, unangekündigte Unterbrechung, Baulärm, Chlorgeschmack, Gehwegleck), actual_type (Water_Quality/Low_Pressure/Billing/Supply_Cut/Construction), status (Open/Resolved/Escalated)." },
+      { title: "Sentimentanalyse", desc: "Emotionales Scoring pro Beschwerde.", prompt: "Verwende SNOWFLAKE.CORTEX.SENTIMENT auf complaint_text. Speichere in Tabelle 'complaints_sentiment': sentiment_score, sentiment_label (Very_Negative/Negative/Neutral/Positive)." },
+      { title: "Kategorien klassifizieren", desc: "Automatische Kategorisierung mit KI.", prompt: "Verwende SNOWFLAKE.CORTEX.COMPLETE zur Klassifizierung jeder Beschwerde in: Water_Quality, Low_Pressure, Billing, Supply_Cut, Construction, Other. Vergleiche mit actual_type und berechne Genauigkeit." },
+      { title: "Regulatorische Signale erkennen", desc: "Risiko der Eskalation an Behörden.", prompt: "Verwende CORTEX.COMPLETE zur Erkennung von Erwähnungen von: Regulierungsbehörde, Ombudsman, Klage, Anwalt, Gericht, Gesundheitsbehörde. Markiere als regulatory_risk (boolean) und critical_priority." },
+      { title: "Beschwerdeentitäten extrahieren", desc: "Adresse, Problem und Erwartung.", prompt: "Verwende CORTEX.COMPLETE zur JSON-Extraktion: affected_address, specific_problem, customer_impact, resolution_expectation, mentions_compensation. Speichere geparst in Tabelle 'complaint_entities'." },
+      { title: "Trendanalyse", desc: "Zeitliche Entwicklung und Muster.", prompt: "Erstelle Abfragen: Beschwerden pro Woche/Monat, durchschnittliches Sentiment pro Periode, aufkommende Kategorien (Wachstum >20% Monat für Monat), Zonen mit Beschwerdespitzen, Korrelation Qualitätsbeschwerden vs. Anlagenvorfälle." },
+      { title: "Lösung priorisieren", desc: "Intelligente Lösungswarteschlange.", prompt: "Erstelle Tabelle 'resolution_queue' mit Priorisierung: 1) Regulatorisches Risiko, 2) Sehr negatives Sentiment + wichtiger Kunde, 3) Versorgungsunterbrechung, 4) Wasserqualität, 5) Rest. Schätze SLA pro Priorität." },
+      { title: "Beschwerde-Dashboard", desc: "Panel für Kundenservice-Intelligence.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (offene Beschwerden, durchschnittliches Sentiment, % regulatorisches Risiko, durchschnittliche Lösungszeit), Verteilung nach Kategorie (Balkendiagramm), Beschwerdetabelle mit Filter, hervorgehobene regulatorische Risikowarnungen, Sentimententwicklung." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS WATER_COMPLAINTS_DB als Kommentare." },
     ]
   },
   UC10: {
-    title: "Optimización Energética de la Planta",
-    intro: "Prompts para construir un sistema de recomendación de configuración de equipment para minimizar coste energético con ML.CLASSIFICATION.",
+    title: "Energieoptimierung der Anlage",
+    intro: "Prompts zum Aufbau eines Empfehlungssystems für Gerätekonfiguration zur Minimierung der Energiekosten mit ML.CLASSIFICATION.",
     steps: [
-      { title: "Configurar entorno", desc: "Base de datos para optimización energética.", prompt: "Crea base de datos ENERGY_OPTIMIZATION_DB con esquema PUBLIC y warehouse COMPUTE_WH." },
-      { title: "Generar inventario de equipment energéticos", desc: "Bombas, soplantes y auxiliares con potencia.", prompt: "Genera tabla 'energy_equipment' con 30 registros: equipment_id, tipo (Bomba_Impulsion/Bomba_Recirculacion/Soplante/Agitador/Compresor), potencia_nominal_kw (5-150), rendimiento_pct (60-90), plant_zone, puede_regularse (boolean 40%)." },
-      { title: "Generar tarifas eléctricas", desc: "Precios por periodo horario.", prompt: "Genera tabla 'electricity_rates' con 8.760 registros (365 días × 24h): timestamp, periodo (Punta/Llano/Valle), price_kwh (Punta: 0.15-0.22€, Llano: 0.08-0.12€, Valle: 0.04-0.07€). Patrón: Punta 10-14h y 18-22h L-V, Valle 0-8h y fines de semana." },
-      { title: "Generar datos de operación", desc: "Configuraciones históricas con consumo y producción.", prompt: "Genera tabla 'operating_history' con 8.760 registros: timestamp, demanda_m3h (50-300), num_bombas_activas (1-5), caudal_aireacion_m3h, temp_ambiente_c, consumo_total_kwh, coste_hora_euros, calidad_salida_ok (boolean, 95% true). Incluir configuraciones subóptimas: mismas bombas en valle que en punta." },
-      { title: "Crear bandas de configuración", desc: "Discretizar configuración óptima.", prompt: "Crea tabla 'operacion_bandas' añadiendo banda_config basada en eficiencia (coste/m³): Optima (coste/m³ < P25 y calidad ok), Aceptable (P25-P50 y calidad ok), Mejorable (P50-P75), Ineficiente (>P75 o calidad no ok). Target: banda_config." },
-      { title: "Feature engineering", desc: "Variables para el modelo.", prompt: "Crea tabla 'features_energia' con FLOAT: demanda_m3h, periodo_punta (boolean), periodo_valle (boolean), temp_ambiente, hora_del_dia, es_fin_semana, price_kwh_actual, num_bombas_activas, caudal_aireacion. Target: banda_config." },
-      { title: "Entrenar modelo", desc: "Clasificación de banda de configuración óptima.", prompt: "Divide 80/20, entrena SNOWFLAKE.ML.CLASSIFICATION 'optimizador_energia' con target banda_config y evaluate TRUE." },
-      { title: "Generar recomendaciones", desc: "Configuración óptima por hora.", prompt: "Puntúa las últimas 24 horas. Para cada hora: banda_recomendada, num_bombas_optimo, configuración_sugerida. Calcula ahorro_hora = (coste_actual - coste_optimo). Agrega ahorro diario y mensual." },
-      { title: "Calcular impacto anual", desc: "Proyección de ahorro energético.", prompt: "Calcula: consumo_actual_kwh_anual, consumo_optimo_kwh_anual, ahorro_kwh, ahorro_euros, reduccion_co2_toneladas (factor 0.25 kg CO2/kWh). Desglose por periodo tarifario." },
-      { title: "Dashboard energético", desc: "Panel de gestión energética.", prompt: "Crea dashboard Streamlit con: KPIs (coste energético hoy, ahorro potencial, reducción CO2, eficiencia actual %), gráfico de consumo por hora con tarifa superpuesta, recomendación de configuración actual, tabla de ahorro acumulado por mes." },
-      { title: "Limpieza (opcional)", desc: "Elimina objetos creados.", prompt: "Genera comandos DROP DATABASE IF EXISTS ENERGY_OPTIMIZATION_DB comentados." },
+      { title: "Umgebung konfigurieren", desc: "Datenbank für Energieoptimierung.", prompt: "Erstelle Datenbank ENERGY_OPTIMIZATION_DB mit Schema PUBLIC und Warehouse COMPUTE_WH." },
+      { title: "Energiegeräteinventar generieren", desc: "Pumpen, Gebläse und Hilfsgeräte mit Leistung.", prompt: "Generiere Tabelle 'energy_equipment' mit 30 Datensätzen: equipment_id, type (Booster_Pump/Recirculation_Pump/Blower/Agitator/Compressor), nominal_power_kw (5-150), efficiency_pct (60-90), plant_zone, is_variable_speed (boolean 40%)." },
+      { title: "Stromtarife generieren", desc: "Preise nach Stundenperiode.", prompt: "Generiere Tabelle 'electricity_rates' mit 8.760 Datensätzen (365 Tage × 24h): timestamp, period (Peak/Standard/Off_Peak), price_kwh (Peak: 0,15-0,22€, Standard: 0,08-0,12€, Off_Peak: 0,04-0,07€). Muster: Peak 10-14h und 18-22h Mo-Fr, Off_Peak 0-8h und Wochenenden." },
+      { title: "Betriebsdaten generieren", desc: "Historische Konfigurationen mit Verbrauch und Produktion.", prompt: "Generiere Tabelle 'operating_history' mit 8.760 Datensätzen: timestamp, demand_m3h (50-300), active_pumps (1-5), aeration_flow_m3h, ambient_temp_c, total_consumption_kwh, hourly_cost_euros, output_quality_ok (boolean, 95% true). Suboptimale Konfigurationen einschließen: gleiche Pumpen im Off-Peak wie im Peak." },
+      { title: "Konfigurationsbänder erstellen", desc: "Optimale Konfiguration diskretisieren.", prompt: "Erstelle Tabelle 'operation_bands' mit config_band basierend auf Effizienz (Kosten/m³): Optimal (Kosten/m³ < P25 und Qualität ok), Acceptable (P25-P50 und Qualität ok), Improvable (P50-P75), Inefficient (>P75 oder Qualität nicht ok). Zielwert: config_band." },
+      { title: "Feature Engineering", desc: "Variablen für das Modell.", prompt: "Erstelle Tabelle 'energy_features' mit FLOAT: demand_m3h, is_peak_period (boolean), is_off_peak_period (boolean), ambient_temp, hour_of_day, is_weekend, current_price_kwh, active_pumps, aeration_flow. Zielwert: config_band." },
+      { title: "Modell trainieren", desc: "Klassifizierung des optimalen Konfigurationsbandes.", prompt: "Teile 80/20, trainiere SNOWFLAKE.ML.CLASSIFICATION 'energy_optimizer' mit Zielwert config_band und evaluate TRUE." },
+      { title: "Empfehlungen generieren", desc: "Optimale Konfiguration pro Stunde.", prompt: "Bewerte die letzten 24 Stunden. Für jede Stunde: recommended_band, optimal_pump_count, suggested_configuration. Berechne hourly_savings = (current_cost - optimal_cost). Aggregiere tägliche und monatliche Einsparungen." },
+      { title: "Jährlichen Impact berechnen", desc: "Projektion der Energieeinsparung.", prompt: "Berechne: annual_current_kwh, annual_optimal_kwh, kwh_savings, euro_savings, co2_reduction_tons (Faktor 0,25 kg CO2/kWh). Aufschlüsselung nach Tarifperiode." },
+      { title: "Energie-Dashboard", desc: "Panel für Energiemanagement.", prompt: "Erstelle Streamlit-Dashboard mit: KPIs (heutige Energiekosten, Einsparpotenzial, CO2-Reduktion, aktuelle Effizienz %), Verbrauchsdiagramm pro Stunde mit überlagertem Tarif, aktuelle Konfigurationsempfehlung, Tabelle kumulierter Einsparungen nach Monat." },
+      { title: "Bereinigung (optional)", desc: "Erstellte Objekte löschen.", prompt: "Generiere Befehle DROP DATABASE IF EXISTS ENERGY_OPTIMIZATION_DB als Kommentare." },
     ]
   },
 };
 
 function verPrompts(ucId) {
   const data = PROMPTS[ucId];
-  if (!data) { alert('Prompts no disponibles aún para ' + ucId); return; }
+  if (!data) { alert('Prompts noch nicht verfügbar für ' + ucId); return; }
   const box = document.getElementById('promptsModalBox');
   let html = `<button class="modal-close" onclick="cerrarModal('promptsModal')">&times;</button>`;
   html += `<span class="guide-badge">${ucId}</span>`;
@@ -934,7 +934,7 @@ function verPrompts(ucId) {
 function copiarPrompt(id) {
   const el = document.getElementById(id);
   const btn = el.querySelector('.copy-btn');
-  const text = el.textContent.replace('Copiar', '').trim();
+  const text = el.textContent.replace('Kopieren', '').trim();
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = 'Kopiert!';
     setTimeout(() => btn.textContent = 'Kopieren', 1500);

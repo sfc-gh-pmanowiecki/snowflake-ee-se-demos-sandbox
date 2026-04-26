@@ -508,12 +508,12 @@ const USE_CASES = [
     "time": "14 min",
     "title": "Wielohoryzontalny Forecast Popytu Hotelowego",
     "pain": "Prognozowanie popytu na 30, 60 i 90 dni wykorzystuje uproszczone średnie historyczne. Błędy prognozy generują overbooking lub puste pokoje, co jest kosztowne.",
-    "desc": "Modelos de forecast a 3 horizontes con ML.FORECAST integrando variables externas (eventos, vuelos, meteorología, tendencias de búsqueda). Reduce el error MAPE del 25% al 12%.",
+    "desc": "Modele prognozy na 3 horyzonty z ML.FORECAST integrujące zmienne zewnętrzne (wydarzenia, loty, meteorologię, trendy wyszukiwań). Redukuje błąd MAPE z 25% do 12%.",
     "features": [
-      "Forecast multi-horizonte con ML.FORECAST",
-      "Variables externas: eventos, vuelos, meteo, búsquedas",
-      "Intervalos de confianza al 95% por segmento",
-      "Comparativa forecast vs realidad con tracking de accuracy"
+      "Prognoza wielohoryzontalowa z ML.FORECAST",
+      "Zmienne zewnętrzne: wydarzenia, loty, pogoda, wyszukiwania",
+      "Przedziały ufności 95% według segmentu",
+      "Porównanie prognozy z rzeczywistością z trackingiem accuracy"
     ]
   },
   {
@@ -522,13 +522,13 @@ const USE_CASES = [
     "catLabel": "Przychody i ceny",
     "time": "12 min",
     "title": "Optymalizacja przychodów z usług dodatkowych",
-    "pain": "Los servicios complementarios (spa, restaurante, transfers, experiencias) tienen baja penetración del 15%. Los bundles se crean manualmente sin datos de propensión de compra.",
-    "desc": "Modelo de propensión de compra por servicio ancillary usando comportamiento de reserva, perfil del huésped y estancia. Genera bundles personalizados que incrementan el revenue por habitación un 22%.",
+    "pain": "Usługi dodatkowe (spa, restauracja, transfery, atrakcje) mają niską penetrację na poziomie 15%. Pakiety tworzone są ręcznie bez danych o skłonności do zakupu.",
+    "desc": "Model skłonności do zakupu usług dodatkowych na podstawie zachowań rezerwacyjnych, profilu gościa i pobytu. Generuje spersonalizowane pakiety zwiększające przychód na pokój o 22%.",
     "features": [
-      "Propensión de compra por servicio con ML.CLASSIFICATION",
-      "Generación automática de bundles personalizados",
-      "Variables: perfil, motivo viaje, duración, historial",
-      "Integración con motor de ofertas en pre-arrival email"
+      "Skłonność do zakupu usługi z ML.CLASSIFICATION",
+      "Automatyczne generowanie spersonalizowanych pakietów",
+      "Zmienne: profil, cel podróży, długość pobytu, historia",
+      "Integracja z silnikiem ofert w e-mailu pre-arrival"
     ]
   },
   {
@@ -537,13 +537,13 @@ const USE_CASES = [
     "catLabel": "Przychody i ceny",
     "time": "11 min",
     "title": "Segmentacja wartości klienta (CLV) z ML",
-    "pain": "Tratar a todos los huéspedes igual destruye valor. Los programas de fidelización no diferencian por valor real, y los descuentos se ofrecen sin considerar el lifetime value del cliente.",
-    "desc": "Cálculo de Customer Lifetime Value con ML combinando frecuencia, recencia, valor de estancia, servicios consumidos y probabilidad de retorno. Segmenta en tiers para acciones diferenciadas.",
+    "pain": "Traktowanie wszystkich gości jednakowo niszczy wartość. Programy lojalnościowe nie różnicują według rzeczywistej wartości, a rabaty oferowane są bez uwzględnienia lifetime value klienta.",
+    "desc": "Obliczanie Customer Lifetime Value z ML łączące częstotliwość, recencję, wartość pobytu, wykorzystane usługi i prawdopodobieństwo powrotu. Segmentacja na poziomy dla zróżnicowanych działań.",
     "features": [
-      "CLV predictivo con ML.CLASSIFICATION",
-      "Segmentación automática en 4 tiers de valor",
-      "Variables: RFM, canales, servicios, fidelización",
-      "Activación de campañas diferenciadas por segmento"
+      "Predykcyjne CLV z ML.CLASSIFICATION",
+      "Automatyczna segmentacja na 4 poziomy wartości",
+      "Zmienne: RFM, kanały, usługi, lojalność",
+      "Aktywacja zróżnicowanych kampanii według segmentu"
     ]
   },
   {
@@ -552,13 +552,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie gościa",
     "time": "15 min",
     "title": "Predykcyjna konserwacja instalacji z Model Registry",
-    "pain": "Las averías en HVAC, ascensores y fontanería generan quejas de huéspedes y compensaciones costosas. El 30% de las intervenciones de mantenimiento son reactivas y urgentes.",
-    "desc": "Predicción de fallos en instalaciones hoteleras usando sensores IoT con ML.CLASSIFICATION. Los modelos se registran en Snowflake Model Registry con versionado semántico para despliegue automatizado en producción.",
+    "pain": "Awarie HVAC, wind i hydrauliki generują skargi gości i kosztowne rekompensaty. 30% interwencji konserwacyjnych jest reaktywnych i pilnych.",
+    "desc": "Predykcja awarii instalacji hotelowych z wykorzystaniem czujników IoT i ML.CLASSIFICATION. Modele rejestrowane w Snowflake Model Registry z wersjonowaniem semantycznym do automatycznego wdrożenia produkcyjnego.",
     "features": [
-      "Predicción de fallos con ML + Model Registry",
-      "Versionado semántico de modelos con log_model()",
-      "Variables: sensores HVAC, ascensores, fontanería, edad equipo",
-      "Alertas 48h antes del fallo con coste evitado"
+      "Predykcja awarii z ML + Model Registry",
+      "Wersjonowanie semantyczne modeli z log_model()",
+      "Zmienne: czujniki HVAC, windy, hydraulika, wiek urządzenia",
+      "Alerty 48h przed awarią z unikniętym kosztem"
     ]
   },
   {
@@ -567,13 +567,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie gościa",
     "time": "13 min",
     "title": "Spersonalizowane rekomendacje lokalnych doświadczeń",
-    "pain": "Los huéspedes reciben las mismas recomendaciones genéricas independientemente de sus preferencias. El 70% de los huéspedes quiere sugerencias personalizadas pero solo el 20% las recibe.",
-    "desc": "Motor de recomendación con Cortex AI que combina perfil del huésped, motivo de viaje, clima y oferta local para generar sugerencias contextuales de restaurantes, actividades y experiencias.",
+    "pain": "Goście otrzymują te same ogólne rekomendacje niezależnie od preferencji. 70% gości chce spersonalizowanych sugestii, ale tylko 20% je otrzymuje.",
+    "desc": "Silnik rekomendacji z Cortex AI łączący profil gościa, cel podróży, pogodę i lokalną ofertę w celu generowania kontekstowych sugestii restauracji, aktywności i doświadczeń.",
     "features": [
-      "Recomendaciones con CORTEX.COMPLETE contextual",
-      "Variables: perfil, motivo viaje, temporada, clima, ubicación",
-      "Generación de itinerarios personalizados por duración",
-      "Integración con concierge digital y app del hotel"
+      "Rekomendacje z kontekstowym CORTEX.COMPLETE",
+      "Zmienne: profil, cel podróży, sezon, pogoda, lokalizacja",
+      "Generowanie spersonalizowanych itinerariuszy według długości pobytu",
+      "Integracja z cyfrowym concierge i aplikacją hotelową"
     ]
   },
   {
@@ -582,13 +582,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie gościa",
     "time": "12 min",
     "title": "Analiza sentymentu w recenzjach wielokanałowych",
-    "pain": "Los hoteles reciben miles de reviews en 8+ plataformas sin análisis unificado. Las tendencias negativas se detectan semanas después, cuando ya han impactado en el ranking y las reservas.",
-    "desc": "Pipeline NLP que agrega reviews de todas las plataformas, clasifica sentimiento por categoría (habitación, limpieza, servicio, ubicación, restaurante) y detecta tendencias emergentes en tiempo real.",
+    "pain": "Hotele otrzymują tysiące recenzji na 8+ platformach bez zunifikowanej analizy. Negatywne trendy wykrywane są tygodnie później, gdy już wpłynęły na ranking i rezerwacje.",
+    "desc": "Pipeline NLP agregujący recenzje ze wszystkich platform, klasyfikujący sentyment według kategorii (pokój, czystość, obsługa, lokalizacja, restauracja) i wykrywający pojawiające się trendy w czasie rzeczywistym.",
     "features": [
-      "Sentimiento multi-categoría con CORTEX.SENTIMENT + CORTEX.COMPLETE",
-      "Agregación de 8+ fuentes: Booking, TripAdvisor, Google, etc.",
-      "Detección de tendencias negativas emergentes",
-      "Alertas automáticas al GM por caída de categoría"
+      "Sentyment wielokategoriowy z CORTEX.SENTIMENT + CORTEX.COMPLETE",
+      "Agregacja 8+ źródeł: Booking, TripAdvisor, Google itp.",
+      "Wykrywanie pojawiających się negatywnych trendów",
+      "Automatyczne alerty do GM przy spadku kategorii"
     ]
   },
   {
@@ -597,13 +597,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie gościa",
     "time": "15 min",
     "title": "Feature Store preferencji gościa",
-    "pain": "Las preferencias del huésped están dispersas en PMS, CRM, app y notas del staff. Al repetir estancia, el hotel no recuerda las preferencias expresadas previamente, generando frustración.",
-    "desc": "Feature Store centralizado en Snowflake que consolida y versiona las features de cada huésped (tipo almohada, temperatura, piso, mini-bar, alergias). Sirve features en tiempo real para personalización en check-in.",
+    "pain": "Preferencje gościa są rozproszone w PMS, CRM, aplikacji i notatkach personelu. Przy ponownym pobycie hotel nie pamięta wcześniej wyrażonych preferencji, co generuje frustrację.",
+    "desc": "Scentralizowany Feature Store w Snowflake konsolidujący i wersjonujący cechy każdego gościa (typ poduszki, temperatura, piętro, minibar, alergie). Udostępnia cechy w czasie rzeczywistym do personalizacji przy zameldowaniu.",
     "features": [
-      "Snowflake Feature Store con Entity y FeatureView",
-      "Features servidas en tiempo real para check-in",
-      "Versionado automático de preferencias por estancia",
-      "Pipeline de ingesta desde PMS, CRM, app y notas staff"
+      "Snowflake Feature Store z Entity i FeatureView",
+      "Cechy udostępniane w czasie rzeczywistym do zameldowania",
+      "Automatyczne wersjonowanie preferencji według pobytu",
+      "Pipeline ingesti z PMS, CRM, aplikacji i notatek personelu"
     ]
   },
   {
@@ -612,73 +612,73 @@ const USE_CASES = [
     "catLabel": "Doświadczenie gościa",
     "time": "14 min",
     "title": "Chatbot Concierge z RAG na bazie wiedzy hotelowej",
-    "pain": "El servicio de concierge tiene picos de demanda que superan la capacidad del personal. Los huéspedes esperan respuestas inmediatas 24/7 sobre servicios, horarios, entorno y recomendaciones.",
-    "desc": "Asistente conversacional RAG con Cortex Search indexando la base de conocimiento del hotel: servicios, horarios, menús, procedimientos, FAQ y guía local. Respuestas en el idioma del huésped.",
+    "pain": "Usługa concierge ma szczyty popytu przekraczające możliwości personelu. Goście oczekują natychmiastowych odpowiedzi 24/7 dotyczących usług, godzin otwarcia, okolicy i rekomendacji.",
+    "desc": "Konwersacyjny asystent RAG z Cortex Search indeksujący bazę wiedzy hotelu: usługi, godziny otwarcia, menu, procedury, FAQ i przewodnik lokalny. Odpowiedzi w języku gościa.",
     "features": [
-      "RAG con Cortex Search + CORTEX.COMPLETE",
-      "Base de conocimiento: servicios, menús, FAQ, guía local",
-      "Multiidioma automático con detección de idioma",
-      "Escalado a staff humano cuando confianza < umbral"
+      "RAG z Cortex Search + CORTEX.COMPLETE",
+      "Baza wiedzy: usługi, menu, FAQ, przewodnik lokalny",
+      "Automatyczny tryb wielojęzyczny z detekcją języka",
+      "Eskalacja do personelu gdy pewność < próg"
     ]
   },
   {
     "id": "UC10",
     "cat": "operaciones",
-    "catLabel": "Operaciones",
+    "catLabel": "Operacje",
     "time": "13 min",
     "title": "Optymalizacja zatrudnienia na podstawie predykcji obłożenia",
-    "pain": "El 40% de los costes hoteleros es personal. La planificación de turnos se basa en ocupación histórica sin considerar el mix de huéspedes, eventos ni patrones de consumo de servicios.",
-    "desc": "Modelo de predicción de carga de trabajo por departamento (housekeeping, recepción, F&B, mantenimiento) basado en ocupación prevista, mix de segmentos y eventos. Optimiza turnos reduciendo coste un 12%.",
+    "pain": "40% kosztów hotelowych to personel. Planowanie zmian opiera się na historycznym obłożeniu bez uwzględnienia miksu gości, wydarzeń ani wzorców konsumpcji usług.",
+    "desc": "Model predykcji obciążenia pracą według działu (housekeeping, recepcja, F&B, konserwacja) na podstawie prognozowanego obłożenia, miksu segmentów i wydarzeń. Optymalizuje zmiany, redukując koszty o 12%.",
     "features": [
-      "Predicción de carga por departamento con ML.FORECAST",
-      "Variables: ocupación, segmento, eventos, día semana, festivos",
+      "Predykcja obciążenia według działu z ML.FORECAST",
+      "Zmienne: obłożenie, segment, wydarzenia, dzień tygodnia, święta",
       "Optymalizacja zmian z ograniczeniami pracowniczymi",
-      "Dashboard de planificación semanal por departamento"
+      "Dashboard planowania tygodniowego według działu"
     ]
   },
   {
     "id": "UC11",
     "cat": "operaciones",
-    "catLabel": "Operaciones",
+    "catLabel": "Operacje",
     "time": "12 min",
     "title": "Optymalizacja energetyczna hotelu z AI",
-    "pain": "La energía representa el 6-10% de los ingresos hoteleros. Los sistemas HVAC funcionan a plena potencia en habitaciones vacías y las áreas comunes no se adaptan a la ocupación real.",
-    "desc": "Optimización del consumo energético correlacionando ocupación, meteorología, tarifas eléctricas y patrones de uso por zona. Reduce el consumo un 18% sin afectar al confort del huésped.",
+    "pain": "Energia stanowi 6-10% przychodów hotelowych. Systemy HVAC działają na pełnej mocy w pustych pokojach, a strefy wspólne nie dostosowują się do rzeczywistego obłożenia.",
+    "desc": "Optymalizacja zużycia energii korelująca obłożenie, meteorologię, taryfy elektryczne i wzorce użytkowania według stref. Redukuje zużycie o 18% bez wpływu na komfort gościa.",
     "features": [
-      "Predicción de consumo por zona con ML",
-      "Correlación ocupación × meteo × tarifa eléctrica",
-      "Detección de anomalías en equipos HVAC",
-      "Dashboard de gestión energética con KPIs €/habitación"
+      "Predykcja zużycia według strefy z ML",
+      "Korelacja obłożenie × pogoda × taryfa elektryczna",
+      "Wykrywanie anomalii w urządzeniach HVAC",
+      "Dashboard zarządzania energią z KPI €/pokój"
     ]
   },
   {
     "id": "UC12",
     "cat": "operaciones",
-    "catLabel": "Operaciones",
+    "catLabel": "Operacje",
     "time": "11 min",
     "title": "Predykcja no-show i inteligentny overbooking",
-    "pain": "La tasa media de no-show es del 5-15% pero varía enormemente por segmento, canal y temporada. El overbooking manual genera walk-outs costosos con compensaciones de 300-500€.",
-    "desc": "Modelo ML que predice la probabilidad de no-show por reserva individual considerando lead time, canal, historial, garantía y patrón del segmento. Permite overbooking calibrado con riesgo controlado.",
+    "pain": "Średni wskaźnik no-show wynosi 5-15%, ale znacznie się różni w zależności od segmentu, kanału i sezonu. Ręczny overbooking generuje kosztowne walk-outy z rekompensatami 300-500€.",
+    "desc": "Model ML przewidujący prawdopodobieństwo no-show dla każdej rezerwacji, uwzględniający lead time, kanał, historię, gwarancję i wzorzec segmentu. Umożliwia kalibrowany overbooking z kontrolowanym ryzykiem.",
     "features": [
-      "Predicción de no-show por reserva con ML.CLASSIFICATION",
-      "Variables: lead time, canal, garantía, historial, segmento",
-      "Cálculo de overbooking óptimo por noche con riesgo",
-      "Simulación de escenarios y coste de walk-out"
+      "Predykcja no-show na rezerwację z ML.CLASSIFICATION",
+      "Zmienne: lead time, kanał, gwarancja, historia, segment",
+      "Obliczanie optymalnego overbookingu na noc z ryzykiem",
+      "Symulacja scenariuszy i kosztów walk-out"
     ]
   },
   {
     "id": "UC13",
     "cat": "operaciones",
-    "catLabel": "Operaciones",
+    "catLabel": "Operacje",
     "time": "10 min",
     "title": "Analiza szybkości Housekeepingu z NLP",
-    "pain": "Los tiempos de limpieza varían un 40% entre camareras de piso sin explicación clara. Los retrasos en housekeeping generan esperas en check-in y quejas que impactan en las reviews.",
-    "desc": "Análisis de productividad de housekeeping combinando tiempos de limpieza, tipo de habitación, incidencias reportadas y análisis NLP de comentarios del staff. Identifica mejores prácticas y cuellos de botella.",
+    "pain": "Czasy sprzątania różnią się o 40% między pokojówkami bez jasnego wyjaśnienia. Opóźnienia w housekeepingu generują oczekiwanie przy zameldowaniu i skargi wpływające na recenzje.",
+    "desc": "Analiza produktywności housekeepingu łącząca czasy sprzątania, typ pokoju, zgłoszone incydenty i analizę NLP komentarzy personelu. Identyfikuje najlepsze praktyki i wąskie gardła.",
     "features": [
-      "Análisis de productividad por camarera y tipo habitación",
-      "NLP sobre comentarios e incidencias con CORTEX.COMPLETE",
-      "Identificación de mejores prácticas y formación",
-      "Dashboard operativo con KPIs de turnaround time"
+      "Analiza produktywności według pokojówki i typu pokoju",
+      "NLP komentarzy i incydentów z CORTEX.COMPLETE",
+      "Identyfikacja najlepszych praktyk i szkoleń",
+      "Dashboard operacyjny z KPI turnaround time"
     ]
   },
   {
@@ -687,13 +687,13 @@ const USE_CASES = [
     "catLabel": "Dystrybucja B2B",
     "time": "15 min",
     "title": "Feature Store wydajności partnerów B2B",
-    "pain": "Los operadores turísticos B2B se gestionan con datos dispersos en múltiples sistemas. No hay visión unificada del rendimiento, rentabilidad y riesgo de cada partner en tiempo real.",
-    "desc": "Feature Store en Snowflake que consolida métricas de cada partner B2B: volumen de reservas, ADR, cancelaciones, velocidad de pago, reclamaciones. Sirve features para scoring y decisiones de distribución en tiempo real.",
+    "pain": "Operatorzy turystyczni B2B zarządzani są z danymi rozproszonymi w wielu systemach. Brak zunifikowanego widoku wydajności, rentowności i ryzyka każdego partnera w czasie rzeczywistym.",
+    "desc": "Feature Store w Snowflake konsolidujący metryki każdego partnera B2B: wolumen rezerwacji, ADR, anulacje, szybkość płatności, reklamacje. Udostępnia cechy do scoringu i decyzji dystrybucyjnych w czasie rzeczywistym.",
     "features": [
-      "Snowflake Feature Store con Entity por partner",
+      "Snowflake Feature Store z Entity na partnera",
       "FeatureViews: booking_metrics, financial_health, quality_score",
-      "Features servidas para scoring en tiempo real",
-      "Pipeline automático de actualización diaria desde API logs"
+      "Cechy udostępniane do scoringu w czasie rzeczywistym",
+      "Automatyczny pipeline codziennej aktualizacji z logów API"
     ]
   },
   {
@@ -702,13 +702,13 @@ const USE_CASES = [
     "catLabel": "Dystrybucja B2B",
     "time": "13 min",
     "title": "Predykcja anulacji B2B według kanału",
-    "pain": "Las cancelaciones B2B de último momento dejan inventario sin vender. Los canales con alta tasa de cancelación ocupan inventario que podría venderse por canales más fiables.",
-    "desc": "Modelo de predicción de cancelación por reserva B2B que identifica reservas con alta probabilidad de cancelarse. Permite liberar inventario proactivamente y ajustar allocation por canal.",
+    "pain": "Anulacje B2B w ostatniej chwili pozostawiają niesprzedany inwentarz. Kanały z wysokim wskaźnikiem anulacji blokują inwentarz, który mógłby zostać sprzedany przez bardziej niezawodne kanały.",
+    "desc": "Model predykcji anulacji na rezerwację B2B identyfikujący rezerwacje z wysokim prawdopodobieństwem anulowania. Umożliwia proaktywne zwalnianie inwentarza i dostosowanie alokacji według kanału.",
     "features": [
-      "Predicción de cancelación por reserva con ML.CLASSIFICATION",
-      "Variables: lead time, canal, historial partner, precio vs market",
-      "Liberación proactiva de inventario en riesgo",
-      "Ajuste dinámico de allocation por canal"
+      "Predykcja anulacji na rezerwację z ML.CLASSIFICATION",
+      "Zmienne: lead time, kanał, historia partnera, cena vs rynek",
+      "Proaktywne zwalnianie zagrożonego inwentarza",
+      "Dynamiczne dostosowanie alokacji według kanału"
     ]
   },
   {
@@ -717,13 +717,13 @@ const USE_CASES = [
     "catLabel": "Dystrybucja B2B",
     "time": "12 min",
     "title": "Wykrywanie rozbieżności cen w kanałach",
-    "pain": "Las disparidades de precios entre canales erosionan el canal directo y violan acuerdos de paridad. El 35% de los hoteles tiene problemas de rate parity sin detectarlos a tiempo.",
-    "desc": "Sistema de monitorización de paridad de precios que compara tarifas publicadas en todos los canales de distribución. Detecta disparidades en tiempo real y genera alertas con evidencia.",
+    "pain": "Rozbieżności cenowe między kanałami erodują kanał bezpośredni i naruszają umowy parytetowe. 35% hoteli ma problemy z parytetem cenowym bez ich terminowego wykrywania.",
+    "desc": "System monitorowania parytetu cenowego porównujący opublikowane taryfy we wszystkich kanałach dystrybucji. Wykrywa rozbieżności w czasie rzeczywistym i generuje alerty z dowodami.",
     "features": [
-      "Monitorización de precios en múltiples canales",
-      "Detección de disparidad con alertas en tiempo real",
-      "Análisis de impacto en conversión del canal directo",
-      "Dashboard con evidencia y tendencia de paridad"
+      "Monitorowanie cen w wielu kanałach",
+      "Wykrywanie rozbieżności z alertami w czasie rzeczywistym",
+      "Analiza wpływu na konwersję kanału bezpośredniego",
+      "Dashboard z dowodami i trendem parytetu"
     ]
   },
   {
@@ -732,13 +732,13 @@ const USE_CASES = [
     "catLabel": "Dystrybucja B2B",
     "time": "11 min",
     "title": "Optymalizacja prowizji i Channel Mix z AI",
-    "pain": "Los hoteles pagan comisiones del 15-25% a OTAs sin optimizar el mix de canales. El coste de adquisición varía enormemente pero las decisiones de allocation no lo consideran.",
-    "desc": "Optimización del channel mix que maximiza revenue neto (después de comisiones) modelando elasticidad de demanda por canal, temporada y segmento. Reduce coste de distribución un 15%.",
+    "pain": "Hotele płacą prowizje 15-25% OTA bez optymalizacji miksu kanałów. Koszt pozyskania znacznie się różni, ale decyzje alokacyjne tego nie uwzględniają.",
+    "desc": "Optymalizacja miksu kanałów maksymalizująca przychód netto (po prowizjach) modelując elastyczność popytu według kanału, sezonu i segmentu. Redukuje koszt dystrybucji o 15%.",
     "features": [
-      "Modelado de elasticidad de demanda por canal con ML",
-      "Optimización de allocation por canal y temporada",
-      "Cálculo de coste neto de adquisición por reserva",
-      "Simulación de escenarios: quitar OTA vs invertir en directo"
+      "Modelowanie elastyczności popytu według kanału z ML",
+      "Optymalizacja alokacji według kanału i sezonu",
+      "Obliczanie kosztu netto pozyskania na rezerwację",
+      "Symulacja scenariuszy: usunięcie OTA vs inwestycja w kanał bezpośredni"
     ]
   },
   {
@@ -747,13 +747,13 @@ const USE_CASES = [
     "catLabel": "Oszustwa i bezpieczeństwo",
     "time": "12 min",
     "title": "Wykrywanie oszustw rezerwacyjnych i chargebacków",
-    "pain": "El fraude en reservas online representa el 2-4% de las transacciones. Los chargebacks cuestan al hotel el importe más una penalización del 20-40% y dañan la relación con el procesador de pagos.",
-    "desc": "Sistema ML de detección de fraude en tiempo real que analiza patrones de reserva, datos de pago, comportamiento de navegación y señales de riesgo geográfico. Reduce chargebacks un 60%.",
+    "pain": "Oszustwa w rezerwacjach online stanowią 2-4% transakcji. Chargebacki kosztują hotel kwotę transakcji plus karę 20-40% i niszczą relację z operatorem płatności.",
+    "desc": "System ML wykrywania oszustw w czasie rzeczywistym analizujący wzorce rezerwacji, dane płatności, zachowania nawigacyjne i sygnały ryzyka geograficznego. Redukuje chargebacki o 60%.",
     "features": [
-      "Detección de fraude en tiempo real con ML.CLASSIFICATION",
-      "Variables: IP, device fingerprint, velocidad de reserva, país",
-      "Puntuación de riesgo por transacción con estratificación",
-      "Integración con pasarela de pago para bloqueo automático"
+      "Wykrywanie oszustw w czasie rzeczywistym z ML.CLASSIFICATION",
+      "Zmienne: IP, device fingerprint, szybkość rezerwacji, kraj",
+      "Scoring ryzyka na transakcję ze stratyfikacją",
+      "Integracja z bramką płatności do automatycznego blokowania"
     ]
   },
   {
@@ -762,13 +762,13 @@ const USE_CASES = [
     "catLabel": "Oszustwa i bezpieczeństwo",
     "time": "13 min",
     "title": "Wykrywanie fałszywych recenzji i manipulacji reputacją",
-    "pain": "El 15-30% de las reviews online son falsas o manipuladas. Los competidores publican reviews negativas y los hoteles compran reviews positivas, erosionando la confianza del ecosistema.",
-    "desc": "Pipeline NLP que detecta reviews falsas analizando patrones lingüísticos, comportamiento del reviewer, timing y consistencia. Clasifica reviews como auténticas, sospechosas o fabricadas.",
+    "pain": "15-30% recenzji online jest fałszywych lub zmanipulowanych. Konkurenci publikują negatywne recenzje, a hotele kupują pozytywne, erodując zaufanie do ekosystemu.",
+    "desc": "Pipeline NLP wykrywający fałszywe recenzje analizujący wzorce lingwistyczne, zachowanie recenzenta, timing i spójność. Klasyfikuje recenzje jako autentyczne, podejrzane lub sfabrykowane.",
     "features": [
-      "Detección de reviews falsas con CORTEX.COMPLETE + ML",
-      "Variables: patrón lingüístico, historial reviewer, timing",
-      "Clasificación: Auténtica / Sospechosa / Fabricada",
-      "Dashboard de integridad de reputación con evidencia"
+      "Wykrywanie fałszywych recenzji z CORTEX.COMPLETE + ML",
+      "Zmienne: wzorzec lingwistyczny, historia recenzenta, timing",
+      "Klasyfikacja: Autentyczna / Podejrzana / Sfabrykowana",
+      "Dashboard integralności reputacji z dowodami"
     ]
   },
   {
@@ -777,13 +777,13 @@ const USE_CASES = [
     "catLabel": "Oszustwa i bezpieczeństwo",
     "time": "10 min",
     "title": "Zgodność GDPR/PCI w danych gości",
-    "pain": "Los hoteles almacenan datos sensibles (pasaportes, tarjetas, preferencias) sin clasificación ni políticas adecuadas. Las multas GDPR pueden alcanzar el 4% de la facturación global.",
-    "desc": "Sistema de clasificación y protección de datos sensibles usando Cortex AI para identificar PII en todas las tablas, aplicar políticas de enmascaramiento y generar informes de auditoría de cumplimiento.",
+    "pain": "Hotele przechowują dane wrażliwe (paszporty, karty, preferencje) bez klasyfikacji ani odpowiednich polityk. Kary GDPR mogą sięgać 4% globalnych obrotów.",
+    "desc": "System klasyfikacji i ochrony danych wrażliwych wykorzystujący Cortex AI do identyfikacji PII we wszystkich tabelach, stosowania polityk maskowania i generowania raportów audytu zgodności.",
     "features": [
-      "Clasificación automática de PII con CORTEX.COMPLETE",
-      "Políticas de enmascaramiento dinámico por rol",
-      "Auditoría de acceso a datos sensibles",
-      "Dashboard de cumplimiento GDPR/PCI con score"
+      "Automatyczna klasyfikacja PII z CORTEX.COMPLETE",
+      "Dynamiczne polityki maskowania według roli",
+      "Audyt dostępu do danych wrażliwych",
+      "Dashboard zgodności GDPR/PCI ze scoringiem"
     ]
   }
 ];
@@ -793,7 +793,7 @@ function renderCards(list) {
   const grid = document.getElementById('cardsGrid');
   const count = document.getElementById('resultsCount');
   grid.innerHTML = '';
-  count.textContent = `Mostrando ${list.length} de ${TOTAL} casos de uso`;
+  count.textContent = `Wyświetlanie ${list.length} z ${TOTAL} przypadków użycia`;
   list.forEach(uc => {
     const catClass = uc.cat;
     grid.innerHTML += `
@@ -858,119 +858,119 @@ const GUIAS = {
     "funcionalidades": [
       "Model ML: Klasyfikacja optymalnego przedziału cenowego",
       "Model Registry: Wersjonowanie semantyczne z log_model() i metrykami",
-      "Datos sintéticos: 365 días × 200 habitaciones con ocupación, precios y eventos",
-      "Dashboard Streamlit: Panel de Revenue Management con forecast y recomendaciones"
+      "Dane syntetyczne: 365 dni × 200 pokoi z obłożeniem, cenami i wydarzeniami",
+      "Dashboard Streamlit: Panel Revenue Management z prognozą i rekomendacjami"
     ],
     "datos": [
-      "Pokoje: Tipo, capacidad, piso, vista, tarifa rack",
-      "Ocupación: Diaria con demanda real, competencia, eventos locales",
-      "Modelo versionado: Métricas de accuracy, feature importance, metadata"
+      "Pokoje: Typ, pojemność, piętro, widok, taryfa rack",
+      "Obłożenie: Dzienne z rzeczywistym popytem, konkurencją, wydarzeniami lokalnymi",
+      "Model wersjonowany: Metryki accuracy, feature importance, metadane"
     ],
     "estratificacion": [
-      "Alta demanda (>85% ocupación): Precio +20-35% sobre rack",
-      "Media (60-85%): Precio rack ±10%",
-      "Baja demanda (<60%): Descuento 15-30% con upselling de servicios",
-      "Último minuto (<48h, baja ocupación): Precio mínimo con restricciones"
+      "Wysoki popyt (>85% obłożenia): Cena +20-35% powyżej rack",
+      "Średni (60-85%): Cena rack ±10%",
+      "Niski popyt (<60%): Rabat 15-30% z upsellingiem usług",
+      "Last minute (<48h, niskie obłożenie): Cena minimalna z ograniczeniami"
     ],
     "como_usar": [
-      "Ejecutar los prompts secuencialmente en Cortex Code",
-      "El modelo se entrena y se registra en Model Registry",
-      "Se genera una versión del modelo con métricas asociadas",
-      "El dashboard permite simular cambios de precio y ver impacto"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Model jest trenowany i rejestrowany w Model Registry",
+      "Generowana jest wersja modelu z powiązanymi metrykami",
+      "Dashboard umożliwia symulację zmian cen i podgląd wpływu"
     ]
   },
   "UC02": {
     "title": "Wielohoryzontalny Forecast Popytu Hotelowego",
-    "contexto": "Estos Cortex Code Prompts construyen modelos de predicción de demanda a 30, 60 y 90 días integrando variables externas para optimizar la estrategia de revenue.",
-    "foco": "Forecasting de demanda hotelera — predicción precisa de ocupación futura por segmento y tipo de habitación.",
-    "reto": "Reducir el error de forecast (MAPE) del 25% al 12% integrando señales externas de demanda.",
+    "contexto": "Te Cortex Code Prompts budują modele predykcji popytu na 30, 60 i 90 dni integrując zmienne zewnętrzne w celu optymalizacji strategii revenue.",
+    "foco": "Forecasting popytu hotelowego — precyzyjna predykcja przyszłego obłożenia według segmentu i typu pokoju.",
+    "reto": "Zmniejszenie błędu prognozy (MAPE) z 25% do 12% poprzez integrację zewnętrznych sygnałów popytu.",
     "objetivos": [
-      "Entrenar modelos de forecast con SNOWFLAKE.ML.FORECAST",
-      "Integrar variables externas: eventos, vuelos, meteorología",
-      "Generar datos sintéticos con patrones estacionales realistas",
-      "Evaluar accuracy por horizonte y segmento",
-      "Construir dashboard de forecast con bandas de confianza"
+      "Trenować modele forecast z SNOWFLAKE.ML.FORECAST",
+      "Integrować zmienne zewnętrzne: wydarzenia, loty, meteorologię",
+      "Generować dane syntetyczne z realistycznymi wzorcami sezonowymi",
+      "Oceniać accuracy według horyzontu i segmentu",
+      "Zbudować dashboard prognozy z przedziałami ufności"
     ],
     "funcionalidades": [
-      "Modelo ML: ML.FORECAST con series temporales y exógenas",
-      "Datos sintéticos: 24 meses de ocupación con estacionalidad y eventos",
-      "Forecast: 30, 60 y 90 días con intervalos de confianza al 95%",
-      "Dashboard Streamlit: Forecast interactivo por segmento y tipo"
+      "Model ML: ML.FORECAST z szeregami czasowymi i egzogennymi",
+      "Dane syntetyczne: 24 miesiące obłożenia z sezonowością i wydarzeniami",
+      "Prognoza: 30, 60 i 90 dni z przedziałami ufności 95%",
+      "Dashboard Streamlit: Interaktywna prognoza według segmentu i typu"
     ],
     "datos": [
-      "Ocupación histórica: Diaria por tipo de habitación y segmento",
-      "Variables externas: Eventos, llegadas aeropuerto, búsquedas, meteo",
-      "Forecast: Predicciones con lower/upper bound al 95%"
+      "Historyczne obłożenie: Dzienne według typu pokoju i segmentu",
+      "Zmienne zewnętrzne: Wydarzenia, przyloty na lotnisko, wyszukiwania, pogoda",
+      "Prognoza: Predykcje z lower/upper bound 95%"
     ],
     "estratificacion": [
-      "MAPE <10%: Forecast fiable para decisiones de pricing",
-      "MAPE 10-20%: Usar como guía con margen de seguridad",
-      "MAPE >20%: Revisar variables y recalibrar modelo"
+      "MAPE <10%: Wiarygodna prognoza do decyzji cenowych",
+      "MAPE 10-20%: Użyj jako wskazówkę z marginesem bezpieczeństwa",
+      "MAPE >20%: Przegląd zmiennych i rekalibracja modelu"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 24 meses de datos con estacionalidad realista",
-      "El modelo se entrena con ML.FORECAST",
-      "El dashboard compara forecast vs realidad con métricas de accuracy"
+      "Generowanych jest 24 miesiące danych z realistyczną sezonowością",
+      "Model jest trenowany z ML.FORECAST",
+      "Dashboard porównuje prognozę z rzeczywistością z metrykami accuracy"
     ]
   },
   "UC03": {
     "title": "Optymalizacja przychodów z usług dodatkowych",
-    "contexto": "Estos Cortex Code Prompts construyen un motor de propensión de compra de servicios complementarios para maximizar el revenue per guest.",
-    "foco": "Ancillary revenue — predicción de propensión de compra de spa, restaurante, transfers y experiencias.",
-    "reto": "Incrementar la penetración de servicios ancillary del 15% al 35% mediante ofertas personalizadas basadas en propensión ML.",
+    "contexto": "Te Cortex Code Prompts budują silnik skłonności do zakupu usług dodatkowych w celu maksymalizacji przychodu na gościa.",
+    "foco": "Ancillary revenue — predykcja skłonności do zakupu spa, restauracji, transferów i atrakcji.",
+    "reto": "Zwiększenie penetracji usług ancillary z 15% do 35% poprzez spersonalizowane oferty oparte na propensji ML.",
     "objetivos": [
-      "Entrenar modelo de propensión por servicio con ML.CLASSIFICATION",
-      "Generar datos sintéticos de huéspedes con consumo de servicios",
-      "Crear bundles personalizados basados en propensión",
-      "Calcular incremento de revenue por habitación",
-      "Construir dashboard de upselling con recomendaciones"
+      "Trenować model skłonności na usługę z ML.CLASSIFICATION",
+      "Generować dane syntetyczne gości z konsumpcją usług",
+      "Tworzyć spersonalizowane pakiety oparte na skłonności",
+      "Obliczać wzrost przychodu na pokój",
+      "Zbudować dashboard upsellingu z rekomendacjami"
     ],
     "funcionalidades": [
-      "Modelo ML: Propensión de compra por tipo de servicio",
-      "Datos sintéticos: 5.000 estancias con consumo de 8 servicios",
-      "Bundles: Combinaciones óptimas por perfil de huésped",
-      "Dashboard Streamlit: Panel de upselling con recomendaciones por reserva"
+      "Model ML: Skłonność do zakupu według typu usługi",
+      "Dane syntetyczne: 5000 pobytów z konsumpcją 8 usług",
+      "Pakiety: Optymalne kombinacje według profilu gościa",
+      "Dashboard Streamlit: Panel upsellingu z rekomendacjami na rezerwację"
     ],
     "datos": [
-      "Rezerwacje: Perfil, motivo viaje, duración, canal, precio",
-      "Servicios: Spa, restaurante, minibar, transfer, excursión, parking, upgrade, late checkout",
-      "Propensión: Probabilidad de compra por servicio y huésped"
+      "Rezerwacje: Profil, cel podróży, długość, kanał, cena",
+      "Usługi: Spa, restauracja, minibar, transfer, wycieczka, parking, upgrade, late checkout",
+      "Skłonność: Prawdopodobieństwo zakupu na usługę i gościa"
     ],
     "estratificacion": [
-      "Alta propensión (>70%): Incluir en email pre-arrival como oferta flash",
-      "Media (40-70%): Mostrar en app durante estancia",
-      "Baja (<40%): No ofrecer activamente (evitar fatiga)"
+      "Wysoka skłonność (>70%): Umieścić w e-mailu pre-arrival jako ofertę flash",
+      "Średnia (40-70%): Pokazać w aplikacji podczas pobytu",
+      "Niska (<40%): Nie oferować aktywnie (unikanie zmęczenia)"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 5.000 estancias con patrones de consumo",
-      "El modelo predice propensión por servicio",
-      "El dashboard genera bundles personalizados"
+      "Generowanych jest 5000 pobytów z wzorcami konsumpcji",
+      "Model przewiduje skłonność według usługi",
+      "Dashboard generuje spersonalizowane pakiety"
     ]
   },
   "UC04": {
     "title": "Segmentacja wartości klienta (CLV) z ML",
-    "contexto": "Estos Cortex Code Prompts construyen un sistema de Customer Lifetime Value predictivo para segmentar huéspedes por valor futuro.",
-    "foco": "Fidelización hotelera — segmentación por valor real del huésped para acciones de marketing diferenciadas.",
-    "reto": "Identificar el 20% de huéspedes que generan el 65% del revenue y diseñar estrategias diferenciadas por tier.",
+    "contexto": "Te Cortex Code Prompts budują system predykcyjnego Customer Lifetime Value do segmentacji gości według przyszłej wartości.",
+    "foco": "Lojalność hotelowa — segmentacja według rzeczywistej wartości gościa dla zróżnicowanych działań marketingowych.",
+    "reto": "Identyfikacja 20% gości generujących 65% przychodu i projektowanie zróżnicowanych strategii według poziomu.",
     "objetivos": [
-      "Calcular CLV predictivo combinando RFM y propensión de retorno",
-      "Segmentar huéspedes en 4 tiers de valor",
-      "Generar datos sintéticos de historial de estancias",
-      "Activar campañas diferenciadas por segmento",
-      "Construir dashboard de fidelización con métricas por tier"
+      "Obliczać predykcyjne CLV łączące RFM i skłonność do powrotu",
+      "Segmentować gości na 4 poziomy wartości",
+      "Generować dane syntetyczne historii pobytów",
+      "Aktywować zróżnicowane kampanie według segmentu",
+      "Zbudować dashboard lojalnościowy z metrykami na poziom"
     ],
     "funcionalidades": [
-      "Modelo ML: CLV predictivo con regresión y clasificación",
-      "Datos sintéticos: 3.000 huéspedes con 2 años de historial",
-      "Segmentos: Platinum (>P90), Gold (P75-P90), Silver (P50-P75), Bronze (<P50)",
-      "Dashboard Streamlit: Análisis de valor por tier con acciones recomendadas"
+      "Model ML: Predykcyjne CLV z regresją i klasyfikacją",
+      "Dane syntetyczne: 3000 gości z 2-letnią historią",
+      "Segmenty: Platinum (>P90), Gold (P75-P90), Silver (P50-P75), Bronze (<P50)",
+      "Dashboard Streamlit: Analiza wartości na poziom z rekomendowanymi działaniami"
     ],
     "datos": [
-      "Goście: Perfil, programa fidelidad, canal preferido",
-      "Pobyty: Fechas, ADR, servicios consumidos, reviews",
-      "CLV: Valor predicho a 12 meses con probabilidad de retorno"
+      "Goście: Profil, program lojalnościowy, preferowany kanał",
+      "Pobyty: Daty, ADR, wykorzystane usługi, recenzje",
+      "CLV: Przewidywana wartość na 12 miesięcy z prawdopodobieństwem powrotu"
     ],
     "estratificacion": [
       "Platinum (CLV >5 000€): Obsługa VIP, upgrady, spersonalizowany kontakt",
@@ -991,569 +991,569 @@ const GUIAS = {
     "foco": "Konserwacja hotelowa — predykcja awarii HVAC, wind, hydrauliki i wyposażenia pokojów.",
     "reto": "Zmniejszenie nieplanowanych awarii o 65% i eliminacja rekompensat dla gości z powodu incydentów konserwacyjnych.",
     "objetivos": [
-      "Generar señales sintéticas de sensores de instalaciones",
-      "Entrenar modelo predictivo de fallos con ML.CLASSIFICATION",
-      "Registrar modelo en Model Registry con log_model() y métricas",
-      "Configurar pipeline de inferencia automática",
-      "Calcular ROI del mantenimiento predictivo"
+      "Generować syntetyczne sygnały czujników instalacji",
+      "Trenować model predykcyjny awarii z ML.CLASSIFICATION",
+      "Rejestrować model w Model Registry z log_model() i metrykami",
+      "Konfigurować pipeline automatycznej inferencji",
+      "Obliczać ROI konserwacji predykcyjnej"
     ],
     "funcionalidades": [
-      "Modelo ML: Predicción de fallo con ML.CLASSIFICATION + Model Registry",
-      "Versionado: log_model() con métricas de accuracy y recall",
-      "Datos sintéticos: 50 equipos con 180 días de señales de sensores",
-      "Dashboard Streamlit: Panel de salud de instalaciones con alertas"
+      "Model ML: Predykcja awarii z ML.CLASSIFICATION + Model Registry",
+      "Wersjonowanie: log_model() z metrykami accuracy i recall",
+      "Dane syntetyczne: 50 urządzeń z 180 dniami sygnałów czujników",
+      "Dashboard Streamlit: Panel stanu instalacji z alertami"
     ],
     "datos": [
-      "Urządzenia: HVAC, ascensores, calderas, bombas, generadores",
-      "Czujniki: Temperatura, vibración, presión, corriente, horas uso",
-      "Modelo registrado: Versión, métricas, feature importance, metadata"
+      "Urządzenia: HVAC, windy, kotły, pompy, generatory",
+      "Czujniki: Temperatura, wibracje, ciśnienie, prąd, godziny pracy",
+      "Zarejestrowany model: Wersja, metryki, feature importance, metadane"
     ],
     "estratificacion": [
-      "Fallo Inminente (≥70%): Intervención programada antes de 24h",
-      "Riesgo Elevado (40-70%): Inspección y preparar repuestos",
-      "Normal (<40%): Monitorización estándar y mantenimiento preventivo"
+      "Zbliżająca się awaria (≥70%): Zaplanowana interwencja przed 24h",
+      "Podwyższone ryzyko (40-70%): Inspekcja i przygotowanie części",
+      "Normalny (<40%): Standardowy monitoring i konserwacja prewencyjna"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 180 días de señales para 50 equipos",
-      "El modelo se entrena y registra en Model Registry",
-      "Dashboard pokazuje la salud de instalaciones y el coste evitado"
+      "Generowanych jest 180 dni sygnałów dla 50 urządzeń",
+      "Model jest trenowany i rejestrowany w Model Registry",
+      "Dashboard pokazuje stan instalacji i uniknięty koszt"
     ]
   },
   "UC06": {
     "title": "Spersonalizowane rekomendacje lokalnych doświadczeń",
-    "contexto": "Estos Cortex Code Prompts construyen un motor de recomendación contextual que genera sugerencias personalizadas de actividades, restaurantes y experiencias para cada huésped.",
-    "foco": "Experiencia del huésped — recomendaciones personalizadas de actividades locales basadas en perfil y contexto.",
-    "reto": "Incrementar la satisfacción del huésped (NPS +15 puntos) y el revenue de experiencias un 30% con recomendaciones relevantes.",
+    "contexto": "Te Cortex Code Prompts budują kontekstowy silnik rekomendacji generujący spersonalizowane sugestie aktywności, restauracji i doświadczeń dla każdego gościa.",
+    "foco": "Doświadczenie gościa — spersonalizowane rekomendacje lokalnych aktywności na podstawie profilu i kontekstu.",
+    "reto": "Zwiększenie satysfakcji gościa (NPS +15 punktów) i przychodu z doświadczeń o 30% dzięki trafnym rekomendacjom.",
     "objetivos": [
-      "Generar catálogo de experiencias locales con atributos",
-      "Crear perfiles de huéspedes con preferencias",
-      "Implementar recomendación contextual con CORTEX.COMPLETE",
-      "Generar itinerarios personalizados por duración de estancia",
-      "Construir interfaz de concierge digital con Streamlit"
+      "Generować katalog lokalnych doświadczeń z atrybutami",
+      "Tworzyć profile gości z preferencjami",
+      "Implementować kontekstowe rekomendacje z CORTEX.COMPLETE",
+      "Generować spersonalizowane itinerariusze według długości pobytu",
+      "Zbudować interfejs cyfrowego concierge z Streamlit"
     ],
     "funcionalidades": [
-      "Recomendaciones con CORTEX.COMPLETE contextual",
-      "Datos sintéticos: 200 experiencias, 1.000 huéspedes, 3.000 estancias",
-      "Itinerarios: Generados automáticamente por duración y perfil",
-      "Dashboard Streamlit: Concierge digital interactivo"
+      "Rekomendacje z kontekstowym CORTEX.COMPLETE",
+      "Dane syntetyczne: 200 doświadczeń, 1000 gości, 3000 pobytów",
+      "Itinerariusze: Generowane automatycznie według długości i profilu",
+      "Dashboard Streamlit: Interaktywny cyfrowy concierge"
     ],
     "datos": [
-      "Experiencias: Restaurantes, tours, museos, actividades, wellness",
-      "Goście: Perfil demográfico, motivo viaje, intereses, idioma",
-      "Recomendaciones: Top 5 experiencias por huésped con score de relevancia"
+      "Doświadczenia: Restauracje, wycieczki, muzea, aktywności, wellness",
+      "Goście: Profil demograficzny, cel podróży, zainteresowania, język",
+      "Rekomendacje: Top 5 doświadczeń na gościa ze score trafności"
     ],
     "estratificacion": [
-      "Relevancia alta (>80%): Recomendación principal en email pre-arrival",
-      "Relevancia media (50-80%): Incluir en app durante estancia",
-      "Relevancia baja (<50%): No mostrar para evitar ruido"
+      "Wysoka trafność (>80%): Główna rekomendacja w e-mailu pre-arrival",
+      "Średnia trafność (50-80%): Umieścić w aplikacji podczas pobytu",
+      "Niska trafność (<50%): Nie pokazywać, aby uniknąć szumu"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan experiencias y perfiles de huéspedes",
-      "CORTEX.COMPLETE genera recomendaciones contextuales",
-      "El dashboard permite explorar y ajustar recomendaciones"
+      "Generowane są doświadczenia i profile gości",
+      "CORTEX.COMPLETE generuje kontekstowe rekomendacje",
+      "Dashboard umożliwia eksplorację i dostosowanie rekomendacji"
     ]
   },
   "UC07": {
     "title": "Analiza sentymentu w recenzjach wielokanałowych",
-    "contexto": "Estos Cortex Code Prompts construyen un pipeline NLP para agregar y analizar reviews de múltiples plataformas, detectando tendencias de sentimiento por categoría.",
-    "foco": "Reputación online — análisis unificado de reviews en Booking, TripAdvisor, Google, Expedia y canal directo.",
-    "reto": "Detectar tendencias negativas en menos de 24h (vs 2-4 semanas actual) y reducir el impacto en ranking.",
+    "contexto": "Te Cortex Code Prompts budują pipeline NLP do agregacji i analizy recenzji z wielu platform, wykrywając trendy sentymentu według kategorii.",
+    "foco": "Reputacja online — zunifikowana analiza recenzji z Booking, TripAdvisor, Google, Expedia i kanału bezpośredniego.",
+    "reto": "Wykrywanie negatywnych trendów w mniej niż 24h (vs 2-4 tygodnie obecnie) i redukcja wpływu na ranking.",
     "objetivos": [
-      "Generar reviews sintéticas multi-plataforma con variedad",
-      "Clasificar sentimiento por categoría con CORTEX.SENTIMENT",
-      "Extraer temas recurrentes con CORTEX.COMPLETE",
-      "Detectar tendencias emergentes positivas y negativas",
-      "Generar alertas automáticas por caída de categoría"
+      "Generować syntetyczne recenzje wieloplatformowe z różnorodnością",
+      "Klasyfikować sentyment według kategorii z CORTEX.SENTIMENT",
+      "Wydobywać powtarzające się tematy z CORTEX.COMPLETE",
+      "Wykrywać pojawiające się trendy pozytywne i negatywne",
+      "Generować automatyczne alerty przy spadku kategorii"
     ],
     "funcionalidades": [
-      "NLP: CORTEX.SENTIMENT + CORTEX.COMPLETE para análisis multi-categoría",
-      "Datos sintéticos: 2.000 reviews de 5 plataformas en 12 meses",
-      "Categorías: Habitación, Limpieza, Servicio, Ubicación, F&B, WiFi, Precio",
-      "Dashboard Streamlit: Panel de reputación con tendencias y alertas"
+      "NLP: CORTEX.SENTIMENT + CORTEX.COMPLETE do analizy wielokategoriowej",
+      "Dane syntetyczne: 2000 recenzji z 5 platform w 12 miesięcy",
+      "Kategorie: Pokój, Czystość, Obsługa, Lokalizacja, F&B, WiFi, Cena",
+      "Dashboard Streamlit: Panel reputacji z trendami i alertami"
     ],
     "datos": [
-      "Recenzje: Texto, plataforma, fecha, rating, idioma, tipo huésped",
-      "Sentimiento: Score por categoría (-1 a +1)",
-      "Tendencias: Media móvil 30 días por categoría con alertas"
+      "Recenzje: Tekst, platforma, data, ocena, język, typ gościa",
+      "Sentyment: Score według kategorii (-1 do +1)",
+      "Trendy: Średnia krocząca 30 dni według kategorii z alertami"
     ],
     "estratificacion": [
-      "Tendencia crítica (caída >0.3 en 30 días): Alerta al GM inmediata",
-      "Tendencia negativa (caída 0.1-0.3): Revisión semanal por departamento",
-      "Estable (±0.1): Monitorización estándar",
-      "Tendencia positiva (subida >0.1): Reconocer al equipo"
+      "Trend krytyczny (spadek >0.3 w 30 dni): Natychmiastowy alert do GM",
+      "Trend negatywny (spadek 0.1-0.3): Tygodniowy przegląd przez dział",
+      "Stabilny (±0.1): Standardowy monitoring",
+      "Trend pozytywny (wzrost >0.1): Docenienie zespołu"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 2.000 reviews con variedad de plataformas e idiomas",
-      "Cortex AI clasifica sentimiento por categoría",
-      "Dashboard pokazuje tendencias y alertas en tiempo real"
+      "Generowanych jest 2000 recenzji z różnorodnością platform i języków",
+      "Cortex AI klasyfikuje sentyment według kategorii",
+      "Dashboard pokazuje trendy i alerty w czasie rzeczywistym"
     ]
   },
   "UC08": {
     "title": "Feature Store preferencji gościa",
-    "contexto": "Estos Cortex Code Prompts construyen un Feature Store en Snowflake para consolidar y servir preferencias de huéspedes en tiempo real para personalización en check-in.",
-    "foco": "Personalización hotelera — Feature Store centralizado con todas las preferencias del huésped actualizadas automáticamente.",
-    "reto": "Lograr que el 90% de los repeat guests tengan sus preferencias disponibles en check-in (vs 30% actual).",
+    "contexto": "Te Cortex Code Prompts budują Feature Store w Snowflake do konsolidacji i udostępniania preferencji gości w czasie rzeczywistym do personalizacji przy zameldowaniu.",
+    "foco": "Personalizacja hotelowa — scentralizowany Feature Store ze wszystkimi preferencjami gościa aktualizowanymi automatycznie.",
+    "reto": "Osiągnięcie dostępności preferencji dla 90% powracających gości przy zameldowaniu (vs 30% obecnie).",
     "objetivos": [
-      "Crear entidades y FeatureViews con Snowflake Feature Store",
-      "Generar datos sintéticos de preferencias de múltiples fuentes",
-      "Implementar pipeline de ingesta desde PMS, CRM y app",
-      "Servir features en tiempo real para check-in",
-      "Validar consistencia y frescura de las features"
+      "Tworzyć encje i FeatureViews z Snowflake Feature Store",
+      "Generować dane syntetyczne preferencji z wielu źródeł",
+      "Implementować pipeline ingesti z PMS, CRM i aplikacji",
+      "Udostępniać cechy w czasie rzeczywistym do zameldowania",
+      "Walidować spójność i świeżość cech"
     ],
     "funcionalidades": [
       "Feature Store: Entity (guest_id) + FeatureViews (room, dining, service)",
-      "Pipeline: Ingesta de PMS, CRM, app, notas staff con merge automático",
-      "Datos sintéticos: 2.000 huéspedes con 5.000 estancias y preferencias",
-      "Dashboard Streamlit: Panel de preferencias por huésped para recepción"
+      "Pipeline: Ingesta z PMS, CRM, aplikacji, notatek personelu z automatycznym merge",
+      "Dane syntetyczne: 2000 gości z 5000 pobytami i preferencjami",
+      "Dashboard Streamlit: Panel preferencji na gościa dla recepcji"
     ],
     "datos": [
-      "Preferencias de habitación: Piso, vista, tipo almohada, temperatura, minibar",
-      "Preferencias de F&B: Alergias, dieta, restaurante favorito, vino",
-      "Preferencias de servicio: Hora check-in/out, periódico, transporte"
+      "Preferencje pokoju: Piętro, widok, typ poduszki, temperatura, minibar",
+      "Preferencje F&B: Alergie, dieta, ulubiona restauracja, wino",
+      "Preferencje usług: Godzina zameldowania/wymeldowania, gazeta, transport"
     ],
     "estratificacion": [
-      "Repeat guest con features completas: Personalización automática total",
-      "Repeat guest con features parciales: Confirmar en check-in",
-      "First-time guest: Preguntas de preferencias en app pre-arrival",
-      "VIP/Platinum: Notificar a duty manager con perfil completo"
+      "Powracający gość z pełnymi cechami: Pełna automatyczna personalizacja",
+      "Powracający gość z częściowymi cechami: Potwierdzenie przy zameldowaniu",
+      "Nowy gość: Pytania o preferencje w aplikacji pre-arrival",
+      "VIP/Platinum: Powiadomienie duty managera z pełnym profilem"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se crean las entidades y FeatureViews en Feature Store",
-      "Se generan preferencias de 2.000 huéspedes de múltiples fuentes",
-      "El dashboard simula un check-in con features servidas en tiempo real"
+      "Tworzone są encje i FeatureViews w Feature Store",
+      "Generowane są preferencje 2000 gości z wielu źródeł",
+      "Dashboard symuluje zameldowanie z cechami udostępnianymi w czasie rzeczywistym"
     ]
   },
   "UC09": {
     "title": "Chatbot Concierge z RAG na bazie wiedzy hotelowej",
-    "contexto": "Estos Cortex Code Prompts construyen un asistente conversacional RAG sobre Cortex Search que responde preguntas de huéspedes indexando la base de conocimiento completa del hotel.",
-    "foco": "Servicio al huésped 24/7 — chatbot con acceso a toda la información del hotel, servicios, menús y entorno.",
-    "reto": "Resolver el 80% de las consultas de huéspedes sin intervención humana, disponible 24/7 en 10+ idiomas.",
+    "contexto": "Te Cortex Code Prompts budują konwersacyjnego asystenta RAG na Cortex Search odpowiadającego na pytania gości, indeksującego pełną bazę wiedzy hotelu.",
+    "foco": "Obsługa gościa 24/7 — chatbot z dostępem do wszystkich informacji hotelowych, usług, menu i okolicy.",
+    "reto": "Rozwiązywanie 80% zapytań gości bez interwencji ludzkiej, dostępne 24/7 w 10+ językach.",
     "objetivos": [
-      "Generar base de conocimiento del hotel (servicios, menús, FAQ)",
-      "Crear chunks de texto para indexación semántica",
-      "Crear Cortex Search Service sobre documentación del hotel",
-      "Implementar pipeline RAG multiidioma",
-      "Construir interfaz de chat con Streamlit"
+      "Generować bazę wiedzy hotelu (usługi, menu, FAQ)",
+      "Tworzyć chunki tekstu do indeksacji semantycznej",
+      "Tworzyć Cortex Search Service na dokumentacji hotelu",
+      "Implementować wielojęzyczny pipeline RAG",
+      "Zbudować interfejs czatu z Streamlit"
     ],
     "funcionalidades": [
-      "RAG: Cortex Search + CORTEX.COMPLETE con detección de idioma",
-      "Datos sintéticos: 150 documentos de 6 tipos (FAQ, menús, servicios, tours, procedimientos, guía local)",
-      "Multiidioma: Respuestas en el idioma de la pregunta automáticamente",
-      "Dashboard Streamlit: Chat con historial y escalado a staff"
+      "RAG: Cortex Search + CORTEX.COMPLETE z detekcją języka",
+      "Dane syntetyczne: 150 dokumentów 6 typów (FAQ, menu, usługi, wycieczki, procedury, przewodnik lokalny)",
+      "Wielojęzyczność: Odpowiedzi w języku pytania automatycznie",
+      "Dashboard Streamlit: Czat z historią i eskalacją do personelu"
     ],
     "datos": [
-      "FAQ: 80 preguntas frecuentes con respuestas detalladas",
-      "Menús: Restaurante, room service, bar, eventos con alérgenos",
-      "Servicios: Spa, gym, piscina, parking, business center, transfers"
+      "FAQ: 80 najczęstszych pytań ze szczegółowymi odpowiedziami",
+      "Menu: Restauracja, room service, bar, wydarzenia z alergenami",
+      "Usługi: Spa, siłownia, basen, parking, business center, transfery"
     ],
     "estratificacion": [
-      "Confianza alta (>0.8): Respuesta directa al huésped",
-      "Confianza media (0.5-0.8): Responder + ofrecer hablar con staff",
-      "Confianza baja (<0.5): Escalar a concierge humano directamente"
+      "Wysoka pewność (>0.8): Bezpośrednia odpowiedź do gościa",
+      "Średnia pewność (0.5-0.8): Odpowiedź + propozycja rozmowy z personelem",
+      "Niska pewność (<0.5): Bezpośrednia eskalacja do ludzkiego concierge"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se genera base de conocimiento con 150 documentos",
-      "Se crea Cortex Search Service con indexación semántica",
-      "El dashboard permite chatear y ver chunks utilizados"
+      "Generowana jest baza wiedzy z 150 dokumentami",
+      "Tworzony jest Cortex Search Service z indeksacją semantyczną",
+      "Dashboard umożliwia czat i podgląd wykorzystanych chunków"
     ]
   },
   "UC10": {
     "title": "Optymalizacja zatrudnienia na podstawie predykcji obłożenia",
-    "contexto": "Estos Cortex Code Prompts construyen un sistema de predicción de carga de trabajo por departamento para optimizar la planificación de turnos.",
-    "foco": "Gestión de personal hotelero — dimensionamiento óptimo de plantilla por departamento basado en demanda prevista.",
-    "reto": "Reducir el coste de personal un 12% sin impactar la calidad de servicio, eliminando horas extra no planificadas.",
+    "contexto": "Te Cortex Code Prompts budują system predykcji obciążenia pracą według działu w celu optymalizacji planowania zmian.",
+    "foco": "Zarządzanie personelem hotelowym — optymalne wymiarowanie kadry według działu na podstawie prognozowanego popytu.",
+    "reto": "Redukcja kosztów personelu o 12% bez wpływu na jakość obsługi, eliminacja nieplanowanych nadgodzin.",
     "objetivos": [
-      "Predecir carga de trabajo por departamento y día",
-      "Generar datos sintéticos de ocupación y consumo de servicios",
-      "Modelar ratios de personal por tipo de servicio",
-      "Optimizar turnos con restricciones laborales",
-      "Construir dashboard de planificación de turnos"
+      "Przewidywać obciążenie pracą według działu i dnia",
+      "Generować dane syntetyczne obłożenia i konsumpcji usług",
+      "Modelować wskaźniki personelu według typu usługi",
+      "Optymalizować zmiany z ograniczeniami pracowniczymi",
+      "Zbudować dashboard planowania zmian"
     ],
     "funcionalidades": [
-      "Modelo ML: Predicción de carga con ML.FORECAST por departamento",
-      "Datos sintéticos: 12 meses, 6 departamentos, 200 empleados",
-      "Ratios: Camareras/habitación, recepcionistas/check-in, cocineros/cubierto",
-      "Dashboard Streamlit: Planificación semanal con coste y cobertura"
+      "Model ML: Predykcja obciążenia z ML.FORECAST według działu",
+      "Dane syntetyczne: 12 miesięcy, 6 działów, 200 pracowników",
+      "Wskaźniki: Pokojówki/pokój, recepcjoniści/zameldowanie, kucharze/nakrycie",
+      "Dashboard Streamlit: Planowanie tygodniowe z kosztami i pokryciem"
     ],
     "datos": [
-      "Ocupación: Diaria por tipo y segmento con forecast",
-      "Servicios: Check-ins, cubiertos, spa appointments por hora",
-      "Personal: Contratos, disponibilidad, coste hora, polivalencia"
+      "Obłożenie: Dzienne według typu i segmentu z prognozą",
+      "Usługi: Zameldowania, nakrycia, wizyty spa na godzinę",
+      "Personel: Umowy, dostępność, koszt godziny, wielofunkcyjność"
     ],
     "estratificacion": [
-      "Déficit >20%: Contratar extra o redistribuir personal",
-      "Déficit 10-20%: Activar horas extra selectivas",
-      "Equilibrado (±10%): Planificación estándar",
-      "Exceso >10%: Reasignar a formación o tareas preventivas"
+      "Deficyt >20%: Zatrudnienie dodatkowe lub redystrybucja personelu",
+      "Deficyt 10-20%: Aktywacja wybranych nadgodzin",
+      "Zrównoważony (±10%): Standardowe planowanie",
+      "Nadmiar >10%: Przesunięcie na szkolenia lub zadania prewencyjne"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 12 meses de datos de ocupación y servicios",
-      "El modelo predice carga por departamento y día",
-      "El dashboard optimiza turnos con restricciones laborales"
+      "Generowanych jest 12 miesięcy danych obłożenia i usług",
+      "Model przewiduje obciążenie według działu i dnia",
+      "Dashboard optymalizuje zmiany z ograniczeniami pracowniczymi"
     ]
   },
   "UC11": {
     "title": "Optymalizacja energetyczna hotelu z AI",
-    "contexto": "Estos Cortex Code Prompts construyen un sistema de optimización del consumo energético hotelero correlacionando ocupación, meteorología y tarifas eléctricas.",
-    "foco": "Sostenibilidad hotelera — reducción del consumo energético por habitación manteniendo el confort del huésped.",
-    "reto": "Reducir el consumo energético un 18% y el coste un 22% adaptando el consumo a la ocupación real y las tarifas.",
+    "contexto": "Te Cortex Code Prompts budują system optymalizacji zużycia energii hotelowej korelujący obłożenie, meteorologię i taryfy elektryczne.",
+    "foco": "Zrównoważony rozwój hotelowy — redukcja zużycia energii na pokój przy zachowaniu komfortu gościa.",
+    "reto": "Redukcja zużycia energii o 18% i kosztów o 22% poprzez dostosowanie konsumpcji do rzeczywistego obłożenia i taryf.",
     "objetivos": [
-      "Generar series temporales de consumo por zona y equipo",
-      "Correlacionar consumo con ocupación y meteorología",
-      "Detectar anomalías en equipos HVAC",
-      "Predecir consumo y optimizar según tarifa eléctrica",
-      "Calcular KPI €/habitación ocupada"
+      "Generować szeregi czasowe zużycia według strefy i urządzenia",
+      "Korelować zużycie z obłożeniem i meteorologią",
+      "Wykrywać anomalie w urządzeniach HVAC",
+      "Przewidywać zużycie i optymalizować według taryfy elektrycznej",
+      "Obliczać KPI €/pokój zajęty"
     ],
     "funcionalidades": [
-      "Modelo ML: Predicción de consumo y detección de anomalías",
-      "Datos sintéticos: 90 días, 30 zonas, lecturas horarias",
-      "Correlaciones: Ocupación × meteo × tarifa × zona",
-      "Dashboard Streamlit: Panel de gestión energética con KPIs"
+      "Model ML: Predykcja zużycia i wykrywanie anomalii",
+      "Dane syntetyczne: 90 dni, 30 stref, odczyty godzinowe",
+      "Korelacje: Obłożenie × pogoda × taryfa × strefa",
+      "Dashboard Streamlit: Panel zarządzania energią z KPI"
     ],
     "datos": [
-      "Zonas: Habitaciones por planta, áreas comunes, cocina, lavandería",
-      "Consumo: kWh por hora y zona con tarifa eléctrica",
-      "Indicadores: kWh/habitación ocupada, coste/m², desviación vs baseline"
+      "Strefy: Pokoje według piętra, strefy wspólne, kuchnia, pralnia",
+      "Zużycie: kWh na godzinę i strefę z taryfą elektryczną",
+      "Wskaźniki: kWh/pokój zajęty, koszt/m², odchylenie vs baseline"
     ],
     "estratificacion": [
-      "Anomalía crítica (>40% desviación): Investigación inmediata de equipo",
-      "Ineficiencia estructural (>P90): Plan de mejora trimestral",
-      "Pico evitable (coincidencia de arranques): Escalonar arranques",
-      "Zona vacía con consumo: Apagar o reducir HVAC automáticamente"
+      "Anomalia krytyczna (>40% odchylenia): Natychmiastowe badanie urządzenia",
+      "Nieefektywność strukturalna (>P90): Kwartalny plan poprawy",
+      "Szczyt do uniknięcia (zbieżność uruchomień): Rozłożenie uruchomień",
+      "Pusta strefa z zużyciem: Wyłączenie lub redukcja HVAC automatycznie"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 90 días de consumo para 30 zonas",
-      "El modelo detecta anomalías y predice consumo",
-      "Dashboard pokazuje ranking de ineficiencia y alertas"
+      "Generowanych jest 90 dni zużycia dla 30 stref",
+      "Model wykrywa anomalie i przewiduje zużycie",
+      "Dashboard pokazuje ranking nieefektywności i alerty"
     ]
   },
   "UC12": {
     "title": "Predykcja no-show i inteligentny overbooking",
-    "contexto": "Estos Cortex Code Prompts construyen un predictor de no-shows por reserva individual que permite calibrar el overbooking con riesgo controlado.",
-    "foco": "Revenue Management — maximización de ocupación mediante overbooking calibrado con predicción de no-shows.",
-    "reto": "Reducir walk-outs un 80% manteniendo ocupación óptima mediante overbooking basado en datos, no en intuición.",
+    "contexto": "Te Cortex Code Prompts budują predyktor no-show na pojedynczą rezerwację, umożliwiający kalibrację overbookingu z kontrolowanym ryzykiem.",
+    "foco": "Revenue Management — maksymalizacja obłożenia poprzez kalibrowany overbooking z predykcją no-show.",
+    "reto": "Redukcja walk-outów o 80% przy utrzymaniu optymalnego obłożenia poprzez overbooking oparty na danych, nie na intuicji.",
     "objetivos": [
-      "Generar datos sintéticos de reservas con no-shows realistas",
-      "Entrenar modelo de predicción de no-show por reserva",
-      "Calcular nivel óptimo de overbooking por noche",
-      "Simular escenarios de walk-out y coste asociado",
-      "Construir dashboard de overbooking con riesgo"
+      "Generować dane syntetyczne rezerwacji z realistycznymi no-show",
+      "Trenować model predykcji no-show na rezerwację",
+      "Obliczać optymalny poziom overbookingu na noc",
+      "Symulować scenariusze walk-out i powiązany koszt",
+      "Zbudować dashboard overbookingu z ryzykiem"
     ],
     "funcionalidades": [
-      "Modelo ML: Predicción de no-show con ML.CLASSIFICATION",
-      "Datos sintéticos: 10.000 reservas con 8% de no-shows",
-      "Variables: lead_time, canal, garantía, historial, precio, segmento",
-      "Dashboard Streamlit: Panel de overbooking con simulación de riesgo"
+      "Model ML: Predykcja no-show z ML.CLASSIFICATION",
+      "Dane syntetyczne: 10 000 rezerwacji z 8% no-show",
+      "Zmienne: lead_time, kanał, gwarancja, historia, cena, segment",
+      "Dashboard Streamlit: Panel overbookingu z symulacją ryzyka"
     ],
     "datos": [
-      "Rezerwacje: Canal, lead time, tipo garantía, tarifa, segmento",
-      "Historial huésped: No-shows previos, cancelaciones, early departures",
-      "Simulación: Escenarios de overbooking con probabilidad de walk-out"
+      "Rezerwacje: Kanał, lead time, typ gwarancji, taryfa, segment",
+      "Historia gościa: Wcześniejsze no-show, anulacje, early departures",
+      "Symulacja: Scenariusze overbookingu z prawdopodobieństwem walk-out"
     ],
     "estratificacion": [
-      "No-show probable (>60%): Incluir en cálculo de overbooking",
-      "Riesgo medio (30-60%): Marcar para confirmación activa",
-      "Bajo riesgo (<30%): Reserva firme, no computar en overbooking"
+      "Prawdopodobny no-show (>60%): Uwzględnić w kalkulacji overbookingu",
+      "Średnie ryzyko (30-60%): Oznaczyć do aktywnej konfirmacji",
+      "Niskie ryzyko (<30%): Pewna rezerwacja, nie wliczać do overbookingu"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 10.000 reservas con patrones de no-show",
-      "El modelo predice probabilidad por reserva",
-      "El dashboard calcula overbooking óptimo por noche"
+      "Generowanych jest 10 000 rezerwacji z wzorcami no-show",
+      "Model przewiduje prawdopodobieństwo na rezerwację",
+      "Dashboard oblicza optymalny overbooking na noc"
     ]
   },
   "UC13": {
     "title": "Analiza szybkości Housekeepingu z NLP",
-    "contexto": "Estos Cortex Code Prompts construyen un sistema de análisis de productividad de housekeeping combinando tiempos, incidencias y análisis NLP de comentarios del staff.",
-    "foco": "Operaciones de pisos — optimización de tiempos de limpieza y turnaround para check-in temprano.",
-    "reto": "Reducir el turnaround time un 25% e identificar mejores prácticas replicables en todo el equipo.",
+    "contexto": "Te Cortex Code Prompts budują system analizy produktywności housekeepingu łączący czasy, incydenty i analizę NLP komentarzy personelu.",
+    "foco": "Operacje housekeepingu — optymalizacja czasów sprzątania i turnaround dla wczesnego zameldowania.",
+    "reto": "Redukcja turnaround time o 25% i identyfikacja najlepszych praktyk do powielenia w całym zespole.",
     "objetivos": [
-      "Generar datos sintéticos de tiempos de limpieza por habitación",
-      "Analizar variabilidad por camarera, tipo y turno",
-      "Clasificar incidencias de housekeeping con CORTEX.COMPLETE",
-      "Identificar mejores prácticas y necesidades de formación",
-      "Construir dashboard operativo de housekeeping"
+      "Generować dane syntetyczne czasów sprzątania na pokój",
+      "Analizować zmienność według pokojówki, typu i zmiany",
+      "Klasyfikować incydenty housekeepingu z CORTEX.COMPLETE",
+      "Identyfikować najlepsze praktyki i potrzeby szkoleniowe",
+      "Zbudować dashboard operacyjny housekeepingu"
     ],
     "funcionalidades": [
-      "Análisis de productividad: SQL + NLP con CORTEX.COMPLETE",
-      "Datos sintéticos: 8.000 limpiezas con incidencias y comentarios",
-      "Categorías: Checkout, stayover, VIP, suite, discapacidad",
-      "Dashboard Streamlit: Panel de housekeeping con KPIs y alertas"
+      "Analiza produktywności: SQL + NLP z CORTEX.COMPLETE",
+      "Dane syntetyczne: 8000 sprzątań z incydentami i komentarzami",
+      "Kategorie: Checkout, stayover, VIP, suite, niepełnosprawność",
+      "Dashboard Streamlit: Panel housekeepingu z KPI i alertami"
     ],
     "datos": [
-      "Limpiezas: Camarera, habitación, tipo, hora inicio/fin, incidencias",
-      "Comentarios: Texto libre del staff sobre estado y problemas",
-      "Análisis: Tiempo medio, desviación, mejores prácticas extraídas"
+      "Sprzątania: Pokojówka, pokój, typ, godzina początku/końca, incydenty",
+      "Komentarze: Swobodny tekst personelu o stanie i problemach",
+      "Analiza: Średni czas, odchylenie, wydobyte najlepsze praktyki"
     ],
     "estratificacion": [
-      "Tiempo >P90: Investigar causa (incidencia vs rendimiento)",
-      "Tiempo P75-P90: Coaching individual si es recurrente",
-      "Tiempo P25-P75: Rendimiento estándar",
-      "Tiempo <P25: Identificar como mejor práctica y compartir"
+      "Czas >P90: Badanie przyczyny (incydent vs wydajność)",
+      "Czas P75-P90: Coaching indywidualny jeśli powtarzalny",
+      "Czas P25-P75: Standardowa wydajność",
+      "Czas <P25: Identyfikacja jako najlepsza praktyka i udostępnienie"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 8.000 registros de limpieza con comentarios",
-      "Cortex AI clasifica incidencias y extrae mejores prácticas",
-      "Dashboard pokazuje productividad y coaching suggestions"
+      "Generowanych jest 8000 rekordów sprzątań z komentarzami",
+      "Cortex AI klasyfikuje incydenty i wydobywa najlepsze praktyki",
+      "Dashboard pokazuje produktywność i sugestie coachingowe"
     ]
   },
   "UC14": {
     "title": "Feature Store wydajności partnerów B2B",
-    "contexto": "Estos Cortex Code Prompts construyen un Feature Store en Snowflake para consolidar métricas de rendimiento de partners B2B de distribución turística en tiempo real.",
-    "foco": "Distribución B2B — Feature Store centralizado con métricas de cada partner (OTA, tour operador, agencia) para scoring y decisiones.",
-    "reto": "Tener visión unificada del rendimiento de 100+ partners en tiempo real para optimizar allocation y comisiones.",
+    "contexto": "Te Cortex Code Prompts budują Feature Store w Snowflake do konsolidacji metryk wydajności partnerów B2B dystrybucji turystycznej w czasie rzeczywistym.",
+    "foco": "Dystrybucja B2B — scentralizowany Feature Store z metrykami każdego partnera (OTA, touroperator, agencja) do scoringu i decyzji.",
+    "reto": "Zunifikowany widok wydajności 100+ partnerów w czasie rzeczywistym do optymalizacji alokacji i prowizji.",
     "objetivos": [
-      "Crear entidades y FeatureViews con Snowflake Feature Store para partners",
-      "Generar datos sintéticos de reservas B2B por canal",
-      "Implementar pipeline de actualización diaria de features",
-      "Servir features para scoring de partners en tiempo real",
-      "Construir dashboard de gestión de partners"
+      "Tworzyć encje i FeatureViews z Snowflake Feature Store dla partnerów",
+      "Generować dane syntetyczne rezerwacji B2B według kanału",
+      "Implementować pipeline codziennej aktualizacji cech",
+      "Udostępniać cechy do scoringu partnerów w czasie rzeczywistym",
+      "Zbudować dashboard zarządzania partnerami"
     ],
     "funcionalidades": [
       "Feature Store: Entity (partner_id) + FeatureViews (bookings, financial, quality)",
-      "Pipeline: Actualización diaria desde logs de API y PMS",
-      "Datos sintéticos: 100 partners con 12 meses de transacciones",
-      "Dashboard Streamlit: Panel de gestión de partners con ranking"
+      "Pipeline: Codzienna aktualizacja z logów API i PMS",
+      "Dane syntetyczne: 100 partnerów z 12 miesiącami transakcji",
+      "Dashboard Streamlit: Panel zarządzania partnerami z rankingiem"
     ],
     "datos": [
-      "Partners: OTAs, tour operadores, agencias, wholesalers",
-      "Métricas: ADR, volumen, cancelaciones, no-shows, lead time, pago",
-      "Quality: Reclamaciones, chargebacks, customer satisfaction"
+      "Partnerzy: OTA, touroperatorzy, agencje, wholesalerzy",
+      "Metryki: ADR, wolumen, anulacje, no-show, lead time, płatności",
+      "Jakość: Reklamacje, chargebacki, satysfakcja klientów"
     ],
     "estratificacion": [
-      "Partner Premium (score >80): Allocation prioritaria y mejor inventario",
-      "Partner Estándar (60-80): Condiciones normales",
-      "Partner en Riesgo (40-60): Revisión de condiciones y alertas",
-      "Partner Problema (<40): Restricción de inventario o desconexión"
+      "Partner Premium (score >80): Priorytetowa alokacja i lepszy inwentarz",
+      "Partner Standardowy (60-80): Normalne warunki",
+      "Partner Zagrożony (40-60): Przegląd warunków i alerty",
+      "Partner Problemowy (<40): Ograniczenie inwentarza lub odłączenie"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se crean entidades y FeatureViews en Feature Store",
-      "Se generan 12 meses de datos de 100 partners",
-      "Dashboard pokazuje ranking y scores en tiempo real"
+      "Tworzone są encje i FeatureViews w Feature Store",
+      "Generowanych jest 12 miesięcy danych 100 partnerów",
+      "Dashboard pokazuje ranking i scoring w czasie rzeczywistym"
     ]
   },
   "UC15": {
     "title": "Predykcja anulacji B2B według kanału",
-    "contexto": "Estos Cortex Code Prompts construyen un predictor de cancelaciones de reservas B2B para liberar inventario proactivamente y optimizar allocation.",
-    "foco": "Revenue Management B2B — predicción de cancelación por reserva para gestión proactiva de inventario.",
-    "reto": "Liberar el 70% del inventario que se cancelará antes de la ventana crítica de reventa, reduciendo pérdida de revenue.",
+    "contexto": "Te Cortex Code Prompts budują predyktor anulacji rezerwacji B2B do proaktywnego zwalniania inwentarza i optymalizacji alokacji.",
+    "foco": "Revenue Management B2B — predykcja anulacji na rezerwację do proaktywnego zarządzania inwentarzem.",
+    "reto": "Zwolnienie 70% inwentarza, który zostanie anulowany, przed krytycznym oknem odsprzedaży, redukując utratę przychodu.",
     "objetivos": [
-      "Generar datos sintéticos de reservas B2B con cancelaciones",
-      "Entrenar modelo de predicción de cancelación por reserva",
-      "Identificar patrones de cancelación por canal y temporada",
-      "Calcular ventana óptima de liberación de inventario",
-      "Construir dashboard de gestión de cancelaciones"
+      "Generować dane syntetyczne rezerwacji B2B z anulacjami",
+      "Trenować model predykcji anulacji na rezerwację",
+      "Identyfikować wzorce anulacji według kanału i sezonu",
+      "Obliczać optymalną okno zwalniania inwentarza",
+      "Zbudować dashboard zarządzania anulacjami"
     ],
     "funcionalidades": [
-      "Modelo ML: Predicción de cancelación con ML.CLASSIFICATION",
-      "Datos sintéticos: 15.000 reservas B2B con 25% de cancelaciones",
-      "Variables: canal, lead_time, tarifa, garantía, historial_partner",
-      "Dashboard Streamlit: Panel de cancelaciones con acciones proactivas"
+      "Model ML: Predykcja anulacji z ML.CLASSIFICATION",
+      "Dane syntetyczne: 15 000 rezerwacji B2B z 25% anulacji",
+      "Zmienne: kanał, lead_time, taryfa, gwarancja, historia_partnera",
+      "Dashboard Streamlit: Panel anulacji z proaktywnymi działaniami"
     ],
     "datos": [
-      "Rezerwacje B2B: Canal, partner, fechas, tarifa, tipo habitación",
-      "Cancelaciones: Fecha, motivo, antelación, impacto en revenue",
-      "Predicción: Probabilidad de cancelación y ventana recomendada"
+      "Rezerwacje B2B: Kanał, partner, daty, taryfa, typ pokoju",
+      "Anulacje: Data, powód, wyprzedzenie, wpływ na przychód",
+      "Predykcja: Prawdopodobieństwo anulacji i rekomendowane okno"
     ],
     "estratificacion": [
-      "Cancelación muy probable (>70%): Liberar y revender inmediatamente",
-      "Probable (40-70%): Confirmar con partner antes de liberar",
-      "Poco probable (<40%): Mantener reserva normalmente"
+      "Bardzo prawdopodobna anulacja (>70%): Zwolnić i odsprzedać natychmiast",
+      "Prawdopodobna (40-70%): Potwierdzić z partnerem przed zwolnieniem",
+      "Mało prawdopodobna (<40%): Utrzymać rezerwację normalnie"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 15.000 reservas con patrones de cancelación",
-      "El modelo predice probabilidad por reserva B2B",
-      "El dashboard prioriza acciones de liberación de inventario"
+      "Generowanych jest 15 000 rezerwacji z wzorcami anulacji",
+      "Model przewiduje prawdopodobieństwo na rezerwację B2B",
+      "Dashboard priorytetyzuje działania zwalniania inwentarza"
     ]
   },
   "UC16": {
     "title": "Wykrywanie rozbieżności cen w kanałach",
-    "contexto": "Estos Cortex Code Prompts construyen un sistema de monitorización de paridad de precios entre canales de distribución para proteger el canal directo.",
-    "foco": "Rate parity — detección de disparidades de precios entre OTAs, metasearch y canal directo del hotel.",
-    "reto": "Detectar el 95% de las disparidades en menos de 1 hora y reducir la fuga al canal directo un 20%.",
+    "contexto": "Te Cortex Code Prompts budują system monitorowania parytetu cenowego między kanałami dystrybucji w celu ochrony kanału bezpośredniego.",
+    "foco": "Parytet cenowy — wykrywanie rozbieżności cen między OTA, metasearch i kanałem bezpośrednim hotelu.",
+    "reto": "Wykrywanie 95% rozbieżności w mniej niż 1 godzinę i redukcja ucieczki z kanału bezpośredniego o 20%.",
     "objetivos": [
-      "Generar datos sintéticos de precios por canal y fecha",
-      "Implementar detección de disparidad con reglas y estadísticos",
-      "Calcular impacto de la disparidad en conversión del canal directo",
-      "Generar alertas con evidencia y canal infractor",
-      "Construir dashboard de rate parity"
+      "Generować dane syntetyczne cen według kanału i daty",
+      "Implementować wykrywanie rozbieżności z regułami i statystykami",
+      "Obliczać wpływ rozbieżności na konwersję kanału bezpośredniego",
+      "Generować alerty z dowodami i kanałem naruszającym",
+      "Zbudować dashboard parytetu cenowego"
     ],
     "funcionalidades": [
-      "Detección SQL: Comparación de precios entre canales con umbrales",
-      "Datos sintéticos: 10 canales × 365 días × 5 tipos de habitación",
-      "Alertas: Disparidad por canal con evidencia de precio y fecha",
-      "Dashboard Streamlit: Panel de rate parity con tendencia y alertas"
+      "Wykrywanie SQL: Porównanie cen między kanałami z progami",
+      "Dane syntetyczne: 10 kanałów × 365 dni × 5 typów pokoi",
+      "Alerty: Rozbieżność według kanału z dowodami ceny i daty",
+      "Dashboard Streamlit: Panel parytetu cenowego z trendem i alertami"
     ],
     "datos": [
-      "Precios: Tarifa publicada por canal, tipo, fecha (rate shopping)",
-      "Disparidades: Canal, diferencia €, diferencia %, duración",
-      "Impacto: Estimación de reservas perdidas en canal directo"
+      "Ceny: Opublikowana taryfa według kanału, typu, daty (rate shopping)",
+      "Rozbieżności: Kanał, różnica €, różnica %, czas trwania",
+      "Wpływ: Szacunek utraconych rezerwacji w kanale bezpośrednim"
     ],
     "estratificacion": [
-      "Disparidad >10%: Alerta urgente y contacto con canal",
-      "Disparidad 5-10%: Alerta y monitorización diaria",
-      "Disparidad 2-5%: Registro para análisis semanal",
-      "Paridad (<2%): Sin acción"
+      "Rozbieżność >10%: Pilny alert i kontakt z kanałem",
+      "Rozbieżność 5-10%: Alert i codzienny monitoring",
+      "Rozbieżność 2-5%: Rejestracja do tygodniowej analizy",
+      "Parytet (<2%): Bez działania"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan precios por canal con disparidades incrustadas",
-      "Las reglas SQL detectan disparidades automáticamente",
-      "Dashboard pokazuje alertas con evidencia y tendencia"
+      "Generowane są ceny według kanału z osadzonymi rozbieżnościami",
+      "Reguły SQL automatycznie wykrywają rozbieżności",
+      "Dashboard pokazuje alerty z dowodami i trendem"
     ]
   },
   "UC17": {
     "title": "Optymalizacja prowizji i Channel Mix z AI",
-    "contexto": "Estos Cortex Code Prompts construyen un optimizador de channel mix que maximiza el revenue neto considerando comisiones, elasticidad y estacionalidad.",
-    "foco": "Distribución hotelera — optimización del mix de canales para maximizar revenue neto después de comisiones.",
-    "reto": "Reducir el coste medio de distribución del 18% al 13% sin perder volumen total de reservas.",
+    "contexto": "Te Cortex Code Prompts budują optymalizator miksu kanałów maksymalizujący przychód netto, uwzględniając prowizje, elastyczność i sezonowość.",
+    "foco": "Dystrybucja hotelowa — optymalizacja miksu kanałów w celu maksymalizacji przychodu netto po prowizjach.",
+    "reto": "Redukcja średniego kosztu dystrybucji z 18% do 13% bez utraty całkowitego wolumenu rezerwacji.",
     "objetivos": [
-      "Generar datos sintéticos de reservas por canal con comisiones",
-      "Modelar elasticidad de demanda por canal",
-      "Calcular coste neto de adquisición por reserva y canal",
-      "Optimizar allocation por canal y temporada",
-      "Simular escenarios de cambio de mix"
+      "Generować dane syntetyczne rezerwacji według kanału z prowizjami",
+      "Modelować elastyczność popytu według kanału",
+      "Obliczać koszt netto pozyskania na rezerwację i kanał",
+      "Optymalizować alokację według kanału i sezonu",
+      "Symulować scenariusze zmian miksu"
     ],
     "funcionalidades": [
-      "Modelo ML: Elasticidad de demanda por canal con ML.CLASSIFICATION",
-      "Datos sintéticos: 20.000 reservas por 10 canales con comisiones",
-      "Optimización: Channel mix que maximiza revenue neto",
-      "Dashboard Streamlit: Simulador de escenarios de distribución"
+      "Model ML: Elastyczność popytu według kanału z ML.CLASSIFICATION",
+      "Dane syntetyczne: 20 000 rezerwacji na 10 kanałów z prowizjami",
+      "Optymalizacja: Miks kanałów maksymalizujący przychód netto",
+      "Dashboard Streamlit: Symulator scenariuszy dystrybucji"
     ],
     "datos": [
-      "Canales: Directo, Booking, Expedia, HRS, agencias, wholesalers",
-      "Comisiones: % por canal (0% directo, 15-25% OTAs, 10-18% agencias)",
-      "Elasticidad: Variación de demanda ante cambio de allocation"
+      "Kanały: Bezpośredni, Booking, Expedia, HRS, agencje, wholesalerzy",
+      "Prowizje: % na kanał (0% bezpośredni, 15-25% OTA, 10-18% agencje)",
+      "Elastyczność: Zmiana popytu przy zmianie alokacji"
     ],
     "estratificacion": [
-      "Canal con ROI >5x: Incrementar allocation y presupuesto",
-      "Canal con ROI 2-5x: Mantener y optimizar",
-      "Canal con ROI 1-2x: Reducir gradualmente",
-      "Canal con ROI <1x: Evaluar desconexión con simulación de impacto"
+      "Kanał z ROI >5x: Zwiększyć alokację i budżet",
+      "Kanał z ROI 2-5x: Utrzymać i optymalizować",
+      "Kanał z ROI 1-2x: Stopniowo redukować",
+      "Kanał z ROI <1x: Ocenić odłączenie z symulacją wpływu"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 20.000 reservas con comisiones por canal",
-      "El modelo calcula elasticidad por canal y temporada",
-      "El dashboard simula escenarios de cambio de mix"
+      "Generowanych jest 20 000 rezerwacji z prowizjami według kanału",
+      "Model oblicza elastyczność według kanału i sezonu",
+      "Dashboard symuluje scenariusze zmian miksu"
     ]
   },
   "UC18": {
     "title": "Wykrywanie oszustw rezerwacyjnych i chargebacków",
-    "contexto": "Estos Cortex Code Prompts construyen un sistema ML de detección de fraude en reservas online que reduce chargebacks y protege el revenue del hotel.",
-    "foco": "Seguridad de pagos — detección de reservas fraudulentas y prevención de chargebacks en tiempo real.",
-    "reto": "Reducir los chargebacks un 60% manteniendo la tasa de falsos positivos por debajo del 2% para no bloquear reservas legítimas.",
+    "contexto": "Te Cortex Code Prompts budują system ML wykrywania oszustw w rezerwacjach online, redukujący chargebacki i chroniący przychody hotelu.",
+    "foco": "Bezpieczeństwo płatności — wykrywanie oszukańczych rezerwacji i zapobieganie chargebackom w czasie rzeczywistym.",
+    "reto": "Redukcja chargebacków o 60% przy utrzymaniu wskaźnika fałszywych pozytywów poniżej 2%, aby nie blokować legalnych rezerwacji.",
     "objetivos": [
-      "Generar datos sintéticos de reservas con fraude",
-      "Entrenar modelo de detección de fraude con ML.CLASSIFICATION",
-      "Implementar scoring en tiempo real por transacción",
-      "Definir reglas de bloqueo y verificación adicional",
-      "Construir dashboard de fraude y chargebacks"
+      "Generować dane syntetyczne rezerwacji z oszustwami",
+      "Trenować model wykrywania oszustw z ML.CLASSIFICATION",
+      "Implementować scoring w czasie rzeczywistym na transakcję",
+      "Definiować reguły blokowania i dodatkowej weryfikacji",
+      "Zbudować dashboard oszustw i chargebacków"
     ],
     "funcionalidades": [
-      "Modelo ML: Detección de fraude con ML.CLASSIFICATION",
-      "Datos sintéticos: 20.000 transacciones con 3% de fraude",
-      "Variables: IP, device, velocidad, país, BIN, importe, lead_time",
-      "Dashboard Streamlit: Panel de fraude con alertas y métricas"
+      "Model ML: Wykrywanie oszustw z ML.CLASSIFICATION",
+      "Dane syntetyczne: 20 000 transakcji z 3% oszustw",
+      "Zmienne: IP, device, szybkość, kraj, BIN, kwota, lead_time",
+      "Dashboard Streamlit: Panel oszustw z alertami i metrykami"
     ],
     "datos": [
-      "Transacciones: Canal, importe, tarjeta (BIN), IP, device, hora",
-      "Señales de fraude: País IP ≠ país tarjeta, velocidad, device nuevo",
-      "Chargebacks: Historial con motivo, importe y resolución"
+      "Transakcje: Kanał, kwota, karta (BIN), IP, device, godzina",
+      "Sygnały oszustwa: Kraj IP ≠ kraj karty, szybkość, nowe urządzenie",
+      "Chargebacki: Historia z powodem, kwotą i rozstrzygnięciem"
     ],
     "estratificacion": [
-      "Fraude muy probable (>80%): Bloquear y solicitar verificación 3DS",
-      "Sospechoso (50-80%): Aceptar con verificación manual pre-arrival",
-      "Riesgo bajo (20-50%): Aceptar con monitorización post-booking",
-      "Legítimo (<20%): Aceptar sin restricciones"
+      "Bardzo prawdopodobne oszustwo (>80%): Zablokować i żądać weryfikacji 3DS",
+      "Podejrzane (50-80%): Zaakceptować z ręczną weryfikacją pre-arrival",
+      "Niskie ryzyko (20-50%): Zaakceptować z monitoringiem post-booking",
+      "Legalne (<20%): Zaakceptować bez ograniczeń"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 20.000 transacciones con patrones de fraude",
-      "El modelo puntúa cada transacción en tiempo real",
-      "Dashboard pokazuje chargebacks evitados y ahorro"
+      "Generowanych jest 20 000 transakcji z wzorcami oszustw",
+      "Model scoringuje każdą transakcję w czasie rzeczywistym",
+      "Dashboard pokazuje uniknięte chargebacki i oszczędności"
     ]
   },
   "UC19": {
     "title": "Wykrywanie fałszywych recenzji i manipulacji reputacją",
-    "contexto": "Estos Cortex Code Prompts construyen un pipeline NLP para detectar reviews falsas analizando patrones lingüísticos, comportamiento del reviewer y consistencia temporal.",
-    "foco": "Integridad de reputación online — detección de reviews fabricadas, compradas o manipuladas por competidores.",
-    "reto": "Identificar el 85% de las reviews falsas con menos del 5% de falsos positivos para proteger la reputación real del hotel.",
+    "contexto": "Te Cortex Code Prompts budują pipeline NLP do wykrywania fałszywych recenzji, analizując wzorce lingwistyczne, zachowanie recenzenta i spójność czasową.",
+    "foco": "Integralność reputacji online — wykrywanie sfabrykowanych, kupionych lub zmanipulowanych przez konkurencję recenzji.",
+    "reto": "Identyfikacja 85% fałszywych recenzji z mniej niż 5% fałszywych pozytywów w celu ochrony rzeczywistej reputacji hotelu.",
     "objetivos": [
-      "Generar reviews sintéticas con mezcla de auténticas y falsas",
-      "Construir features lingüísticas y comportamentales",
-      "Entrenar clasificador de reviews falsas con ML",
-      "Analizar patrones temporales y de reviewer",
-      "Construir dashboard de integridad de reputación"
+      "Generować syntetyczne recenzje z mieszanką autentycznych i fałszywych",
+      "Budować cechy lingwistyczne i behawioralne",
+      "Trenować klasyfikator fałszywych recenzji z ML",
+      "Analizować wzorce czasowe i recenzenta",
+      "Zbudować dashboard integralności reputacji"
     ],
     "funcionalidades": [
-      "NLP: CORTEX.COMPLETE para análisis lingüístico + ML.CLASSIFICATION",
-      "Datos sintéticos: 3.000 reviews (20% falsas con patrones detectables)",
-      "Variables: longitud, especificidad, timing, historial_reviewer, similitud",
-      "Dashboard Streamlit: Panel de integridad con evidencia por review"
+      "NLP: CORTEX.COMPLETE do analizy lingwistycznej + ML.CLASSIFICATION",
+      "Dane syntetyczne: 3000 recenzji (20% fałszywych z wykrywalnymi wzorcami)",
+      "Zmienne: długość, specyficzność, timing, historia_recenzenta, podobieństwo",
+      "Dashboard Streamlit: Panel integralności z dowodami na recenzję"
     ],
     "datos": [
-      "Recenzje: Texto, plataforma, fecha, rating, reviewer_id",
-      "Features lingüísticas: Longitud, uso de superlativos, especificidad, diversidad léxica",
-      "Comportamiento: Reviews por reviewer, hoteles distintos, timing entre reviews"
+      "Recenzje: Tekst, platforma, data, ocena, reviewer_id",
+      "Cechy lingwistyczne: Długość, użycie superlatywów, specyficzność, różnorodność leksykalna",
+      "Zachowanie: Recenzje na recenzenta, różne hotele, timing między recenzjami"
     ],
     "estratificacion": [
-      "Fabricada (>80%): Reportar a plataforma con evidencia",
-      "Sospechosa (50-80%): Monitorizar reviewer y buscar patrón",
-      "Probablemente auténtica (20-50%): No acción pero registrar",
-      "Auténtica (<20%): Responder normalmente"
+      "Sfabrykowana (>80%): Zgłosić na platformę z dowodami",
+      "Podejrzana (50-80%): Monitorować recenzenta i szukać wzorców",
+      "Prawdopodobnie autentyczna (20-50%): Brak działania, ale zarejestrować",
+      "Autentyczna (<20%): Odpowiedzieć normalnie"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan 3.000 reviews con patrones de falsificación",
-      "El modelo clasifica cada review con evidencia",
-      "Dashboard pokazuje integridad de reputación y acciones"
+      "Generowanych jest 3000 recenzji z wzorcami fałszowania",
+      "Model klasyfikuje każdą recenzję z dowodami",
+      "Dashboard pokazuje integralność reputacji i działania"
     ]
   },
   "UC20": {
     "title": "Zgodność GDPR/PCI w danych gości",
-    "contexto": "Estos Cortex Code Prompts construyen un sistema de clasificación y protección de datos sensibles de huéspedes para cumplimiento GDPR y PCI-DSS.",
-    "foco": "Compliance de datos — clasificación automática de PII, enmascaramiento dinámico y auditoría de acceso en datos hoteleros.",
-    "reto": "Alcanzar el 100% de cobertura en clasificación de PII y cumplir GDPR/PCI eliminando exposición de datos sensibles.",
+    "contexto": "Te Cortex Code Prompts budują system klasyfikacji i ochrony danych wrażliwych gości w celu zgodności z GDPR i PCI-DSS.",
+    "foco": "Zgodność danych — automatyczna klasyfikacja PII, dynamiczne maskowanie i audyt dostępu w danych hotelowych.",
+    "reto": "Osiągnięcie 100% pokrycia w klasyfikacji PII i zgodność z GDPR/PCI poprzez eliminację ekspozycji danych wrażliwych.",
     "objetivos": [
-      "Generar tablas con datos de huéspedes incluyendo PII",
-      "Clasificar automáticamente columnas con PII usando Cortex AI",
-      "Aplicar políticas de enmascaramiento dinámico por rol",
-      "Auditar accesos a datos sensibles",
-      "Generar informes de cumplimiento"
+      "Generować tabele z danymi gości zawierające PII",
+      "Automatycznie klasyfikować kolumny z PII przy użyciu Cortex AI",
+      "Stosować dynamiczne polityki maskowania według roli",
+      "Audytować dostęp do danych wrażliwych",
+      "Generować raporty zgodności"
     ],
     "funcionalidades": [
-      "NLP: CORTEX.COMPLETE para clasificación de PII automática",
-      "Datos sintéticos: 5 tablas con PII incrustado (nombres, pasaportes, tarjetas)",
-      "Políticas: Enmascaramiento dinámico por rol (recepción, marketing, BI)",
-      "Dashboard Streamlit: Panel de cumplimiento con score y auditoría"
+      "NLP: CORTEX.COMPLETE do automatycznej klasyfikacji PII",
+      "Dane syntetyczne: 5 tabel z osadzonym PII (imiona, paszporty, karty)",
+      "Polityki: Dynamiczne maskowanie według roli (recepcja, marketing, BI)",
+      "Dashboard Streamlit: Panel zgodności ze scoringiem i audytem"
     ],
     "datos": [
-      "Tablas hoteleras: Reservas, huéspedes, pagos, reviews, fidelización",
-      "PII identificado: Nombre, email, teléfono, pasaporte, tarjeta, dirección",
-      "Auditoría: Quién accedió a qué datos sensibles y cuándo"
+      "Tabele hotelowe: Rezerwacje, goście, płatności, recenzje, lojalność",
+      "Zidentyfikowane PII: Imię, e-mail, telefon, paszport, karta, adres",
+      "Audyt: Kto uzyskał dostęp do jakich danych wrażliwych i kiedy"
     ],
     "estratificacion": [
-      "PII crítico (tarjeta, pasaporte): Enmascaramiento total excepto pagos",
-      "PII alto (nombre, email, teléfono): Enmascaramiento parcial excepto recepción",
-      "PII medio (dirección, fecha nacimiento): Visible para roles autorizados",
-      "No PII: Sin restricciones"
+      "PII krytyczne (karta, paszport): Pełne maskowanie z wyjątkiem płatności",
+      "PII wysokie (imię, e-mail, telefon): Częściowe maskowanie z wyjątkiem recepcji",
+      "PII średnie (adres, data urodzenia): Widoczne dla autoryzowanych ról",
+      "Nie-PII: Bez ograniczeń"
     ],
     "como_usar": [
       "Wykonuj prompty sekwencyjnie",
-      "Se generan tablas con PII realista incrustado",
+      "Generowane są tabele z realistycznym osadzonym PII",
       "Cortex AI automatycznie klasyfikuje kolumny z PII",
-      "Dashboard pokazuje el score de cumplimiento y brechas"
+      "Dashboard pokazuje score zgodności i luki"
     ]
   }
 };
@@ -1583,21 +1583,21 @@ const PROMPTS = {
 
 function verGuia(ucId) {
   const g = GUIAS[ucId];
-  if (!g) { alert('Guía no disponible aún para ' + ucId); return; }
+  if (!g) { alert('Przewodnik jeszcze niedostępny dla ' + ucId); return; }
   const box = document.getElementById('guiaModalBox');
   let h = `<button class="modal-close" onclick="cerrarModal('guiaModal')">&times;</button>`;
   h += `<span class="guide-badge">${ucId}</span>`;
   h += `<h2>${g.title}</h2>`;
-  h += `<p><strong>Caso de Uso: ${g.title}</strong></p>`;
-  h += `<h3>Contexto de Negocio</h3><p>${g.contexto}</p>`;
-  h += `<p><strong>Foco:</strong> ${g.foco}</p>`;
-  h += `<p><strong>Reto de negocio:</strong> ${g.reto}</p>`;
-  h += `<h3>Objetivos de Aprendizaje</h3><ul>${g.objetivos.map(o=>`<li>${o}</li>`).join('')}</ul>`;
-  h += `<h3>Funcionalidades</h3><ul>${g.funcionalidades.map(f=>`<li>${f}</li>`).join('')}</ul>`;
-  h += `<h3>Datos Generados</h3><ul>${g.datos.map(d=>`<li>${d}</li>`).join('')}</ul>`;
-  h += `<h3>Estratificación</h3><ul>${g.estratificacion.map(e=>`<li>${e}</li>`).join('')}</ul>`;
-  h += `<h3>Cómo Usar</h3><ul>${g.como_usar.map(c=>`<li>${c}</li>`).join('')}</ul>`;
-  h += `<p class="guide-footer">Desarrollado con Snowflake Cortex ML + Streamlit</p>`;
+  h += `<p><strong>Przypadek użycia: ${g.title}</strong></p>`;
+  h += `<h3>Kontekst biznesowy</h3><p>${g.contexto}</p>`;
+  h += `<p><strong>Fokus:</strong> ${g.foco}</p>`;
+  h += `<p><strong>Wyzwanie biznesowe:</strong> ${g.reto}</p>`;
+  h += `<h3>Cele nauki</h3><ul>${g.objetivos.map(o=>`<li>${o}</li>`).join('')}</ul>`;
+  h += `<h3>Funkcjonalności</h3><ul>${g.funcionalidades.map(f=>`<li>${f}</li>`).join('')}</ul>`;
+  h += `<h3>Wygenerowane dane</h3><ul>${g.datos.map(d=>`<li>${d}</li>`).join('')}</ul>`;
+  h += `<h3>Stratyfikacja</h3><ul>${g.estratificacion.map(e=>`<li>${e}</li>`).join('')}</ul>`;
+  h += `<h3>Jak używać</h3><ul>${g.como_usar.map(c=>`<li>${c}</li>`).join('')}</ul>`;
+  h += `<p class="guide-footer">Zbudowane z Snowflake Cortex ML + Streamlit</p>`;
   box.innerHTML = h;
   document.getElementById('guiaModal').classList.add('active');
 }
@@ -1609,7 +1609,7 @@ function cerrarModal(id) { document.getElementById(id).classList.remove('active'
 
 function verPrompts(ucId) {
   const data = PROMPTS[ucId];
-  if (!data) { alert('Prompts no disponibles aún para ' + ucId); return; }
+  if (!data) { alert('Prompty jeszcze niedostępne dla ' + ucId); return; }
   const box = document.getElementById('promptsModalBox');
   let html = `<button class="modal-close" onclick="cerrarModal('promptsModal')">&times;</button>`;
   html += `<span class="guide-badge">${ucId}</span>`;
