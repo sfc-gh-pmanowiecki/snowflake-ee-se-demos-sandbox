@@ -110,10 +110,10 @@
 </header>
 <section class="intro">
   <h2>Przyspiesz analitykę dzięki prekonfigurowanym rozwiązaniom AI dla sektora publicznego</h2>
-  <p>Cada soluci&oacute;n include Cortex Code Prompts de Snowflake con datos sint&eacute;ticos, gu&iacute;as paso a paso
-     e implementaciones SQL-first con Cortex AI/ML. Include Feature Store y Model Registry for despliegue
-     en producci&oacute;n. Mejora servicios citizens, detect subsidy fraud, optimize pol&iacute;ticas p&uacute;blicas
-     y gestiona European funds — todo dentro de Snowflake, sin dependencys externas, listo for personalizar con tus datos.</p>
+  <p>Każde rozwiązanie zawiera Cortex Code Prompts od Snowflake z danymi syntetycznymi, przewodniki krok po kroku
+     oraz implementacje SQL-first z Cortex AI/ML. Obejmuje Feature Store i Model Registry do wdrożenia
+     produkcyjnego. Usprawnij usługi dla obywateli, wykrywaj oszustwa dotacyjne, optymalizuj polityki publiczne
+     i zarządzaj funduszami europejskimi — wszystko w Snowflake, bez zewnętrznych zależności, gotowe do personalizacji z Twoimi danymi.</p>
 </section>
 <div class="filters-bar">
   <div class="filters-left" id="filterBtns">
@@ -139,13 +139,13 @@ const USE_CASES = [
     "catLabel": "Oszustwa i kontrola",
     "time": "15 min",
     "title": "Subsidy Fraud Detection with Model Registry",
-    "pain": "El subsidy fraud publics se estima en un 2-5% del total otorgado, representando losss de 500-2.000M€/year en Spain. Las revisiones mannuales solo detectan el 15-20% de los casos irregulares y con meses de retraso.",
-    "desc": "Modelo ML de fraud detection en solicitudes y execution de public subsidies que analyze patterns de solicitud, inconsistencias documentales, redes de beneficiaries y execution budgetary. Se registra en Model Registry for operation continua.",
+    "pain": "Oszustwa dotacyjne w sektorze publicznym szacuje się na 2-5% łącznej kwoty przyznanej, co oznacza straty 500-2.000M€/rok. Ręczne kontrole wykrywają jedynie 15-20% nieprawidłowych przypadków i z wielomiesięcznym opóźnieniem.",
+    "desc": "Model ML do wykrywania oszustw we wnioskach i realizacji dotacji publicznych, analizujący wzorce wniosków, niespójności dokumentowe, sieci beneficjentów i wykonanie budżetowe. Rejestrowany w Model Registry do ciągłej eksploatacji.",
     "features": [
-      "Detection con ML.CLASSIFICATION + Model Registry",
-      "Analysis de redes de beneficiaries y relaciones corporates",
-      "Variables: historial, importes, documentation, execution, sanctions",
-      "Streamlit Dashboard control de subsidies"
+      "Wykrywanie z ML.CLASSIFICATION + Model Registry",
+      "Analiza sieci beneficjentów i powiązań korporacyjnych",
+      "Zmienne: historia, kwoty, dokumentacja, realizacja, sankcje",
+      "Streamlit Dashboard kontroli dotacji"
     ]
   },
   {
@@ -154,13 +154,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie obywatela",
     "time": "13 min",
     "title": "Multichannel Citizen Service RAG Chatbot",
-    "pain": "Las oficinas de service al citizen gestionan un 65% de consultas repetitivas (estado de procedures, requisitos, plazos) con un coste de 8-12€/interaction. Los tiempos de espera superan los 20 minutos y la satisfaction cityana es del 55%.",
-    "desc": "Asistente conversacional RAG con Cortex Search indexando regulations, procedimientos, FAQ, requisitos y estado de procedures. Resuelve consultas en Spanish y lenguas cooficiales con personalization por perfil del citizen.",
+    "pain": "Biura obsługi obywatela obsługują 65% powtarzalnych zapytań (status spraw, wymagania, terminy) kosztem 8-12€/interakcję. Czas oczekiwania przekracza 20 minut, a zadowolenie obywateli wynosi zaledwie 55%.",
+    "desc": "Asystent konwersacyjny RAG z Cortex Search indeksujący przepisy, procedury, FAQ, wymagania i status spraw. Odpowiada na zapytania w wielu językach z personalizacją według profilu obywatela.",
     "features": [
-      "RAG con Cortex Search + CORTEX.COMPLETE multilingual",
-      "Base de conocimiento: regulations, procedimientos, FAQ, procedures",
-      "Integration con case file registry for estado en tiempo real",
-      "Streamlit Dashboard de chatbot con escalado a civil servant"
+      "RAG z Cortex Search + CORTEX.COMPLETE wielojęzyczny",
+      "Baza wiedzy: przepisy, procedury, FAQ, sprawy",
+      "Integracja z rejestrem spraw do statusu w czasie rzeczywistym",
+      "Streamlit Dashboard chatbota z eskalacją do urzędnika"
     ]
   },
   {
@@ -169,13 +169,13 @@ const USE_CASES = [
     "catLabel": "Polityka publiczna",
     "time": "14 min",
     "title": "Social Services Demand Prediction with Model Registry",
-    "pain": "Los social services municipales experimentan picos de demanda impredecibles que colapsan la service: listas de espera de 3-6 meses for benefits, recursos asignados por inercia historical y no por need real, y un 30% de solicitudes duplicadas between administraciones.",
-    "desc": "Modelo predictivo de demanda de social services por municipality, tipo de benefit y perfil poblacional con ML.FORECAST. Se registra en Model Registry for planning continua de recursos.",
+    "pain": "Gminne ośrodki pomocy społecznej doświadczają nieprzewidywalnych skoków popytu, które paraliżują obsługę: listy oczekiwania 3-6 miesięcy na świadczenia, zasoby przydzielane z inercji historycznej zamiast według rzeczywistych potrzeb i 30% zduplikowanych wniosków między administracjami.",
+    "desc": "Model predykcyjny popytu na usługi społeczne według gminy, rodzaju świadczenia i profilu populacji z ML.FORECAST. Rejestrowany w Model Registry do ciągłego planowania zasobów.",
     "features": [
-      "Forecast de demanda con ML.FORECAST + Model Registry",
-      "Variables: demographic, economics, empleo, seasonality, crisis",
-      "Resource planning por municipality y tipo de servicio",
-      "Streamlit Dashboard de planning social"
+      "Prognozowanie popytu z ML.FORECAST + Model Registry",
+      "Zmienne: demografia, ekonomia, zatrudnienie, sezonowość, kryzysy",
+      "Planowanie zasobów według gminy i rodzaju usługi",
+      "Streamlit Dashboard planowania społecznego"
     ]
   },
   {
@@ -184,13 +184,13 @@ const USE_CASES = [
     "catLabel": "Efektywność administracyjna",
     "time": "12 min",
     "title": "Automated Case File Classification",
-    "pain": "Las administraciones procesan 2-5 millones de case files annuales. La classification mannual consume un 25% del tiempo de los civil servants, con un 15% de errores de allocation que generan retrasos de semanas y duplicidades.",
-    "desc": "Pipeline NLP que classify automaticmente case files administrativos, extrae entidades clave, asigna priority y ruta de processing, y sugiere resolution basada en precedentes similares.",
+    "pain": "Administracje przetwarzają 2-5 milionów spraw rocznie. Ręczna klasyfikacja pochłania 25% czasu urzędników, z 15% błędów przydziału generujących tygodniowe opóźnienia i duplikaty.",
+    "desc": "Pipeline NLP automatycznie klasyfikujący sprawy administracyjne, wyodrębniający kluczowe encje, przypisujący priorytet i ścieżkę przetwarzania oraz sugerujący rozstrzygnięcie na podstawie podobnych precedensów.",
     "features": [
-      "Classification con CORTEX.COMPLETE + ML.CLASSIFICATION",
-      "Extracción de entidades: DNI, fechas, importes, referencias",
-      "Assignment automatic a unidad tramitadora con priority",
-      "Streamlit Dashboard management de case files"
+      "Klasyfikacja z CORTEX.COMPLETE + ML.CLASSIFICATION",
+      "Ekstrakcja encji: PESEL, daty, kwoty, odniesienia",
+      "Automatyczne przypisanie do jednostki obsługującej z priorytetem",
+      "Streamlit Dashboard zarządzania sprawami"
     ]
   },
   {
@@ -199,13 +199,13 @@ const USE_CASES = [
     "catLabel": "Oszustwa i kontrola",
     "time": "14 min",
     "title": "Next Generation EU Fund Execution Control",
-    "pain": "Spain gestiona 140.000M€ en Next Gen EU funds con requisitos estrictos de trazabilidad, hitos y reporting ante la UE. Los retrasos en execution, la falta de trazabilidad y los errores en reporting pueden resultar en devolution de fondos.",
-    "desc": "Sistema de monitoring y control de execution de European funds that tracks each euro from la allocation until el impacto, detect retrasos, inconsistencias y riesgos de incompliance de hitos.",
+    "pain": "Polska zarządza miliardami euro z funduszy Next Gen EU ze ścisłymi wymogami identyfikowalności, kamieni milowych i raportowania wobec UE. Opóźnienia w realizacji, brak identyfikowalności i błędy w raportowaniu mogą skutkować zwrotem środków.",
+    "desc": "System monitoringu i kontroli realizacji funduszy europejskich śledzący każde euro od alokacji po rezultat, wykrywający opóźnienia, niespójności i ryzyka niespełnienia kamieni milowych.",
     "features": [
-      "Trazabilidad end-to-end con ML for detection de anomalies",
-      "Variables: allocation, tender, procurement, execution, hitos",
-      "Alerts tempranas de retraso e incompliance de KPIs",
-      "Streamlit Dashboard control de European funds"
+      "Identyfikowalność end-to-end z ML do wykrywania anomalii",
+      "Zmienne: alokacja, przetarg, zamówienie, realizacja, kamienie milowe",
+      "Wczesne alerty opóźnień i niespełnienia KPI",
+      "Streamlit Dashboard kontroli funduszy europejskich"
     ]
   },
   {
@@ -214,13 +214,13 @@ const USE_CASES = [
     "catLabel": "Bezpieczeństwo i Smart Cities",
     "time": "13 min",
     "title": "Smart Urban Mobility Management",
-    "pain": "Las cityes Spanishas sufren conmanagement chronic con un coste estimado de 5.500M€/year en tiempo perdido, contamination y accidentes. Los traffic lights con ciclos fijos no se adaptan a la demanda real y el public transport pierde usuarios por falta de integration.",
-    "desc": "Motor de optimization de urban mobility que predict demanda de transporte, optimize traffic lights, gestiona aparcamiento y coordina public transport con datos en tiempo real de sensores IoT.",
+    "pain": "Miasta borykają się z chronicznymi zatorami komunikacyjnymi, których szacunkowy koszt to miliardy euro rocznie w postaci straconego czasu, zanieczyszczenia i wypadków. Sygnalizacja świetlna ze stałymi cyklami nie dostosowuje się do rzeczywistego popytu, a transport publiczny traci użytkowników z powodu braku integracji.",
+    "desc": "Silnik optymalizacji mobilności miejskiej prognozujący popyt na transport, optymalizujący sygnalizację świetlną, zarządzający parkowaniem i koordynujący transport publiczny z danymi w czasie rzeczywistym z czujników IoT.",
     "features": [
-      "Prediction de traffic con ML.FORECAST por zona y hora",
-      "Variables: traffic, public transport, eventos, weather",
-      "Optimization de ciclos traffic light y rutas de bus",
-      "Streamlit Dashboard de centro de movilidad"
+      "Prognozowanie ruchu z ML.FORECAST według strefy i godziny",
+      "Zmienne: ruch, transport publiczny, wydarzenia, pogoda",
+      "Optymalizacja cykli sygnalizacji i tras autobusów",
+      "Streamlit Dashboard centrum mobilności"
     ]
   },
   {
@@ -229,13 +229,13 @@ const USE_CASES = [
     "catLabel": "Polityka publiczna",
     "time": "13 min",
     "title": "Public Policy Impact Evaluation",
-    "pain": "Las public policies se evaluate ex-post con 2-3 years de retraso, utilizando indicadores agregados que no capturan el impacto diferencial por territorio, perfil de beneficiary o contexto socioeconomic. La toma de decisiones se basa more en inercia que en evidencia.",
-    "desc": "Motor de evaluation de impacto que analyze el efecto de public policies (subsidies, regulation, investment) on indicadores socioeconomic a nivel municipal, usando technicals de inferencia causal y ML.",
+    "pain": "Polityki publiczne są ewaluowane ex-post z 2-3 letnim opóźnieniem, przy użyciu zagregowanych wskaźników, które nie oddają zróżnicowanego wpływu według terytorium, profilu beneficjenta czy kontekstu społeczno-ekonomicznego. Decyzje opierają się bardziej na inercji niż na dowodach.",
+    "desc": "Silnik ewaluacji wpływu analizujący efekt polityk publicznych (dotacje, regulacje, inwestycje) na wskaźniki społeczno-ekonomiczne na poziomie gminnym, z wykorzystaniem technik wnioskowania przyczynowego i ML.",
     "features": [
-      "Analysis de impacto con ML.CLASSIFICATION + CORTEX.COMPLETE",
-      "Variables: indicadores pre/post, grupo de control, contexto",
-      "Evaluation por territorio, perfil de beneficiary y tipo de policy",
-      "Streamlit Dashboard de evaluation de policies"
+      "Analiza wpływu z ML.CLASSIFICATION + CORTEX.COMPLETE",
+      "Zmienne: wskaźniki przed/po, grupa kontrolna, kontekst",
+      "Ewaluacja według terytorium, profilu beneficjenta i rodzaju polityki",
+      "Streamlit Dashboard ewaluacji polityk"
     ]
   },
   {
@@ -244,13 +244,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie obywatela",
     "time": "15 min",
     "title": "Citizen Profile 360 Feature Store",
-    "pain": "Los datos del citizen are dispersos en 10-15 sistemas (census, hacienda, social services, empleo, education, sanidad) sin interoperability. Un civil servant necesita consultar 4-5 sistemas for atender una solicitud, y las duplicidades de datos generan errores y retrasos.",
-    "desc": "Feature Store centralizado en Snowflake that consolidates features del perfil citizen from multiple fuentes, cumpliendo RGPD, for personalization de servicios, detection de needes y coordination inter-administrativa.",
+    "pain": "Dane obywatela są rozproszone w 10-15 systemach (ewidencja ludności, skarbówka, pomoc społeczna, zatrudnienie, edukacja, zdrowie) bez interoperacyjności. Urzędnik musi sprawdzić 4-5 systemów, aby obsłużyć wniosek, a duplikaty danych generują błędy i opóźnienia.",
+    "desc": "Scentralizowany Feature Store w Snowflake konsolidujący cechy profilu obywatela z wielu źródeł, zgodny z RODO, do personalizacji usług, wykrywania potrzeb i koordynacji międzyadministracyjnej.",
     "features": [
-      "Snowflake Feature Store con Entity y FeatureView",
-      "Features: demographic, tax, social, empleo, education, digital",
-      "Versionado automatic y compliance RGPD",
-      "Pipeline de ingesta from sistemas de registro civil, hacienda, empleo"
+      "Snowflake Feature Store z Entity i FeatureView",
+      "Cechy: demografia, podatki, pomoc społeczna, zatrudnienie, edukacja, cyfrowe",
+      "Automatyczne wersjonowanie i zgodność z RODO",
+      "Pipeline ingesti z systemów ewidencji, skarbówki, zatrudnienia"
     ]
   },
   {
@@ -259,13 +259,13 @@ const USE_CASES = [
     "catLabel": "Efektywność administracyjna",
     "time": "12 min",
     "title": "Public Procurement Optimization",
-    "pain": "La public procurement en Spain mueve 200.000M€/year pero el proceso average tarda 6-12 meses, un 30% de tenders quedan desiertas, y la falta de competition en un 40% de los contratos eleva los precios un 15-25%.",
-    "desc": "Motor de optimization de public procurement que analyze historical de tenders, predict desiertos, recommend division en lotes y estima precios de mercado for mejorar competition y efficiency.",
+    "pain": "Zamówienia publiczne to ogromne kwoty rocznie, ale średni proces trwa 6-12 miesięcy, 30% przetargów nie dochodzi do skutku, a brak konkurencji w 40% kontraktów podnosi ceny o 15-25%.",
+    "desc": "Silnik optymalizacji zamówień publicznych analizujący historię przetargów, prognozujący unieważnienia, rekomendujący podział na części i szacujący ceny rynkowe w celu poprawy konkurencji i efektywności.",
     "features": [
-      "Prediction de tenders desiertas con ML.CLASSIFICATION",
-      "Analysis de competition y concentration por sector y territorio",
-      "Estimation de precios de mercado con ML y benchmarking",
-      "Streamlit Dashboard de inteligencia de procurement"
+      "Prognozowanie unieważnionych przetargów z ML.CLASSIFICATION",
+      "Analiza konkurencji i koncentracji według sektora i terytorium",
+      "Szacowanie cen rynkowych z ML i benchmarkingiem",
+      "Streamlit Dashboard inteligencji zamówień publicznych"
     ]
   },
   {
@@ -274,13 +274,13 @@ const USE_CASES = [
     "catLabel": "Bezpieczeństwo i Smart Cities",
     "time": "12 min",
     "title": "Anomaly Detection in Public Building Energy Consumption",
-    "pain": "Los public buildings Spanishes consumen 3.500 GWh/year con un powerl de ahorro del 30-40%. La falta de monitoring generate consumos innecesarios (HVAC en vacío, lighting 24h) y las audits energys each 4 years son insuficientes.",
-    "desc": "Sistema ML de detection de anomalies y optimization de energy consumption en public buildings que monitoriza en tiempo real, detect desperdicios y recommend acciones de energy efficiency.",
+    "pain": "Budynki publiczne zużywają ogromne ilości energii rocznie z potencjałem oszczędności 30-40%. Brak monitoringu generuje zbędne zużycie (HVAC na pusto, oświetlenie 24h), a audyty energetyczne co 4 lata są niewystarczające.",
+    "desc": "System ML do wykrywania anomalii i optymalizacji zużycia energii w budynkach publicznych monitorujący w czasie rzeczywistym, wykrywający marnotrawstwo i rekomendujący działania efektywności energetycznej.",
     "features": [
-      "Detection de anomalies con ML.CLASSIFICATION on IoT",
-      "Variables: consumo electric, HVAC, occupancy, weather",
-      "Benchmarking between buildings similares por uso y zona climate",
-      "Streamlit Dashboard de energy efficiency de buildings"
+      "Wykrywanie anomalii z ML.CLASSIFICATION na danych IoT",
+      "Zmienne: zużycie elektryczne, HVAC, obłożenie, pogoda",
+      "Benchmarking między podobnymi budynkami według użytkowania i strefy klimatycznej",
+      "Streamlit Dashboard efektywności energetycznej budynków"
     ]
   },
   {
@@ -289,13 +289,13 @@ const USE_CASES = [
     "catLabel": "Oszustwa i kontrola",
     "time": "13 min",
     "title": "Tax Fraud Detection with Network Analysis",
-    "pain": "El tax fraud en Spain se estima en 70.000-90.000M€/year. Las technicals tradicionales de inspection por reglas fijas solo detectan un 20% de los esquemas complejos y no identifican redes de empresas vinculadas usadas for evasion.",
-    "desc": "Sistema ML de fraud detection fiscal que analyze declarations, operaciones intragrupo, relaciones corporates y patterns de billing for identificar esquemas de evasion y redes de fraude.",
+    "pain": "Oszustwa podatkowe szacuje się na dziesiątki miliardów euro rocznie. Tradycyjne techniki inspekcji oparte na stałych regułach wykrywają jedynie 20% złożonych schematów i nie identyfikują sieci powiązanych firm wykorzystywanych do unikania opodatkowania.",
+    "desc": "System ML do wykrywania oszustw podatkowych analizujący deklaracje, operacje wewnątrzgrupowe, powiązania korporacyjne i wzorce fakturowania w celu identyfikacji schematów unikania i sieci oszustw.",
     "features": [
-      "ML.CLASSIFICATION on declarations y operaciones",
-      "Analysis de redes corporates y relaciones between taxpayers",
-      "Variables: declarations, billing, operaciones intracomunitarias",
-      "Streamlit Dashboard de tax intelligence"
+      "ML.CLASSIFICATION na deklaracjach i operacjach",
+      "Analiza sieci korporacyjnych i powiązań między podatnikami",
+      "Zmienne: deklaracje, fakturowanie, operacje wewnątrzwspólnotowe",
+      "Streamlit Dashboard inteligencji podatkowej"
     ]
   },
   {
@@ -304,13 +304,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie obywatela",
     "time": "12 min",
     "title": "Citizen Digital Services Personalization",
-    "pain": "Los portales de e-government ofrecen more de 3.000 procedures pero los citizens encuentran lo que buscan solo el 40% de las veces. La experience digital es generic, sin considerar el perfil, historial ni needes specifics del citizen.",
-    "desc": "Motor de personalization de la experience digital del citizen que recommend procedures relevantes, simplifica formularios pre-rellenando datos conocidos y anticipa needes based on en life events.",
+    "pain": "Portale e-government oferują ponad 3.000 procedur, ale obywatele znajdują to, czego szukają, jedynie w 40% przypadków. Doświadczenie cyfrowe jest generyczne, bez uwzględnienia profilu, historii ani konkretnych potrzeb obywatela.",
+    "desc": "Silnik personalizacji doświadczenia cyfrowego obywatela rekomendujący odpowiednie procedury, upraszczający formularze przez wstępne wypełnianie znanych danych i antycypujący potrzeby na podstawie zdarzeń życiowych.",
     "features": [
-      "Recommendation de procedures con ML.CLASSIFICATION + Feature Store",
-      "Detection de life events: nacimiento, cambio address, retirement",
-      "Pre-completion de formularios con datos disponibles",
-      "Streamlit Dashboard de experience cityana digital"
+      "Rekomendacja procedur z ML.CLASSIFICATION + Feature Store",
+      "Wykrywanie zdarzeń życiowych: narodziny, zmiana adresu, emerytura",
+      "Wstępne wypełnianie formularzy z dostępnych danych",
+      "Streamlit Dashboard cyfrowego doświadczenia obywatela"
     ]
   },
   {
@@ -319,13 +319,13 @@ const USE_CASES = [
     "catLabel": "Polityka publiczna",
     "time": "13 min",
     "title": "Healthcare Resource Allocation Optimization",
-    "pain": "La allocation de healthcare resources (camas, personal, equipamiento) se basa en ratios poblacionales que no reflejan la morbidity real, el aging diferencial ni la seasonality. El resultado: saturation en unos centros y ociosidad en otros.",
-    "desc": "Motor de optimization de healthcare resources que predict healthcare demand por health area, especialidad y perfil poblacional for asignar recursos de forma equitable y eficiente.",
+    "pain": "Alokacja zasobów ochrony zdrowia (łóżka, personel, wyposażenie) opiera się na wskaźnikach populacyjnych, które nie odzwierciedlają rzeczywistej zachorowalności, zróżnicowanego starzenia się ani sezonowości. Efekt: przeciążenie jednych ośrodków i bezczynność innych.",
+    "desc": "Silnik optymalizacji zasobów ochrony zdrowia prognozujący popyt zdrowotny według rejonu, specjalizacji i profilu populacyjnego w celu równomiernej i efektywnej alokacji zasobów.",
     "features": [
-      "Prediction de demanda con ML.FORECAST por area y especialidad",
-      "Variables: morbidity, aging, seasonality, epidemics",
-      "Optimization de allocation con restricciones budgetarys",
-      "Streamlit Dashboard healthcare planning"
+      "Prognozowanie popytu z ML.FORECAST według rejonu i specjalizacji",
+      "Zmienne: zachorowalność, starzenie się, sezonowość, epidemie",
+      "Optymalizacja alokacji z ograniczeniami budżetowymi",
+      "Streamlit Dashboard planowania zdrowotnego"
     ]
   },
   {
@@ -334,13 +334,13 @@ const USE_CASES = [
     "catLabel": "Efektywność administracyjna",
     "time": "15 min",
     "title": "Public Agency Performance Feature Store",
-    "pain": "Los KPIs de performance de public agencies (tiempos de resolution, satisfaction, productivity) se calculan mannualmente con 1-3 meses de retraso. No existe benchmarking between organismos similares ni detection temprana de deterioro de servicio.",
-    "desc": "Feature Store en Snowflake that consolidates metrics de performance de each public agency for benchmarking, detection de deterioro y toma de decisiones basada en datos en tiempo real.",
+    "pain": "KPI wydajności instytucji publicznych (czasy rozstrzygania, zadowolenie, produktywność) są obliczane ręcznie z 1-3 miesięcznym opóźnieniem. Nie istnieje benchmarking między podobnymi organami ani wczesne wykrywanie pogorszenia jakości usług.",
+    "desc": "Feature Store w Snowflake konsolidujący metryki wydajności każdej instytucji publicznej do benchmarkingu, wykrywania pogorszenia i podejmowania decyzji opartych na danych w czasie rzeczywistym.",
     "features": [
-      "Snowflake Feature Store con Entity por organismo",
-      "FeatureViews: resolution, satisfaction, productivity, budget, digital",
-      "Benchmarking between organismos similares",
-      "Pipeline automatic de update multi-fuente"
+      "Snowflake Feature Store z Entity na organizm",
+      "FeatureViews: rozstrzyganie, zadowolenie, produktywność, budżet, cyfrowe",
+      "Benchmarking między podobnymi organami",
+      "Automatyczny pipeline aktualizacji z wielu źródeł"
     ]
   },
   {
@@ -349,13 +349,13 @@ const USE_CASES = [
     "catLabel": "Bezpieczeństwo i Smart Cities",
     "time": "13 min",
     "title": "Public Digital Infrastructure Cybersecurity",
-    "pain": "Los cyberattacks a public administrations se incrementaron un 150% en 2023-2025. Los sistemas legacy, la falta de monitoring centralizada y la escasez de personal especializado dejan expuestos datos de millones de citizens.",
-    "desc": "Pipeline ML de detection de amenazas en public digital infrastructure que analyze traffic de red, comportamiento de usuarios, accesos a sistemas y patterns anomalous for detectar ataques y automatizar respuesta.",
+    "pain": "Cyberataki na administrację publiczną wzrosły o 150% w latach 2023-2025. Systemy legacy, brak scentralizowanego monitoringu i niedobór wyspecjalizowanego personelu narażają dane milionów obywateli.",
+    "desc": "Pipeline ML do wykrywania zagrożeń w publicznej infrastrukturze cyfrowej analizujący ruch sieciowy, zachowanie użytkowników, dostępy do systemów i anomalne wzorce w celu wykrywania ataków i automatyzacji reakcji.",
     "features": [
-      "ML.CLASSIFICATION on logs y traffic de red",
-      "Baseline de comportamiento normal por usuario y sistema",
-      "Correlationship de eventos for detection multi-vector",
-      "Streamlit SOC dashboard public"
+      "ML.CLASSIFICATION na logach i ruchu sieciowym",
+      "Baseline normalnego zachowania według użytkownika i systemu",
+      "Korelacja zdarzeń do wykrywania wielowektorowego",
+      "Streamlit SOC dashboard publiczny"
     ]
   },
   {
@@ -364,13 +364,13 @@ const USE_CASES = [
     "catLabel": "Oszustwa i kontrola",
     "time": "12 min",
     "title": "Incompatibilities and Conflicts of Interest Control",
-    "pain": "Los conflicts of interest en la public administration (civil servants con empresas vinculadas a contratos, revolving doors, incompatibilities) son difficult de detectar mannualmente en un ecosistema de 3 millones de public employees y 200.000 contratos/year.",
-    "desc": "Sistema ML de detection de conflicts of interest que cross-reference registros de public personnel, asset declarations, commercial registries y public procurement for identificar incompatibilities y redes de influencia.",
+    "pain": "Konflikty interesów w administracji publicznej (urzędnicy z firmami powiązanymi z kontraktami, drzwi obrotowe, zakazy łączenia stanowisk) są trudne do wykrycia ręcznie w ekosystemie milionów pracowników publicznych i setek tysięcy kontraktów rocznie.",
+    "desc": "System ML do wykrywania konfliktów interesów krzyżujący rejestry personelu publicznego, oświadczenia majątkowe, rejestry handlowe i zamówienia publiczne w celu identyfikacji zakazów łączenia i sieci wpływów.",
     "features": [
-      "Cruce de datos con ML.CLASSIFICATION y analysis de grafos",
-      "Variables: public personnel, companyes, contratos, declarations",
-      "Detection de patterns de revolving doors y nepotismo",
-      "Streamlit Dashboard de public integrity"
+      "Krzyżowanie danych z ML.CLASSIFICATION i analizą grafów",
+      "Zmienne: personel publiczny, firmy, kontrakty, oświadczenia",
+      "Wykrywanie wzorców drzwi obrotowych i nepotyzmu",
+      "Streamlit Dashboard uczciwości publicznej"
     ]
   },
   {
@@ -379,13 +379,13 @@ const USE_CASES = [
     "catLabel": "Efektywność administracyjna",
     "time": "11 min",
     "title": "NLP on Regulations and Legal Summary Generation",
-    "pain": "El BOE publica 300.000+ pages de regulations al year. Los civil servants necesitan 2-4 horas for analizar each nueva norma y determinar su impacto en sus procedimientos. La regulations consolidada no existe en muchos scopes regionals y locales.",
-    "desc": "Pipeline NLP que analyze automaticmente nueva regulations, generate summaries ejecutivos, identify procedimientos afectados y crea regulations consolidada, usando RAG on el corpus legal vigente.",
+    "pain": "Dzienniki ustaw publikują setki tysięcy stron przepisów rocznie. Urzędnicy potrzebują 2-4 godzin na analizę każdej nowej normy i ustalenie jej wpływu na ich procedury. Ujednolicone przepisy nie istnieją w wielu zakresach regionalnych i lokalnych.",
+    "desc": "Pipeline NLP automatycznie analizujący nowe przepisy, generujący streszczenia wykonawcze, identyfikujący dotknięte procedury i tworzący ujednolicone przepisy, wykorzystując RAG na obowiązującym korpusie prawnym.",
     "features": [
-      "Analysis con CORTEX.COMPLETE on textos normativos",
-      "RAG con Cortex Search on BOE, BOCA, BOP vigentes",
-      "Identification de procedimientos afectados por cambios normativos",
-      "Streamlit Dashboard de regulatory intelligence"
+      "Analiza z CORTEX.COMPLETE na tekstach normatywnych",
+      "RAG z Cortex Search na obowiązujących dziennikach ustaw",
+      "Identyfikacja procedur dotkniętych zmianami normatywnymi",
+      "Streamlit Dashboard inteligencji regulacyjnej"
     ]
   },
   {
@@ -394,13 +394,13 @@ const USE_CASES = [
     "catLabel": "Polityka publiczna",
     "time": "12 min",
     "title": "Predictive Social Vulnerability Analysis",
-    "pain": "La detection de situaciones de social vulnerability (energy poverty, riesgo de eviction, aislamiento de mayores) es reactiva: las administraciones intervienen cuando ya hay crisis. La falta de indicadores tempranos y datos integrados impide la prevention.",
-    "desc": "Motor predictivo de social vulnerability that integrates indicadores socioeconomic, empleo, housing, salud y social services for identificar personas y zonas en riesgo antes de que se produzca la crisis.",
+    "pain": "Wykrywanie sytuacji zagrożenia społecznego (ubóstwo energetyczne, ryzyko eksmisji, izolacja osób starszych) jest reaktywne: administracje interweniują, gdy kryzys już istnieje. Brak wczesnych wskaźników i zintegrowanych danych uniemożliwia prewencję.",
+    "desc": "Silnik predykcyjny zagrożenia społecznego integrujący wskaźniki społeczno-ekonomiczne, zatrudnienie, mieszkalnictwo, zdrowie i pomoc społeczną w celu identyfikacji osób i stref zagrożonych przed wystąpieniem kryzysu.",
     "features": [
-      "Scoring de vulnerability con ML.CLASSIFICATION multivariable",
-      "Variables: renta, empleo, housing, salud, social services, edad",
-      "Mapa de riesgo por municipality y barrio con alerts tempranas",
-      "Streamlit Dashboard de social prevention"
+      "Scoring zagrożenia z ML.CLASSIFICATION wielowymiarowy",
+      "Zmienne: dochód, zatrudnienie, mieszkalnictwo, zdrowie, pomoc społeczna, wiek",
+      "Mapa ryzyka według gminy i dzielnicy z wczesnymi alertami",
+      "Streamlit Dashboard prewencji społecznej"
     ]
   },
   {
@@ -409,13 +409,13 @@ const USE_CASES = [
     "catLabel": "Doświadczenie obywatela",
     "time": "11 min",
     "title": "Sentiment Analysis in Citizen Participation",
-    "pain": "Los procesos de citizen participation (consultas publics, budgets participativos, sugerencias) generan miles de contributions textuales que se analizan mannualmente con semanas de retraso. El 70% de los citizens perciben que su opinion no se tiene en cuenta.",
-    "desc": "Pipeline NLP de analysis de citizen participation que classify contributions, detect temas emergings, measure sentimiento y generate informes de synthesis for toma de decisiones.",
+    "pain": "Procesy partycypacji obywatelskiej (konsultacje publiczne, budżety partycypacyjne, sugestie) generują tysiące kontrybucji tekstowych analizowanych ręcznie z tygodniowym opóźnieniem. 70% obywateli uważa, że ich opinia nie jest brana pod uwagę.",
+    "desc": "Pipeline NLP analizy partycypacji obywatelskiej klasyfikujący kontrybucje, wykrywający pojawiające się tematy, mierzący sentyment i generujący raporty syntetyczne do podejmowania decyzji.",
     "features": [
-      "Analysis de sentimiento con CORTEX.SENTIMENT",
-      "Classification thematic con CORTEX.COMPLETE",
-      "Detection de temas emergings y clustering de propuestas",
-      "Streamlit Dashboard de citizen participation"
+      "Analiza sentymentu z CORTEX.SENTIMENT",
+      "Klasyfikacja tematyczna z CORTEX.COMPLETE",
+      "Wykrywanie pojawiających się tematów i klasteryzacja propozycji",
+      "Streamlit Dashboard partycypacji obywatelskiej"
     ]
   },
   {
@@ -424,13 +424,13 @@ const USE_CASES = [
     "catLabel": "Bezpieczeństwo i Smart Cities",
     "time": "11 min",
     "title": "Smart Urban Waste Management",
-    "pain": "La collection de urban waste cuesta a los municipalities Spanishes 2.500M€/year. Las rutas fijas de collection generan un 30% de viajes innecesarios (containers vacíos) y un 15% de desbordamientos. La tasa de recycling del 35% está lejos del objetivo UE del 55%.",
-    "desc": "Motor de optimization de management de residuos que predict nivel de llenado de containers, optimize rutas de collection, detect contamination de fracciones y predict comportamiento de recycling por zona.",
+    "pain": "Odbiór odpadów komunalnych kosztuje gminy miliardy euro rocznie. Stałe trasy odbioru generują 30% zbędnych przejazdów (puste kontenery) i 15% przepełnień. Wskaźnik recyklingu 35% jest daleki od celu UE wynoszącego 55%.",
+    "desc": "Silnik optymalizacji gospodarki odpadami prognozujący poziom napełnienia kontenerów, optymalizujący trasy odbioru, wykrywający zanieczyszczenie frakcji i prognozujący zachowania recyklingowe według strefy.",
     "features": [
-      "Prediction de llenado con ML.FORECAST on sensores IoT",
-      "Optimization de rutas con restricciones de tiempo y capacity",
-      "Detection de contamination de fracciones con ML.CLASSIFICATION",
-      "Streamlit Dashboard management inteligente de residuos"
+      "Prognozowanie napełnienia z ML.FORECAST na czujnikach IoT",
+      "Optymalizacja tras z ograniczeniami czasu i pojemności",
+      "Wykrywanie zanieczyszczenia frakcji z ML.CLASSIFICATION",
+      "Streamlit Dashboard inteligentnej gospodarki odpadami"
     ]
   }
 ];
@@ -446,10 +446,10 @@ function renderCards(list) {
     grid.innerHTML += '<article class="card">' +
       '<div class="card-header"><div class="card-badges"><span class="badge-id">' + uc.id + '</span><span class="badge-cat ' + catClass + '">' + uc.catLabel + '</span></div><span class="card-time">\u23F1 ' + uc.time + '</span></div>' +
       '<div class="card-title">' + uc.title + '</div>' +
-      '<div class="pain-point"><div class="pain-point-label">Problema</div><p>' + uc.pain + '</p></div>' +
+      '<div class="pain-point"><div class="pain-point-label">Problem</div><p>' + uc.pain + '</p></div>' +
       '<div class="card-desc">' + uc.desc + '</div>' +
       '<ul class="card-features">' + uc.features.map(function(f){return '<li>' + f + '</li>';}).join('') + '</ul>' +
-      '<div class="card-actions"><button class="btn-secondary" onclick="verGuia(\'' + uc.id + '\')">Ver Gu\u00EDa</button><button class="btn-tertiary" onclick="verPrompts(\'' + uc.id + '\')">Ver Prompts</button></div>' +
+      '<div class="card-actions"><button class="btn-secondary" onclick="verGuia(\'' + uc.id + '\')">Zobacz Przewodnik</button><button class="btn-tertiary" onclick="verPrompts(\'' + uc.id + '\')">Zobacz Prompty</button></div>' +
       '</article>';
   });
 }
@@ -482,824 +482,824 @@ renderCards(USE_CASES);
 const GUIAS = {
   "UC01": {
     "title": "Subsidy Fraud Detection with Model Registry",
-    "contexto": "El subsidy fraud publics en Spain se estima en un 2-5% del total otorgado. Las revisiones mannuales basadas en muestreo aleatorio solo detectan el 15-20% de los casos irregulares y con meses de retraso, lo que permite que los defraudadores repitan esquemas.",
-    "foco": "Construir un modelo ML de detection de subsidy fraud that analyzes solicitudes, execution y redes de beneficiaries, registrándolo en Snowflake Model Registry for operation continua.",
-    "reto": "Los esquemas de fraude evolucionan constantemente: empresas pantalla, fraccionamiento de solicitudes, falsification documental, y redes de beneficiaries vinculados. El modelo debe detectar patterns nuevos sin generar exceso de falsos positivos.",
+    "contexto": "Oszustwa dotacyjne w sektorze publicznym szacuje się na 2-5% łącznej przyznanej kwoty. Ręczne kontrole oparte na losowym próbkowaniu wykrywają jedynie 15-20% nieprawidłowych przypadków i z wielomiesięcznym opóźnieniem, co pozwala oszustom powtarzać schematy.",
+    "foco": "Zbudować model ML do wykrywania oszustw dotacyjnych analizujący wnioski, realizację i sieci beneficjentów, rejestrując go w Snowflake Model Registry do ciągłej eksploatacji.",
+    "reto": "Schematy oszustw stale ewoluują: firmy-słupy, dzielenie wniosków, fałszowanie dokumentów i sieci powiązanych beneficjentów. Model musi wykrywać nowe wzorce bez generowania nadmiernej liczby fałszywych alarmów.",
     "objetivos": [
-      "Detectar el 60% del subsidy fraud con <10% de falsos positivos",
-      "Register model in Model Registry con log_model() y versionado",
-      "Reducir tiempo de detection de 6 meses a 15 days",
-      "Prioritize investigations por importe y probability",
-      "Automatizar reentrenamiento con nuevos casos confirmados"
+      "Wykryć 60% oszustw dotacyjnych z <10% fałszywych alarmów",
+      "Zarejestrować model w Model Registry z log_model() i wersjonowaniem",
+      "Skrócić czas wykrywania z 6 miesięcy do 15 dni",
+      "Priorytetyzować dochodzenia według kwoty i prawdopodobieństwa",
+      "Zautomatyzować przeuczanie na nowych potwierdzonych przypadkach"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION for scoring de riesgo de fraude",
+      "ML.CLASSIFICATION do scoringu ryzyka oszustwa",
       "Snowflake Model Registry: log_model(), get_model(), deploy()",
-      "Analysis de redes de beneficiaries y relaciones corporates",
-      "Detection de fraccionamiento, empresas pantalla y duplicidades",
-      "Streamlit Dashboard control de subsidies"
+      "Analiza sieci beneficjentów i powiązań korporacyjnych",
+      "Wykrywanie dzielenia wniosków, firm-słupów i duplikatów",
+      "Streamlit Dashboard kontroli dotacji"
     ],
     "datos": [
-      "Solicitudes de subsidy: beneficiary, importe, proyecto, documentation",
-      "Execution budgetary: pagos, justificaciones, hitos",
-      "Registro mercantil: companyes, administradores, vinculaciones",
-      "Historial de sanctions, revocaciones y reintegros",
-      "Declaraciones fiscales: billing, empleados, activity"
+      "Wnioski dotacyjne: beneficjent, kwota, projekt, dokumentacja",
+      "Realizacja budżetowa: płatności, uzasadnienia, kamienie milowe",
+      "Rejestr handlowy: firmy, zarządzający, powiązania",
+      "Historia sankcji, cofnięć i zwrotów",
+      "Deklaracje podatkowe: fakturowanie, pracownicy, działalność"
     ],
     "estratificacion": [
-      "Por subsidy type: investment, empleo, I+D, training, agrario",
-      "Por importe: alto >500K€, average 50-500K€, bajo <50K€",
-      "Por nivel de riesgo: muy alto, alto, average, bajo",
-      "Por tipo de fraude: documental, execution, affiliation, duplicidad",
-      "Por administration convocante: estatal, regional, local, UE"
+      "Według rodzaju dotacji: inwestycja, zatrudnienie, B+R, szkolenie, rolnictwo",
+      "Według kwoty: wysoka >500K€, średnia 50-500K€, niska <50K€",
+      "Według poziomu ryzyka: bardzo wysoki, wysoki, średni, niski",
+      "Według rodzaju oszustwa: dokumentowe, realizacyjne, afiliacyjne, duplikat",
+      "Według administracji ogłaszającej: krajowa, regionalna, lokalna, UE"
     ],
     "como_usar": [
-      "Execute the prompts in Cortex Code sequentially",
-      "El modelo se entrena con casos confirmados de fraude (minimum 3 years)",
-      "Register in Model Registry for versionado y deploy automatic",
-      "Adjust scoring thresholds based on investigation capacity",
-      "Retrain quarterly with new confirmed cases"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Model trenowany na potwierdzonych przypadkach oszustw (minimum 3 lata)",
+      "Rejestracja w Model Registry do wersjonowania i automatycznego wdrożenia",
+      "Dostosuj progi scoringu w zależności od zdolności dochodzeniowych",
+      "Przetrenuj kwartalnie na nowych potwierdzonych przypadkach"
     ]
   },
   "UC02": {
     "title": "Multichannel Citizen Service RAG Chatbot",
-    "contexto": "Las oficinas de service al citizen gestionan un 65% de consultas repetitivas con alto coste. La e-government ha reducido la presencialidad pero la complexity regulations y la dispersion de information mantienen la frustration cityana.",
-    "foco": "Construir un asistente conversacional RAG con Cortex Search indexando toda la regulations, procedimientos y FAQ de la administration, con soporte multilingual y personalization por perfil.",
-    "reto": "La regulations public es extrema en volumen y complexity (BOE, BOCA, BOP, ordenanzas). Las respuestas deben ser legally corrects, actualizadas y adaptadas al nivel de comprensión del citizen.",
+    "contexto": "Biura obsługi obywatela obsługują 65% powtarzalnych zapytań przy wysokim koszcie. E-government zmniejszył wizyty osobiste, ale złożoność przepisów i rozproszenie informacji podtrzymują frustrację obywateli.",
+    "foco": "Zbudować asystenta konwersacyjnego RAG z Cortex Search indeksującym wszystkie przepisy, procedury i FAQ administracji, z obsługą wielu języków i personalizacją według profilu.",
+    "reto": "Przepisy publiczne są ogromne co do objętości i złożoności (dzienniki ustaw, rozporządzenia). Odpowiedzi muszą być prawnie poprawne, aktualne i dostosowane do poziomu zrozumienia obywatela.",
     "objetivos": [
-      "Resolver el 60% de consultas sin intervention de civil servant",
-      "Reducir coste por interaction de 10€ a 0.80€",
-      "Soportar Spanish, Catalan, Basque, Galician y Valencian",
-      "Mantener base de conocimiento actualizada con cambios normativos",
-      "Escalar a civil servant con contexto completo cuando sea necesario"
+      "Rozwiązać 60% zapytań bez interwencji urzędnika",
+      "Obniżyć koszt interakcji z 10€ do 0,80€",
+      "Obsługiwać polski i inne języki urzędowe",
+      "Utrzymywać bazę wiedzy aktualną ze zmianami normatywnymi",
+      "Eskalować do urzędnika z pełnym kontekstem, gdy to konieczne"
     ],
     "funcionalidades": [
-      "Cortex Search for indexación de regulations y procedimientos",
-      "CORTEX.COMPLETE for generation de respuestas contextualizadas",
-      "Soporte multilingual con detection automatic de idioma",
-      "Integration con case file registry for consulta de estado",
-      "Streamlit Dashboard de chatbot con metrics de resolution"
+      "Cortex Search do indeksowania przepisów i procedur",
+      "CORTEX.COMPLETE do generowania odpowiedzi kontekstowych",
+      "Obsługa wielu języków z automatycznym wykrywaniem języka",
+      "Integracja z rejestrem spraw do sprawdzania statusu",
+      "Streamlit Dashboard chatbota z metrykami rozwiązywania"
     ],
     "datos": [
-      "Normativa vigente: BOE, boletines regionals, ordenanzas municipales",
-      "Procedimientos administrativos: requisitos, plazos, documentation",
-      "FAQ: preguntas frecuentes por servicio y procedure",
-      "Estado de case files: registro, fase, resolution, notificaciones",
-      "Perfil citizen: idioma preferido, procedures anteriores, municipality"
+      "Obowiązujące przepisy: dzienniki ustaw, rozporządzenia regionalne, zarządzenia gminne",
+      "Procedury administracyjne: wymagania, terminy, dokumentacja",
+      "FAQ: najczęściej zadawane pytania według usługi i procedury",
+      "Status spraw: rejestracja, faza, rozstrzygnięcie, powiadomienia",
+      "Profil obywatela: preferowany język, wcześniejsze procedury, gmina"
     ],
     "estratificacion": [
-      "Por tipo de consulta: procedure, regulations, estado case file, complaint",
-      "Por canal: web, app, phone, presencial",
-      "Por idioma: Spanish, Catalan, Basque, Galician, Valencian",
-      "Por complexity: simple (FAQ), media (regulations), compleja (complaint)",
-      "Por administration: estatal, regional, municipal"
+      "Według rodzaju zapytania: procedura, przepisy, status sprawy, skarga",
+      "Według kanału: web, aplikacja, telefon, osobisty",
+      "Według języka: polski, angielski i inne",
+      "Według złożoności: prosta (FAQ), średnia (przepisy), złożona (skarga)",
+      "Według administracji: krajowa, regionalna, gminna"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Indexar regulations y procedimientos con Cortex Search",
-      "Configurar soporte multilingual con detection de idioma",
-      "Integrar con sistemas de case files for consulta de estado",
-      "Monitorizar tasa de resolution y satisfaction weeklymente"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Indeksuj przepisy i procedury z Cortex Search",
+      "Skonfiguruj obsługę wielu języków z wykrywaniem języka",
+      "Zintegruj z systemami spraw do sprawdzania statusu",
+      "Monitoruj wskaźnik rozwiązywania i zadowolenie co tydzień"
     ]
   },
   "UC03": {
     "title": "Social Services Demand Prediction with Model Registry",
-    "contexto": "Los social services municipales experimentan picos impredecibles vinculados a crisis economics, migratorias o healthcares. La planning por inercia historical generate colas de espera y recursos infrautilizados simultaneously.",
-    "foco": "Construir un modelo predictivo de demanda de social services con ML.FORECAST registrado en Model Registry for planning continua de recursos por municipality y tipo de benefit.",
-    "reto": "La demanda de social services depende de factores macro (desempleo, inmigration, crisis) y micro (aging local, eventos climáticos). Los datos are dispersos between administraciones y la quality es variable.",
+    "contexto": "Gminne ośrodki pomocy społecznej doświadczają nieprzewidywalnych skoków powiązanych z kryzysami ekonomicznymi, migracyjnymi lub zdrowotnymi. Planowanie z inercji historycznej generuje kolejki i jednoczesne niedostateczne wykorzystanie zasobów.",
+    "foco": "Zbudować model predykcyjny popytu na usługi społeczne z ML.FORECAST zarejestrowanym w Model Registry do ciągłego planowania zasobów według gminy i rodzaju świadczenia.",
+    "reto": "Popyt na usługi społeczne zależy od czynników makro (bezrobocie, imigracja, kryzysy) i mikro (lokalne starzenie się, zdarzenia klimatyczne). Dane są rozproszone między administracjami, a ich jakość jest zmienna.",
     "objetivos": [
-      "Predict demand de social services con MAPE <12% a 3 meses",
-      "Register model in Model Registry con metrics de accuracy",
-      "Reducir listas de espera un 30% mediante planning proactive",
-      "Optimize allocation de profesionales por territorio y especialidad",
-      "Detectar incrementos de demanda con 4-8 semanas de advance"
+      "Prognozować popyt na usługi społeczne z MAPE <12% na 3 miesiące",
+      "Zarejestrować model w Model Registry z metrykami dokładności",
+      "Skrócić listy oczekiwania o 30% dzięki proaktywnemu planowaniu",
+      "Zoptymalizować alokację profesjonalistów według terytorium i specjalizacji",
+      "Wykrywać wzrosty popytu z 4-8 tygodniowym wyprzedzeniem"
     ],
     "funcionalidades": [
-      "ML.FORECAST for series temporales de demanda por servicio",
-      "Snowflake Model Registry: log_model(), versionado, deploy()",
-      "Variables exogenous: desempleo, inmigration, demografía, crisis",
-      "Resource planning: profesionales, budget, centros",
-      "Streamlit Dashboard de planning social"
+      "ML.FORECAST do szeregów czasowych popytu według usługi",
+      "Snowflake Model Registry: log_model(), wersjonowanie, deploy()",
+      "Zmienne egzogeniczne: bezrobocie, imigracja, demografia, kryzysy",
+      "Planowanie zasobów: profesjonaliści, budżet, ośrodki",
+      "Streamlit Dashboard planowania społecznego"
     ],
     "datos": [
-      "Solicitudes de social services: tipo, perfil, municipality, fecha",
-      "Indicadores socioeconomic: desempleo, renta, pobreza por municipality",
-      "Demographics: aging, natalidad, migration por zona",
-      "Budget y recursos: profesionales, centros, programas",
-      "Historial de benefits: tipo, duration, resolution, satisfaction"
+      "Wnioski o usługi społeczne: rodzaj, profil, gmina, data",
+      "Wskaźniki społeczno-ekonomiczne: bezrobocie, dochód, ubóstwo według gminy",
+      "Demografia: starzenie się, dzietność, migracja według strefy",
+      "Budżet i zasoby: profesjonaliści, ośrodki, programy",
+      "Historia świadczeń: rodzaj, czas trwania, rozstrzygnięcie, zadowolenie"
     ],
     "estratificacion": [
-      "Por tipo de servicio: dependency, renta minimum, emergency, infancia",
-      "Por municipality y zona healthcare",
-      "Por perfil del applicant: edad, situation familiar, empleo",
-      "Por seasonality y eventos externos",
-      "Por horizonte de prediction: 1 mes, 3 meses, 6 meses"
+      "Według rodzaju usługi: opieka zależna, dochód minimalny, nagłe wypadki, dzieci",
+      "Według gminy i rejonu zdrowotnego",
+      "Według profilu wnioskodawcy: wiek, sytuacja rodzinna, zatrudnienie",
+      "Według sezonowości i zdarzeń zewnętrznych",
+      "Według horyzontu prognozy: 1 miesiąc, 3 miesiące, 6 miesięcy"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Entrenar con al menos 3 years de datos de solicitudes",
-      "Register model in Model Registry for operation continua",
-      "Ajustar variables exogenous according to contexto territorial",
-      "Reentrenar monthlymente con datos actualizados"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Trenuj na co najmniej 3 latach danych o wnioskach",
+      "Zarejestruj model w Model Registry do ciągłej eksploatacji",
+      "Dostosuj zmienne egzogeniczne do kontekstu terytorialnego",
+      "Przetrenuj co miesiąc na zaktualizowanych danych"
     ]
   },
   "UC04": {
     "title": "Automated Case File Classification",
-    "contexto": "Las administraciones procesan millones de case files con classification mannual que consume un 25% del tiempo de los civil servants. Los errores de allocation generan retrasos y duplicidades que afectan a la quality del servicio.",
-    "foco": "Construir un pipeline NLP that classifies automaticmente case files, extraiga entidades clave y asigne ruta de processing con sugerencia de resolution basada en precedentes.",
-    "reto": "Los case files contienen texto desestructurado con jerga administrativa, referencias cruzadas a regulations y formato heterogéneo (papel escaneado, formularios electronics, correos). La precision debe ser muy alta for evitar errores con consequences legales.",
+    "contexto": "Administracje przetwarzają miliony spraw z ręczną klasyfikacją pochłaniającą 25% czasu urzędników. Błędy w przydziale generują opóźnienia i duplikaty wpływające na jakość usług.",
+    "foco": "Zbudować pipeline NLP automatycznie klasyfikujący sprawy, wyodrębniający kluczowe encje i przypisujący ścieżkę przetwarzania z sugestią rozstrzygnięcia opartą na precedensach.",
+    "reto": "Sprawy zawierają tekst nieustrukturyzowany z żargonem administracyjnym, odsyłaczami do przepisów i heterogenicznym formatem (zeskanowany papier, formularze elektroniczne, emaile). Precyzja musi być bardzo wysoka, aby unikać błędów z konsekwencjami prawnymi.",
     "objetivos": [
-      "Clasificar automaticmente el 90% de case files con accuracy >85%",
-      "Reducir errores de allocation del 15% al 3%",
-      "Extract key entities: fechas, importes, DNI, referencias regulationss",
-      "Sugerir resolution basada en precedentes for el 50% de case files",
-      "Reducir tiempo average de processing un 25%"
+      "Automatycznie klasyfikować 90% spraw z dokładnością >85%",
+      "Zmniejszyć błędy przydziału z 15% do 3%",
+      "Wyodrębniać kluczowe encje: daty, kwoty, PESEL, odniesienia do przepisów",
+      "Sugerować rozstrzygnięcie oparte na precedensach dla 50% spraw",
+      "Skrócić średni czas przetwarzania o 25%"
     ],
     "funcionalidades": [
-      "CORTEX.COMPLETE for classification y extracción de texto",
-      "ML.CLASSIFICATION for categorization automatic",
-      "Cortex Search for search de precedentes similares",
-      "Assignment automatic a unidad tramitadora con priority",
-      "Streamlit Dashboard management de case files"
+      "CORTEX.COMPLETE do klasyfikacji i ekstrakcji z tekstu",
+      "ML.CLASSIFICATION do automatycznej kategoryzacji",
+      "Cortex Search do wyszukiwania podobnych precedensów",
+      "Automatyczne przypisanie do jednostki obsługującej z priorytetem",
+      "Streamlit Dashboard zarządzania sprawami"
     ],
     "datos": [
-      "Expedientes administrativos: texto, tipo, documentation adjunta",
-      "Classification historical: tipo, materia, unidad, resolution",
-      "Normativa aplicable: leyes, reglamentos, instrucciones",
-      "Plazos legales por tipo de procedimiento",
-      "Historial de resoluciones y precedentes"
+      "Akta administracyjne: tekst, typ, załączona dokumentacja",
+      "Klasyfikacja historyczna: typ, materia, jednostka, rozstrzygnięcie",
+      "Obowiązujące przepisy: ustawy, rozporządzenia, instrukcje",
+      "Terminy prawne według rodzaju procedury",
+      "Historia rozstrzygnięć i precedensów"
     ],
     "estratificacion": [
-      "Por tipo de procedimiento: autorización, sanción, subsidy, recurso",
-      "Por materia: urbanismo, average ambiente, hacienda, empleo, education",
-      "Por priority: urgente, ordinario, diferido",
-      "Por complexity: simple, average, complejo",
-      "Por unidad tramitadora destino"
+      "Według rodzaju procedury: zezwolenie, sankcja, dotacja, odwołanie",
+      "Według materii: urbanistyka, ochrona środowiska, skarbówka, zatrudnienie, edukacja",
+      "Według priorytetu: pilny, zwykły, odroczony",
+      "Według złożoności: prosta, średnia, złożona",
+      "Według docelowej jednostki obsługującej"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Feed with historial de case files clasificados (minimum 2 years)",
-      "Validar classification automatic con supervisores",
-      "Enriquecer base de precedentes con nuevas resoluciones",
-      "Integrar con sistema de management de case files"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Zasilaj historią sklasyfikowanych spraw (minimum 2 lata)",
+      "Waliduj automatyczną klasyfikację z przełożonymi",
+      "Wzbogacaj bazę precedensów o nowe rozstrzygnięcia",
+      "Integruj z systemem zarządzania sprawami"
     ]
   },
   "UC05": {
     "title": "Next Generation EU Fund Execution Control",
-    "contexto": "Spain gestiona 140.000M€ en Next Gen EU funds con requisitos estrictos de trazabilidad y compliance de hitos. Los retrasos en execution y las inconsistencias en reporting pueden resultar en devolution de fondos a la UE.",
-    "foco": "Construir un sistema de monitoring end-to-end de European funds que rastree each euro from la allocation until el impacto, detecte anomalies y anticipe riesgos de incompliance.",
-    "reto": "La cadena de execution involucra multiple administraciones (estatal, regional, local), entidades ejecutoras y beneficiaries finales. Los datos vienen de 50+ sistemas con formatos diferentes y la trazabilidad requiere granularidad until el last euro.",
+    "contexto": "Zarządzanie miliardami euro z funduszy Next Gen EU wymaga ścisłej identyfikowalności i spełnienia kamieni milowych. Opóźnienia w realizacji i niespójności w raportowaniu mogą skutkować zwrotem środków do UE.",
+    "foco": "Zbudować system monitoringu end-to-end funduszy europejskich śledzący każde euro od alokacji po rezultat, wykrywający anomalie i antycypujący ryzyka niespełnienia.",
+    "reto": "Łańcuch realizacji angażuje wiele administracji (krajową, regionalną, lokalną), podmioty realizujące i końcowych beneficjentów. Dane pochodzą z 50+ systemów o różnych formatach, a identyfikowalność wymaga granularności do ostatniego euro.",
     "objetivos": [
-      "Monitorizar el 100% de los fondos asignados con trazabilidad completa",
-      "Detectar retrasos en execution con 2-3 meses de advance",
-      "Identificar inconsistencias y anomalies en reporting",
-      "Generate compliance reports de hitos automatizados",
-      "Reducir riesgo de devolution de fondos por incompliance"
+      "Monitorować 100% przydzielonych funduszy z pełną identyfikowalnością",
+      "Wykrywać opóźnienia w realizacji z 2-3 miesięcznym wyprzedzeniem",
+      "Identyfikować niespójności i anomalie w raportowaniu",
+      "Generować zautomatyzowane raporty zgodności kamieni milowych",
+      "Zmniejszyć ryzyko zwrotu funduszy z powodu niespełnienia warunków"
     ],
     "funcionalidades": [
-      "Trazabilidad end-to-end con ML for detection de anomalies",
-      "ML.FORECAST for prediction de ritmo de execution",
-      "CORTEX.COMPLETE for generation de informes de compliance",
-      "Alerts tempranas de retraso e incompliance de KPIs",
-      "Streamlit Dashboard control de European funds"
+      "Identyfikowalność end-to-end z ML do wykrywania anomalii",
+      "ML.FORECAST do prognozowania tempa realizacji",
+      "CORTEX.COMPLETE do generowania raportów zgodności",
+      "Wczesne alerty opóźnień i niespełnienia KPI",
+      "Streamlit Dashboard kontroli funduszy europejskich"
     ],
     "datos": [
-      "Asignaciones de fondos: componente, line, importe, beneficiary",
-      "Licitaciones y contratos: fecha, importe, adjudicatario, plazos",
-      "Execution budgetary: pagos, certificaciones, hitos cumplidos",
-      "Hitos y objetivos: definition UE, indicadores, plazos, evidencias",
-      "Informes de tracking: quarterlyes, semestrales, annuales"
+      "Alokacje funduszy: komponent, linia, kwota, beneficjent",
+      "Przetargi i kontrakty: data, kwota, wykonawca, terminy",
+      "Realizacja budżetowa: płatności, certyfikacje, spełnione kamienie milowe",
+      "Kamienie milowe i cele: definicja UE, wskaźniki, terminy, dowody",
+      "Raporty monitoringowe: kwartalne, półroczne, roczne"
     ],
     "estratificacion": [
-      "Por componente del Plan de Recovery (1-30)",
-      "Por administration ejecutora: estatal, regional, local",
-      "Por estado de execution: en plazo, riesgo, retraso, critical",
-      "Por tipo de gasto: investment, reforma, transferencia",
-      "Por hito UE: cumplido, en progreso, retrasado, no iniciado"
+      "Według komponentu Planu Odbudowy (1-30)",
+      "Według administracji realizującej: krajowa, regionalna, lokalna",
+      "Według stanu realizacji: w terminie, ryzyko, opóźnienie, krytyczny",
+      "Według rodzaju wydatku: inwestycja, reforma, transfer",
+      "Według kamienia milowego UE: spełniony, w toku, opóźniony, nierozpoczęty"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar con estructura de componentes del Plan de Recovery",
-      "Calibrar alerts according to umbrales de retraso admisibles",
-      "Integrar con sistemas contables y de management de contratos",
-      "Generate compliance reports for la Commission Europea"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj ze strukturą komponentów Planu Odbudowy",
+      "Kalibruj alerty zgodnie z dopuszczalnymi progami opóźnień",
+      "Integruj z systemami księgowymi i zarządzania kontraktami",
+      "Generuj raporty zgodności dla Komisji Europejskiej"
     ]
   },
   "UC06": {
     "title": "Smart Urban Mobility Management",
-    "contexto": "Las cityes Spanishas sufren conmanagement chronic que cuesta 5.500M€/year. Los sistemas de management de traffic con ciclos fijos no se adaptan a la demanda real, y la falta de integration between modos de transporte desincentiva alternativas al vehicle privado.",
-    "foco": "Construir un motor de optimization de urban mobility that predicts demanda de transporte, optimice traffic lights y coordine public transport con datos en tiempo real.",
-    "reto": "La urban mobility depende de multiple variables (eventos, weather, obras, festivos) y requiere coordination between traffic lights, public transport, aparcamiento y zonas de bajas emisiones en tiempo real.",
+    "contexto": "Miasta cierpią z powodu chronicznych zatorów komunikacyjnych kosztujących miliardy rocznie. Systemy zarządzania ruchem ze stałymi cyklami nie dostosowują się do rzeczywistego popytu, a brak integracji między środkami transportu zniechęca do alternatyw dla pojazdów prywatnych.",
+    "foco": "Zbudować silnik optymalizacji mobilności miejskiej prognozujący popyt na transport, optymalizujący sygnalizację świetlną i koordynujący transport publiczny z danymi w czasie rzeczywistym.",
+    "reto": "Mobilność miejska zależy od wielu zmiennych (wydarzenia, pogoda, roboty drogowe, święta) i wymaga koordynacji w czasie rzeczywistym między sygnalizacją świetlną, transportem publicznym, parkowaniem i strefami niskiej emisji.",
     "objetivos": [
-      "Reducir tiempo average de desplazamiento un 15% en hora punta",
-      "Aumentar uso de public transport un 10%",
-      "Optimizar ciclos traffic light en tiempo real por corredor",
-      "Predict congestion con 30-60 minutos de advance",
-      "Reducir emisiones de traffic un 12%"
+      "Skrócić średni czas podróży o 15% w godzinach szczytu",
+      "Zwiększyć korzystanie z transportu publicznego o 10%",
+      "Optymalizować cykle sygnalizacji w czasie rzeczywistym na korytarzach",
+      "Prognozować zatory z 30-60 minutowym wyprzedzeniem",
+      "Zmniejszyć emisje z ruchu drogowego o 12%"
     ],
     "funcionalidades": [
-      "ML.FORECAST for prediction de traffic por zona y hora",
-      "Optimization de ciclos traffic light con ML",
-      "Variables: traffic, public transport, eventos, weather, obras",
-      "Recomendaciones de movilidad personalizadas",
-      "Streamlit Dashboard de centro de movilidad"
+      "ML.FORECAST do prognozowania ruchu według strefy i godziny",
+      "Optymalizacja cykli sygnalizacji z ML",
+      "Zmienne: ruch, transport publiczny, wydarzenia, pogoda, roboty drogowe",
+      "Spersonalizowane rekomendacje mobilności",
+      "Streamlit Dashboard centrum mobilności"
     ],
     "datos": [
-      "Traffic en tiempo real: espiras, cámaras, GPS flotante",
-      "Transporte public: occupancy, retrasos, frequencys, rutas",
-      "Aparcamiento: occupancy por zona, rotación, precios",
-      "Eventos: culturales, deportivos, manifestaciones, obras",
-      "Meteorology: temperatura, lluvia, viento por zona"
+      "Ruch w czasie rzeczywistym: pętle indukcyjne, kamery, GPS flotowy",
+      "Transport publiczny: obłożenie, opóźnienia, częstotliwości, trasy",
+      "Parkowanie: obłożenie według strefy, rotacja, ceny",
+      "Wydarzenia: kulturalne, sportowe, manifestacje, roboty drogowe",
+      "Meteorologia: temperatura, deszcz, wiatr według strefy"
     ],
     "estratificacion": [
-      "Por zona de la city: centro, corona, periferia, accesos",
-      "Por modo de transporte: vehicle privado, bus, metro, bici, a pie",
-      "Por franja horaria: punta mañana, valle, punta tarde, noche",
-      "Por tipo de day: laborable, Saturday, domingo, festivo, evento",
-      "Por corredor de traffic principal"
+      "Według strefy miasta: centrum, pierścień, peryferie, dojazdy",
+      "Według środka transportu: pojazd prywatny, autobus, metro, rower, pieszo",
+      "Według pory dnia: szczyt poranny, dolina, szczyt popołudniowy, noc",
+      "Według rodzaju dnia: roboczy, sobota, niedziela, święto, wydarzenie",
+      "Według głównego korytarza komunikacyjnego"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar con datos de sensores de traffic de la city",
-      "Ajustar parámetros de optimization por corredor",
-      "Integrar con sistemas de management traffic light",
-      "Validar with real data y ajustar modelo monthlymente"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj z danymi z czujników ruchu w mieście",
+      "Dostosuj parametry optymalizacji według korytarza",
+      "Integruj z systemami zarządzania sygnalizacją świetlną",
+      "Waliduj na rzeczywistych danych i dostosowuj model co miesiąc"
     ]
   },
   "UC07": {
     "title": "Public Policy Impact Evaluation",
-    "contexto": "Las public policies se evaluate ex-post con 2-3 years de retraso usando indicadores agregados. La evidencia for toma de decisiones es escasa, lo que perpetúa la allocation de recursos por inercia en lugar de por impacto demostrado.",
-    "foco": "Construir un motor de evaluation de impacto that analyzes el efecto diferencial de public policies on indicadores socioeconomic a nivel territorial usando inferencia causal y ML.",
-    "reto": "La evaluation de impacto requiere separar el efecto de la policy de otros factores (ciclo economic, trends demographic). Las technicals de inferencia causal necesitan grupos de control adecuados y datos de quality.",
+    "contexto": "Polityki publiczne są ewaluowane ex-post z 2-3 letnim opóźnieniem przy użyciu zagregowanych wskaźników. Dowody do podejmowania decyzji są skąpe, co utrwala alokację zasobów z inercji zamiast na podstawie udowodnionego wpływu.",
+    "foco": "Zbudować silnik ewaluacji wpływu analizujący zróżnicowany efekt polityk publicznych na wskaźniki społeczno-ekonomiczne na poziomie terytorialnym z wykorzystaniem wnioskowania przyczynowego i ML.",
+    "reto": "Ewaluacja wpływu wymaga oddzielenia efektu polityki od innych czynników (cykl ekonomiczny, trendy demograficzne). Techniki wnioskowania przyczynowego wymagają odpowiednich grup kontrolnych i danych wysokiej jakości.",
     "objetivos": [
-      "Evaluar impacto de policies con rigor cuasi-experimental",
-      "Reducir tiempo de evaluation de 3 years a 6 meses",
-      "Measure impact diferencial por territorio y perfil de beneficiary",
-      "Generate recommendations basadas en evidencia for reallocation",
-      "Automatizar reporting de evaluation for decisores"
+      "Ewaluować wpływ polityk z rygorem quasi-eksperymentalnym",
+      "Skrócić czas ewaluacji z 3 lat do 6 miesięcy",
+      "Mierzyć zróżnicowany wpływ według terytorium i profilu beneficjenta",
+      "Generować rekomendacje oparte na dowodach do realokacji",
+      "Zautomatyzować raportowanie ewaluacji dla decydentów"
     ],
     "funcionalidades": [
-      "Analysis de impacto con ML.CLASSIFICATION + CORTEX.COMPLETE",
-      "Técnicas cuasi-experimentales: difference-in-differences, matching",
-      "Variables: indicadores pre/post, grupo de control, contexto",
-      "Generation de narrativas de evaluation con LLM",
-      "Streamlit Dashboard de evaluation de policies"
+      "Analiza wpływu z ML.CLASSIFICATION + CORTEX.COMPLETE",
+      "Techniki quasi-eksperymentalne: difference-in-differences, matching",
+      "Zmienne: wskaźniki przed/po, grupa kontrolna, kontekst",
+      "Generowanie narracji ewaluacyjnych z LLM",
+      "Streamlit Dashboard ewaluacji polityk"
     ],
     "datos": [
-      "Indicadores socioeconomic municipales: empleo, renta, education, salud",
-      "Registro de policies: tipo, budget, beneficiaries, territorio, periodo",
-      "Datos de execution: gasto real, activityes, outputs",
-      "Indicadores de resultado: variation pre/post por territorio",
-      "Datos de control: municipalities similares sin intervention"
+      "Wskaźniki społeczno-ekonomiczne gmin: zatrudnienie, dochód, edukacja, zdrowie",
+      "Rejestr polityk: rodzaj, budżet, beneficjenci, terytorium, okres",
+      "Dane o realizacji: wydatki rzeczywiste, działania, wyniki",
+      "Wskaźniki rezultatu: zmiana przed/po według terytorium",
+      "Dane kontrolne: podobne gminy bez interwencji"
     ],
     "estratificacion": [
-      "Por tipo de policy: empleo, education, housing, salud, innovation",
-      "Por nivel territorial: municipal, comarcal, regional, estatal",
-      "Por perfil de beneficiary: edad, gender, situation laboral",
-      "Por periodo de evaluation: corto (1 year), average (3 years), largo (5+ years)",
-      "Por method de evaluation: experimental, cuasi-experimental, descriptivo"
+      "Według rodzaju polityki: zatrudnienie, edukacja, mieszkalnictwo, zdrowie, innowacja",
+      "Według poziomu terytorialnego: gminny, powiatowy, regionalny, krajowy",
+      "Według profilu beneficjenta: wiek, płeć, sytuacja zawodowa",
+      "Według okresu ewaluacji: krótki (1 rok), średni (3 lata), długi (5+ lat)",
+      "Według metody ewaluacji: eksperymentalna, quasi-eksperymentalna, opisowa"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar con datos de la policy a evaluar y grupo de control",
-      "Seleccionar method de evaluation according to availability de datos",
-      "Validar resultados con evaluadores expertos",
-      "Integrar recomendaciones en ciclo de planning budgetary"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj z danymi ewaluowanej polityki i grupą kontrolną",
+      "Wybierz metodę ewaluacji odpowiednio do dostępności danych",
+      "Waliduj wyniki z ekspertami ewaluacyjnymi",
+      "Włącz rekomendacje w cykl planowania budżetowego"
     ]
   },
   "UC08": {
     "title": "Citizen Profile 360 Feature Store",
-    "contexto": "Los datos del citizen are dispersos en 10-15 sistemas sin interoperability. Un civil servant necesita consultar multiple sistemas for atender una solicitud, y las duplicidades generan errores. La Ley de Interoperabilidad exige coordination.",
-    "foco": "Implementar un Feature Store en Snowflake que consolide features del perfil citizen from multiple fuentes, cumpliendo RGPD, for personalization de servicios y coordination inter-administrativa.",
-    "reto": "Los datos citizens son altamente sensibles (RGPD, LOPDGDD). La integration debe respetar la minimization de datos, el consentimiento y la limitation de finalidad. Cada administration tiene soberanía on sus datos.",
+    "contexto": "Dane obywatela są rozproszone w 10-15 systemach bez interoperacyjności. Urzędnik musi sprawdzić wiele systemów, aby obsłużyć wniosek, a duplikaty generują błędy. Przepisy o interoperacyjności wymagają koordynacji.",
+    "foco": "Wdrożyć Feature Store w Snowflake konsolidujący cechy profilu obywatela z wielu źródeł, zgodny z RODO, do personalizacji usług i koordynacji międzyadministracyjnej.",
+    "reto": "Dane obywatelskie są wysoce wrażliwe (RODO). Integracja musi respektować minimalizację danych, zgodę i ograniczenie celu. Każda administracja ma suwerenność nad swoimi danymi.",
     "objetivos": [
-      "Consolidar vision 360 del citizen from 6+ fuentes cumpliendo RGPD",
-      "Create Entity 'citizen' con FeatureViews especializados y enmascaramiento",
-      "Servir features con get_features() for personalization de servicios",
-      "Reducir tiempo de service presencial un 40%",
-      "Habilitar features compartidas between servicios con control de acceso"
+      "Skonsolidować wizję 360 obywatela z 6+ źródeł zgodnie z RODO",
+      "Utworzyć Entity 'citizen' ze specjalizowanymi FeatureViews i maskowaniem",
+      "Serwować cechy z get_features() do personalizacji usług",
+      "Skrócić czas obsługi osobistej o 40%",
+      "Umożliwić współdzielone cechy między usługami z kontrolą dostępu"
     ],
     "funcionalidades": [
       "Snowflake Feature Store: Entity('citizen', join_keys=['citizen_id'])",
-      "FeatureView: demographic_profile (census, edad, address, familia)",
-      "FeatureView: fiscal_status (tax, deuda, declarations)",
-      "FeatureView: social_services (benefits, solicitudes, vulnerability)",
-      "FeatureView: employment_profile (empleo, training, desempleo)",
-      "FeatureView: digital_engagement (canal preferido, procedures online, accessibility)"
+      "FeatureView: demographic_profile (ewidencja, wiek, adres, rodzina)",
+      "FeatureView: fiscal_status (podatki, zadłużenie, deklaracje)",
+      "FeatureView: social_services (świadczenia, wnioski, zagrożenie)",
+      "FeatureView: employment_profile (zatrudnienie, szkolenia, bezrobocie)",
+      "FeatureView: digital_engagement (preferowany kanał, procedury online, dostępność)"
     ],
     "datos": [
-      "Padrón municipal: address, composition familiar, nacionalidad",
-      "Agencia Tributaria: declarations, deuda, activity economic",
-      "Servicios sociales: benefits, solicitudes, valuation dependency",
-      "SEPE/INEM: empleo, desempleo, training, benefits",
-      "Portal de e-government: procedures, canal, frequency"
+      "Ewidencja ludności: adres, skład rodziny, obywatelstwo",
+      "Urząd skarbowy: deklaracje, zadłużenie, działalność gospodarcza",
+      "Pomoc społeczna: świadczenia, wnioski, ocena zależności",
+      "Urzędy pracy: zatrudnienie, bezrobocie, szkolenia, zasiłki",
+      "Portal e-government: procedury, kanał, częstotliwość"
     ],
     "estratificacion": [
-      "Por perfil demographic: edad, gender, nacionalidad, composition familiar",
-      "Por situation socioeconomic: renta, empleo, benefits",
-      "Por nivel de digitalization: digital nativo, interaverage, brecha digital",
-      "Por need de servicios: alta frequency, esporádica, inactivo",
-      "Por territorio: municipality, distrito, zona"
+      "Według profilu demograficznego: wiek, płeć, obywatelstwo, skład rodziny",
+      "Według sytuacji społeczno-ekonomicznej: dochód, zatrudnienie, świadczenia",
+      "Według poziomu cyfryzacji: cyfrowy natyw, pośredni, wykluczenie cyfrowe",
+      "Według potrzeb usługowych: wysoka częstotliwość, sporadyczny, nieaktywny",
+      "Według terytorium: gmina, dzielnica, strefa"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar Entity y FeatureViews con policies de acceso RGPD",
-      "Implementar enmascaramiento de datos according to finalidad",
-      "Consumir features con fs.get_features() from servicios autorizados",
-      "Auditar accesos y cumplir con minimization de datos"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj Entity i FeatureViews z politykami dostępu RODO",
+      "Wdróż maskowanie danych odpowiednio do celu",
+      "Konsumuj cechy z fs.get_features() z autoryzowanych usług",
+      "Audytuj dostępy i przestrzegaj minimalizacji danych"
     ]
   },
   "UC09": {
     "title": "Public Procurement Optimization",
-    "contexto": "La public procurement en Spain mueve 200.000M€/year pero es lenta (6-12 meses), con un 30% de tenders desiertas y falta de competition que eleva precios. La Ley 9/2017 exige transparency y efficiency.",
-    "foco": "Construir un motor de inteligencia de procurement that analyzes historical, prediga desiertos, recomiende division en lotes y estime precios de mercado.",
-    "reto": "Los datos de procurement are en plataformas heterogeneous (PLACE, communityes, entes locales) con quality variable. Los pliegos son documentos complejos de 100+ pages cuyo analysis mannual limita la competition de PYMES.",
+    "contexto": "Zamówienia publiczne to ogromne kwoty rocznie, ale proces jest powolny (6-12 miesięcy), z 30% unieważnionych przetargów i brakiem konkurencji podnoszącym ceny. Prawo zamówień publicznych wymaga przejrzystości i efektywności.",
+    "foco": "Zbudować silnik inteligencji zamówień publicznych analizujący historię, prognozujący unieważnienia, rekomendujący podział na części i szacujący ceny rynkowe.",
+    "reto": "Dane zamówień publicznych znajdują się na heterogenicznych platformach z zmienną jakością. Specyfikacje to złożone dokumenty 100+ stron, których ręczna analiza ogranicza udział MŚP w konkurencji.",
     "objetivos": [
-      "Reducir tenders desiertas del 30% al 15%",
-      "Aumentar number average de ofertas por tender un 40%",
-      "Estimate reference prices con error <10%",
-      "Recomendar division en lotes for facilitar acceso a PYMES",
-      "Reducir tiempo de preparation de pliegos un 30%"
+      "Zmniejszyć liczbę unieważnionych przetargów z 30% do 15%",
+      "Zwiększyć średnią liczbę ofert na przetarg o 40%",
+      "Szacować ceny referencyjne z błędem <10%",
+      "Rekomendować podział na części, by ułatwić dostęp MŚP",
+      "Skrócić czas przygotowania specyfikacji o 30%"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION for prediction de tenders desiertas",
-      "Analysis de competition por sector, territorio y tramo de importe",
-      "Estimation de precios con ML y benchmarking historical",
-      "Recommendation de lotes basada en mercado y competition",
-      "Streamlit Dashboard de inteligencia de procurement"
+      "ML.CLASSIFICATION do prognozowania unieważnionych przetargów",
+      "Analiza konkurencji według sektora, terytorium i przedziału kwotowego",
+      "Szacowanie cen z ML i benchmarking historyczny",
+      "Rekomendacja podziału na części oparta na rynku i konkurencji",
+      "Streamlit Dashboard inteligencji zamówień publicznych"
     ],
     "datos": [
-      "Licitaciones historicals: CPV, importe, plazos, requisitos, resultados",
-      "Ofertas recibidas: number, precios, adjudicatarios, UTEs",
-      "Registro de empresas: size, sector, experience, solvencia",
-      "Execution de contratos: plazos, modificados, incidencias, penalidades",
-      "Datos de mercado: precios por CPV y territorio"
+      "Historyczne przetargi: CPV, kwota, terminy, wymagania, wyniki",
+      "Otrzymane oferty: liczba, ceny, zwycięzcy, konsorcja",
+      "Rejestr firm: wielkość, sektor, doświadczenie, wypłacalność",
+      "Realizacja kontraktów: terminy, modyfikacje, incydenty, kary",
+      "Dane rynkowe: ceny według CPV i terytorium"
     ],
     "estratificacion": [
-      "Por tipo de contrato: obras, servicios, suministros, mixtos",
-      "Por CPV (vocabulario común de procurement)",
-      "Por importe: menor, simplificado, abierto, restringido",
-      "Por poder adjudicador: AGE, communityes, entidades locales, universidades",
-      "Por resultado: adjudicado, desierto, anulado, impugnado"
+      "Według rodzaju kontraktu: roboty budowlane, usługi, dostawy, mieszane",
+      "Według CPV (wspólny słownik zamówień)",
+      "Według kwoty: drobny, uproszczony, otwarty, ograniczony",
+      "Według zamawiającego: administracja centralna, regionalna, lokalna, uczelnie",
+      "Według wyniku: udzielony, unieważniony, anulowany, zaskarżony"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Feed with datos de PLACE y plataformas regionals",
-      "Validar estimaciones de precio con unidades de procurement",
-      "Integrar recomendaciones en proceso de preparation de pliegos",
-      "Measure impact: reduction de desiertos, aumento de competition"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Zasilaj danymi z platform zamówień publicznych",
+      "Waliduj szacunki cen z jednostkami zamówień publicznych",
+      "Włącz rekomendacje w proces przygotowywania specyfikacji",
+      "Mierz wpływ: redukcja unieważnień, wzrost konkurencji"
     ]
   },
   "UC10": {
     "title": "Anomaly Detection in Public Building Energy Consumption",
-    "contexto": "Los public buildings Spanishes consumen 3.500 GWh/year con powerl de ahorro del 30-40%. La Directiva de Eficiencia Energy exige audits y medidas de ahorro, pero la monitoring es escasa.",
-    "foco": "Construir un sistema ML de detection de anomalies y optimization de energy consumption en public buildings con monitoring en tiempo real.",
-    "reto": "Los public buildings tienen usos muy heterogeneous (oficinas, colegios, hospitales, polideportivos) y horarios variables. Las anomalies deben distinguirse de cambios legítimos de uso.",
+    "contexto": "Budynki publiczne zużywają tysiące GWh rocznie z potencjałem oszczędności 30-40%. Dyrektywa o efektywności energetycznej wymaga audytów i działań oszczędnościowych, ale monitoring jest niewystarczający.",
+    "foco": "Zbudować system ML do wykrywania anomalii i optymalizacji zużycia energii w budynkach publicznych z monitoringiem w czasie rzeczywistym.",
+    "reto": "Budynki publiczne mają bardzo heterogeniczne zastosowania (biura, szkoły, szpitale, hale sportowe) i zmienne godziny pracy. Anomalie muszą być odróżniane od prawidłowych zmian użytkowania.",
     "objetivos": [
-      "Detectar el 80% de anomalies de consumo en <24 horas",
-      "Reducir energy consumption un 20% en buildings monitorizados",
-      "Generate benchmarking between buildings similares",
-      "Cumplir requisitos de la Directiva de Eficiencia Energy",
-      "Priorizar inversiones en efficiency por ROI"
+      "Wykryć 80% anomalii zużycia w <24 godziny",
+      "Zmniejszyć zużycie energii o 20% w monitorowanych budynkach",
+      "Generować benchmarking między podobnymi budynkami",
+      "Spełnić wymagania Dyrektywy o efektywności energetycznej",
+      "Priorytetyzować inwestycje w efektywność według ROI"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION for detection de anomalies on IoT",
-      "ML.FORECAST for prediction de consumo esperado",
-      "Benchmarking between buildings por tipo, superficie y zona climate",
-      "Recomendaciones de efficiency con estimation de ahorro",
-      "Streamlit Dashboard de energy efficiency"
+      "ML.CLASSIFICATION do wykrywania anomalii na danych IoT",
+      "ML.FORECAST do prognozowania oczekiwanego zużycia",
+      "Benchmarking między budynkami według typu, powierzchni i strefy klimatycznej",
+      "Rekomendacje efektywności z szacunkiem oszczędności",
+      "Streamlit Dashboard efektywności energetycznej"
     ],
     "datos": [
-      "Consumo electric por building: horario, por circuito si disponible",
-      "Climatización: temperatura, humedad, setpoints, horas de funcionamiento",
-      "Occupancy: aforo, horarios, eventos, vacaciones",
-      "Meteorology: temperatura exterior, irradiancia, humedad",
-      "Inventario de buildings: tipo, superficie, seniority, certification energy"
+      "Zużycie elektryczne według budynku: godzinowe, według obwodu jeśli dostępne",
+      "Klimatyzacja: temperatura, wilgotność, nastawy, godziny pracy",
+      "Obłożenie: pojemność, godziny, wydarzenia, wakacje",
+      "Meteorologia: temperatura zewnętrzna, nasłonecznienie, wilgotność",
+      "Inwentarz budynków: typ, powierzchnia, wiek, certyfikacja energetyczna"
     ],
     "estratificacion": [
-      "Por tipo de building: oficina, colegio, hospital, polideportivo, museo",
-      "Por zona climate y orientación",
-      "Por nivel de consumo: alto, average, bajo vs benchmark",
-      "Por tipo de anomaly: consumo excesivo, fuera de horario, patrón anómalo",
-      "Por powerl de ahorro: alto >30%, average 15-30%, bajo <15%"
+      "Według typu budynku: biuro, szkoła, szpital, hala sportowa, muzeum",
+      "Według strefy klimatycznej i orientacji",
+      "Według poziomu zużycia: wysoki, średni, niski vs benchmark",
+      "Według typu anomalii: nadmierne zużycie, poza godzinami, anomalny wzorzec",
+      "Według potencjału oszczędności: wysoki >30%, średni 15-30%, niski <15%"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar con datos de contadores inteligentes y sensores IoT",
-      "Calibrar baseline por building con al menos 6 meses de datos",
-      "Validar anomalies con gestores de instalaciones",
-      "Priorizar inversiones por ROI y reduction de emisiones"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj z danymi z inteligentnych liczników i czujników IoT",
+      "Kalibruj baseline według budynku z co najmniej 6 miesiącami danych",
+      "Waliduj anomalie z zarządcami obiektów",
+      "Priorytetyzuj inwestycje według ROI i redukcji emisji"
     ]
   },
   "UC11": {
     "title": "Tax Fraud Detection with Network Analysis",
-    "contexto": "El tax fraud en Spain representa 70.000-90.000M€/year. Los esquemas complejos usan redes de empresas, billing ficticia y operaciones intracomunitarias que las inspecciones tradicionales no detectan.",
-    "foco": "Construir un sistema ML de fraud detection fiscal that analyzes declarations, redes corporates y patterns de billing for identificar esquemas de evasion.",
-    "reto": "Los esquemas de tax fraud son sofisticados: companyes instrumentales en cadena, precios de transferencia, carruseles de IVA, y uso de jurisdicciones opacas. El analysis de grafos es esencial pero la escala (millones de taxpayers) exige efficiency.",
+    "contexto": "Oszustwa podatkowe stanowią dziesiątki miliardów euro rocznie. Złożone schematy wykorzystują sieci firm, fikcyjne fakturowanie i operacje wewnątrzwspólnotowe, których tradycyjne inspekcje nie wykrywają.",
+    "foco": "Zbudować system ML do wykrywania oszustw podatkowych analizujący deklaracje, sieci korporacyjne i wzorce fakturowania w celu identyfikacji schematów unikania opodatkowania.",
+    "reto": "Schematy oszustw podatkowych są wyrafinowane: łańcuchy firm-słupów, ceny transferowe, karuzele VAT i wykorzystanie nieprzejrzystych jurysdykcji. Analiza grafów jest niezbędna, ale skala (miliony podatników) wymaga wydajności.",
     "objetivos": [
-      "Aumentar fraud detection complejo un 50%",
-      "Identificar redes de companyes instrumentales usadas for evasion",
-      "Priorizar inspecciones por importe defraudado estimado",
-      "Detectar carruseles de IVA intracomunitarios",
-      "Reducir tiempo de investigation de 6 meses a 6 semanas"
+      "Zwiększyć wykrywanie złożonych oszustw o 50%",
+      "Identyfikować sieci firm-słupów używanych do unikania",
+      "Priorytetyzować inspekcje według szacowanej kwoty wyłudzenia",
+      "Wykrywać wewnątrzwspólnotowe karuzele VAT",
+      "Skrócić czas dochodzenia z 6 miesięcy do 6 tygodni"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION on declarations y operaciones",
-      "Analysis de redes corporates con grafos de vinculaciones",
-      "Detection de billing ficticia y precios de transferencia",
-      "Scoring de riesgo por taxpayer y red de empresas",
-      "Streamlit Dashboard de tax intelligence"
+      "ML.CLASSIFICATION na deklaracjach i operacjach",
+      "Analiza sieci korporacyjnych z grafami powiązań",
+      "Wykrywanie fikcyjnego fakturowania i cen transferowych",
+      "Scoring ryzyka według podatnika i sieci firm",
+      "Streamlit Dashboard inteligencji podatkowej"
     ],
     "datos": [
-      "Declaraciones fiscales: IS, IRPF, IVA por taxpayer",
-      "Operaciones intracomunitarias: modelo 349, adquisiciones",
-      "Registro mercantil: companyes, administradores, participaciones",
-      "Facturación: SII (Suministro Inmediato de Intraining del IVA)",
-      "Historial de inspecciones: resultados, actas, sanctions"
+      "Deklaracje podatkowe: CIT, PIT, VAT według podatnika",
+      "Operacje wewnątrzwspólnotowe: deklaracje, nabycia",
+      "Rejestr handlowy: firmy, zarządzający, udziały",
+      "Fakturowanie: JPK_VAT (Jednolity Plik Kontrolny VAT)",
+      "Historia inspekcji: wyniki, protokoły, sankcje"
     ],
     "estratificacion": [
-      "Por tipo de fraude: IVA, IS, IRPF, aduanas, no residentes",
-      "Por esquema: billing ficticia, carrusel, precios transferencia",
-      "Por size de taxpayer: gran empresa, PYME, autonomous",
-      "Por sector de activity y riesgo sectorial",
-      "Por territorio y jurisdicción"
+      "Według rodzaju oszustwa: VAT, CIT, PIT, celne, nierezydenci",
+      "Według schematu: fikcyjne fakturowanie, karuzela, ceny transferowe",
+      "Według wielkości podatnika: duże przedsiębiorstwo, MŚP, samozatrudniony",
+      "Według sektora działalności i ryzyka sektorowego",
+      "Według terytorium i jurysdykcji"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Feed with datos fiscales anonimizados de al menos 3 years",
-      "Construir grafos de vinculaciones con commercial registries",
-      "Validar resultados con inspectores antes de actuaciones",
-      "Reentrenar modelo semestralmente con casos resueltos"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Zasilaj zanonimizowanymi danymi podatkowymi z co najmniej 3 lat",
+      "Buduj grafy powiązań z rejestrów handlowych",
+      "Waliduj wyniki z inspektorami przed działaniami",
+      "Przetrenuj model co pół roku na rozstrzygniętych sprawach"
     ]
   },
   "UC12": {
     "title": "Citizen Digital Services Personalization",
-    "contexto": "Los portales de e-government ofrecen 3.000+ procedures pero la experience es generic. Los citizens solo encuentran lo que buscan el 40% de las veces, generando frustration y visitas presenciales evitables.",
-    "foco": "Construir un motor de personalization de la experience digital que recomiende procedures relevantes, simplifique formularios y anticipe needes based on en life events.",
-    "reto": "La personalization en el sector public debe equilibrar utilidad con privacidad. Los life events (nacimiento, cambio de address, retirement) desencadenan multiple procedures que el citizen desconoce.",
+    "contexto": "Portale e-government oferują 3.000+ procedur, ale doświadczenie jest generyczne. Obywatele znajdują to, czego szukają, jedynie w 40% przypadków, co generuje frustrację i możliwe do uniknięcia wizyty osobiste.",
+    "foco": "Zbudować silnik personalizacji doświadczenia cyfrowego rekomendujący odpowiednie procedury, upraszczający formularze i antycypujący potrzeby na podstawie zdarzeń życiowych.",
+    "reto": "Personalizacja w sektorze publicznym musi równoważyć użyteczność z prywatnością. Zdarzenia życiowe (narodziny, zmiana adresu, emerytura) uruchamiają wiele procedur, o których obywatel nie wie.",
     "objetivos": [
-      "Aumentar tasa de success en search de procedures del 40% al 75%",
-      "Reducir tiempo average de processing online un 30%",
-      "Pre-cumplimentar el 60% de campos en formularios",
-      "Anticipar el 70% de procedures vinculados a life events",
-      "Reducir visitas presenciales evitables un 25%"
+      "Zwiększyć wskaźnik sukcesu wyszukiwania procedur z 40% do 75%",
+      "Skrócić średni czas przetwarzania online o 30%",
+      "Wstępnie wypełnić 60% pól w formularzach",
+      "Antycypować 70% procedur powiązanych ze zdarzeniami życiowymi",
+      "Zmniejszyć możliwe do uniknięcia wizyty osobiste o 25%"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION for recommendation de procedures relevantes",
-      "Detection de life events: nacimiento, address, retirement",
-      "Pre-completion de formularios con Feature Store (UC08)",
-      "CORTEX.COMPLETE for simplificación de lenguaje administrativo",
-      "Streamlit Dashboard de experience cityana"
+      "ML.CLASSIFICATION do rekomendacji odpowiednich procedur",
+      "Wykrywanie zdarzeń życiowych: narodziny, adres, emerytura",
+      "Wstępne wypełnianie formularzy z Feature Store (UC08)",
+      "CORTEX.COMPLETE do upraszczania języka administracyjnego",
+      "Streamlit Dashboard doświadczenia obywatela"
     ],
     "datos": [
-      "Catalog de procedures: requisitos, documentation, plazos, dependencys",
-      "Historial de navigation y procedures del citizen (anonimizado)",
-      "Features del Feature Store UC08: perfil demographic y fiscal",
-      "Eventos vitales: nacimiento, matrimonio, defunction, cambio address",
-      "Encuestas de satisfaction y feedback de usuarios"
+      "Katalog procedur: wymagania, dokumentacja, terminy, zależności",
+      "Historia nawigacji i procedur obywatela (zanonimizowana)",
+      "Cechy z Feature Store UC08: profil demograficzny i fiskalny",
+      "Zdarzenia życiowe: narodziny, małżeństwo, zgon, zmiana adresu",
+      "Ankiety satysfakcji i feedback użytkowników"
     ],
     "estratificacion": [
-      "Por evento vital: nacimiento, cambio address, retirement, defunction",
-      "Por frequency de uso: usuario habitual, ocasional, primerizo",
-      "Por perfil: edad, nivel digital, idioma, accessibility",
-      "Por tipo de procedure: obligatorio, voluntario, recurrente",
-      "Por canal: web, app, sede electronic"
+      "Według zdarzenia życiowego: narodziny, zmiana adresu, emerytura, zgon",
+      "Według częstotliwości użycia: stały użytkownik, okazjonalny, nowy",
+      "Według profilu: wiek, poziom cyfrowy, język, dostępność",
+      "Według rodzaju procedury: obowiązkowa, dobrowolna, cykliczna",
+      "Według kanału: web, aplikacja, platforma elektroniczna"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Integrar con Feature Store UC08 for perfil citizen",
-      "Configurar life events y procedures asociados",
-      "Validar recomendaciones con usuarios piloto",
-      "Measure impact: tasa de success, tiempo, satisfaction"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Integruj z Feature Store UC08 do profilu obywatela",
+      "Skonfiguruj zdarzenia życiowe i powiązane procedury",
+      "Waliduj rekomendacje z użytkownikami pilotażowymi",
+      "Mierz wpływ: wskaźnik sukcesu, czas, zadowolenie"
     ]
   },
   "UC13": {
     "title": "Healthcare Resource Allocation Optimization",
-    "contexto": "La allocation de healthcare resources por ratios poblacionales no refleja la realidad: morbidity, aging y seasonality vary drastically. El resultado es saturation en unos centros y ociosidad en otros.",
-    "foco": "Construir un motor de optimization de healthcare resources that predicts healthcare demand por area, especialidad y perfil for asignar recursos equitable y eficientemente.",
-    "reto": "La demanda healthcare depende de factores epidemiological (gripe, COVID), demographics (aging) y estacionales que vary por zona. Las restricciones budgetarys y de personal limitan la flexibilidad.",
+    "contexto": "Alokacja zasobów ochrony zdrowia według wskaźników populacyjnych nie odzwierciedla rzeczywistości: zachorowalność, starzenie się i sezonowość różnią się drastycznie. Efektem jest przeciążenie jednych ośrodków i bezczynność innych.",
+    "foco": "Zbudować silnik optymalizacji zasobów ochrony zdrowia prognozujący popyt zdrowotny według rejonu, specjalizacji i profilu w celu równomiernej i efektywnej alokacji zasobów.",
+    "reto": "Popyt zdrowotny zależy od czynników epidemiologicznych (grypa, COVID), demograficznych (starzenie się) i sezonowych, które różnią się według strefy. Ograniczenia budżetowe i kadrowe ograniczają elastyczność.",
     "objetivos": [
-      "Predecir healthcare demand con MAPE <10% a 1 mes",
-      "Reducir tiempo de espera un 20% mediante allocation proactive",
-      "Optimizar distribution de personal between centros",
-      "Anticipar picos epidémicos con 2-4 semanas de advance",
-      "Generate evidencia for decisiones de investment en infraestructura"
+      "Prognozować popyt zdrowotny z MAPE <10% na 1 miesiąc",
+      "Skrócić czas oczekiwania o 20% dzięki proaktywnej alokacji",
+      "Zoptymalizować dystrybucję personelu między ośrodkami",
+      "Antycypować szczyty epidemiczne z 2-4 tygodniowym wyprzedzeniem",
+      "Generować dowody do decyzji inwestycyjnych w infrastrukturę"
     ],
     "funcionalidades": [
-      "ML.FORECAST de demanda por health area y especialidad",
-      "Optimization de allocation con restricciones budgetarys",
-      "Variables: morbidity, aging, seasonality, epidemics",
-      "Simulation de escenarios: pandemia, aging, nuevos centros",
-      "Streamlit Dashboard healthcare planning"
+      "ML.FORECAST popytu według rejonu zdrowotnego i specjalizacji",
+      "Optymalizacja alokacji z ograniczeniami budżetowymi",
+      "Zmienne: zachorowalność, starzenie się, sezonowość, epidemie",
+      "Symulacja scenariuszy: pandemia, starzenie się, nowe ośrodki",
+      "Streamlit Dashboard planowania zdrowotnego"
     ],
     "datos": [
-      "Actividad healthcare: consultas, urgencys, ingresos, cirugías por centro",
-      "Demographics por zona healthcare: population, pirámeasure de edad, proyecciones",
-      "Morbilidad: prevalencia por patología, zona y grupo de edad",
-      "Recursos: camas, quirófanos, personal por centro y especialidad",
-      "Budget: allocation por centro, partida y fiscal year"
+      "Aktywność zdrowotna: konsultacje, nagłe wypadki, przyjęcia, operacje według ośrodka",
+      "Demografia według rejonu zdrowotnego: populacja, piramida wieku, projekcje",
+      "Zachorowalność: prevalencja według patologii, strefy i grupy wiekowej",
+      "Zasoby: łóżka, sale operacyjne, personel według ośrodka i specjalizacji",
+      "Budżet: alokacja według ośrodka, pozycji i roku fiskalnego"
     ],
     "estratificacion": [
-      "Por health area y centro de salud/hospital",
-      "Por especialidad médica y tipo de servicio",
-      "Por grupo de edad y perfil de morbidity",
-      "Por seasonality: gripe, alérgica, verano, navidad",
-      "Por tipo de recurso: camas, personal, equipamiento, budget"
+      "Według rejonu zdrowotnego i ośrodka zdrowia/szpitala",
+      "Według specjalizacji medycznej i rodzaju usługi",
+      "Według grupy wiekowej i profilu zachorowalności",
+      "Według sezonowości: grypa, alergiczna, lato, święta",
+      "Według rodzaju zasobu: łóżka, personel, wyposażenie, budżet"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar con datos de activity y recursos por centro",
-      "Calibrar modelos epidemiological con datos historicals",
-      "Validar con gestores healthcares antes de implementar cambios",
-      "Integrar con sistemas de management hospitalaria"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj z danymi o aktywności i zasobach według ośrodka",
+      "Kalibruj modele epidemiologiczne na danych historycznych",
+      "Waliduj z zarządzającymi ochroną zdrowia przed wdrożeniem zmian",
+      "Integruj z systemami zarządzania szpitalnego"
     ]
   },
   "UC14": {
     "title": "Public Agency Performance Feature Store",
-    "contexto": "Los KPIs de performance de public agencies se calculan mannualmente con meses de retraso. No existe benchmarking between organismos similares ni detection temprana de deterioro de servicio.",
-    "foco": "Implementar un Feature Store en Snowflake que consolide metrics de performance de each public agency for benchmarking, alerts y toma de decisiones basada en datos.",
-    "reto": "Los public agencies son heterogeneous (ministerios, agencias, organismos autonomouss, entidades locales) con sistemas de information diferentes. Las metrics deben ser comparables respetando la diversidad funcional.",
+    "contexto": "KPI wydajności instytucji publicznych obliczane są ręcznie z miesięcznym opóźnieniem. Nie istnieje benchmarking między podobnymi organami ani wczesne wykrywanie pogorszenia jakości usług.",
+    "foco": "Wdrożyć Feature Store w Snowflake konsolidujący metryki wydajności każdej instytucji publicznej do benchmarkingu, alertów i podejmowania decyzji opartych na danych.",
+    "reto": "Instytucje publiczne są heterogeniczne (ministerstwa, agencje, organy autonomiczne, jednostki samorządowe) z różnymi systemami informacyjnymi. Metryki muszą być porównywalne przy poszanowaniu różnorodności funkcjonalnej.",
     "objetivos": [
-      "Consolidar metrics de performance from 5+ fuentes por organismo",
-      "Create Entity por organismo con FeatureViews especializados",
-      "Reducir latencia de KPIs de 3 meses a near-real-time",
-      "Habilitar benchmarking between organismos con function similar",
-      "Servir features for alerts de deterioro de servicio"
+      "Skonsolidować metryki wydajności z 5+ źródeł na organ",
+      "Utworzyć Entity na organ ze specjalizowanymi FeatureViews",
+      "Zmniejszyć opóźnienie KPI z 3 miesięcy do near-real-time",
+      "Umożliwić benchmarking między organami o podobnych funkcjach",
+      "Serwować cechy do alertów pogorszenia usług"
     ],
     "funcionalidades": [
-      "Snowflake Feature Store: Entity por organismo_id",
-      "FeatureView: resolution_metrics (tiempos de resolution, backlog, SLA)",
-      "FeatureView: citizen_satisfaction (encuestas, reclamaciones, NPS)",
-      "FeatureView: productivity (case files/civil servant, coste/procedure)",
-      "FeatureView: budget_execution (execution budgetary, desviaciones)",
-      "FeatureView: digital_maturity (procedures online, uso sede electronic)"
+      "Snowflake Feature Store: Entity na organismo_id",
+      "FeatureView: resolution_metrics (czasy rozstrzygnięcia, backlog, SLA)",
+      "FeatureView: citizen_satisfaction (ankiety, reklamacje, NPS)",
+      "FeatureView: productivity (sprawy/urzędnik, koszt/procedura)",
+      "FeatureView: budget_execution (realizacja budżetowa, odchylenia)",
+      "FeatureView: digital_maturity (procedury online, użycie platformy elektronicznej)"
     ],
     "datos": [
-      "Management de case files: entrada, resolution, pendientes, plazos",
-      "Encuestas de satisfaction cityana y reclamaciones",
-      "Plantilla y productivity: civil servants, case files, costes",
-      "Execution budgetary: credits, obligaciones, pagos",
-      "E-government: procedures online, tasa digital, incidencias"
+      "Zarządzanie sprawami: wpływ, rozstrzygnięcie, zaległe, terminy",
+      "Ankiety zadowolenia obywateli i reklamacje",
+      "Etaty i produktywność: urzędnicy, sprawy, koszty",
+      "Realizacja budżetowa: kredyty, zobowiązania, płatności",
+      "E-government: procedury online, wskaźnik cyfryzacji, incydenty"
     ],
     "estratificacion": [
-      "Por tipo de organismo: ministerio, agencia, organismo autonomous, ente local",
-      "Por scope funcional: servicios, regulation, inspection, management",
-      "Por size: grande >1000 empleados, average 100-1000, pequeño <100",
-      "Por nivel de digitalization: avanzado, interaverage, basic",
-      "Por performance vs benchmark: excelente, adecuado, en riesgo, critical"
+      "Według rodzaju organu: ministerstwo, agencja, organ autonomiczny, jednostka samorządowa",
+      "Według zakresu funkcjonalnego: usługi, regulacja, inspekcja, zarządzanie",
+      "Według wielkości: duży >1000 pracowników, średni 100-1000, mały <100",
+      "Według poziomu cyfryzacji: zaawansowany, pośredni, podstawowy",
+      "Według wydajności vs benchmark: doskonały, odpowiedni, zagrożony, krytyczny"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar Entity y FeatureViews por organismo",
-      "Las features se actualizan from sistemas de management y encuestas",
-      "Consumir features con fs.get_features() for dashboards y alerts",
-      "Extender con FeatureViews according to evolution de indicadores"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj Entity i FeatureViews według organu",
+      "Cechy aktualizowane z systemów zarządzania i ankiet",
+      "Konsumuj cechy z fs.get_features() do dashboardów i alertów",
+      "Rozszerzaj o FeatureViews stosownie do ewolucji wskaźników"
     ]
   },
   "UC15": {
     "title": "Public Digital Infrastructure Cybersecurity",
-    "contexto": "Los cyberattacks a public administrations aumentaron un 150% en 2023-2025. Los sistemas legacy y la falta de monitoring centralizada exponen datos sensibles de millones de citizens. El ENS exige medidas de security proporcionales.",
-    "foco": "Construir un pipeline ML de detection de amenazas en public digital infrastructure that analyzes traffic, comportamiento de usuarios y accesos for detectar ataques y automatizar respuesta.",
-    "reto": "La public infrastructure combina sistemas modernos con legacy de 20+ years. Los atacantes explotan esta heterogeneidad. Los falsos positivos son costosos porque la respuesta puede interrumpir servicios citizens.",
+    "contexto": "Cyberataki na administrację publiczną wzrosły o 150% w latach 2023-2025. Systemy legacy i brak scentralizowanego monitoringu narażają wrażliwe dane milionów obywateli. Krajowe ramy cyberbezpieczeństwa wymagają proporcjonalnych środków ochrony.",
+    "foco": "Zbudować pipeline ML do wykrywania zagrożeń w publicznej infrastrukturze cyfrowej analizujący ruch, zachowanie użytkowników i dostępy w celu wykrywania ataków i automatyzacji reakcji.",
+    "reto": "Infrastruktura publiczna łączy nowoczesne systemy z systemami legacy sprzed 20+ lat. Atakujący wykorzystują tę heterogeniczność. Fałszywe alarmy są kosztowne, ponieważ reakcja może przerwać usługi dla obywateli.",
     "objetivos": [
-      "Detectar el 90% de amenazas en <10 minutos",
-      "Reducir falsos positivos al <3%",
-      "Correlate events multi-sistema for detectar APTs",
-      "Automate response a incidentes de baja severity",
-      "Cumplir requisitos ENS y NIS2"
+      "Wykryć 90% zagrożeń w <10 minut",
+      "Zmniejszyć fałszywe alarmy do <3%",
+      "Korelować zdarzenia wielosystemowe do wykrywania APT",
+      "Zautomatyzować reakcję na incydenty niskiej ważności",
+      "Spełnić wymagania krajowych ram cyberbezpieczeństwa i NIS2"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION on logs y traffic de red",
-      "Baseline de comportamiento normal por usuario y sistema",
-      "Correlationship multi-sistema for detection de ataques avanzados",
-      "Scoring de riesgo por evento, usuario y sistema",
-      "Streamlit SOC dashboard public"
+      "ML.CLASSIFICATION na logach i ruchu sieciowym",
+      "Baseline normalnego zachowania według użytkownika i systemu",
+      "Korelacja wielosystemowa do wykrywania zaawansowanych ataków",
+      "Scoring ryzyka według zdarzenia, użytkownika i systemu",
+      "Streamlit SOC dashboard publiczny"
     ],
     "datos": [
-      "Logs de acceso: sistemas, aplicaciones, VPN, Active Directory",
-      "Traffic de red: flujos, protocolos, volúmenes, anomalies",
-      "Eventos de security: firewall, IDS/IPS, antivirus, EDR",
-      "Inventario de sistemas: versiones, parches, vulnerabilityes",
-      "Inteligencia de amenazas: IOCs, TTPs, alerts sectoriales"
+      "Logi dostępu: systemy, aplikacje, VPN, Active Directory",
+      "Ruch sieciowy: przepływy, protokoły, wolumeny, anomalie",
+      "Zdarzenia bezpieczeństwa: firewall, IDS/IPS, antywirus, EDR",
+      "Inwentarz systemów: wersje, łatki, podatności",
+      "Inteligencja zagrożeń: IOC, TTP, alerty sektorowe"
     ],
     "estratificacion": [
-      "Por tipo de amenaza: ransomware, phishing, APT, insider, DDoS",
-      "Por sistema afectado: infraestructura, aplicaciones, datos, comunicaciones",
-      "Por severity: crítica, alta, media, baja, informativa",
-      "Por origen: externo, interno, supply chain, partner",
-      "Por nivel de automation de respuesta: automatic, asistido, mannual"
+      "Według rodzaju zagrożenia: ransomware, phishing, APT, insider, DDoS",
+      "Według dotkniętego systemu: infrastruktura, aplikacje, dane, komunikacja",
+      "Według ważności: krytyczna, wysoka, średnia, niska, informacyjna",
+      "Według źródła: zewnętrzne, wewnętrzne, łańcuch dostaw, partner",
+      "Według poziomu automatyzacji reakcji: automatyczny, wspomagany, ręczny"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar baseline con datos de al menos 4 semanas",
-      "Integrar con herramientas SIEM/SOAR existentes",
-      "Validar reglas de automation con equipo de security",
-      "Actualizar reglas according to inteligencia de amenazas del CCN-CERT"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj baseline z danymi z co najmniej 4 tygodni",
+      "Integruj z istniejącymi narzędziami SIEM/SOAR",
+      "Waliduj reguły automatyzacji z zespołem bezpieczeństwa",
+      "Aktualizuj reguły stosownie do inteligencji zagrożeń CERT"
     ]
   },
   "UC16": {
     "title": "Incompatibilities and Conflicts of Interest Control",
-    "contexto": "Los conflicts of interest en la public administration son difficult de detectar mannualmente en un ecosistema de 3 millones de public employees. La Ley de Transparencia exige medidas activas de detection.",
-    "foco": "Construir un sistema ML de detection de conflicts of interest that cross-references registros de personal, asset declarations, commercial registries y public procurement.",
-    "reto": "Las vinculaciones between civil servants y empresas pueden ser indirectas (familiares, testaferros, companyes interpuestas). El analysis de grafos debe ser exhaustivo pero respetar la presumption de innocence.",
+    "contexto": "Konflikty interesów w administracji publicznej są trudne do ręcznego wykrycia w ekosystemie milionów pracowników publicznych. Przepisy o przejrzystości wymagają aktywnych środków wykrywania.",
+    "foco": "Zbudować system ML do wykrywania konfliktów interesów krzyżujący rejestry personelu, oświadczenia majątkowe, rejestry handlowe i zamówienia publiczne.",
+    "reto": "Powiązania między urzędnikami a firmami mogą być pośrednie (krewni, figuranci, firmy pośredniczące). Analiza grafów musi być wyczerpująca, ale respektować domniemanie niewinności.",
     "objetivos": [
-      "Detectar el 70% de conflicts of interest powerles",
-      "Reducir tiempo de investigation de incompatibilities un 60%",
-      "Identificar patterns de revolving doors en altos cargos",
-      "Cruzar asset declarations con commercial registries",
-      "Generate prioritized alerts for oficinas de conflictos"
+      "Wykryć 70% potencjalnych konfliktów interesów",
+      "Skrócić czas dochodzenia w sprawie zakazów łączenia o 60%",
+      "Identyfikować wzorce drzwi obrotowych na wysokich stanowiskach",
+      "Krzyżować oświadczenia majątkowe z rejestrami handlowymi",
+      "Generować priorytetyzowane alerty dla biur ds. konfliktów"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION con analysis de grafos de vinculaciones",
-      "Cruce de registros: personal, mercantil, procurement, bienes",
-      "Detection de patterns: revolving doors, nepotismo, testaferros",
-      "Scoring de riesgo por empleado public y contrato",
-      "Streamlit Dashboard de public integrity"
+      "ML.CLASSIFICATION z analizą grafów powiązań",
+      "Krzyżowanie rejestrów: personalny, handlowy, zamówienia, majątek",
+      "Wykrywanie wzorców: drzwi obrotowe, nepotyzm, figuranci",
+      "Scoring ryzyka według pracownika publicznego i kontraktu",
+      "Streamlit Dashboard uczciwości publicznej"
     ],
     "datos": [
-      "Registro de public personnel: cargo, organismo, funciones, historial",
-      "Declaraciones de bienes y activityes de altos cargos",
-      "Registro mercantil: companyes, administradores, socios, participaciones",
-      "Contratación public: adjudicaciones, adjudicatarios, evaluadores",
-      "Registros civiles: relaciones familiares (cuando legalmente accesible)"
+      "Rejestr personelu publicznego: stanowisko, organ, funkcje, historia",
+      "Oświadczenia majątkowe i o działalności wyższych urzędników",
+      "Rejestr handlowy: firmy, zarządzający, wspólnicy, udziały",
+      "Zamówienia publiczne: rozstrzygnięcia, wykonawcy, ewaluatorzy",
+      "Rejestry cywilne: relacje rodzinne (gdy prawnie dostępne)"
     ],
     "estratificacion": [
-      "Por tipo de conflicto: incompatibilidad, revolving door, nepotismo",
-      "Por nivel del cargo: alto cargo, directivo, technical, administrativo",
-      "Por riesgo: alto, average, bajo",
-      "Por administration: estatal, regional, local",
-      "Por sector de procurement y volumen economic"
+      "Według rodzaju konfliktu: zakaz łączenia, drzwi obrotowe, nepotyzm",
+      "Według poziomu stanowiska: wysoki urzędnik, kierowniczy, techniczny, administracyjny",
+      "Według ryzyka: wysoki, średni, niski",
+      "Według administracji: krajowa, regionalna, lokalna",
+      "Według sektora zamówień i wolumenu ekonomicznego"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Feed with registros de personal y mercantiles",
-      "Construir grafos de vinculaciones con analysis de redes",
-      "Validar alerts con oficinas de conflictos antes de actuaciones",
-      "Respetar presumption de innocence: alerts son indicios, no pruebas"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Zasilaj rejestrami personalnymi i handlowymi",
+      "Buduj grafy powiązań z analizą sieci",
+      "Waliduj alerty z biurami ds. konfliktów przed działaniami",
+      "Respektuj domniemanie niewinności: alerty to wskazówki, nie dowody"
     ]
   },
   "UC17": {
     "title": "NLP on Regulations and Legal Summary Generation",
-    "contexto": "El BOE publica 300.000+ pages/year de regulations. Los civil servants dedican 2-4 horas a analizar each nueva norma. La regulations consolidada no existe en muchos scopes, generando insecurity jurídica.",
-    "foco": "Construir un pipeline NLP that analyzes regulations automaticmente, genere summaries ejecutivos, identifique procedimientos afectados y cree regulations consolidada.",
-    "reto": "El lenguaje legal es complejo, con referencias cruzadas, derogaciones parciales y remisiones. Un resumen incorrecto puede tener consequences legales graves. La precision es crítica.",
+    "contexto": "Dzienniki ustaw publikują setki tysięcy stron przepisów rocznie. Urzędnicy poświęcają 2-4 godziny na analizę każdej nowej normy. Ujednolicone przepisy nie istnieją w wielu zakresach, generując niepewność prawną.",
+    "foco": "Zbudować pipeline NLP automatycznie analizujący przepisy, generujący streszczenia wykonawcze, identyfikujący dotknięte procedury i tworzący ujednolicone przepisy.",
+    "reto": "Język prawny jest złożony, z odsyłaczami krzyżowymi, częściowymi uchyleniami i odesłaniami. Nieprawidłowe streszczenie może mieć poważne konsekwencje prawne. Precyzja jest krytyczna.",
     "objetivos": [
-      "Generate summaries ejecutivos de nueva regulations en <1 hora",
-      "Identificar automaticmente procedimientos afectados por cambios",
-      "Create consolidated regulations actualizada automaticmente",
-      "Reducir tiempo de analysis normativo un 70%",
-      "Alert on changes affecting each administrative unit"
+      "Generować streszczenia wykonawcze nowych przepisów w <1 godziny",
+      "Automatycznie identyfikować procedury dotknięte zmianami",
+      "Tworzyć ujednolicone przepisy aktualizowane automatycznie",
+      "Skrócić czas analizy normatywnej o 70%",
+      "Alertować o zmianach dotyczących każdej jednostki administracyjnej"
     ],
     "funcionalidades": [
-      "CORTEX.COMPLETE for analysis y resumen de textos normativos",
-      "RAG con Cortex Search on corpus legal vigente (BOE, BOCA, BOP)",
-      "Identification de derogaciones, modificaciones y remisiones",
-      "Generation de regulations consolidada",
-      "Streamlit Dashboard de regulatory intelligence"
+      "CORTEX.COMPLETE do analizy i streszczania tekstów normatywnych",
+      "RAG z Cortex Search na obowiązującym korpusie prawnym",
+      "Identyfikacja uchyleń, modyfikacji i odesłań",
+      "Generowanie ujednoliconych przepisów",
+      "Streamlit Dashboard inteligencji regulacyjnej"
     ],
     "datos": [
-      "BOE: disposiciones generales, leyes, reales decretos, órdenes",
-      "Boletines regionals: regulations de each autonomous community",
-      "Boletines provinceles: ordenanzas y reglamentos locales",
-      "Jurisprudencia: sentencias relevantes del TC, TS y TSJ",
-      "Procedimientos internos: inventario de procedures y regulations aplicable"
+      "Dzienniki ustaw: przepisy ogólne, ustawy, rozporządzenia, zarządzenia",
+      "Dzienniki regionalne: przepisy poszczególnych regionów",
+      "Dzienniki lokalne: zarządzenia i regulaminy lokalne",
+      "Orzecznictwo: istotne wyroki sądów",
+      "Procedury wewnętrzne: inwentarz procedur i obowiązujące przepisy"
     ],
     "estratificacion": [
-      "Por rango normativo: ley organic, ley, RD, orden, resolution",
-      "Por scope: estatal, regional, local, UE",
-      "Por materia: hacienda, empleo, urbanismo, average ambiente, education",
-      "Por tipo de cambio: nueva, modificación, derogación, corrección",
-      "Por impacto: alto (afecta muchos procedimientos), average, bajo"
+      "Według rangi normatywnej: ustawa ustrojowa, ustawa, rozporządzenie, zarządzenie",
+      "Według zakresu: krajowy, regionalny, lokalny, UE",
+      "Według materii: finanse, zatrudnienie, urbanistyka, ochrona środowiska, edukacja",
+      "Według rodzaju zmiany: nowa, modyfikacja, uchylenie, korekta",
+      "Według wpływu: wysoki (dotyczy wielu procedur), średni, niski"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Indexar corpus legal con Cortex Search",
-      "Configurar alerts por materia y unidad administrativa",
-      "Validar summaries con servicios legals",
-      "Actualizar regulations consolidada automaticmente"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Indeksuj korpus prawny z Cortex Search",
+      "Konfiguruj alerty według materii i jednostki administracyjnej",
+      "Waliduj streszczenia z działami prawnymi",
+      "Aktualizuj ujednolicone przepisy automatycznie"
     ]
   },
   "UC18": {
     "title": "Predictive Social Vulnerability Analysis",
-    "contexto": "La detection de social vulnerability es reactiva: las administraciones intervienen cuando ya hay crisis. La energy poverty, el riesgo de eviction y el aislamiento de mayores requieren intervention preventiva.",
-    "foco": "Construir un motor predictivo que integre indicadores socioeconomic for identificar personas y zonas en riesgo antes de que se produzca la crisis.",
-    "reto": "La vulnerability es multidimensional (economic, housing, healthcare, social) y los datos are dispersos between administraciones. El modelo debe ser sensible pero no estigmatizante, y cumplir RGPD.",
+    "contexto": "Wykrywanie zagrożenia społecznego jest reaktywne: administracje interweniują, gdy kryzys już istnieje. Ubóstwo energetyczne, ryzyko eksmisji i izolacja osób starszych wymagają interwencji prewencyjnej.",
+    "foco": "Zbudować silnik predykcyjny integrujący wskaźniki społeczno-ekonomiczne w celu identyfikacji osób i stref zagrożonych przed wystąpieniem kryzysu.",
+    "reto": "Zagrożenie jest wielowymiarowe (ekonomiczne, mieszkaniowe, zdrowotne, społeczne), a dane są rozproszone między administracjami. Model musi być czuły, ale niestygmatyzujący, i zgodny z RODO.",
     "objetivos": [
-      "Identificar el 70% de situaciones de vulnerability 3-6 meses antes de la crisis",
-      "Create risk map por municipality y barrio actualizado monthlymente",
-      "Priorizar intervention por urgency e impacto",
-      "Coordinar actuaciones between social services, empleo, housing y salud",
-      "Reducir chronification de la vulnerability un 20%"
+      "Identyfikować 70% sytuacji zagrożenia 3-6 miesięcy przed kryzysem",
+      "Tworzyć mapę ryzyka według gminy i dzielnicy aktualizowaną co miesiąc",
+      "Priorytetyzować interwencję według pilności i wpływu",
+      "Koordynować działania między pomocą społeczną, zatrudnieniem, mieszkalnictwem i zdrowiem",
+      "Zmniejszyć chronifikację zagrożenia o 20%"
     ],
     "funcionalidades": [
-      "ML.CLASSIFICATION for scoring de vulnerability multidimensional",
-      "Variables: renta, empleo, housing, salud, social services, edad",
-      "Mapa de riesgo por zona con indicadores de alerta temprana",
-      "Recomendaciones de intervention por perfil y dimension",
-      "Streamlit Dashboard de social prevention"
+      "ML.CLASSIFICATION do wielowymiarowego scoringu zagrożenia",
+      "Zmienne: dochód, zatrudnienie, mieszkalnictwo, zdrowie, pomoc społeczna, wiek",
+      "Mapa ryzyka według strefy ze wskaźnikami wczesnego ostrzegania",
+      "Rekomendacje interwencji według profilu i wymiaru",
+      "Streamlit Dashboard prewencji społecznej"
     ],
     "datos": [
-      "Indicadores de renta y empleo por zona (INE, SEPE, AEAT)",
-      "Servicios sociales: solicitudes, benefits, informes sociales",
-      "Vivienda: evictions, lanzamientos, ayudas al alquiler",
-      "Salud: indicadores de morbidity, salud mental, dependency",
-      "Energía: solicitudes de bono social, cortes de suministro"
+      "Wskaźniki dochodów i zatrudnienia według strefy (GUS, urzędy pracy, skarbówka)",
+      "Pomoc społeczna: wnioski, świadczenia, raporty społeczne",
+      "Mieszkalnictwo: eksmisje, egzekucje, dopłaty do czynszu",
+      "Zdrowie: wskaźniki zachorowalności, zdrowie psychiczne, zależność",
+      "Energia: wnioski o bon społeczny, odcięcia dostaw"
     ],
     "estratificacion": [
-      "Por dimension: economic, housing, healthcare, social, energy",
-      "Por perfil: mayores solos, familias monoparentales, migrantes, jóvenes",
-      "Por zona: barrio vulnerable, zona rural, dispersion geographic",
-      "Por urgency: riesgo inminente, riesgo a 3 meses, riesgo a 6 meses",
-      "Por nivel de intervention: prevention, acompañamiento, emergency"
+      "Według wymiaru: ekonomiczny, mieszkaniowy, zdrowotny, społeczny, energetyczny",
+      "Według profilu: samotni seniorzy, rodziny niepełne, migranci, młodzież",
+      "Według strefy: dzielnica zagrożona, strefa wiejska, rozproszenie geograficzne",
+      "Według pilności: ryzyko bezpośrednie, ryzyko na 3 miesiące, ryzyko na 6 miesięcy",
+      "Według poziomu interwencji: prewencja, towarzyszenie, nagły wypadek"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Integrar datos de multiple fuentes con estricto compliance RGPD",
-      "Validar modelo con trabajadores sociales de referencia",
-      "Coordinar alerts con equipos de intervention territorial",
-      "Evaluar impacto de intervenciones preventivas quarterlymente"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Integruj dane z wielu źródeł ze ścisłą zgodnością z RODO",
+      "Waliduj model z referencyjnymi pracownikami socjalnymi",
+      "Koordynuj alerty z zespołami interwencji terytorialnej",
+      "Ewaluuj wpływ interwencji prewencyjnych co kwartał"
     ]
   },
   "UC19": {
     "title": "Sentiment Analysis in Citizen Participation",
-    "contexto": "Los procesos de citizen participation generan miles de contributions textuales que se analizan mannualmente. El 70% de los citizens perciben que su opinion no se tiene en cuenta por la falta de respuesta estructurada.",
-    "foco": "Construir un pipeline NLP de analysis de participation that classifies contributions, detecte temas emergings y genere informes de synthesis for decisores.",
-    "reto": "Las contributions cityanas son heterogeneous: from propuestas bien articuladas until quejas emocionales. El analysis debe ser imparcial, multilingual y capaz de agrupar propuestas similares.",
+    "contexto": "Procesy partycypacji obywatelskiej generują tysiące kontrybucji tekstowych analizowanych ręcznie. 70% obywateli uważa, że ich opinia nie jest brana pod uwagę z powodu braku strukturalnej odpowiedzi.",
+    "foco": "Zbudować pipeline NLP analizy partycypacji klasyfikujący kontrybucje, wykrywający pojawiające się tematy i generujący raporty syntetyczne dla decydentów.",
+    "reto": "Kontrybucje obywatelskie są heterogeniczne: od dobrze sformułowanych propozycji po emocjonalne skargi. Analiza musi być bezstronna, wielojęzyczna i zdolna do grupowania podobnych propozycji.",
     "objetivos": [
-      "Analizar el 100% de contributions en <24 horas (vs semanas mannual)",
-      "Classify by topic, sentimiento y viabilidad automaticmente",
-      "Detect emerging topics no anticipados en la consulta",
-      "Generate informes de synthesis for decisores políticos",
-      "Aumentar perception cityana de que su opinion cuenta"
+      "Analizować 100% kontrybucji w <24 godziny (vs tygodnie ręcznie)",
+      "Klasyfikować automatycznie według tematu, sentymentu i wykonalności",
+      "Wykrywać pojawiające się tematy nieprzewidziane w konsultacji",
+      "Generować raporty syntetyczne dla decydentów politycznych",
+      "Zwiększyć odczucie obywateli, że ich opinia się liczy"
     ],
     "funcionalidades": [
-      "CORTEX.SENTIMENT for analysis de sentimiento por contribution",
-      "CORTEX.COMPLETE for classification thematic y resumen",
-      "Clustering de propuestas similares for consolidation",
-      "Detection de temas emergings no previstos",
-      "Streamlit Dashboard de citizen participation"
+      "CORTEX.SENTIMENT do analizy sentymentu na kontrybucję",
+      "CORTEX.COMPLETE do klasyfikacji tematycznej i streszczenia",
+      "Klasteryzacja podobnych propozycji do konsolidacji",
+      "Wykrywanie pojawiających się tematów nieprzewidzianych",
+      "Streamlit Dashboard partycypacji obywatelskiej"
     ],
     "datos": [
-      "Aportaciones cityanas: texto, autor (anonimizado), fecha, canal",
-      "Consultas publics: tema, documentos base, periodo, scope",
-      "Budgets participativos: propuestas, votos, viabilidad",
-      "Sugerencias y quejas: texto, category, respuesta, resolution",
-      "Encuestas de satisfaction con proceso participativo"
+      "Kontrybucje obywatelskie: tekst, autor (zanonimizowany), data, kanał",
+      "Konsultacje publiczne: temat, dokumenty bazowe, okres, zakres",
+      "Budżety partycypacyjne: propozycje, głosy, wykonalność",
+      "Sugestie i skargi: tekst, kategoria, odpowiedź, rozstrzygnięcie",
+      "Ankiety satysfakcji z procesu partycypacyjnego"
     ],
     "estratificacion": [
-      "Por tipo de proceso: consulta public, budget participativo, sugerencia",
-      "Por tema: urbanismo, movilidad, average ambiente, social, cultura",
-      "Por sentimiento: positivo, neutro, negativo, mixto",
-      "Por idioma: Spanish, Catalan, Basque, Galician, Valencian",
-      "Por viabilidad: viable, viable con modificaciones, no viable"
+      "Według rodzaju procesu: konsultacja publiczna, budżet partycypacyjny, sugestia",
+      "Według tematu: urbanistyka, mobilność, ochrona środowiska, sprawy społeczne, kultura",
+      "Według sentymentu: pozytywny, neutralny, negatywny, mieszany",
+      "Według języka: polski, angielski i inne",
+      "Według wykonalności: wykonalna, wykonalna z modyfikacjami, niewykonalna"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Indexar contributions con metadatos de proceso y tema",
-      "Configurar classification thematic adaptada al scope de la consulta",
-      "Validar analysis de sentimiento con muestra mannual",
-      "Generate informes de synthesis for equipos technicals y políticos"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Indeksuj kontrybucje z metadanymi procesu i tematu",
+      "Konfiguruj klasyfikację tematyczną dostosowaną do zakresu konsultacji",
+      "Waliduj analizę sentymentu na próbie ręcznej",
+      "Generuj raporty syntetyczne dla zespołów technicznych i politycznych"
     ]
   },
   "UC20": {
     "title": "Smart Urban Waste Management",
-    "contexto": "La collection de residuos cuesta 2.500M€/year con un 30% de inefficiency. Las rutas fijas generan viajes innecesarios y desbordamientos. Spain debe alcanzar el 55% de recycling en 2025 (actualmente 35%).",
-    "foco": "Construir un motor de optimization de management de residuos that predicts llenado, optimice rutas, detecte contamination y prediga comportamiento de recycling.",
-    "reto": "Los containers tienen sensores IoT heterogeneous con conectividad intermitente. Las rutas de collection deben respetar restricciones de traffic, horarios y capacity de vehicles.",
+    "contexto": "Odbiór odpadów kosztuje miliardy rocznie z 30% nieefektywnością. Stałe trasy generują zbędne przejazdy i przepełnienia. Cel UE to 55% recyklingu (aktualnie 35%).",
+    "foco": "Zbudować silnik optymalizacji gospodarki odpadami prognozujący napełnienie, optymalizujący trasy, wykrywający zanieczyszczenie i prognozujący zachowania recyklingowe.",
+    "reto": "Kontenery mają heterogeniczne czujniki IoT z przerywaną łącznością. Trasy odbioru muszą respektować ograniczenia ruchu, godziny i pojemność pojazdów.",
     "objetivos": [
-      "Reducir viajes de collection innecesarios un 25%",
-      "Eliminar el 90% de desbordamientos de containers",
-      "Aumentar tasa de recycling del 35% al 45%",
-      "Optimize routes reduciendo kilómetros un 20%",
-      "Detect contamination de fracciones en containers de recycling"
+      "Zmniejszyć zbędne przejazdy odbioru o 25%",
+      "Wyeliminować 90% przepełnień kontenerów",
+      "Zwiększyć wskaźnik recyklingu z 35% do 45%",
+      "Optymalizować trasy zmniejszając kilometry o 20%",
+      "Wykrywać zanieczyszczenie frakcji w kontenerach recyklingowych"
     ],
     "funcionalidades": [
-      "ML.FORECAST for prediction de llenado por container",
-      "Optimization de rutas con restricciones de tiempo y capacity",
-      "ML.CLASSIFICATION for detection de contamination de fracciones",
-      "Prediction de comportamiento de recycling por zona",
-      "Streamlit Dashboard management inteligente de residuos"
+      "ML.FORECAST do prognozowania napełnienia na kontener",
+      "Optymalizacja tras z ograniczeniami czasu i pojemności",
+      "ML.CLASSIFICATION do wykrywania zanieczyszczenia frakcji",
+      "Prognozowanie zachowań recyklingowych według strefy",
+      "Streamlit Dashboard inteligentnej gospodarki odpadami"
     ],
     "datos": [
-      "Sensores IoT: nivel de llenado, temperatura, inclinación por container",
-      "Rutas de collection: vehicles, horarios, km, peso recogido",
-      "Contenedores: ubicación, tipo (organic, envases, papel, vidrio, resto)",
-      "Datos demographics por zona: population, tipo de housing, comercios",
-      "Datos de plantas de tratamiento: contamination por fraction, rechazos"
+      "Czujniki IoT: poziom napełnienia, temperatura, nachylenie na kontener",
+      "Trasy odbioru: pojazdy, godziny, km, zebrana masa",
+      "Kontenery: lokalizacja, typ (bio, opakowania, papier, szkło, resztkowe)",
+      "Dane demograficzne według strefy: populacja, typ zabudowy, handel",
+      "Dane z zakładów przetwarzania: zanieczyszczenie na frakcję, odrzuty"
     ],
     "estratificacion": [
-      "Por fraction: organic, envases, papel/cartón, vidrio, resto",
-      "Por zona: centro, residencial, comercial, industrial",
-      "Por container: nivel de llenado, frequency, incidencias",
-      "Por ruta: optimizada, aredar, especial (eventos, festivos)",
-      "Por objetivo: reduction de costes, aumento de recycling, reduction de emisiones"
+      "Według frakcji: bio, opakowania, papier/karton, szkło, resztkowe",
+      "Według strefy: centrum, mieszkaniowa, handlowa, przemysłowa",
+      "Według kontenera: poziom napełnienia, częstotliwość, incydenty",
+      "Według trasy: zoptymalizowana, regularna, specjalna (wydarzenia, święta)",
+      "Według celu: redukcja kosztów, wzrost recyklingu, redukcja emisji"
     ],
     "como_usar": [
-      "Ejecutar los prompts sequencelmente en Cortex Code",
-      "Configurar con datos de sensores IoT de containers",
-      "Calibrar modelos de llenado con al menos 3 meses de datos",
-      "Integrar con sistema de management de flotas for rutas óptimas",
-      "Measure impact: costes, recycling, desbordamientos, emisiones"
+      "Wykonuj prompty sekwencyjnie w Cortex Code",
+      "Skonfiguruj z danymi z czujników IoT kontenerów",
+      "Kalibruj modele napełnienia z co najmniej 3 miesiącami danych",
+      "Integruj z systemem zarządzania flotą do optymalnych tras",
+      "Mierz wpływ: koszty, recykling, przepełnienia, emisje"
     ]
   }
 };
@@ -1307,36 +1307,36 @@ const GUIAS = {
 const PROMPTS = {
   "UC01": {
     "title": "Subsidy Fraud Detection with Model Registry",
-    "intro": "Build un modelo ML de detection de subsidy fraud publics y regístralo en Snowflake Model Registry for operation continua con versionado y reentrenamiento.",
+    "intro": "Zbuduj model ML do wykrywania oszustw dotacyjnych w sektorze publicznym i zarejestruj go w Snowflake Model Registry do ciągłej eksploatacji z wersjonowaniem i przeuczaniem.",
     "steps": [
       {
         "title": "Configure environment",
-        "desc": "Crear base de datos y esquema for detection de subsidy fraud.",
+        "desc": "Utwórz bazę danych i schemat do wykrywania oszustw dotacyjnych.",
         "prompt": "Create the database SECTOR_PUBLICO_FRAUDE_DB with ANALYTICS schema and warehouse SP_WH (size S). Include comentarios del proyecto de detection de subsidy fraud con Model Registry."
       },
       {
         "title": "Create subsidy registry",
-        "desc": "Generate synthetic data de call for applicationss y solicitudes de subsidies.",
+        "desc": "Wygeneruj dane syntetyczne naborów i wniosków dotacyjnych.",
         "prompt": "Create the table SUBVENCIONES con: solicitud_id, call for applications_id, beneficiary_nif, beneficiary_nombre, tipo_beneficiary (Empresa, Autónomo, Asociación, Ayuntamiento), importe_solicitado_eur FLOAT, importe_concedido_eur FLOAT, finalidad (Inversion, Empleo, I+D, Training, Agrario), fecha_solicitud DATE, fecha_resolution DATE, estado (Concedida, Denegada, Revocada, En_Trámite). Generate 100,000 solicitudes de 5 years. El 4% tiene indicios de fraude."
       },
       {
         "title": "Create budget execution data",
-        "desc": "Registros de justification y pagos de subsidies concedidas.",
+        "desc": "Rejestry uzasadnień i płatności przyznanych dotacji.",
         "prompt": "Create the table EJECUCION_SUBVENCIONES con: solicitud_id, fecha_justificacion DATE, importe_justificado_eur FLOAT, facturas_presentadas INT, proveedores_distintos INT, pct_ejecutado FLOAT, observaciones TEXT, tiene_incidencia BOOLEAN, tipo_incidencia VARCHAR. Generate datos for las 60,000 subsidies concedidas. El 8% tiene incidencias: justificaciones infladas, facturas duplicadas, proveedores vinculados."
       },
       {
         "title": "Create beneficiary network",
-        "desc": "Generate relaciones corporates y vinculaciones between beneficiaries.",
+        "desc": "Wygeneruj relacje korporacyjne i powiązania między beneficjentami.",
         "prompt": "Create the table RED_BENEFICIARIOS con: entidad_a_nif, entidad_b_nif, tipo_relacion (Administrador_Comun, Socio, Familiar, Misma_Direccion, Proveedor_Habitual), fecha_deteccion DATE, confianza FLOAT. Generate 15,000 relaciones between beneficiaries. El 20% de los fraudes involucran redes de beneficiaries vinculados que solicitan subsidies coordinadamente o se facturan between sí."
       },
       {
         "title": "Calculate detection features",
-        "desc": "Generate indicadores de riesgo per application and beneficiary.",
+        "desc": "Wygeneruj wskaźniki ryzyka na wniosek i beneficjenta.",
         "prompt": "Create the view FEATURES_FRAUDE_SUBVENCIONES that calculates per application and beneficiary:\n- History: num_solicitudes_3a, importe_total_solicitado, tasa_concesion, revocaciones_previas\n- Execution: pct_ejecutado_vs_concedido, facturas_por_eur, proveedores_vs_importe\n- Red: num_vinculaciones, solicitudes_red_misma_call for applications, facturacion_intra_red\n- Documentción: similitud_textos_con_otras_solicitudes, coherencia_budget\n- Temporal: dias_entre_solicitud_y_justificacion, solicitudes_simultaneas"
       },
       {
         "title": "Train fraud detection model",
-        "desc": "ML.CLASSIFICATION for scoring de riesgo.",
+        "desc": "ML.CLASSIFICATION do scoringu ryzyka.",
         "prompt": "Usa SNOWFLAKE.ML.CLASSIFICATION for clasificar solicitudes como: limpia, sospecha_baja, sospecha_media, sospecha_alta. Variables: all the features de FEATURES_FRAUDE_SUBVENCIONES. Entrena con datos etiquetados de los last 5 years (fraudes confirmados). Evaluate con precision, recall, F1. Objective: recall >70% for sospecha_alta con precision >60%."
       },
       {
@@ -1346,150 +1346,150 @@ const PROMPTS = {
       },
       {
         "title": "Prioritize investigations",
-        "desc": "Ranking de casos por probability × importe.",
+        "desc": "Ranking przypadków według prawdopodobieństwa × kwota.",
         "prompt": "Create the view PRIORIZAR_INVESTIGACIONES que for each solicitud sospechosa calcule: probability_fraude_pct, importe_en_riesgo_eur, tipo_fraude_probable, vinculaciones_detectadas, score_investigacion (probability × importe), coste_investigacion_estimado_eur, roi_esperado. Ordena por score descendente. Generate top 100 for campaña de control."
       },
       {
         "title": "Subsidy control dashboard",
-        "desc": "Streamlit de monitoring de fraude.",
+        "desc": "Streamlit do monitoringu oszustw.",
         "prompt": "Generate Streamlit code with:\n1. Suspicion map por CCAA y subsidy type\n2. Investigations list prioritizeds con scoring y ROI\n3. Grafo de red de beneficiaries vinculados for caso seleccionado\n4. Metrics del modelo: precision, recall, F1 por version de Registry\n5. Trend de fraude detectado por year y tipo\n6. Resumen financiero: importe en riesgo, recuperado, coste de control"
       },
       {
         "title": "Retraining pipeline",
-        "desc": "Automate update del modelo.",
+        "desc": "Automatyzacja aktualizacji modelu.",
         "prompt": "Create Tasks:\n1. SCORING_NUEVAS: weekly, ejecuta modelo Registry on nuevas solicitudes\n2. DETECTAR_REDES: monthly, actualiza grafos de vinculaciones\n3. REENTRENAR_MODELO: quarterly, reentrena con nuevos casos y registra nueva version\n4. COMPARAR_VERSIONES: tras reentrenamiento, comfor accuracy y activa la mejor\n5. Document pipeline. Objective: detectar 60% del fraude con <10% falsos positivos."
       }
     ]
   },
   "UC02": {
     "title": "Multichannel Citizen Service RAG Chatbot",
-    "intro": "Build un asistente conversacional RAG multilingual for service cityana con Cortex Search y CORTEX.COMPLETE.",
+    "intro": "Zbuduj wielojęzycznego asystenta konwersacyjnego RAG do obsługi obywateli z Cortex Search i CORTEX.COMPLETE.",
     "steps": [
       {
         "title": "Configure environment",
-        "desc": "Crear base de datos for chatbot RAG.",
+        "desc": "Utwórz bazę danych do chatbota RAG.",
         "prompt": "Create the database SP_CHATBOT_DB with RAG schema and warehouse SP_WH. Comments for the project on chatbot RAG de service cityana multicanal."
       },
       {
         "title": "Create knowledge base",
-        "desc": "Generate corpus de regulations, procedimientos y FAQ.",
+        "desc": "Wygeneruj korpus przepisów, procedur i FAQ.",
         "prompt": "Create the table CONOCIMIENTO_PUBLICO con: doc_id, categoria (Tramites, Normativa, FAQ, Requisitos, Plazos, Ayudas), titulo, contenido TEXT, idioma (es, ca, eu, gl, va), administracion (Estatal, Autonomica, Municipal), fecha_actualizacion DATE, vigente BOOLEAN. Generate 500 documentos cubriendo: procedures more frecuentes (empadronamiento, DNI, licencias), regulations clave, FAQ por administration, requisitos de ayudas y subsidies."
       },
       {
         "title": "Index with Cortex Search",
-        "desc": "Crear servicio de search on base de conocimiento.",
+        "desc": "Utwórz serwis wyszukiwania na bazie wiedzy.",
         "prompt": "Create a Cortex Search Service on CONOCIMIENTO_PUBLICO:\n- Columnas indexadas: titulo, contenido, categoria\n- Filtros: categoria, idioma, administracion\nDemonstrate with 5 consultas: '¿Cómo me empadrono?', '¿Qué necesito for el DNI?', '¿Plazo for recurrir una multa?', 'Ajudes per a lloguer' (Catalan), '¿Requisitos del bono social?'."
       },
       {
         "title": "Create chat function",
-        "desc": "Función RAG con perfil de citizen.",
+        "desc": "Funkcja RAG z profilem obywatela.",
         "prompt": "Create the function CHAT_CIUDADANO(citizen_id, pregunta, idioma) que:\n1. Detect idioma si no se especifica\n2. Busca documentos relevantes con Cortex Search (top 5, filtrado por idioma)\n3. Si citizen_id disponible, consulta perfil del Feature Store UC08\n4. Build prompt con contexto + perfil + pregunta\n5. Generate respuesta con CORTEX.COMPLETE en el idioma del citizen\n6. Include referencias a regulations fuente\nDemonstrate with 3 conversaciones."
       },
       {
         "title": "Implement escalation",
-        "desc": "Detectar when escalar a civil servant.",
+        "desc": "Wykrywanie kiedy eskalować do urzędnika.",
         "prompt": "Create the function EVALUAR_ESCALADO(pregunta, respuesta) that uses CORTEX.COMPLETE to determinar si escalar: complaint formal, solicitud de cita, processing compleja, sentimiento negativo (CORTEX.SENTIMENT), fuera de scope. Retorna: escalar BOOLEAN, motivo, priority, resumen_para_civil servant."
       },
       {
         "title": "History and metrics",
-        "desc": "Store conversations y measure quality.",
+        "desc": "Przechowywanie rozmów i mierzenie jakości.",
         "prompt": "Create table HISTORIAL_CHAT con: sesion_id, citizen_id, fecha_hora, pregunta, respuesta, idioma, documentos_usados, fue_util BOOLEAN, fue_escalada BOOLEAN, feedback INT (1-5). Create view METRICAS_CHATBOT: tasa_resolucion_pct, satisfaccion_media, tasa_escalado, coste_por_interaccion, top_consultas_no_resueltas. Generate 5,000 conversaciones synthetic."
       },
       {
         "title": "Chatbot dashboard",
-        "desc": "Streamlit de operation.",
+        "desc": "Streamlit operacyjny.",
         "prompt": "Generate Streamlit code with:\n1. Demo de chat multilingual con perfil de citizen\n2. Metrics: resolution, satisfaction, escalados por idioma\n3. Consultas more frecuentes y no resueltas\n4. Comparison coste: chatbot vs presencial\n5. Base de conocimiento: search y management\n6. Trends por canal y tipo de consulta"
       },
       {
         "title": "Pipeline and cleanup",
-        "desc": "Mantener chatbot actualizado.",
+        "desc": "Utrzymywanie chatbota w aktualności.",
         "prompt": "Create Tasks:\n1. ACTUALIZAR_CONOCIMIENTO: weekly, reindeza nuevos documentos\n2. ANALIZAR_GAPS: weekly, identify consultas no resueltas\n3. METRICAS_DIARIAS: daily, calculate metrics de performance\n4. Document. Objective: resolution >60%, satisfaction >4.0."
       }
     ]
   },
   "UC03": {
     "title": "Social Services Demand Prediction with Model Registry",
-    "intro": "Build un modelo de prediction de demanda de social services con ML.FORECAST y Model Registry for planning proactive de recursos.",
+    "intro": "Zbuduj model predykcji popytu na usługi społeczne z ML.FORECAST i Model Registry do proaktywnego planowania zasobów.",
     "steps": [
       {
         "title": "Configure environment",
-        "desc": "Crear base de datos for prediction de demanda social.",
+        "desc": "Utwórz bazę danych do predykcji popytu społecznego.",
         "prompt": "Create the database SP_SERVICIOS_SOCIALES_DB with ANALYTICS schema and warehouse SP_WH. Comments for the project on prediction de demanda de social services con Model Registry."
       },
       {
         "title": "Create application data",
-        "desc": "Generate historial de solicitudes de social services.",
+        "desc": "Wygeneruj historię wniosków o usługi społeczne.",
         "prompt": "Create the table SOLICITUDES_SOCIALES con: solicitud_id, municipality_id, fecha DATE, tipo_servicio (Dependency, Renta_Minima, Emergencia_Social, Infancia, Vivienda, Mayores), perfil_applicant_edad INT, perfil_genero, perfil_situacion_familiar, perfil_empleo, estado (Aprobada, Denegada, En_Tramite, Desistida), tiempo_resolucion_dias INT. Generate 200,000 solicitudes de 5 years for 500 municipalities."
       },
       {
         "title": "Load socioeconomic indicators",
-        "desc": "Variables exogenous que influyen en la demanda.",
+        "desc": "Zmienne egzogeniczne wpływające na popyt.",
         "prompt": "Create the table INDICADORES_SOCIOECONOMICOS con: municipality_id, fecha_mes DATE, tasa_desempleo_pct FLOAT, renta_media_hogar_eur FLOAT, tasa_pobreza_pct FLOAT, indice_aging FLOAT, saldo_migratorio INT, precio_alquiler_m2 FLOAT, tasa_natalidad FLOAT. Generate datos monthlyes for 500 municipalities × 5 years. Include correlaciones realistas: desempleo↑ → solicitudes↑."
       },
       {
         "title": "Calculate demand features",
-        "desc": "Generate indicadores predictivos.",
+        "desc": "Wygeneruj wskaźniki predykcyjne.",
         "prompt": "Create the view FEATURES_DEMANDA_SOCIAL that calculates por municipality y mes:\n- Demanda: solicitudes_mes, trend_3m, seasonality, variacion_interannual\n- Contexto: tasa_desempleo, variacion_desempleo, renta_vs_media, aging\n- Capacidad: recursos_disponibles, tiempo_average_resolucion, tasa_aprobacion\n- Externo: solicitudes_municipalities_vecinos, indicadores_crisis (desempleo >15%)"
       },
       {
         "title": "Train forecast model",
-        "desc": "ML.FORECAST de demanda por tipo de servicio.",
+        "desc": "ML.FORECAST popytu według rodzaju usługi.",
         "prompt": "Usa SNOWFLAKE.ML.FORECAST for predecir solicitudes por municipality y tipo_servicio. Serie temporal: solicitudes_mes con timestamp fecha_mes. Variables exogenous: tasa_desempleo, renta_media, aging. Entrena con 4 years y valida con el 5º. Generate predicciones a 1, 3 y 6 meses."
       },
       {
         "title": "Register in Model Registry",
-        "desc": "Guardar modelo con metrics de accuracy.",
+        "desc": "Zapisz model z metrykami dokładności.",
         "prompt": "Registra el modelo en Snowflake Model Registry:\n\nfrom snowflake.ml.registry import Registry\nreg = Registry(session=session, database_name='SP_SERVICIOS_SOCIALES_DB', schema_name='ANALYTICS')\nreg.log_model(\n    model=demand_model,\n    model_name='social_services_demand',\n    version_name='v1',\n    metrics={'mape_1m': mape_1, 'mape_3m': mape_3, 'mape_6m': mape_6},\n    comment='Modelo de prediction de demanda de social services por municipality'\n)\nVerifica registro."
       },
       {
         "title": "Resource planning",
-        "desc": "Usar predicciones for asignar recursos.",
+        "desc": "Użyj predykcji do alokacji zasobów.",
         "prompt": "Create the view PLAN_RECURSOS_SOCIALES que use predicciones for calcular por municipality: demanda_prevista_1m, demanda_prevista_3m, profesionales_necesarios, budget_estimado_eur, gap_recursos (demanda - capacity), priority_refuerzo, recomendacion (contratar, redistribuir, externalizar). Generate plan quarterly de recursos."
       },
       {
         "title": "Planning dashboard",
-        "desc": "Streamlit management de social services.",
+        "desc": "Streamlit zarządzania usługami społecznymi.",
         "prompt": "Generate Streamlit code with:\n1. Mapa de municipalities con demanda prevista vs capacity\n2. Prediction por tipo de servicio con bandas de confianza\n3. Plan de recursos: needes vs disponibles\n4. Accuracy del modelo: MAPE por municipality y servicio\n5. Alerts de incremento de demanda >20% previsto\n6. Comparison de versiones en Model Registry"
       },
       {
         "title": "Update pipeline",
-        "desc": "Automatizar prediction y reentrenamiento.",
+        "desc": "Automatyzacja predykcji i przeuczania.",
         "prompt": "Create Tasks:\n1. ACTUALIZAR_INDICADORES: monthly, carga datos socioeconomic\n2. GENERAR_PREDICCION: monthly, ejecuta modelo Registry\n3. PLAN_RECURSOS: quarterly, generate plan de allocation\n4. REENTRENAR: semestral, reentrena y registra nueva version\n5. Document. Objective: MAPE <12% a 3 meses."
       }
     ]
   },
   "UC04": {
     "title": "Automated Case File Classification",
-    "intro": "Pipeline NLP que classify case files automaticmente, extrae entidades y sugiere resolution basada en precedentes.",
+    "intro": "Pipeline NLP automatycznie klasyfikujący sprawy, wyodrębniający encje i sugerujący rozstrzygnięcie na podstawie precedensów.",
     "steps": [
       {
         "title": "Configure environment",
-        "desc": "Crear base de datos for classification de case files.",
+        "desc": "Utwórz bazę danych do klasyfikacji spraw.",
         "prompt": "Create the database SP_EXPEDIENTES_DB with ANALYTICS schema and warehouse SP_WH. Comments for the project on automation de classification de case files."
       },
       {
         "title": "Create case file history",
-        "desc": "Generate datos de case files con texto descriptivo.",
+        "desc": "Wygeneruj dane spraw z opisowym tekstem.",
         "prompt": "Create the table EXPEDIENTES con: case file_id, fecha_entrada DATE, texto_solicitud TEXT, tipo_procedimiento VARCHAR, materia VARCHAR, unidad_tramitadora VARCHAR, priority (Urgente, Ordinario, Diferido), estado (En_Tramite, Resuelto, Archivado), fecha_resolucion DATE, texto_resolucion TEXT, fue_reasignado BOOLEAN. Generate 100,000 case files con textos realistas en Spanish administrativo. Include jerga: recurso de alzada, silencio administrativo, plazos perentorios."
       },
       {
         "title": "Classify with LLM",
-        "desc": "CORTEX.COMPLETE for classification automatic.",
+        "desc": "CORTEX.COMPLETE do automatycznej klasyfikacji.",
         "prompt": "Create the view CLASIFICACION_EXPEDIENTES that uses CORTEX.COMPLETE to clasificar each case file:\n- tipo: autorizacion, sancion, subvencion, recurso, consulta, queja\n- materia: urbanismo, average_ambiente, hacienda, empleo, educacion, sanidad\n- priority_sugerida: urgente, ordinario, diferido\n- unidad_sugerida: basada en tipo y materia\n- confianza: 0-1\nComfor con classification mannual y measure accuracy."
       },
       {
         "title": "Extract key entities",
-        "desc": "NER on texto administrativo.",
+        "desc": "NER na tekście administracyjnym.",
         "prompt": "Create the view ENTIDADES_EXPEDIENTES that uses CORTEX.COMPLETE to extraer:\n- personas_juridicas: empresas, asociaciones mencionadas\n- referencias_regulationss: leyes, artículos, reales decretos\n- importes: quantityes economics mencionadas\n- fechas_clave: plazos, vencimientos, hechos\n- ubicaciones: municipalities, direcciones, parcelas\nFormato JSON estructurado for each case file."
       },
       {
         "title": "Precedent database",
-        "desc": "Indexar resoluciones for sugerencias.",
+        "desc": "Indeksuj rozstrzygnięcia do sugestii.",
         "prompt": "Create Cortex Search Service on case files resueltos indexando: texto_solicitud + texto_resolucion + tipo + materia. Create function SUGERIR_RESOLUCION(texto_case file) que busque 5 case files similares resueltos y use CORTEX.COMPLETE for sintetizar una sugerencia de resolution. Demonstrate with 3 ejemplos."
       },
       {
         "title": "Measure impact",
-        "desc": "Evaluar quality de classification.",
+        "desc": "Ewaluacja jakości klasyfikacji.",
         "prompt": "Create view METRICAS_CLASIFICACION: accuracy por tipo, materia y unidad vs mannual. Tasa de reallocation antes vs after. Tiempo average de processing. Utilidad de sugerencias de resolution."
       },
       {
@@ -2044,7 +2044,7 @@ Object.assign(PROMPTS, {
       },
       {
         "title": "Cross-reference data and detect conflicts",
-        "desc": "ML.CLASSIFICATION for scoring de riesgo.",
+        "desc": "ML.CLASSIFICATION do scoringu ryzyka.",
         "prompt": "Create view CONFLICTOS_DETECTADOS that cross-references PERSONAL_PUBLICO con REGISTRO_MERCANTIL y LICITACIONES (de UC09). Tipos de conflicto:\n- incompatibilidad: empleado public con cargo corporate activo\n- revolving_door: excivil servant en empresa que contrató con su organismo (<2 years)\n- contratacion_vinculada: empresa del familiar adjudicataria\n- nepotismo: familiares en cadena de mando\nScoring: riesgo_alto, riesgo_average, riesgo_bajo."
       },
       {
@@ -2260,15 +2260,15 @@ function verGuia(ucId) {
   if (!g) return;
   var html = '<span class="guide-badge">' + ucId + '</span>';
   html += '<h2>' + g.title + '</h2>';
-  html += '<h3>Contexto del Sector P\u00fablico</h3><p>' + g.contexto + '</p>';
-  html += '<h3>Foco de la Soluci\u00f3n</h3><p>' + g.foco + '</p>';
-  html += '<h3>Reto T\u00e9cnico</h3><p>' + g.reto + '</p>';
-  html += '<h3>Objetivos</h3><ul>' + g.objetivos.map(function(o){return '<li>' + o + '</li>';}).join('') + '</ul>';
-  html += '<h3>Funcionalidades Principales</h3><ul>' + g.funcionalidades.map(function(f){return '<li>' + f + '</li>';}).join('') + '</ul>';
-  html += '<h3>Datos Necesarios</h3><ul>' + g.datos.map(function(d){return '<li>' + d + '</li>';}).join('') + '</ul>';
-  html += '<h3>Estratificaci\u00f3n</h3><ul>' + g.estratificacion.map(function(s){return '<li>' + s + '</li>';}).join('') + '</ul>';
-  html += '<h3>C\u00f3mo Usar</h3><ul>' + g.como_usar.map(function(c){return '<li>' + c + '</li>';}).join('') + '</ul>';
-  html += '<div class="guide-footer">Gu\u00eda generada for implementaci\u00f3n con Snowflake Cortex AI/ML</div>';
+  html += '<h3>Kontekst Sektora Publicznego</h3><p>' + g.contexto + '</p>';
+  html += '<h3>Cel Rozwiązania</h3><p>' + g.foco + '</p>';
+  html += '<h3>Wyzwanie Techniczne</h3><p>' + g.reto + '</p>';
+  html += '<h3>Cele</h3><ul>' + g.objetivos.map(function(o){return '<li>' + o + '</li>';}).join('') + '</ul>';
+  html += '<h3>Kluczowe Funkcjonalności</h3><ul>' + g.funcionalidades.map(function(f){return '<li>' + f + '</li>';}).join('') + '</ul>';
+  html += '<h3>Wymagane Dane</h3><ul>' + g.datos.map(function(d){return '<li>' + d + '</li>';}).join('') + '</ul>';
+  html += '<h3>Stratyfikacja</h3><ul>' + g.estratificacion.map(function(s){return '<li>' + s + '</li>';}).join('') + '</ul>';
+  html += '<h3>Jak Używać</h3><ul>' + g.como_usar.map(function(c){return '<li>' + c + '</li>';}).join('') + '</ul>';
+  html += '<div class="guide-footer">Przewodnik wygenerowany do wdrożenia z Snowflake Cortex AI/ML</div>';
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('active');
 }
@@ -2287,13 +2287,13 @@ function verPrompts(ucId) {
     html += '<div class="prompt-code"><button class="copy-btn" onclick="copiarPrompt(this)">Kopiuj</button>' + esc(st.prompt) + '</div>';
     html += '</div>';
   });
-  html += '<div class="guide-footer">Ejecuta estos prompts sequencelmente en Cortex Code</div>';
+  html += '<div class="guide-footer">Wykonuj te prompty sekwencyjnie w Cortex Code</div>';
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('active');
 }
 
 function copiarPrompt(btn) {
-  var code = btn.parentElement.textContent.replace('Copiar','').trim();
+  var code = btn.parentElement.textContent.replace('Kopiuj','').trim();
   navigator.clipboard.writeText(code).then(function(){btn.textContent='\u2713 Skopiowano';setTimeout(function(){btn.textContent='Kopiuj';},1500);});
 }
 

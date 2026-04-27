@@ -140,7 +140,7 @@ const USE_CASES = [
     "time": "15 min",
     "title": "Student Dropout Prediction with Model Registry",
     "pain": "33% of Spanish university students do not complete their degree on time and 21% drop out permanently. Universities detect dropout when it is already irreversible, losing performance-linked funding and damaging their reputation.",
-    "desc": "ML dropout prediction model that analyzes academic performance, attendance, socioeconomic profile and digital engagement to identify at-risk students before they drop out. Registered in Snowflake Model Registry for continuous operation.",
+    "desc": "ML dropout prediction model that analyzes academic performance, attendance, socioeconomic profile and digital engagement to identify at-risk students before they drop out. Registered in Snowflake Model Registry for continuousus operation.",
     "features": [
       "ML.CLASSIFICATION + Model Registry with log_model() and versioning",
       "Variables: grades, attendance, credits passed, LMS access, scholarships",
@@ -596,7 +596,7 @@ const GUIAS = {
     "how_to_use": [
       "Execute the prompts sequentially in Cortex Code",
       "Train with at least 3 admission cycles",
-      "Register model in Model Registry for continuous scoring",
+      "Register model in Model Registry for continuousus scoring",
       "Integrate with admissions CRM for commercial actions",
       "Retrain after each enrollment cycle"
     ]
@@ -1138,7 +1138,7 @@ const GUIAS = {
       "Ensure equity and regulatory compliance"
     ],
     "features_list": [
-      "ML.CLASSIFICATION para impacto marginal en matrícula",
+      "ML.CLASSIFICATION para impacto marginal en enrollment",
       "Optimization: maximize enrollments + retention within fixed budget",
       "Variables: income, grades, program, alternatives, price sensitivity",
       "Streamlit scholarship management dashboard"
@@ -1175,7 +1175,7 @@ const GUIAS = {
       "Reduce deviation detection time from quarters to weeks",
       "Identify contract splitting",
       "Estimate anomalous spending amount for prioritization",
-      "Automate continuous auditing"
+      "Automate continuousus auditing"
     ],
     "features_list": [
       "ML.CLASSIFICATION on spending and contracting patterns",
@@ -1295,52 +1295,52 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database and schema for retention.",
-        "prompt": "Crea la base de datos EDU_RETENCION_DB con esquema ANALYTICS y warehouse EDU_WH (size S). Incluye comentarios del proyecto de predicción de abandono estudiantil con Model Registry."
+        "prompt": "Create the database EDU_RETENCION_DB with schema ANALYTICS and warehouse EDU_WH (size S). Include project comments for student dropout prediction with Model Registry."
       },
       {
         "title": "Create academic records",
         "desc": "Generate synthetic student data.",
-        "prompt": "Crea la tabla EXPEDIENTE_ACADEMICO con: student_id, grado VARCHAR, facultad, curso_actual INT, fecha_ingreso DATE, nota_acceso FLOAT, rama_bachillerato (Ciencias, Tecnologia, Sociales, Humanidades, Artes), creditos_matriculados_total INT, creditos_aprobados_total INT, nota_media_expediente FLOAT, convocatorias_agotadas INT, cambio_grado BOOLEAN, estado (Activo, Abandono, Graduado, Baja_Temporal). Genera 60,000 estudiantes de 8 cohortes. El 21% abandona, con pico en primer curso (15%)."
+        "prompt": "Create the table EXPEDIENTE_ACADEMICO with: student_id, grado VARCHAR, facultad, curso_actual INT, fecha_ingreso DATE, nota_acceso FLOAT, rama_bachillerato (Sciences, Technology, Social, Humanities, Arts), creditos_matriculados_total INT, creditos_aprobados_total INT, nota_media_expediente FLOAT, convocatorias_agotadas INT, cambio_grado BOOLEAN, estado (Active, Dropout, Graduated, Temporary_Leave). Generate 60,000 students from 8 cohorts. 21% drop out, with peak in first year (15%)."
       },
       {
         "title": "Create LMS activity",
         "desc": "Student digital engagement.",
-        "prompt": "Crea la tabla ACTIVIDAD_LMS con: student_id, semestre VARCHAR, accesos_totales INT, tiempo_total_min INT, recursos_descargados INT, videos_vistos INT, entregas_a_tiempo_pct FLOAT, participacion_foros INT, tests_completados INT, ultima_actividad_fecha DATE. Genera datos semestrales para todos los estudiantes activos. Los que abandonan muestran caída de actividad LMS 4-8 semanas antes."
+        "prompt": "Create the table ACTIVIDAD_LMS with: student_id, semestre VARCHAR, accesos_totales INT, tiempo_total_min INT, recursos_descargados INT, videos_vistos INT, entregas_a_tiempo_pct FLOAT, participacion_foros INT, tests_completados INT, ultima_actividad_fecha DATE. Generate semester data for all active students. Dropouts show LMS activity decline 4-8 weeks before."
       },
       {
         "title": "Create socioeconomic profile",
         "desc": "Non-academic factors influencing dropout.",
-        "prompt": "Crea la tabla PERFIL_SOCIOECONOMICO con: student_id, beca_tipo (Sin_Beca, General, Excelencia, Colaboracion), beca_importe FLOAT, trabaja BOOLEAN, horas_trabajo_semana INT, distancia_campus_km FLOAT, vive_con (Familia, Residencia, Piso_Compartido, Solo), primera_generacion_universitaria BOOLEAN, renta_familiar_tramo (Bajo, Medio_Bajo, Medio, Medio_Alto, Alto). Genera perfiles. Los estudiantes sin beca que trabajan >15h/semana tienen 2.3x más abandono."
+        "prompt": "Create the table PERFIL_SOCIOECONOMICO with: student_id, beca_tipo (No_Scholarship, General, Excellence, Collaboration), beca_importe FLOAT, trabaja BOOLEAN, horas_trabajo_semana INT, distancia_campus_km FLOAT, vive_con (Family, Residence, Shared_Apartment, Alone), primera_generacion_universitaria BOOLEAN, renta_familiar_tramo (Low, Medium_Low, Medium, Medium_High, High). Generate profiles. Students without scholarships working >15h/week have 2.3x more dropout."
       },
       {
         "title": "Calculate predictive features",
         "desc": "Dropout risk indicators.",
-        "prompt": "Crea la vista FEATURES_ABANDONO que por estudiante y semestre calcule:\n- Académico: nota_media_semestre, pct_aprobados, tendencia_notas, convocatorias_extra\n- Engagement: accesos_lms_semana, tendencia_lms_4sem, entregas_pendientes, ultima_actividad_dias\n- Económico: tiene_beca, trabaja, horas_trabajo, renta_tramo\n- Social: distancia, vive_solo, primera_generacion\n- Histórico: rendimiento_semestre_anterior, creditos_acumulados_pct, cambio_rendimiento"
+        "prompt": "Create view FEATURES_ABANDONO that per student and semester calculates:\n- Academic: nota_media_semestre, pct_aprobados, tendencia_notas, convocatorias_extra\n- Engagement: accesos_lms_semana, tendencia_lms_4sem, entregas_pendientes, ultima_actividad_dias\n- Economic: tiene_beca, trabaja, horas_trabajo, renta_tramo\n- Social: distancia, vive_solo, primera_generacion\n- Historic: rendimiento_semestre_anterior, creditos_acumulados_pct, cambio_rendimiento"
       },
       {
         "title": "Train dropout model",
         "desc": "ML.CLASSIFICATION for risk scoring.",
-        "prompt": "Usa SNOWFLAKE.ML.CLASSIFICATION para predecir abandono: si/no. Variables: todas las features de FEATURES_ABANDONO. Entrena con 6 cohortes y valida con las 2 últimas. Evalúa AUC, precision, recall. Objetivo: AUC >0.78, recall >0.70 para capturar la mayoría de abandonos."
+        "prompt": "Use SNOWFLAKE.ML.CLASSIFICATION to predict dropout: yes/no. Variables: all features from FEATURES_ABANDONO. Train with 6 cohorts and validate with the last 2. Evaluate AUC, precision, recall. Target: AUC >0.78, recall >0.70 to capture most dropouts."
       },
       {
         "title": "Register in Model Registry",
-        "desc": "Save model with metrics for continuous operation.",
-        "prompt": "Registra el modelo en Snowflake Model Registry:\n\nfrom snowflake.ml.registry import Registry\nreg = Registry(session=session, database_name='EDU_RETENCION_DB', schema_name='ANALYTICS')\nreg.log_model(\n    model=dropout_model,\n    model_name='student_dropout_predictor',\n    version_name='v1',\n    metrics={'auc': auc_score, 'recall': recall, 'precision': precision, 'f1': f1},\n    comment='Modelo de predicción de abandono estudiantil universitario'\n)\nVerifica registro y lista versiones."
+        "desc": "Save model with metrics for continuousus operation.",
+        "prompt": "Register the model in Snowflake Model Registry:\n\nfrom snowflake.ml.registry import Registry\nreg = Registry(session=session, database_name='EDU_RETENCION_DB', schema_name='ANALYTICS')\nreg.log_model(\n    model=dropout_model,\n    model_name='student_dropout_predictor',\n    version_name='v1',\n    metrics={'auc': auc_score, 'recall': recall, 'precision': precision, 'f1': f1},\n    comment='University student dropout prediction model'\n)\nVerify registration and list versions."
       },
       {
         "title": "Scoring and intervention plan",
         "desc": "Execute model on active students.",
-        "prompt": "Crea vista SCORING_ABANDONO que para cada estudiante activo ejecute el modelo Registry y genere: riesgo_abandono_pct, nivel_riesgo (Alto >60%, Moderado 30-60%, Bajo <30%), factores_principales (top 3 variables), intervencion_sugerida (tutoría, beca, orientación, mentoring, apoyo académico). Genera plan para top 200 estudiantes de alto riesgo."
+        "prompt": "Create view SCORING_ABANDONO that for each active student runs the Registry model and generates: riesgo_abandono_pct, nivel_riesgo (Alto >60%, Moderado 30-60%, Bajo <30%), factores_principales (top 3 variables), intervencion_sugerida (tutoring, scholarship, guidance, mentoring, academic_support). Generate plan for top 200 high-risk students."
       },
       {
         "title": "Retention dashboard",
         "desc": "Streamlit management.",
-        "prompt": "Genera código Streamlit con:\n1. Lista de estudiantes en riesgo con scoring y factores\n2. Tendencia de abandono por grado, curso y cohorte\n3. Métricas del modelo: AUC, precision, recall por versión Registry\n4. Efectividad de intervenciones: retención post-intervención\n5. Comparativa entre facultades y programas\n6. Perfil tipo del estudiante en riesgo"
+        "prompt": "Generate Streamlit code with:\n1. List of at-risk students with scoring and factors\n2. Dropout trend by degree, year and cohort\n3. Model metrics: AUC, precision, recall per Registry version\n4. Intervention effectiveness: post-intervention retention\n5. Comparison between faculties and programs\n6. Typical at-risk student profile"
       },
       {
         "title": "Retraining pipeline",
         "desc": "Automate scoring and updates.",
-        "prompt": "Crea Tasks:\n1. SCORING_SEMANAL: ejecuta modelo Registry sobre estudiantes activos\n2. ACTUALIZAR_FEATURES: semanal, recalcula features con nuevos datos LMS\n3. ALERTAS_RIESGO: semanal, notifica tutores de cambios de nivel\n4. REENTRENAR_MODELO: anual, con nueva cohorte y registra versión\n5. COMPARAR_VERSIONES: tras reentrenamiento, activa la mejor\n6. Documenta. Objetivo: AUC >0.78, reducir abandono 20%."
+        "prompt": "Create Tasks:\n1. SCORING_SEMANAL: run Registry model on active students\n2. ACTUALIZAR_FEATURES: weekly, recalculate features with new LMS data\n3. ALERTAS_RIESGO: weekly, notify tutors of risk level changes\n4. REENTRENAR_MODELO: annual, with new cohort and register version\n5. COMPARAR_VERSIONES: after retraining, activate best version\n6. Document. Target: AUC >0.78, reduce dropout 20%."
       }
     ]
   },
@@ -1351,47 +1351,47 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database for chatbot.",
-        "prompt": "Crea la base de datos EDU_CHATBOT_DB con esquema RAG y warehouse EDU_WH. Comentarios del proyecto de chatbot RAG de atención al estudiante."
+        "prompt": "Create the database EDU_CHATBOT_DB with schema RAG and warehouse EDU_WH. Project comments for student support RAG chatbot."
       },
       {
         "title": "Create knowledge base",
         "desc": "Regulation and procedures corpus.",
-        "prompt": "Crea la tabla CONOCIMIENTO_UNIVERSITARIO con: doc_id, categoria (Normativa_Academica, Matricula, Becas, Convalidaciones, Movilidad, Practicas, TFG_TFM, Servicios, Calendario), titulo, contenido TEXT, grado_aplica VARCHAR, vigente_desde DATE, vigente BOOLEAN. Genera 500 documentos cubriendo: reglamento de evaluación, normativa de permanencia, guía de matrícula, FAQ becas MEC, procedimientos de convalidación, normativa TFG/TFM, movilidad Erasmus."
+        "prompt": "Create the table CONOCIMIENTO_UNIVERSITARIO with: doc_id, categoria (Academic_Regulations, Enrollment, Scholarships, Credit_Transfer, Mobility, Internships, Thesis, Services, Calendar), titulo, contenido TEXT, grado_aplica VARCHAR, vigente_desde DATE, vigente BOOLEAN. Generate 500 documents covering: evaluation regulations, permanence rules, enrollment guide, scholarship FAQ, credit transfer procedures, thesis regulations, Erasmus mobility."
       },
       {
         "title": "Index with Cortex Search",
         "desc": "Create semantic search service.",
-        "prompt": "Crea un Cortex Search Service sobre CONOCIMIENTO_UNIVERSITARIO:\n- Columnas indexadas: titulo, contenido, categoria\n- Filtros: categoria, grado_aplica\nDemuestra con 5 consultas: '¿Cuántas convocatorias tengo por asignatura?', '¿Cómo pido una convalidación de FP?', '¿Cuál es el plazo de matrícula para segundo semestre?', '¿Puedo cambiar de grado manteniendo créditos?', '¿Requisitos para Erasmus en tercer curso?'."
+        "prompt": "Create a Cortex Search Service on CONOCIMIENTO_UNIVERSITARIO:\n- Indexed columns: titulo, contenido, categoria\n- Filters: categoria, grado_aplica\nDemonstrate with 5 queries: 'How many exam attempts do I have per subject?', 'How do I apply for a vocational credit transfer?', 'What is the enrollment deadline for second semester?', 'Can I change degree while keeping credits?', 'What are the Erasmus requirements in third year?'."
       },
       {
         "title": "Create chat function",
         "desc": "RAG with student context.",
-        "prompt": "Crea la función CHAT_ESTUDIANTE(student_id, pregunta) que:\n1. Busca documentos relevantes con Cortex Search (top 5)\n2. Si student_id: consulta expediente, matrícula y situación\n3. Contextualiza: grado, curso, situación específica\n4. Genera respuesta con CORTEX.COMPLETE precisa y clara\n5. Incluye referencia al artículo/normativa fuente\nDemuestra con 3 perfiles: nuevo ingreso, Erasmus, último curso."
+        "prompt": "Create function CHAT_ESTUDIANTE(student_id, pregunta) that:\n1. Searches relevant documents with Cortex Search (top 5)\n2. If student_id: queries academic record, enrollment and status\n3. Contextualizes: degree, year, specific situation\n4. Generates precise and clear response with CORTEX.COMPLETE\n5. Includes reference to source article/regulation\nDemonstrate with 3 profiles: new student, Erasmus, final year."
       },
       {
         "title": "Process management",
         "desc": "Integrate with academic system.",
-        "prompt": "Crea tabla TRAMITES_ESTUDIANTE con: tramite_id, student_id, tipo (Matricula, Convalidacion, Certificado, Baja, Cambio_Grupo, Reconocimiento), estado (Solicitado, En_Proceso, Resuelto, Denegado), fecha_solicitud, fecha_resolucion. Crea función GESTIONAR_TRAMITE(student_id, tipo, parametros) para: consultar estado, iniciar solicitud, consultar requisitos."
+        "prompt": "Create table TRAMITES_ESTUDIANTE with: tramite_id, student_id, tipo (Enrollment, Credit_Transfer, Certificate, Withdrawal, Group_Change, Recognition), estado (Requested, In_Process, Resolved, Denied), fecha_solicitud, fecha_resolucion. Create function GESTIONAR_TRAMITE(student_id, tipo, parametros) to: check status, initiate request, check requirements."
       },
       {
         "title": "Smart escalation",
         "desc": "Detect when to escalate to staff.",
-        "prompt": "Crea función EVALUAR_ESCALADO(pregunta, respuesta) que use CORTEX.COMPLETE para determinar escalado: consulta fuera de ámbito, reclamación formal, caso excepcional, frustración del estudiante. Retorna: escalar BOOLEAN, motivo, departamento_destino (secretaría, orientación, becas, decanato), resumen_contexto."
+        "prompt": "Create function EVALUAR_ESCALADO(pregunta, respuesta) that uses CORTEX.COMPLETE to determine escalation: out-of-scope query, formal complaint, exceptional case, student frustration. Returns: escalar BOOLEAN, motivo, departamento_destino (registrar, guidance, scholarships, dean), resumen_contexto."
       },
       {
         "title": "Chatbot metrics",
         "desc": "Measure quality and resolution.",
-        "prompt": "Crea tabla HISTORIAL_CHAT_EDU con: sesion_id, student_id, pregunta, respuesta, fue_util BOOLEAN, fue_escalada BOOLEAN, feedback INT. Crea vista METRICAS_CHATBOT: tasa_resolucion, satisfaccion, escalados, top_consultas, gaps_conocimiento. Genera 10,000 conversaciones sintéticas."
+        "prompt": "Create table HISTORIAL_CHAT_EDU with: sesion_id, student_id, pregunta, respuesta, fue_util BOOLEAN, fue_escalada BOOLEAN, feedback INT. Create view METRICAS_CHATBOT: tasa_resolucion, satisfaccion, escalados, top_consultas, gaps_conocimiento. Generate 10,000 synthetic conversations."
       },
       {
         "title": "Chatbot dashboard",
         "desc": "Streamlit operations.",
-        "prompt": "Genera código Streamlit con:\n1. Demo de chat con perfil de estudiante\n2. Métricas: resolución, satisfacción, escalados por tipo\n3. Base de conocimiento: búsqueda y gestión\n4. Top consultas frecuentes y gaps\n5. Comparativa coste: chatbot vs presencial\n6. Picos de demanda: matrícula, exámenes, becas"
+        "prompt": "Generate Streamlit code with:\n1. Chat demo with student profile\n2. Metrics: resolution, satisfaction, escalated by type\n3. Knowledge base: search and management\n4. Top frequent queries and gaps\n5. Cost comparison: chatbot vs in-person\n6. Demand peaks: enrollment, exams, scholarships"
       },
       {
         "title": "Maintenance pipeline",
         "desc": "Keep updated.",
-        "prompt": "Crea Tasks:\n1. ACTUALIZAR_NORMATIVA: inicio de curso, reindeza reglamentos\n2. ANALIZAR_GAPS: mensual, identifica consultas sin respuesta\n3. METRICAS_SEMANALES: calcula indicadores\n4. SINCRONIZAR_TRAMITES: diario, actualiza estados\n5. Documenta. Objetivo: resolución >60%, satisfacción >4.0."
+        "prompt": "Create Tasks:\n1. ACTUALIZAR_NORMATIVA: start of year, reindex regulations\n2. ANALIZAR_GAPS: monthly, identify unanswered queries\n3. METRICAS_SEMANALES: calculate indicators\n4. SINCRONIZAR_TRAMITES: daily, update statuses\n5. Document. Target: resolution >60%, satisfaction >4.0."
       }
     ]
   },
@@ -1402,47 +1402,47 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database for admissions.",
-        "prompt": "Crea la base de datos EDU_ADMISIONES_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de predicción de matriculación con Model Registry."
+        "prompt": "Create the database EDU_ADMISIONES_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for enrollment prediction with Model Registry."
       },
       {
         "title": "Create funnel data",
         "desc": "Complete admissions pipeline.",
-        "prompt": "Crea la tabla FUNNEL_ADMISIONES con: lead_id, fecha_contacto DATE, fuente (Organico, SEM, Redes_Sociales, Referral, Prescriptor, Feria, Jornada), programa_interes VARCHAR, tipo_programa (Grado, Master, MBA, Doctorado, Executive), nota_acceso FLOAT, edad INT, ubicacion_provincia, visito_campus BOOLEAN, descargo_info BOOLEAN, contacto_asesor BOOLEAN, jornada_puertas_abiertas BOOLEAN, admitido BOOLEAN, beca_ofertada BOOLEAN, beca_importe FLOAT, matriculado BOOLEAN, fecha_matricula DATE. Genera 50,000 leads de 4 ciclos. Yield rate: 22%."
+        "prompt": "Create the table FUNNEL_ADMISIONES with: lead_id, fecha_contacto DATE, fuente (Organic, SEM, Social_Media, Referral, Referrer, Fair, Open_Day), programa_interes VARCHAR, tipo_programa (Degree, Master, MBA, Doctorate, Executive), nota_acceso FLOAT, edad INT, ubicacion_provincia, visito_campus BOOLEAN, descargo_info BOOLEAN, contacto_asesor BOOLEAN, jornada_puertas_abiertas BOOLEAN, admitido BOOLEAN, beca_ofertada BOOLEAN, beca_importe FLOAT, matriculado BOOLEAN, fecha_matricula DATE. Generate 50,000 leads from 4 cycles. Yield rate: 22%."
       },
       {
         "title": "Create digital interactions",
         "desc": "Web behavior and engagement.",
-        "prompt": "Crea la tabla INTERACCIONES_LEADS con: lead_id, fecha DATE, tipo (Visita_Web, Descarga, Email_Abierto, Click_Email, Formulario, Chat, Llamada, Webinar), pagina_visitada VARCHAR, tiempo_sesion_seg INT, dispositivo (Desktop, Mobile, Tablet). Genera datos de interacciones para todos los leads. Los que matriculan tienen 3x más interacciones y visitan páginas de becas y plan de estudios."
+        "prompt": "Create the table INTERACCIONES_LEADS with: lead_id, fecha DATE, tipo (Web_Visit, Download, Email_Opened, Email_Click, Form, Chat, Call, Webinar), pagina_visitada VARCHAR, tiempo_sesion_seg INT, dispositivo (Desktop, Mobile, Tablet). Generate interaction data for all leads. Those who enroll have 3x more interactions and visit scholarship and curriculum pages."
       },
       {
         "title": "Calculate conversion features",
         "desc": "Indicators for the model.",
-        "prompt": "Crea la vista FEATURES_MATRICULACION que por lead calcule:\n- Engagement: total_interacciones, visitas_web_7d, descargas, formularios\n- Perfil: nota_acceso, edad, distancia_campus, tipo_programa\n- Acciones: visito_campus, jornada, contacto_asesor, beca\n- Timing: dias_desde_contacto, fase_ciclo (temprano, medio, tardío)\n- Competencia: beca_competidora_estimada, alternativas_visitadas"
+        "prompt": "Create view FEATURES_MATRICULACION that per lead calculates:\n- Engagement: total_interacciones, visitas_web_7d, descargas, formularios\n- Profile: nota_acceso, edad, distancia_campus, tipo_programa\n- Actions: visito_campus, jornada, contacto_asesor, beca\n- Timing: dias_desde_contacto, fase_ciclo (early, mid, late)\n- Competition: beca_competidora_estimada, alternativas_visitadas"
       },
       {
         "title": "Train enrollment model",
         "desc": "ML.CLASSIFICATION for probability.",
-        "prompt": "Usa SNOWFLAKE.ML.CLASSIFICATION para predecir matriculado: si/no. Variables: todas las features. Entrena con 3 ciclos y valida con el 4º. Evalúa AUC, precision, recall. Objetivo: AUC >0.75 para priorización efectiva del equipo comercial."
+        "prompt": "Use SNOWFLAKE.ML.CLASSIFICATION to predict enrolled: yes/no. Variables: all features. Train with 3 cycles and validate with the 4th. Evaluate AUC, precision, recall. Target: AUC >0.75 for effective sales team prioritization."
       },
       {
         "title": "Register in Model Registry",
         "desc": "Save model with metrics.",
-        "prompt": "Registra el modelo en Snowflake Model Registry:\n\nfrom snowflake.ml.registry import Registry\nreg = Registry(session=session, database_name='EDU_ADMISIONES_DB', schema_name='ANALYTICS')\nreg.log_model(\n    model=enrollment_model,\n    model_name='enrollment_predictor',\n    version_name='v1',\n    metrics={'auc': auc_score, 'yield_rate_predicted': yield_pred, 'precision': prec, 'recall': rec},\n    comment='Modelo de predicción de matriculación universitaria'\n)\nVerifica registro."
+        "prompt": "Register the model in Snowflake Model Registry:\n\nfrom snowflake.ml.registry import Registry\nreg = Registry(session=session, database_name='EDU_ADMISIONES_DB', schema_name='ANALYTICS')\nreg.log_model(\n    model=enrollment_model,\n    model_name='enrollment_predictor',\n    version_name='v1',\n    metrics={'auc': auc_score, 'yield_rate_predicted': yield_pred, 'precision': prec, 'recall': rec},\n    comment='University enrollment prediction model'\n)\nVerify registration."
       },
       {
         "title": "Funnel scoring",
         "desc": "Prioritize active leads.",
-        "prompt": "Crea vista SCORING_FUNNEL que para cada lead activo ejecute el modelo y genere: prob_matricula_pct, categoria (Hot >70%, Warm 40-70%, Cold <40%), accion_recomendada (llamada urgente, email personalizado, invitación campus, beca especial, nurturing). Genera ranking de leads para el equipo comercial."
+        "prompt": "Create view SCORING_FUNNEL that for each active lead runs the model and generates: prob_matricula_pct, categoria (Hot >70%, Warm 40-70%, Cold <40%), accion_recomendada (urgent_call, personalized_email, campus_invitation, special_scholarship, nurturing). Generate lead ranking for the sales team."
       },
       {
         "title": "Admissions dashboard",
         "desc": "Streamlit management.",
-        "prompt": "Genera código Streamlit con:\n1. Funnel de admisiones con scoring ML\n2. Predicción de matrículas por programa y campaña\n3. Métricas del modelo por versión de Registry\n4. ROI por canal de captación\n5. Simulador: impacto de becas en conversión\n6. Comparativa ciclos de admisión"
+        "prompt": "Generate Streamlit code with:\n1. Admissions funnel with ML scoring\n2. Enrollment prediction by program and campaign\n3. Model metrics per Registry version\n4. ROI per acquisition channel\n5. Simulator: scholarship impact on conversion\n6. Admissions cycle comparison"
       },
       {
         "title": "Scoring pipeline",
         "desc": "Automate prediction.",
-        "prompt": "Crea Tasks:\n1. SCORING_DIARIO: ejecuta modelo sobre leads activos\n2. ACTUALIZAR_INTERACCIONES: diario, carga nuevas interacciones\n3. ALERTAS_HOT_LEADS: inmediato cuando lead sube a Hot\n4. REENTRENAR: anual tras cierre de matriculación\n5. ANALISIS_CICLO: post-matrícula, evalúa modelo vs realidad\n6. Documenta. Objetivo: AUC >0.75, yield rate +10pp."
+        "prompt": "Create Tasks:\n1. SCORING_DIARIO: run model on active leads\n2. ACTUALIZAR_INTERACCIONES: daily, load new interactions\n3. ALERTAS_HOT_LEADS: immediate when lead moves to Hot\n4. REENTRENAR: annual after enrollment close\n5. ANALISIS_CICLO: post-enrollment, evaluate model vs reality\n6. Document. Target: AUC >0.75, yield rate +10pp."
       }
     ]
   },
@@ -1453,42 +1453,42 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database for learning analytics.",
-        "prompt": "Crea la base de datos EDU_LEARNING_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de learning analytics y personalización."
+        "prompt": "Create the database EDU_LEARNING_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for learning analytics and personalization."
       },
       {
         "title": "Create LMS activity data",
         "desc": "Detailed interactions by resource.",
-        "prompt": "Crea la tabla ACTIVIDAD_LMS_DETALLE con: student_id, asignatura_id, recurso_id, tipo_recurso (Video, Documento, Test, Ejercicio, Foro, Tarea), fecha_hora TIMESTAMP, duracion_min FLOAT, completado BOOLEAN, intentos INT, resultado FLOAT, dispositivo. Genera 2,000,000 interacciones para 5,000 estudiantes × 6 asignaturas × 1 semestre. Patrones: estudiantes exitosos acceden 4-5 días/semana; en riesgo <2 días/semana."
+        "prompt": "Create the table ACTIVIDAD_LMS_DETALLE with: student_id, asignatura_id, recurso_id, tipo_recurso (Video, Documento, Test, Ejercicio, Foro, Tarea), fecha_hora TIMESTAMP, duracion_min FLOAT, completado BOOLEAN, intentos INT, resultado FLOAT, dispositivo. Generate 2,000,000 interactions for 5,000 students × 6 subjects × 1 semester. Patterns: successful students access 4-5 days/week; at-risk <2 days/week."
       },
       {
         "title": "Create partial assessments",
         "desc": "Intermediate results.",
-        "prompt": "Crea la tabla EVALUACIONES_PARCIALES con: student_id, asignatura_id, evaluacion_id, tipo (Test_Online, Practica, Trabajo, Exposicion, Parcial), semana INT, nota FLOAT, fecha_entrega DATE, dias_anticipacion INT, tiempo_empleado_min INT. Genera evaluaciones semanales/quincenales. Correlación: entrega anticipada + más tiempo = mejor nota."
+        "prompt": "Create the table EVALUACIONES_PARCIALES with: student_id, asignatura_id, evaluacion_id, tipo (Test_Online, Practica, Trabajo, Exposicion, Parcial), semana INT, nota FLOAT, fecha_entrega DATE, dias_anticipacion INT, tiempo_empleado_min INT. Generate weekly/biweekly assessments. Correlation: early submission + more time = better grade."
       },
       {
         "title": "Calculate learning features",
         "desc": "Indicators by student and course.",
-        "prompt": "Crea vista FEATURES_LEARNING que por student_id y asignatura calcule:\n- Actividad: accesos_semana, tiempo_estudio_semana, regularidad_estudio\n- Recursos: videos_completados_pct, tests_intentados, ejercicios_resueltos\n- Entregas: puntualidad_pct, calidad_media, tendencia_notas\n- Social: participacion_foros, consultas_tutor, grupo_estudio\n- Patrón: tipo_recurso_preferido, horario_estudio, dispositivo_principal"
+        "prompt": "Create view FEATURES_LEARNING that per student_id and subject calculates:\n- Activity: accesos_semana, tiempo_estudio_semana, regularidad_estudio\n- Resources: videos_completados_pct, tests_intentados, ejercicios_resueltos\n- Submissions: puntualidad_pct, calidad_media, tendencia_notas\n- Social: participacion_foros, consultas_tutor, grupo_estudio\n- Pattern: tipo_recurso_preferido, horario_estudio, dispositivo_principal"
       },
       {
         "title": "Detect academic risk",
         "desc": "ML.CLASSIFICATION by course.",
-        "prompt": "Usa ML.CLASSIFICATION para predecir riesgo de suspenso por asignatura: aprobará, en_riesgo, suspenso_probable. Variables: features de aprendizaje en semana 3-5. Evalúa accuracy y recall. El modelo debe capturar >70% de futuros suspensos en semana 5."
+        "prompt": "Use ML.CLASSIFICATION to predict failure risk by subject: will_pass, at_risk, likely_fail. Variables: learning features in weeks 3-5. Evaluate accuracy and recall. The model must capture >70% of future failures by week 5."
       },
       {
         "title": "Generate personalized recommendations",
         "desc": "LLM for study paths.",
-        "prompt": "Crea función RECOMENDAR_ESTUDIO(student_id, asignatura_id) que use CORTEX.COMPLETE para generar: diagnóstico de situación, temas que reforzar basado en evaluaciones, recursos específicos recomendados del LMS, plan de estudio semanal adaptado al estilo del estudiante, estimación de esfuerzo necesario para aprobar."
+        "prompt": "Create function RECOMENDAR_ESTUDIO(student_id, asignatura_id) that uses CORTEX.COMPLETE to generate: situation diagnosis, topics to reinforce based on assessments, specific recommended LMS resources, weekly study plan adapted to student style, estimated effort needed to pass."
       },
       {
         "title": "Learning analytics dashboard",
         "desc": "Streamlit for faculty and students.",
-        "prompt": "Genera código Streamlit con:\n1. Vista profesor: clase con semáforo de riesgo por estudiante\n2. Vista estudiante: mi progreso, recomendaciones, plan de estudio\n3. Engagement por recurso: qué materiales funcionan mejor\n4. Alertas tempranas: estudiantes que cambian de nivel\n5. Comparativa: antes/después de recomendaciones\n6. Heatmap de actividad de la clase"
+        "prompt": "Generate Streamlit code with:\n1. Professor view: class with risk traffic light per student\n2. Student view: my progress, recommendations, study plan\n3. Engagement by resource: which materials work best\n4. Early alerts: students changing risk level\n5. Comparison: before/after recommendations\n6. Class activity heatmap"
       },
       {
         "title": "Alert pipeline",
         "desc": "Automate detection.",
-        "prompt": "Crea Tasks:\n1. ACTUALIZAR_ACTIVIDAD: diario, carga nuevas interacciones LMS\n2. SCORING_SEMANAL: ejecuta modelo de riesgo por asignatura\n3. GENERAR_RECOMENDACIONES: semanal para estudiantes en riesgo\n4. ALERTAS_TUTOR: cuando estudiante cambia a riesgo alto\n5. Documenta. Objetivo: detectar 70% suspensos en semana 5, +10% aprobados."
+        "prompt": "Create Tasks:\n1. ACTUALIZAR_ACTIVIDAD: daily, carga nuevas interacciones LMS\n2. SCORING_SEMANAL: ejecuta modelo de riesgo por asignatura\n3. GENERAR_RECOMENDACIONES: weekly para estudiantes en riesgo\n4. ALERTAS_TUTOR: cuando estudiante cambia a riesgo alto\n5. Document. Target: detectar 70% suspensos en semana 5, +10% aprobados."
       }
     ]
   },
@@ -1499,42 +1499,42 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database for spaces.",
-        "prompt": "Crea la base de datos EDU_ESPACIOS_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de optimización de horarios y espacios."
+        "prompt": "Create the database EDU_ESPACIOS_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for schedule and space optimization."
       },
       {
         "title": "Create space catalog",
         "desc": "Available classrooms and resources.",
-        "prompt": "Crea la tabla ESPACIOS_UNIVERSITARIOS con: espacio_id, tipo (Aula, Laboratorio, Informatica, Auditorio, Seminario, Biblioteca), edificio, campus, capacidad INT, equipamiento (Proyector, Ordenadores, Lab_Quimica, Lab_Fisica, Pizarra_Digital), accesible BOOLEAN, coste_hora_eur FLOAT. Genera 300 espacios en 3 campus."
+        "prompt": "Create the table ESPACIOS_UNIVERSITARIOS with: espacio_id, tipo (Classroom, Laboratory, Computer_Lab, Auditorium, Seminar, Library), edificio, campus, capacidad INT, equipamiento (Projector, Computers, Chemistry_Lab, Physics_Lab, Smart_Board), accesible BOOLEAN, coste_hora_eur FLOAT. Generate 300 spaces in 3 campuses."
       },
       {
         "title": "Create course and group data",
         "desc": "Planning requirements.",
-        "prompt": "Crea la tabla ASIGNATURAS_GRUPOS con: asignatura_id, grado, curso INT, semestre, grupo VARCHAR, tipo_clase (Teoria, Practica, Laboratorio, Seminario), alumnos_matriculados INT, horas_semana INT, profesor_id, requisitos_espacio (capacidad_min, equipamiento_necesario), restricciones TEXT. Genera 800 asignaturas-grupo de 15 grados."
+        "prompt": "Create the table ASIGNATURAS_GRUPOS with: asignatura_id, grado, curso INT, semestre, grupo VARCHAR, tipo_clase (Teoria, Practica, Laboratorio, Seminario), alumnos_matriculados INT, horas_semana INT, profesor_id, requisitos_espacio (capacidad_min, equipamiento_necesario), restricciones TEXT. Generate 800 subject-groups from 15 degrees."
       },
       {
         "title": "Analyze historical occupancy",
         "desc": "Actual space usage.",
-        "prompt": "Crea la tabla OCUPACION_HISTORICA con: espacio_id, fecha DATE, franja (8-9, 9-10, ..., 20-21), ocupado BOOLEAN, asignatura_id, asistencia_real INT, capacidad_usada_pct FLOAT. Genera datos de 2 cursos. Las franjas 9-13 tienen ocupación >85%; 15-17 al 50%; >18h al 20%."
+        "prompt": "Create the table OCUPACION_HISTORICA with: espacio_id, fecha DATE, franja (8-9, 9-10, ..., 20-21), ocupado BOOLEAN, asignatura_id, asistencia_real INT, capacidad_usada_pct FLOAT. Generate data from 2 academic years. Time slots 9-13 have >85% occupancy; 15-17 at 50%; >18h at 20%."
       },
       {
         "title": "Predict demand by time slot",
         "desc": "ML.FORECAST for occupancy.",
-        "prompt": "Usa ML.FORECAST para predecir demanda de espacios por tipo, campus y franja. Variables: dia_semana, mes, periodo_exámenes, eventos. Identifica franjas infrautilizadas y saturadas. Generar mapa de calor de demanda por campus, día y hora."
+        "prompt": "Use ML.FORECAST to predict space demand by type, campus and time slot. Variables: day_of_week, month, exam_period, events. Identify underutilized and saturated time slots. Generate demand heatmap by campus, day and hour."
       },
       {
         "title": "Optimize allocation",
         "desc": "Generate optimal schedule.",
-        "prompt": "Crea función OPTIMIZAR_HORARIOS(semestre, campus) que asigne asignaturas-grupo a espacios y franjas minimizando: conflictos de profesor, desplazamientos entre edificios, uso de franjas no preferidas. Maximizando: utilización >80%, satisfacción de preferencias. Generar horario completo del semestre."
+        "prompt": "Create function OPTIMIZAR_HORARIOS(semestre, campus) that assigns subject-groups to spaces and time slots minimizing: professor conflicts, building travel, use of non-preferred time slots. Maximizing: utilization >80%, preference satisfaction. Generate complete semester schedule."
       },
       {
         "title": "Space dashboard",
         "desc": "Streamlit management.",
-        "prompt": "Genera código Streamlit con:\n1. Mapa de ocupación en tiempo real por campus y edificio\n2. Predicción de demanda por franja con heatmap\n3. Horario óptimo generado vs manual: comparativa\n4. Métricas: utilización, conflictos, desplazamientos\n5. Buscador de aulas libres por requisitos\n6. Simulador: impacto de añadir/quitar espacios"
+        "prompt": "Generate Streamlit code with:\n1. Real-time occupancy map by campus and building\n2. Demand prediction by time slot with heatmap\n3. Optimal generated vs manual schedule: comparison\n4. Metrics: utilization, conflicts, travel\n5. Free classroom finder by requirements\n6. Simulator: impact of adding/removing spaces"
       },
       {
         "title": "Optimization pipeline",
         "desc": "Automate planning.",
-        "prompt": "Crea Tasks:\n1. ACTUALIZAR_OCUPACION: diario, registra uso real\n2. PREDECIR_DEMANDA: mensual, actualiza predicciones\n3. GENERAR_HORARIO: semestral, optimiza asignación\n4. DETECTAR_INFRAUTILIZACION: semanal, identifica oportunidades\n5. Documenta. Objetivo: utilización 80%, conflictos -50%."
+        "prompt": "Create Tasks:\n1. ACTUALIZAR_OCUPACION: daily, record actual usage\n2. PREDECIR_DEMANDA: monthly, update predictions\n3. GENERAR_HORARIO: semi-annually, optimize allocation\n4. DETECTAR_INFRAUTILIZACION: weekly, identify opportunities\n5. Document. Target: utilization 80%, conflicts -50%."
       }
     ]
   },
@@ -1545,88 +1545,88 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database for bibliometrics.",
-        "prompt": "Crea la base de datos EDU_INVESTIGACION_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de NLP sobre producción científica."
+        "prompt": "Create the database EDU_INVESTIGACION_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for NLP on scientific production."
       },
       {
         "title": "Create publications repository",
         "desc": "Scientific production corpus.",
-        "prompt": "Crea la tabla PUBLICACIONES con: pub_id, titulo TEXT, abstract TEXT, keywords TEXT, autores_json TEXT, departamento, area_conocimiento, revista, factor_impacto FLOAT, cuartil (Q1, Q2, Q3, Q4, Sin_Indexar), year INT, tipo (Articulo, Conferencia, Libro, Capitulo, Patent), open_access BOOLEAN, doi VARCHAR, citas_recibidas INT. Genera 15,000 publicaciones de 500 investigadores × 10 años."
+        "prompt": "Create the table PUBLICACIONES with: pub_id, titulo TEXT, abstract TEXT, keywords TEXT, autores_json TEXT, departamento, area_conocimiento, revista, factor_impacto FLOAT, cuartil (Q1, Q2, Q3, Q4, Unindexed), year INT, tipo (Article, Conference, Book, Chapter, Patent), open_access BOOLEAN, doi VARCHAR, citas_recibidas INT. Generate 15,000 publications from 500 researchers × 10 years."
       },
       {
         "title": "Extract topics and trends",
         "desc": "NLP on abstracts.",
-        "prompt": "Crea vista TEMAS_PUBLICACIONES que use CORTEX.COMPLETE para extraer de cada abstract: temas_principales (3-5 keywords), area_tematica, metodologia, innovacion_clave, aplicabilidad. Agrega por departamento y año para identificar tendencias: temas emergentes (crecimiento >30%/año), consolidados, en declive."
+        "prompt": "Create view TEMAS_PUBLICACIONES that uses CORTEX.COMPLETE to extract from each abstract: temas_principales (3-5 keywords), area_tematica, metodologia, innovacion_clave, aplicabilidad. Aggregate by department and year to identify trends: emerging topics (growth >30%/year), consolidated, declining."
       },
       {
         "title": "Collaboration network analysis",
         "desc": "Co-authorship and partnership.",
-        "prompt": "Crea vista REDES_COLABORACION que analice co-autorías para mapear: colaboraciones internas (entre departamentos), nacionales (entre universidades), internacionales (entre países). Calcular métricas: grado de colaboración, centralidad, clusters temáticos. Identificar oportunidades de colaboración no explotadas."
+        "prompt": "Create view REDES_COLABORACION that analyzes co-authorships to map: internal collaborations (between departments), national (between universities), international (between countries). Calculate metrics: collaboration degree, centrality, thematic clusters. Identify unexploited collaboration opportunities."
       },
       {
         "title": "Semantic search in repository",
         "desc": "Cortex Search on production.",
-        "prompt": "Crea Cortex Search Service sobre PUBLICACIONES indexando titulo + abstract + keywords + area_conocimiento. Demuestra: 'machine learning aplicado a medicina', 'sostenibilidad en cadena de suministro', 'inteligencia artificial en educación', 'nanomateriales para energía renovable'."
+        "prompt": "Create Cortex Search Service on PUBLICACIONES indexing titulo + abstract + keywords + area_conocimiento. Demonstrate: 'machine learning applied to medicine', 'sustainability in supply chain', 'artificial intelligence in education', 'nanomaterials for renewable energy'."
       },
       {
         "title": "Impact analysis and benchmarking",
         "desc": "Bibliometric metrics.",
-        "prompt": "Crea vista IMPACTO_INVESTIGADOR que por investigador calcule: publicaciones_total, publicaciones_Q1_pct, h_index_estimado, citas_totales, citas_media, colaboraciones_internacionales_pct. Benchmark contra media del área. Identificar investigadores emergentes (alto crecimiento, bajo H-index aún)."
+        "prompt": "Create view IMPACTO_INVESTIGADOR that per researcher calculates: publicaciones_total, publicaciones_Q1_pct, h_index_estimado, citas_totales, citas_media, colaboraciones_internacionales_pct. Benchmark against area average. Identify emerging researchers (high growth, low H-index still)."
       },
       {
         "title": "Scientific intelligence dashboard",
-        "desc": "Streamlit de investigación.",
-        "prompt": "Genera código Streamlit con:\n1. Mapa de producción por departamento y área\n2. Tendencias temáticas con gráfico temporal\n3. Redes de colaboración interactivas\n4. Búsqueda semántica en repositorio\n5. Ranking de investigadores con benchmarking\n6. Áreas emergentes y recomendaciones de inversión"
+        "desc": "Research Streamlit.",
+        "prompt": "Generate Streamlit code with:\n1. Production map by department and area\n2. Thematic trends with time chart\n3. Interactive collaboration networks\n4. Semantic search in repository\n5. Researcher ranking with benchmarking\n6. Emerging areas and investment recommendations"
       },
       {
         "title": "Update pipeline",
         "desc": "Automate analysis.",
-        "prompt": "Crea Tasks:\n1. INGESTAR_PUBLICACIONES: mensual desde repositorio y bases\n2. EXTRAER_TEMAS: mensual sobre nuevas publicaciones\n3. ACTUALIZAR_REDES: trimestral, recalcula colaboraciones\n4. ACTUALIZAR_INDICE: mensual, reindeza Cortex Search\n5. Documenta. Objetivo: cobertura 100%, tendencias +1-2 años."
+        "prompt": "Create Tasks:\n1. INGESTAR_PUBLICACIONES: monthly from repository and databases\n2. EXTRAER_TEMAS: monthly on new publications\n3. ACTUALIZAR_REDES: quarterly, recalculate collaborations\n4. ACTUALIZAR_INDICE: monthly, reindex Cortex Search\n5. Document. Target: cobertura 100%, tendencias +1-2 years."
       }
     ]
   },
   "UC07": {
     "title": "Student Satisfaction Analysis and Teaching Quality",
-    "intro": "Motor NLP de análisis de satisfacción que procesa encuestas, evaluaciones y redes sociales para mejorar la calidad docente.",
+    "intro": "NLP satisfaction analysis engine that processes surveys, evaluations, and social media to improve teaching quality.",
     "steps": [
       {
         "title": "Configure environment",
         "desc": "Crear base de datos para calidad.",
-        "prompt": "Crea la base de datos EDU_CALIDAD_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de análisis de satisfacción y calidad docente."
+        "prompt": "Create the database EDU_CALIDAD_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for satisfaction analysis and teaching quality."
       },
       {
         "title": "Crear datos de feedback",
-        "desc": "Múltiples fuentes de opinión.",
-        "prompt": "Crea la tabla FEEDBACK_ESTUDIANTE con: feedback_id, student_id_hash, fuente (Encuesta_Docente, Encuesta_Programa, Foro_Estudiantes, Google_Reviews, Red_Social), asignatura_id, profesor_hash, semestre, texto TEXT, puntuacion INT (1-5), tipo (Positivo, Neutro, Negativo, Sugerencia). Genera 40,000 feedbacks de 4 semestres. Distribución: 35% positivo, 35% neutro, 30% negativo."
+        "desc": "Multiple opinion sources.",
+        "prompt": "Create the table FEEDBACK_ESTUDIANTE with: feedback_id, student_id_hash, fuente (Teacher_Survey, Program_Survey, Student_Forum, Google_Reviews, Social_Media), asignatura_id, profesor_hash, semestre, texto TEXT, puntuacion INT (1-5), tipo (Positive, Neutral, Negative, Suggestion). Generate 40,000 feedbacks from 4 semesters. Distribution: 35% positive, 35% neutral, 30% negative."
       },
       {
         "title": "Analyze sentiment",
         "desc": "Sentiment by course and professor.",
-        "prompt": "Crea vista SENTIMIENTO_DOCENTE que use CORTEX.SENTIMENT sobre cada feedback para: sentimiento_score, sentimiento_label. Agrega por asignatura y profesor: media, distribución, tendencia semestral. Identifica asignaturas con sentimiento negativo sostenido."
+        "prompt": "Create view SENTIMIENTO_DOCENTE that uses CORTEX.SENTIMENT on each feedback for: sentimiento_score, sentimiento_label. Aggregate by subject and professor: average, distribution, trend semi-annually. Identify subjects with sustained negative sentiment."
       },
       {
         "title": "Classify by topic",
         "desc": "Automatic categorization.",
-        "prompt": "Crea vista TEMAS_FEEDBACK que use CORTEX.COMPLETE para clasificar: tema_principal (Contenido, Metodologia, Evaluacion, Trato, Recursos, Carga_Trabajo, Utilidad_Profesional), subtema, es_accionable BOOLEAN. Demuestra con 10 ejemplos diversos."
+        "prompt": "Create view TEMAS_FEEDBACK that uses CORTEX.COMPLETE to classify: tema_principal (Content, Methodology, Assessment, Treatment, Resources, Workload, Professional_Utility), subtema, es_accionable BOOLEAN. Demonstrate with 10 diverse examples."
       },
       {
         "title": "Correlate with performance",
         "desc": "Satisfaction vs results.",
-        "prompt": "Crea vista CORRELACION_SATISFACCION_RENDIMIENTO que por asignatura cruce: satisfacción media, sentimiento, con tasa_aprobados, nota_media, tasa_abandono_asignatura. Identificar: asignaturas con alta satisfacción y bajo rendimiento (fácil), baja satisfacción y alto rendimiento (exigente pero efectiva)."
+        "prompt": "Create view CORRELACION_SATISFACCION_RENDIMIENTO that per subject cross-references: average satisfaction, sentiment, with tasa_aprobados, nota_media, tasa_abandono_asignatura. Identify: subjects with high satisfaction and low performance (easy), low satisfaction and high performance (demanding but effective)."
       },
       {
         "title": "Detect quality alerts",
         "desc": "Automatic alerts.",
-        "prompt": "Crea vista ALERTAS_CALIDAD_DOCENTE que detecte: sentimiento negativo >2 semestres, cluster de quejas del mismo tema, caída súbita de puntuación, divergencia significativa profesor vs media departamento. Generar alerta con contexto y recomendación."
+        "prompt": "Create view ALERTAS_CALIDAD_DOCENTE that detects: negative sentiment >2 semesters, complaint cluster on same topic, sudden score drop, significant professor divergence vs department average. Generate alert with context and recommendation."
       },
       {
         "title": "Quality dashboard",
         "desc": "Streamlit management.",
-        "prompt": "Genera código Streamlit con:\n1. Ranking de satisfacción por asignatura y profesor\n2. Análisis temático: mejores prácticas y áreas de mejora\n3. Correlación satisfacción-rendimiento\n4. Alertas de calidad activas\n5. Tendencia por semestre y departamento\n6. Comparativa entre titulaciones"
+        "prompt": "Generate Streamlit code with:\n1. Satisfaction ranking by subject and professor\n2. Thematic analysis: best practices and areas for improvement\n3. Satisfaction-performance correlation\n4. Active quality alerts\n5. Trend by semester and department\n6. Comparison between programs"
       },
       {
         "title": "Analysis pipeline",
         "desc": "Automate processing.",
-        "prompt": "Crea Tasks:\n1. INGESTAR_FEEDBACK: tras cada periodo de encuestas\n2. ANALIZAR_SENTIMIENTO: semanal sobre nuevo feedback\n3. CLASIFICAR_TEMAS: semanal\n4. DETECTAR_ALERTAS: mensual\n5. Documenta. Objetivo: análisis <48h, acciones de mejora +40%."
+        "prompt": "Create Tasks:\n1. INGESTAR_FEEDBACK: after each survey period\n2. ANALIZAR_SENTIMIENTO: weekly on new feedback\n3. CLASIFICAR_TEMAS: weekly\n4. DETECTAR_ALERTAS: monthly\n5. Document. Target: analysis <48h, improvement actions +40%."
       }
     ]
   },
@@ -1637,47 +1637,47 @@ const PROMPTS = {
       {
         "title": "Configure Feature Store",
         "desc": "Create database.",
-        "prompt": "Crea la base de datos EDU_STUDENT360_DB con esquema FEATURE_STORE y warehouse EDU_WH. Comenta que implementa Snowflake Feature Store para Perfil de Estudiante 360 con cumplimiento RGPD."
+        "prompt": "Create the database EDU_STUDENT360_DB with schema FEATURE_STORE and warehouse EDU_WH. Comment that it implements Snowflake Feature Store for Student 360 Profile with GDPR compliance."
       },
       {
         "title": "Create source data",
         "desc": "5 main source systems.",
-        "prompt": "Crea 5 tablas fuente:\n1. RAW_DEMOGRAPHICS: student_id, fecha_nacimiento, genero, nacionalidad, provincia_residencia, codigo_postal, tipo_acceso (Selectividad, FP, Mayores_25, Internacional)\n2. RAW_ACADEMIC: student_id, grado, curso, creditos_matriculados INT, creditos_aprobados INT, nota_media FLOAT, convocatorias_extra INT, estado_matricula\n3. RAW_ENGAGEMENT: student_id, semestre, accesos_lms INT, tiempo_lms_min INT, biblioteca_prestamos INT, deportes_inscrito BOOLEAN, asociaciones INT, eventos_asistidos INT\n4. RAW_FINANCIAL: student_id, semestre, beca_tipo, beca_importe FLOAT, deuda_pendiente FLOAT, pago_fraccionado BOOLEAN, situacion_economica\n5. RAW_CAREER: student_id, practicas_realizadas INT, empresa_practicas VARCHAR, orientacion_sesiones INT, cv_actualizado BOOLEAN, competencias_certificadas INT\nGenera datos para 40,000 estudiantes."
+        "prompt": "Create 5 source tables:\n1. RAW_DEMOGRAPHICS: student_id, fecha_nacimiento, genero, nacionalidad, provincia_residencia, codigo_postal, tipo_acceso (Entrance_Exam, Vocational, Over_25, International)\n2. RAW_ACADEMIC: student_id, grado, curso, creditos_matriculados INT, creditos_aprobados INT, nota_media FLOAT, convocatorias_extra INT, estado_matricula\n3. RAW_ENGAGEMENT: student_id, semestre, accesos_lms INT, tiempo_lms_min INT, biblioteca_prestamos INT, deportes_inscrito BOOLEAN, asociaciones INT, eventos_asistidos INT\n4. RAW_FINANCIAL: student_id, semestre, beca_tipo, beca_importe FLOAT, deuda_pendiente FLOAT, pago_fraccionado BOOLEAN, situacion_economica\n5. RAW_CAREER: student_id, practicas_realizadas INT, empresa_practicas VARCHAR, orientacion_sesiones INT, cv_actualizado BOOLEAN, competencias_certificadas INT\nGenerate data for 40,000 students."
       },
       {
         "title": "Create Entity",
         "desc": "Define Entity 'student' in Feature Store.",
-        "prompt": "Usando Snowflake Feature Store:\n\nfrom snowflake.ml.feature_store import FeatureStore, Entity, FeatureView\nfs = FeatureStore(session=session, database='EDU_STUDENT360_DB', name='FEATURE_STORE')\n\nstudent = Entity(\n    name='STUDENT',\n    join_keys=['STUDENT_ID'],\n    desc='Estudiante universitario con perfil 360 - Cumplimiento RGPD'\n)\nfs.register_entity(student)\nVerifica registro."
+        "prompt": "Using Snowflake Feature Store:\n\nfrom snowflake.ml.feature_store import FeatureStore, Entity, FeatureView\nfs = FeatureStore(session=session, database='EDU_STUDENT360_DB', name='FEATURE_STORE')\n\nstudent = Entity(\n    name='STUDENT',\n    join_keys=['STUDENT_ID'],\n    desc='University student with 360 profile - GDPR compliance'\n)\nfs.register_entity(student)\nVerify registration."
       },
       {
         "title": "Create demographic and academic FeatureViews",
         "desc": "Basic profile and performance.",
-        "prompt": "Crea 2 FeatureViews:\n1. DEMOGRAPHICS desde RAW_DEMOGRAPHICS:\n- grupo_edad (17-19, 20-22, 23-25, 25+), genero, es_internacional\n- tipo_acceso, provincia_grupo\n\n2. ACADEMIC desde RAW_ACADEMIC:\n- nota_media_actual, pct_creditos_aprobados, progreso_grado_pct\n- convocatorias_extra, en_riesgo_academico BOOLEAN\n- rendimiento_vs_cohorte (superior, medio, inferior)\n\nRefresh semanal. Enmascarar fecha_nacimiento exacta."
+        "prompt": "Create 2 FeatureViews:\n1. DEMOGRAPHICS from RAW_DEMOGRAPHICS:\n- grupo_edad (17-19, 20-22, 23-25, 25+), genero, es_internacional\n- tipo_acceso, provincia_grupo\n\n2. ACADEMIC from RAW_ACADEMIC:\n- nota_media_actual, pct_creditos_aprobados, progreso_grado_pct\n- convocatorias_extra, en_riesgo_academico BOOLEAN\n- rendimiento_vs_cohorte (superior, medio, inferior)\n\nRefresh weekly. Mask exact fecha_nacimiento."
       },
       {
         "title": "Create engagement and financial FeatureViews",
         "desc": "Participation and financial situation.",
-        "prompt": "Crea 2 FeatureViews:\n1. ENGAGEMENT desde RAW_ENGAGEMENT:\n- actividad_lms_grupo (alta, media, baja, inactivo)\n- biblioteca_activo BOOLEAN, vida_campus_score\n- tendencia_engagement (creciente, estable, decreciente)\n\n2. FINANCIAL desde RAW_FINANCIAL:\n- tiene_beca BOOLEAN, tipo_beca\n- situacion_deuda (al_dia, pendiente, moroso)\n- riesgo_economico BOOLEAN\n\nRefresh semanal. Control de acceso: datos financieros solo para becas/dirección."
+        "prompt": "Create 2 FeatureViews:\n1. ENGAGEMENT from RAW_ENGAGEMENT:\n- actividad_lms_grupo (alta, media, baja, inactivo)\n- biblioteca_activo BOOLEAN, vida_campus_score\n- tendencia_engagement (creciente, estable, decreciente)\n\n2. FINANCIAL from RAW_FINANCIAL:\n- tiene_beca BOOLEAN, tipo_beca\n- situacion_deuda (al_dia, pendiente, moroso)\n- riesgo_economico BOOLEAN\n\nRefresh weekly. Access control: financial data only for scholarships/management."
       },
       {
         "title": "Create employability FeatureView",
         "desc": "Guidance and skills.",
-        "prompt": "Crea FeatureView CAREER desde RAW_CAREER:\n- practicas_realizadas, tiene_practicas_curriculares BOOLEAN\n- orientacion_activa BOOLEAN, cv_actualizado\n- competencias_certificadas, empleabilidad_score\n\nRefresh mensual. Demuestra consumo con fs.get_features() para un estudiante."
+        "prompt": "Create FeatureView CAREER from RAW_CAREER:\n- practicas_realizadas, tiene_practicas_curriculares BOOLEAN\n- orientacion_activa BOOLEAN, cv_actualizado\n- competencias_certificadas, empleabilidad_score\n\nRefresh monthly. Demonstrate consumption with fs.get_features() for a student."
       },
       {
         "title": "Serve features for other UCs",
         "desc": "Demonstrate consumption.",
-        "prompt": "Demuestra consumo de features:\n\n# Para abandono (UC01)\ndf_abandono = fs.get_features(entity=student, feature_views=['ACADEMIC', 'ENGAGEMENT', 'FINANCIAL'], spine_df=activos_df)\n\n# Para learning analytics (UC04)\ndf_learning = fs.get_features(entity=student, feature_views=['ACADEMIC', 'ENGAGEMENT'], spine_df=asignatura_df)\n\n# Para becas (UC17)\ndf_becas = fs.get_features(entity=student, feature_views=['DEMOGRAPHICS', 'ACADEMIC', 'FINANCIAL'], spine_df=candidatos_df)\n\nMuestra DataFrames resultantes."
+        "prompt": "Demonstrate feature consumption:\n\n# For dropout (UC01)\ndf_abandono = fs.get_features(entity=student, feature_views=['ACADEMIC', 'ENGAGEMENT', 'FINANCIAL'], spine_df=activos_df)\n\n# For learning analytics (UC04)\ndf_learning = fs.get_features(entity=student, feature_views=['ACADEMIC', 'ENGAGEMENT'], spine_df=asignatura_df)\n\n# For scholarships (UC17)\ndf_becas = fs.get_features(entity=student, feature_views=['DEMOGRAPHICS', 'ACADEMIC', 'FINANCIAL'], spine_df=candidatos_df)\n\nShow resulting DataFrames."
       },
       {
         "title": "Feature Store dashboard",
         "desc": "Streamlit monitoring.",
-        "prompt": "Genera código Streamlit con:\n1. Resumen: 5 FeatureViews, features totales, último refresh\n2. Buscador de estudiante con perfil 360 (con enmascaramiento RGPD)\n3. Distribución de perfiles por riesgo y engagement\n4. Métricas de calidad: completitud, freshness, drift\n5. Audit log de accesos\n6. Cumplimiento RGPD: finalidad, minimización, accesos"
+        "prompt": "Generate Streamlit code with:\n1. Summary: 5 FeatureViews, total features, last refresh\n2. Student finder with 360 profile (with GDPR masking)\n3. Profile distribution by risk and engagement\n4. Quality metrics: completeness, freshness, drift\n5. Access audit log\n6. GDPR compliance: purpose, minimization, access"
       },
       {
         "title": "Maintenance pipeline",
         "desc": "Automate updates.",
-        "prompt": "Crea Tasks:\n1. REFRESH_DEMOGRAPHICS: inicio de curso desde SGA\n2. REFRESH_ACADEMIC: semanal desde expediente\n3. REFRESH_ENGAGEMENT: semanal desde LMS y servicios\n4. REFRESH_FINANCIAL: mensual desde becas y facturación\n5. REFRESH_CAREER: mensual desde orientación y prácticas\n6. MONITOR_QUALITY: semanal, verifica completitud y drift\n7. Documenta. Cumplimiento RGPD estricto."
+        "prompt": "Create Tasks:\n1. REFRESH_DEMOGRAPHICS: start of year from SGA\n2. REFRESH_ACADEMIC: weekly from academic record\n3. REFRESH_ENGAGEMENT: weekly from LMS and services\n4. REFRESH_FINANCIAL: monthly from scholarships and billing\n5. REFRESH_CAREER: monthly from guidance and internships\n6. MONITOR_QUALITY: weekly, verify completeness and drift\n7. Document. Strict GDPR compliance."
       }
     ]
   },
@@ -1688,42 +1688,42 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database for marketing.",
-        "prompt": "Crea la base de datos EDU_MARKETING_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de segmentación de campañas de captación."
+        "prompt": "Create the database EDU_MARKETING_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for recruitment campaign segmentation."
       },
       {
         "title": "Create lead and conversion data",
         "desc": "Recruitment history.",
-        "prompt": "Crea la tabla LEADS_HISTORICO con: lead_id, ciclo_admision VARCHAR, fuente, programa_interes, perfil_edad_grupo (17-18, 19-22, 23-30, 30+), perfil_formacion (Bachillerato, FP, Universidad, Profesional), ubicacion_region, interacciones_total INT, visito_campus BOOLEAN, webinar_asistido BOOLEAN, scoring_manual INT, matriculado BOOLEAN, programa_matriculado. Genera 80,000 leads de 4 ciclos con tasa de conversión 5%."
+        "prompt": "Create the table LEADS_HISTORICO with: lead_id, ciclo_admision VARCHAR, fuente, programa_interes, perfil_edad_grupo (17-18, 19-22, 23-30, 30+), perfil_formacion (High_School, Vocational, University, Professional), ubicacion_region, interacciones_total INT, visito_campus BOOLEAN, webinar_asistido BOOLEAN, scoring_manual INT, matriculado BOOLEAN, programa_matriculado. Generate 80,000 leads from 4 cycles with 5% conversion rate."
       },
       {
         "title": "Create segments",
         "desc": "Behavioral microsegmentation.",
-        "prompt": "Usa ML.CLASSIFICATION para crear segmentos de leads: explorador (mucha web, no contacta), decidido (pocas interacciones, alta conversión), comparador (descarga de varias universidades), recomendado (viene de prescriptor), professional (busca máster/executive). Para cada segmento: tasa de conversión, canal preferido, mensaje que convierte."
+        "prompt": "Use ML.CLASSIFICATION to create lead segments: explorer (lots of web, no contact), decided (few interactions, high conversion), comparator (downloads from multiple universities), recommended (comes from referral), professional (seeking master/executive). Para cada segmento: tasa de conversion, canal preferido, mensaje que convierte."
       },
       {
         "title": "Generate personalized messages",
         "desc": "LLM for campaign content.",
-        "prompt": "Crea función GENERAR_MENSAJE(lead_id, canal, fase) que use CORTEX.COMPLETE para generar: asunto de email, body personalizado, CTA adaptado al segmento. Parámetros: programa, segmento, fase del funnel, interacciones previas. Demostrar 5 mensajes para 5 segmentos diferentes."
+        "prompt": "Create function GENERAR_MENSAJE(lead_id, canal, fase) that uses CORTEX.COMPLETE to generate: email subject, personalized body, CTA adapted to segment. Parameters: program, segment, funnel phase, previous interactions. Demostrar 5 mensajes para 5 segmentos diferentes."
       },
       {
         "title": "Lead scoring",
         "desc": "ML prioritization.",
-        "prompt": "Crea vista SCORING_LEADS que por lead calcule: probabilidad_conversion, segmento, canal_optimo, mensaje_recomendado, timing_optimo (mejor momento para contactar), coste_estimado_conversion. Ordenar por probabilidad × valor del programa."
+        "prompt": "Create view SCORING_LEADS that per lead calculates: probabilidad_conversion, segmento, canal_optimo, mensaje_recomendado, timing_optimo (best time to contact), coste_estimado_conversion. Sort by probability × program value."
       },
       {
         "title": "Analyze ROI by channel",
         "desc": "Channel effectiveness.",
-        "prompt": "Crea vista ROI_CANALES que por fuente × programa × segmento calcule: leads, conversiones, CPA, coste_total, revenue_matriculas, ROI_pct. Identificar canales ineficientes (CPA >2x media) y eficientes (ROI >300%)."
+        "prompt": "Create view ROI_CANALES that per source × program × segment calculates: leads, conversiones, CPA, coste_total, revenue_matriculas, ROI_pct. Identify inefficient channels (CPA >2x average) and efficient (ROI >300%)."
       },
       {
         "title": "Marketing dashboard",
         "desc": "Streamlit campaigns.",
-        "prompt": "Genera código Streamlit con:\n1. Segmentos de leads con perfil y tasa de conversión\n2. Scoring de leads activos con acciones recomendadas\n3. ROI por canal, programa y segmento\n4. Generador de mensajes personalizados con LLM\n5. Funnel de conversión por segmento\n6. Presupuesto óptimo por canal"
+        "prompt": "Generate Streamlit code with:\n1. Lead segments with profile and conversion rate\n2. Active lead scoring with recommended actions\n3. ROI by channel, program and segment\n4. Personalized message generator with LLM\n5. Conversion funnel by segment\n6. Optimal budget by channel"
       },
       {
         "title": "Recruitment pipeline",
         "desc": "Automate marketing.",
-        "prompt": "Crea Tasks:\n1. SCORING_DIARIO: puntuar nuevos leads\n2. SEGMENTAR: semanal, actualizar segmentos\n3. GENERAR_CONTENIDO: semanal, crear mensajes por segmento\n4. ANALIZAR_ROI: mensual por canal\n5. Documenta. Objetivo: CPA -25%, conversión del 3% al 6%."
+        "prompt": "Create Tasks:\n1. SCORING_DIARIO: score new leads\n2. SEGMENTAR: weekly, update segments\n3. GENERAR_CONTENIDO: weekly, create messages per segment\n4. ANALIZAR_ROI: monthly per channel\n5. Document. Target: CPA -25%, conversion from 3% to 6%."
       }
     ]
   },
@@ -1734,42 +1734,42 @@ const PROMPTS = {
       {
         "title": "Configure environment",
         "desc": "Create database for integrity.",
-        "prompt": "Crea la base de datos EDU_INTEGRIDAD_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de detección de fraude académico y plagio."
+        "prompt": "Create the database EDU_INTEGRIDAD_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for academic fraud and plagiarism detection."
       },
       {
         "title": "Create submission corpus",
         "desc": "Student paper history.",
-        "prompt": "Crea la tabla ENTREGAS_ACADEMICAS con: entrega_id, student_id, asignatura_id, tipo (Ensayo, Trabajo, Codigo, Presentacion, TFG), fecha_entrega TIMESTAMP, texto TEXT, longitud_palabras INT, tiempo_edicion_min INT, metadata_documento TEXT. Genera 100,000 entregas de 5,000 estudiantes × 2 cursos. El 8% tiene indicios de fraude (plagio, IA, suplantación)."
+        "prompt": "Create the table ENTREGAS_ACADEMICAS with: entrega_id, student_id, asignatura_id, tipo (Essay, Assignment, Code, Presentation, Thesis), fecha_entrega TIMESTAMP, texto TEXT, longitud_palabras INT, tiempo_edicion_min INT, metadata_documento TEXT. Generate 100,000 submissions from 5,000 students × 2 academic years. 8% have fraud indicators (plagiarism, AI, impersonation)."
       },
       {
         "title": "Create stylometric baseline",
         "desc": "Student writing fingerprint.",
-        "prompt": "Crea vista PERFIL_ESTILOMETRICO que por student_id calcule baseline de escritura: longitud_media_frase, vocabulario_riqueza, uso_conectores, complejidad_sintactica, errores_ortograficos_ratio, muletillas_frecuentes, formalidad_score. Basado en entregas verificadas de los primeros meses."
+        "prompt": "Create view PERFIL_ESTILOMETRICO that per student_id calculates writing baseline: longitud_media_frase, vocabulario_riqueza, uso_conectores, complejidad_sintactica, errores_ortograficos_ratio, muletillas_frecuentes, formalidad_score. Based on verified submissions from the first months."
       },
       {
         "title": "Detect AI-generated content",
         "desc": "LLM analysis.",
-        "prompt": "Crea función DETECTAR_IA(texto) que use CORTEX.COMPLETE para analizar: perplejidad del texto, uniformidad estilística, patrones típicos de LLM (frases genéricas, estructura predecible), coherencia excesiva. Retorna: probabilidad_ia_pct, evidencias, fragmentos_sospechosos. Comparar con baseline estilométrico del estudiante."
+        "prompt": "Create function DETECTAR_IA(texto) that uses CORTEX.COMPLETE to analyze: text perplexity, stylistic uniformity, typical LLM patterns (generic phrases, predictable structure), excessive coherence. Returns: probabilidad_ia_pct, evidencias, fragmentos_sospechosos. Compare with student's stylometric baseline."
       },
       {
         "title": "Detect semantic plagiarism",
         "desc": "Cortex Search for similarity.",
-        "prompt": "Crea Cortex Search Service sobre ENTREGAS_ACADEMICAS. Para cada nueva entrega: buscar las 10 más similares semánticamente. Crea función DETECTAR_PLAGIO(entrega_id) que identifique: similitud_maxima_pct, entregas_similares, fragmentos_coincidentes, tipo_plagio (copia directa, paráfrasis, patchwork)."
+        "prompt": "Create Cortex Search Service on ENTREGAS_ACADEMICAS. For each new submission: find the 10 most semantically similar. Create function DETECTAR_PLAGIO(entrega_id) that identifies: similitud_maxima_pct, entregas_similares, fragmentos_coincidentes, tipo_plagio (copia directa, paraphrase, patchwork)."
       },
       {
         "title": "Detect exam impersonation",
         "desc": "Behavioral patterns.",
-        "prompt": "Crea tabla ACTIVIDAD_EXAMEN_ONLINE con: student_id, examen_id, hora_inicio, hora_fin, cambios_ventana INT, IP_address, navegador, tiempo_respuesta_por_pregunta TEXT. Usa ML.CLASSIFICATION para detectar suplantación: cambio de patrón de respuesta, IP inusual, tiempos atípicos vs perfil habitual."
+        "prompt": "Create table ACTIVIDAD_EXAMEN_ONLINE with: student_id, examen_id, hora_inicio, hora_fin, cambios_ventana INT, IP_address, navegador, tiempo_respuesta_por_pregunta TEXT. Use ML.CLASSIFICATION to detect impersonation: response pattern change, unusual IP, atypical times vs usual profile."
       },
       {
         "title": "Integrity dashboard",
         "desc": "Streamlit management.",
-        "prompt": "Genera código Streamlit con:\n1. Alertas de fraude con evidencia detallada\n2. Análisis estilométrico: perfil del estudiante vs entrega\n3. Detección de IA con probabilidad y fragmentos\n4. Similitud semántica con entregas previas\n5. Métricas: detecciones, falsos positivos, tendencia\n6. Estadísticas por asignatura y tipo de evaluación"
+        "prompt": "Generate Streamlit code with:\n1. Fraud alerts with detailed evidence\n2. Stylometric analysis: student profile vs submission\n3. AI detection with probability and fragments\n4. Semantic similarity with previous submissions\n5. Metrics: detections, false positives, trend\n6. Statistics by subject and assessment type"
       },
       {
         "title": "Detection pipeline",
         "desc": "Automate analysis.",
-        "prompt": "Crea Tasks:\n1. ANALIZAR_ENTREGA: con cada nueva entrega\n2. ACTUALIZAR_BASELINE: mensual, recalcula perfiles estilométricos\n3. ANALIZAR_EXAMENES: tras cada examen online\n4. REINDEXAR_CORPUS: mensual, actualiza Cortex Search\n5. Documenta. Objetivo: detectar 80% fraude, <5% falsos positivos."
+        "prompt": "Create Tasks:\n1. ANALIZAR_ENTREGA: with each new submission\n2. ACTUALIZAR_BASELINE: monthly, recalculate stylometric profiles\n3. ANALIZAR_EXAMENES: after each online exam\n4. REINDEXAR_CORPUS: monthly, update Cortex Search\n5. Document. Target: detect 80% fraud, <5% false positives."
       }
     ]
   }
@@ -1783,42 +1783,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for performance.",
-        "prompt": "Crea la base de datos EDU_RENDIMIENTO_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de predicción de rendimiento académico."
+        "prompt": "Create the database EDU_RENDIMIENTO_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for academic performance prediction."
       },
       {
         "title": "Create course data",
         "desc": "Grade history by course.",
-        "prompt": "Crea la tabla CALIFICACIONES_ASIGNATURA con: student_id, asignatura_id, asignatura_nombre, grado, curso INT, semestre, convocatoria INT, nota_final FLOAT, aprobado BOOLEAN, profesor_id, grupo VARCHAR, año_academico. Genera 300,000 calificaciones de 10,000 estudiantes × 5 cursos. Tasa media de aprobados: 68%, con rango 40-95% según asignatura."
+        "prompt": "Create the table CALIFICACIONES_ASIGNATURA with: student_id, asignatura_id, asignatura_nombre, grado, curso INT, semestre, convocatoria INT, nota_final FLOAT, aprobado BOOLEAN, profesor_id, grupo VARCHAR, year_academico. Generate 300,000 grades from 10,000 students × 5 academic years. Average pass rate: 68%, with range 40-95% depending on subject."
       },
       {
         "title": "Create early indicators",
         "desc": "Signals from the first weeks.",
-        "prompt": "Crea la tabla INDICADORES_TEMPRANOS con: student_id, asignatura_id, semana INT (1-15), asistencia_pct FLOAT, entregas_realizadas INT, entregas_pendientes INT, nota_parcial FLOAT, accesos_material INT, participacion_clase INT, consultas_tutor INT. Genera datos semanales. La correlación nota parcial semana 5 → final es r=0.72."
+        "prompt": "Create the table INDICADORES_TEMPRANOS with: student_id, asignatura_id, semana INT (1-15), asistencia_pct FLOAT, entregas_realizadas INT, entregas_pendientes INT, nota_parcial FLOAT, accesos_material INT, participacion_clase INT, consultas_tutor INT. Generate weekly data. Correlation of week 5 partial grade → final is r=0.72."
       },
       {
         "title": "Calculate performance features",
         "desc": "Predictive indicators.",
-        "prompt": "Crea vista FEATURES_RENDIMIENTO que por student_id y asignatura en semana 5 calcule:\n- Académico: nota_parcial_media, entregas_pct, asistencia_pct\n- Engagement: accesos_material, participacion, consultas\n- Histórico: nota_asignaturas_previas_rama, media_expediente, aprobados_primera_convocatoria_pct\n- Contexto: dificultad_asignatura (tasa_aprobados_historica), ratio_alumnos_profesor\n- Tendencia: cambio_rendimiento_semana_1_a_5"
+        "prompt": "Create view FEATURES_RENDIMIENTO that per student_id and subject at week 5 calculates:\n- Academic: nota_parcial_media, entregas_pct, asistencia_pct\n- Engagement: accesos_material, participacion, consultas\n- Historic: nota_asignaturas_previas_rama, media_expediente, aprobados_primera_convocatoria_pct\n- Context: dificultad_asignatura (tasa_aprobados_historica), ratio_alumnos_profesor\n- Trend: cambio_rendimiento_semana_1_a_5"
       },
       {
         "title": "Train predictive model",
         "desc": "ML.CLASSIFICATION by course.",
-        "prompt": "Usa ML.CLASSIFICATION para predecir resultado: aprobará, en_riesgo, suspenso_probable. Variables: features en semana 5. Entrenar con 3 cursos, validar con el 4º. Evalúa accuracy, recall por categoría. Objetivo: capturar >70% de suspensos en semana 5."
+        "prompt": "Use ML.CLASSIFICATION to predict outcome: will_pass, at_risk, likely_fail. Variables: features at week 5. Train with 3 courses, validate with the 4th. Evaluate accuracy, recall by category. Target: capturar >70% de suspensos en semana 5."
       },
       {
         "title": "Generate alerts and recommendations",
         "desc": "Actions for tutors.",
-        "prompt": "Crea vista ALERTAS_RENDIMIENTO que para estudiantes en riesgo genere: student_id, asignatura, riesgo_nivel, factores_principales, recomendacion (tutoría académica, grupo de estudio, recursos adicionales, reducir carga, cambio de metodología). Usa CORTEX.COMPLETE para personalizar mensaje al tutor con contexto del estudiante."
+        "prompt": "Create view ALERTAS_RENDIMIENTO que for at-risk students generates: student_id, asignatura, riesgo_nivel, factores_principales, recomendacion (academic_tutoring, study_group, additional_resources, reduce_load, methodology_change). Use CORTEX.COMPLETE to personalize message to tutor with student context."
       },
       {
         "title": "Performance dashboard",
         "desc": "Streamlit para profesores y tutores.",
-        "prompt": "Genera código Streamlit con:\n1. Vista por asignatura: semáforo de riesgo por estudiante\n2. Evolución semanal de indicadores por estudiante\n3. Predicción de resultados con factores explicativos\n4. Alertas activas con recomendaciones de intervención\n5. Tasas de aprobados: predicción vs histórico\n6. Impacto de intervenciones previas"
+        "prompt": "Generate Streamlit code with:\n1. View by subject: risk traffic light per student\n2. Weekly evolution of indicators per student\n3. Outcome prediction with explanatory factors\n4. Active alerts with intervention recommendations\n5. Tasas de aprobados: prediction vs historic\n6. Impact of previous interventions"
       },
       {
         "title": "Alert pipeline",
         "desc": "Automate prediction.",
-        "prompt": "Crea Tasks:\n1. ACTUALIZAR_INDICADORES: semanal desde LMS y actas\n2. SCORING_SEMANAL: ejecuta modelo en semanas 3-12\n3. ALERTAS_TUTOR: semanal, notifica cambios de nivel\n4. EVALUAR_MODELO: post-exámenes, compara predicción vs realidad\n5. Documenta. Objetivo: capturar 70% suspensos, reducir tasa 12%."
+        "prompt": "Create Tasks:\n1. ACTUALIZAR_INDICADORES: weekly from LMS and records\n2. SCORING_SEMANAL: run model in weeks 3-12\n3. ALERTAS_TUTOR: weekly, notify level changes\n4. EVALUAR_MODELO: post-exams, compare prediction vs reality\n5. Document. Target: capturar 70% suspensos, reducir tasa 12%."
       }
     ]
   },
@@ -1829,42 +1829,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for research.",
-        "prompt": "Crea la base de datos EDU_PROPUESTAS_DB con esquema RAG y warehouse EDU_WH. Comentarios del proyecto de soporte a propuestas de investigación con RAG."
+        "prompt": "Create the database EDU_PROPUESTAS_DB with schema RAG and warehouse EDU_WH. Project comments for research proposal support with RAG."
       },
       {
         "title": "Create call corpus",
         "desc": "Call for proposals knowledge base.",
-        "prompt": "Crea la tabla CONVOCATORIAS_INVESTIGACION con: convocatoria_id, titulo, tipo (Horizon_Europe, Plan_Estatal, Autonomica, Empresa, Interna), area_tematica TEXT, requisitos TEXT, criterios_evaluacion TEXT, presupuesto_maximo FLOAT, fecha_cierre DATE, trl_minimo INT, equipo_requerido TEXT, elegibilidad TEXT. Genera 300 convocatorias de 3 años."
+        "prompt": "Create the table CONVOCATORIAS_INVESTIGACION with: convocatoria_id, titulo, tipo (Horizon_Europe, Plan_Estatal, Autonomica, Empresa, Interna), area_tematica TEXT, requisitos TEXT, criterios_evaluacion TEXT, presupuesto_maximo FLOAT, fecha_cierre DATE, trl_minimo INT, equipo_requerido TEXT, elegibilidad TEXT. Generate 300 calls from 3 years."
       },
       {
         "title": "Create researcher profiles",
         "desc": "Capabilities and production.",
-        "prompt": "Crea la tabla PERFILES_INVESTIGADOR con: investigador_id, nombre_hash, departamento, area_principal, areas_secundarias TEXT, publicaciones_5a INT, h_index INT, proyectos_activos INT, proyectos_ip INT, patentes INT, tesis_dirigidas INT, colaboraciones_internacionales TEXT. Genera 500 perfiles de investigadores."
+        "prompt": "Create the table PERFILES_INVESTIGADOR with: investigador_id, nombre_hash, departamento, area_principal, areas_secundarias TEXT, publicaciones_5a INT, h_index INT, proyectos_activos INT, proyectos_ip INT, patentes INT, tesis_dirigidas INT, colaboraciones_internacionales TEXT. Generate 500 researcher profiles."
       },
       {
         "title": "Index with Cortex Search",
         "desc": "Semantic search for calls.",
-        "prompt": "Crea Cortex Search Service sobre CONVOCATORIAS_INVESTIGACION indexando titulo + area_tematica + requisitos + criterios_evaluacion. Demuestra matching: dado perfil de investigador en IA aplicada a salud, encontrar convocatorias compatibles. 5 ejemplos de matching."
+        "prompt": "Create Cortex Search Service on CONVOCATORIAS_INVESTIGACION indexing titulo + area_tematica + requisitos + criterios_evaluacion. Demonstrate matching: given researcher profile in AI applied to health, find compatible calls. 5 matching examples."
       },
       {
         "title": "Writing assistant",
         "desc": "RAG for improving proposals.",
-        "prompt": "Crea función ASISTIR_PROPUESTA(investigador_id, convocatoria_id, borrador_propuesta) que use Cortex Search + CORTEX.COMPLETE para: evaluar alineación con criterios, identificar puntos débiles, sugerir mejoras con ejemplos de propuestas exitosas, recomendar partners potenciales por perfil complementario."
+        "prompt": "Create function ASISTIR_PROPUESTA(investigador_id, convocatoria_id, borrador_propuesta) that uses Cortex Search + CORTEX.COMPLETE to: evaluate alignment with criteria, identify weak points, suggest improvements with successful proposal examples, recommend potential partners by complementary profile."
       },
       {
         "title": "Researcher-call matching",
         "desc": "Automatic recommendation.",
-        "prompt": "Crea vista MATCHING_INVESTIGADOR_CONVOCATORIA que por investigador calcule compatibilidad con convocatorias abiertas: score_matching (0-100), factores_match, gaps_a_cubrir (equipo, publicaciones, TRL), partner_recomendado. Ordenar por matching y urgencia (fecha cierre)."
+        "prompt": "Create view MATCHING_INVESTIGADOR_CONVOCATORIA that per researcher calculates compatibility with open calls: score_matching (0-100), factores_match, gaps_a_cubrir (equipo, publicaciones, TRL), partner_recomendado. Sort by matching and urgency (closing date)."
       },
       {
         "title": "Research dashboard",
         "desc": "Streamlit management.",
-        "prompt": "Genera código Streamlit con:\n1. Buscador de convocatorias con matching por perfil\n2. Asistente de redacción: evaluar y mejorar propuesta\n3. Recomendación de partners por complementariedad\n4. Métricas: propuestas presentadas, tasa éxito, financiación captada\n5. Calendario de convocatorias con alertas de cierre\n6. Histórico de propuestas con evaluaciones"
+        "prompt": "Generate Streamlit code with:\n1. Call finder with profile matching\n2. Writing assistant: evaluate and improve proposal\n3. Partner recommendation by complementarity\n4. Metrics: proposals submitted, success rate, funding secured\n5. Call calendar with closing alerts\n6. Proposal history with evaluations"
       },
       {
         "title": "Update pipeline",
         "desc": "Keep updated.",
-        "prompt": "Crea Tasks:\n1. INDEXAR_CONVOCATORIAS: semanal, nuevas convocatorias\n2. ACTUALIZAR_PERFILES: trimestral, nuevas publicaciones y proyectos\n3. MATCHING_AUTOMATICO: semanal, notificar convocatorias compatibles\n4. ALERTAS_CIERRE: semanal, recordar plazos próximos\n5. Documenta. Objetivo: +60% rapidez matching, +15% tasa éxito."
+        "prompt": "Create Tasks:\n1. INDEXAR_CONVOCATORIAS: weekly, new calls\n2. ACTUALIZAR_PERFILES: quarterly, new publications and projects\n3. MATCHING_AUTOMATICO: weekly, notify compatible calls\n4. ALERTAS_CIERRE: weekly, remind upcoming deadlines\n5. Document. Target: +60% rapidez matching, +15% tasa success."
       }
     ]
   },
@@ -1875,42 +1875,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for guidance.",
-        "prompt": "Crea la base de datos EDU_ORIENTACION_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de predicción de éxito académico."
+        "prompt": "Create the database EDU_ORIENTACION_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for academic success prediction."
       },
       {
         "title": "Create cohort data",
         "desc": "Admission and outcome history.",
-        "prompt": "Crea la tabla COHORTES_ACADEMICAS con: student_id, cohorte_ingreso INT, grado_matriculado, nota_acceso FLOAT, rama_bachillerato, primera_opcion BOOLEAN, motivacion_score INT (1-10), distancia_campus_km FLOAT, resultado_1curso (Exito_Pleno, Aprobado, Dificultades, Cambio_Grado, Abandono), nota_media_1curso FLOAT, satisfaccion_1curso INT (1-5), graduado BOOLEAN, tiempo_graduacion_semestres INT. Genera 30,000 estudiantes de 8 cohortes."
+        "prompt": "Create the table COHORTES_ACADEMICAS with: student_id, cohorte_ingreso INT, grado_matriculado, nota_acceso FLOAT, rama_bachillerato, primera_opcion BOOLEAN, motivacion_score INT (1-10), distancia_campus_km FLOAT, resultado_1curso (Full_Success, Passed, Difficulties, Degree_Change, Dropout), nota_media_1curso FLOAT, satisfaccion_1curso INT (1-5), graduado BOOLEAN, tiempo_graduacion_semestres INT. Generate 30,000 students from 8 cohorts."
       },
       {
         "title": "Calculate matching features",
         "desc": "Program-student fit indicators.",
-        "prompt": "Crea vista FEATURES_MATCHING_PROGRAMA que por estudiante y programa calcule:\n- Acceso: nota_acceso, rama_vs_programa_afinidad, primera_opcion\n- Motivación: motivacion_score, visita_campus, informacion_consultada\n- Contexto: distancia, trabaja, beca, primera_generacion\n- Histórico programa: tasa_exito_perfil_similar, nota_media_cohorte\n- Matching: skills_bachillerato_vs_requisitos, perfil_vs_graduados_exitosos"
+        "prompt": "Create view FEATURES_MATCHING_PROGRAMA that per student and program calculates:\n- Access: nota_acceso, rama_vs_programa_afinidad, primera_opcion\n- Motivation: motivacion_score, visita_campus, informacion_consultada\n- Context: distancia, trabaja, beca, primera_generacion\n- Program history: tasa_exito_perfil_similar, nota_media_cohorte\n- Matching: skills_bachillerato_vs_requisitos, perfil_vs_graduados_exitosos"
       },
       {
         "title": "Train success model",
         "desc": "ML.CLASSIFICATION by program.",
-        "prompt": "Usa ML.CLASSIFICATION para predecir resultado: exito_pleno, aprobado, dificultades, cambio_abandono. Variables: features de matching. Entrenar con 6 cohortes, validar con 2. Evalúa accuracy, recall. Generar probabilidad de éxito por programa para orientación."
+        "prompt": "Use ML.CLASSIFICATION to predict outcome: full_success, passed, difficulties, change_dropout. Variables: matching features. Train with 6 cohorts, validate with 2. Evaluate accuracy, recall. Generate success probability by program for guidance."
       },
       {
         "title": "Recommend alternative program",
         "desc": "Matching with best fit.",
-        "prompt": "Crea función RECOMENDAR_PROGRAMA(perfil_estudiante) que: ejecute modelo de éxito para todos los programas del campus, ordene por probabilidad de éxito, identifique si el programa elegido es óptimo, sugiera alternativas con justificación. Use CORTEX.COMPLETE para generar mensaje de orientación personalizado."
+        "prompt": "Create function RECOMENDAR_PROGRAMA(perfil_estudiante) que: ejecute modelo de success para todos los programas del campus, ordene por probabilidad de success, identifique si el programa elegido es optimal, sugiera alternativas con justification. Use CORTEX.COMPLETE to generate mensaje de guidance personalizado."
       },
       {
         "title": "Identify support needs",
         "desc": "Students who will need support.",
-        "prompt": "Crea vista NECESIDADES_APOYO_PREMATRICULA que para admitidos identifique: necesita_tutoria_refuerzo BOOLEAN, areas_debiles, necesita_curso_cero BOOLEAN, necesita_orientacion BOOLEAN, tipo_apoyo_recomendado. Priorizar por riesgo de dificultad."
+        "prompt": "Create view NECESIDADES_APOYO_PREMATRICULA that for admitted students identifies: necesita_tutoria_refuerzo BOOLEAN, areas_debiles, necesita_curso_cero BOOLEAN, necesita_orientacion BOOLEAN, tipo_apoyo_recomendado. Prioritize by difficulty risk."
       },
       {
         "title": "Guidance dashboard",
         "desc": "Streamlit for admissions.",
-        "prompt": "Genera código Streamlit con:\n1. Predicción de éxito por candidato y programa\n2. Recomendación de programas alternativos con justificación\n3. Distribución predicha de resultados por programa y cohorte\n4. Factores explicativos del éxito por programa\n5. Necesidades de apoyo anticipadas\n6. Validación: predicción vs realidad para cohortes pasadas"
+        "prompt": "Generate Streamlit code with:\n1. Success prediction per candidate and program\n2. Alternative program recommendation with justification\n3. Predicted outcome distribution by program and cohort\n4. Success explanatory factors by program\n5. Necesidades de apoyo anticipadas\n6. Vvalidation: prediction vs reality para cohortes pasadas"
       },
       {
         "title": "Guidance pipeline",
         "desc": "Automate prediction.",
-        "prompt": "Crea Tasks:\n1. SCORING_ADMITIDOS: tras admisión, generar predicción\n2. RECOMENDAR_ALTERNATIVAS: para candidatos con baja probabilidad\n3. IDENTIFICAR_APOYO: pre-matrícula, planificar recursos\n4. VALIDAR_MODELO: anual, comparar predicción vs resultados\n5. Documenta. Objetivo: AUC >0.70, cambios de grado del 15% al 8%."
+        "prompt": "Create Tasks:\n1. SCORING_ADMITIDOS: after admission, generate prediction\n2. RECOMENDAR_ALTERNATIVAS: for candidates with low probability\n3. IDENTIFICAR_APOYO: pre-enrollment, plan resources\n4. VALIDAR_MODELO: anual, comparar prediction vs resultados\n5. Document. Target: AUC >0.70, cambios de grado del 15% al 8%."
       }
     ]
   },
@@ -1921,88 +1921,88 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure Feature Store",
         "desc": "Create database.",
-        "prompt": "Crea la base de datos EDU_PERFORMANCE_DB con esquema FEATURE_STORE y warehouse EDU_WH. Comenta que implementa Snowflake Feature Store para Performance de Programas Académicos."
+        "prompt": "Create the database EDU_PERFORMANCE_DB con esquema FEATURE_STORE y warehouse EDU_WH. Comment that it implements Snowflake Feature Store for Academic Program Performance."
       },
       {
         "title": "Create source data",
         "desc": "Program metrics from multiple sources.",
-        "prompt": "Crea 5 tablas fuente:\n1. RAW_ACADEMIC_PERFORMANCE: programa_id, curso_academico, tasa_rendimiento FLOAT, tasa_exito FLOAT, tasa_evaluacion FLOAT, tasa_abandono FLOAT, nota_media FLOAT, duracion_media_semestres FLOAT\n2. RAW_STUDENT_SATISFACTION: programa_id, curso, satisfaccion_global FLOAT, satisfaccion_docencia FLOAT, satisfaccion_recursos FLOAT, nps INT, reclamaciones INT\n3. RAW_EMPLOYABILITY: programa_id, cohorte, tasa_empleo_1a FLOAT, tasa_empleo_3a FLOAT, salario_medio FLOAT, adecuacion_formacion_pct FLOAT, tiempo_primer_empleo_meses FLOAT\n4. RAW_RESEARCH: programa_id, curso, publicaciones_profesorado INT, proyectos_activos INT, tesis_leidas INT, sexenios_pct FLOAT\n5. RAW_RESOURCES: programa_id, curso, ratio_profesor_alumno FLOAT, presupuesto_per_capita FLOAT, espacios_m2_alumno FLOAT, biblioteca_recursos INT\nGenera datos para 60 programas × 5 cursos."
+        "prompt": "Create 5 source tables:\n1. RAW_ACADEMIC_PERFORMANCE: programa_id, curso_academico, tasa_rendimiento FLOAT, tasa_exito FLOAT, tasa_evaluacion FLOAT, tasa_abandono FLOAT, nota_media FLOAT, duracion_media_semestres FLOAT\n2. RAW_STUDENT_SATISFACTION: programa_id, curso, satisfaccion_global FLOAT, satisfaccion_docencia FLOAT, satisfaccion_recursos FLOAT, nps INT, reclamaciones INT\n3. RAW_EMPLOYABILITY: programa_id, cohorte, tasa_empleo_1a FLOAT, tasa_empleo_3a FLOAT, salario_medio FLOAT, adecuacion_formacion_pct FLOAT, tiempo_primer_empleo_meses FLOAT\n4. RAW_RESEARCH: programa_id, curso, publicaciones_profesorado INT, proyectos_activos INT, tesis_leidas INT, sexenios_pct FLOAT\n5. RAW_RESOURCES: programa_id, curso, ratio_profesor_alumno FLOAT, presupuesto_per_capita FLOAT, espacios_m2_alumno FLOAT, biblioteca_recursos INT\nGenerate data for 60 programs × 5 academic years."
       },
       {
         "title": "Create Entity",
         "desc": "Define Entity in Feature Store.",
-        "prompt": "Usando Snowflake Feature Store:\n\nfrom snowflake.ml.feature_store import FeatureStore, Entity, FeatureView\nfs = FeatureStore(session=session, database='EDU_PERFORMANCE_DB', name='FEATURE_STORE')\n\nprograma = Entity(\n    name='PROGRAMA_ACADEMICO',\n    join_keys=['PROGRAMA_ID'],\n    desc='Programa académico (grado/máster) con métricas de rendimiento'\n)\nfs.register_entity(programa)\nVerifica registro."
+        "prompt": "Using Snowflake Feature Store:\n\nfrom snowflake.ml.feature_store import FeatureStore, Entity, FeatureView\nfs = FeatureStore(session=session, database='EDU_PERFORMANCE_DB', name='FEATURE_STORE')\n\nprograma = Entity(\n    name='PROGRAMA_ACADEMICO',\n    join_keys=['PROGRAMA_ID'],\n    desc='Programa academic (grado/master) con metrics de rendimiento'\n)\nfs.register_entity(programa)\nVerify registration."
       },
       {
         "title": "Create performance and satisfaction FeatureViews",
         "desc": "Academic metrics and perception.",
-        "prompt": "Crea 2 FeatureViews:\n1. ACADEMIC_PERFORMANCE desde RAW_ACADEMIC_PERFORMANCE:\n- tasa_rendimiento, tendencia_rendimiento_3a\n- tasa_abandono, abandono_vs_media_rama\n- duracion_media_vs_nominal\n\n2. STUDENT_SATISFACTION desde RAW_STUDENT_SATISFACTION:\n- satisfaccion_global, tendencia_3a\n- nps_score, reclamaciones_per_capita\n- satisfaccion_vs_media_centro\n\nRefresh anual."
+        "prompt": "Create 2 FeatureViews:\n1. ACADEMIC_PERFORMANCE from RAW_ACADEMIC_PERFORMANCE:\n- tasa_rendimiento, tendencia_rendimiento_3a\n- tasa_abandono, abandono_vs_media_rama\n- duracion_media_vs_nominal\n\n2. STUDENT_SATISFACTION from RAW_STUDENT_SATISFACTION:\n- satisfaccion_global, tendencia_3a\n- nps_score, reclamaciones_per_capita\n- satisfaccion_vs_media_centro\n\nRefresh annually."
       },
       {
         "title": "Create employability and research FeatureViews",
         "desc": "Post-graduate results and teaching quality.",
-        "prompt": "Crea 2 FeatureViews:\n1. EMPLOYABILITY desde RAW_EMPLOYABILITY:\n- tasa_empleo_1a, tasa_empleo_vs_media_rama\n- salario_medio, adecuacion_formacion\n- tiempo_primer_empleo_vs_benchmark\n\n2. RESEARCH desde RAW_RESEARCH:\n- publicaciones_per_profesor, sexenios_pct\n- proyectos_activos, tesis_per_profesor\n- investigacion_vs_benchmark_area\n\nRefresh anual."
+        "prompt": "Create 2 FeatureViews:\n1. EMPLOYABILITY from RAW_EMPLOYABILITY:\n- tasa_empleo_1a, tasa_empleo_vs_media_rama\n- salario_medio, adecuacion_formacion\n- tiempo_primer_empleo_vs_benchmark\n\n2. RESEARCH from RAW_RESEARCH:\n- publicaciones_per_profesor, sexenios_pct\n- proyectos_activos, tesis_per_profesor\n- investigacion_vs_benchmark_area\n\nRefresh annually."
       },
       {
         "title": "Create resources FeatureView",
         "desc": "Resources and efficiency.",
-        "prompt": "Crea FeatureView RESOURCES desde RAW_RESOURCES:\n- ratio_profesor_alumno, vs_benchmark\n- presupuesto_per_capita, tendencia\n- espacios_adecuacion, biblioteca_recursos_per_capita\n\nRefresh anual. Demuestra consumo completo con fs.get_features() para un programa."
+        "prompt": "Create FeatureView RESOURCES from RAW_RESOURCES:\n- ratio_profesor_alumno, vs_benchmark\n- presupuesto_per_capita, tendencia\n- espacios_adecuacion, biblioteca_recursos_per_capita\n\nRefresh annually. Demonstrate full consumption with fs.get_features() for a program."
       },
       {
         "title": "Performance dashboard",
         "desc": "Streamlit benchmarking.",
-        "prompt": "Genera código Streamlit con:\n1. Ranking de programas por performance global (score compuesto)\n2. Scorecard por programa: 5 dimensiones con semáforo\n3. Benchmarking: comparativa entre programas similares\n4. Alertas de deterioro: tendencias negativas >10%\n5. Informe ANECA automatizado por programa\n6. Drill-down por dimensión con series temporales"
+        "prompt": "Generate Streamlit code with:\n1. Program ranking by global performance (composite score)\n2. Scorecard by program: 5 dimensions with traffic light\n3. Benchmarking: comparison between similar programs\n4. Deterioration alerts: negative trends >10%\n5. Automated ANECA report by program\n6. Drill-down by dimension with time series"
       },
       {
         "title": "Update pipeline",
         "desc": "Automatizar mantenimiento.",
-        "prompt": "Crea Tasks:\n1. REFRESH_ACADEMIC: anual desde expedientes\n2. REFRESH_SATISFACTION: anual desde encuestas\n3. REFRESH_EMPLOYABILITY: anual desde encuesta egresados\n4. REFRESH_RESEARCH: anual desde repositorio\n5. ALERTAR_DETERIORO: tras cada refresh, detectar tendencias\n6. Documenta. Feature Store para acreditación ANECA near-real-time."
+        "prompt": "Create Tasks:\n1. REFRESH_ACADEMIC: annual from academic records\n2. REFRESH_SATISFACTION: annual from surveys\n3. REFRESH_EMPLOYABILITY: annual from alumni survey\n4. REFRESH_RESEARCH: annual from repository\n5. ALERTAR_DETERIORO: tras cada refresh, detectar tendencias\n6. Document. Feature Store para accreditation ANECA near-real-time."
       }
     ]
   },
   "UC15": {
     "title": "Scientific Publication Impact Prediction",
-    "intro": "Modelo predictivo de impacto que estima citas y recomienda estrategia de publicación para investigadores.",
+    "intro": "Predictive impact model that estimates citations and recommends publication strategy for researchers.",
     "steps": [
       {
         "title": "Configure environment",
         "desc": "Create database for bibliometrics.",
-        "prompt": "Crea la base de datos EDU_BIBLIOMETRIA_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de predicción de impacto de publicaciones."
+        "prompt": "Create the database EDU_BIBLIOMETRIA_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for publication impact prediction."
       },
       {
-        "title": "Crear datos bibliométricos",
-        "desc": "Publicaciones con citas.",
-        "prompt": "Crea la tabla PUBLICACIONES_CITAS con: pub_id, titulo, abstract TEXT, keywords TEXT, area VARCHAR, subarea, revista, factor_impacto FLOAT, cuartil, year_publicacion INT, autores_count INT, h_index_primer_autor INT, open_access BOOLEAN, pais_primer_autor, citas_year_1 INT, citas_year_2 INT, citas_year_5 INT, altmetric_score INT. Genera 20,000 publicaciones de 10 años."
+        "title": "Create bibliometric data",
+        "desc": "Publications with citations.",
+        "prompt": "Create the table PUBLICACIONES_CITAS with: pub_id, titulo, abstract TEXT, keywords TEXT, area VARCHAR, subarea, revista, factor_impacto FLOAT, cuartil, year_publicacion INT, autores_count INT, h_index_primer_autor INT, open_access BOOLEAN, pais_primer_autor, citas_year_1 INT, citas_year_2 INT, citas_year_5 INT, altmetric_score INT. Generate 20,000 publications from 10 years."
       },
       {
         "title": "Calculate impact features",
         "desc": "Predictive indicators.",
-        "prompt": "Crea vista FEATURES_IMPACTO que por publicación calcule:\n- Revista: factor_impacto, cuartil, posicion_en_area\n- Autores: h_index_max, publicaciones_previas_tema, colaboracion_internacional\n- Contenido: keywords_trending_score, novedad_tema, interdisciplinaridad\n- Formato: open_access, longitud_abstract, tipo (empirico, revisión, teórico)\n- Contexto: funding_acknowledgement, data_availability, replicabilidad"
+        "prompt": "Create view FEATURES_IMPACTO que per publication calculate:\n- Journal: factor_impacto, cuartil, posicion_en_area\n- Authors: h_index_max, publicaciones_previas_tema, colaboracion_internacional\n- Content: keywords_trending_score, novedad_tema, interdisciplinaridad\n- Format: open_access, longitud_abstract, tipo (empirical, review, theoretical)\n- Context: funding_acknowledgement, data_availability, replicabilidad"
       },
       {
-        "title": "Entrenar modelo de predicción",
-        "desc": "ML.FORECAST de citas.",
-        "prompt": "Usa ML.FORECAST para predecir citas_year_2 y citas_year_5. Variables: todas las features. Entrenar con publicaciones 2014-2020, validar con 2021-2022. Evalúa MAPE, correlación Spearman. Objetivo: correlación >0.65 en predicción a 2 años."
+        "title": "Train prediction model",
+        "desc": "ML.FORECAST for citations.",
+        "prompt": "Use ML.FORECAST to predict citas_year_2 and citas_year_5. Variables: all features. Train with publications 2014-2020, validate with 2021-2022. Evaluate MAPE, Spearman correlation. Target: correlation >0.65 in 2-year prediction."
       },
       {
         "title": "Recommend journal",
-        "desc": "Matching tema-audiencia.",
-        "prompt": "Crea tabla REVISTAS_PERFIL con: revista, area, factor_impacto, tasa_aceptacion, tiempo_revision_meses, scope TEXT. Crea función RECOMENDAR_REVISTA(abstract, keywords, target_impact) que use Cortex Search para matching semántico y ordene por: matching_tema × factor_impacto × probabilidad_aceptacion."
+        "desc": "Topic-audience matching.",
+        "prompt": "Create table REVISTAS_PERFIL with: revista, area, factor_impacto, tasa_aceptacion, tiempo_revision_meses, scope TEXT. Create function RECOMENDAR_REVISTA(abstract, keywords, target_impact) that uses Cortex Search for semantic matching and sorts by: matching_tema × factor_impacto × probabilidad_aceptacion."
       },
       {
-        "title": "Identificar temas emergentes",
-        "desc": "Trending topics por área.",
-        "prompt": "Crea vista TEMAS_EMERGENTES que analice keywords y abstracts recientes para identificar: temas con crecimiento >50% en 2 años, convergencias interdisciplinares, temas con alta financiación, temas con baja competencia y alto potencial. Use CORTEX.COMPLETE para generar resumen de tendencias por área."
+        "title": "Identify emerging topics",
+        "desc": "Trending topics by area.",
+        "prompt": "Create view TEMAS_EMERGENTES that analyzes recent keywords and abstracts to identify: topics with >50% growth in 2 years, interdisciplinary convergences, highly funded topics, low competition and high potential topics. Use CORTEX.COMPLETE to generate trend summary by area."
       },
       {
-        "title": "Dashboard de estrategia",
-        "desc": "Streamlit de publicación.",
-        "prompt": "Genera código Streamlit con:\n1. Predicción de impacto para manuscrito: citas estimadas\n2. Recomendación de revistas con matching score\n3. Temas emergentes por área con potencial de impacto\n4. Análisis de rendimiento del investigador vs área\n5. Simulador: impacto de open access, colaboración, revista\n6. Benchmarking de productividad por departamento"
+        "title": "Strategy dashboard",
+        "desc": "Publication Streamlit.",
+        "prompt": "Generate Streamlit code with:\n1. Impact prediction for manuscript: estimated citations\n2. Journal recommendation with matching score\n3. Emerging topics by area with impact potential\n4. Researcher performance analysis vs area\n5. Simulator: impact of open access, collaboration, journal\n6. Productivity benchmarking by department"
       },
       {
         "title": "Update pipeline",
         "desc": "Automate analysis.",
-        "prompt": "Crea Tasks:\n1. ACTUALIZAR_PUBLICACIONES: mensual, nuevas publicaciones y citas\n2. RECALCULAR_FEATURES: mensual\n3. DETECTAR_TENDENCIAS: trimestral, actualizar temas emergentes\n4. ACTUALIZAR_REVISTAS: semestral, factores de impacto\n5. Documenta. Objetivo: correlación >0.65, selección revista -40% tiempo."
+        "prompt": "Create Tasks:\n1. ACTUALIZAR_PUBLICACIONES: monthly, new publications and citations\n2. RECALCULAR_FEATURES: monthly\n3. DETECTAR_TENDENCIAS: quarterly, update emerging topics\n4. ACTUALIZAR_REVISTAS: semi-annually, impact factors\n5. Document. Target: correlation >0.65, journal selection -40% time."
       }
     ]
   },
@@ -2013,42 +2013,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for curriculum.",
-        "prompt": "Crea la base de datos EDU_CURRICULAR_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de diseño curricular basado en datos."
+        "prompt": "Create the database EDU_CURRICULAR_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for data-driven curriculum design."
       },
       {
         "title": "Create job posting corpus",
         "desc": "Labor market demand.",
-        "prompt": "Crea la tabla OFERTAS_EMPLEO con: oferta_id, titulo_puesto, empresa_sector, ubicacion_provincia, descripcion TEXT, requisitos TEXT, skills_demandados TEXT, experiencia_requerida, salario_rango, tipo_contrato, fecha_publicacion DATE. Genera 100,000 ofertas de 3 años cubriendo sectores principales."
+        "prompt": "Create the table OFERTAS_EMPLEO with: oferta_id, titulo_puesto, empresa_sector, ubicacion_provincia, descripcion TEXT, requisitos TEXT, skills_demandados TEXT, experiencia_requerida, salario_rango, tipo_contrato, fecha_publicacion DATE. Generate 100,000 job postings from 3 years covering main sectors."
       },
       {
         "title": "Extract skills from job postings",
         "desc": "NLP on requirements.",
-        "prompt": "Crea vista SKILLS_DEMANDADOS que use CORTEX.COMPLETE para extraer de cada oferta: skills_tecnicos (Python, SQL, cloud...), skills_transversales (comunicación, liderazgo, trabajo en equipo), idiomas, certificaciones, herramientas. Agrega por sector y tendencia temporal para identificar skills en crecimiento."
+        "prompt": "Create view SKILLS_DEMANDADOS that uses CORTEX.COMPLETE to extract from each posting: skills_tecnicos (Python, SQL, cloud...), skills_transversales (communication, leadership, teamwork), languages, certifications, tools. Aggregate by sector and time trend to identify growing skills."
       },
       {
         "title": "Map curriculum",
         "desc": "Taught skills.",
-        "prompt": "Crea la tabla PLAN_ESTUDIOS_COMPETENCIAS con: grado, asignatura_id, asignatura_nombre, curso INT, creditos INT, competencias_json TEXT, skills_impartidos TEXT, metodologia, resultados_aprendizaje TEXT. Genera mapeo de competencias para 15 grados."
+        "prompt": "Create the table PLAN_ESTUDIOS_COMPETENCIAS with: grado, asignatura_id, asignatura_nombre, curso INT, creditos INT, competencias_json TEXT, skills_impartidos TEXT, metodologia, resultados_aprendizaje TEXT. Generate competency mapping for 15 degrees."
       },
       {
         "title": "Gap analysis",
         "desc": "Taught vs demanded skills.",
-        "prompt": "Crea vista GAP_CURRICULAR que por grado cruce skills_impartidos con skills_demandados por sector de salida: skills_cubiertos, skills_gap (demandados pero no enseñados), skills_obsoletos (enseñados pero no demandados), skills_emergentes (crecimiento >30%). Priorizar gaps por volumen de demanda y salario asociado."
+        "prompt": "Create view GAP_CURRICULAR that per degree cross-references skills_impartidos with skills_demandados by exit sector: skills_cubiertos, skills_gap (demanded but not taught), skills_obsoletos (taught but not demanded), skills_emergentes (growth >30%). Prioritize gaps by demand volume and associated salary."
       },
       {
         "title": "Generate recommendations",
         "desc": "LLM for curriculum proposals.",
-        "prompt": "Crea función RECOMENDAR_ACTUALIZACION(grado) que use CORTEX.COMPLETE para generar: top 10 gaps a cubrir, asignaturas donde incorporar skills, nuevas optativas sugeridas, contenidos obsoletos a revisar, benchmarking con universidades referencia. Formato de informe para comisión de planes de estudio."
+        "prompt": "Create function RECOMENDAR_ACTUALIZACION(grado) that uses CORTEX.COMPLETE to generar: top 10 gaps to cover, subjects where to incorporate skills, new suggested electives, obsolete content to review, benchmarking with reference universities. Report format for curriculum committee."
       },
       {
         "title": "Curriculum dashboard",
         "desc": "Streamlit alignment.",
-        "prompt": "Genera código Streamlit con:\n1. Gap analysis por grado: radar de cobertura de skills\n2. Skills emergentes: tendencias por sector con volumen de demanda\n3. Recomendaciones de actualización con priorización\n4. Empleabilidad por grado: inserción, salario, adecuación\n5. Benchmarking con otras universidades\n6. Tendencia de skills: 1, 3 y 5 años"
+        "prompt": "Generate Streamlit code with:\n1. Gap analysis by degree: skills coverage radar\n2. Emerging skills: trends by sector with demand volume\n3. Update recommendations with prioritization\n4. Employability by degree: employment, salario, adequacy\n5. Benchmarking against other universities\n6. Skills trend: 1, 3 and 5 years"
       },
       {
         "title": "Analysis pipeline",
         "desc": "Automate monitoring.",
-        "prompt": "Crea Tasks:\n1. INGESTAR_OFERTAS: mensual, cargar nuevas ofertas\n2. EXTRAER_SKILLS: mensual sobre nuevas ofertas\n3. ANALIZAR_GAPS: trimestral, actualizar gap analysis\n4. GENERAR_INFORMES: semestral, para comisiones de planes\n5. Documenta. Objetivo: actualización mensual de gaps, reducir brecha 15%."
+        "prompt": "Create Tasks:\n1. INGESTAR_OFERTAS: monthly, load new job postings\n2. EXTRAER_SKILLS: monthly on new job postings\n3. ANALIZAR_GAPS: quarterly, update gap analysis\n4. GENERAR_INFORMES: semi-annually, for curriculum committees\n5. Document. Target: update monthly de gaps, reducir brecha 15%."
       }
     ]
   },
@@ -2059,42 +2059,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for scholarships.",
-        "prompt": "Crea la base de datos EDU_BECAS_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de optimización de becas y ayudas."
+        "prompt": "Create the database EDU_BECAS_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for scholarship and financial aid optimization."
       },
       {
         "title": "Create scholarship history",
         "desc": "Allocation and outcome data.",
-        "prompt": "Crea la tabla HISTORIAL_BECAS con: student_id, curso_academico, beca_tipo (Merito, Necesidad, Mixta, Talento, Internacional, Deporte), beca_importe FLOAT, programa, nota_acceso FLOAT, renta_familiar_tramo, admitido_alternativa BOOLEAN, matriculo BOOLEAN, retuvo_2curso BOOLEAN, nota_media_1curso FLOAT, graduado BOOLEAN. Genera 25,000 registros de becas de 5 cursos."
+        "prompt": "Create the table HISTORIAL_BECAS with: student_id, curso_academico, beca_tipo (Merit, Need, Mixed, Talent, International, Sport), beca_importe FLOAT, programa, nota_acceso FLOAT, renta_familiar_tramo, admitido_alternativa BOOLEAN, matriculo BOOLEAN, retuvo_2curso BOOLEAN, nota_media_1curso FLOAT, graduado BOOLEAN. Generate 25,000 scholarship records from 5 academic years."
       },
       {
         "title": "Calculate marginal impact",
         "desc": "Did the scholarship change the decision?",
-        "prompt": "Crea vista IMPACTO_MARGINAL_BECA que estime por estudiante: se_habria_matriculado_sin_beca (basado en perfil similar sin beca), impacto_marginal (la beca fue decisiva, parcialmente decisiva, no decisiva), sensibilidad_precio (alta, media, baja). Variables: renta, alternativas, distancia, nota, programa."
+        "prompt": "Create view IMPACTO_MARGINAL_BECA that estimates per student: se_habria_matriculado_sin_beca (based on similar profile without scholarship), impacto_marginal (scholarship was decisive, partially decisive, not decisive), sensibilidad_precio (alta, media, baja). Variables: renta, alternativas, distancia, nota, programa."
       },
       {
         "title": "Train impact model",
         "desc": "ML.CLASSIFICATION for optimization.",
-        "prompt": "Usa ML.CLASSIFICATION para predecir: beca_fue_decisiva si/no. Variables: renta_tramo, nota, programa, tiene_alternativa, distancia, primera_generacion, importe_beca. Evalúa AUC, precision. Objetivo: identificar el 70% de casos donde la beca es decisiva."
+        "prompt": "Use ML.CLASSIFICATION to predict: beca_fue_decisiva yes/no. Variables: renta_tramo, nota, programa, tiene_alternativa, distancia, primera_generacion, importe_beca. Evaluate AUC, precision. Target: identify 70% of cases where the scholarship is decisive."
       },
       {
         "title": "Optimize distribution",
         "desc": "Maximize enrollments within budget.",
-        "prompt": "Crea función OPTIMIZAR_BECAS(presupuesto_total, curso) que: para cada candidato calcule impacto marginal × probabilidad de éxito × valor del programa, asigne becas maximizando matrículas incrementales + retención, respetando restricciones de equidad (mínimo X% a alta necesidad). Generar distribución óptima."
+        "prompt": "Create function OPTIMIZAR_BECAS(presupuesto_total, curso) que: for each candidate calculates marginal impact × success probability × program value, assigns scholarships maximizing incremental enrollments + retention, respecting equity constraints (minimum X% to high need). Generate optimal distribution."
       },
       {
         "title": "Simulate scenarios",
         "desc": "What-if analysis.",
-        "prompt": "Crea función SIMULAR_BECAS(presupuesto, criterios) que simule: ¿cuántas matrículas más con +10% presupuesto?, ¿qué pasa si eliminamos becas de mérito puro?, ¿impacto de becas internacionales en diversidad? Generar 5 escenarios con métricas comparativas."
+        "prompt": "Create function SIMULAR_BECAS(presupuesto, criterios) that simulates: how many more enrollments with +10% budget?, what happens if we eliminate pure merit scholarships?, impact of international scholarships on diversity? Generate 5 scenarios with comparative metrics."
       },
       {
         "title": "Scholarship dashboard",
         "desc": "Streamlit management.",
-        "prompt": "Genera código Streamlit con:\n1. Distribución óptima de becas por programa y tipo\n2. Impacto marginal por candidato: decisiva vs no decisiva\n3. Simulador de escenarios con sliders de presupuesto\n4. ROI de becas: matrícula, retención, graduación\n5. Equidad: distribución por renta, género, origen\n6. Comparativa: asignación óptima vs criterios actuales"
+        "prompt": "Generate Streamlit code with:\n1. Optimal scholarship distribution by program and type\n2. Marginal impact per candidate: decisive vs non-decisive\n3. Scenario simulator with budget sliders\n4. Scholarship ROI: enrollment, retention, graduation\n5. Equity: distribution by income, gender, origin\n6. Comparison: optimal allocation vs current criteria"
       },
       {
         "title": "Optimization pipeline",
         "desc": "Automate allocation.",
-        "prompt": "Crea Tasks:\n1. CALCULAR_IMPACTO: pre-matrícula, estimar impacto marginal\n2. OPTIMIZAR_DISTRIBUCION: pre-matrícula, generar propuesta\n3. EVALUAR_RESULTADO: post-matrícula, comparar predicción vs realidad\n4. SEGUIMIENTO_RETENCION: semestral, verificar retención de becados\n5. Documenta. Objetivo: +15% matrículas incrementales, -20% abandono económico."
+        "prompt": "Create Tasks:\n1. CALCULAR_IMPACTO: pre-enrollment, estimate marginal impact\n2. OPTIMIZAR_DISTRIBUCION: pre-enrollment, generate proposal\n3. EVALUAR_RESULTADO: post-enrollment, compare prediction vs reality\n4. SEGUIMIENTO_RETENCION: semi-annually, verify scholarship retention\n5. Document. Target: +15% incremental enrollments, -20% economic dropout."
       }
     ]
   },
@@ -2105,42 +2105,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for financial control.",
-        "prompt": "Crea la base de datos EDU_FINANZAS_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de detección de anomalías financieras."
+        "prompt": "Create the database EDU_FINANZAS_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for financial anomaly detection."
       },
       {
         "title": "Create financial data",
         "desc": "Expenses, contracts and budget.",
-        "prompt": "Crea la tabla GASTOS_UNIVERSITARIOS con: gasto_id, fecha DATE, centro_coste, partida_presupuestaria, concepto TEXT, importe FLOAT, proveedor_hash, tipo_gasto (Personal, Funcionamiento, Inversión, Investigacion, Becas), procedimiento_contratacion (Menor, Negociado, Abierto, Restringido), aprobador_nivel (Departamento, Decanato, Gerencia, Rectorado), proyecto_asociado VARCHAR. Genera 200,000 gastos de 3 ejercicios. El 4% tiene patrones anómalos: fraccionamiento, gasto atípico, desviación."
+        "prompt": "Create the table GASTOS_UNIVERSITARIOS with: gasto_id, fecha DATE, centro_coste, partida_presupuestaria, concepto TEXT, importe FLOAT, proveedor_hash, tipo_gasto (Personnel, Operations, Investment, Research, Scholarships), procedimiento_contratacion (Minor, Negotiated, Open, Restricted), aprobador_nivel (Department, Dean, Management, Rectorate), proyecto_asociado VARCHAR. Generate 200,000 expenses from 3 fiscal years. 4% have anomalous patterns: splitting, atypical spending, deviation."
       },
       {
         "title": "Create reference budget",
         "desc": "Allocation and execution by line.",
-        "prompt": "Cra la tabla PRESUPUESTO_UNIVERSITARIO con: ejercicio, centro_coste, partida, dotacion_inicial FLOAT, modificaciones FLOAT, dotacion_vigente FLOAT, ejecucion_acumulada FLOAT, pendiente_pago FLOAT. Genera presupuesto para 3 ejercicios."
+        "prompt": "Create the table PRESUPUESTO_UNIVERSITARIO with: ejercicio, centro_coste, partida, dotacion_inicial FLOAT, modificaciones FLOAT, dotacion_vigente FLOAT, ejecucion_acumulada FLOAT, pendiente_pago FLOAT. Generate budget for 3 fiscal years."
       },
       {
         "title": "Calculate anomaly features",
         "desc": "Deviation indicators.",
-        "prompt": "Crea vista FEATURES_ANOMALIA_FINANCIERA que por gasto calcule:\n- Importe: vs_media_partida, vs_percentil_90, vs_gasto_anterior\n- Proveedor: frecuencia_proveedor, concentracion, es_nuevo\n- Temporal: gasto_fin_ejercicio, concentracion_mensual, ciclicidad\n- Fraccionamiento: gastos_similares_30d mismo proveedor/concepto\n- Presupuesto: ejecucion_vs_dotacion, desviacion_acumulada_pct"
+        "prompt": "Create view FEATURES_ANOMALIA_FINANCIERA that per expense calculates:\n- Importe: vs_media_partida, vs_percentil_90, vs_gasto_anterior\n- Proveedor: frecuencia_proveedor, concentracion, es_nuevo\n- Temporal: gasto_fin_ejercicio, concentracion_monthly, ciclicidad\n- Fraccionamiento: gastos_similares_30d mismo proveedor/concepto\n- Presupuesto: ejecucion_vs_dotacion, desviacion_acumulada_pct"
       },
       {
         "title": "Train detection model",
         "desc": "ML.CLASSIFICATION for anomalies.",
-        "prompt": "Usa ML.CLASSIFICATION para clasificar: normal, anomalia_leve, anomalia_moderada, anomalia_grave. Variables: todas las features. Evalúa precision y recall. Objetivo: detectar 65% anomalías con <10% falsos positivos."
+        "prompt": "Use ML.CLASSIFICATION to classify: normal, mild_anomaly, moderate_anomaly, severe_anomaly. Variables: all features. Evaluate precision and recall. Target: detect 65% anomalies with <10% false positives."
       },
       {
         "title": "Generate audit alerts",
         "desc": "Prioritize cases.",
-        "prompt": "Crea vista ALERTAS_FINANCIERAS con: gasto_id, tipo_anomalia (fraccionamiento, desviacion, atipico, duplicidad, concentracion_proveedor), severidad, importe_en_cuestion, explicacion TEXT, accion_recomendada. Top 50 para revisión del servicio de auditoría."
+        "prompt": "Create view ALERTAS_FINANCIERAS with: gasto_id, tipo_anomalia (splitting, deviation, atypical, duplicity, supplier_concentration), severidad, importe_en_cuestion, explicacion TEXT, accion_recomendada. Top 50 for audit service review."
       },
       {
         "title": "Financial dashboard",
         "desc": "Streamlit control.",
-        "prompt": "Genera código Streamlit con:\n1. Alertas priorizadas con detalle de anomalía\n2. Ejecución presupuestaria por centro y partida con semáforo\n3. Análisis de proveedores: concentración y nuevos\n4. Detección de fraccionamiento con evidencia\n5. Tendencia de gasto por partida y estacionalidad\n6. Métricas: anomalías detectadas, importe, tendencia"
+        "prompt": "Generate Streamlit code with:\n1. Prioritized alerts with anomaly detail\n2. Budget execution by center and line item with traffic light\n3. Supplier analysis: concentration and new\n4. Splitting detection with evidence\n5. Spending trend by line item and seasonality\n6. Metrics: anomalies detected, amount, trend"
       },
       {
         "title": "Audit pipeline",
         "desc": "Automate detection.",
-        "prompt": "Crea Tasks:\n1. INGESTAR_GASTOS: semanal con nuevas operaciones\n2. SCORING_ANOMALIAS: semanal sobre nuevos gastos\n3. ALERTAR_CRITICAS: inmediato si anomalía grave\n4. EVALUAR_EJECUCION: mensual, desviaciones presupuestarias\n5. Documenta. Objetivo: detectar 65% anomalías, <10% falsos positivos."
+        "prompt": "Create Tasks:\n1. INGESTAR_GASTOS: weekly with new operations\n2. SCORING_ANOMALIAS: weekly on new expenses\n3. ALERTAR_CRITICAS: immediate if severe anomaly\n4. EVALUAR_EJECUCION: monthly, budget deviations\n5. Document. Target: detect 65% anomalies, <10% false positives."
       }
     ]
   },
@@ -2151,42 +2151,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for transfer.",
-        "prompt": "Crea la base de datos EDU_TRANSFERENCIA_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de matchmaking universidad-empresa."
+        "prompt": "Create the database EDU_TRANSFERENCIA_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for matchmaking universidad-empresa."
       },
       {
         "title": "Create capabilities catalog",
         "desc": "Research offering.",
-        "prompt": "Crea la tabla CATALOGO_INVESTIGACION con: capacidad_id, grupo_investigacion, departamento, area_tematica, descripcion TEXT, keywords TEXT, equipamiento_disponible TEXT, trl_actual INT, publicaciones_relevantes TEXT, patentes TEXT, contratos_previos INT, disponibilidad. Genera 200 capacidades de 50 grupos de investigación."
+        "prompt": "Create the table CATALOGO_INVESTIGACION with: capacidad_id, grupo_investigacion, departamento, area_tematica, descripcion TEXT, keywords TEXT, equipamiento_disponible TEXT, trl_actual INT, publicaciones_relevantes TEXT, patentes TEXT, contratos_previos INT, disponibilidad. Generate 200 capabilities from 50 research groups."
       },
       {
         "title": "Create business needs",
         "desc": "Innovation demand.",
-        "prompt": "Crea la tabla NECESIDADES_EMPRESA con: necesidad_id, empresa_sector, empresa_tamano (PYME, Mediana, Grande, Multinacional), reto_innovacion TEXT, area_tecnologica TEXT, presupuesto_estimado FLOAT, plazo_meses INT, trl_deseado INT, tipo_colaboracion (Contrato_ID, Licencia, Consultoria, Tesis_Industrial, Spin_Off). Genera 500 necesidades de 200 empresas."
+        "prompt": "Create the table NECESIDADES_EMPRESA with: necesidad_id, empresa_sector, empresa_tamano (SME, Medium, Large, Multinational), reto_innovacion TEXT, area_tecnologica TEXT, presupuesto_estimado FLOAT, plazo_meses INT, trl_deseado INT, tipo_colaboracion (Contract_ID, License, Consulting, Industrial_Thesis, Spin_Off). Generate 500 needs from 200 companies."
       },
       {
         "title": "Semantic matching",
         "desc": "Connect supply with demand.",
-        "prompt": "Crea Cortex Search Service sobre CATALOGO_INVESTIGACION + NECESIDADES_EMPRESA. Crea función MATCHING_TRANSFERENCIA(necesidad_id) que busque capacidades compatibles: score_matching, area_overlap, trl_gap, experiencia_sector, proximidad. Demuestra 5 matchings exitosos."
+        "prompt": "Create Cortex Search Service on CATALOGO_INVESTIGACION + NECESIDADES_EMPRESA. Create function MATCHING_TRANSFERENCIA(necesidad_id) that searches for compatible capabilities: score_matching, area_overlap, trl_gap, experiencia_sector, proximidad. Demonstrate 5 successful matchings."
       },
       {
         "title": "Generate collaboration proposal",
         "desc": "LLM for proposals.",
-        "prompt": "Crea función GENERAR_PROPUESTA(capacidad_id, necesidad_id) que use CORTEX.COMPLETE para generar: resumen ejecutivo, objetivos, plan de trabajo, entregables, presupuesto estimado, equipo propuesto, timeline. Formato profesional para presentar a empresa."
+        "prompt": "Create function GENERAR_PROPUESTA(capacidad_id, necesidad_id) that uses CORTEX.COMPLETE to generar: executive summary, objectives, work plan, deliverables, estimated budget, proposed team, timeline. Professional format to present to company."
       },
       {
         "title": "Analyze transfer pipeline",
         "desc": "TTO metrics.",
-        "prompt": "Crea tabla PIPELINE_TRANSFERENCIA con: propuesta_id, capacidad_id, necesidad_id, fecha_propuesta, estado (Propuesta, Negociacion, Firmado, En_Curso, Completado, Cancelado), importe_contrato FLOAT. Crea vista METRICAS_OTRI: propuestas generadas, tasa conversión, ingresos, por área y tipo."
+        "prompt": "Create table PIPELINE_TRANSFERENCIA with: propuesta_id, capacidad_id, necesidad_id, fecha_propuesta, estado (Proposal, Negotiation, Signed, In_Progress, Completed, Cancelled), importe_contrato FLOAT. Create view METRICAS_OTRI: proposals generated, conversion rate, revenue, by area y tipo."
       },
       {
         "title": "Transfer dashboard",
         "desc": "TTO Streamlit.",
-        "prompt": "Genera código Streamlit con:\n1. Buscador de matching: necesidad → capacidades compatibles\n2. Generador de propuestas de colaboración\n3. Pipeline de transferencia: funnel de propuestas\n4. Catálogo de capacidades por área y grupo\n5. Métricas: contratos, ingresos, tasa conversión\n6. Mapa de colaboraciones: red universidad-empresa"
+        "prompt": "Generate Streamlit code with:\n1. Matching finder: need → compatible capabilities\n2. Collaboration proposal generator\n3. Transfer pipeline: proposal funnel\n4. Capabilities catalog by area and group\n5. Metrics: contracts, revenue, conversion rate\n6. Collaboration map: university-industry network"
       },
       {
         "title": "Matching pipeline",
         "desc": "Automate connections.",
-        "prompt": "Crea Tasks:\n1. ACTUALIZAR_CATALOGO: trimestral, nuevas capacidades\n2. INGESTAR_NECESIDADES: continuo, nuevas demandas\n3. MATCHING_AUTOMATICO: semanal, notificar nuevos matchings\n4. GENERAR_PROPUESTAS: bajo demanda\n5. Documenta. Objetivo: triplicar contratos, +25% ingresos transferencia."
+        "prompt": "Create Tasks:\n1. ACTUALIZAR_CATALOGO: quarterly, new capabilities\n2. INGESTAR_NECESIDADES: continuous, new demands\n3. MATCHING_AUTOMATICO: weekly, notify new matchings\n4. GENERAR_PROPUESTAS: on demand\n5. Document. Target: triple contracts, +25% transfer revenue."
       }
     ]
   },
@@ -2197,42 +2197,42 @@ Object.assign(PROMPTS, {
       {
         "title": "Configure environment",
         "desc": "Create database for governance.",
-        "prompt": "Crea la base de datos EDU_GOBIERNO_DB con esquema ANALYTICS y warehouse EDU_WH. Comentarios del proyecto de cumplimiento RGPD y gobierno del dato."
+        "prompt": "Create the database EDU_GOBIERNO_DB with schema ANALYTICS and warehouse EDU_WH. Project comments for cumplimiento RGPD y gobierno del dato."
       },
       {
         "title": "Create processing inventory",
         "desc": "Personal data catalog.",
-        "prompt": "Crea la tabla INVENTARIO_TRATAMIENTOS con: tratamiento_id, sistema_origen (SGA, LMS, RRHH, Email, Investigacion, Biblioteca, Deportes, Medico), tipo_dato (Academico, Financiero, Sanitario, Laboral, Investigacion), categoria_interesado (Estudiante, Profesor, PAS, Investigador, Externo), base_legal (Consentimiento, Interes_Legitimo, Obligacion_Legal, Contrato), finalidad TEXT, periodo_retencion_meses INT, encargado_tratamiento VARCHAR, datos_sensibles BOOLEAN. Genera 150 tratamientos de datos."
+        "prompt": "Create the table INVENTARIO_TRATAMIENTOS with: tratamiento_id, sistema_origen (SGA, LMS, HR, Email, Research, Library, Sports, Medical), tipo_dato (Academic, Financial, Health, Employment, Research), categoria_interesado (Student, Professor, Staff, Researcher, External), base_legal (Consent, Legitimate_Interest, Legal_Obligation, Contract), finalidad TEXT, periodo_retencion_meses INT, encargado_tratamiento VARCHAR, datos_sensibles BOOLEAN. Generate 150 data processing records."
       },
       {
         "title": "Classify personal data",
         "desc": "NLP for automatic detection.",
-        "prompt": "Crea función CLASIFICAR_DATOS(sistema, tabla, columna, muestra_datos) que use CORTEX.COMPLETE para clasificar: tipo (identificador_directo, cuasi_identificador, dato_sensible, dato_personal, no_personal), categoria_RGPD, riesgo (alto, medio, bajo), recomendacion (encriptar, enmascarar, seudonimizar, ok). Demuestra sobre 20 columnas de diferentes sistemas."
+        "prompt": "Create function CLASIFICAR_DATOS(sistema, tabla, columna, muestra_datos) that uses CORTEX.COMPLETE to classify: tipo (direct_identifier, quasi_identifier, sensitive_data, personal_data, non_personal), categoria_RGPD, riesgo (alto, medio, bajo), recomendacion (encrypt, mask, pseudonymize, ok). Demonstrate on 20 columnas de diferentes sistemas."
       },
       {
         "title": "Manage consents",
         "desc": "Centralized registry.",
-        "prompt": "Crea tabla CONSENTIMIENTOS con: interesado_id, tipo_interesado, tratamiento_id, consentimiento_otorgado BOOLEAN, fecha_consentimiento DATE, medio (Digital, Papel, Implícito), alcance TEXT, revocado BOOLEAN, fecha_revocacion. Crea función VERIFICAR_CONSENTIMIENTO(interesado_id, tratamiento_id) que verifique base legal y consentimiento vigente."
+        "prompt": "Create table CONSENTIMIENTOS with: interesado_id, tipo_interesado, tratamiento_id, consentimiento_otorgado BOOLEAN, fecha_consentimiento DATE, medio (Digital, Paper, Implicit), alcance TEXT, revocado BOOLEAN, fecha_revocacion. Create function VERIFICAR_CONSENTIMIENTO(interesado_id, tratamiento_id) that verifies legal basis and valid consent."
       },
       {
         "title": "Detect access anomalies",
         "desc": "ML for suspicious access.",
-        "prompt": "Crea tabla LOGS_ACCESO_DATOS con: usuario_id, sistema, datos_accedidos, fecha_hora TIMESTAMP, ip_origen, volumen_registros INT, tipo_operacion (Lectura, Escritura, Exportacion, Eliminacion). Usa ML.CLASSIFICATION para detectar: acceso fuera de horario, volumen inusual, exportación masiva, acceso a datos sin necesidad. Generar alertas."
+        "prompt": "Create table LOGS_ACCESO_DATOS with: usuario_id, sistema, datos_accedidos, fecha_hora TIMESTAMP, ip_origen, volumen_registros INT, tipo_operacion (Read, Write, Export, Deletion). Use ML.CLASSIFICATION to detect: off-hours access, unusual volume, mass export, data access without need. Generate alerts."
       },
       {
         "title": "Evaluate privacy risks",
         "desc": "Automated DPIA.",
-        "prompt": "Crea función EVALUAR_RIESGO_PRIVACIDAD(tratamiento_id) que analice: tipo de datos, volumen, automatización, perfilado, datos sensibles, transferencias, medidas de seguridad. Genere puntuación de riesgo y determine si requiere DPIA formal. Use CORTEX.COMPLETE para generar informe de evaluación."
+        "prompt": "Create function EVALUAR_RIESGO_PRIVACIDAD(tratamiento_id) that analyzes: data type, volume, automation, profiling, sensitive data, transfers, security measures. Generate risk score and determine if formal DPIA is required. Use CORTEX.COMPLETE to generate informe de evaluation."
       },
       {
         "title": "GDPR dashboard",
         "desc": "Streamlit compliance.",
-        "prompt": "Genera código Streamlit con:\n1. Inventario de tratamientos con estado de cumplimiento\n2. Clasificación de datos por sistema y sensibilidad\n3. Estado de consentimientos por tipo de interesado\n4. Alertas de acceso anómalo\n5. Evaluación de riesgos con semáforo por tratamiento\n6. Métricas: derechos ARCO gestionados, tiempos de respuesta"
+        "prompt": "Generate Streamlit code with:\n1. Processing inventory with compliance status\n2. Data classification by system and sensitivity\n3. Consent status by data subject type\n4. Anomalous access alerts\n5. Risk assessment with traffic light by processing\n6. Metrics: ARCO rights managed, response times"
       },
       {
         "title": "Governance pipeline",
         "desc": "Automate compliance.",
-        "prompt": "Crea Tasks:\n1. CLASIFICAR_NUEVOS: mensual, analizar nuevos datos\n2. VERIFICAR_CONSENTIMIENTOS: semanal, detectar gaps\n3. DETECTAR_ANOMALIAS_ACCESO: diario\n4. EVALUAR_RIESGOS: trimestral, actualizar evaluaciones\n5. Documenta. Objetivo: inventario 100%, respuesta ARCO <72h."
+        "prompt": "Create Tasks:\n1. CLASIFICAR_NUEVOS: monthly, analyze new data\n2. VERIFICAR_CONSENTIMIENTOS: weekly, detect gaps\n3. DETECTAR_ANOMALIAS_ACCESO: daily\n4. EVALUAR_RIESGOS: quarterly, update assessments\n5. Document. Target: inventory 100%, ARCO response <72h."
       }
     ]
   }
@@ -2244,13 +2244,13 @@ function verGuia(ucId) {
   var html = '<span class="guide-badge">' + ucId + '</span>';
   html += '<h2>' + g.title + '</h2>';
   if (g.context) html += '<p style="color:#555;margin-bottom:10px;">' + g.context + '</p>';
-  if (g.focus) html += '<p style="color:#555;margin-bottom:10px;"><strong>Foco:</strong> ' + g.focus + '</p>';
-  if (g.challenge) html += '<p style="color:#555;margin-bottom:10px;"><strong>Reto:</strong> ' + g.challenge + '</p>';
-  if (g.objectives) { html += '<h3>Objetivos</h3><ul>'; g.objectives.forEach(function(o){html += '<li>' + o + '</li>';}); html += '</ul>'; }
-  if (g.features_list) { html += '<h3>Funcionalidades</h3><ul>'; g.features_list.forEach(function(f){html += '<li>' + f + '</li>';}); html += '</ul>'; }
-  if (g.data) { html += '<h3>Datos</h3><ul>'; g.data.forEach(function(d){html += '<li>' + d + '</li>';}); html += '</ul>'; }
-  if (g.stratification) { html += '<h3>Estratificaci&oacute;n</h3><ul>'; g.stratification.forEach(function(e){html += '<li>' + e + '</li>';}); html += '</ul>'; }
-  if (g.how_to_use) { html += '<h3>C&oacute;mo Usar</h3><ul>'; g.how_to_use.forEach(function(c){html += '<li>' + c + '</li>';}); html += '</ul>'; }
+  if (g.focus) html += '<p style="color:#555;margin-bottom:10px;"><strong>Focus:</strong> ' + g.focus + '</p>';
+  if (g.challenge) html += '<p style="color:#555;margin-bottom:10px;"><strong>Challenge:</strong> ' + g.challenge + '</p>';
+  if (g.objectives) { html += '<h3>Objectives</h3><ul>'; g.objectives.forEach(function(o){html += '<li>' + o + '</li>';}); html += '</ul>'; }
+  if (g.features_list) { html += '<h3>Features</h3><ul>'; g.features_list.forEach(function(f){html += '<li>' + f + '</li>';}); html += '</ul>'; }
+  if (g.data) { html += '<h3>Data</h3><ul>'; g.data.forEach(function(d){html += '<li>' + d + '</li>';}); html += '</ul>'; }
+  if (g.stratification) { html += '<h3>Stratification</h3><ul>'; g.stratification.forEach(function(e){html += '<li>' + e + '</li>';}); html += '</ul>'; }
+  if (g.how_to_use) { html += '<h3>How to Use</h3><ul>'; g.how_to_use.forEach(function(c){html += '<li>' + c + '</li>';}); html += '</ul>'; }
   html += '<div class="guide-footer">Snowflake &mdash; AI/ML Solutions for Education and Universities</div>';
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('active');
@@ -2266,7 +2266,7 @@ function verPrompts(ucId) {
   data.steps.forEach(function(s, i) {
     html += '<div class="prompt-step"><div class="prompt-step-header"><span class="prompt-step-num">' + (i+1) + '</span><span class="prompt-step-title">' + s.title + '</span></div>';
     html += '<p class="prompt-step-desc">' + s.desc + '</p>';
-    html += '<div class="prompt-code"><button class="copy-btn" onclick="copiarPrompt(this)">Copiar</button>' + esc(s.prompt) + '</div></div>';
+    html += '<div class="prompt-code"><button class="copy-btn" onclick="copiarPrompt(this)">Copy</button>' + esc(s.prompt) + '</div></div>';
   });
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('active');

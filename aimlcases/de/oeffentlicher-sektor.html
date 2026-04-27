@@ -2260,15 +2260,15 @@ function verGuia(ucId) {
   if (!g) return;
   var html = '<span class="guide-badge">' + ucId + '</span>';
   html += '<h2>' + g.title + '</h2>';
-  html += '<h3>Contexto del Sector P\u00fablico</h3><p>' + g.contexto + '</p>';
-  html += '<h3>Foco de la Soluci\u00f3n</h3><p>' + g.foco + '</p>';
-  html += '<h3>Reto T\u00e9cnico</h3><p>' + g.reto + '</p>';
-  html += '<h3>Objetivos</h3><ul>' + g.objetivos.map(function(o){return '<li>' + o + '</li>';}).join('') + '</ul>';
-  html += '<h3>Funcionalidades Principales</h3><ul>' + g.funcionalidades.map(function(f){return '<li>' + f + '</li>';}).join('') + '</ul>';
-  html += '<h3>Datos Necesarios</h3><ul>' + g.datos.map(function(d){return '<li>' + d + '</li>';}).join('') + '</ul>';
-  html += '<h3>Estratificaci\u00f3n</h3><ul>' + g.estratificacion.map(function(s){return '<li>' + s + '</li>';}).join('') + '</ul>';
-  html += '<h3>C\u00f3mo Usar</h3><ul>' + g.como_usar.map(function(c){return '<li>' + c + '</li>';}).join('') + '</ul>';
-  html += '<div class="guide-footer">Gu\u00eda generada for implementaci\u00f3n con Snowflake Cortex AI/ML</div>';
+  html += '<h3>Kontext des Öffentlichen Sektors</h3><p>' + g.contexto + '</p>';
+  html += '<h3>Lösungsfokus</h3><p>' + g.foco + '</p>';
+  html += '<h3>Technische Herausforderung</h3><p>' + g.reto + '</p>';
+  html += '<h3>Ziele</h3><ul>' + g.objetivos.map(function(o){return '<li>' + o + '</li>';}).join('') + '</ul>';
+  html += '<h3>Hauptfunktionalitäten</h3><ul>' + g.funcionalidades.map(function(f){return '<li>' + f + '</li>';}).join('') + '</ul>';
+  html += '<h3>Erforderliche Daten</h3><ul>' + g.datos.map(function(d){return '<li>' + d + '</li>';}).join('') + '</ul>';
+  html += '<h3>Stratifizierung</h3><ul>' + g.estratificacion.map(function(s){return '<li>' + s + '</li>';}).join('') + '</ul>';
+  html += '<h3>Anwendung</h3><ul>' + g.como_usar.map(function(c){return '<li>' + c + '</li>';}).join('') + '</ul>';
+  html += '<div class="guide-footer">Leitfaden erstellt für die Implementierung mit Snowflake Cortex AI/ML</div>';
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('active');
 }
@@ -2287,13 +2287,13 @@ function verPrompts(ucId) {
     html += '<div class="prompt-code"><button class="copy-btn" onclick="copiarPrompt(this)">Kopieren</button>' + esc(st.prompt) + '</div>';
     html += '</div>';
   });
-  html += '<div class="guide-footer">Ejecuta estos prompts sequencelmente en Cortex Code</div>';
+  html += '<div class="guide-footer">Führen Sie diese Prompts sequenziell in Cortex Code aus</div>';
   document.getElementById('modalContent').innerHTML = html;
   document.getElementById('modalOverlay').classList.add('active');
 }
 
 function copiarPrompt(btn) {
-  var code = btn.parentElement.textContent.replace('Copiar','').trim();
+  var code = btn.parentElement.textContent.replace('Kopieren','').trim();
   navigator.clipboard.writeText(code).then(function(){btn.textContent='\u2713 Kopiert';setTimeout(function(){btn.textContent='Kopieren';},1500);});
 }
 
